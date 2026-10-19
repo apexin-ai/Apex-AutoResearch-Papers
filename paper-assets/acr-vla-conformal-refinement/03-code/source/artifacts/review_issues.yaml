@@ -1,0 +1,478 @@
+- id: "C3"
+  summary: "Insufficient statistical power (small effect sizes, low seed count)"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R1, R2, R3], note: "obs_only 7, VLA-only 5, Argmin 6, Random 3"}
+    - {round: 2, reviewers: [R1, R2, R3], note: "Random 仅 3 seeds 的 statistically indistinguishable 结论不成立"}
+    - {round: 3, reviewers: [R1, R2], note: "效果量缩至 1-2pp，n=3 全部 p>0.05。8-seed 仅 Spatial p=0.017。"}
+    - {round: 7, reviewers: [R1, R2], note: "τ-gated vs VLA-only: Spatial +1.5pp, Object +0.1pp, Goal +1.3pp, Long -0.3pp——全部在噪声范围内。8-seed Spatial p=0.017 但效应极小。π₀.5 仅 n=1。τ-sweep 大量 n=1 数据点。两位一致 critical。"}
+  action_items:
+    - {round: 2, action: "所有条件统一至 >=5 seeds", assigned_to: "Agent", status: "open"}
+    - {round: 3, action: "降级 claim 到 mechanism claim + K=2 CRM always-on ablation 支持 gating 机制", assigned_to: "Paper Agent + Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "M7"
+  summary: "Paper title misleading — 'Conformal' implies formal CP guarantees"
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R2, R3], note: "Title sets wrong expectations"}
+    - {round: 2, reviewers: [R1, R2, R3], note: "Dissecting 标题暗示分析深度不足"}
+    - {round: 3, reviewers: [R1, R2], note: "Conformal 暗示 formal CP guarantee，Section 3.5 自承 loosely。两位 Reviewer 一致 critical。"}
+    - {round: 7, reviewers: [R1, R2], note: "标题仍含 Conformal Confidence Sets。Section 3.5 disclaimer 不够——Title/Abstract/Section 3 反复使用。R1 发现 ρ=0.9979(稳定性) vs ρ≈0.10(有效性) framing 陷阱加剧问题。两位一致 critical。"}
+  action_items:
+    - {round: 1, action: "Change title", assigned_to: "Paper Agent", status: "done"}
+    - {round: 2, action: "明确定位为分析 paper", assigned_to: "Paper Agent", status: "done"}
+    - {round: 3, action: "移除 Conformal，改为 Adaptive Residual Refinement 或用户指定替代", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "M1"
+  summary: "Narrow experimental scope (sim-only + single core VLA + single benchmark)"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R2, R1, R3], note: "Only SmolVLA on LIBERO"}
+    - {round: 2, reviewers: [R1, R2, R3], note: "三方一致 critical"}
+    - {round: 3, reviewers: [R1, R2], note: "π₀.₅ 分析有帮助但仅 SR 无 ablation。仍 sim-only。"}
+    - {round: 7, reviewers: [R1, R2], note: "仍仅 LIBERO sim，无真机实验。π₀.5 单种子。对 CoRL venue 这是显著弱点。"}
+  action_items:
+    - {round: 2, action: "至少增加一个 flow-matching VLA backbone", assigned_to: "Agent", status: "done"}
+    - {round: 3, action: "强化 π₀.₅ Section 4.5（trigger rate + per-task breakdown）+ Limitations 承认 sim-only", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "C6"
+  summary: "Paper exceeds page limit"
+  category: format
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R3, R2], note: "May cause desk reject"}
+    - {round: 2, reviewers: [R1, R2, R3], note: "约 9 页"}
+    - {round: 3, reviewers: [R1, R2], note: "Limitations 在 PDF 第 9 页，有 enlargethispage + vspace hack"}
+    - {round: 7, reviewers: [R1, R2], note: "discussion.tex 含 enlargethispage{6baselineskip} + 多处 vspace{-8pt/-4pt/-2pt}。实质超过 8 页限制。"}
+  action_items:
+    - {round: 2, action: "Paper Agent 压缩页面", assigned_to: "Paper Agent", status: "in_progress"}
+    - {round: 3, action: "Limitations 移入 Appendix，删除 vspace hack，确保 <=8 页正文", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "M6"
+  summary: "CRM train/eval task overlap — no held-out suite verification"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "Cannot distinguish memorization from generalization"}
+    - {round: 2, reviewers: [R1, R2, R3], note: "三方一致 critical"}
+    - {round: 3, reviewers: [R1, R2], note: "R1 critical, R2 rebuts to warning. Director 降级 warning."}
+    - {round: 7, reviewers: [], note: "本轮未被提及，可能已通过 LTO framing 解决，待 Research Director 确认"}
+  action_items:
+    - {round: 2, action: "Leave-task-out 实验", assigned_to: "Agent", status: "done"}
+    - {round: 3, action: "Discussion 中用 LTO 数据 frame CRM 为 task-specific by design", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-N1"
+  summary: "ε confound in Adaptive vs CRM always-on comparison"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 7
+  mentions:
+    - {round: 3, reviewers: [R2], note: "Adaptive ε=0.2 vs CRM ε=0.05。4× norm bound 差异。"}
+    - {round: 7, reviewers: [R1], note: "R1-W4: ε=0.2 如何选择？无 ε ablation。ε 与 τ 可能有交互效应。"}
+  action_items:
+    - {round: 3, action: "K=2 CRM always-on (ε=0.2) 实验已部署 3/12，剩余 9 待 GPU 释放", assigned_to: "Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-N2"
+  summary: "Missing K=2 argmin baseline"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 3
+  last_seen_round: 7
+  mentions:
+    - {round: 3, reviewers: [R1, R2], note: "无法在 K=2 budget 下分离 selection vs correction"}
+    - {round: 7, reviewers: [R1], note: "R1-W6: 需要 K=1 + CRM τ-gated (alternative proxy) baseline。同时 R1-N2 指出 K=2 argmin degenerate（见 R7-N1）。"}
+  action_items:
+    - {round: 3, action: "K=2 argmin 降为 supplementary，GPU 紧张时 K=2 CRM always-on 优先", assigned_to: "Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "M3"
+  summary: "No experimental comparison with A2C2"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - {round: 1, reviewers: [R1, R2, R3], note: "Only textual positioning"}
+    - {round: 2, reviewers: [R1, R2, R3], note: "三方一致 critical"}
+    - {round: 3, reviewers: [R1, R2], note: "R1 should-fix, R2 rebuts. Director 降级 warning."}
+    - {round: 7, reviewers: [], note: "本轮未被提及"}
+  action_items:
+    - {round: 3, action: "Discussion 中明确解释 A2C2 不可直接对比的原因", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "M4"
+  summary: "Bib entries missing venue info"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R1, R2, R3], note: "Orphan entries"}
+    - {round: 2, reviewers: [R1, R2, R3], note: "RT-2/OpenVLA/Octo 仍 @misc"}
+    - {round: 3, reviewers: [], note: "仍未修复"}
+    - {round: 7, reviewers: [R1, R2], note: "部分 2025 条目仅 arXiv 信息，cite key 与 year 不一致（如 snell2024scaling year=2025）"}
+  action_items:
+    - {round: 3, action: "更新 RT-2/OpenVLA/Octo/π₀/π₀.₅ venue info", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W5-new"
+  summary: "DAgger citation misused"
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 7
+  mentions:
+    - {round: 2, reviewers: [R1, R2, R3], note: "DAgger 是 interactive aggregation，非 static noise"}
+    - {round: 3, reviewers: [], note: "仍未修复"}
+    - {round: 7, reviewers: [R1], note: "R1 交叉回应确认仍存在，引用不精确但不完全错误"}
+  action_items:
+    - {round: 3, action: "替换为 domain randomization 或 covariate shift 文献", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-W9-new"
+  summary: "SmolVLA checkpoint version not locked"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - {round: 2, reviewers: [R1, R2, R3], note: "无 commit hash"}
+    - {round: 3, reviewers: [], note: "仍未修复"}
+    - {round: 7, reviewers: [], note: "本轮未被提及，可能已修复，待 Research Director 确认"}
+  action_items:
+    - {round: 3, action: "补充 HuggingFace commit hash 或 download date", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-W10-new"
+  summary: "Precompute pipeline random seed not specified"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - {round: 2, reviewers: [R1, R3], note: "未明确"}
+    - {round: 3, reviewers: [], note: "仍未修复"}
+    - {round: 7, reviewers: [], note: "本轮未被提及，可能已修复，待 Research Director 确认"}
+  action_items:
+    - {round: 3, action: "明确 precompute seed", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-N3"
+  summary: "Missing references: STEER + CP in robotics + selective prediction"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 7
+  mentions:
+    - {round: 3, reviewers: [R1, R2], note: "补 STEER + Lindemann et al. 2023 CP-robotics"}
+    - {round: 7, reviewers: [R1, R2], note: "大幅扩展：缺 Conformalized Teleoperation (RSS 2024), CP for Crowd Navigation (CoRL 2025), Geifman & El-Yaniv 2017/2019 selective prediction, Confidence-Gated Robot Autonomy (2025), ensemble disagreement (Lakshminarayanan 2017, Gal & Ghahramani 2016)"}
+  action_items:
+    - {round: 3, action: "补充引用", assigned_to: "Paper Agent", status: "in_progress"}
+    - {round: 7, action: "新增 Related Work 段落 Selective Prediction and Reject Options + 扩展 CP-robotics 引用", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "M2"
+  summary: "LIBERO-Spatial limited seed count / 8-seed only Spatial"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R1, R2, R3], note: "1 seed insufficient"}
+    - {round: 2, reviewers: [R1, R2, R3], note: "仍为 seed42 单点"}
+    - {round: 3, reviewers: [R1, R2], note: "Spatial n=3+8-seed(p=0.017)。其余 suites n=3。"}
+    - {round: 7, reviewers: [R1, R2], note: "归入 C3 统一讨论。τ-sweep 多数 τ 值仍 n=1。"}
+  action_items:
+    - {round: 2, action: "Spatial seeds 扩展", assigned_to: "Agent", status: "done"}
+    - {round: 3, action: "归入 W1 统一处理。claim 降级到 mechanism level。", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "M5"
+  summary: "Figure 2 error bars on low-seed points"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - {round: 1, reviewers: [R1, R3], note: "Visual misleading"}
+    - {round: 2, reviewers: [R1, R2], note: "n=1 无 error bar"}
+    - {round: 3, reviewers: [], note: "改进但某些点仍 n=1"}
+    - {round: 7, reviewers: [], note: "本轮未被提及，可能已修复，待 Research Director 确认"}
+  action_items:
+    - {round: 3, action: "n=1 点使用不同 marker 或 hollow circle 标注", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "C4"
+  summary: "Novelty insufficient — selective prediction + standard MLP + L2 clipping"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R2, R3], note: "Technical novelty low"}
+    - {round: 2, reviewers: [R1, R2, R3], note: "R2 维持 critical"}
+    - {round: 7, reviewers: [R1, R2], note: "R2 升级为 critical: τ-gating 是 selective prediction (Geifman & El-Yaniv 2017) 的直接实例，K=2 L₂ 是 ensemble disagreement 最简形式，CRM 是标准 residual MLP。Originality 4-5/10。R1 AGREE 并认为 R2 的定位比 TRANSIC 遗漏更根本。"}
+  action_items:
+    - {round: 2, action: "明确定位为实证分析 paper", assigned_to: "Paper Agent", status: "in_progress"}
+    - {round: 7, action: "重新定位：承认 selective prediction 联系，强调 VLA correction 场景的经验发现为主要贡献", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W3-new"
+  summary: "Applicability boundary based on limited evidence / π₀.5 single seed"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 7
+  mentions:
+    - {round: 2, reviewers: [R1, R2, R3], note: "仅 OpenVLA T=0.5 一个 data point"}
+    - {round: 3, reviewers: [], note: "增加 OpenVLA-OFT 分析，但仍仅两个 data points"}
+    - {round: 7, reviewers: [R1, R2], note: "R2-N3 critical: π₀.5 单种子不足以支撑 Contribution 3。Limitations 承认 partial recovery 与 Abstract 叙事矛盾。R1 AGREE。"}
+  action_items:
+    - {round: 2, action: "测试更多 VLA 或软化 claim", assigned_to: "Agent + Paper Agent", status: "in_progress"}
+    - {round: 7, action: "π₀.5 至少 n=3 seeds；或降级 Contribution 3 为 preliminary observation", assigned_to: "Agent + Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+# === Round 7 新发现 ===
+
+- id: "R7-N1"
+  summary: "K=2 argmin-to-centroid selection mathematically degenerate (tie)"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 7
+  last_seen_round: 7
+  mentions:
+    - {round: 7, reviewers: [R1], note: "K=2 时 ||a^(1)-μ||₂ = ||a^(2)-μ||₂ 恒成立，argmin 永远 tie。Table 8 K=2 argmin ablation 实际等价于随机选取。论文未讨论。R2 未独立发现但未反驳。"}
+  action_items:
+    - {round: 7, action: "明确指出 K=2 argmin degenerate；重新定位 K=2 价值在于 uncertainty signal 而非 selection", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R7-N2"
+  summary: "ρ=0.9979 (stability) vs ρ≈0.10 (validity) framing trap"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 7
+  last_seen_round: 7
+  mentions:
+    - {round: 7, reviewers: [R1], note: "Abstract ρ=0.9979 是 K=2 L₂ vs K=10 L₂ 排序一致性(稳定性)。Table 6 ρ≈0.10 是 proxy vs action variance(有效性)。论文用稳定性暗示有效性——解释力仅~1%。R2 未独立挖出 Table 6 数据但同意 conformal framing 问题。"}
+  action_items:
+    - {round: 7, action: "在正文明确区分两个 ρ 的含义；如果 ρ=0.9979 只是稳定性指标则不应在 Abstract 突出", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R7-N3"
+  summary: "'Correction harmful' conclusion may be CRM design artifact, not general law"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 7
+  last_seen_round: 7
+  mentions:
+    - {round: 7, reviewers: [R1], note: "结论完全基于一种 CRM 设计(327K MLP, L₂ loss, 离线训练)。未探索更大架构、在线训练、其他 loss。Long suite 的 OOD confound 加剧担忧——部分 'correction hurts' 可能纯是 distribution mismatch。R2 未独立提出但在 W1 中隐含质疑。"}
+  action_items:
+    - {round: 7, action: "讨论 CRM 设计选择对结论的影响；明确区分 in-distribution(Spatial/Object/Goal) vs OOD(Long) 两种 mechanism", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R7-W1"
+  summary: "Figure 3 causal claim too strong — only 4 data points"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 7
+  last_seen_round: 7
+  mentions:
+    - {round: 7, reviewers: [R1], note: "Section 4.3 'Why Gating Is Necessary' 暗示因果，但 Figure 3 仅 4 suite-level 点。相关≠因果，可能受 suite 难度驱动。"}
+  action_items:
+    - {round: 7, action: "软化 Section 4.3 标题和叙述，用 'correlation' 替代因果暗示", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+# === Resolved issues (不再列出完整历史，仅保留 ID) ===
+- id: "C1"
+  summary: "Fisher exact test independence violation"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions: []
+  action_items: []
+  resolution: "改用 seed-level Mann-Whitney U"
+  resolution_round: 2
+
+- id: "C2"
+  summary: "Core claim contradicts K=1 data"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions: []
+  action_items: []
+  resolution: "重构核心 claim"
+  resolution_round: 2
+
+- id: "C5"
+  summary: "Title contradicts conclusion"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions: []
+  action_items: []
+  resolution: "标题已修改"
+  resolution_round: 2
+
+- id: "C7"
+  summary: "Missing AI Disclosure"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions: []
+  action_items: []
+  resolution: "AI Disclosure 已添加"
+  resolution_round: 2
+
+- id: "R2-W4-new"
+  summary: "Motivation-evaluation disconnect"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions: []
+  action_items: []
+  resolution: "Intro 重写，baseline 提升"
+  resolution_round: 3
+
+- id: "R2-W1-new"
+  summary: "Low absolute performance limits generalizability"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions: []
+  action_items: []
+  resolution: "SmolVLA baselines 58-83%"
+  resolution_round: 3
+
+- id: "R2-W7-new"
+  summary: "Dissecting title promises analysis depth not delivered"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions: []
+  action_items: []
+  resolution: "标题更改"
+  resolution_round: 3
+
+- id: "R1-W1-new"
+  summary: "Geometric medoid terminology incorrect"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions: []
+  action_items: []
+  resolution: "术语统一为 argmin-to-centroid"
+  resolution_round: 3
+
+- id: "R1-N4-latency"
+  summary: "Wall-clock latency not quantified"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions: []
+  action_items: []
+  resolution: "K=2 batched design + Table 2 量化"
+  resolution_round: 3
+
+- id: "R3-W8-new"
+  summary: "Hardware environment and training time not reported"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions: []
+  action_items: []
+  resolution: "Appendix Hardware 段落"
+  resolution_round: 3
+
+- id: "M8"
+  summary: "Missing CP in robotics subsection"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions: []
+  action_items: []
+  resolution: "Section 2.3 已添加"
+  resolution_round: 2

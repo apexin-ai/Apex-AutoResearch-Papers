@@ -1,0 +1,49 @@
+dreams:
+  dream_20260513T015051:
+    dream_id: dream_20260513T015051
+    project: acr-vla-conformal-refinement
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: CoRL 2026
+    focus: 'Critical validation: (1) Does the per-DOF advantage from MVP''s synthetic
+      setting transfer to real VLA flow-matching samples with 7-DOF actions? (2) Is
+      K=10 covariance with Ledoit-Wolf shrinkage sufficient for stable CGS in practice?
+      (3) Can COC provide a reliable self-referential ACI signal? (4) Does ACR-VLA
+      stack meaningfully on SRPO (82.1% SOTA)?'
+    what_if: []
+    pid: null
+    chat_id: oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4
+    card_message_id: om_x100b6f09c12cf8acb288595a17d3a3a
+    started_at: '2026-05-13T01:50:51+00:00'
+    updated_at: '2026-05-13T02:35:56+00:00'
+    stages_completed:
+    - imagine
+    - write
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 66186551d14d21f3bc57f4e07d4194331d38fa44c65d4c38774a1ddaf2a28076
+  dream_20260513T023849:
+    dream_id: dream_20260513T023849
+    project: acr-vla-conformal-refinement
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: CoRL 2026
+    focus: 'Critical validation: (1) Does per-DOF advantage transfer from synthetic
+      MVP to real VLA flow-matching samples? (2) K=10 covariance with Ledoit-Wolf
+      shrinkage quality? (3) COC self-referential ACI signal reliability? (4) SRPO
+      stacking value?'
+    what_if: []
+    pid: 131300
+    chat_id: oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4
+    card_message_id: om_x100b6f0a0d6bb888b157ff3bd7c8994
+    started_at: '2026-05-13T02:38:49+00:00'
+    updated_at: '2026-05-13T03:26:18+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 9486080176c40efbe747ed432260e45828771426b09fe8a8c432a33d5d4e641b

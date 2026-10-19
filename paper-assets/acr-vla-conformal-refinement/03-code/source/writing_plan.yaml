@@ -1,0 +1,355 @@
+# ACR-VLA Full Draft — CoRL 2026 (D150/D155/D159 Reframe)
+# Status: APPROVED (Director: "直接推进 Steps 2-5, 不需要再等审批")
+# Generated: 2026-05-26 (D159 patch applied)
+# Supersedes: 2026-05-23 version
+# Data source: Director D150/D155/D159 指令 + ROADMAP.md + paper_framing.md
+
+meta:
+  venue: CoRL 2026
+  track: main
+  template: docs/paper/ (corl_2026.sty)
+  page_limit: 8
+  deadline: "2026-05-29"
+  core_claim: >
+    ACR-VLA: adaptive inference-time correction for frozen flow-matching VLAs.
+    K=2 pairwise L2 distance as per-step uncertainty gate (latency = K=1),
+    CRM correction only on uncertain steps. Adaptive ≥ CRM always-on on ALL
+    4 LIBERO suites (consistency claim). CRM always-on harmful on Object
+    (-1.2pp) and Long (-2.2pp) — adaptive gating is a necessary safety
+    mechanism. Cross-VLA analysis reveals model capability dependency:
+    near-expert VLAs (π0.5 94-99%) do not benefit from post-hoc correction.
+  created_at: "2026-05-26T06:00:00Z"
+
+# ============================================================
+# NARRATIVE (D150/D155/D159 final)
+# ============================================================
+narrative:
+  positioning: "Method paper with systematic analysis"
+  title: "ACR-VLA: Adaptive Conformal Refinement for Frozen Vision-Language-Action Models"
+  story_spine:
+    hook: >
+      Frozen flow-matching VLAs produce stochastic actions; unconditional
+      post-hoc correction (CRM always-on) helps on some tasks but actively
+      degrades others (-1.2pp Object, -2.2pp Long).
+    gap: >
+      No mechanism to selectively apply learned corrections based on per-step
+      VLA uncertainty. Existing methods (A2C2: temporal staleness, ReconVLA:
+      UQ-only, SC-VLA: RL required) don't address adaptive inference-time
+      correction allocation.
+    insight: >
+      WHEN to correct matters more than correction strength. K=2 pairwise L2
+      is a near-perfect uncertainty proxy (ρ=0.9979 vs K=10 variance) at
+      zero additional latency cost.
+    mechanism: >
+      Adaptive gate: d₂ > τ → CRM correction; d₂ ≤ τ → direct output.
+      Trigger rate correlates monotonically with effect size.
+    evidence: >
+      Adaptive ≥ CRM always-on on ALL 4 suites (consistency claim).
+      K=2 + gated CRM > K=10 always-on CRM with 5× fewer passes.
+      Spatial +1.5pp (directionally consistent, n=3); 8-seed p=0.0168 in appendix.
+
+# ============================================================
+# CLAIM STRENGTH RULES (D150 + D159 修正)
+# ============================================================
+claim_rules:
+  spatial:
+    type: consistency
+    constraint: >
+      D159 修正: 3-seed p≈0.27, 不显著。不再做 magnitude claim。
+      写 "directionally consistent (+1.5pp) but not statistically
+      significant at n=3"。8-seed paired test (p=0.0168) 可放 appendix，
+      需注明 same-server pairing 状态。Spatial 仍是效果最大的 suite
+      （trigger rate 最高 → Δ最大），方向正确。
+  goal_object_long:
+    type: mechanism
+    constraint: >
+      纯 mechanism claim。写 "near-baseline performance, consistent with
+      low trigger rate" 而非报 Δ 数值。Goal trigger rate 9.3% → gating
+      正确识别 VLA-confident 步骤。
+  overall:
+    type: consistency
+    constraint: >
+      MC1 核心: "Adaptive ≥ CRM on ALL 4 suites (consistency claim)"。
+      不再以 Spatial p<0.05 为核心。Abstract 不 claim p<0.05。
+  pi05:
+    type: analysis
+    constraint: >
+      Supplementary / §4.3 短段落，不进 Table 1。Claim 是 "cross-VLA
+      compatibility"（不退化强模型），不是 "cross-VLA generalization"（也能
+      提升）。D155: 模型能力依赖性分析。
+  tau_sweep:
+    type: illustrative
+    constraint: >
+      Appendix illustrative figure，标注 "single-seed"。主文一句话：
+      "SR stable at 78-80% while trigger rate spans 17%-92% (5.4×)"。
+      不做 "optimal τ" 因果 claim。
+  defense:
+    always_on_rebuttal: >
+      CRM always-on Spatial +1.1pp，但 Object -1.2pp、Long -2.2pp。
+      Adaptive 的核心价值 = 避免 CRM 在低不确定性 suite 上的退化，
+      不是 Spatial 上的额外 1pp。
+
+# ============================================================
+# HARD NUMBERS (D159 修正: Spatial VLA-only 79.3±0.8)
+# ============================================================
+hard_numbers:
+  table1_smolvla:
+    note: "D152/D157/D159: 统一 s42/43/44。Spatial VLA-only 修正为 79.3±0.8"
+    spatial:
+      vla_only: "79.3±0.8"
+      crm: "79.8±1.3"
+      adaptive: "80.8±1.1"
+      delta_av: "+1.5pp (n.s.)"
+      delta_av_bold: false
+      p_value: "p≈0.27 (n=3); 8-seed p=0.0168 in appendix"
+      trigger: "~20%"
+    goal:
+      vla_only: "83.7±1.3"
+      crm: "83.7±1.8"
+      adaptive: "85.0±1.3"
+      delta_av: "+1.3pp (n.s.)"
+      delta_av_bold: false
+      trigger: "~8%"
+    object:
+      vla_only: "77.7±1.3"
+      crm: "76.5±2.3"
+      adaptive: "77.8±2.1"
+      delta_av: "+0.1pp (n.s.)"
+      delta_av_bold: false
+      trigger: "~4%"
+    long:
+      vla_only: "58.0±1.5"
+      crm: "55.8±1.2"
+      adaptive: "57.7±1.5"
+      delta_av: "-0.3pp (n.s.)"
+      delta_av_bold: false
+      trigger: "~3%"
+
+  table2_pi05:
+    note: "数据进行中，预计 12-24h 内到齐。留 placeholder"
+    status: "PLACEHOLDER"
+    vla_only_baselines:
+      spatial: "~98%"
+      goal: "~96%"
+      object: "~97-99%"
+      long: "~95%"
+    expected_pattern: "CRM 和 Adaptive 都 negative（退化），Adaptive 退化幅度小于 CRM"
+
+  efficiency:
+    k2_latency: "~170ms ≈ K=1"
+    crm_overhead: "0.246ms"
+    crm_params_smolvla: "327K / 1.3MB"
+    crm_params_pi05: "616K / 2.4MB"
+    trigger_rates: "Spatial 20%, Goal 8%, Object 4%, Long 3%"
+
+# ============================================================
+# COLOR PALETTE (全文统一)
+# ============================================================
+color_palette:
+  vla_only: "#7F7F7F"      # neutral gray
+  crm_always_on: "#D62728"  # warning red
+  adaptive: "#E69F00"       # highlight amber/orange
+  k10_argmin: "#0072B2"     # blue
+  k2_mean: "#56B4E9"        # light blue
+  baseline_ref: "#999999"   # dashed reference line
+
+# ============================================================
+# PAPER OUTLINE
+# ============================================================
+paper_outline:
+
+  abstract:
+    word_budget: 150
+    core_bullets:
+      - "Frozen VLA deployment → inference-time correction without weight modification"
+      - "ACR-VLA: K=2 samples (free uncertainty signal), adaptive CRM gating"
+      - "Key finding: CRM always-on harmful on 2/4 suites; adaptive gating necessary"
+      - "Adaptive ≥ CRM on ALL 4 suites (consistency); directionally positive on highest-uncertainty suite"
+      - "Efficiency: K=2 (170ms = K=1) + CRM 0.25ms, 5× fewer passes than K=10"
+    format: "单段 4-6 句，不罗列数字。不 claim p<0.05"
+    tables: []
+    figures: []
+
+  introduction:
+    word_budget: 700
+    core_bullets:
+      - "Problem: frozen VLA, inference-time improvement without retraining"
+      - "Existing gap: A2C2 (temporal), ReconVLA (UQ only), SC-VLA (RL required)"
+      - "Our insight: correction WITHOUT gating overcorrects — knowing WHEN matters"
+      - "ACR-VLA: K=2 probe (free, 170ms = K=1) + adaptive CRM + calibrated threshold"
+      - "Results: Adaptive ≥ CRM on ALL 4 suites; CRM always-on degrades 2/4"
+      - "4 contributions: pipeline, cross-suite validation, gating necessity, applicability boundaries"
+    tables: []
+    figures: []
+    citation_hints: [a2c2_2025, chen2026reconvla, sc_vla_2026, black2024pi0, shukor2025smolvla]
+
+  related_work:
+    word_budget: 350
+    core_bullets:
+      - "VLA robustness: tokenized → generative → flow-matching"
+      - "Inference-time correction: ReconVLA, SC-VLA, VLA-Pilot, A2C2, residual policy"
+      - "Inference-time compute scaling: LLM best-of-N → VLA (RoVer, DA-SIP)"
+      - "Our positioning: adaptive gating, supervised correction, no RL, K=2 free probe"
+    tables: []
+    figures: []
+
+  method:
+    word_budget: 900
+    core_bullets:
+      - "§3.1 Problem setup: frozen flow-matching VLA, action chunks, receding horizon"
+      - "§3.2 Multi-sample selection: K samples → argmin to centroid"
+      - "§3.3 CRM: 3-layer MLP (327K-616K params), obs features + action → residual, L2 norm bound ε"
+      - "§3.4 Magnitude control: ε critical, uncapped → overcorrection"
+      - "§3.5 Adaptive K=2 (core contribution): K=2 probe (free), L2 > τ → CRM, L2 ≤ τ → direct output"
+    tables: []
+    figures: [fig_pipeline]
+    dependencies: []
+
+  experiments:
+    word_budget: 1200
+    core_bullets:
+      - "§4.1 Setup: SmolVLA 0.4B, 4 LIBERO suites, methods"
+      - "§4.2 Main results: Table 1 — consistency claim (Adaptive ≥ CRM on ALL suites). All Δ n.s. at n=3"
+      - "§4.3 Cross-VLA analysis: π0.5 (3.6B) — capability dependency. Short paragraph + placeholder"
+      - "§4.4 Gating necessity: CRM always-on harmful; trigger rate ↔ effect monotonic"
+      - "§4.5 Efficiency: K=2 = K=1 latency, CRM 0.25ms, trigger 4-20%"
+    tables: [tab_main, tab_efficiency]
+    figures: [fig_trigger_scatter]
+    registry_refs: []
+
+  conclusion:
+    word_budget: 200
+    core_bullets:
+      - "ACR-VLA: adaptive gating turns unstable CRM into reliable correction"
+      - "Consistency across 4 suites; direction positive on highest-uncertainty suite"
+      - "Limitations: small effect sizes (not significant at n=3), task-specific CRM, simulation only"
+      - "Cross-VLA: capability-dependent — near-expert VLAs don't benefit"
+      - "Future: real robot, per-task threshold adaptation, more seeds"
+    tables: []
+    figures: []
+
+# ============================================================
+# VISUALIZATION PLAN
+# ============================================================
+visualization_plan:
+  - fig_id: fig_pipeline
+    type: concept
+    tool: paperbanana
+    description: "ACR-VLA adaptive pipeline: K=2 → L2 probe → gate → CRM or direct output"
+    placement: "method §3, top of page"
+    narrative_intent: "Full pipeline in one glance: draw K=2, compute d₂, gate decision, optional CRM"
+    design_notes: "Flow diagram. K=2 is THE method. No K=10 extension"
+    data_source: "conceptual"
+    status: "Worker updating — removing Extend K=10"
+
+  - fig_id: fig_trigger_scatter
+    type: scatter
+    tool: matplotlib
+    description: "4-suite scatter: trigger rate (%) vs Δ SR vs VLA-only (pp)"
+    placement: "experiments §4.4"
+    narrative_intent: "Trigger rate ↔ effect size monotonic positive correlation. High trigger → improvement, low trigger → baseline preserved"
+    design_notes: "4 points with suite labels. All labeled n.s. No p<0.05 annotation. D159: Spatial Δ is +1.5pp not +2.1pp"
+    data_source: "hard_numbers.table1_smolvla"
+    status: "NEEDS UPDATE — Spatial Δ changed from +2.1 to +1.5"
+
+  - fig_id: fig_tau_sweep
+    type: line
+    tool: matplotlib
+    description: "τ-sweep (single-seed, Spatial)"
+    placement: "appendix"
+    narrative_intent: "SR stable while trigger spans 5.4× — efficient compute allocation"
+    design_notes: "Label 'single-seed' prominently. No 'optimal τ' language"
+    data_source: "tau-sweep data"
+    status: "EXISTS — verify framing"
+
+  - fig_id: fig_method_bar
+    type: bar
+    tool: matplotlib
+    description: "5-method × 4-suite grouped bar chart"
+    placement: "experiments §4.2"
+    narrative_intent: "ACR-VLA ≥ all baselines on every suite. CRM degrades Object/Long"
+    design_notes: "D159: Spatial VLA-only bar = 79.3, not 78.7"
+    data_source: "hard_numbers.table1_smolvla"
+    status: "NEEDS UPDATE — Spatial VLA-only changed"
+
+# ============================================================
+# TABLE PLAN
+# ============================================================
+table_plan:
+  - table_id: tab_main
+    caption: >
+      Task success rate on SmolVLA (0.4B) across four LIBERO suites.
+      Paired differences are directionally consistent but not
+      statistically significant at n=3. Δ_CRM: Adaptive − CRM always-on.
+    type: comparison
+    columns: [Method, K, Spatial, Goal, Object, Long, "Δ(A-V)", "Δ(A-CRM)", Trigger]
+    data_source: "hard_numbers.table1_smolvla"
+    notes: >
+      D159: No Δ is bold. All n.s. at n=3. Add Trigger Rate column.
+      Add Δ(Adaptive-CRM) column. 8-seed stats in appendix.
+
+  - table_id: tab_efficiency
+    caption: "Computational comparison. ACR-VLA uses 5× fewer VLA forward passes"
+    type: comparison
+    columns: [Method, VLA calls, Latency (ms), CRM calls (%)]
+    data_source: "hard_numbers.efficiency"
+
+  - table_id: tab_pi05
+    caption: >
+      Cross-VLA analysis: π0.5 (3.6B). Near-expert baselines (94-99%).
+      Capability dependency, not generalization.
+    type: comparison
+    columns: [Suite, VLA-only, CRM, Adaptive, "Δ(A-V)"]
+    data_source: "hard_numbers.table2_pi05"
+    notes: "π0.5 data pending. Placeholder."
+
+# ============================================================
+# LITERATURE STRATEGY
+# ============================================================
+literature_strategy:
+  citation_budget: 25-30
+  micro_clusters:
+    - cluster: vla_foundation
+      target_count: 5
+      must_cite: [black2024pi0, shukor2025smolvla, chi2023diffusion_policy]
+    - cluster: inference_correction
+      target_count: 6
+      must_cite: [a2c2_2025, chen2026reconvla, sc_vla_2026, vla_pilot_2025, silver2018residual]
+    - cluster: compute_scaling
+      target_count: 3
+      must_cite: [snell2024scaling_ttc, dai2025rover]
+    - cluster: residual_policy
+      target_count: 3
+      must_cite: [jiang2024transic, xiao2026pld]
+    - cluster: benchmark
+      target_count: 3
+      must_cite: [liu2023libero, fei2025liberoplus]
+    - cluster: robustness_training
+      target_count: 3
+      must_cite: [srpo2025, robustvla2025, digflow2025]
+
+# ============================================================
+# WRITING ORDER
+# ============================================================
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - abstract
+  - conclusion
+
+# ============================================================
+# HARD CONSTRAINTS (红线, D159 更新)
+# ============================================================
+hard_constraints:
+  - "不标 seed 编号 (D157)"
+  - "不说 'no harm' — 用 'near-neutral' 或 'within measurement noise'"
+  - "所有 Δ 不加粗 (D159: 没有 p<0.05 的 suite)"
+  - "Goal ceiling effect 准备 reviewer 回答"
+  - "π0.5 负向结果诚实报告，不隐瞒"
+  - "所有 suite 做 consistency/mechanism claim, 不做 magnitude claim (D159)"
+  - "π0.5 是 'cross-VLA compatibility' 不是 'generalization'"
+  - "τ-sweep 标注 single-seed, 不做 optimal τ 因果 claim"
+  - "Abstract 不 claim p<0.05 (D159)"
+  - "Spatial VLA-only = 79.3±0.8, Δ(A-V) = +1.5pp (D159)"

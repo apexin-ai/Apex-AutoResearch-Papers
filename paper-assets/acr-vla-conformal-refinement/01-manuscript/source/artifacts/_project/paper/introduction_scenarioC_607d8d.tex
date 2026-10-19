@@ -1,0 +1,60 @@
+\section{Introduction}
+\label{sec:intro}
+
+% Para 1: Problem — VLAs degrade under distribution shift; existing solutions have trade-offs
+Vision-language-action models (VLAs) that generate actions via flow matching~\cite{black2024pi0,shukor2025smolvla} achieve 97--99\% success on standard manipulation benchmarks such as LIBERO~\cite{liu2023libero}.
+Yet under the distribution shifts common in deployment---object appearance changes, lighting variation, sensor noise---performance degrades substantially~\cite{fei2025liberoplus}.
+Two families of methods address this robustness gap.
+\emph{Training-time methods}~\cite{robustvla2025,srpo2025,digflow2025} improve the base policy through robustness-aware objectives, but require retraining and remain bounded by the training distribution.
+\emph{Inference-time methods} leave the policy frozen and intervene at deployment.
+ReconVLA~\cite{chen2026reconvla} applies conformal quantile regression to calibrate action-level uncertainty bounds and detects out-of-distribution states---an uncertainty quantification framework, not an action improvement method.
+SC-VLA~\cite{sc_vla_2026} learns a residual correction via reinforcement learning, requiring per-task environment interaction.
+VLA-Pilot~\cite{vla_pilot_2025} steers a frozen VLA through evolutionary optimization guided by an external multimodal verifier, but incurs 2.41\,s per control step.
+A2C2~\cite{a2c2_2025} trains an asynchronous correction head jointly with the VLA, rather than as a post-hoc module on a frozen model.
+In short, no existing inference-time method combines \emph{learned action correction} on a fully frozen VLA with \emph{offline-only training} and \emph{low latency}.
+
+% Para 2: Gap — sample selection is limited; learned correction can go beyond, but what conditioning?
+The fundamental limitation of sample selection is that it is bounded by the quality of the available candidates: when all $K$ samples are poor, selecting the best one still yields a poor action.
+Learned correction can synthesize actions beyond the support of the original samples, potentially recovering from systematic biases in the base policy.
+However, a critical open question is what information the correction module should be conditioned on.
+An intuitive hypothesis is that \emph{structured uncertainty features}---per-degree-of-freedom conformal statistics capturing which action dimensions are uncertain and by how much---should enable more targeted corrections than raw observation features alone.
+We test this hypothesis systematically.
+
+% Para 3: Our approach — ACR-VLA pipeline overview
+We introduce \textbf{ACR-VLA} (Adaptive Conformal Refinement for VLA), an inference-time module that wraps any frozen flow-matching VLA and performs learned residual action correction.
+ACR-VLA operates as a \emph{sample-then-correct} pipeline:
+(i)~draw $K{=}10$ action samples via independent flow-matching rollouts;
+(ii)~score each sample using Mahalanobis nonconformity under a Ledoit--Wolf shrinkage covariance~\cite{braun2025cgs} and select the lowest-scoring candidate;
+(iii)~apply a lightweight Conformal Residual Module (CRM)---a 3-layer MLP (${\sim}$330K parameters) that takes the frozen VLA's observation embedding as input and outputs a bounded residual correction.
+The corrected action is $\mathbf{a}^* = a_{\mathrm{base}} + \mathrm{clip}(\boldsymbol{\delta}, \|\boldsymbol{\delta}\|_2 \leq \varepsilon)$, where the norm bound $\varepsilon$ constrains how far the correction can deviate from the selected action.
+CRM is trained offline via $L_2$ regression on demonstration data; the base VLA is never modified.
+We instantiate ACR-VLA on SmolVLA~\cite{shukor2025smolvla}, a 450M-parameter flow-matching VLA, and evaluate on two LIBERO task suites~\cite{liu2023libero}.
+
+% Para 4: Key findings — what we find, including negatives
+Our experiments yield three findings.
+\emph{First}, sample-then-correct outperforms sample-then-select: on LIBERO-Object (10 tasks with novel object instances), observation-conditioned CRM achieves 19.0\% success versus 12.0\% for conformal selection alone, a +7.0\,pp improvement.
+Three baselines---single-sample VLA, 10-sample mean, and argmin selection---all plateau at 12.0\%, indicating that neither averaging nor selection breaks through on this benchmark.
+\emph{Second}, per-DOF conformal features as CRM conditioning are an \emph{honest negative result}: the perdof variant (11.0\%) performs comparably to argmin selection (12.0\%) and far below observation-only conditioning (19.0\%).
+This contradicts the intuition that richer uncertainty features should yield better corrections.
+We attribute this to noisy covariance estimation at the $K{=}10$ sample budget ($d/K = 0.6$): while shrinkage stabilizes selection scoring, the per-DOF statistics derived from it carry estimation noise that degrades CRM predictions under the compounding distribution shift of closed-loop evaluation~\cite{ross2011dagger}.
+\emph{Third}, correction magnitude control is critical and has not been systematically studied in prior residual policy work~\cite{silver2018residual,jiang2024transic,xiao2026pld}: without clipping ($\|\boldsymbol{\delta}\|_2 \approx 1.42$), CRM achieves 0\% success---compounding error destroys the trajectory entirely.
+Constraining $\varepsilon$ to $[0.05, 0.2]$ restores stable performance, with observation-conditioned CRM uniquely robust across this range while per-DOF-conditioned CRM collapses at larger bounds.
+On LIBERO-Spatial (10 tasks with layout changes), all CRM variants achieve 30--35\%, comparable to the argmin baseline (34\%)---a null result that we report prominently.
+Residual correction at the action level does not help when the challenge is spatial re-planning rather than fine-grained motor adjustment.
+
+% Para 5: Contributions
+Our contributions are:
+\begin{enumerate}[leftmargin=*,nosep]
+  \item \textbf{A sample-then-correct pipeline for frozen VLAs.}
+  We present the first method that combines multi-sample conformal selection with offline-trained learned residual correction on a frozen VLA.
+  On LIBERO-Object, CRM correction improves success by +7.0\,pp over selection alone (19.0\% vs.\ 12.0\%), demonstrating that learned correction can synthesize actions better than any individual VLA sample.
+
+  \item \textbf{Honest negative: per-DOF conformal features do not improve correction.}
+  Systematic ablation across three conditioning variants---observation embeddings (330K params), per-DOF conformal statistics (339K params), and scalar uncertainty (330K params)---reveals that observation features suffice for effective correction.
+  Per-DOF conformal statistics, despite their theoretical appeal, yield 11.0\% versus 19.0\% for observation-only conditioning, challenging the intuition from synthetic experiments that richer uncertainty features enable better corrections.
+
+  \item \textbf{Correction magnitude control as a critical design factor.}
+  We show that unbounded residual correction ($\|\boldsymbol{\delta}\|_2 \approx 1.42$) causes catastrophic 0\% success, while the safe operating range $\varepsilon \in [0.05, 0.2]$ yields stable improvements.
+  Observation-conditioned CRM maintains performance across this range; per-DOF-conditioned CRM degrades sharply beyond $\varepsilon = 0.1$.
+  This magnitude sensitivity has not been systematically characterized in prior residual policy literature.
+\end{enumerate}

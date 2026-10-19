@@ -1,0 +1,16 @@
+# smolvla-crm-always-on-long-s45
+# Purpose: Extend SmolVLA Long CRM always-on to n=5 seeds
+# Group: smolvla-long-n5-extension
+experiment_id: smolvla-crm-long-s45
+model: smolvla
+benchmark: long
+mode: crm_obs_only
+seed: 45
+K: 2
+obs_dim: 960
+max_steps: 520
+n_rollouts: 20
+conformal_threshold: 0.001
+crm_checkpoint: /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt
+epsilon: 0.2
+estimated_gpu_hours: 1.5

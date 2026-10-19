@@ -1,0 +1,57 @@
+
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Why per-DOF conformal features fail.}
+The negative result on conformal conditioning (Section~\ref{sec:ablation}) warrants explanation.
+% exp_id: perdof_eps0.1_object → 11.0%, obs_only_eps0.1_object → 19.0%
+At $K{=}10$ samples in $d{=}6$ dimensions, the dimension-to-sample ratio $d/K = 0.6$ means that even with Ledoit--Wolf shrinkage~\cite{ledoit2004well}, per-DOF statistics---standard deviations, conformal radii---carry substantial estimation noise.
+The frozen observation embedding $\mathbf{z}_{\mathrm{obs}} \in \mathbb{R}^{990}$ already encodes the geometric information these features attempt to capture: object identity, spatial layout, and gripper-object relationship.
+Adding noisy low-dimensional statistics to a rich representation does not improve the CRM's predictions; it degrades them.
+
+A subtler issue is the gap between offline and closed-loop metrics.
+All CRM variants achieve low per-step MSE on held-out demonstration data, yet offline prediction accuracy does not predict closed-loop success.
+In closed-loop execution, compounding error~\cite{ross2011dagger} shifts the state distribution away from training data, and the noisy conformal features amplify this drift---occasional erroneous correction directions, even when small in magnitude, can trigger cascading failures in individual episodes.
+This challenges the intuition from controlled synthetic settings that richer uncertainty features improve corrections, and raises an open question: would larger $K$ (e.g., $K{=}50$) yield reliable enough covariance estimates for per-DOF features to help?
+We cannot test this due to the $K$-fold increase in VLA forward passes per control step.
+
+\paragraph{When does action-level correction help?}
+% exp_id: obs_only_eps0.1_object → 19.0%, argmin_K10_object → 12.0%
+% exp_id: obs_only_eps0.1_spatial → 35.0%, argmin_K10_spatial → 34.0%
+The +7.0\,pp gain on LIBERO-Object versus the null result on LIBERO-Spatial (Table~\ref{tab:main}) reveals a structural distinction.
+Object perturbations (novel object instances) create systematic action biases: the VLA produces actions with consistent directional errors that a learned module can identify and compensate from observation features alone.
+Spatial perturbations (layout changes) require higher-level re-planning---the actions may be locally reasonable but directed at the wrong goal location.
+Action-level residuals are effective for fine-grained motor adjustments, not for strategic re-planning.
+This suggests that the benefit of post-hoc correction depends on whether the distribution shift manifests as correctable motor error or as a planning-level failure.
+
+\paragraph{Limitations.}
+We identify seven limitations, each of which qualifies the scope of our findings:
+\begin{enumerate}[nosep]
+  \item \emph{Simulation only.} All experiments use LIBERO~\cite{liu2023libero}; real-robot transfer is untested.
+  \item \emph{Single VLA backbone.} We evaluate only SmolVLA~\cite{shukor2025smolvla} (450M parameters). Whether ACR-VLA transfers to larger VLAs (e.g., $\pi_0$, OpenVLA) is unknown.
+  \item \emph{Limited benchmarks.} Two LIBERO suites (20 tasks total); other manipulation benchmarks and perturbation types are not evaluated.
+  % exp_id: obs_only per-task variance — some object tasks underperform argmin
+  \item \emph{Per-task variance.} On individual LIBERO-Object tasks, obs\_only occasionally underperforms the Argmin baseline. The method does not universally help.
+  \item \emph{Magnitude bound requires tuning.} We use $\varepsilon{=}0.1$ throughout, but the optimal $\varepsilon$ likely varies across VLA architectures and task domains.
+  % exp_id: seed42 only; seed43 pending
+  \item \emph{Single-seed results.} All primary results use seed 42. Seed 43 replication is pending; we make no statistical significance claims.
+  % exp_id: obs_only_eps0.1_object → 19.0%
+  \item \emph{Absolute performance.} 19.0\% success on LIBERO-Object is far from deployment-ready. ACR-VLA reduces the gap relative to selection-only but does not close it.
+\end{enumerate}
+
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+% exp_id: obs_only_eps0.1_object → 19.0%, argmin_K10_object → 12.0%
+% exp_id: obs_only_eps0.1_spatial → 35.0%, argmin_K10_spatial → 34.0%
+We presented ACR-VLA, a sample-then-correct pipeline that wraps a frozen flow-matching VLA with multi-sample conformal selection followed by a lightweight residual correction module (${\sim}$330K parameters, ${\sim}$3\,ms overhead).
+On LIBERO-Object, observation-conditioned CRM achieves 19.0\% task success versus 12.0\% for selection alone (+7.0\,pp).
+On LIBERO-Spatial, correction provides no measurable benefit over selection (best CRM within 1\,pp of the selection baseline), indicating the approach is effective for fine-grained motor correction under object-level distribution shift but not for spatial re-planning.
+
+% exp_id: perdof_eps0.1_object → 11.0%, obs_only_eps0.1_object → 19.0%
+Our central negative result is that per-DOF conformal features do not improve correction over observation-only conditioning, despite providing intuitively richer uncertainty information.
+At the $K{=}10$ sample budget, covariance estimation noise outweighs the information gain.
+This is a cautionary finding for the broader agenda of uncertainty-conditioned action correction: the gap between offline prediction accuracy and closed-loop task success remains a fundamental challenge.
+
+Concrete next steps include: (i)~validation across multiple VLA backbones and scales, (ii)~real-robot transfer experiments, (iii)~adaptive magnitude scheduling (learned $\varepsilon$ conditioned on observation uncertainty), and (iv)~higher-$K$ sampling to revisit whether per-DOF conformal features become useful with better covariance estimates.

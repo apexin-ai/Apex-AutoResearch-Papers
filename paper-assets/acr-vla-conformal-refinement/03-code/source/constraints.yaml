@@ -1,0 +1,13 @@
+_next_id: 3
+constraints:
+- id: C001
+  added: 2026-05-26 13:36 UTC
+  summary: 提交实验前必须 nvidia-smi 确认目标 GPU 显存占用 < 500 MiB，否则禁止启动
+  scope: worker
+  reason: 本轮已发生 2 起 GPU 碰撞（cqa1 cuda:0、bjb2-24035 cuda:0），均因未检查 GPU 状态直接提交导致两个实验共享
+    GPU、严重减速、结果不可信。M101/M102 记录在案。
+- id: C002
+  added: 2026-05-26 13:47 UTC
+  summary: 收割实验结果时必须检查日志无 OOM/CUDA error，且无 task SR=0% 异常；EXIT_CODE=0 不等于实验成功
+  scope: all
+  reason: pi05-vla-only-goal-s42-4090 EXIT_CODE=0 但 200/200 rollout 全部 OOM，产出 0% 假结果。若不审查直接引用会导致灾难性错误结论。

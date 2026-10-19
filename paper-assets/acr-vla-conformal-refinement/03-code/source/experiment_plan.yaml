@@ -1,0 +1,224 @@
+experiments:
+- id: plan_100
+  claim: 1
+  description: obs_only ε=0.2 multi-seed evaluation on LIBERO Object (6 seeds). Core
+    evidence for pipeline improvement over argmin baseline.
+  priority: P0
+  gpu_budget_hours: 36
+  deps: []
+  registry_id: eval-obs-only-object-norm02-seed42
+  notes: '6v6 pooled: 105/600 (17.5%) vs argmin 74/600 (12.3%), Fisher p=0.0074, Cohen''s
+    d=1.21'
+- id: plan_101
+  claim: 1
+  description: argmin baseline (reconvla K=10) multi-seed evaluation on LIBERO Object
+    (6 seeds).
+  priority: P0
+  gpu_budget_hours: 36
+  deps: []
+  registry_id: eval-reconvla-object
+  notes: 'seeds 42/43/44/45/46/47 = 12/17/13/12/10/10. registry: eval-reconvla-object
+    (seed42), eval-argmin-object-seed43..seed47'
+- id: plan_102
+  claim: 1
+  description: VLA-only (K=1, no CRM) multi-seed baseline on LIBERO Object.
+  priority: P0
+  gpu_budget_hours: 24
+  deps: []
+  registry_id: eval-vla-only-object
+  notes: 'seeds 42/43/44/45/46/47 = 12/12/10/9/11/9%, mean 10.8%. registry: eval-vla-only-object
+    (seed42), eval-vla-only-object-seed43..seed47'
+- id: plan_103
+  claim: 1
+  description: Direct correction ablation (K=1 CRM, no conformal selection). Tests
+    whether CRM alone suffices.
+  priority: P1
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: eval-direct-correction-object-seed42-r3
+  notes: seed42 = 14% (r3), not significant vs VLA-only. Confirms K=10 selection is
+    necessary.
+- id: plan_200
+  claim: 2
+  description: 'obs_only magnitude sweep: ε ∈ {0.03, 0.05, 0.1, 0.2, 0.3, default}
+    on LIBERO Object, multi-seed.'
+  priority: P0
+  gpu_budget_hours: 60
+  deps: []
+  registry_id: eval-obs-only-object-norm02-seed42
+  notes: Stable 15-17.5% across all norms. ε=0.2 is peak (6-seed mean 17.5%).
+- id: plan_201
+  claim: 2
+  description: 'perdof magnitude sweep: ε ∈ {0.03, 0.05, 0.1, 0.2, 0.3, default} on
+    LIBERO Object, multi-seed.'
+  priority: P0
+  gpu_budget_hours: 60
+  deps: []
+  registry_id: eval-perdof-object-norm01-seed42
+  notes: 'Progressive collapse: 14%→10%→4.7%→0% as ε increases. Multi-seed confirmed.'
+- id: plan_202
+  claim: 2
+  description: 'Figure 2 generation: multi-seed magnitude curves with error bars (D045).'
+  priority: P0
+  gpu_budget_hours: 0
+  status: done
+  deps:
+  - plan_200
+  - plan_201
+  notes: 'Done. Figure 5(b) magnitude_curve.pdf in paper (single-seed, obs_only vs perdof). Original multi-seed plan adapted to single-seed presentation.'
+- id: plan_300
+  claim: 3
+  description: 'Spatial benchmark evaluation: obs_only, perdof, argmin, VLA-only at
+    ε=0.1.'
+  priority: P1
+  gpu_budget_hours: 24
+  deps: []
+  registry_id: eval-obs-only-spatial-v3
+  notes: No method separates from baseline (34-35%). Task-complexity dependence.
+- id: plan_301
+  claim: 3
+  description: perdof progressive collapse as evidence of per-DOF failure mode (shared
+    with Claim 2).
+  priority: P0
+  gpu_budget_hours: 0
+  status: done
+  deps:
+  - plan_201
+  notes: 'Done. Data used in Figure 5(b) perdof collapse line + Appendix Negative Results §. perdof ε=0.3 3-seed mean 4.7%, default 0%. Serves MC2 magnitude sensitivity evidence.'
+- id: plan_302
+  claim: 3
+  description: 'Mechanism analysis: K=10 rank-deficient covariance in 30D action space
+    → noisy per-DOF scores.'
+  priority: P1
+  gpu_budget_hours: 2
+  status: deprecated
+  deps: []
+  notes: 'Deprecated (D124/D177). K=10→K=2 pivot made this analysis irrelevant. Paper uses K=2 pairwise L2, not K=10 covariance. per-DOF route abandoned.'
+- id: plan_400
+  claim: 1
+  description: scalar CRM baseline (scalar uncertainty conditioning instead of per-DOF).
+  priority: P1
+  gpu_budget_hours: 12
+  deps: []
+  registry_id: eval-scalar-object-seed43
+  notes: 'seed43=9%, seed44=failed, seed45=running. registry: eval-scalar-object-seed43..seed46'
+- id: plan_401
+  claim: 1
+  description: VLA-mean baseline (K=10 mean aggregation, no learned correction).
+  priority: P1
+  gpu_budget_hours: 12
+  deps: []
+  registry_id: eval-vla-mean-object
+  notes: 'seed42=12%, seed43=15%. registry: eval-vla-mean-object (seed42), eval-vla-mean-object-seed43..seed45'
+- id: plan_500
+  claim: 2
+  description: 'Low-norm multi-seed supplement: obs_only/perdof at ε=0.03 and 0.05,
+    seeds 43/44. Currently 1 seed each.'
+  priority: P1
+  gpu_budget_hours: 24
+  deps: []
+  notes: Weakest point of Figure 2. Deploy when GPUs free up.
+  registry_id: eval-obs-object-norm003-s45-bjb2-24035
+- id: plan_600
+  claim: 1
+  description: 'Random selection baseline: K=10 samples, pick 1 uniformly at random
+    (no conformal ranking). Isolates conformal selection contribution.'
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  notes: D048 必补。eval-time only, no new CRM training. Reviewer will ask 'what if you
+    just sample more without ranking?'
+  registry_id: eval-random-selection-object-seed43-v2
+- id: plan_601
+  claim: 1
+  description: 'K sweep: evaluate obs_only ε=0.2 at K=5 and K=20 (currently only K=1
+    and K=10). Justifies K=10 design choice.'
+  priority: P0
+  gpu_budget_hours: 12
+  deps: []
+  notes: D048 必补。eval-time parameter change, no retraining. Shows effect of sample
+    budget on pipeline.
+  registry_id: eval-ksweep-k20-obs-object-s44
+- id: plan_602
+  claim: 1
+  description: 'Latency/throughput profiling: measure wall-clock time for VLA sampling
+    (K=1,5,10,20) + CRM inference + conformal scoring.'
+  priority: P0
+  gpu_budget_hours: 1
+  deps: []
+  notes: D048 必补。A2C2 reports latency. We claim ~3ms CRM overhead but haven't formally
+    measured.
+  registry_id: eval-adaptive-k-spatial-p90-seed44-bjb2
+- id: plan_700
+  claim: 1
+  description: 'K=1 CRM architecture redesign: multi-stage VLA features + new loss
+    functions. Single-sample correction, obs-conditioned.'
+  priority: P0-MUST
+  gpu_budget_hours: 2
+  deps: []
+  registry_id: train-crm-k1-accg-object-seed42-v2
+  notes: DONE. MultiScaleCRM ~323K params. 4-layer text_model hooks [3,7,11,15], action-conditioned
+    attention fusion, FiLM modulation, multi-loss (L2+direction+triplet+magnitude).
+    Code at bjb2-28827:/root/acr-vla-conformal-refinement/src/. Reviewer PASS.
+- id: plan_701
+  claim: 1
+  description: 'K=1 CRM training on SmolVLA: train redesigned CRM using single-sample
+    VLA actions + demonstration residuals.'
+  priority: P0-MUST
+  gpu_budget_hours: 12
+  deps:
+  - plan_700
+  notes: APPROVED. ACCG design (action-conditioned correction gating, 327K params).
+    Multi-loss (L2+direction+triplet+magnitude). bjb2-28827 cuda:1. Precompute ~1h
+    + training ~6-8h.
+  registry_id: train-crm-k1-accg-object-seed42-v2
+- id: plan_702
+  claim: 1
+  description: 'K=1 CRM eval on SmolVLA LIBERO Object: multi-seed evaluation (≥3 seeds).
+    Compare ONLY to K=1 VLA-only baseline.'
+  priority: P0-MUST
+  gpu_budget_hours: 18
+  deps:
+  - plan_701
+  notes: D049 用户硬要求。K=1 CRM vs K=1 VLA-only (10.8%)。不与 K=10 结果混比。K=10 结果作 supplementary。
+  registry_id: eval-crm-k1-object-seed44-plan702
+- id: plan_800
+  claim: 1
+  description: 'OpenVLA environment setup: download model, adapt LIBERO evaluation
+    code, verify baseline eval works.'
+  priority: P0-MUST
+  gpu_budget_hours: 6
+  status: deprecated
+  deps: []
+  notes: 'Deprecated (D124). OpenVLA abandoned after 5+ fix attempts all 0% SR (200+ rollouts). Paper locked to 2-model (SmolVLA + pi0.5). OpenVLA retained only as Appendix boundary analysis.'
+- id: plan_801
+  claim: 1
+  description: 'OpenVLA baseline eval on LIBERO Object: K=1 VLA-only (no CRM), multi-seed.'
+  priority: P0-MUST
+  gpu_budget_hours: 12
+  deps:
+  - plan_800
+  notes: 'D049 用户硬要求。建立 OpenVLA 的 VLA-only baseline。v2 结果: SR=69% (v1 的 0% 是 transformers
+    版本 bug)。'
+  registry_id: eval-openvla-object-vla-only-seed42-v2
+- id: plan_802
+  claim: 1
+  description: 'OpenVLA + K=1 CRM: train CRM on OpenVLA features, eval on LIBERO Object
+    multi-seed.'
+  priority: P0-MUST
+  gpu_budget_hours: 30
+  deps:
+  - plan_700
+  - plan_800
+  notes: D049 用户硬要求。证明方法在不同 VLA 基座上均成立。CRM 设计复用 plan_700，特征提取适配 OpenVLA。
+  registry_id: eval-openvla-crm-k1-object-seed43
+- id: plan_803
+  claim: 2
+  description: 'OpenVLA magnitude sweep (obs_only): verify conditioning-magnitude
+    robustness on second backbone.'
+  priority: P0-MUST
+  gpu_budget_hours: 24
+  status: deprecated
+  deps:
+  - plan_802
+  notes: 'Deprecated (D124). OpenVLA route abandoned. Cross-VLA generalization now validated via pi0.5 (MC3). Upstream plan_802 killed.'

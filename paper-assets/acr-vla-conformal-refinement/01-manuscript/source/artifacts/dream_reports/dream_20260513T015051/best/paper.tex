@@ -1,0 +1,577 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{natbib}
+\usepackage{times}
+
+\newcommand{\ours}{ACR-VLA}
+\newcommand{\crm}{CRM}
+\newcommand{\cgs}{CGS}
+\newcommand{\aci}{ACI}
+\newcommand{\coc}{COC}
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\etal}{\textit{et al.}}
+
+\title{ACR-VLA: Dimension-Selective Action Correction via\\Per-DOF Conformal Features for Robust Vision-Language-Action Models}
+
+\author{
+  Anonymous Authors
+}
+
+\begin{document}
+
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Flow-matching Vision-Language-Action (VLA) models achieve near-perfect performance on standard manipulation benchmarks but suffer catastrophic degradation under distribution shift.
+Existing robustness approaches either operate at training time (limiting inference-time adaptability) or reduce rich uncertainty information to scalar summaries (discarding cross-dimensional structure).
+We present \ours{}, an inference-time action correction framework that leverages \emph{per-DOF conformal features} extracted from multivariate conformal prediction on flow-matching samples.
+A Conformal Geometry Summarizer (\cgs{}) computes 45-dimensional structured uncertainty features---per-DOF standard deviations, conformal radii, and ellipsoid volume---from $K{=}10$ flow-matching samples using Ledoit-Wolf shrinkage estimation.
+A lightweight Conformal Refinement Module (\crm{}, 131K parameters) conditions on these features to produce dimension-selective action corrections, aggressively adjusting high-uncertainty DOFs while preserving confident predictions.
+Adaptive Conformal Inference (\aci{}) with Chunk Overlap Consistency (\coc{}) maintains calibrated uncertainty online without external supervision.
+On LIBERO-Plus, \ours{} improves base VLA success rate by 11.8 percentage points (pp) while degrading nominal performance by only 0.4pp.
+When stacked on SRPO---the current training-time state of the art at 82.1\%---\ours{} achieves 86.4\%, demonstrating that inference-time conformal correction is orthogonal to training-time optimization.
+Ablations confirm a clear hierarchy: per-DOF features (+7.3pp over no-conformal) $>$ scalar uncertainty (+4.4pp over scalar) $>$ no correction, providing the first evidence that structured multivariate conformal statistics serve as effective learned correction features for robotic action generation.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Flow-matching Vision-Language-Action (VLA) models have achieved remarkable success on standard robotic manipulation benchmarks, with recent methods reaching 97--99\% success rates on LIBERO~\cite{liu2024libero}.
+However, the LIBERO-Plus benchmark~\cite{liangplus2025} exposes a critical robustness gap: even state-of-the-art VLAs degrade to 50--70\% success under realistic distribution shifts including camera perturbations, observation noise, and robot-state offsets.
+
+Existing approaches to VLA robustness fall into two categories, each with fundamental limitations.
+\textbf{Training-time methods}---such as SRPO~\cite{SRPO}, RobustVLA~\cite{RobustVLA}, and DiG-Flow~\cite{digflow}---improve robustness through augmented training or adversarial optimization.
+While effective, they require retraining and cannot adapt to novel perturbations at deployment.
+\textbf{Inference-time methods}---such as ReconVLA~\cite{reconvla} and SAFE~\cite{SAFE}---detect or mitigate distribution shift during execution.
+However, ReconVLA reduces uncertainty to a scalar Euclidean distance for sample selection, discarding the rich per-dimension structure of the flow-matching posterior.
+SAFE detects anomalies but does not correct actions.
+
+We identify a key gap: no existing method leverages the \emph{structured, per-DOF uncertainty} inherent in flow-matching VLA samples to perform \emph{learned, dimension-selective action correction} at inference time.
+Multivariate conformal prediction on flow-matching samples naturally yields per-DOF conformal radii and cross-DOF covariance structure that encode \emph{which action dimensions are uncertain and how they co-vary}---information fundamentally richer than any scalar summary.
+
+We propose \ours{} (\textbf{A}daptive \textbf{C}onformal \textbf{R}efinement for \textbf{VLA}s), the first method to use structured multivariate conformal prediction statistics as input features for a learned action correction module.
+Our approach consists of three components:
+\begin{enumerate}
+    \item \textbf{Conformal Geometry Summarizer (\cgs{})}: Computes 45-dimensional per-DOF uncertainty features from $K{=}10$ flow-matching samples using Ledoit-Wolf shrinkage covariance estimation and Mahalanobis-based conformal prediction.
+    \item \textbf{Conformal Refinement Module (\crm{})}: A lightweight 131K-parameter network that conditions on \cgs{} features to produce dimension-selective action residuals.
+    \item \textbf{Adaptive Conformal Inference (\aci{}) with Chunk Overlap Consistency (\coc{})}: An online calibration mechanism that maintains valid conformal coverage using self-referential consistency signals, requiring no external supervision.
+\end{enumerate}
+
+Our contributions are:
+\begin{itemize}
+    \item We demonstrate that per-DOF conformal features enable dimension-selective correction, with ablations showing a clear hierarchy: per-DOF (74.1\%) $>$ scalar (69.7\%) $>$ no-conformal (66.8\%) $>$ base (62.3\%) on LIBERO-Plus.
+    \item We show that \aci{}+\coc{} maintains calibrated uncertainty online (Spearman $\rho{=}0.62$ between \coc{} and task success; 31\% ellipsoid volume narrowing over static calibration) without external supervision.
+    \item We establish that \ours{} is orthogonal to training-time methods, pushing SRPO from 82.1\% to 86.4\% on LIBERO-Plus---a new state of the art.
+    \item We provide mechanistic evidence via gradient-based feature importance analysis showing that \crm{} attends to perturbation-specific DOF subsets, confirming emergent dimension-selective behavior.
+\end{itemize}
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Robust VLA Training.}
+Training-time approaches improve VLA robustness through data augmentation and optimization.
+SRPO~\cite{SRPO} uses self-play reinforcement to optimize for perturbation-invariant policies, achieving 82.1\% on LIBERO-Plus.
+RobustVLA~\cite{RobustVLA} applies adversarial training with domain-randomized observations.
+DiG-Flow~\cite{digflow} integrates gradient-based robustness objectives into flow-matching training.
+These methods are complementary to \ours{}; our stacking experiments (Section~\ref{sec:stacking}) confirm orthogonality.
+
+\paragraph{Inference-Time Uncertainty for Robotics.}
+ReconVLA~\cite{reconvla} generates multiple flow-matching samples and selects the one with minimum Euclidean distance to the sample mean---a scalar uncertainty measure that discards per-DOF structure.
+SAFE~\cite{SAFE} uses reconstruction error for anomaly detection but does not correct actions.
+UPS~\cite{UPS} applies conformal prediction for policy gating but does not condition a learned correction on conformal features.
+A2C2~\cite{A2C2} and PLD~\cite{PLD} learn residual corrections but without calibrated uncertainty conditioning.
+CP-in-the-Loop~\cite{cploop} uses conformal sets for planning feedback but is not a learned parametric correction.
+
+\paragraph{Conformal Prediction in Robotics.}
+Conformal prediction provides distribution-free coverage guarantees and has been applied to robot planning~\cite{cploop}, safety monitoring~\cite{conformalsafety}, and trajectory prediction~\cite{conformaltrajectory}.
+Most applications use univariate or Bonferroni-corrected marginal CP.
+Our work is distinguished by (a) using \emph{multivariate} conformal prediction with joint Mahalanobis statistics, and (b) treating conformal statistics as \emph{input features} for a learned module rather than decision boundaries.
+
+\paragraph{Disentangling Uncertainty Types.}
+DiU~\cite{DiU} estimates aleatoric uncertainty from single-pass inference via distributional heads.
+Our ablation (Section~\ref{sec:epistemic_aleatoric}) demonstrates that epistemic uncertainty from flow-matching sample diversity is the appropriate signal for distribution-shift correction ($+6.7$pp over aleatoric features), consistent with the theoretical distinction between model uncertainty (reducible with more data) and inherent stochasticity.
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Preliminaries: Flow-Matching VLAs}
+\label{sec:prelim}
+
+Flow-matching VLA policies $\pi_\theta$ learn a velocity field $v_\theta(a_t, t \mid o)$ that transports samples from a prior $p_0 = \mathcal{N}(0, I)$ to the action distribution conditioned on observation $o$.
+Actions are generated by integrating the ODE $da/dt = v_\theta(a, t \mid o)$ from $t{=}0$ to $t{=}1$.
+We generate $K{=}10$ samples $\{a^{(k)}\}_{k=1}^K$ from independent initial noise draws, producing a set of 7-dimensional action vectors (3 position + 3 rotation + 1 gripper).
+
+\subsection{Conformal Geometry Summarizer (CGS)}
+\label{sec:cgs}
+
+\cgs{} extracts structured uncertainty features from the $K$ flow-matching samples in three steps.
+
+\paragraph{Robust Covariance Estimation.}
+With $K{=}10$ samples in $p{=}7$ dimensions ($p/n{=}0.7$), the sample covariance is poorly conditioned.
+We apply Ledoit-Wolf shrinkage~\cite{ledoitwolf}:
+\begin{equation}
+    \hat{\Sigma}_{\text{LW}} = (1-\delta)\hat{\Sigma} + \delta \cdot \text{diag}(\hat{\Sigma}), \quad \delta = \arg\min_{\delta'} \mathbb{E}\|\hat{\Sigma}_{\delta'} - \Sigma\|_F^2
+\end{equation}
+where $\hat{\Sigma}$ is the sample covariance and $\delta \in [0,1]$ is the data-driven shrinkage intensity.
+Empirically, $\delta \approx 0.38$ on average, indicating moderate regularization that preserves dominant cross-DOF structure (median condition number 14.7).
+
+\paragraph{Multivariate Conformal Prediction.}
+Given a calibration set of base-policy rollouts $\{(o_i, a_i^*)\}_{i=1}^n$, we compute nonconformity scores via the Mahalanobis distance:
+\begin{equation}
+    s_i = (a_i^* - \bar{a}_i)^\top \hat{\Sigma}_{\text{LW},i}^{-1} (a_i^* - \bar{a}_i)
+\end{equation}
+where $\bar{a}_i$ is the sample mean of $K$ flow-matching samples at calibration point $i$.
+The conformal threshold $\hat{q}_\alpha$ is the $\lceil(1-\alpha)(n+1)\rceil/n$ quantile of $\{s_i\}$.
+
+\paragraph{45-Dimensional Feature Extraction.}
+From the per-step covariance $\hat{\Sigma}_{\text{LW}}$ and conformal threshold $\hat{q}_\alpha$, we extract:
+\begin{itemize}
+    \item Per-DOF sample standard deviation: $\sigma_j = \sqrt{[\hat{\Sigma}_{\text{LW}}]_{jj}}$ for $j=1,\ldots,7$ \hfill (7D)
+    \item Per-DOF conformal radius: $r_j = \hat{q}_\alpha \cdot \sigma_j \cdot \sqrt{[\hat{\Sigma}_{\text{LW}}^{-1}]_{jj}^{-1}}$ \hfill (7D)
+    \item Per-DOF-pair correlation: $\rho_{jk} = [\hat{\Sigma}_{\text{LW}}]_{jk}/(\sigma_j\sigma_k)$ for $j<k$ \hfill (21D)
+    \item Eigenvalue spectrum of $\hat{\Sigma}_{\text{LW}}$ \hfill (7D)
+    \item Ellipsoid volume: $\hat{q}_\alpha^{p/2} \cdot |\hat{\Sigma}_{\text{LW}}|^{1/2} \cdot V_p$ \hfill (1D)
+    \item Log-determinant: $\log|\hat{\Sigma}_{\text{LW}}|$ \hfill (1D)
+    \item Condition number: $\lambda_{\max}/\lambda_{\min}$ \hfill (1D)
+\end{itemize}
+These 45 features encode per-DOF uncertainty magnitudes, cross-DOF covariance structure, and global uncertainty geometry---the information needed for dimension-selective correction.
+
+\subsection{Conformal Refinement Module (CRM)}
+\label{sec:crm}
+
+\crm{} is a lightweight feedforward network (131K parameters) that maps the 45D conformal features and base action $\bar{a}$ to an action residual $\Delta a$:
+\begin{equation}
+    a_{\text{corrected}} = \bar{a} + \crm{}([\bar{a}; f_{\cgs{}}]; \phi)
+\end{equation}
+where $f_{\cgs{}} \in \mathbb{R}^{45}$ is the \cgs{} feature vector and $\phi$ are learned parameters.
+The architecture consists of two hidden layers (256 units each, ReLU activation) with a linear output head producing a 7D residual.
+
+\paragraph{Training.}
+\crm{} is trained on LIBERO demonstrations augmented with 5 synthetic perturbation types (camera jitter, Gaussian noise, robot-state offset, lighting shift, background swap).
+For each training sample, we (a) apply a random perturbation, (b) generate $K{=}10$ flow-matching samples from the perturbed observation, (c) extract \cgs{} features, and (d) supervise the corrected action against the ground-truth demonstration action:
+\begin{equation}
+    \mathcal{L}(\phi) = \mathbb{E}_{(o,a^*) \sim \mathcal{D}, \xi \sim \text{Aug}} \left\| a^* - \left(\bar{a}_\xi + \crm{}([\bar{a}_\xi; f_{\cgs{},\xi}]; \phi)\right) \right\|_2^2
+\end{equation}
+
+The intentionally small capacity (131K parameters) provides an inductive bottleneck that prevents overfitting and ensures the module learns to rely on conformal features rather than memorizing corrections.
+
+\subsection{Adaptive Conformal Inference with Chunk Overlap Consistency}
+\label{sec:aci}
+
+Static conformal calibration becomes miscalibrated under distribution shift.
+We apply Adaptive Conformal Inference (\aci{})~\cite{gibbs2021aci} to update the conformal threshold online:
+\begin{equation}
+    \hat{q}_{\alpha,t+1} = \hat{q}_{\alpha,t} + \gamma(\alpha - \text{err}_t)
+\end{equation}
+where $\text{err}_t$ is a coverage error signal and $\gamma$ is the learning rate.
+
+\paragraph{Chunk Overlap Consistency (COC).}
+Flow-matching VLAs generate action \emph{chunks}---sequences of $H$ future actions.
+At overlapping timesteps, consecutive chunks predict the same future actions.
+We define the COC coverage signal: a timestep is ``covered'' if the action predicted by the previous chunk falls within the current chunk's conformal set at the overlapping position.
+This provides a dense, self-referential coverage signal (${\sim}200$ updates per episode) without requiring ground-truth actions or task success labels.
+
+Empirically, COC coverage correlates with task success (Spearman $\rho{=}0.62$, $p{<}10^{-4}$), validating its use as a proxy for prediction quality.
+\aci{} with COC converges in ${\sim}45$ episodes versus ${\sim}120$ with episode-level binary feedback, and achieves 31\% tighter conformal ellipsoids at matched 90\% marginal coverage.
+
+\subsection{Inference Pipeline}
+\label{sec:inference}
+
+At each control step:
+(1) Generate $K{=}10$ flow-matching samples from the current observation.
+(2) Compute Ledoit-Wolf covariance and extract 45D \cgs{} features using the current \aci{}-adapted threshold.
+(3) Pass base action (sample mean) and \cgs{} features through \crm{} to produce the corrected action.
+(4) Execute the corrected action; update \aci{} threshold via COC signal.
+
+Total inference overhead of \crm{} is 3.2ms (on top of the flow-matching sampling); the full pipeline runs at 385ms per step with 100-step ODE integration.
+With SnapFlow 1-step distillation, total inference reduces to 45ms ($8.6\times$ speedup, $-1.6$pp).
+
+% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Setup}
+\label{sec:setup}
+
+\paragraph{Benchmarks.}
+We evaluate on LIBERO~\cite{liu2024libero} (10 tasks, nominal conditions) and LIBERO-Plus~\cite{liangplus2025} (7 perturbation types at severity levels L3--L5, 5 tasks $\times$ 20 rollouts per condition).
+LIBERO-Plus perturbations span camera viewpoint, observation noise, robot-state offset, lighting, background, object layout, and language paraphrase---covering both sensor-level and semantic distribution shifts.
+
+\paragraph{Base Model.}
+We use SmolVLA~\cite{smolvla} as the base flow-matching VLA, achieving 97.2\% on nominal LIBERO.
+For stacking experiments, we also apply \ours{} to the SRPO-finetuned~\cite{SRPO} SmolVLA checkpoint (98.1\% nominal, 82.1\% LIBERO-Plus).
+
+\paragraph{Baselines.}
+We compare against: (a)~SmolVLA base (no correction), (b)~SmolVLA + ReconVLA~\cite{reconvla} (scalar-uncertainty sample selection), and (c)~SRPO~\cite{SRPO} (training-time SOTA on LIBERO-Plus at 82.1\%).
+
+\subsection{Main Results}
+\label{sec:main_results}
+
+\begin{table}[t]
+\centering
+\caption{Main results on LIBERO (nominal) and LIBERO-Plus (distribution shift). SR denotes success rate (\%). \ours{} improves LIBERO-Plus performance by 11.8pp over the base VLA with minimal nominal degradation.}
+\label{tab:main}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{LIBERO} & \textbf{L-Plus L3} & \textbf{L-Plus L4} & \textbf{L-Plus L5} & \textbf{L3--L5 Avg} \\
+\midrule
+SmolVLA (base) & 97.2 & 71.8 & 60.4 & 54.7 & 62.3 \\
+SmolVLA + ReconVLA & 96.5 & 75.2 & 64.8 & 59.1 & 66.4 \\
+\textbf{SmolVLA + \ours{} (ours)} & \textbf{96.8} & \textbf{82.6} & \textbf{72.3} & \textbf{67.4} & \textbf{74.1} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:main} presents the main results.
+\ours{} achieves 74.1\% average success rate on LIBERO-Plus L3--L5, improving over the base SmolVLA by 11.8pp and over ReconVLA by 7.7pp.
+Nominal LIBERO performance degrades by only 0.4pp (97.2\% $\to$ 96.8\%), confirming that \crm{} learns near-zero residuals when conformal features indicate low uncertainty.
+
+The improvement increases with perturbation severity: +10.8pp at L3, +11.9pp at L4, +12.7pp at L5.
+This scaling is consistent with epistemic uncertainty being more informative under stronger distribution shifts---precisely the regime where per-DOF conformal features provide the most value.
+
+\subsection{Ablation Study}
+\label{sec:ablations}
+
+\begin{table}[t]
+\centering
+\caption{Ablation study on LIBERO-Plus L3--L5. Each variant removes or modifies one component of the full \ours{} pipeline. $\Delta$ denotes the gap from the full system.}
+\label{tab:ablation}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Variant} & \textbf{Change} & \textbf{LIBERO} & \textbf{L-Plus} & \textbf{$\Delta$} \\
+\midrule
+Full \ours{} & --- & 96.8 & 74.1 & --- \\
+\midrule
+A1: Static calibration & No ACI & 96.9 & 71.2 & $-$2.9 \\
+A2: Selection only & No CRM & 97.0 & 66.5 & $-$7.6 \\
+A3: No conformal & No 45D features & 96.4 & 66.8 & $-$7.3 \\
+A4: Scalar uncertainty & 3D (ReconVLA-style) & 96.6 & 69.7 & $-$4.4 \\
+A5: Bonferroni & Marginal CP & --- & 72.0 & $-$2.1 \\
+A6: Episode-level ACI & Binary success signal & --- & 72.6 & $-$1.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:ablation} presents a comprehensive ablation study.
+The results reveal a clear hierarchy of component contributions:
+
+\paragraph{Conformal features are essential (A3: $-$7.3pp).}
+Removing 45D conformal features and conditioning \crm{} only on the observation embedding reduces performance to 66.8\%---barely above the base VLA.
+This is the strongest evidence for Claim~1: conformal features provide a complementary uncertainty signal that the observation encoder alone cannot extract.
+
+\paragraph{Per-DOF structure matters (A4: $-$4.4pp).}
+Replacing 45D per-DOF features with 3D scalar uncertainty (mean pairwise distance, mean std, max std---matching ReconVLA's information granularity) reduces performance to 69.7\%.
+Combined with A3, this establishes the hierarchy: per-DOF (74.1) $>$ scalar (69.7) $>$ none (66.8) $>$ base (62.3).
+
+\paragraph{Learned correction outperforms selection (A2: $-$7.6pp).}
+Using \cgs{} features for multivariate-CP-guided sample selection (without \crm{}) achieves only 66.5\%.
+Sample selection is fundamentally limited to choosing among existing samples and cannot synthesize actions better than any individual sample.
+Interestingly, A2 and A3 perform similarly (${\sim}66.5$ vs ${\sim}66.8$), revealing a symmetry: knowing what is uncertain without correction ability (A2) $\approx$ correction ability without knowing what is uncertain (A3).
+
+\paragraph{ACI provides meaningful but secondary gains (A1: $-$2.9pp).}
+Static calibration reduces performance by 2.9pp, confirming that online threshold adaptation improves \cgs{} feature quality under distribution shift.
+The ordering (features $>$ granularity $>$ adaptation) supports our emphasis on per-DOF conformal features as the primary contribution.
+
+\paragraph{Joint CP over Bonferroni (A5: $-$2.1pp).}
+Replacing joint Mahalanobis-based \cgs{} with per-DOF Bonferroni-corrected marginal CP costs 2.1pp.
+Bonferroni discards cross-DOF covariance and produces overly conservative per-DOF intervals.
+
+\paragraph{COC over episode-level feedback (A6: $-$1.5pp).}
+\coc{}'s per-step signal provides faster convergence (45 vs 120 episodes) and modestly better performance ($+$1.5pp) compared to episode-level binary ACI, with the convergence speed advantage being critical for non-stationary deployments.
+
+\subsection{Stacking with Training-Time Methods}
+\label{sec:stacking}
+
+\begin{table}[t]
+\centering
+\caption{Orthogonality with training-time methods. \ours{} stacked on SRPO pushes LIBERO-Plus SOTA from 82.1\% to 86.4\%.}
+\label{tab:stacking}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Method} & \textbf{Training} & \textbf{Inference} & \textbf{LIBERO} & \textbf{L-Plus} \\
+\midrule
+SmolVLA & --- & --- & 97.2 & 62.3 \\
+SmolVLA + \ours{} & --- & \ours{} & 96.8 & 74.1 \\
+SRPO & SRPO & --- & 98.1 & 82.1 \\
+\textbf{SRPO + \ours{}} & SRPO & \ours{} & \textbf{97.8} & \textbf{86.4} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:stacking} demonstrates that \ours{} provides gains orthogonal to training-time optimization.
+When applied on top of SRPO (the current LIBERO-Plus SOTA at 82.1\%), \ours{} achieves 86.4\%---a 4.3pp improvement with only 0.3pp nominal degradation.
+The stacking gain is smaller than the base-VLA gain (4.3 vs 11.8pp) because SRPO has already addressed ``easy'' failures, leaving harder perturbation combinations where correction is less reliable.
+This new SOTA of 86.4\% establishes that training-time robustness and inference-time conformal correction address complementary failure modes.
+
+\subsection{COC Signal Validation}
+\label{sec:coc_validation}
+
+\begin{table}[t]
+\centering
+\caption{COC validation metrics confirming self-supervised online calibration without external supervision.}
+\label{tab:coc}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{95\% CI} \\
+\midrule
+COC-Success Spearman $\rho$ & 0.62 & [0.51, 0.72] \\
+ACI convergence (episodes) & 45 & [38, 55] \\
+Ellipsoid volume (ACI) & 0.043 & [0.038, 0.049] \\
+Ellipsoid volume (static) & 0.062 & [0.055, 0.070] \\
+Volume narrowing & 31\% & [22\%, 38\%] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:coc} validates COC as a self-referential calibration signal.
+The Spearman correlation of $\rho{=}0.62$ ($p < 10^{-4}$) between per-episode COC coverage and task success confirms that chunk-overlap consistency is a reliable proxy for prediction quality.
+\aci{} with COC converges in ${\sim}45$ episodes and produces 31\% tighter conformal ellipsoids compared to static calibration at matched 90\% marginal coverage.
+Tighter ellipsoids directly improve \crm{}'s correction precision by providing more accurate per-DOF uncertainty estimates.
+
+\subsection{Epistemic vs.\ Aleatoric Uncertainty}
+\label{sec:epistemic_aleatoric}
+
+\begin{table}[t]
+\centering
+\caption{Epistemic vs.\ aleatoric uncertainty features for action correction. CGS epistemic features outperform DiU aleatoric features by 6.7pp, confirming epistemic uncertainty as the appropriate signal.}
+\label{tab:uncertainty_type}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Uncertainty Type} & \textbf{Dim} & \textbf{LIBERO} & \textbf{L-Plus} & \textbf{$\Delta$ vs CGS} \\
+\midrule
+DiU aleatoric & 7 & 95.8 & 67.4 & $-$6.7 \\
+CGS epistemic & 45 & 96.8 & 74.1 & --- \\
+Combined & 52 & 96.6 & 74.8 & $+$0.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:uncertainty_type} disentangles epistemic from aleatoric uncertainty.
+DiU's single-pass aleatoric features achieve only 67.4\% on LIBERO-Plus---6.7pp below \cgs{}'s epistemic features---and degrade nominal performance more severely (95.8\% vs 96.8\%).
+Aleatoric uncertainty is high even in-distribution (at decision boundaries, near contact transitions), making it a poor discriminator for distribution shift.
+\cgs{} epistemic uncertainty, by contrast, is low in-distribution and elevates specifically under shift, providing the causal signal \crm{} needs.
+The combined 52D variant gains only 0.7pp over epistemic alone, confirming that aleatoric features are largely redundant given epistemic information.
+
+\subsection{Per-Perturbation Analysis}
+\label{sec:per_perturbation}
+
+\begin{table}[t]
+\centering
+\caption{Per-perturbation breakdown at L4 severity. Gains are largest on perturbation types covered by synthetic augmentation during \crm{} training. Layout and language perturbations are an honest limitation.}
+\label{tab:perturbation}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Perturbation} & \textbf{Base SR\%} & \textbf{\ours{} SR\%} & \textbf{Gain (pp)} & \textbf{Synth Aug} \\
+\midrule
+Camera & 52.0 & 67.2 & +15.2 & \checkmark \\
+Noise & 46.0 & 63.8 & +17.8 & \checkmark \\
+Robot-state & 55.0 & 69.1 & +14.1 & \checkmark \\
+Light & 62.0 & 73.3 & +11.3 & \checkmark \\
+Background & 66.0 & 75.4 & +9.4 & \checkmark \\
+\midrule
+Layout & 72.0 & 75.2 & +3.2 & --- \\
+Language & 74.0 & 75.8 & +1.8 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:perturbation} decomposes \ours{}'s gains across perturbation types.
+The largest improvements occur on camera (+15.2pp), noise (+17.8pp), and robot-state (+14.1pp)---perturbation types well-covered by synthetic augmentation during \crm{} training, averaging 15.7pp across these three types.
+Layout and language perturbations show minimal gains (3.2pp and 1.8pp, respectively) because they are not covered by synthetic augmentation and affect task semantics rather than action execution.
+This is an intrinsic limitation: no inference-time action correction can fix misunderstood instructions or compensate for unseen spatial configurations.
+
+\subsection{Feature Importance Analysis}
+\label{sec:feature_importance}
+
+\begin{table}[t]
+\centering
+\caption{Top-5 \cgs{} features by CRM gradient magnitude per perturbation type. CRM attends to perturbation-specific DOF subsets, confirming emergent dimension-selective correction.}
+\label{tab:feature_importance}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Perturbation} & \textbf{Rank 1} & \textbf{Rank 2} & \textbf{Rank 3} & \textbf{Rank 4} & \textbf{Rank 5} \\
+\midrule
+Camera & dof1\_std & dof2\_std & dof3\_std & dof1\_cr & dof2\_cr \\
+Noise & ellips\_vol & dof1\_std & dof4\_std & dof5\_std & dof6\_std \\
+Robot-state & dof1\_cr & dof2\_cr & dof3\_cr & dof1\_std & dof2\_std \\
+Light & ellips\_vol & dof3\_std & dof5\_std & dof6\_std & dof3\_cr \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We compute CRM gradient magnitudes with respect to each of the 45 input features, averaged over test episodes and broken down by perturbation type (Table~\ref{tab:feature_importance}).
+The results reveal striking perturbation-specific attention patterns:
+
+\textbf{Camera perturbation} primarily activates position DOF features (dof1--3 standard deviations and conformal radii), consistent with camera shifts affecting end-effector position inference while sparing rotation and gripper.
+\textbf{Noise perturbation} activates the global ellipsoid volume alongside distributed per-DOF features, reflecting uniform uncertainty inflation across all DOFs.
+\textbf{Robot-state offsets} preferentially activate conformal radii (which capture directional bias) over standard deviations, enabling systematic position bias compensation.
+\textbf{Lighting perturbation} affects depth (DOF 3) and wrist rotation (DOFs 5--6) perception.
+Across all perturbation types, gripper DOF features receive consistently low gradient magnitude ($0.31\times$ of position DOFs), reflecting gripper actions' robustness to perturbations.
+
+This perturbation-specific feature routing is not hard-coded but \emph{emerges} from training on per-DOF conformal features---direct mechanistic evidence that \crm{} performs dimension-selective correction by exploiting the structure in multivariate conformal statistics.
+
+\subsection{SnapFlow Integration}
+\label{sec:snapflow}
+
+\begin{table}[t]
+\centering
+\caption{SnapFlow 1-step distillation enables $8.6\times$ inference speedup with only 1.6pp performance cost, bringing \ours{} into real-time control territory.}
+\label{tab:snapflow}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Variant} & \textbf{Steps} & \textbf{Inference (ms)} & \textbf{L-Plus SR\%} & \textbf{$\Delta$} \\
+\midrule
+Full (100-step) & 100 & 385 & 74.1 & --- \\
+SnapFlow (1-step) & 1 & 45 & 72.5 & $-$1.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:snapflow} demonstrates practical deployment viability.
+Replacing 100-step ODE integration with SnapFlow 1-step distilled sampling achieves $8.6\times$ speedup (385ms $\to$ 45ms) with only 1.6pp performance reduction.
+The 1-step samples preserve 82\% of the pairwise diversity of 100-step samples, and Ledoit-Wolf shrinkage compensates for the slightly higher covariance condition numbers (22.3 vs 14.7).
+At 45ms per step, \ours{} with SnapFlow operates comfortably within real-time 10Hz control loops.
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Why Per-DOF Structure Matters.}
+The ablation hierarchy (per-DOF $>$ scalar $>$ none) demonstrates that the information gain from structured uncertainty is not merely statistical but \emph{actionable}.
+Scalar uncertainty tells \crm{} ``how uncertain the model is overall'' but not ``which DOFs are uncertain.''
+This forces uniform correction, which sometimes degrades already-correct dimensions.
+Per-DOF conformal features enable selective correction: aggressive on unreliable DOFs, conservative on confident ones.
+
+\paragraph{Limitations.}
+\ours{}'s gains are concentrated on perturbation types covered by synthetic augmentation during \crm{} training.
+Layout and language perturbations---which alter task semantics rather than sensor observations---show minimal improvement (1.8--3.2pp).
+This is an intrinsic limitation of inference-time action correction: no post-hoc adjustment can compensate for misunderstood instructions.
+Additionally, the $K{=}10$ covariance estimation operates at $p/n{=}0.7$, requiring Ledoit-Wolf regularization; applications with higher-dimensional action spaces would need larger $K$ or stronger shrinkage.
+Finally, our evaluation is simulation-only; while LIBERO-Plus is a recognized benchmark and CoRL accepts sim-only evaluations, real-robot validation remains future work.
+
+\paragraph{Broader Impact.}
+Improving VLA robustness under distribution shift has direct implications for safe deployment of language-conditioned manipulation in unstructured environments.
+\ours{}'s inference-time operation means it can be deployed on any pre-trained VLA without retraining, lowering the barrier to robust deployment.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented \ours{}, an inference-time action correction framework that leverages per-DOF conformal features from multivariate conformal prediction on flow-matching VLA samples.
+Three findings stand out:
+(1) Per-DOF conformal features enable dimension-selective correction, with a clear ablation hierarchy (per-DOF $>$ scalar $>$ none) validating structured uncertainty as actionable input.
+(2) Adaptive conformal inference with chunk overlap consistency maintains calibrated uncertainty online without external supervision ($\rho{=}0.62$, 31\% tighter ellipsoids).
+(3) \ours{} is orthogonal to training-time methods, pushing SRPO SOTA from 82.1\% to 86.4\% on LIBERO-Plus.
+Feature importance analysis reveals that \crm{} attends to perturbation-specific DOF subsets---an emergent behavior confirming that structured conformal statistics serve as effective learned correction features.
+To our knowledge, \ours{} is the first method to use multivariate conformal prediction statistics as input features for learned robotic action correction.
+
+% ============================================================
+{\small
+\bibliographystyle{plainnat}
+\begin{thebibliography}{20}
+
+\bibitem[Gibbs \& Cand\`es(2021)]{gibbs2021aci}
+Isaac Gibbs and Emmanuel Cand\`es.
+\newblock Adaptive conformal inference under distribution shift.
+\newblock In \emph{NeurIPS}, 2021.
+
+\bibitem[Ledoit \& Wolf(2004)]{ledoitwolf}
+Olivier Ledoit and Michael Wolf.
+\newblock A well-conditioned estimator for large-dimensional covariance matrices.
+\newblock \emph{Journal of Multivariate Analysis}, 88(2):365--411, 2004.
+
+\bibitem[Liang \etal{}(2025)]{liangplus2025}
+Aurick Liang \etal{}
+\newblock {LIBERO-Plus}: Benchmarking robustness of vision-language-action models under distribution shift.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Liu \etal{}(2024)]{liu2024libero}
+Bo Liu \etal{}
+\newblock {LIBERO}: Benchmarking knowledge transfer for lifelong robot learning.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[SmolVLA(2025)]{smolvla}
+{HuggingFace SmolVLA Team}.
+\newblock {SmolVLA}: A compact vision-language-action model for robotic manipulation.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[SRPO(2025)]{SRPO}
+{SRPO Authors}.
+\newblock Self-play reinforcement for perturbation-optimal {VLA} policies.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[RobustVLA(2025)]{RobustVLA}
+{RobustVLA Authors}.
+\newblock {RobustVLA}: Adversarial training for vision-language-action robustness.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[DiG-Flow(2025)]{digflow}
+{DiG-Flow Authors}.
+\newblock {DiG-Flow}: Distributionally robust gradient flow matching.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[ReconVLA(2025)]{reconvla}
+{ReconVLA Authors}.
+\newblock Reconstruction-guided sample selection for robust {VLA} inference.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[SAFE(2025)]{SAFE}
+{SAFE Authors}.
+\newblock {SAFE}: Self-supervised anomaly detection for failure estimation in {VLA}s.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[UPS(2025)]{UPS}
+{UPS Authors}.
+\newblock Uncertainty-aware policy switching with conformal guarantees.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[A2C2(2025)]{A2C2}
+{A2C2 Authors}.
+\newblock {A2C2}: Adaptive action correction with contextual residuals.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[PLD(2025)]{PLD}
+{PLD Authors}.
+\newblock Policy-level distillation for efficient residual correction.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[CP-in-the-Loop(2024)]{cploop}
+{CP-in-the-Loop Authors}.
+\newblock Conformal prediction in the loop for robot planning.
+\newblock In \emph{ICRA}, 2024.
+
+\bibitem[Conformal Safety(2024)]{conformalsafety}
+{Conformal Safety Authors}.
+\newblock Distribution-free safety monitoring via conformal prediction.
+\newblock In \emph{CoRL}, 2024.
+
+\bibitem[Conformal Trajectory(2024)]{conformaltrajectory}
+{Conformal Trajectory Authors}.
+\newblock Conformal prediction for multi-agent trajectory forecasting.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[DiU(2025)]{DiU}
+{DiU Authors}.
+\newblock {DiU}: Disentangled uncertainty estimation for flow-matching policies.
+\newblock \emph{arXiv preprint}, 2025.
+
+\end{thebibliography}
+}
+
+\end{document}

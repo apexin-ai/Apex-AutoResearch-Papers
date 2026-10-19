@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Spatial Benchmark: Per-Task Success Rate (\%). Best per-task in \textbf{bold}.}
+\label{tab:spatial-final}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccccccc}
+\toprule
+Method & \rotatebox{60}{Btw P\&R} & \rotatebox{60}{Nxt Ram} & \rotatebox{60}{Tbl Ctr} & \rotatebox{60}{On CkBx} & \rotatebox{60}{Top Drw} & \rotatebox{60}{On Ram} & \rotatebox{60}{Nxt CkBx} & \rotatebox{60}{On Stv} & \rotatebox{60}{Nxt Plt} & \rotatebox{60}{On WdCb} & \textbf{Avg.} \\
+\midrule
+VLA-only (K=1) & 60 & \textbf{100} & 0 & 20 & 0 & 0 & \textbf{90} & 0 & 30 & 0 & \textbf{30.0} \\
+VLA-mean (K=10)$^{9}$ & -- & 70 & \textbf{100} & 0 & \textbf{30} & 0 & 0 & \textbf{80} & 0 & \textbf{10} & 32.2$^*$ \\
+ReconVLA argmin (K=10) & 60 & \textbf{100} & 0 & 30 & 10 & \textbf{10} & \textbf{90} & 0 & \textbf{40} & 0 & \textbf{34.0} \\
+Argmin-only (K=10) & 60 & \textbf{100} & 0 & 30 & 10 & \textbf{10} & \textbf{90} & 0 & 30 & \textbf{10} & \textbf{34.0} \\
+\midrule
+ACR per-DOF & 60 & \textbf{100} & 10 & \textbf{40} & 0 & 0 & \textbf{90} & 10 & \textbf{40} & 0 & \textbf{35.0} \\
+ACR obs-only & \textbf{90} & \textbf{100} & 0 & \textbf{40} & 10 & 0 & \textbf{90} & 0 & 20 & 0 & \textbf{35.0} \\
+ACR scalar & 60 & \textbf{100} & 10 & \textbf{40} & 0 & 0 & \textbf{90} & 0 & 10 & \textbf{10} & \textbf{32.0} \\
+ACR tiny (norm=0.05)$^{7}$ & 70 & 90 & 0 & 30 & 0 & 0 & \textbf{90} & -- & -- & -- & 40.0$^*$ \\
+\bottomrule
+\multicolumn{12}{l}{\footnotesize $^n$ = only $n$/10 tasks completed. $^*$ = partial average.} \\
+\end{tabular}}
+\end{table*}

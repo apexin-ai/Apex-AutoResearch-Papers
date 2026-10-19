@@ -1,0 +1,283 @@
+\begin{thebibliography}{38}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Black et~al.(2024)Black, Brown, Driess, Esmail, Equi, Finn, Fusai,
+  Groom, Hausman, Ichter, Jakubczak, Jones, Ke, Levine, Li-Bell, Mothukuri,
+  Nair, Pertsch, Shi, Tanner, Vuong, Walling, Wang, and
+  Zhilinsky]{black2024pi0}
+K.~Black, N.~Brown, D.~Driess, A.~Esmail, M.~Equi, C.~Finn, N.~Fusai, L.~Groom,
+  K.~Hausman, B.~Ichter, S.~Jakubczak, T.~Jones, L.~Ke, S.~Levine, A.~Li-Bell,
+  M.~Mothukuri, S.~Nair, K.~Pertsch, L.~X. Shi, J.~Tanner, Q.~Vuong,
+  A.~Walling, H.~Wang, and U.~Zhilinsky.
+\newblock $\pi_0$: A vision-language-action flow model for general robot
+  control, 2024.
+
+\bibitem[Shukor et~al.(2025)Shukor, Aubakirova, Capuano, Kooijmans, Palma,
+  Zouitine, Aractingi, Pascal, Russi, Marafioti, Alibert, Cord, Wolf, and
+  Cadene]{shukor2025smolvla}
+M.~Shukor, D.~Aubakirova, F.~Capuano, P.~Kooijmans, S.~Palma, A.~Zouitine,
+  M.~Aractingi, C.~Pascal, M.~Russi, A.~Marafioti, S.~Alibert, M.~Cord,
+  T.~Wolf, and R.~Cadene.
+\newblock Smolvla: A vision-language-action model for affordable and efficient
+  robotics, 2025.
+
+\bibitem[Lipman et~al.(2023)Lipman, Chen, Ben-Hamu, Nickel, and
+  Le]{lipman2023flow}
+Y.~Lipman, R.~T.~Q. Chen, H.~Ben-Hamu, M.~Nickel, and M.~Le.
+\newblock Flow matching for generative modeling.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2023.
+
+\bibitem[Snell et~al.(2025)Snell, Lee, Xu, and Kumar]{snell2024scaling}
+C.~Snell, J.~Lee, K.~Xu, and A.~Kumar.
+\newblock Scaling llm test-time compute optimally can be more effective than
+  scaling parameters for reasoning.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2025.
+
+\bibitem[Liu et~al.(2023)Liu, Zhu, Gao, Feng, Liu, Zhu, and
+  Stone]{liu2023libero}
+B.~Liu, Y.~Zhu, C.~Gao, Y.~Feng, Q.~Liu, Y.~Zhu, and P.~Stone.
+\newblock Libero: Benchmarking knowledge transfer for lifelong robot learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
+
+\bibitem[Sendai et~al.(2025)Sendai, Alvarez, Matsushima, Matsuo, and
+  Iwasawa]{a2c2_2025}
+K.~Sendai, M.~Alvarez, T.~Matsushima, Y.~Matsuo, and Y.~Iwasawa.
+\newblock Leave no observation behind: Real-time correction for vla action
+  chunks, 2025.
+
+\bibitem[Chen et~al.(2026)Chen, Lyu, and Beksi]{chen2026reconvla}
+L.~Chen, Z.~Lyu, and W.~J. Beksi.
+\newblock Reconvla: An uncertainty-guided and failure-aware
+  vision-language-action framework for robotic control, 2026.
+
+\bibitem[Liu et~al.(2026)Liu, Tan, Zhu, Li, Li, Yang, and Shen]{liu2026scvla}
+C.~Liu, W.~Tan, L.~Zhu, F.~Li, J.~Li, G.~Yang, and H.~T. Shen.
+\newblock Self-correcting vla: Online action refinement via sparse world
+  imagination, 2026.
+
+\bibitem[Li et~al.(2025)Li, Liu, Dong, Teng, Rouxel, Caldwell, and
+  Chen]{li2025vlapilot}
+Z.~Li, J.~Liu, Z.~Dong, T.~Teng, Q.~Rouxel, D.~Caldwell, and F.~Chen.
+\newblock Towards deploying vla without fine-tuning: Plug-and-play
+  inference-time vla policy steering via embodied evolutionary diffusion, 2025.
+
+\bibitem[Chow(1970)]{chow1970optimum}
+C.~K. Chow.
+\newblock On optimum recognition error and reject tradeoff.
+\newblock \emph{IEEE Transactions on Information Theory}, 16\penalty0
+  (1):\penalty0 41--46, 1970.
+
+\bibitem[Geifman and El-Yaniv(2017)]{geifman2017selective}
+Y.~Geifman and R.~El-Yaniv.
+\newblock Selective classification for deep neural networks.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2017.
+
+\bibitem[Intelligence et~al.(2025)Intelligence, Black, Brown, Bradbury, Esmail,
+  Equi, Finn, Fusai, Groom, Hausman, Ichter, Jakubczak, Jones, Ke, Levine,
+  Li-Bell, Mees, Mothukuri, Nair, Pertsch, Ren, Shi, Tanner, Vuong, Walling,
+  and Wang]{black2025pi05}
+P.~Intelligence, K.~Black, N.~Brown, J.~Bradbury, A.~Esmail, M.~Equi, C.~Finn,
+  N.~Fusai, L.~Groom, K.~Hausman, B.~Ichter, S.~Jakubczak, T.~Jones, L.~Ke,
+  S.~Levine, A.~Li-Bell, O.~Mees, M.~Mothukuri, S.~Nair, K.~Pertsch, A.~Ren,
+  L.~X. Shi, J.~Tanner, Q.~Vuong, A.~Walling, and H.~Wang.
+\newblock $\pi_{0.5}$: a vision-language-action model with open-world
+  generalization, 2025.
+
+\bibitem[Brohan et~al.(2023)Brohan, Brown, Carbajal, Chebotar, Chen,
+  Choromanski, Ding, Driess, Dubey, Finn, Florence, Fu, Arenas, Gopalakrishnan,
+  Han, Hausman, Herzog, Hsu, Ichter, Irpan, Joshi, Julian, Kalashnikov, Kuang,
+  Leal, Lee, Lee, Levine, Lu, Michalewski, Mordatch, Pertsch, Rao, Reymann,
+  Ryoo, Salazar, Sanketi, Sermanet, Singh, Singh, Soricut, Tran, Vanhoucke,
+  Vuong, Wahid, Welker, Wohlhart, Wu, Xia, Xiao, Xu, Xu, Yu, and
+  Zitkovich]{brohan2023rt2}
+A.~Brohan, N.~Brown, J.~Carbajal, Y.~Chebotar, X.~Chen, K.~Choromanski,
+  T.~Ding, D.~Driess, A.~Dubey, C.~Finn, P.~Florence, C.~Fu, M.~G. Arenas,
+  K.~Gopalakrishnan, K.~Han, K.~Hausman, A.~Herzog, J.~Hsu, B.~Ichter,
+  A.~Irpan, N.~Joshi, R.~Julian, D.~Kalashnikov, Y.~Kuang, I.~Leal, L.~Lee,
+  T.-W.~E. Lee, S.~Levine, Y.~Lu, H.~Michalewski, I.~Mordatch, K.~Pertsch,
+  K.~Rao, K.~Reymann, M.~Ryoo, G.~Salazar, P.~Sanketi, P.~Sermanet, J.~Singh,
+  A.~Singh, R.~Soricut, H.~Tran, V.~Vanhoucke, Q.~Vuong, A.~Wahid, S.~Welker,
+  P.~Wohlhart, J.~Wu, F.~Xia, T.~Xiao, P.~Xu, S.~Xu, T.~Yu, and B.~Zitkovich.
+\newblock Rt-2: Vision-language-action models transfer web knowledge to robotic
+  control, 2023.
+
+\bibitem[Kim et~al.(2024)Kim, Pertsch, Karamcheti, Xiao, Balakrishna, Nair,
+  Rafailov, Foster, Lam, Sanketi, Vuong, Kollar, Burchfiel, Tedrake, Sadigh,
+  Levine, Liang, and Finn]{kim2024openvla}
+M.~J. Kim, K.~Pertsch, S.~Karamcheti, T.~Xiao, A.~Balakrishna, S.~Nair,
+  R.~Rafailov, E.~Foster, G.~Lam, P.~Sanketi, Q.~Vuong, T.~Kollar,
+  B.~Burchfiel, R.~Tedrake, D.~Sadigh, S.~Levine, P.~Liang, and C.~Finn.
+\newblock Openvla: An open-source vision-language-action model, 2024.
+
+\bibitem[Ghosh et~al.(2024)Ghosh, Walke, Pertsch, Black, Mees, Dasari, Hejna,
+  Kreiman, Xu, Luo, Tan, Chen, Sanketi, Vuong, Xiao, Sadigh, Finn, and
+  Levine]{ghosh2024octo}
+D.~Ghosh, H.~Walke, K.~Pertsch, K.~Black, O.~Mees, S.~Dasari, J.~Hejna,
+  T.~Kreiman, C.~Xu, J.~Luo, Y.~L. Tan, L.~Y. Chen, P.~Sanketi, Q.~Vuong,
+  T.~Xiao, D.~Sadigh, C.~Finn, and S.~Levine.
+\newblock Octo: An open-source generalist robot policy, 2024.
+
+\bibitem[Fei et~al.(2025{\natexlab{a}})Fei, Wang, Shi, Dai, Cai, Qian, Ji, He,
+  Zhang, Fei, Fu, Gong, and Qiu]{fei2025liberoplus}
+S.~Fei, S.~Wang, J.~Shi, Z.~Dai, J.~Cai, P.~Qian, L.~Ji, X.~He, S.~Zhang,
+  Z.~Fei, J.~Fu, J.~Gong, and X.~Qiu.
+\newblock Libero-plus: In-depth robustness analysis of vision-language-action
+  models, 2025{\natexlab{a}}.
+
+\bibitem[Fei et~al.(2025{\natexlab{b}})Fei, Wang, Ji, Li, Zhang, Liu, Hou,
+  Gong, Zhao, and Qiu]{srpo2025}
+S.~Fei, S.~Wang, L.~Ji, A.~Li, S.~Zhang, L.~Liu, J.~Hou, J.~Gong, X.~Zhao, and
+  X.~Qiu.
+\newblock Srpo: Self-referential policy optimization for vision-language-action
+  models, 2025{\natexlab{b}}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{a}})Zhang, Zhang, Jin, Zeng, Li, and
+  Wang]{robustvla2025}
+H.~Zhang, S.~Zhang, J.~Jin, Q.~Zeng, R.~Li, and D.~Wang.
+\newblock Robustvla: Robustness-aware reinforcement post-training for
+  vision-language-action models, 2025{\natexlab{a}}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{b}})Zhang, Wang, Luo, Yuan, Feng, Zheng,
+  Jin, and Lu]{digflow2025}
+W.~Zhang, Y.~Wang, H.~Luo, H.~Yuan, Y.~Feng, S.~Zheng, Q.~Jin, and Z.~Lu.
+\newblock Dig-flow: Discrepancy-guided flow matching for robust vla models,
+  2025{\natexlab{b}}.
+
+\bibitem[Liu et~al.(2026)Liu, Liu, Wang, Zhuang, Liang, Yang, Xu, Wang, Liu,
+  and Han]{liu2026ttvla}
+C.~Liu, Y.~Liu, T.~Wang, Q.~Zhuang, J.~C. Liang, W.~Yang, R.~Xu, Q.~Wang,
+  D.~Liu, and C.~Han.
+\newblock On-the-fly vla adaptation via test-time reinforcement learning, 2026.
+
+\bibitem[Tang et~al.(2026)Tang, Wang, Chen, Zhang, Guan, and
+  Tang]{tang2026shifting}
+Y.~Tang, T.~Wang, Y.~Chen, B.~Zhang, Q.~Guan, and R.~Tang.
+\newblock Shifting uncertainty to critical moments: Towards reliable
+  uncertainty quantification for vla model, 2026.
+
+\bibitem[Silver et~al.(2018)Silver, Allen, Tenenbaum, and
+  Kaelbling]{silver2018residual}
+T.~Silver, K.~Allen, J.~Tenenbaum, and L.~Kaelbling.
+\newblock Residual policy learning, 2018.
+
+\bibitem[Johannink et~al.(2019)Johannink, Bahl, Nair, Luo, Kumar, Loskyll,
+  Ojea, Solowjow, and Levine]{johannink2019residual}
+T.~Johannink, S.~Bahl, A.~Nair, J.~Luo, A.~Kumar, M.~Loskyll, J.~A. Ojea,
+  E.~Solowjow, and S.~Levine.
+\newblock Residual reinforcement learning for robot control.
+\newblock In \emph{IEEE International Conference on Robotics and Automation
+  (ICRA)}, pages 6023--6029, 2019.
+
+\bibitem[Jiang et~al.(2024)Jiang, Wang, Zhang, Wu, and
+  Fei-Fei]{jiang2024transic}
+Y.~Jiang, C.~Wang, R.~Zhang, J.~Wu, and L.~Fei-Fei.
+\newblock Transic: Sim-to-real policy transfer by learning from online
+  correction.
+\newblock In \emph{Conference on Robot Learning (CoRL)}, 2024.
+\newblock arXiv:2405.10315.
+
+\bibitem[Xiao et~al.(2026)Xiao, Lin, Peng, Xue, He, Xie, Hu, Wu, Luo, Fan, Shi,
+  and Zhu]{xiao2026pld}
+W.~Xiao, H.~Lin, A.~Peng, H.~Xue, T.~He, Y.~Xie, F.~Hu, J.~Wu, Z.~Luo, L.~Fan,
+  G.~Shi, and Y.~Zhu.
+\newblock Self-improving vision-language-action models with data generation via
+  residual rl.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2026.
+\newblock arXiv:2511.00091.
+
+\bibitem[Pan et~al.(2025)Pan, Cheng, and Hughes]{pan2025drc}
+C.~Pan, H.~H. Cheng, and J.~Hughes.
+\newblock Online imitation learning for manipulation via decaying relative
+  correction through teleoperation, 2025.
+
+\bibitem[El-Yaniv and Wiener(2010)]{elyaniv2010selective}
+R.~El-Yaniv and Y.~Wiener.
+\newblock On the foundations of noise-free selective classification.
+\newblock \emph{Journal of Machine Learning Research}, 11:\penalty0 1605--1641,
+  2010.
+
+\bibitem[Geifman and El-Yaniv(2019)]{geifman2019selectivenet}
+Y.~Geifman and R.~El-Yaniv.
+\newblock Selectivenet: A deep neural network with an integrated reject option.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2019.
+
+\bibitem[Lakshminarayanan et~al.(2017)Lakshminarayanan, Pritzel, and
+  Blundell]{lakshminarayanan2017simple}
+B.~Lakshminarayanan, A.~Pritzel, and C.~Blundell.
+\newblock Simple and scalable predictive uncertainty estimation using deep
+  ensembles.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2017.
+
+\bibitem[Gal and Ghahramani(2016)]{gal2016dropout}
+Y.~Gal and Z.~Ghahramani.
+\newblock Dropout as a {B}ayesian approximation: Representing model uncertainty
+  in deep learning.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2016.
+
+\bibitem[Angelopoulos and Bates(2023)]{angelopoulos2023gentle}
+A.~N. Angelopoulos and S.~Bates.
+\newblock A gentle introduction to conformal prediction and distribution-free
+  uncertainty quantification.
+\newblock \emph{Foundations and Trends in Machine Learning}, 2023.
+
+\bibitem[Lindemann et~al.(2023)Lindemann, Cleaveland, Shim, and
+  Pappas]{lindemann2023safe}
+L.~Lindemann, M.~Cleaveland, G.~Shim, and G.~J. Pappas.
+\newblock Safe planning in dynamic environments using conformal prediction.
+\newblock \emph{IEEE Robotics and Automation Letters}, 8\penalty0 (8):\penalty0
+  5116--5123, 2023.
+
+\bibitem[Zhao et~al.(2024)Zhao, Simmons, Admoni, and
+  Bajcsy]{zhao2024conformalized}
+M.~Zhao, R.~Simmons, H.~Admoni, and A.~Bajcsy.
+\newblock Conformalized teleoperation: Confidently mapping human inputs to
+  high-dimensional robot actions.
+\newblock In \emph{Robotics: Science and Systems (RSS)}, 2024.
+
+\bibitem[Yao et~al.(2025)Yao, Zhang, Xia, Wang, Roy-Chowdhury, and
+  Li]{yao2025cpnav}
+J.~Yao, X.~Zhang, Y.~Xia, Z.~Wang, A.~Roy-Chowdhury, and J.~Li.
+\newblock Towards generalizable safety in crowd navigation via conformal
+  uncertainty handling.
+\newblock In \emph{Conference on Robot Learning (CoRL)}, 2025.
+
+\bibitem[Dai et~al.(2025)Dai, Liu, Bai, Liu, Wang, Su, Chen, Lin, and
+  Wu]{dai2025rover}
+M.~Dai, L.~Liu, Y.~Bai, Y.~Liu, Z.~Wang, R.~Su, C.~Chen, L.~Lin, and X.~Wu.
+\newblock Rover: Robot reward model as test-time verifier for
+  vision-language-action model, 2025.
+
+\bibitem[Chun et~al.(2025)Chun, Lee, Albergo, Xie, and
+  Vanden-Eijnden]{chun2025dasip}
+I.~Chun, S.~Lee, M.~S. Albergo, S.~Xie, and E.~Vanden-Eijnden.
+\newblock Dynamic test-time compute scaling in control policy: Difficulty-aware
+  stochastic interpolant policy.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2025.
+
+\bibitem[Chi et~al.(2023)Chi, Xu, Feng, Cousineau, Du, Burchfiel, Tedrake, and
+  Song]{chi2023diffusion_policy}
+C.~Chi, Z.~Xu, S.~Feng, E.~Cousineau, Y.~Du, B.~Burchfiel, R.~Tedrake, and
+  S.~Song.
+\newblock Diffusion policy: Visuomotor policy learning via action diffusion.
+\newblock In \emph{Robotics: Science and Systems (RSS)}, 2023.
+\newblock Also published in IJRR 2024. arXiv:2303.04137.
+
+\bibitem[Ross et~al.(2011)Ross, Gordon, and Bagnell]{ross2011dagger}
+S.~Ross, G.~J. Gordon, and J.~A. Bagnell.
+\newblock A reduction of imitation learning and structured prediction to
+  no-regret online learning.
+\newblock In \emph{International Conference on Artificial Intelligence and
+  Statistics (AISTATS)}, 2011.
+
+\end{thebibliography}

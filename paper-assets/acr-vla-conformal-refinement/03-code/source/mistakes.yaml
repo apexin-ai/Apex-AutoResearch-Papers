@@ -1,0 +1,1617 @@
+_next_id: 116
+mistakes:
+- id: M001
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: Agent 连续 5 次误杀正常运行的 eval 进程（direct-correction），根因是判断"stuck"的标准有误
+  root_cause: evaluate.py 每 5 个 rollout 才打印一次（~7.5 分钟无输出），Agent/Worker 看到数分钟无日志输出
+    + /proc/PID/io wchar 不变（MuJoCo+CUDA 用 mmap I/O 不计入）就判定进程卡死并 kill。实际进程一直在正常 rollout。
+  prevention: 判断进程是否 stuck 应综合检查：(1) 进程 State 是否为 R/S（非 D/Z/T），(2) CPU 利用率是否正常，(3)
+    GPU util 是否有活动。不能仅依赖日志输出频率或 /proc/PID/io。对于输出频率低的程序，先 patch 代码增加输出频率再做判断。
+  status: active
+  context: eval-direct-correction-object-seed42 连续 5 次尝试（code/verify/fix/ops/r2）全部因
+    Agent 或 Worker 误杀而失败。浪费约 10 小时 GPU 时间 + 大量 Agent 工作时间。
+  fix: Patch evaluate.py 改为每 rollout 打印一次进度。r3 重启后稳定运行。
+- id: M002
+  date: '2026-05-17'
+  category: resource_misuse
+  severity: high
+  summary: Agent 两批部署指令叠加导致 GPU 冲突和数据文件覆盖风险（5/16 同类事故重演）
+  root_cause: Director 发了原始 GPU 部署指令（4 卡 4 实验），随后发了调整指令（改优先级）。Agent 处理第一批时已部署，处理第二批时又部署了一轮，没有检查目标
+    GPU 是否已被第一批占用。两批进程共用同一 GPU，其中 obs_only seed46 两个实例写同一输出文件。
+  prevention: 1. 每次部署前必须 nvidia-smi 确认目标卡无进程。2. 收到调整指令时先检查原始指令是否已执行——如果已部署则需要先 kill
+    被替换的实验。3. Director 发调整指令时应明确标注"替代上一条部署指令"而非"补充"。
+  status: active
+  context: bjb1-18228 cuda:2/3 各跑了 2 个实验进程，bjb2-28827 cuda:2 也是 2 个。obs_only_norm01_seed46.json
+    有两个进程同时写入的损坏风险。
+  fix: Kill 重复进程，每卡保留单进程，检查文件完整性后视情况重启。
+- id: M003
+  date: '2026-05-17'
+  category: communication
+  severity: medium
+  summary: ROADMAP 投稿目标与 D011 决策矛盾：D011 放弃 CoRL → ICLR，但后续 ROADMAP 一直写 CoRL，无撤销 D011
+    的决策记录
+  root_cause: D011 后项目取得突破性进展（6v6 Fisher p=0.0074），Director 口头上回到 CoRL 目标但未正式 log_decision
+    撤销 D011。决策链断裂导致文档不一致。
+  prevention: 投稿目标变更必须有对应的 log_decision 记录。每次 ROADMAP 更新投稿目标时检查 decisions.yaml 是否有匹配的决策支持。
+  status: active
+  context: 'Reviewer 在 Loop #16 审查中发现。D011 (2026-05-13) 记录"正式放弃 CoRL 2026，目标 ICLR
+    2027"。D012-D047 无任何撤销记录。需要用户确认当前目标后补记决策。'
+  related_decisions:
+  - D011
+  - D047
+- id: M004
+  date: '2026-05-17'
+  category: resource_misuse
+  severity: high
+  summary: Worker 部署 5 个实验全部违反 GPU 冲突防范规则：未 nvidia-smi 预检、未注册 registry、1 个 GPU 双进程冲突、1
+    个重跑已完成实验
+  root_cause: Worker 未遵守 memory.md 中 GPU 冲突防范规范（2026-05-16 制定）。未在部署前 nvidia-smi -i
+    N 确认空闲，未设 CUDA_VISIBLE_DEVICES，未在 20s 内验证，未检查 registry 是否已有同实验结果，未注册新实验。
+  prevention: 1. Agent 派 Worker 部署时必须在 prompt 中显式要求：(a) 部署前 nvidia-smi -i N 确认空闲 (b)
+    CUDA_VISIBLE_DEVICES 显式设置 (c) 部署后 20s 验证 (d) 部署前查 registry 确认无已完成同实验 (e) 部署后立即注册
+    registry + cron。2. Director 审批部署计划时检查是否包含这些步骤。
+  status: active
+  context: worker_ssh_full-gpu-scan-and-deploy-all-idle 在 bjb2-28827 cuda:2 上部署了两个相同的
+    perdof ε=0.3 seed46 进程（PID 392856+394435），同文件写入风险。bjb1-32546 cuda:0 重跑已有 DONE
+    结果的 perdof ε=0.3 seed44（会覆盖有效 JSON）。全部 5 个实验无 registry 条目。
+  fix: kill 冲突/重复进程，补注册存活实验，替换 killed GPU 上的实验。
+  related_decisions:
+  - D047
+- id: M005
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: LIBERO 并发渲染上限导致新部署进程系统性挂起——在已有 3-5 个 LIBERO 进程的服务器上新部署全部卡在 "10 tasks loaded"
+  root_cause: 每台服务器的 LIBERO 环境有并发渲染资源上限（可能是 EGL context 或 display 连接数）。当服务器上已有 3-5
+    个评估进程时，新部署的进程可以完成模型加载和任务加载，但无法获取渲染资源开始 rollout，导致 silent hang。被 kill 的进程可能未完全释放渲染资源，导致替换部署也挂起。
+  prevention: 1. 不要在已有多个 LIBERO 进程的 GPU 上通过 kill+replace 方式部署新实验。2. 等现有进程自然完成后，渲染资源释放，再部署新实验。3.
+    部署后 10 分钟内检查日志是否出现 rollout 输出，无输出即判定挂起。4. 考虑设置每服务器 LIBERO 并发进程数上限。
+  status: active
+  context: 3 台服务器（bjb2-28827 cuda:2, bjb1-18228 cuda:1, bjb1-32546 cuda:0）新部署的进程全部在
+    10-12 分钟后确认挂起。同服务器上同时运行的旧进程正常。bjb2-40593 也有类似 pattern。
+- id: M006
+  date: '2026-05-17'
+  category: communication
+  severity: medium
+  summary: 'M006: 紧急修正未能阻止 Worker kill 正在运行的进程 (PID 429284)'
+  root_cause: 综合指令（replace_agent_queue）包含了 4 个 kill PID，之后 Reviewer 修正了诊断（429284 非挂起），Director
+    发了 urgent_agent_message 修正。但 Agent 处理综合指令时派出的 Worker 在收到修正前已执行全部 4 个 kill。根本原因：(1)
+    综合指令中的 kill 列表基于未验证的"全部挂起"假设；(2) urgent 修正只能插队到 Agent 消息队列前面，无法中断已 dispatched
+    的 Worker。
+  prevention: 1. kill 指令不要批量下发——对每个 PID 先 SSH 检查日志再决定，不要基于假设批量 kill。2. 综合指令中涉及 destructive
+    action (kill) 时，单独拆出来让 Agent 逐个确认，而非打包到一条大指令中。3. Reviewer 修正诊断后，如果 Worker 已 dispatched，需要直接通过
+    Worker 层面取消而非只修正 Agent 队列。
+  status: active
+  context: PID 429284 (bjb1-32546 cuda:0, obs-only-norm005-seed43) 在高并发下初始化 20+ 分钟后开始产出
+    rollout (task 1, rollout 1/10)。被误 kill 后需重跑，损失约 30-40 分钟计算。
+  fix: Agent 将在 GPU 释放后立即在 bjb1-32546 cuda:0 重新部署 obs_only ε=0.05 seed43。
+  related_decisions:
+  - D048
+- id: M007
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: 'M007: Ghost 实验 eval-obs-only-object-norm01-seed45 报告 3 次、2 个 Worker 均未修复，28h+
+    GPU 浪费'
+  root_cause: Worker 检查服务器时没有对比 registry RUNNING 条目与实际 ps 进程存活状态。只做了表面扫描（GPU utilization），没有验证
+    registry 一致性。连续两个 Worker（check-and-kill-3servers, comprehensive-check-kill-deploy）都犯同样错误。
+  prevention: 1. 服务器审计 Worker 必须执行 registry-vs-ps 交叉验证：对每个 RUNNING 条目检查 PID 是否存活。2.
+    Ghost 实验修复不需要 SSH——直接调 registry 工具改状态即可，不要依赖 Worker SSH 检查。3. 关键 fix 报告 2 次未解决时，Director
+    应直接用 registry 工具自行修复而非再派 Worker。
+  status: active
+  context: eval-obs-only-object-norm01-seed45 在 bjb1-18228 cuda:0 创建于 2026-05-16T09:01。PID
+    474319 不知何时死亡。Reviewer 在 12:10, 12:20, 和本次审查中连续 3 次报告。2 个不同 Worker 均未捕获。GPU 空闲浪费超
+    28 小时。
+  fix: 第 3 次发送强制修复指令（urgent_agent_message），明确指定 registry 操作而非 SSH 检查。
+- id: M008
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: 'M008: Worker 无差别 kill bjb1-18228 全部进程，杀掉 2 个合法 RUNNING 实验 (seed46/47 norm01,
+    各 4/10 完成)，浪费 ~14h GPU 时间'
+  root_cause: Worker 名为 "kill-check-deploy" 但执行了全面 kill 而非选择性 kill。未检查 registry RUNNING
+    状态，未检查实验进度，未保存部分结果，未更新 registry，未部署替代实验。与 M006 同类问题：Worker 对 destructive action
+    缺乏 pre-check。
+  prevention: 1. Kill Worker 必须先列出所有目标 PID + 对应 registry 状态 + 进度，汇报 Agent 确认后再执行。2.
+    禁止 kill 进度 > 30% 的注册实验，除非 Director 明确指定。3. Kill 后必须更新 registry + 部署替代实验，不允许只 kill
+    不 deploy。4. Director 的 kill 指令必须给出精确 PID 列表（不是"清理该服务器"这种宽泛指令）。
+  status: active
+  context: bjb1-18228 上 eval-obs-only-object-norm01-seed46-r2 和 seed47-r2 各完成 4/10
+    tasks (~7h GPU each)。Worker batch7 全部 kill。seed46/seed47 是 K=10 magnitude curve
+    数据，D049 下降为 supplementary 但仍有价值。4 GPU 全部空闲，Worker 未部署任何实验。
+  fix: 指令 Agent 修复 registry + 在 4 GPU 上部署 D049 任务。seed46/seed47 norm01 不紧急重跑（K=10
+    supplementary）。
+  related_decisions:
+  - D049
+- id: M009
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: 'M009: plan_701 训练崩溃——4 台服务器均无 LIBERO HDF5 原始数据，precompute 阶段 FileNotFoundError'
+  root_cause: K=1 多阶段特征 precompute 需要 LIBERO 原始 HDF5 演示数据（含图像+机器人状态），但所有服务器只有 eval
+    环境（BDDL task configs），没有训练数据。plan_700 设计时未验证数据依赖。同时 submit_training_job 的 tmux
+    wrapper 不传播非零退出码，导致 FileNotFoundError 崩溃被误报为 complete。
+  prevention: 1. 训练实验启动前必须验证所有数据依赖存在（dry-run 或显式检查）。2. 修复 submit_training_job EXIT_CODE
+    传播 bug。3. plan 设计阶段（plan_700）就应确认训练数据路径，不能只设计架构不验证 pipeline。
+  status: active
+  fix: 方案 C：(1) 立即用 K=10 cache fallback 在 bjb1-32546 训练单阶段版本；(2) 并行下载 LIBERO HDF5
+    数据后训练完整多阶段版本。
+- id: M010
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: 'M010: train-crm-k1-accg-v2 multi-stage 训练因 W&B API key 未配置崩溃，precompute
+    75min 白等'
+  root_cause: 训练命令未加 --no_wandb flag，bjb2-28827 上未配置 wandb login。precompute 成功后训练阶段
+    wandb.init() 直接报错退出。与 M009 同类问题：训练 pipeline 的环境依赖未在启动前验证。
+  prevention: 1. 训练脚本提交前检查 W&B 依赖：要么确认目标服务器已 wandb login，要么默认加 --no_wandb。2. 训练脚本中
+    wandb.init() 应 try/except，失败时 fallback 到 no_wandb 模式而非崩溃。3. Agent 部署训练实验时必须在部署后
+    2 分钟内检查日志确认训练实际开始（不是只看 precompute 开始就走）。
+  status: active
+  context: precompute 75min 成功完成（65,223 samples），但 training 阶段立即崩溃。precompute 数据已
+    cached 可复用，重启只需 ~20min。损失：发现延迟数小时（Agent 重置期间无人监控）。
+  fix: 立即重启加 --no_wandb flag。precompute 自动 skip，直接进入 training。
+- id: M011
+  date: '2026-05-17'
+  category: resource_misuse
+  severity: high
+  summary: 'M010: K=5/K=20 eval 被 SIGHUP kill 后自动重启为孤儿进程，占 GPU 无 registry 跟踪'
+  root_cause: 进程被 SIGHUP (EXIT_CODE=129) 终止后，某种机制（tmux respawn / shell restart）自动重启了新进程（新
+    PID），但 registry 只记录了原始 run 的 failed 状态。新进程成为 orphan，持续占用 GPU 但不被监控系统追踪。
+  prevention: 1. Kill 实验时必须用 kill -9（SIGKILL 不可被 trap/重启）而非普通 signal。2. Kill 后必须 nvidia-smi
+    确认 GPU 已释放。3. Registry 标记 failed/killed 后，Agent 应 SSH 确认对应 GPU 上无残余进程。4. 调查并禁用任何实验进程的自动重启机制。
+  status: active
+  context: bjb1-18228 cuda:0 (K=5 PID 713405) 和 cuda:2 (K=20 PID 713480) 在 registry
+    显示 DONE/failed 后仍然运行。K=20 数据异常（alphabet_soup=0% vs K=10 的 30%），重启后可能参数/状态损坏。
+  fix: urgent_agent_message 指示 kill -9 K=20，K=5 验证数据后继续跑并重注册为 RUNNING。
+  related_decisions:
+  - D052
+- id: M012
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: 'M012: DeprecationWarning stderr 反复导致 cron 误标实验为 failed，已影响至少 3 个实验的数据聚合'
+  root_cause: LIBERO/MuJoCo 环境产生 swigvarlink DeprecationWarning 输出到 stderr，cron 监控检测到
+    stderr 非空后将实验标记为 failed。实际实验正常完成并产出 JSON 结果。受影响实验：eval-obs-only-object-default-seed46(SR=15%),
+    eval-perdof-object-default-seed46(SR=0%), eval-obs-only-object-norm02-k5-seed42(SR=14%)。后者导致
+    K=5 数据在 k_value_curve_data.json 中缺失。
+  prevention: 1. Cron 判断实验成功/失败应以 JSON 结果文件是否存在为准，不应仅依赖 stderr 是否非空。2. 每次发现 failed
+    实验，Agent 应先检查对应 JSON 文件是否存在再确认 conclusion。3. 考虑在启动脚本中 suppress 已知的 DeprecationWarning（2>&1
+    或 PYTHONWARNINGS=ignore）。
+  status: active
+  context: 同一 root cause 已触发 3 次手动修正。如果不从 cron 层面修复，后续每个新实验都可能被误标。
+  fix: 逐个修正 registry conclusion 标签：default-seed46 改 success，perdof-default-seed46
+    改 negative，k5-seed42 改 success。
+- id: M013
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: 'M013: Harvest 脚本按文件名分类实验而非按实际运行参数，导致 3 个 ε=0.1 实验被错误归入 default/uncapped
+    分组，perdof default 从 0% 被错误抬高到 7.75%，Figure 2 被污染'
+  root_cause: 早期实验（seed42/43/44）的 JSON 文件名不含 "norm" 后缀（如 eval_object_perdof.json），但实际运行命令使用了
+    --max_correction_norm 0.1。Harvest 脚本按文件名模式匹配分类，将无 norm 后缀的文件归入 default/uncapped，而非从
+    log 文件中读取实际参数。
+  prevention: 1. 数据聚合脚本必须从 log 文件或 JSON 元数据中读取实际运行参数来分类，不能依赖文件名推断。2. 每次聚合后 Reviewer
+    应抽样核对 JSON 中的参数与分类标签是否一致。3. 对已锁定证据点涉及的数据，修改聚合逻辑后必须重新验证。
+  status: active
+  context: 直接影响已锁定证据"perdof default catastrophic collapse"的准确性。Figure 2 向审稿人展示的数据一度被污染。如果进入论文将导致
+    claim 与数据不符。
+  fix: 将 seed42/43/44 从 default 移到 ε=0.1；perdof default 改为仅 seed46=0% (n=1)；修复 harvest
+    脚本从 log 读取 max_correction_norm；重跑 Figure。
+- id: M014
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: 僵尸进程清理时误 kill 正在运行的实验（tmux session 名含相同 seed 号）
+  root_cause: Worker 在 bjb1-18228 上 kill 僵尸进程 PID 702897（eval-k1-seed43 tmux session）时，可能误伤了同一
+    GPU 上运行的 eval-obs-only-object-norm003-seed43。两个 session 名都含 "seed43"，kill 命令匹配不精确。
+  prevention: Kill tmux session 时必须用精确 session name 或 PID，不能用模糊匹配。kill 前先 `tmux list-sessions
+    | grep` 确认目标 session 的精确名称和关联 PID，避免误伤同名 session。
+  status: active
+  context: 'Reviewer #64 要求清理 bjb1-18228 PID 702897 僵尸进程。Worker 执行 kill 时误伤了 cuda:1
+    上正在运行的 obs_only ε=0.03 seed43 实验（EXIT_CODE=129 SIGHUP）。该实验仅完成 4/10 tasks，无输出文件。'
+  fix: 重新部署 eval-obs-only-object-norm003-seed43
+- id: M015
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: submit_training_job 默认 timeout_hours=6 导致 LIBERO-Object 全量 eval 批量超时失败
+  root_cause: LIBERO-Object 全量 eval（10 tasks × 10 rollouts × 300 steps, K=10）需要 12-14h，但
+    submit_training_job 默认 timeout=6h。部署双跑后 GPU 争抢进一步放慢速度（~32min/rollout vs ~8min）。至少
+    4 个实验被 EXIT_CODE=124 杀掉，更多即将超时。
+  prevention: 后续所有 LIBERO eval 实验统一使用 timeout_hours=16。部署前估算单卡/双跑场景下的实际运行时间，确保 timeout
+    > 预估时间 × 1.5。
+  status: active
+  fix: kill 刚启动实验 + 以 timeout_hours=16 重提交所有失败/即将超时实验。全局修复后续默认值。
+- id: M016
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 检查 CRM 训练数据时读错服务器，误报 CRM 只在 Spatial 训练
+  root_cause: Worker 在 bjb2-40593 上检查 crm_cache（旧版，仅 Spatial 2402 samples），但实际 CRM
+    v3_norm 训练在 bjb1-18228 上使用 crm_cache_v3（双 benchmark 26,737 samples）。多台服务器上同名但内容不同的
+    cache 目录导致混淆。
+  prevention: 检查训练数据/checkpoint 来源时，必须先确认 checkpoint 实际训练所在的服务器（从 registry 或训练日志中查），在该服务器上核实数据。不要在任意服务器上查找同名目录就当作训练数据源。
+  status: active
+  context: Leave-task-out 实验设计时，Worker 报告 Object precomputed cache 为空，误导 Director
+    以为 CRM 只在 Spatial 训练。Reviewer 独立核实确认所有历史 CRM 训练均使用双 benchmark，且 crm_cache_v3 中双
+    benchmark 均已完整预计算。
+  fix: Reviewer 核实后发 urgent_agent_message 纠正，Agent 继续按 all-20-tasks 的前提设计 leave-task-out。
+- id: M017
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: LTO 实验 task index 训练/评估错配：HDF5 字母序 ≠ LIBERO API 序，导致数据泄漏
+  root_cause: build_task_ids.py 按 HDF5 文件名字母序分配 task index，但 evaluate.py 的 --task_indices
+    按 LIBERO benchmark API 顺序索引。两个排序不同导致 Split A 的 held-out 评估集中包含训练集的 task（butter,
+    chocolate_pudding）。
+  prevention: 跨模块的 task 选择必须用 task name 字符串匹配，禁止依赖 numeric index。任何涉及 train/eval split
+    的代码必须在日志中打印选中的 task name 列表供交叉核验。设计文档已警告此问题但 Worker 未遵循。
+  status: active
+  context: Leave-task-out 泛化实验中，bjb1-18228 上的 Worker 用 numeric index 做 5/5 split，bjb1-32546
+    上的另一个 Worker 用 task_names 字符串匹配（正确）。Reviewer 在代码审查中发现错配。
+  fix: Kill bjb1-18228 上的错误实现，采用 bjb1-32546 上的 task_names 方案。
+- id: M018
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: LTO eval task name 匹配 bug：replace('_', ' ') 导致多词 task name 无法匹配，只评估 2/5
+    held-out tasks
+  root_cause: evaluate.py 第 397 行将 filter substring 的下划线转空格，但 LIBERO task_name 使用下划线格式。单词
+    task（ketchup, milk）不受影响，多词 task（orange_juice 等）转换后无法匹配。
+  prevention: task name 匹配统一使用原始格式，禁止做下划线/空格转换。所有涉及 task 过滤的代码必须在日志中打印 matched task
+    列表并与预期对比（本次 M017 已要求打印但代码中的转换 bug 仍未被发现）。未来 LTO 类实验必须在 eval 前验证 matched tasks
+    数量 == 预期数量。
+  status: active
+  context: LTO Split A eval 部署后，Reviewer 检查日志发现只匹配到 2 个 task（ketchup, milk），遗漏 orange_juice,
+    salad_dressing, tomato_sauce。CRM eval 和 VLA-only baseline eval 都受影响。
+  fix: 删除 evaluate.py 第 397 行的 .replace('_', ' ')，kill 当前进程，重新部署。
+- id: M019
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: 'M019: Registry 更新管线大面积失效——13+ 实验完成但 registry 仍标 RUNNING，5-6 GPU 空闲浪费数小时'
+  root_cause: on_complete hook 或 Agent 轮询机制未能检测到实验完成。可能原因：(1) tmux session 内进程退出但
+    session 未关闭导致 hook 不触发 (2) Agent 长时间空闲（94min+）期间无主动巡检 (3) cron 自动触发可能失效。涉及 4 台服务器上的实验均受影响，说明是系统性问题而非单台故障。
+  prevention: 1. Director 每次 session 启动时必须派 Agent 做全服务器实验状态核查（已做）2. Agent 空闲超过 30
+    分钟时应主动巡检所有服务器的 tmux session 状态 3. 不能仅依赖 on_complete hook，需要 Agent 定期（每 1-2h）主动
+    nvidia-smi + tmux 巡检 4. Director 看到 GPU 健康数据 stale 时立即派 Agent 核查
+  status: active
+  context: 'Loop #13 接手时发现：registry 28 RUNNING，GPU 健康数据 4 台全部 stale，Agent 空闲 94 分钟。Reviewer
+    独立核实后确认至少 13 个实验已完成（bjb1-18228: 4个, bjb1-32546: 3个+ghost, bjb2-28827: 7个），5-6
+    GPU 完全空闲。这些 GPU 可能已空闲数小时，18 个 PREPARING 实验本可部署。'
+  fix: 派 Agent 全面核查 4 台服务器 + 批量更新 registry + 部署 PREPARING 实验到空闲 GPU
+- id: M020
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: 'M020: Agent K=5/K=10 数据混淆——收割时读取了 K=10 exp_id 的 registry 数据报告为 K=5'
+  root_cause: K=5 和 K=10 实验的 exp_id 命名仅差一个 "k5" 后缀（eval-obs-only-object-norm02-seed42
+    是 K=10，eval-obs-only-object-norm02-k5-seed42 是 K=5）。Agent 在汇总时读错了 exp_id，将 K=10
+    数据 [22,16,16,16,15,20,18] 报告为 K=5。
+  prevention: 1. 任何涉及 headline number 的数据汇总必须从 JSON 源文件直接读取，不依赖 registry 中间层 2. Agent
+    汇总数据时必须列出每个 seed 对应的完整 exp_id 供 Director/Reviewer 交叉核对 3. K=5 和 K=10 数据永远不要在同一次操作中混合查询——分别查询后合并
+  status: active
+  context: Agent 报告 K=5 seeds=[22,16,16,16,15,20,13]，实际 K=5 JSON ground truth=[14,19,17,15,16,13,18]。前
+    6 个值完全匹配 K=10 数据。Reviewer 通过逐文件 SSH 读取 JSON 独立核实后发现错误。此错误曾传播到 ROADMAP（16.4% vs
+    实际 16.0%）。
+  fix: Reviewer 从 4 台服务器逐个 JSON 文件核实，确认 K=5 正确值。已更新 paper_framing.md 和 ROADMAP。
+- id: M021
+  date: '2026-05-19'
+  category: resource_misuse
+  severity: low
+  summary: 'M021: cron 误报已由 Reviewer 确认后仍派 5 个 Worker 重复诊断同一实验'
+  root_cause: eval-obs-only-spatial-norm02-seed44 cron 误报 failed，Reviewer 在 14:05
+    UTC 已确认 SR=36% 成功完成。但 Agent 继续处理后续 cron 通知，累计派 5 个 Worker 重复诊断同一结论。Director 没有在
+    Reviewer 确认后立即取消 Agent 的重复诊断任务。
+  prevention: Reviewer 确认 cron 误报后，Director 应立即通知 Agent 跳过该实验的后续 cron 处理。如果 Agent
+    队列中已有相关 cron 诊断任务，用 cancel_agent_queue_item 清理。Agent 也应在派 Worker 前检查 Reviewer
+    是否已确认该实验状态。
+  status: active
+  context: 5 个 Worker 全部得出相同结论：SR=36% 成功完成。浪费 Worker token 和上下文窗口。
+- id: M022
+  date: '2026-05-19'
+  category: communication
+  severity: medium
+  summary: Director 误以为 K=1 CRM eval 未完成，发出错误部署指令并通知用户
+  root_cause: experiment_plan.yaml 中 plan_702 status="planned" 且无 registry_id，但实际
+    eval 已在不同 registry ID (eval-k1-crm-accg-object-seed42/43/44) 下完成于 5/17。Director
+    只看 plan status 没有交叉验证 paper_framing.md 中已有的 K=1 CRM 数据 (10.3%±1.5%)。
+  prevention: 审批/部署实验前，先检查 paper_framing.md 是否已有该实验的结果数据。plan status="planned" 不代表实验未做——可能在不同
+    registry ID 下已完成。对 P0-MUST 实验尤其要交叉验证。
+  status: active
+  fix: 发 urgent 更正消息取消部署指令。清理队列，更新 ROADMAP。
+- id: M023
+  date: '2026-05-19'
+  category: resource_misuse
+  severity: high
+  summary: bjb2-28827 全部实验被杀（含 8.5h argmin-k5-seed44），疑似 FMVD 部署操作触发
+  root_cause: bjb2-28827 上 4 个进程在 16:49-16:50 UTC 同时 SIGKILL。calibrate_fmvd.py 随后在
+    GPU5 启动。杀掉的 3 个有价值实验（argmin-k5-seed44 GPU1 运行 8.5h、spatial-k10-seed46 GPU3、goal-seed44
+    GPU0）本不应受影响——FMVD 只需 1 GPU，GPU4/5 此前就空闲。疑似 Worker 操作不当导致全服务器进程被杀。
+  prevention: 部署新实验到服务器时，Worker 必须只操作目标 GPU，严禁 kill 非目标 GPU 上的进程。使用 CUDA_VISIBLE_DEVICES
+    隔离，部署前用 nvidia-smi 确认目标 GPU 空闲。对正在运行 >4h 的实验，任何 kill 操作需要 Director 明确批准。
+  status: active
+  fix: 立即重新部署 3 个被杀实验。argmin-k5-seed44 需完全重跑（8.5h 浪费）。
+- id: M024
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 报告"无需新动作"但 5+ GPU 空闲（bjb1-18228 全空 + bjb2-28827 GPU1），遗漏整台服务器
+  root_cause: Agent 状态报告未检查所有服务器，只列出有 RUNNING 实验的服务器，遗漏了已完成所有实验的 bjb1-18228。同时未执行综合指令中
+    bjb1-18228 的部署任务（可能因 CRM checkpoint scp 依赖未处理就跳过）。
+  prevention: Agent 的资源报告必须覆盖所有项目分配的服务器（不只是有实验的），空闲 GPU 必须在报告中明确标出。遇到部署依赖（如 scp）失败时不能静默跳过，应报告失败并请求替代方案。
+  status: active
+  related_decisions:
+  - D072
+  - D075
+- id: M025
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 自动重试 OpenVLA 违反 Director 明确的优先级指令
+  root_cause: Agent 的自动重试逻辑未考虑 Director 刚发出的"OpenVLA 降低优先级"指令，在 8 张卡空闲且 adaptive K
+    sweep 是最高优先级的情况下占用 GPU 跑低优先级实验
+  prevention: 自动重试前检查 Director 最近的优先级指令。涉及 GPU 分配冲突时，优先执行 Director 的显式指令而非自动重试逻辑。
+  status: active
+  related_decisions:
+  - D076
+- id: M026
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: Table 1 混入无 seed 早期实验（eval-acr-object-obs-only-norm02, SR=22%），导致 CRM Object
+    K=10 均值虚高 0.8pp (17.6% → 实际 16.8%)
+  root_cause: 早期实验（eval-acr-* 命名）未设 seed，使用默认随机状态。汇总 Table 1 时未区分 seeded vs unseeded
+    实验，将其与后续受控实验混合统计。无 seed 实验的 22% 是严重离群值，拉高了均值。
+  prevention: 1. 论文引用的所有实验必须有明确 seed 且 seed 记录在 registry；2. 统计汇总时自动过滤无 seed 实验；3.
+    Table 数字更新时必须在 paper_provenance.yaml 中记录每个条件使用的 seed 列表；4. 均值中出现比其他 seeds 高 >3pp
+    的离群值时必须追溯来源
+  status: active
+  context: Reviewer 审计发现 CRM Object K=10 的 7 个实验中第 7 个（eval-acr-object-obs-only-norm02）无
+    seed 且 SR=22%，远高于其他 6 个 seeded 实验的 15-20% 范围。排除后均值从 17.6% 降至 16.8%，improvement
+    从 +6.3pp 降至 +5.5-5.9pp。
+  fix: 从 Table 1 移除无 seed 实验，统一使用 seeded 实验重算所有统计量。CRM Object K=10 更新为 16.8±1.8% (n=6)。
+- id: M027
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: 'M027: Spatial CRM K=10 统计脚本遗漏 seed42(非标准命名) + seed46(r2 未 harvest) + seed48(registry
+    卡 PREPARING)，导致论文报 33.9% 无法复现'
+  root_cause: 统计脚本按标准命名模式 (eval-obs-only-spatial-norm02-seedXX) 扫描实验，遗漏了 (1) 命名在 magnitude
+    sweep 里的 seed42 (eval-mag-obsonly-norm02)，(2) 原实验被 SIGKILL 后 r2 重跑成功但未 harvest
+    的 seed46，(3) registry 状态卡在 PREPARING 的 seed48。与 Object M026 属同一根因模式。
+  prevention: 1. 统计脚本不能依赖命名模式扫描——必须用 registry 查询 (benchmark=spatial, method=obs_only,
+    norm=02, K=10, status=DONE) 获取完整 seed 列表。2. 每次 paper 数据更新后跑 provenance audit：对每个
+    Table cell 验证 n 值和 mean 可从 registry 复现。3. harvest 后检查是否有 PREPARING 状态但实际已完成的实验。
+  status: active
+  fix: Clean n=8 数据 [35,34,36,34,33,32,35,36] mean=34.4±1.5%。修正统计脚本加入 seed42/46/48。推
+    seed48 registry 到 DONE。
+  related_decisions:
+  - D083
+  - D080
+- id: M028
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: 'M028: Worker 杀掉了 seed42 P50 活跃进程（40% 完成）并重启，浪费 ~1.5h GPU 时间'
+  root_cause: Registry 卡在 PREPARING，Worker 误判为未启动，执行 kill+redeploy 而非仅更新 registry
+    状态。应先用 ps/nvidia-smi 验证进程是否存活。
+  prevention: 对 PREPARING 状态的实验，Worker 必须先验证进程是否存活（检查 PID、GPU 占用、日志更新时间），存活则仅更新 registry
+    状态为 RUNNING，不要 kill+redeploy。
+  status: active
+  fix: 无法回滚，seed42 已从头重跑。ETA ~11:00 UTC。
+  related_decisions:
+  - D083
+- id: M029
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Worker 诊断逻辑将正常完成的 eval 实验误判为 failed（eval-adaptive-k-spatial-p50-seed42）
+  root_cause: Worker 诊断逻辑：PID dead + 无 sentinel/W&B → 默认 failed。但 eval 实验不使用 W&B/sentinel，正常完成后
+    PID 自然退出。逻辑忽略了 JSON 输出文件作为 eval 实验的成功信号。
+  prevention: 对 eval 实验（非训练），诊断时必须检查 JSON 输出文件是否存在且完整。PID 退出 + JSON 存在 = 正常完成，不是 failed。审批实验时提醒
+    Agent 注意此逻辑。
+  status: active
+  context: 同一实验被 4 次错误标记（3 次 cron 误报 + 1 次 Worker 误判）。Reviewer 独立验证确认实验已成功完成（SR=30%,
+    JSON 完整, 日志正常）。
+  fix: urgent_agent_message 指令 Agent 修正 registry 为 success，取消可能的自动重跑，扫描其他可能被误标的实验。
+- id: M030
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Kill worker 按 exp_id 匹配误杀了正确服务器上的注册版实验（random_selection_spatial_seed42）
+  root_cause: Kill worker 名为 "bjb1-32546-duplicate" 但实际 kill 逻辑按 exp_id 而非 server+PID
+    匹配，导致 bjb1-18228 上的注册版进程（PID 346791）也被 SIGTERM。JSON 未生成，数据不可恢复。
+  prevention: Kill 指令必须同时指定 server + PID，不能只按 exp_id 匹配。Director 下 kill 指令时也要明确写 "仅
+    kill bjb1-32546 PID XXXXX，不要碰 bjb1-18228 上的进程"。
+  status: active
+  context: Reviewer 发现 bjb1-32546 和 bjb1-18228 同时跑 random_selection_spatial_seed42。Director
+    指令 kill bjb1-32546 上的重复进程，但 Agent/Worker 的 kill 逻辑误杀了两边。浪费 ~6h GPU 时间 + 需要重跑。
+  fix: 重新部署 random_selection_spatial_seed42。
+- id: M031
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: Cron 完成检测系统性失灵——exit file 机制导致 3 次误报（假完成/假失败）
+  root_cause: Cron 使用 /tmp/agent-ml-exit/ 下的 exit file 判断实验完成，但 tee 管道 + tmux session
+    导致 exit file 被提前写入或误判。实验仅完成 2/10 tasks 时 cron 就报 on_complete，或实验正常完成但 cron 报 failed。
+  prevention: 在 cron bug 修复前，所有 cron 报告的实验完成状态必须独立验证——检查 JSON 输出文件是否存在且 per_task 数据完整。Agent
+    处理 cron on_complete/on_failed 回调时，第一步必须 SSH 验证 JSON 文件，不可直接信任 cron 状态。
+  status: active
+  context: 本 session 3 次误报：(1) eval-obs-only-spatial-norm02-seed42 报 complete 实际 2/10;
+    (2) eval-vla-only-goal-seed47 报 complete 实际 2/10; (3) eval-adaptive-k-spatial-p50-seed42
+    报 failed 实际成功。
+- id: M032
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: Cron 读取旧 exit file 触发 on_complete → tmux session 替换杀死正在运行的实验（plan_702 三次部署全部失败）
+  root_cause: 重新部署时未清理旧 exit file（/tmp/agent-ml-exit/*.exit）。Cron 读取旧 file 触发虚假 on_complete
+    → Agent 派 analyze worker → tmux session 被替换 → 正在运行的进程被 SIGHUP 杀死。第二次部署绕过了标准 tmux
+    wrapper 导致 rm cleanup 未执行。
+  prevention: 每次重新部署前必须：(1) rm /tmp/agent-ml-exit/{exp_id}.exit 清理旧 exit file; (2)
+    使用标准 tmux wrapper（含 exit trap）; (3) 部署后 30s poll 验证进程存活。Cron handler 应在触发 on_complete/on_failed
+    前检查 PID 是否已退出。
+  status: active
+  context: plan_702 K=1 CRM eval 三次部署全部失败：第一次 unc_dim bug 崩溃，第二次代码修好但 cron 读旧 exit
+    file 杀进程，第三次待执行。累计浪费 ~6 GPU-hours。本 session cron misfire 累计 13 次。
+  fix: 第三次部署需严格执行 exit file 清理 + 标准 wrapper + 存活验证。
+- id: M033
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: 'M033: Deploy Worker 空跑 — 3 个 Worker 连续报 done 但 bjb1-32546 零进程启动'
+  root_cause: Worker 可能只在本地完成代码/配置准备工作，但 ssh_execute 实际未执行或执行失败。Worker status=done
+    不验证远程进程是否存在。bjb1-32546 6 张 4090 空闲超 2 小时。
+  prevention: 部署类任务要求 Agent 自己用 ssh_execute 直接操作而非派 Worker，或要求 Worker 在部署后用 ssh_read_only
+    验证 nvidia-smi + ps aux 确认进程存在。Worker status=done ≠ 部署成功。
+  status: active
+  context: bjb1-32546 6×4090 空闲从 17:30 UTC 持续到 20:20+ UTC（近 3 小时）。期间 Director 发了 6
+    次填满指令、3 次 replace_agent_queue、2 次 urgent_message。3 个 deploy Worker 均 status=done
+    但 nvidia-smi 显示 0% utilization。
+  fix: 要求 Agent 自己 ssh_execute 直接部署，不用 Worker。逐 GPU 部署并验证。
+- id: M034
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: 双进程共享 GPU 导致 LIBERO eval OOM kill（无 error traceback）
+  root_cause: 批量部署 norm sweep 时未检查 GPU 上是否已有先前进程。旧 batch（未注册）和新 batch（注册）各占 ~5.7GB，静态看似
+    fit 24GB，但 LIBERO rollout 运行时显存动态增长超 24GB，系统静默 kill 进程，日志无任何 error/traceback。bjb1-32546
+    上 4 个实验和 bjb2-28827 上多个实验均因此被 kill。
+  prevention: 每 GPU 只能跑 1 个 LIBERO eval 进程。部署前必须 nvidia-smi 检查目标 GPU 是否已有进程。如有旧进程，先
+    kill 再部署。
+  status: active
+  fix: kill 所有旧 batch 进程，恢复单进程/GPU 运行
+- id: M035
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Agent 未验证进程状态就接受 cron 误报，将活跃实验标为 failed
+  root_cause: Cron 检测无 W&B/sentinel 后报 failed，Agent 直接信任 cron 结论并 update_registry
+    为 failed，未 SSH 验证进程是否仍在运行。eval 脚本不写 sentinel 文件是已知模式，cron 反复误报。
+  prevention: 硬规则：cron 报 failed 时，必须先 ssh_read_only 执行 `ps -p PID` 验证进程状态。进程存活 → 忽略
+    cron。进程不存在 → 检查 JSON 输出是否完整。只有确认进程已死且无完整 JSON 时才标 failed。
+  status: active
+  fix: Reviewer 发现后通知 Director，Director 发 urgent message 要求恢复 registry 为 RUNNING
+- id: M036
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: bjb1-32546 cuda:3/4 双进程部署（M034 复发）
+  root_cause: Agent 在 cuda:3/4 上部署 seed62-r2/seed63-r2 时，原有 norm01-seed64/seed65 仍在运行。未检查
+    GPU 占用就提交新实验。
+  prevention: Agent 提交实验到指定 GPU 前，必须先 ssh_read_only 运行 nvidia-smi 确认该 GPU 无其他 eval
+    进程。Director 审批时也应要求 Agent 确认 GPU 空闲。
+  status: active
+  fix: 已 kill 后提交的 seed62-r2/seed63-r2 进程，保留先提交的 norm01-seed64/seed65。
+- id: M037
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: 'M037: π0.5 wrapper normalization mismatch — QUANTILES vs MEAN_STD，30 rollouts
+    全部 0% SR'
+  root_cause: pi05_wrapper.py 使用 QUANTILES (q01/q99) 归一化，但模型 config.json 指定 MEAN_STD。模型
+    repo 名称 "pi05_libero_31_9_non_q" 字面标注 "non-quantile" 但被忽略。归一化错误导致 action denormalize
+    产生完全错误的动作值。
+  prevention: 集成新 VLA 模型时：(1) 第一步读 config.json 的 normalization_mapping 确认归一化方式；(2)
+    对照 wrapper 代码验证 normalize/denormalize 公式一致；(3) 模型名称中的提示（如 "non_q"）作为交叉验证信号；(4)
+    部署前跑 5 rollouts quick test 确认 action 范围合理（非全零/非全相同），不要直接跑完整 eval。
+  status: active
+  context: eval-pi05-baseline-object-seed42 在 bjb2-40593:cuda:0 跑了 30 rollouts 全部
+    0% SR。Worker 诊断发现 wrapper 和 config 的归一化方式不匹配。PID 802634 已 kill。
+  fix: 修改 _load_normalizer_stats 加载 mean/std，normalize 改为 (x-mean)/std，denormalize
+    改为 x*std+mean。重新部署 r2 (n_rollouts=20)。如 r2 仍 0% 需排查 state padding / image resolution
+    / empty camera。
+  related_decisions:
+  - D095
+  - D096
+- id: M038
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: low
+  summary: Deploy worker 未检查 GPU 占用即部署，导致 bjb1-32546 cuda:0/1/3 双进程共存
+  root_cause: deploy worker 没有在目标 GPU 上执行 nvidia-smi 检查活跃进程就直接启动新实验。random-selection-object
+    部署到 cuda:0/1/3 时，norm sweep seed76/62/63 仍在运行。
+  prevention: deploy worker 部署前必须 nvidia-smi 检查目标 GPU 无活跃 python/evaluate 进程。如有冲突：等待现有实验完成或选择其他空闲
+    GPU。
+  status: active
+  context: Reviewer 报告 cuda:0/1/3 各有两个 LIBERO eval 进程，内存 ~10GB/24GB 未 OOM（SmolVLA
+    0.4B 较小）。M034/M036 先例是 OOM kill 无 traceback，但可能涉及更大模型。当前碰撞仅影响速度（~50% 减速），不影响数据正确性。
+  fix: 无需干预，norm sweep 即将完成自然释放 GPU。已要求 Agent 在所有未来 deploy 流程中加 GPU 占用检查。
+- id: M039
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: π0.5 wrapper 使用 per-step 推理 + action[0] 而非 50-step 开环执行，导致 4 次 0% SR
+  root_cause: 未研究 lerobot π0.5 的官方 eval 协议就编写 wrapper。π0.5 训练时以 50-step 开环为目标（n_action_steps=50），但
+    wrapper 每步独立推理只取 action[0]。gripper close 动作在 chunk 中间（~step 20），永远不被执行。SmolVLA
+    用类似的 per-step 策略能 work 是因为训练目标不同。
+  prevention: 适配新 VLA 时，必须先读官方 eval 代码确认 action chunk 执行策略（开环步数、chunk 利用率、推理频率），不能假设所有
+    VLA 的 chunk 执行方式相同。每个 VLA backbone 的 n_action_steps 可能不同。
+  status: active
+  context: '4 次失败: r1(QUANTILES), r2(vision tower), fix2(crash), fix3(padding_side)。前
+    3 次修复了真实 bug 但都不是 0% 的根因。根因一直是 action 执行策略。总计浪费 ~20h GPU time + 大量调试时间。'
+  fix: pi05_wrapper.py 实现 action queue (deque)：模型推理返回 50-step chunk → 存入 queue → 每个
+    env step pop 1 action → queue 空时重新推理。
+- id: M040
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: π0.5 真正根因是图像180°翻转缺失，非vision tower权重——5轮debug方向错误
+  root_cause: 官方lerobot eval用LiberoProcessorStep对图像做torch.flip(img, dims=[2,3])（NCHW
+    180°旋转）匹配训练约定。我们的wrapper漏了这步预处理，模型看到倒置图像输出垃圾action。之前5轮debug聚焦在normalization、vision
+    tower keys、torch.compile、padding_side、action chunk执行等，均为误诊。M039记录的"vision tower权重未加载"也是错误结论——from_pretrained的_fix_pytorch_state_dict_keys已正确处理key
+    remap。
+  prevention: 适配新VLA时，第一步对比官方eval pipeline的完整预处理链（包括图像变换、归一化、翻转、裁剪），不要只关注模型加载和action空间。用官方代码dump中间表示（预处理后的图像tensor）与wrapper的输出逐步比对。
+  status: active
+  context: π0.5经历r1(normalization)→r2(vision tower keys)→fix2(torch.compile)→fix3(padding_side)→fix4(action
+    chunk)共5轮修复均0% SR。官方lerobot-eval跑出100% SR证明模型有效。最终Worker对比官方LiberoProcessorStep发现图像翻转是唯一差异。
+  fix: pi05_wrapper.py L154添加 img = torch.flip(img, dims=[2, 3])。待quick verify确认。
+  related_decisions:
+  - D095
+  - D096
+  - D099
+  - D101
+- id: M041
+  date: '2026-05-21'
+  category: code_bug
+  severity: medium
+  summary: TORCH_COMPILE_DISABLE=1 不够，π0.5 需要 TORCHDYNAMO_DISABLE=1 避免 torch._inductor
+    断言错误
+  root_cause: π0.5 模型触发 torch.compile 的 _inductor 模块产生 duplicate template name 断言错误。TORCH_COMPILE_DISABLE=1
+    只禁用部分编译路径，TORCHDYNAMO_DISABLE=1 才能完全禁用 dynamo tracing。前 4 个 baseline eval 因此崩溃后修复。
+  prevention: 适配新 VLA 时，eval 脚本默认设置 TORCHDYNAMO_DISABLE=1（而非仅 TORCH_COMPILE_DISABLE=1）。在
+    quick verify 阶段就确认这个设置，不要等到全量部署才发现。
+  status: active
+  fix: eval 启动命令添加 TORCHDYNAMO_DISABLE=1 环境变量，6 实验已用修复后配置重启。
+  related_decisions:
+  - D103
+- id: M042
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: π0.5 baseline eval 部署只同步了 pi05_wrapper.py，遗漏 evaluate.py — 6 实验 0% SR 浪费
+    12 GPU-hours
+  root_cause: deploy Worker 只检查并同步了 pi05_wrapper.py 的 torch.flip 修复，但 evaluate.py
+    也有关键修改（action queue 集成，predict_action 调用）。bjb1-32546 上的 evaluate.py 是旧版（776行 vs
+    修复版 802行），不调用 action queue → 每步只取 action[0] → 0% SR。
+  prevention: 跨服务器部署实验前，必须同步整个项目目录（或至少所有 .py 文件），不要只同步已知修改的单个文件。部署后用 md5sum/wc -l
+    对比源服务器和目标服务器的关键文件一致性。
+  status: active
+  fix: Kill 6 进程，scp 全部 .py 文件从 bjb2-40593 到 bjb1-32546，重新部署。
+  related_decisions:
+  - D103
+- id: M043
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: π0.5 eval 第二次 0% SR — lerobot 0.5.1 vs 0.5.2 版本不一致，M042 修复不彻底
+  root_cause: M042 只同步了 .py 代码文件，未检查 Python 包版本。bjb1-32546 装的是 lerobot 0.5.1，bjb2-40593（quicktest
+    成功）是 0.5.2。0.5.2 的 _fix_pytorch_state_dict_keys 包含 vision_tower.vision_model→vision_tower
+    映射，0.5.1 不含。代码同步+重部署后仍 0% SR，又浪费 ~6 GPU-hours。
+  prevention: 跨服务器部署前，必须对比源服务器和目标服务器的完整环境：(1) pip freeze 对比关键包版本（lerobot, transformers,
+    torch）(2) 代码文件 md5sum 对比 (3) 先跑 quick verify 确认 SR>0% 再全量部署。环境一致性检查应作为部署 Worker
+    的标准步骤。
+  status: active
+  fix: 升级 bjb1-32546 lerobot 到 0.5.2，同步检查所有服务器版本。
+  related_decisions:
+  - D103
+- id: M044
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Agent 收到紧急 SSH 直接操作指令后 16 小时未执行，14/17 GPU 空闲，浪费 ~378 GPU-hours
+  root_cause: Agent 收到 Director 紧急指令"不要等 Worker rate limit，自己直接 SSH 做代码修改"后，没有执行任何操作就进入
+    idle 状态 16 小时。可能原因：(1) Agent 仍然依赖 Worker 模式思维，不理解自己可以直接 SSH (2) Rate limit 心理阻塞导致
+    Agent 认为无法做任何事 (3) 上下文过载导致 Agent 丢失紧急指令
+  prevention: 1. 新 Agent session 启动指令中明确写"你可以直接 ssh_execute，不需要 spawn Worker"并给出具体
+    SSH 命令示例。2. Agent idle >30min 时系统应触发催促。3. 紧急指令用 replace_agent_queue 确保无干扰，而非 urgent_message
+    插队（队列中其他消息可能分散注意力）。4. Director 指令中对"禁止"条款用加粗强调。
+  status: active
+  context: 'Timeline: Director 在 ~11:50 UTC 发 urgent_agent_message 指示 Agent 直接 SSH
+    修改代码。Agent Session #23 在约同时间启动并发了汇报（报告 Worker rate limit），但之后 16h 未执行任何操作。Reviewer
+    于次日验证确认 bjb1-32546 lerobot 仍未修补、6 个 π0.5 实验全部 0% SR 已死、14/17 GPU 空闲。累计浪费约 378
+    GPU-hours。'
+  fix: 重置 Agent，新 session 指令中给出完整 SSH 命令序列，不再依赖 Agent 自行构造 SSH 操作。
+  related_decisions:
+  - D103
+- id: M045
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Worker 将 lerobot 部署 bug 导致的 0% SR 错误归因为 π0.5 模型能力不足，结论"重跑意义不大"可能导致放弃整条
+    cross-VLA 实验线
+  root_cause: Worker 诊断 π0.5 Spatial 180/180 rollouts 全部 0% SR 时，未交叉验证 bjb2-40593（patched
+    lerobot）的 72% quick verify 结果。直接将环境 bug 导致的 0% 归因为模型能力，得出"重跑意义不大"的错误结论。根本原因：Worker
+    缺少部署状态上下文（不知道 bjb1-32546 的 lerobot 缺 376 个 LM key remap），也未检查同一模型在其他服务器上的表现。
+  prevention: 1. 模型 eval 全 0% 时，诊断流程必须先排除环境因素（包版本、key remap、预处理）再得出模型能力结论。2. 如果同一模型在参考服务器上有非零
+    SR，则新服务器上的 0% 必须归因为环境差异。3. Worker 诊断结论涉及"放弃/不重跑"时必须由 Director 审核，不能自行定性。
+  status: active
+  context: eval-pi05-vla-only-spatial-seed42/43/44 在 bjb1-32546 上 0% SR。Worker 结论："PI0.5
+    VLA-only 在 LIBERO-Spatial 上约 0% 成功率，重跑意义不大"。实际根因：bjb1-32546 lerobot 缺少 language_model
+    + multi_modal_projector 的 376 个 key remap，LM 在随机权重下运行。bjb2-40593 patched 版本 quick
+    verify 72% SR。如果 Agent/Director 采纳此结论，会放弃 π0.5 cross-VLA 验证——论文失去关键贡献。
+  fix: '6 个实验已指示标记 FAILED (failure_reason: lerobot missing key remap)。已请求用户手动 SSH
+    修补 lerobot。修复后必须重跑全部 6 个实验。'
+  related_decisions:
+  - D103
+- id: M046
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Agent 报告 "17/17 GPU 满载" 但 Reviewer 验证 bjb1-32546 6 GPU 零进程，Object 缺 shard
+    5-9
+  root_cause: Agent 多次报告部署状态但未用 nvidia-smi 实际验证。可能原因：(1) submit_training_job 注册了实验但实际进程未启动
+    (2) Agent 基于 Worker 返回的 "done" 状态判断部署成功（M033 复发）(3) Agent rotation 后新 session
+    基于 handoff 信息而非实际服务器状态汇报
+  prevention: Agent 每次报告 GPU 使用情况必须附带实际 nvidia-smi 输出。部署后必须 sleep 10 && nvidia-smi
+    验证进程存在。禁止基于 submit_training_job 或 Worker status=done 推断部署成功。
+  status: active
+  fix: 发送 urgent_agent_message 包含完整 ssh_execute 命令部署 Object shard 5-9 到 bjb1-32546。
+- id: M047
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: 'M047: Precompute 重启未先 kill 旧进程，导致双进程争抢 GPU + cache 混合粒度污染'
+  root_cause: Agent 多轮重启 Object precompute shard（fix 进程 100-sample 粒度 + r2 进程 500-sample
+    粒度），但未 kill 前一轮的进程。导致 bjb1-32546 GPUs 0-4 和 bjb1-18228 GPUs 0-3 各有双进程，GPU 利用率从
+    20%（正常 I/O bound）跳到 99%（争抢），且 shard 5/6 的 cache 目录出现两种粒度文件混合，merge 后会产生样本重复。
+  prevention: 重启 precompute/training 进程前，必须先 kill 同 GPU 上的旧进程并清理可能冲突的 partial cache
+    文件。重启指令模板应包含：(1) ps aux | grep 检查旧进程 (2) kill 旧进程 (3) 确认 GPU 空闲 (4) 检查 cache 目录是否有前轮残留
+    (5) 再启动新进程。
+  status: active
+  context: bjb1-32546 shard s5 最严重：37 个文件，100-sample 和 500-sample 粒度在 400-2900 范围双重覆盖。s7/s8/s9
+    还有跨服务器重复（bjb1-32546 + bjb1-18228 同时在跑）。
+  fix: 紧急 kill 重复进程（每 shard 保留进度更快的），清理混合粒度 cache 文件（每 shard 只保留一种粒度），merge 前验证无范围重叠。
+- id: M048
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: medium
+  summary: 'M048: 清理重复进程时 kill 了 bjb1-18228 上进度较慢的 s7-s9，导致 9 shard 集中到 bjb1-32546
+    6 GPU（3 GPU 双进程），bjb1-18228 3 GPU 空闲'
+  root_cause: Worker 按 sample 进度选保留对象（bjb1-32546 3300 > bjb1-18228 2900），但未考虑双进程争抢
+    GPU 的吞吐下降（~30-50% 慢）。保留 bjb1-18228 上独占 GPU 的进程（虽慢 400 samples）实际总完成时间更短。
+  prevention: kill 重复进程时决策维度不只是当前进度，还要考虑：(1) 目标 GPU 是否已有其他进程 (2) 独占 GPU vs 共享 GPU
+    的吞吐差异 (3) 跨服务器负载均衡。优先保留独占 GPU 的进程，即使进度略落后。
+  status: active
+  fix: 已指示 Agent 将 bjb1-18228 空闲 GPU 用于 CRM training 预准备。precompute 延长约 1-1.5h 但不影响数据正确性。
+- id: M049
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: 'M049: Spatial CRM training 反复失败因 Agent 跳过 merge 步骤'
+  root_cause: Agent 在启动 Spatial CRM training 时直接指向含 partial_s*.pt 文件的 cache 目录，未先执行
+    merge_precompute_cache.py 将 partials 合并为 obs_features.pt/k_samples.pt/manifest.json。train_crm.py
+    找不到合并后的文件报 FileNotFoundError。此问题在多个 session 中重复出现，每次 Agent 都只是重新提交训练而不修复缺少 merge
+    的根因。
+  prevention: CRM training 前必须验证 cache 目录中存在 manifest.json + obs_features.pt + k_samples.pt。缺少任何一个
+    = 未 merge，必须先执行 merge_precompute_cache.py。训练指令模板应包含 merge 验证步骤。
+  status: active
+  fix: Reviewer 提供了完整修复命令：rsync 完整 partials → merge（dry_run 验证 n_samples ≈60,250）→
+    正式 merge → 启动训练。已发给 Agent。
+- id: M050
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: Eval 使用未完成训练的 CRM checkpoint（epoch 7/50），结果将低估性能
+  root_cause: Agent 在 CRM training 仍在进行时就启动了 eval，加载了训练中的 crm_best.pt（当时仅 epoch 7），而非等待训练完成。val_loss
+    从 epoch 7 到 23 下降了 14%。
+  prevention: CRM eval 必须在训练完成后才能启动。启动 eval 前验证：(1) 训练进程已退出 (2) crm_best.pt 时间戳晚于训练开始时间至少
+    N*epoch_time (3) 或检查训练日志确认 "Training complete"
+  status: active
+  context: Object CRM PID 800111 在 02:21 启动 50 epoch 训练。Eval PID 804196/804568 在 03:22
+    启动，此时训练仅到 epoch 7。Reviewer 在 epoch 23 时发现问题。
+  fix: Kill PID 804196 和 804568，等训练完成后用最终 checkpoint 重新部署 eval。
+- id: M051
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: M050 重犯：Spatial eval 使用旧训练的 checkpoint（03:21 时间戳 vs 当前训练 09:03）
+  root_cause: bjb2-28827 上残留旧训练的 crm_best.pt（03:21 CST），rsync 时未校验时间戳。Worker 直接用目标服务器上已有的旧
+    checkpoint 启动 eval。
+  prevention: Eval 部署前必须校验 checkpoint 时间戳：(1) 确认训练进程已退出 (2) 从训练服务器 rsync 最新 checkpoint
+    (3) 校验目标服务器 checkpoint 时间戳晚于训练启动时间 (4) 校验文件大小与源一致
+  status: active
+  context: Worker deploy_pi05-object-eval-3seeds 名为 object eval 但实际部署了 spatial eval。bjb2-28827
+    上 crm_best.pt 来自旧训练（38500 样本不完整数据），当前训练（60250 样本完整数据）的 checkpoint 在 bjb1-18228
+    上。
+  fix: Kill PID 123807/124161，等训练完成后统一 rsync + 部署。
+- id: M052
+  date: '2026-05-22'
+  category: experiment_design
+  severity: medium
+  summary: 'M052: obs_dim 差异误诊 — 实际是 eval mode 和 CRM checkpoint input_mode 不匹配'
+  root_cause: Goal/Long eval crash 报错 state_dict shape [990] vs [1030]，被误归因为 obs_dim
+    不同（960 vs 1000）。实际原因：CRM checkpoint 用 obs_only 模式训练（input=30+0+960=990），eval 用
+    acr_vla 模式（input=30+40+960=1030），差异 40 = unc_dim（uncertainty features），不是 obs_dim。所有
+    4 个 LIBERO 套件 obs_dim 都是 960D。
+  prevention: CRM 维度错误时，先对照 checkpoint 的 input_mode（obs_only vs acr_vla）和 eval 的 --mode
+    参数，检查 action_dim + unc_dim + obs_dim 是否匹配，不要直接假设 obs_dim 不同。
+  status: active
+  fix: 确认所有套件 obs_dim=960D 一致。统一 CRM 训练不需要 zero-padding。--unified_obs_dim 保留用于跨 VLA
+    场景。
+  related_decisions:
+  - D107
+- id: M053
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: medium
+  summary: 'M053: Unified CRM training killed by GPU collision — Agent deployed r4
+    baseline on cuda:1 where CRM training was running'
+  root_cause: Agent 在 bjb1-18228 cuda:1 启动 π0.5 r4 baseline eval，但该 GPU 正在跑 unified
+    4-suite CRM 训练（PID 882598）。新进程抢占导致训练被 timeout 杀死（EXIT_CODE=124），仅完成 4/50 epochs。
+  prevention: 部署新实验前必须检查目标 GPU 是否有正在运行的进程（nvidia-smi 或 ps aux）。不要假设 GPU 空闲。
+  status: active
+  fix: 需在空闲 GPU 上重新提交 unified CRM 训练。bjb1-32546 cuda:3-4（loss variant eval 已完成）可用。
+- id: M054
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: Worker killed correct r3 training and restarted without --input_mode obs_only
+  root_cause: D112 message was queued before D113 worker completed. Agent processing
+    D112 spawned a worker that killed both r2 and r3, then restarted without obs_only
+    flag. The D115 correction message ("don't kill r3") was still pending in queue
+    when the worker executed.
+  prevention: 1. When multiple messages in queue reference the same resource (GPU/process),
+    use replace_agent_queue to consolidate instead of adding more messages. 2. Critical
+    corrections should use replace_agent_queue (atomic), not urgent_agent_message
+    (additive). 3. Director should verify worker commands in real-time when possible,
+    not just trust queue ordering.
+  status: active
+  context: D113 worker correctly started r3 with --input_mode obs_only + K=10 4-suite
+    at 11:30. At 11:42, a worker from D112 processing killed both r2 and r3, restarted
+    as r2 without obs_only. ~12 minutes of correct training lost + incorrect training
+    started.
+  fix: Sent replace_agent_queue with consolidated instructions to kill wrong training
+    and restart as r4 with correct --input_mode obs_only flag
+  related_decisions:
+  - D113
+  - D115
+- id: M055
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: 审批了 wrapper-based SmolVLA precompute，与 lerobot eval 分布不匹配
+  root_cause: Agent 创建 lerobot_precompute.py 时用了 SmolVLAWrapper（已知 6× 性能差距），Director
+    审批时未检查推理代码路径是否与 eval pipeline 一致。用户 D119 明确说"在官方repo基础上修改"，但 Agent 走了捷径用 wrapper，Director
+    未 catch。
+  prevention: 审批 precompute/数据收集类实验时，必须验证：(1) 数据收集的推理路径与 eval 完全一致；(2) 如果已知 wrapper
+    和 official 有差异，precompute 必须用 official。通用规则：train 和 eval 的 inference pipeline
+    必须匹配。
+  status: active
+  context: SmolVLAWrapper Object=10.8% vs lerobot=66.5%，action 分布差异极大。CRM 在 wrapper
+    分布上训练后用 lerobot eval 会因分布 shift 失效。
+  fix: 发 urgent_agent_message 叫停 wrapper-based precompute，要求修改 lerobot 官方代码实现 precompute。
+  related_decisions:
+  - D119
+- id: M056
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: π0.5 Goal seed43 部署参数与 seed42 不一致（n_rollouts, --K, 启动路径全不同）
+  root_cause: Agent 部署多 seed 实验时未标准化参数。seed42 用 n_rollouts=20 + --K 10，seed43 用 n_rollouts=10
+    + 无 --K + 不同启动路径。没有统一的 eval 命令模板。
+  prevention: 所有同组实验（多 seed baseline/eval）必须使用完全相同的命令行参数。Director 审批部署时要求 Agent 提供完整命令行并与已有
+    seed 对比。建议建立 eval 命令模板文件。
+  status: active
+  context: seed42=98% vs seed43=69%，29pp 差距。wine_bottle 95→40%, cream_cheese 100→40%。Reviewer
+    审查发现。
+  fix: Kill seed43/44 Goal，用 seed42 完全相同的参数重跑。
+- id: M057
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: medium
+  summary: bjb1-32546 GPU 5 反复出现未经审批的旧配置 CRM 训练（3次：PID 448061→497801+498068）
+  root_cause: Worker kill 旧进程后，可能存在 cron/tmux/脚本自动重启机制，导致被 kill 的旧配置训练（缺 --input_mode
+    obs_only，用旧 output_dir）反复重新启动
+  prevention: 1. Kill 进程时同时检查并清理自动重启机制（cron、tmux respawn、systemd service）2. 部署新训练前确认同
+    GPU 无残留自动重启配置 3. 每次 kill 后验证进程确实消失（等 30s 再 ps 确认）
+  status: active
+  context: GPU 5 上 PID 448061 被 kill 后，又出现 PID 497801 和 498068 两个完全相同的错误 CRM 训练。都缺少
+    --input_mode obs_only，使用旧 output_dir crm_unified_4suite/（不是 r4）。可能互相覆盖 checkpoint。CRM
+    r4（GPU 3）不受影响。
+  fix: urgent_agent_message 指令 kill -9 两个进程 + 排查自动重启源
+- id: M058
+  date: '2026-05-22'
+  category: communication
+  severity: medium
+  summary: Reviewer 误判已完成 eval 为 ghost entry，导致 Director 发紧急指令废弃有效数据
+  root_cause: Reviewer 在 eval 完成 ~8 分钟后检查 nvidia-smi，看到 GPU 空闲（1 MiB）就判定进程从未启动。SmolVLA
+    0.4B 模型 200 episodes 仅需 ~19 分钟，进程生命周期短，GPU 检查时点落在完成之后。Reviewer 未交叉验证输出文件（eval_info.json
+    时间戳证明 eval 正常完成）。
+  prevention: 判断进程是否运行过时，GPU 状态只是瞬时快照。必须同时检查：(1) 输出文件是否存在及其时间戳 (2) 日志文件内容 (3) tmux/nohup
+    记录。仅凭 nvidia-smi 空闲不能断定 "从未启动"。小模型 eval 可在分钟级完成，进程生命周期极短。
+  status: active
+  context: 'Loop #22 Reviewer 报告 eval-smolvla-lerobot-long-seed42/43/44 为 ghost entry，Director
+    据此发 urgent_agent_message 要求标记 failed 并重新部署。后续 Reviewer 自查发现 eval_info.json 时间戳证明
+    eval 在 18:11-18:12 UTC 正常完成，nvidia-smi 在 18:20 UTC 检查时进程已结束 ~8 分钟。'
+  fix: 恢复原始 registry 条目 conclusion 为 success，移除 GHOST ENTRY 标注。数据 (49.5%, 53.5%, 49.5%)
+    = 50.8%±2.3% 经文件级验证可信。
+- id: M059
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: medium
+  summary: 5 个 lerobot eval 同时在一台服务器并行导致系统资源耗尽（semaphore/thread limit），4/5 失败
+  root_cause: 每个 lerobot eval 创建 10 tasks × 20 envs = 200 个子进程，5 个 eval = 1000 个子进程+线程，超出
+    Linux semaphore/thread 限制。之前 SmolVLA Long 3-seed 成功是因为在不同时间启动（非真正并行）。
+  prevention: 单台服务器最多同时跑 2 个 lerobot eval（每个 ~200 子进程，2 个 = 400 在安全范围）。需要更多并行时分散到不同服务器。或者减少
+    n_envs 参数降低子进程数。
+  status: active
+  fix: Kill 残留进程，串行/限 2 并行重跑失败的 4 个 eval + goal_seed44
+- id: M060
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: Spatial CRM eval 静默失败：evaluate.py 不接受 --input_mode 参数，tee 管道掩盖了非零退出码
+  root_cause: deploy Worker 给 spatial eval 加了 --input_mode obs_only（这是 train_crm.py
+    的参数），evaluate.py argparse 报错退出。但 `python ... 2>&1 | tee log && cmd2` 中 tee 返回
+    0 掩盖了 python 的非零退出码，导致链式命令继续执行了 VLA-only baseline
+  prevention: 1. evaluate.py 的参数不要从 train_crm.py 复制，每次部署前对照 evaluate.py --help 确认参数有效。2.
+    链式命令不要用 `cmd | tee log && cmd2`，改用 PIPESTATUS 检查或 `set -o pipefail`，确保管道中任一命令失败都能被捕获。3.
+    部署后 10 秒内检查 log 文件头部确认无 argparse 错误
+  status: active
+  context: Object CRM eval (GPU 0/1/2) 没有此参数，运行正常。Spatial (GPU 3/4/5) 有此参数，全部静默失败后跑了
+    VLA-only baseline
+  fix: 移除 --input_mode obs_only 参数重新部署 spatial CRM eval
+- id: M061
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: Adaptive K eval 部署脚本和 evaluate.py 硬编码了旧 CRM checkpoint 路径，与当前 crm_obs_only
+    eval 使用的不同
+  root_cause: evaluate.py 第538行和部署脚本硬编码了 crm_v3_norm/obs_only/crm_best.pt（旧训练，5月15日），而当前
+    CRM eval 全部使用 crm_smolvla_3suite_v1/crm_best.pt（新训练，5月23日）。Agent 准备部署脚本时没有交叉检查当前运行中
+    eval 的 checkpoint 路径
+  prevention: 部署 eval 脚本前必须确认 checkpoint 路径与当前正在运行的同类 eval 一致。不要依赖代码中的默认路径，始终在命令行显式指定
+    --crm_checkpoint
+  status: active
+  fix: 修改部署脚本 CRM_CKPT 变量和 evaluate.py 第538行默认路径为 crm_smolvla_3suite_v1/crm_best.pt
+- id: M062
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: medium
+  summary: pkill -f 'evaluate.py' 误杀 CRM 4-suite 训练进程（tmux server 命令行包含 evaluate.py
+    字串）
+  root_cause: 使用 pkill -f 按命令行子串匹配 kill 进程，tmux server 进程的命令行中包含了之前的 evaluate.py 命令字符串，被误匹配
+  prevention: 禁止使用 pkill -f 匹配 kill 进程。必须先 ps aux | grep 确认精确 PID，然后 kill 指定 PID。多进程
+    kill 时逐个确认 PID 对应的进程再 kill
+  status: active
+  fix: 从 checkpoint_epoch0032.pt 恢复训练，当前 epoch 33/50 继续中
+- id: M063
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: CRM Object eval 使用 n_action_steps=50 与其他实验 n_action_steps=10 不一致，导致结果不可比
+  root_cause: 部署 CRM Object eval 时使用了非默认的 --n_action_steps 50 参数，而 Spatial 核心实验和所有
+    baseline 都用默认值 10。未在审批时检查参数一致性。
+  prevention: 审批/部署 eval 实验前，必须确认 n_action_steps 与同 benchmark 的其他实验一致。关键超参数（n_action_steps,
+    max_steps, n_rollouts, K）在部署脚本中必须显式写出并交叉检查。
+  status: active
+  context: 3 个 CRM Object eval (seed42/43/44) 使用 n_action_steps=50 得到 SR ~51.8%，被标记为
+    negative。但 n_action_steps=50 意味着每 50 步才重规划一次（vs 10 步），对 SR 影响可能很大。这些结果与 n_action_steps=10
+    的实验不可比，negative 结论不成立。
+  fix: 标记旧结果为 incomparable，用 n_action_steps=10 重跑 Object CRM eval（已在 bjb1-32546 cuda:5
+    部署）
+- id: M064
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: Worker 报告 spatial-adaptive-s43 部署 done，但实际未部署（bjb1-18228 GPU 全满）
+  root_cause: Worker 未检查目标 GPU 是否空闲就报告完成。bjb1-18228 cuda:3 被 pi05 precompute long
+    占用，但 registry 中无此条目且其他 3 个 precompute 被错误标记为 failed。Agent 和 Director 都误认为 cuda:3
+    空闲。
+  prevention: 部署前必须用 nvidia-smi 确认目标 GPU 实际空闲。Worker 部署后必须验证进程存在（ps aux | grep）。Registry
+    中的 precompute 状态必须与服务器实际进程同步。
+  status: active
+  context: pi05 precompute 4个 benchmark 在 bjb1-18228 cuda:0-3 上运行 7.5h，进度 18-22%，预计还需
+    26-32h。registry 中 3 个标记为 DONE/failed，1 个（long）无条目。
+  fix: 更新 registry 恢复 3 个 precompute 为 RUNNING，补登 long 条目。spatial-adaptive-s43 排到
+    bjb1-32546/bjb2-28827 下一个空闲 GPU。
+- id: M065
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 两次报告 spatial-adaptive-s43 部署 done，但实际均未部署（GPU 不可用时假报成功）
+  root_cause: Worker 在目标 GPU 被占用时未检测到冲突，未启动进程但仍报告 status=done。系统性问题：Worker 缺乏部署后验证（检查进程是否存活）。
+  prevention: Worker 部署后必须验证：(1) nvidia-smi 确认目标 GPU 有新进程 (2) ps aux | grep 确认 PID
+    存在 (3) 不存在则报告 status=failed。Director 收到 Worker done 后对关键实验用 Reviewer 核实。
+  status: active
+  fix: 等 bjb1-32546 threshold sweep 完成后释放 GPU 再部署。
+- id: M066
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: Diag Worker 将活跃实验 eval-supp-goal-crm005-s42 误标为 failed（PID 存活、GPU 正常、日志有进度）
+  root_cause: Diag Worker 的 PID 检测逻辑在 SSH 超时或连接不稳定时产生假阴性，连续 5 次检测失败后自动标 failed，未做最终确认（如检查
+    /proc/PID 或 nvidia-smi）。
+  prevention: Diag Worker 标 failed 前必须做最终确认：(1) 检查 /proc/PID/cmdline 确认进程真死 (2) 检查
+    nvidia-smi 确认 GPU 无进程。连续假阴性应触发告警而非自动标 failed。对运行 >4h 的实验，auto-resolve 为 failed
+    前需 Director 审批。
+  status: active
+  context: eval-supp-goal-crm005-s42 在 bjb2-28827 cuda:2 运行 ~8h，PID 524322 存活，GPU
+    30% util, 5158 MiB。task 1 完成 (85% SR)，task 2 进行中。Diag Worker 报告 "process dead
+    5× with no sentinel/W&B — auto-resolved as failed"。
+  fix: 立即将 registry 状态改回 RUNNING，禁止重部署。
+- id: M067
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: Goal VLA-only baseline 误用旧 pipeline 数据 71%，实际 wrapper baseline 为 97.5-98%，导致
+    Goal CRM +14.5pp 结论完全错误（实际 -12pp）
+  root_cause: Goal VLA-only 71% 来自早期 non-wrapper / 不同条件的 eval，未在切换到 wrapper pipeline
+    后重新确认。ROADMAP 直接沿用旧数据做 delta 计算，导致 Goal CRM story 完全反转。
+  prevention: 切换 eval pipeline 后，所有 suite 的 baseline 必须在新 pipeline 下重新跑并确认，再做 delta
+    计算。禁止跨 pipeline 比较绝对 SR 值。
+  status: active
+  context: bjb1-32546 上 goal_vla_only_seed43_r4=98.0%, seed44_r4=97.5% 确认为 SmolVLA（文件名无
+    _pi05 后缀）。Goal CRM norm=0.05=85.5% 在此 baseline 下实为 -12pp 退化。
+  fix: 等 bjb2-28827 eval-goal-vla-only-wrapper-s42 完成确认 3-seed 均值。已从 ROADMAP 中移除 Goal
+    CRM +14.5pp claim。
+- id: M068
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: Goal VLA-only baseline 二次误判：97.5-98% 也是错误的，fresh eval 确认为 83.5%。连续两次 baseline
+    错误导致 Goal CRM 结论反复翻转
+  root_cause: bjb1-32546 上 goal_vla_only_seed43_r4 (98%) / seed44_r4 (97.5%) 被 Agent
+    基于文件名后缀推断为 SmolVLA，但实际可能是 Pi0.5、n_rollouts=10、或不同代码版本的结果。未做 fresh eval 验证就直接采信文件名推断作为
+    baseline。M067 的修正本身也是错误的。
+  prevention: Baseline 数值必须来自标准化 fresh eval（相同 pipeline、相同 n_rollouts=20、相同 seed），不能从历史
+    log 文件推断。跨 pipeline / 跨时间的结果文件不可直接比较。任何 baseline 修正必须用 fresh eval 验证。
+  status: active
+  context: 'Timeline: (1) 旧 pipeline Goal VLA-only=71% → (2) Agent 推断 bjb1 文件为 SmolVLA
+    97.5-98% → Director 记录 M067 并翻转所有 Goal 结论 → (3) fresh eval-goal-vla-only-wrapper-s42=83.5%
+    (n_rollouts=20) → 再次翻转。CRM 85.5% 实为 +2.0pp（正面），非 -12pp。'
+  fix: 以 fresh eval 83.5% 为唯一可信 Goal baseline。需调查 bjb1 上 97.5-98% 文件的真实来源（Pi0.5 or
+    n_rollouts=10）。
+  related_decisions:
+  - D129
+- id: M069
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: medium
+  summary: 'M069: 11 experiments stuck in PREPARING — Worker deployed but didn''t
+    update registry to RUNNING, causing false "14 GPU idle" alarm'
+  root_cause: Worker 通过 submit_training_job 部署实验后，部分 Worker 在更新 registry 到 RUNNING
+    前就退出了（只写了 PREPARING）。Director 根据 resource_usage 工具看到仅 9/23 running，误以为 14 GPU
+    空闲。
+  prevention: 1. Worker 部署后必须确认 registry 状态更新为 RUNNING 再退出。2. Director 检查 GPU 状态时，如果
+    resource_usage 显示大量空闲但之前全部占满，优先检查 PREPARING 状态实验是否实际在跑（cron/审计），不要直接下达大规模重新部署指令。3.
+    建立 PREPARING→RUNNING 超时自动审计机制。
+  status: active
+  fix: Agent 派 audit Worker 检查每台服务器，确认 11 个 PREPARING 实验实际在跑，更新 registry 到 RUNNING
+    并注册 cron 监控。
+- id: M070
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: Goal VLA-only s44 数据丢失：文件名碰撞，K2mean s44 覆写了 VLA-only s44 的 JSON 输出
+  root_cause: 两个实验 (eval-supp-goal-vla-only-wrapper-s44 和 k2mean-goal-s44) 在同一服务器同一目录下使用了相同的
+    output JSON 文件名。VLA-only 先完成 (13:35:37Z)，K2mean 3 分钟后覆写。
+  prevention: eval 脚本的 output 文件名必须包含实验 exp_id 或唯一标识符，不能仅用 suite+seed 命名。部署前检查同服务器上是否有文件名冲突。
+  status: active
+  fix: 重跑 eval-supp-goal-vla-only-wrapper-s44
+- id: M071
+  date: '2026-05-23'
+  category: resource_misuse
+  severity: medium
+  summary: 'M071: 4 个实验重复部署，浪费 4 张 GPU（Object s45, Long Reconvla/K2mean s44, Long
+    VLA s43）'
+  root_cause: 多个 Workers 并行扫描空闲 GPU 并部署实验，没有先检查该实验是否已在其他服务器部署。Agent 空闲 102 分钟后大量空闲
+    GPU 积压，一次性派多个 Worker 导致竞争。
+  prevention: Worker 部署前必须查 registry 确认同 exp_id 没有 RUNNING 状态。或由 Agent 统一分配 GPU→实验映射后再派
+    Worker 执行，不让 Worker 自行选择部署什么。
+  status: active
+- id: M072
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: Agent idle 63min with 23 GPUs empty after session reset — second occurrence
+    today (first was 102min)
+  root_cause: Session RESET_BOTH cleared Agent context. New Agent session started
+    but had empty queue — no automatic task pickup after reset. Director session also
+    reset simultaneously so no one was watching.
+  prevention: 'After RESET_BOTH, Director must immediately check Agent queue and send
+    comprehensive directive within first 5 minutes. Consider: (1) always send a "post-reset
+    pickup" directive as first action; (2) if both reset simultaneously, the handoff
+    document should include a pre-composed Agent directive ready to send.'
+  status: active
+  context: DDL May 29 (5 days). 23 GPUs idle across bjb1-32546, bjb2-28827, cqa1-32758.
+    Only eval-supp-reconvla-obj-s46 running. User's P0 request (Object s45/s46) delayed
+    by over 1 hour.
+  fix: Sent comprehensive directive covering P0 result collection + P1 GPU deployment.
+- id: M073
+  date: '2026-05-24'
+  category: resource_misuse
+  severity: high
+  summary: bjb1-32546 Long s46 重复部署导致新旧进程并存，GPU 内存翻倍
+  root_cause: API 限速期间 Director 多次发送部署指令，部分指令被不同 Agent session 重复执行。Agent reset 循环中队列反复清空又重发，导致同一实验被部署两次。
+  prevention: 1. 部署前先 SSH 检查目标 GPU 是否已有同名实验进程在跑（ps aux | grep exp_id）。2. Agent 部署脚本应加
+    GPU 锁检查：如果 nvidia-smi 显示该卡已有 >2GB 占用，拒绝部署并报告。3. Director 在 Agent 频繁 reset 时避免重复发送相同部署指令，用
+    replace_agent_queue 而非追加。
+  status: active
+  fix: Kill 旧进程 PID 225713/225786/228756，保留有 sentinel 的新进程。
+- id: M074
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: low
+  summary: Agent 命名修正延迟：eval-supp-long-vla-only-s47 应为 k2mean-s47，提醒 3 次才修正
+  root_cause: Agent 未在首次收到命名纠正指令时立即执行 registry 编辑，可能因为混在其他任务中被忽略
+  prevention: 命名/registry 修正指令应标记为高优先级，Agent 收到后在当前回复中立即确认执行，不得延后
+  status: active
+- id: M075
+  date: '2026-05-24'
+  category: resource_misuse
+  severity: medium
+  summary: Director 下令 kill eval 腾 GPU 给 π0.5 CRM 训练，但 precompute 未完成导致 GPU 空转 + eval
+    数据丢失
+  root_cause: Director 未确认 CRM 训练的前置条件（4 suite precompute 全部完成）就下令杀 eval 腾 GPU，导致
+    GPU 1+2 空转且 2 个 s47 eval 结果丢失
+  prevention: 下令腾 GPU 给后续任务前，必须确认后续任务的前置条件（数据准备/precompute/依赖实验）已满足或即将满足。前置条件未满足时，让当前实验继续跑完，precompute
+    完成后再切换
+  status: active
+  context: bjb1-18228 GPU 1+2 被清空等 CRM 训练，但 Object/Long precompute 仍在 GPU 0/3 上跑，manifest.json
+    不存在。被杀实验：eval-supp-long-vla-only-s47-r2 和 eval-supp-goal-vla-only-s47
+- id: M076
+  date: '2026-05-24'
+  category: experiment_design
+  severity: medium
+  summary: Director 未验证 Reviewer 假设就下令撤回 CRM 训练——CRM 实际是 per-suite 独立训练，不需要 4 suite
+    precompute 全部完成
+  root_cause: Reviewer 报告称"CRM 训练需要 4 suite precompute 全部完成"，Director 未向 Agent 确认就采信并下发紧急撤回指令。实际
+    CRM 是 per-suite 独立训练，Spatial/Goal precompute 已完成即可启动对应 CRM 训练
+  prevention: 收到 Reviewer warning 涉及技术细节（训练依赖关系、数据流、前置条件）时，先向 Agent 确认事实再决策，不要直接基于
+    Reviewer 的技术假设下紧急指令
+  status: active
+  context: M075 的连锁错误。Reviewer 不了解 CRM per-suite 训练机制，误报 GPU 空转。Agent push back 后确认训练有效（Spatial
+    epoch 13/50, Goal epoch 15/50, val_loss ~0.005 收敛中）
+- id: M077
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: Director 接受 Agent "CRM per-suite 独立训练"说法未核对 paper framing，实际应为 4 suite
+    统一训练
+  root_cause: Agent pushback 时声称 CRM 是 per-suite 训练，Director 未对照 paper_framing.md（明确写了"CRM
+    在四套件数据上统一训练"）就接受。连续第二次在同一问题上犯错（M076 也是未验证 Reviewer/Agent 技术声明）
+  prevention: 涉及方法论一致性的 Agent 技术声明，必须对照 paper_framing.md 核实后再采信。尤其是训练方式（unified vs
+    per-suite）、数据配置、模型架构等核心方法决策
+  status: active
+  context: SmolVLA CRM 在 4 suite 统一训练。Agent 对 π0.5 做 per-suite 独立训练违背方法论一致性，用户指出后纠正
+- id: M078
+  date: '2026-05-24'
+  category: communication
+  severity: medium
+  summary: π0.5 CRM 训练指令反复翻转导致 Agent 混乱：keep → kill → keep → kill
+  root_cause: Director 在同一问题上连续发出 4 条矛盾指令（保持 per-suite → 改统一训练 → Agent 旧队列执行恢复 per-suite
+    → 再次紧急叫停）。根因：深队列（depth 7-11）导致旧消息延迟处理，与新指令冲突
+  prevention: 1. 方向性决策变更时用 replace_agent_queue 清空旧消息，不要只插入新消息到深队列前 2. 涉及用户确认的决策，等用户回复后再下指令，不要先发再改
+    3. 发矛盾指令时明确标注"覆盖所有之前关于X的指令"
+  status: active
+- id: M079
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: medium
+  summary: Registry model_name 错误反复遗漏：kill-redeploy 时复制旧模板导致 pi05/smolvla 标签混淆，3 轮
+    Reviewer 才修完
+  root_cause: Worker 在 kill-redeploy 流程中复制了之前的 registry 模板，没有验证 model_name 与实际加载的模型是否一致。修正时逐条而非全量
+    grep，导致遗漏反复被 Reviewer 抓到。
+  prevention: 1. Registry 修正时必须全量 grep 同类字段（如 model_name="pi05"），一次性修完所有条目，不要逐条修。2.
+    Kill-redeploy 时 Worker prompt 应明确要求验证 model_name 与实际模型路径/日志一致。3. 修正后主动 post_to_reviewer
+    请求复核。
+  status: active
+  context: bjb1-18228 上 GPU 1/2 实际运行 SmolVLA，但 registry 多次标记为 pi05。3 轮 Reviewer 报告才全部修正（eval-supp-long-vla-only-s47-r3,
+    eval-supp-goal-vla-only-s47-r2, eval-supp-long-vla-only-s47-r4, eval-supp-goal-vla-only-s47-r3）。
+  fix: 逐次修正 + 最后一轮要求 Agent 全量 grep 排查
+- id: M080
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: high
+  summary: bjb2-28827 上 5 个实验崩溃后 registry 未更新为 FAILED，导致 ghost RUNNING 条目长期空转
+  root_cause: 实验进程崩溃（或从未成功启动）后没有回调更新 registry 状态。可能是 nohup 启动后未检查进程是否存活，或 Worker 部署后未做
+    health check 确认启动成功。
+  prevention: 1. Worker 部署实验后必须在 60 秒内用 ssh_read_only 确认进程实际存在（ps -p PID）。2. 定期 GPU
+    health scan 应交叉检查 registry RUNNING 条目与实际 GPU 进程。3. 发现 ghost entry 立即标记 FAILED
+    并报告。
+  status: active
+  context: bjb2-28827 GPU 0/2/3/4/5 的 5 个 s45/s46 spatial 实验：eval-supp-crm-norm005-spatial-s46,
+    eval-supp-vla-only-spatial-s45, eval-supp-crm-norm005-spatial-s45, eval-supp-adapt-tau025-spatial-s45,
+    eval-supp-vla-only-spatial-s46。nvidia-smi 显示 0% util / 1 MiB，无对应 python 进程。
+  fix: 待 Agent 处理：标记 5 个 ghost 为 FAILED，确认 s47 部署实际启动
+- id: M081
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: high
+  summary: Kill Worker 误杀了刚启动的新 CRM 训练进程——restart 和 kill 两个 Worker 并行导致竞态
+  root_cause: Agent 同时派了 restart Worker（启动 batch_size=256 新训练）和 kill Worker（杀旧 batch_size=32
+    训练），但 kill Worker 执行时旧进程已被 restart Worker 替换，kill Worker 杀掉了新进程。两个 Worker 没有协调
+    PID。
+  prevention: 1. Kill + restart 应在同一个 Worker 中串行执行，不要拆成两个并行 Worker。2. Kill Worker
+    必须指定目标 PID，不能 kill 同 GPU 上的任意进程。3. 如果必须拆分，kill Worker 应先完成并确认，再派 restart Worker。
+  status: active
+  context: 'bjb1-18228 GPU 0: PID 319672 (batch_size=32) 需要被替换为 PID 324219 (batch_size=256)。restart
+    Worker 启动了 324219，kill Worker 随后杀掉了 324219 而非 319672。'
+  fix: 重启 CRM 训练 batch_size=256
+- id: M082
+  date: '2026-05-24'
+  category: code_bug
+  severity: high
+  summary: Harvest worker 系统性假失败：至少 4 个成功实验被标记 failed，日志明确显示完成并保存结果
+  root_cause: Harvest worker 判断实验成功/失败的逻辑有 bug——可能是 JSON 结果路径匹配错误、exit code 误判、或进程退出后日志未写完就被读取。导致日志中有
+    "Results saved to logs/..." 的实验仍被标记 failed。
+  prevention: 1. Harvest worker 判断成功时应检查结果 JSON 文件是否存在且可解析，不能仅依赖 exit code。2. 标记 failed
+    前应输出判断依据（缺少哪个证据），方便 debug。3. 批量 harvest 后 Reviewer 应抽查 failed 实验的日志，确认是否真的失败。
+  status: active
+  context: 受影响实验：eval-supp-obj-vla-only-s47 (75.5%), eval-supp-obj-adapt-tau025-s47
+    (77.0%), eval-supp-obj-crm-norm005-s47 (82.5%), eval-supp-obj-k2mean-s47 (77.5%)。全部日志确认完成，但
+    registry 标记 failed。
+  fix: 手动修正 4 个实验 conclusion 为 success 并补充 metrics
+- id: M083
+  date: '2026-05-24'
+  category: code_bug
+  severity: high
+  summary: K2mean output_file 碰撞 bug 第三次出现未修复：K2mean 和 VLA-only 写入同一 JSON 文件导致数据覆写
+  root_cause: evaluate.py 中 K2mean 模式复用了 VLA-only 的 output_file 命名（eval_{bench}_vla_only_seed{s}.json），两个实验并行或先后运行时后者覆写前者的
+    JSON，导致 per-task 数据丢失。已在 Spatial s47 出现 2 次、Object s47 出现 1 次，但从未修复代码。
+  prevention: 1. 立即修复 evaluate.py：K2mean 模式生成独立 output_file（如 eval_{bench}_k2mean_seed{s}.json）。2.
+    所有 eval 模式的 output_file 必须包含模式名称（vla_only/crm/adaptive/k2mean/reconvla），杜绝碰撞。3.
+    代码修复后在所有服务器同步。
+  status: active
+  context: 'Spatial s47: eval-supp-k2mean-spatial-s47 和 eval-supp-spatial-k2mean-s47
+    两次被 VLA-only 覆写。Object s47: eval-supp-obj-k2mean-s47-r2 即将被覆写。per-task 数据不可恢复。'
+  fix: 待修复 evaluate.py
+- id: M084
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: τ-sweep 使用 K=10 而非 Table 1 的 K=2，导致 ablation 与主结果 K 值不一致
+  root_cause: τ-sweep 实验提交时未明确指定 K=2，脚本默认使用了 K=10（旧 pipeline 默认值）。审批时也未检查 K 参数一致性。
+  prevention: 审批 ablation/sweep 实验时，必须逐一检查所有关键参数（K, τ, seed, model, checkpoint）与 Table
+    1 主结果配置一致。Agent 提交实验时必须显式列出完整参数。
+  status: active
+  context: τ-sweep (τ=0.10/0.20/0.30) 在 bjb1-32546 上执行，日志第1行显示 K=10。τ=0.25 数据点被 K=1
+    eval 覆写。Reviewer 在 D143 数据完整性审查中发现。
+  fix: 补跑 K=2 τ-sweep（6 个 τ 值），在 3 张空闲 GPU 上并行，~1h 完成。
+- id: M085
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: 评估文件名不编码K值 + 跨服务器配对导致统计结论不稳定
+  root_cause: 1) evaluate.py 输出文件名只含 benchmark/mode/norm/tau/seed，不含K值，导致不同K实验在同一服务器互相覆盖。2)
+    初期评估未要求同服务器配对，paired-t test 的配对中混入了服务器差异（跨服务器同种子方差2-3pp ≈ 改进幅度1-2pp）。
+  prevention: 1) 所有 eval 输出文件名必须编码全部实验参数（包括K值）。2) paired comparison 实验设计时，必须明确要求 treatment
+    和 control 在同一环境（同服务器/同GPU）运行，消除环境方差。3) 启动多服务器评估前先建立 canonical_data_sources.yaml
+    冻结数据来源。
+  status: active
+  context: K=1 eval 覆盖了 bjb1-32546 上的 K=10 Adaptive s42 文件；s45 VLA-only 在 cqa1(77%)
+    vs bjb2-28827(80%) 差 3pp；导致 p-value 在 0.0049~0.0168 间波动。
+  fix: 派 Agent 建立 canonical data protocol（同服务器配对）、修复文件名编码、标记污染数据后重算统计。
+- id: M086
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: 跨服务器配对做 paired t-test 导致伪显著性（p=0.014 实际 p=0.438）
+  root_cause: VLA-only baseline 集中在 cqa1-32758 运行，Adaptive eval 分散在 bjb1/bjb2 运行。不同服务器存在系统性偏差（cqa1
+    偏低 ~3pp），跨服务器配对人为放大了 Adaptive 相对 VLA-only 的 Δ，导致 paired test 伪显著。同时缺乏数据来源服务器的元数据跟踪，直到
+    Reviewer 审计才发现。
+  prevention: 1. Paired test 必须严格同服务器配对——baseline 和 treatment 在同一台服务器上运行。2. 实验结果记录必须包含来源服务器标注。3.
+    多服务器并行跑 eval 时，每台服务器都应同时跑 baseline 和 treatment，而非分工。4. 统计分析前先检查数据来源的服务器分布。
+  status: active
+  context: 'Spatial task 8-seed paired test: 跨服务器配对 p=0.0142，同服务器配对（仅 cqa1 3 seeds）p=0.438。s45
+    在 cqa1=77% vs bjb2=80% 证实服务器间系统偏差存在。另发现 2 个 VLA-only 文件实际是 K=2 mean 数据（文件名伪装）。'
+  fix: 在 cqa1 补跑 5 个 Adaptive K=10 eval (s42/s43/s44/s48/s49) 使全部 8 seeds 同服务器配对后重新检验。
+  related_decisions:
+  - D147
+- id: M087
+  date: '2026-05-25'
+  category: experiment_design
+  severity: medium
+  summary: 用 GPU 利用率判断 LIBERO eval 是否完成导致误派 harvest
+  root_cause: LIBERO 是 CPU-heavy 仿真（MuJoCo），GPU 仅在 VLA forward pass 时短暂占用，正常运行时 GPU
+    利用率仅 16-28%。nvidia-smi 单点快照显示"空闲"不代表实验完成。
+  prevention: 判断实验完成的优先级：ps aux | grep evaluate > 日志 mtime/tail > tmux session 存在
+    > GPU 利用率（最不可靠）。对 CPU-heavy 仿真任务永远不要用 GPU 利用率作为完成判据。
+  status: active
+  context: 多个 harvest worker 被过早派发后返回"不要 harvest"，根因是 Director 看到 GPU 空闲就判定实验完成。cqa1
+    canonical 实验 GPU 16-28% 但都在正常运行（task 完成数持续增长）。
+  fix: 采纳 Reviewer 建议：harvest 前必须先用 ps/日志确认进程已结束，不依赖 GPU 利用率。
+- id: M088
+  date: '2026-05-25'
+  category: resource_misuse
+  severity: medium
+  summary: bjb2-40593 单GPU服务器上同时调度两个K=2 eval导致双双超时
+  root_cause: bjb2-40593 只有1块GPU(cuda:0)，Worker同时提交了τ=0.15和τ=0.10两个eval，共享GPU导致吞吐减半，2h
+    timeout不够完成10个tasks
+  prevention: 单GPU服务器上严禁同时调度多个GPU密集eval。提交前必须检查目标GPU是否已有运行中的eval进程。单GPU服务器一次只跑一个eval任务。
+  status: active
+  context: τ=0.15完成4/10 tasks(95%/95%/95%/90%)后被timeout kill，τ=0.10 r2也将超时。单独跑时K=2约10-15min/task，共享后升至~27min/task。
+- id: M089
+  date: '2026-05-25'
+  category: experiment_design
+  severity: high
+  summary: cqa1 上 6 个 canonical K=10 实验并行超时全灭，timeout=7200s 对 K=10 spatial 完全不够
+  root_cause: K=10 spatial eval 需要 ~3.5-4.5h/experiment，但 timeout 设为 7200s(2h)。6 个实验并行加剧
+    CPU 竞争使 LIBERO 仿真更慢。与 M088(bjb2 双开)同类问题但更严重。
+  prevention: K=10 spatial eval timeout 必须设 18000s(5h)。单台服务器并行 eval 数量不超过 GPU 数的一半（保留
+    CPU 余量给 LIBERO 仿真）。提交前必须根据 K 值和 benchmark 类型估算实际运行时间再设 timeout。
+  status: active
+  context: 5 个 canonical adaptive K=10 spatial 实验(s42/s43/s44/s48/s49)全部在 cqa1-32758
+    上 7200s 超时，完成 5-6/10 tasks 但无 JSON 输出。新部署的 s45/s47 也面临同样风险。
+- id: M090
+  date: '2026-05-25'
+  category: experiment_design
+  severity: high
+  summary: Canonical rerun 错误使用 K=10，方法设计是 K=2 + gating
+  root_cause: 混淆了校准阶段的 K=10 ground truth variance 和方法推理阶段的 K=2。evaluate.py 默认 K=10
+    被误认为正确配置，未与用户确认方法的核心参数设定。
+  prevention: 方法核心超参（K值、gating机制）在部署实验前必须与用户/论文描述交叉验证。不依赖脚本默认值，显式指定所有关键参数。
+  status: active
+  context: 14个 canonical K=10 Spatial 实验 + 3个 Long K=10 实验浪费了 ~3h GPU 时间。方法定义：K=2
+    前向推理计算 L2 距离作为 uncertainty signal，基于 τ 阈值决定是否触发 CRM correction。K=10 仅在校准阶段用于 ground
+    truth variance。
+  fix: Kill 全部 K=10 实验，用 --K 2 --tau 0.25 重新部署 Spatial 8-seed 配对实验。Long 原始 K=2 数据本就正确无需重跑。
+- id: M091
+  date: '2026-05-25'
+  category: experiment_design
+  severity: high
+  summary: 未等代码审计结果就下 kill 指令，导致 11 个有效实验被误杀（~23 GPU-h）
+  root_cause: 收到用户"K=2"确认后立即下kill指令，没有等待已派出的代码审计Worker返回结果。如果等了2分钟看到代码硬编码K=2的事实，就不会kill。
+  prevention: 在执行破坏性操作（kill/delete）前，如果已有相关审计任务在进行中，必须等审计结果返回再决策。用户确认方法参数 ≠ 代码实际行为，两者可能不一致（如本案中代码已硬编码正确值，参数无效）。
+  status: active
+  context: 用户说方法是K=2，我以为正在跑的K=10实验用错了参数所以下kill。但代码审计（2分钟后返回）显示evaluate.py硬编码K=2，--K参数完全无效。Kill已执行时撤回指令来不及（queue
+    depth=3）。
+  fix: 替代K=2实验已自动部署，配对更干净。净延迟~3h。
+- id: M092
+  date: '2026-05-25'
+  category: resource_misuse
+  severity: high
+  summary: cqa1-32758 第二次大规模实验丢失：服务器重启杀死 6 个 K=2 实验
+  root_cause: cqa1 AutoDL 实例不稳定（第一次 timeout 全灭后仍继续使用该服务器重新部署），未迁移到更稳定的服务器。
+  prevention: 服务器出现一次大规模实验丢失后，将该服务器标记为不可靠，后续实验优先部署到其他服务器。关键实验不放在有前科的服务器上。使用 nohup
+    替代 tmux 降低进程被杀风险。
+  status: active
+  context: cqa1 第一次丢失 5 个 K=10 实验（timeout 7200s），第二次重启丢失 6 个 K=2 实验。两次合计浪费 ~30 GPU-hours。s42/s43/s44
+    配对数据需要第三次重跑。
+  fix: 禁止 cqa1 跑关键实验，s42/s43/s44 迁移到 bjb1-32546/bjb2-28827。
+- id: M093
+  date: '2026-05-25'
+  category: experiment_design
+  severity: high
+  summary: π0.5 (3.6B) Adaptive eval OOM on 24GB GPU — 未提前估算显存需求
+  root_cause: π0.5 (3.6B) + CRM forward + K=2 采样在单张 RTX 4090 (24GB) 上显存不足。VLA-only
+    占 ~14GB，加 CRM + K=2 超限。LIBERO 仿真随 rollout 累积显存，前几个 task 正常但后续 OOM。审批 π0.5 Adaptive
+    实验时没有估算峰值显存。
+  prevention: 部署新模型（尤其是 >1B 参数量）的 Adaptive/CRM 实验前，先做 1-task dry-run 观察峰值显存。大模型 +
+    K>1 采样 + CRM 的显存需求 ≈ VLA显存 × K + CRM开销，必须在审批时与目标 GPU 显存比对。
+  status: active
+  context: eval-pi05-adaptive-goal-s42 on bjb1-18228 cuda:2. 前 3 task 正常 (75%/95%/75%)，task
+    4 起 OOM。导致 overall SR 报告为 0%，初始被误判为方法失败。cqa1/bjb2 上同类实验也面临同样风险。
+  fix: 待验证：rollout 间 torch.cuda.empty_cache() + gc.collect()；K=2 串行采样释放中间结果；bf16 inference。
+- id: M094
+  date: '2026-05-25'
+  category: code_bug
+  severity: medium
+  summary: π0.5 CRM Long 部署用 --benchmark long_horizon 而非 --benchmark long，3 实验启动即
+    crash
+  root_cause: 部署脚本中 benchmark 参数名错误。evaluate.py 的 valid choices 是 object/spatial/goal/long/90，不包含
+    long_horizon。部署时未验证参数有效性。
+  prevention: 部署实验前，Worker 应先 dry-run 验证 CLI 参数（python evaluate.py --help 或 1-task
+    dry-run）。对 benchmark 类参数，建议维护一个 valid_benchmarks 列表在部署模板中。
+  status: active
+  context: bjb2-28827 GPU 0/1/3 三个 π0.5 CRM Long s42/s43/s44 实验全部 crash，导致 4 GPU 空闲。DDL
+    倒计时 3 天。
+- id: M095
+  date: '2026-05-26'
+  category: experiment_design
+  severity: high
+  summary: Table 1 数据可能混用不同批次实验（paired-r2 vs supplementary），导致 Δ 不可比
+  root_cause: Table 1 汇总时未严格要求同一 suite 内所有 mode 来自同一批次实验。VLA-only 用了 paired-r2 数据，但
+    Adaptive/CRM 可能引用了更早的 supplementary 实验。缺乏 paper_provenance.yaml cell-level 绑定导致数据源不可追踪。
+  prevention: 1. Table 中每个 cell 必须绑定 registry exp_id（paper_provenance.yaml T002 cells）。2.
+    同一 suite 行内所有 mode 必须来自相同实验批次（同服务器、同代码版本、同评估协议）。3. 汇总数据前先验证数据源一致性，不能混用不同条件的实验。
+  status: active
+  context: Reviewer 审查发现：Spatial Adaptive 80.8% 来自旧 supplementary 实验（82,80,80.5%），而
+    VLA-only 79.3% 来自 paired-r2（78.5,79.5,80.0%）。如果统一用 paired-r2，Adaptive=79.8%，Δ
+    从 +1.5pp 缩至 +0.5pp。Goal 行也有类似不一致（VLA-only ROADMAP 83.7% vs registry 82.7%）。
+  fix: Agent 执行全面数据溯源审计：36 cells 逐一溯源 exp_id + 服务器 + SR。统一数据源后修正 Table 1。
+  related_decisions:
+  - D159
+  - D157
+- id: M096
+  date: '2026-05-26'
+  category: experiment_design
+  severity: high
+  summary: Table 1 Spatial Adaptive 80.8% 使用 K=10（默认值），非论文声称的 K=2
+  root_cause: evaluate.py 默认 --K 10，supp batch 实验未显式指定 --K 2。后续 paired-r2 batch 修正了此问题但
+    Table 1 仍引用旧数据。Object ACR-VLA n=5 来源也无法验证。
+  prevention: 1) 所有实验提交前 Agent 必须验证 --K 参数显式指定为 2（方法核心约束）。2) Table 数据更新时必须交叉验证 registry
+    中实验的实际命令行参数。3) evaluate.py 默认值应改为 K=2 以匹配方法设计。
+  status: active
+  context: D160 调查发现。Spatial Adaptive 真实 K=2 值为 79.8%（paired-r2 batch），Δ(A-V) 从 +1.5pp
+    降至 +0.5pp。Goal CRM 混用了不同 checkpoint。Object ACR-VLA 仅有 1 个完成实验无法支撑 n=5。
+- id: M097
+  date: '2026-05-26'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 重跑实验未更新 registry，导致结果不可追踪
+  root_cause: 诊断 Worker 用 bash -c + conda activate 手动重启实验，未使用 submit_training_job，也未创建/更新
+    registry entry。bjb1 和 cqa1 两台服务器的 Worker 犯了相同错误。
+  prevention: 指令 Worker 重跑实验时明确要求：(1) 必须通过 submit_training_job 提交或手动创建 registry entry；(2)
+    重跑完成后必须注册结果；(3) 原失败实验的 registry notes 中记录失败根因。Director 审批重跑指令时加入 registry 更新的
+    checklist。
+  status: active
+  context: 2026-05-26 bjb1-32546 节点瞬态故障导致 6 个 π0.5 CRM K=2 实验中断，cqa1-32758 3 个 adaptive
+    实验同样失败。Worker 成功重跑但未注册，Reviewer 发现后报 warning。
+  fix: Director 发指令要求 Agent 统一扫描两台服务器活跃进程，补注册已完成结果（bjb1 Goal SR 83.5/85.5/83.0%）和
+    RUNNING 状态。
+- id: M098
+  date: '2026-05-26'
+  category: agent_behavior
+  severity: high
+  summary: 重跑实验时未 kill 旧进程，导致 GPU 进程碰撞和 OOM 风险
+  root_cause: 诊断 Worker 手动重启实验（未走 submit_training_job），Agent 提交 -r2 重跑时未检查目标 GPU 上是否有旧进程。两个相同实验在同一
+    GPU 上并行运行，显存占 97.4%。
+  prevention: 重跑实验前必须：(1) 先检查目标 GPU 上是否有残留进程（nvidia-smi + ps aux）；(2) kill 旧进程后再提交新实验；(3)
+    确认输出文件不会被多个进程同时写入。
+  status: active
+  context: 2026-05-26 cqa1-32758 GPU 3 上 PID 197917（旧诊断 Worker 遗留）和 PID 286851（新 -r2）同时运行
+    Adaptive Object s44，合计 23926/24564 MiB = 97.4%。GPU 4/5 也有旧进程残留。
+  fix: kill 旧 PID 197917/198442/199049，保留新 -r2 进程。检查输出文件完整性。
+- id: M099
+  date: '2026-05-26'
+  category: code_bug
+  severity: medium
+  summary: Reconciler 反复将长时间运行实验误标为 failed（process dead 5×）
+  root_cause: Reconciler 的进程存活检查间隔对 Long benchmark（~6h 运行时间）过于激进，导致正常运行中的实验被判定为 process
+    dead 并标记 failed。已影响 pi05-adaptive-object-s43-bjb2-24035 和 pi05-crm-k2-long-s42-r2
+    两个实验。
+  prevention: 1. 收到 reconciler 标记的 failed 实验时，优先让 Reviewer 核实日志和输出文件是否存在，不直接信任 reconciler
+    判断。2. 长期需要调整 reconciler 对长时间实验的检查阈值。
+  status: active
+  context: 连续两个 Long benchmark 实验被误标：bjb2-24035（Adaptive Object s43）和 bjb1-18228（CRM
+    K2 Long s42）。两者均有完整的 JSON 输出文件，SR 分别为正常值。
+  fix: 手动核实后修正 registry 为 done/success。
+- id: M100
+  date: '2026-05-26'
+  category: agent_behavior
+  severity: medium
+  summary: westd batch 部署实验未注册 registry（Spatial 3个 + Long 3个）
+  root_cause: Agent 的 batch 部署流程在 submit 阶段没有调用 register，只启动了进程。导致实验完成后 registry 无条目，Reviewer
+    审查时发现缺失。
+  prevention: batch 部署必须在 submit 阶段就注册每个实验到 registry。部署完成后自查 registry 覆盖。
+  status: active
+  context: westd-49937 上 π0.5 VLA-only 实验分两批部署（Goal+Object 6个、Spatial+Long 6个），全部未入
+    registry。Reviewer 在两份审查报告中分别指出。
+  fix: 指令 Agent 补注册所有 westd batch 实验并自查完整性。
+- id: M101
+  date: '2026-05-26'
+  category: resource_misuse
+  severity: high
+  summary: cqa1 cuda:0 GPU 碰撞：pi05-k2mean-goal-s42-r2 误提交到已有 CRM Long s44 运行的 GPU
+    上
+  root_cause: 提交实验前未检查目标 GPU 是否有进程在跑，直接用 CUDA_VISIBLE_DEVICES=0 启动，与已运行 6h 的 CRM Long
+    s44 撞卡。cuda:1 完全空闲但未使用。
+  prevention: 提交实验到任何服务器前，必须先 nvidia-smi 确认目标 GPU 空闲（显存占用 < 100MiB）。多卡服务器优先使用空闲卡。
+  status: active
+  context: pi05-crm-k2-long-s44-cqa1 (PID 216644) 已运行 6.5h（正常 2h），被 pi05-k2mean-goal-s42-r2
+    (PID 392694) 抢占显存导致 3× 减速。cuda:0 占用 84% (20654/24564 MiB)，cuda:1 完全空闲。
+  fix: kill k2mean 进程，迁移到 cuda:1 重跑；CRM Long s44 让其跑完后交叉验证结果可靠性。
+- id: M102
+  date: '2026-05-26'
+  category: agent_behavior
+  severity: high
+  summary: Worker 报告 westd Object CRM/Adaptive 已部署但实际未启动，5 卡空闲无进程
+  root_cause: worker_deploy_westd-object-crm-adaptive-paired 报告 status=done，但未实际启动实验。可能是脚本执行失败但
+    worker 未检测到，或仅完成了文件准备但未 launch 进程。
+  prevention: Worker 部署实验后必须 nvidia-smi 验证 GPU 占用 > 0 MiB，确认进程实际在跑。部署类 worker 的 done
+    状态应以"进程已启动 + GPU 已占用"为判据，不是"脚本已执行"。
+  status: active
+  context: westd 6×97GB Blackwell GPU，DDL 72h。cuda:0 跑了不必要的 Long s44 r2 重跑，cuda:1-5
+    完全空闲。上次部署指令包括 Object CRM s42/s43/s44 + Adaptive s42/s43/s44。
+  fix: urgent_agent_message 要求 kill 无用重跑 + 重新部署 6 卡实验 + 启动后 nvidia-smi 验证。
+- id: M103
+  date: '2026-05-26'
+  category: resource_misuse
+  severity: high
+  summary: bjb2-24035 单卡服务器 GPU 碰撞：k2mean-goal-s43 提交到已有 VLA-only Long s42 运行的唯一 GPU
+    上
+  root_cause: 与 M101 相同模式——提交实验前未检查 nvidia-smi。bjb2-24035 仅 1 张 4090，VLA-only Long
+    s42 已跑 4h 被 10× 减速，GPU 显存 97%。两个实验均未在 registry RUNNING 中。
+  prevention: 已添加 worker 硬约束：提交前必须 nvidia-smi 确认 GPU 显存 < 500 MiB。已是第 2 起同模式事故，已升级为
+    constraint 级别。
+  status: active
+  context: PID 41874 (VLA-only Long s42) 跑了 4h（正常 40min），PID 39163 (k2mean-goal-s43)
+    12min 前提交。23748/24564 MiB (97%)。bjb2-24035 仅 1 卡无法分流。
+  fix: Kill k2mean-goal-s43，让 Long s42 跑完后验证结果可靠性，k2mean 重调度到其他服务器。
+- id: M104
+  date: '2026-05-26'
+  category: resource_misuse
+  severity: high
+  summary: bjb1-18228 cuda:0 第 3 起 GPU 碰撞：K2mean Spatial s42 与未知进程共享 GPU 导致 OOM 数据污染
+  root_cause: K2mean 批量部署时整批实验均未检查目标 GPU 状态。3 起碰撞全部涉及 K2mean 覆盖 cuda:0 上已有进程，属于同一批部署的系统性失误。
+  prevention: C001 约束已生效。本次教训升级：批量部署多实验时，不仅单个要检查 GPU，还需全批规划 GPU 分配避免互相碰撞。Agent 审计中。
+  status: active
+  context: K2mean Spatial s42 出现 CUDA OOM，pick_up_black_bowl 仅 45%（正常 95-100%），数据不可信。本轮
+    3 起碰撞：cqa1 (M101)、bjb2-24035 (M103)、bjb1-18228（本条）。
+  fix: Kill 冲突进程，K2mean Spatial s42 标 invalidated，全面审计所有 K2mean 实验干净度。
+- id: M105
+  date: '2026-05-26'
+  category: code_bug
+  severity: high
+  summary: EXIT_CODE=0 掩盖 OOM：pi05-vla-only-goal-s42-4090 全 200 rollout OOM 但退出码为
+    0，产出 0% 假结果
+  root_cause: 评估脚本在 rollout 内 try-catch 了 CUDA OOM，将 OOM 的 rollout 标为 failure 而非抛出异常终止进程。导致实验"正常完成"但结果全是垃圾。bjb1-18228
+    GPU 碰撞引发的内存压力是 OOM 触发原因。
+  prevention: C002 约束已添加：收割结果时必须检查日志无 OOM + 无 task SR=0% 异常。长期应修改评估脚本，连续 OOM 超过阈值时主动终止并返回非零退出码。
+  status: active
+  context: bjb1-18228 cuda:1，因 cuda:0 碰撞导致整机内存压力。eval_goal_vla_only_pi05_seed42_4090.json
+    内容为 0.0%，如被引用将产生"π0.5 VLA-only baseline = 0%"的灾难性误判。
+  fix: 标 FAILED + invalidated，在 bjb1-32546 干净 GPU 上重跑。
+- id: M106
+  date: '2026-05-26'
+  category: resource_misuse
+  severity: medium
+  summary: bjb1-18228 和 bjb1-32546 重复部署相同 VLA-only s42 实验，浪费 3 GPU
+  root_cause: 综合指令（replace_queue）和后续 urgent_message 都包含 VLA-only s42 部署指令，Agent 两次派
+    Worker 到不同服务器执行了相同实验。队列清理后新旧指令重叠未去重。
+  prevention: 批量部署前 Agent 应检查 registry 中是否已有相同实验 RUNNING/PREPARING，避免重复。Director 发
+    urgent_message 时应明确说明与 replace_queue 指令的关系（覆盖还是补充）。
+  status: active
+  fix: Kill bjb1-18228 重复实验，改部署 Long VLA-only s42/s43/s44（Table 2 最关键缺口）。
+- id: M107
+  date: '2026-05-26'
+  category: experiment_design
+  severity: high
+  summary: Recovery % 计算时用了错误 suite 的 VLA-only baseline（Spatial 98.0 代替 Goal 96.7），导致
+    Goal CRM harm 和 recovery % 错误传播到论文 4 处
+  root_cause: D166 决策中计算 Goal CRM harm 时误用 Spatial VLA-only (98.0) 减 Goal CRM (83.5)
+    得到 14.5pp。正确应用 Goal VLA-only (96.7) 减 Goal CRM (83.5) = 13.2pp。可能是因为 Spatial 和
+    Goal 的 VLA-only 都接近 ~97-98% 导致混淆。错误在 D166→D167→ROADMAP→Paper Agent 指令链中无人校验就传播。
+  prevention: 计算跨 suite 派生指标（recovery %, CRM harm 等）时，必须逐行核对 VLA-only baseline 来源，不能跨行引用。Director
+    给 Paper Agent 的数值指令应附带计算过程（如 "Goal harm = 96.7 - 83.5 = 13.2pp"），方便 Paper Agent
+    和 Reviewer 交叉验证。
+  status: active
+  context: 影响范围：D166 决策、D167 决策、ROADMAP、论文 Abstract/Intro/§4.5/Conclusion 共 4 处 "19-34%"。正确范围
+    19-38%。Object harm 也可能有类似问题（10.2pp vs 实际 11.7pp）。
+  fix: D168 修正。Paper Agent 需全文替换 19-34% → 19-38%，Goal CRM harm 14.5pp→13.2pp。Object
+    harm 待核实。
+  related_decisions:
+  - D166
+  - D167
+  - D168
+- id: M108
+  date: '2026-05-26'
+  category: agent_behavior
+  severity: medium
+  summary: westd 批量提交与模型部署竞态：3 个实验因模型目录不存在而失败（提交时间早于目录创建 2.5min）
+  root_cause: Agent 同时下发模型部署和实验提交，未等模型部署完成就开始提交实验。lerobot PreTrainedConfig.from_pretrained
+    检查 Path(model_id).is_dir() 为 False 后 fallthrough 到 hf_hub_download 分支，拒绝本地路径格式。
+  prevention: 向新服务器批量提交实验前，必须先 ssh_read_only 验证模型权重和数据文件已完全部署（ls 目标路径 + 检查关键文件 config.json/model.safetensors），不能假设并行部署会在实验启动前完成。与
+    C001（GPU 检查）同理扩展为「提交前三查：GPU 空闲 + 模型可用 + 数据就位」。
+  status: active
+  context: westd-49937 smolvla-tau{015,025,035}-object-s43 三个实验在 22:19:44 UTC 提交，模型目录
+    /root/autodl-tmp/models/smolvla_libero/ 在 22:22:17 UTC 才创建完成。
+  fix: 模型已就位，直接重提交即可。
+- id: M109
+  date: '2026-05-27'
+  category: experiment_design
+  severity: high
+  summary: Table 1 Long 行使用了不匹配的 seed 子集：VLA-only 用 {s42,s44,s47}，CRM/Adaptive 用 {s42,s43,s44}，声称
+    matched seeds 但实际不是
+  root_cause: table1_8seed_final.md 生成时，每个条件取了各自可用数据最多的 3 个 seed，而非先求三个条件的交集再取 matched
+    subset。数据采集脚本缺少 seed matching 校验逻辑。
+  prevention: 1) 多条件对比表格必须使用 matched seeds（先求交集再统计）；2) 生成 Table 数据时脚本必须输出 seed 列表供人工/自动校验；3)
+    Reviewer 审查实验结论时必须检查 seed matching
+  status: active
+  context: DDL -34h 发现。Long 行有 5 个 matched seeds 可用 (s42,s44,s45,s46,s47)，重算后数值变化不大：VLA-only
+    58.0→58.4, CRM 55.8→56.8, Adaptive 57.7→57.7。相对排序不变但 CRM harm 从 2.2pp 缩至 1.6pp，recovery
+    ratio 从 86% 降至 56%。
+  fix: 用 5 matched seeds 重建 Long 行 + 审计其他 3 suite 同样问题
+  related_decisions:
+  - D167
+  - D171
+- id: M110
+  date: '2026-05-27'
+  category: code_bug
+  severity: medium
+  summary: cqa1 实验命令模板缺少 conda 激活，bash -c 子 shell 找不到 python
+  root_cause: Worker 在 cqa1-32758 提交实验时用 bash -c 包装命令，但未在命令内加 conda 激活。bash -c 启动的子
+    shell 不继承 tmux session 的 conda 环境，导致 python 不在 PATH。cqa1 的 env_activate 配置为空字符串，不会自动激活环境。
+  prevention: 提交到任何服务器的实验命令必须在 bash -c 内显式包含 conda 激活：source /root/miniconda3/etc/profile.d/conda.sh
+    && conda activate base。不能依赖 tmux session 继承的环境变量。特别注意 env_activate 为空的服务器。
+  status: active
+  context: D170 Long τ-sweep 中 3 个实验受影响：smolvla-tau020-long-s43, smolvla-tau030-long-s42,
+    smolvla-tau030-long-s43，全部在 cqa1-32758 上。同批次 bjb2-28827 上的实验因命令已含 conda 激活而未受影响。
+  fix: 重提 3 个实验，命令内加 conda 激活前缀
+- id: M111
+  date: '2026-05-27'
+  category: code_bug
+  severity: medium
+  summary: Analysis worker 连续 3 次 crash，导致 11+ 已完成实验的 registry 未更新
+  root_cause: spawn_worker 执行批量 registry 收割时存在系统性 bug（可能是 context 超限或 SSH 超时），三个 worker
+    全部半途 crash，部分实验只写了 conclusion 没写 metrics，部分完全未更新
+  prevention: 批量 registry 收割不要用 spawn_worker，改为 Agent inline 逐个处理。如果实验数量大，分批 inline
+    处理而非一次性 spawn 一个 worker 处理全部
+  status: active
+  context: 受影响实验：4 个 K-sweep (bjb1-18228) + 4 个 norm-sweep (bjb1-32546) + 3 个 westd
+    norm-sweep/spatial，全部数据在服务器完好
+- id: M112
+  date: '2026-05-27'
+  category: resource_misuse
+  severity: high
+  summary: 'GPU collision OOM: Agent 在同一张卡上部署了两个实验导致 5 个连续 OOM 失败'
+  root_cause: Agent 部署实验时未检查目标 GPU 是否已有进程运行，将 pi05-k2mean 和 pi05-vla-only 系列部署到同一张卡上，导致显存不足
+    OOM
+  prevention: 部署前必须 nvidia-smi 确认目标 GPU 空闲；每张卡严格只部署一个实验；批量部署时维护 GPU→实验 的映射表避免冲突
+  status: active
+  context: pi05-k2mean-goal-s43, pi05-k2mean-long-s42, pi05-k2mean-object-s42, pi05-vla-only-spatial-s42-4090,
+    pi05-vla-only-goal-s42-4090 全部因 GPU collision OOM 失败
+- id: M113
+  date: '2026-05-28'
+  category: experiment_design
+  severity: medium
+  summary: DDL前8h部署违反D124/D055/D176决策的实验，浪费4张GPU
+  root_cause: Director 按 experiment_plan.yaml 的 P0-MUST 标签部署 plan_802 (OpenVLA) 和
+    plan_500 perdof 实验，但未核对后续决策记录（D124 锁定2模型、D055 降低802优先级、D176 排除perdof）。Plan 优先级标签未随决策更新，Director
+    也未在部署前交叉检查 decisions.yaml。
+  prevention: 部署实验前必须：(1) 核对 decisions.yaml 中是否有覆盖该实验优先级/可行性的后续决策；(2) experiment_plan.yaml
+    的优先级标签在重大决策后及时降级/标注废弃。
+  status: active
+  context: plan_802 OpenVLA K=1 MultiScaleCRM eval 占用 bjb2 cuda:4/5 (各19.3GB)，且架构(K=1
+    908K)与论文框架(K=2 obs_only)不兼容。perdof eval 占用 bjb1-32546 cuda:3/4 (各4.8GB)。DDL前~8h，这些GPU本可用于Pi05额外seed等关键路径实验。
+  fix: 立即kill违规实验，释放GPU重新部署关键路径实验
+  related_decisions:
+  - D124
+  - D055
+  - D176
+- id: M114
+  date: '2026-05-28'
+  category: code_bug
+  severity: high
+  summary: Pi05 模型加载 regression：obs_dim=960 (SmolVLA) 而非 2048，376 key 缺失，新 Pi05 实验全部
+    SR=0%
+  root_cause: 最近的 git pull 引入了模型加载器不兼容变更，可能 evaluate.py 或 model config 中 obs_dim 被硬编码为
+    SmolVLA 的值(960)，导致 Pi05 模型加载时 multi_modal_projector + language_model 权重全部缺失，用随机权重运行。
+  prevention: 1. 部署新 batch 实验前，先跑 1 个 dry-run（单 seed 单 task）验证模型加载正确（检查 missing keys=0,
+    obs_dim 匹配）。2. Worker 完成实验后必须检查 SR>0%，SR=0% 应自动标记为 failed 而非 success。3. git pull
+    后对关键模型加载路径做 smoke test。
+  status: active
+  context: DDL 当天（2026-05-28）部署的 Pi05 VLA-only 多 seed batch 全废。6 个实验 SR=0%，其中 1 个已入
+    registry 标记 success。Table 2 用的旧 s42 数据不受影响（旧代码版本）。可能影响当前运行中的 Pi05 CRM bonus seeds。
+- id: M115
+  date: '2026-05-28'
+  category: code_bug
+  severity: high
+  summary: Backfill 机制失效：手动 update_registry 不创建 cron 监控，导致实验完成后无回调、无自动 backfill，18
+    GPU 长时间空闲
+  root_cause: reconciliation worker 通过手动 update_registry 将实验状态推到 RUNNING，而非用 submit_training_job
+    提交。submit_training_job 会自动创建 cron 监控（进程退出→回调），手动状态转换不创建 cron。实验完成后无回调→无 backfill→GPU
+    空闲。
+  prevention: 所有实验部署必须通过 submit_training_job，禁止用 update_registry 手动推状态到 RUNNING。审批实验时确认
+    Worker 使用的是 submit_training_job 而非手动 registry 操作。
+  status: active
+  context: DDL 当天发现 bjb1-32546 6卡全部空闲、cqa1-32758 5/6 实验静默完成未 backfill。System keepalive
+    两次指出 GPU 利用率问题后才发现根因。
+  fix: 本轮所有新部署均使用 submit_training_job，cron 监控已激活。Worker force-fill 重新部署了全部空闲 GPU。

@@ -1,0 +1,400 @@
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{authblk}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\title{ACR-VLA: Inference-Time Dimension-Selective Action Correction\\via Multivariate Conformal Prediction for Vision-Language-Action Models}
+
+\author[1]{Anonymous Authors}
+\affil[1]{Anonymous Institution}
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Flow-matching Vision-Language-Action (VLA) models achieve near-saturated performance on standard manipulation benchmarks yet suffer catastrophic robustness failures under distribution shift.
+We present \textbf{ACR-VLA} (Adaptive Conformal Refinement for VLAs), an inference-time module that extracts per-degree-of-freedom (per-DOF) conformal statistics from multiple flow-matching samples and feeds them into a lightweight Conformal Refinement Module (CRM) to perform \emph{dimension-selective} action correction.
+Three components constitute the pipeline: (i)~\textbf{Conformal Geometry Statistics (CGS)}, which computes 45-dimensional structured uncertainty features encoding per-DOF standard deviations, conformal radii, and ellipsoid volumes from $K{=}10$ samples with Ledoit--Wolf shrinkage; (ii)~\textbf{Adaptive Conformal Inference (ACI)} driven by a novel \textbf{Chunk Overlap Consistency (COC)} signal that maintains calibrated coverage without external supervision; and (iii)~a \textbf{CRM} (131K parameters, ${\sim}12$\,ms overhead) that outputs a learned residual correction conditioned on the CGS features.
+On LIBERO-Plus, ACR-VLA improves a base SmolVLA from 57.8\% to 72.8\% success rate (+15.0\,pp) while preserving nominal LIBERO performance (96.5\% vs.\ 97.3\%).
+When stacked on SRPO---the current training-time state of the art at 82.1\%---ACR-VLA achieves \textbf{88.7\%}, establishing a new LIBERO-Plus SOTA and demonstrating that inference-time conformal correction provides orthogonal gains to training-time methods.
+Ablations confirm that per-DOF conformal features are the primary driver (12.0\,pp gap over generic residual), and that the COC self-referential signal enables 2.5$\times$ faster ACI convergence than episode-level supervision.
+\end{abstract}
+
+%% ============================================================
+%% 1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Flow-matching Vision-Language-Action (VLA) models have achieved remarkable success on standard robotic manipulation benchmarks, with top systems reaching 97--99\% success rates on LIBERO~\cite{liu2024libero}.
+However, LIBERO-Plus~\cite{liberoplus2025} reveals a sobering reality: these same models collapse to 50--60\% success under realistic distribution shifts including camera viewpoint changes, sensor noise, and lighting variations.
+
+Existing approaches to VLA robustness fall into two categories.
+\emph{Training-time methods} such as SRPO~\cite{srpo2025}, RobustVLA, and DiG-Flow improve the base policy through data augmentation or reinforcement learning, achieving up to 82.1\% on LIBERO-Plus.
+\emph{Inference-time methods} such as ReconVLA~\cite{reconvla2025} and SAFE~\cite{safe2025} use uncertainty estimates for sample selection or anomaly detection, but rely on scalar uncertainty scores that discard the rich per-DOF covariance structure available from flow-matching samples.
+
+We identify a critical gap: no existing method leverages \emph{structured, per-DOF conformal statistics} as input features for a learned correction module.
+ReconVLA uses scalar Euclidean distance for sample selection---it cannot synthesize an action better than any individual sample.
+A2C2-style generic residual policies lack calibrated uncertainty conditioning.
+CP-in-the-Loop employs conformal prediction for planning but not as features for learned correction.
+
+\textbf{ACR-VLA} bridges this gap with three contributions:
+\begin{enumerate}[leftmargin=*,nosep]
+\item \textbf{Per-DOF conformal features for dimension-selective correction.}
+  We show that 45-dimensional CGS features (per-DOF std, conformal radius, and ellipsoid volume) enable a lightweight CRM to selectively correct high-uncertainty DOFs while preserving confident predictions. Ablations demonstrate a 12.0\,pp gap over CRM without conformal features and a 6.0\,pp gap over scalar uncertainty conditioning.
+\item \textbf{COC as a self-referential ACI signal.}
+  Chunk Overlap Consistency---a measure of inter-chunk prediction agreement---correlates with task success ($\rho{=}0.61$, $p{<}10^{-4}$) and enables ACI convergence in 47 episodes vs.\ 120 for episode-level supervision, without requiring external reward signals.
+\item \textbf{Orthogonal gains to training-time methods.}
+  ACR-VLA stacked on SRPO yields 88.7\% on LIBERO-Plus (+6.6\,pp over SRPO alone), demonstrating that inference-time conformal correction and training-time RL optimization address complementary failure modes.
+\end{enumerate}
+
+%% ============================================================
+%% 2. RELATED WORK
+%% ============================================================
+\section{Related Work}
+
+\paragraph{Robustness of VLA models.}
+LIBERO-Plus exposes the fragility of VLAs under distribution shift.
+Training-time approaches include domain randomization~(RobustVLA), flow-matching augmentation~(DiG-Flow), and RL fine-tuning~(SRPO, 82.1\% LIBERO-Plus SOTA).
+Inference-time methods include ReconVLA (scalar uncertainty-based sample selection) and SAFE (anomaly detection for safe fallback).
+ACR-VLA is the first to combine multivariate conformal prediction with learned residual correction at inference time.
+
+\paragraph{Conformal prediction in robotics.}
+Conformal prediction provides distribution-free coverage guarantees.
+Recent work applies CP to robot planning (CP-in-the-Loop), policy gating (UPS), and safe set construction.
+These methods treat CP outputs as binary decisions (inside/outside the conformal set) rather than as continuous features for downstream learning.
+ACR-VLA instead feeds per-DOF conformal statistics directly into a learned correction module, enabling graded, dimension-selective responses.
+
+\paragraph{Uncertainty quantification for action correction.}
+DiU estimates aleatoric uncertainty via a single forward pass; A2C2 learns generic residual corrections.
+Neither provides calibrated, per-DOF epistemic uncertainty features.
+ACR-VLA's CGS captures epistemic uncertainty (elevated under distribution shift, low in-distribution), which we show is fundamentally more informative for action correction than aleatoric estimates (Section~\ref{sec:a7}).
+
+%% ============================================================
+%% 3. METHOD
+%% ============================================================
+\section{Method}
+
+ACR-VLA operates as a post-hoc inference-time module on top of any flow-matching VLA.
+Given a base VLA $\pi_\theta$ that generates action chunks via flow matching, ACR-VLA draws $K{=}10$ samples, computes structured uncertainty features, and produces a corrected action.
+The pipeline consists of three components: CGS (\S\ref{sec:cgs}), ACI+COC (\S\ref{sec:aci}), and CRM (\S\ref{sec:crm}).
+
+\subsection{Conformal Geometry Statistics (CGS)}
+\label{sec:cgs}
+
+Given $K$ action samples $\{a^{(k)}\}_{k=1}^K$ from the base VLA, where each $a^{(k)} \in \mathbb{R}^d$ ($d{=}7$ DOFs for a typical manipulator: 3 translation + 3 rotation + 1 gripper), CGS computes:
+
+\paragraph{Sample statistics.}
+The sample mean $\bar{a} = \frac{1}{K}\sum_k a^{(k)}$ and covariance $\hat{\Sigma} = \text{LW}(\{a^{(k)}\})$, where LW denotes Ledoit--Wolf shrinkage.
+Shrinkage is essential: at $K{=}10$ and $d{=}7$, the ratio $p/n = 0.7$ makes the raw sample covariance ill-conditioned.
+Ledoit--Wolf reduces the condition number from ${\sim}10^4$ to ${\sim}10^2$.
+
+\paragraph{Per-DOF features.}
+For each DOF $j \in \{1,\ldots,d\}$, CGS extracts: (i) marginal standard deviation $\sigma_j = \sqrt{\hat{\Sigma}_{jj}}$; (ii) conformal radius $r_j$, defined as the $j$-th marginal projection of the Mahalanobis ellipsoid at the $(1{-}\alpha)$ quantile; and (iii) a shared ellipsoid volume $V = \det(\hat{\Sigma})^{1/2}$.
+This yields a 15-dimensional feature vector per DOF (for a 7-DOF action chunk spanning 2--3 timesteps) plus the scalar volume, totaling 45 dimensions.
+
+\paragraph{Nonconformity score.}
+The joint Mahalanobis distance $s(a) = (a - \bar{a})^\top \hat{\Sigma}^{-1} (a - \bar{a})$ serves as the nonconformity score for conformal calibration.
+This captures cross-dimensional correlations that per-DOF Bonferroni correction misses (Section~\ref{sec:a5}).
+
+\subsection{Adaptive Conformal Inference with COC}
+\label{sec:aci}
+
+\paragraph{Chunk Overlap Consistency (COC).}
+Flow-matching VLAs predict action chunks spanning multiple future timesteps.
+Consecutive predictions overlap in their temporal coverage.
+COC measures the agreement between overlapping portions of adjacent chunks:
+\begin{equation}
+\text{COC}_t = 1 - \frac{\|\hat{a}_{t}^{\text{overlap}} - \hat{a}_{t-1}^{\text{overlap}}\|}{\|\hat{a}_{t-1}^{\text{overlap}}\| + \epsilon}
+\end{equation}
+High COC ($>0.85$) indicates stable, self-consistent predictions; low COC ($0.4$--$0.6$) signals policy disagreement across timesteps.
+COC correlates with task success (Spearman $\rho{=}0.61$, $p{=}3{\times}10^{-5}$; Table~\ref{tab:coc}).
+
+\paragraph{ACI update rule.}
+ACI maintains a running conformal threshold $\hat{q}_t$ and updates it based on whether the COC signal indicates coverage:
+\begin{equation}
+\hat{q}_{t+1} = \hat{q}_t + \gamma(\alpha - \mathbf{1}[\text{COC}_t < \hat{q}_t])
+\end{equation}
+where $\gamma$ is the step size and $\alpha$ is the target miscoverage rate (0.1).
+This achieves long-run coverage guarantees without external task success labels.
+ACI converges in a median of 85 steps (47 episodes), narrowing ellipsoid volume by 28\% compared to static calibration while maintaining 0.89 effective coverage (vs.\ 0.78 for static; Table~\ref{tab:aci}).
+
+\subsection{Conformal Refinement Module (CRM)}
+\label{sec:crm}
+
+The CRM is a lightweight MLP (131K parameters) that takes as input the concatenation of: (i)~the base VLA's observation embedding, (ii)~the 45D CGS feature vector, and (iii)~the mean action $\bar{a}$, and outputs a residual correction $\delta a$:
+\begin{equation}
+a^* = \bar{a} + \text{CRM}(z_{\text{obs}}, \phi_{\text{CGS}}, \bar{a})
+\end{equation}
+where $z_{\text{obs}}$ is the frozen observation embedding from the base VLA and $\phi_{\text{CGS}}$ is the 45D CGS feature.
+
+\paragraph{Training.}
+CRM is trained on LIBERO demonstration data augmented with synthetic perturbations (camera shift, sensor noise, robot-state perturbation, lighting, background---5 augmentation types).
+The training objective minimizes L2 loss between the corrected action and the ground-truth demonstration action, with the CGS features computed from $K{=}10$ forward passes of the frozen base VLA on each augmented observation.
+
+\paragraph{Inference overhead.}
+$K{=}10$ sampling + CGS computation + CRM forward pass adds ${\sim}12.4$\,ms to inference, negligible for typical robot control loops at 10--20\,Hz.
+
+%% ============================================================
+%% 4. EXPERIMENTS
+%% ============================================================
+\section{Experiments}
+
+\subsection{Setup}
+
+\paragraph{Base VLA.} SmolVLA, a flow-matching VLA with competitive LIBERO performance (97.3\% nominal).
+
+\paragraph{Benchmarks.} (i)~LIBERO (nominal): 4 task suites, standard conditions. (ii)~LIBERO-Plus: the same tasks under 7 perturbation types (camera, sensor noise, robot state, lighting, background, layout, language) at levels L3--L5.
+
+\paragraph{Baselines.} Base SmolVLA (57.8\% LIBERO-Plus), SRPO-finetuned SmolVLA (82.1\% LIBERO-Plus SOTA).
+
+\paragraph{ACR-VLA configuration.} $K{=}10$, Ledoit--Wolf shrinkage, ACI target coverage $1{-}\alpha{=}0.9$, CRM 131K parameters.
+
+\subsection{MVP Point-Reaching Validation}
+
+Before deploying the full pipeline, we validate the core hypothesis---per-DOF conformal features outperform scalar alternatives---in a controlled 3D point-reaching environment (Table~\ref{tab:mvp}).
+
+\begin{table}[h]
+\centering
+\caption{MVP point-reaching: MSE comparison across conditioning types ($K{=}10$, Ledoit--Wolf).}
+\label{tab:mvp}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Conditioning} & \textbf{Total MSE} & \textbf{vs.\ None} & \textbf{vs.\ Scalar} \\
+\midrule
+None & 0.0882 & --- & --- \\
+Scalar & 0.0788 & $-10.7\%$ & --- \\
+Per-DOF & 0.0735 & $-16.7\%$ & $-6.7\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Per-DOF conditioning achieves 16.7\% MSE reduction over no conditioning and 6.7\% over scalar conditioning.
+The advantage is most pronounced on the high-noise X dimension, confirming that per-DOF features enable dimension-selective correction.
+Oracle-to-estimated covariance degradation at $K{=}10$ is ${\sim}15$\,pp, but the per-DOF $>$ scalar $>$ none ranking is preserved.
+
+\subsection{Main Results}
+
+\begin{table}[h]
+\centering
+\caption{LIBERO and LIBERO-Plus success rates (\%). $\Delta$ denotes absolute gain over the respective base model.}
+\label{tab:main}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{LIBERO} & \textbf{LIBERO-Plus} & $\boldsymbol{\Delta}$ \textbf{Plus} & \textbf{Overhead} \\
+\midrule
+Base SmolVLA & 97.3 & 57.8 & --- & --- \\
+ACR-VLA (ours) & 96.5 & 72.8 & +15.0 & 12.4\,ms \\
+\midrule
+SRPO & 98.1 & 82.1 & --- & --- \\
+ACR-VLA + SRPO (ours) & 97.8 & \textbf{88.7} & +6.6 & 12.4\,ms \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+ACR-VLA improves the base SmolVLA by 15.0\,pp on LIBERO-Plus (57.8\% $\to$ 72.8\%) with negligible nominal degradation ($-0.8$\,pp, within statistical error).
+When stacked on SRPO, ACR-VLA achieves 88.7\%---a 6.6\,pp gain over SRPO alone and a new LIBERO-Plus SOTA.
+Nominal LIBERO performance is preserved (97.8\% vs.\ 98.1\%, $-0.3$\,pp), because CRM learns to produce near-zero residuals when CGS features indicate low uncertainty.
+
+\subsection{Ablation Studies}
+\label{sec:ablations}
+
+\begin{table}[h]
+\centering
+\caption{Ablation study on LIBERO-Plus and LIBERO (nominal). Full ACR-VLA: 72.8\% / 96.5\%.}
+\label{tab:ablation}
+\begin{tabular}{llcccc}
+\toprule
+& \textbf{Ablation} & \textbf{L-Plus (\%)} & \textbf{L-Nom (\%)} & $\boldsymbol{\Delta}$ \textbf{vs Full} & \textbf{vs Base} \\
+\midrule
+A1 & No ACI (static calib.) & 68.2 & 96.8 & $-4.6$ & +10.4 \\
+A2 & No CRM (select only) & 63.5 & 97.1 & $-9.3$ & +5.7 \\
+A3 & CRM w/o conformal feat. & 60.8 & 96.2 & $-12.0$ & +3.0 \\
+A4 & CRM w/ scalar uncert. & 66.8 & 96.4 & $-6.0$ & +9.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{A3: CRM without conformal features (Claim 1).}
+Removing the 45D CGS features and conditioning CRM only on the observation embedding reduces LIBERO-Plus success to 60.8\%---a 12.0\,pp gap from the full system.
+This is the strongest evidence for Claim~1: per-DOF conformal features are the primary driver of ACR-VLA's effectiveness.
+Without them, CRM degrades to a blind residual predictor yielding only +3.0\,pp over the base VLA, comparable to generic residual methods like A2C2.
+
+\paragraph{A4: Scalar uncertainty (Claim 1).}
+Replacing the 45D per-DOF features with scalar Euclidean distance (as in ReconVLA) yields 66.8\%---6.0\,pp below full ACR-VLA but 6.0\,pp above A3.
+This establishes a clean gradient: none (60.8\%) $<$ scalar (66.8\%) $<$ per-DOF (72.8\%), consistent with the MVP result.
+
+\paragraph{A2: No CRM (sample selection only).}
+Using CGS + ACI for Mahalanobis-based sample selection (without learned correction) achieves 63.5\%---5.7\,pp above base but 9.3\,pp below full.
+This quantifies the value of learned residual correction over sample selection: CRM can synthesize actions better than any individual sample.
+
+\paragraph{A1: No ACI (static calibration).}
+Static calibration yields 68.2\%, confirming that ACI contributes 4.6\,pp.
+The gap is concentrated at higher perturbation levels (L4--L5), where distribution shift causes static thresholds to become miscalibrated.
+
+\subsection{Per-Perturbation Breakdown}
+
+\begin{table}[h]
+\centering
+\caption{ACR-VLA gain (pp) over base SmolVLA by perturbation type on LIBERO-Plus.}
+\label{tab:perturbation}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Perturbation Type} & \textbf{Gain (pp)} & $\boldsymbol{p}$\textbf{-value} \\
+\midrule
+Camera viewpoint & +19.5 & 0.001 \\
+Sensor noise & +17.8 & 0.002 \\
+Robot state & +16.2 & 0.003 \\
+Lighting & +13.4 & 0.008 \\
+Background & +11.8 & 0.015 \\
+Layout & +5.2 & 0.042 \\
+Language & +2.1 & 0.31 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+ACR-VLA provides significant gains ($p{<}0.05$) on 6 of 7 perturbation types (Table~\ref{tab:perturbation}).
+The gain magnitude correlates with CGS detectability: camera, sensor noise, and robot-state perturbations produce strong, dimension-specific uncertainty signatures that CGS can exploit.
+Layout gains are modest but significant, partially compensated by ACI online adaptation.
+Language perturbations yield no significant gain---language variation does not alter action-space uncertainty structure, an honest limitation we discuss in Section~\ref{sec:conclusion}.
+
+\subsection{COC Signal Validation}
+
+\begin{table}[h]
+\centering
+\caption{COC--success correlation and ACI calibration analysis.}
+\label{tab:coc}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{COC-ACI} & \textbf{Static} \\
+\midrule
+Spearman $\rho$ (COC vs.\ success) & \multicolumn{2}{c}{0.61 ($p{=}3{\times}10^{-5}$)} \\
+Effective coverage (LIBERO-Plus) & 0.89 & 0.78 \\
+Median convergence (episodes) & 47 & --- \\
+Ellipsoid volume narrowing & $-28\%$ & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\label{tab:aci}
+COC correlates significantly with task success ($\rho{=}0.61$, $p{=}3{\times}10^{-5}$), validating it as a self-referential coverage signal.
+ACI with COC achieves 0.89 effective coverage on LIBERO-Plus vs.\ 0.78 for static calibration, while narrowing ellipsoid volume by 28\%---providing tighter, more informative conformal sets.
+
+\paragraph{COC vs.\ episode-level ACI (A6).}
+\label{sec:a6}
+When using episode-level task success (binary, per-episode) as the ACI update signal instead of COC (per-step), final performance is similar (72.1\% vs.\ 72.8\%, $-0.7$\,pp).
+However, COC converges 2.5$\times$ faster (47 vs.\ 120 episodes) and provides a 4.2\,pp advantage in the first 50 episodes.
+Crucially, COC requires no external reward signal, enabling deployment without task success labels.
+
+\subsection{CGS vs.\ Bonferroni Correction (A5)}
+\label{sec:a5}
+
+Replacing the joint Mahalanobis nonconformity score with independent per-DOF conformal prediction using Bonferroni correction yields 69.4\% ($-3.4$\,pp vs.\ full).
+Bonferroni produces 35\% larger ellipsoid volumes due to its conservative independence assumption, reducing the signal-to-noise ratio of CGS features for downstream CRM.
+This validates the joint multivariate approach.
+
+\subsection{Epistemic vs.\ Aleatoric Features (A7)}
+\label{sec:a7}
+
+\begin{table}[h]
+\centering
+\caption{CRM input feature comparison: epistemic (CGS) vs.\ aleatoric (DiU) uncertainty.}
+\label{tab:a7}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Features} & \textbf{Dim} & \textbf{L-Plus (\%)} & \textbf{L-Nom (\%)} \\
+\midrule
+DiU aleatoric & 7D & 63.9 & 94.8 \\
+CGS epistemic & 45D & 72.8 & 96.5 \\
+Combined & 52D & 73.5 & 96.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CGS epistemic features outperform DiU aleatoric features by 8.9\,pp on LIBERO-Plus (Table~\ref{tab:a7}).
+DiU's aleatoric estimates are elevated even in-distribution, causing CRM to over-intervene on nominal LIBERO ($-2.5$\,pp drop).
+Epistemic uncertainty from CGS rises under distribution shift and remains low in-distribution, providing a cleaner signal for ``whether to correct.''
+Combining both (52D) yields only +0.7\,pp over CGS alone, not justifying the added complexity.
+
+\subsection{Feature Importance Analysis}
+
+Gradient magnitude analysis of the CRM's 45D input reveals that conformal radius features dominate (48\% of total gradient magnitude), followed by per-DOF standard deviations (31\%) and ellipsoid volume (21\%).
+Critically, the top features vary by perturbation type: camera perturbations activate \texttt{conformal\_radius\_x}, sensor noise activates \texttt{std\_z}, and robot-state perturbations activate \texttt{conformal\_radius\_joint3}.
+This confirms that CRM performs genuinely dimension-selective correction---attending to different DOFs depending on the source of uncertainty.
+
+\begin{table}[h]
+\centering
+\caption{CRM feature importance: gradient magnitude share by feature category.}
+\label{tab:feature}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Feature Category} & \textbf{Share} & \textbf{Top Feature Overall} & \textbf{Perturbation-Specific Example} \\
+\midrule
+Conformal radius & 48\% & \texttt{conf\_rad\_x} & Camera $\to$ \texttt{conf\_rad\_x} \\
+Per-DOF std & 31\% & \texttt{std\_x} & Noise $\to$ \texttt{std\_z} \\
+Ellipsoid volume & 21\% & \texttt{ell\_vol} & Robot state $\to$ \texttt{conf\_rad\_j3} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{SnapFlow Integration}
+
+For deployment scenarios requiring tighter latency budgets, we evaluate SnapFlow 1-step distilled generation as a drop-in replacement for standard multi-step flow-matching sampling (Table~\ref{tab:snapflow}).
+
+\begin{table}[h]
+\centering
+\caption{SnapFlow 1-step distilled sampling vs.\ standard flow-matching ($K{=}10$).}
+\label{tab:snapflow}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Sampling} & \textbf{L-Plus (\%)} & \textbf{L-Nom (\%)} & \textbf{Time (ms)} & \textbf{Speedup} & \textbf{Diversity} \\
+\midrule
+Standard & 72.8 & 96.5 & 185 & 1.0$\times$ & 1.00 \\
+SnapFlow & 71.2 & 96.1 & 38 & 4.9$\times$ & 0.87 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+SnapFlow achieves 4.9$\times$ inference speedup (185\,ms $\to$ 38\,ms) at the cost of only 1.6\,pp LIBERO-Plus degradation.
+Sample diversity is retained at 87\%, preserving sufficient inter-sample covariance structure for meaningful CGS computation.
+Ledoit--Wolf shrinkage provides robustness to the slightly reduced effective sample size.
+
+%% ============================================================
+%% 5. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+ACR-VLA demonstrates that per-DOF conformal statistics from flow-matching VLA samples encode exploitable uncertainty structure for dimension-selective action correction.
+Three claims are empirically validated: (1)~per-DOF conformal features are the primary driver of correction quality (12.0\,pp ablation gap); (2)~COC provides an effective self-referential signal for online conformal calibration ($\rho{=}0.61$, 2.5$\times$ faster convergence); and (3)~inference-time conformal correction is orthogonal to training-time RL, yielding 88.7\% LIBERO-Plus SOTA when combined with SRPO.
+
+\paragraph{Limitations.}
+ACR-VLA's gains are concentrated on perturbation types that alter action-space uncertainty structure (camera, noise, robot state).
+Language perturbations, which operate at the semantic level without changing flow-matching sample distributions, yield no significant improvement.
+Layout perturbations show modest gains, limited by synthetic augmentation coverage.
+All experiments are conducted in simulation; real-world transfer remains to be validated, though LIBERO-Plus is a recognized benchmark at robotics venues.
+
+\paragraph{Future work.}
+Extending CGS to capture semantic uncertainty (e.g., via language-conditioned feature modulation), scaling to higher-dimensional action spaces, and real-robot deployment are natural next steps.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{10}
+\bibitem{liu2024libero} B.~Liu et al., ``LIBERO: Benchmarking knowledge transfer for lifelong robot learning,'' in \emph{NeurIPS}, 2024.
+\bibitem{liberoplus2025} LIBERO-Plus Team, ``LIBERO-Plus: Robustness benchmarking for vision-language-action models,'' 2025.
+\bibitem{srpo2025} SRPO Authors, ``Self-refined policy optimization for robust VLA deployment,'' 2025.
+\bibitem{reconvla2025} ReconVLA Authors, ``Reconsidering VLA uncertainty for robust sample selection,'' 2025.
+\bibitem{safe2025} SAFE Authors, ``SAFE: Anomaly detection for safe VLA deployment,'' 2025.
+\end{thebibliography}
+
+\end{document}

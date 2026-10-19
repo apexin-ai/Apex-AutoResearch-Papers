@@ -1,0 +1,3513 @@
+dream_id: dream_20260513T023849
+project: acr-vla-conformal-refinement
+venue: CoRL 2026
+focus: 'Critical validation: (1) Does per-DOF advantage transfer from synthetic MVP
+  to real VLA flow-matching samples? (2) K=10 covariance with Ledoit-Wolf shrinkage
+  quality? (3) COC self-referential ACI signal reliability? (4) SRPO stacking value?'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Per-DOF advantage transfers cleanly to real VLA; all three claims validated
+        at publishable strength
+      key_assumptions:
+      - Flow-matching VLA samples exhibit sufficient inter-sample covariance structure
+        for CGS to exploit (not near-isotropic)
+      - K=10 with Ledoit-Wolf shrinkage yields covariance estimates accurate enough
+        for CRM to learn meaningful per-DOF gating
+      - COC chunk overlap consistency correlates with task success strongly enough
+        to serve as online ACI update signal
+      - Synthetic perturbation augmentation covers enough of LIBERO-Plus distribution
+        shift for CRM to generalize
+      - SRPO-finetuned checkpoint retains exploitable epistemic uncertainty structure
+        (not collapsed by RL fine-tuning)
+      number_ranges:
+        acr_vla_libero_plus_success_gain_abs:
+        - 12
+        - 18
+        a3_ablation_gap_no_conformal_vs_full:
+        - 8
+        - 15
+        a4_ablation_gap_scalar_vs_perDOF:
+        - 4
+        - 8
+        coc_success_spearman_rho:
+        - 0.5
+        - 0.7
+        aci_ellipsoid_volume_narrowing_pct:
+        - 20
+        - 35
+        srpo_stacking_gain_abs:
+        - 5
+        - 8
+        srpo_stacked_absolute:
+        - 87
+        - 90
+        libero_nominal_drop:
+        - 0
+        - 1
+        perturbation_dims_with_significant_gain:
+        - 5
+        - 7
+      narrative_direction: '原始 framing 完整成立。标题级 claim: "Inference-time dimension-selective
+        conformal correction provides orthogonal gains to training-time methods."
+        三条 claims 全部通过 kill criteria。 Headline: ACR-VLA 在 LIBERO-Plus 上将 base VLA
+        提升 X pp，叠加 SRPO 达到 ~88%+ 新 SOTA。 Per-DOF vs scalar ablation 提供 clean 机制验证。COC
+        作为自参考信号的有效性是独立贡献点。 可冲 CoRL oral/spotlight。
+
+        '
+    median:
+      tier: median
+      meaning: Per-DOF advantage exists but attenuated; Claim 1 survives with caveats,
+        Claim 2 partial, Claim 3 borderline
+      key_assumptions:
+      - Flow-matching samples have covariance structure but noisier than synthetic
+        MVP suggested; K=10 estimates are adequate but not tight
+      - Per-DOF features help CRM but advantage over scalar is modest — most gain
+        comes from 'having any uncertainty signal' vs none
+      - COC Spearman ρ is positive but weak (0.3-0.5); ACI converges but slowly, ellipsoid
+        narrowing modest
+      - Synthetic augmentation covers camera/noise/robot-state shifts well, but layout/language
+        dimensions see little gain
+      - SRPO fine-tuning partially collapses uncertainty structure; stacking gain
+        exists but is near kill threshold
+      number_ranges:
+        acr_vla_libero_plus_success_gain_abs:
+        - 6
+        - 11
+        a3_ablation_gap_no_conformal_vs_full:
+        - 3
+        - 7
+        a4_ablation_gap_scalar_vs_perDOF:
+        - 1
+        - 3
+        coc_success_spearman_rho:
+        - 0.3
+        - 0.5
+        aci_ellipsoid_volume_narrowing_pct:
+        - 10
+        - 20
+        srpo_stacking_gain_abs:
+        - 2
+        - 4
+        srpo_stacked_absolute:
+        - 84
+        - 86
+        libero_nominal_drop:
+        - 1
+        - 3
+        perturbation_dims_with_significant_gain:
+        - 3
+        - 5
+      narrative_direction: '需要调整 claims 的力度。Claim 1 从 "per-DOF conformal features
+        enable dimension-selective correction" 软化为 "structured uncertainty conditioning
+        (including per-DOF features) significantly improves inference-time correction,
+        with per-DOF providing incremental gains over scalar." A3 gap 存在 但不大，故事重心从
+        "per-DOF is the key" 移向 "any calibrated uncertainty features >> no features,
+        per-DOF is additionally beneficial." Claim 2 中 COC 降级为 "promising self-referential
+        signal" 而非 "reliable"; 可能需要 fallback 到 episode-level ACI 作为主推方案，COC 作为 future
+        work。 Claim 3 保留但措辞谨慎: "complementary in principle, with modest empirical
+        stacking gains." Per-perturbation breakdown 成为重要内容——诚实展示哪些维度有效哪些无效。仍可投 CoRL
+        poster。
+
+        '
+    worst:
+      tier: worst
+      meaning: Core per-DOF hypothesis does not transfer to real VLA; A3 kill criterion
+        triggered, method reduces to generic residual policy
+      key_assumptions:
+      - Real VLA flow-matching samples are near-isotropic or have degenerate covariance;
+        K=10 Ledoit-Wolf estimate is too noisy for CRM to extract meaningful per-DOF
+        signal
+      - 'A3 ablation gap < 2%: CRM learns to correct actions but does NOT benefit
+        from conformal features — observation-conditioned residual alone is sufficient'
+      - 'COC Spearman ρ < 0.3 and ellipsoid narrowing < 10%: self-referential signal
+        is unreliable, ACI provides no meaningful advantage over static calibration'
+      - 'SRPO stacking gain < 2%: RL-finetuned policy leaves insufficient room for
+        inference-time correction'
+      - Per-DOF vs scalar gap vanishes or is negative in several perturbation dimensions
+      number_ranges:
+        acr_vla_libero_plus_success_gain_abs:
+        - 0
+        - 5
+        a3_ablation_gap_no_conformal_vs_full:
+        - 0
+        - 2
+        a4_ablation_gap_scalar_vs_perDOF:
+        - -1
+        - 1
+        coc_success_spearman_rho:
+        - 0.05
+        - 0.3
+        aci_ellipsoid_volume_narrowing_pct:
+        - 0
+        - 10
+        srpo_stacking_gain_abs:
+        - 0
+        - 2
+        srpo_stacked_absolute:
+        - 82
+        - 84
+        libero_nominal_drop:
+        - 2
+        - 5
+        perturbation_dims_with_significant_gain:
+        - 0
+        - 2
+      narrative_direction: '原始 framing 不可维持。需要重构 story 从 method paper 转为 analysis/empirical-study
+        paper。 核心转向: "When does multivariate conformal prediction help robot action
+        correction? A systematic empirical study." 贡献变为: (1) 负面结果的价值——证明 synthetic
+        MVP 中的 per-DOF advantage 不能 naively transfer 到 high-dimensional VLA action
+        spaces，分析为什么 (covariance degeneracy, K=10 insufficient, flow-matching sample
+        geometry); (2) 对比分析 CGS vs scalar CP vs DiU 在不同分布偏移类型下的行为差异，提供 practitioner
+        guidance; (3) COC 信号失败模式的系统分析——什么条件下自参考校准信号可靠/不可靠。放弃 CoRL 投稿，瞄 ICLR 2027 workshop
+        或 reframe 后投 ICLR 2027 main。若 CRM 本身（不依赖 conformal features）仍有 >5% 增益， 可考虑退到
+        "observation-conditioned residual correction" 的 simpler story，但这与 A2C2 区分度低。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/best/paper.pdf
+  imagined_experiments:
+  - name: MVP Point-Reaching
+    plan_id: plan_000
+    description: 3D point-reaching 环境下 per-DOF vs scalar vs no uncertainty conditioning
+      对比
+    expected_results:
+      status: DONE
+      conclusion: SUCCESS
+      group4_K10_perDOF_total_mse: 0.0735
+      group4_K10_scalar_total_mse: 0.0788
+      group4_K10_none_total_mse: 0.0882
+      perDOF_vs_none_improvement_pct: 16.7
+      perDOF_vs_scalar_improvement_pct: 6.7
+    result_rationale: '已完成实验。K=10 Ledoit-Wolf 条件下 per-DOF 对 none 有 16.7% MSE 改善， 对
+      scalar 有 6.7% 改善。X 维度（高噪声维度）上 per-DOF 优势最显著， Y/Z 维度 per-DOF 也优于 scalar，验证了跨维度协方差结构可被利用。
+      Oracle covariance 到 K=10 estimated 的衰减约 15pp 但 ranking 保持一致。
+
+      '
+    tables:
+    - name: 'Table S1: MVP Point-Reaching MSE Comparison'
+      description: 6 组实验 × 3 条件的完整 MSE 分解
+    figures_description:
+    - 'Fig S1: Per-DOF MSE bar chart (oracle vs K=10), 展示 X/Y/Z 各维度上三种条件的对比'
+    analysis: 'MVP 验证了核心假设：(1) per-DOF > scalar > none 的 ranking 在 K=10 下保持； (2) 高噪声维度获益最大；(3)
+      Ledoit-Wolf shrinkage 有效控制了 K=10 的协方差估计误差。 为 VLA 全管线实验提供了信心。
+
+      '
+  - name: ACR-VLA Full Pipeline on SmolVLA
+    plan_id: plan_001
+    description: CGS + ACI/COC + CRM 全管线。CRM 在 LIBERO demos + synthetic augmentation
+      上训练。评估 LIBERO 名义 + LIBERO-Plus L3-L5。
+    expected_results:
+      base_smolvla_libero_nominal_success: 97.3
+      base_smolvla_libero_plus_success: 57.8
+      acr_vla_libero_nominal_success: 96.5
+      acr_vla_libero_plus_success: 72.8
+      acr_vla_libero_plus_success_gain_abs: 15.0
+      libero_nominal_drop: 0.8
+      crm_param_count: 131072
+      cgs_K: 10
+      cgs_shrinkage: ledoit-wolf
+      aci_target_coverage: 0.9
+      inference_overhead_ms: 12.4
+    result_rationale: 'best 档下全部五条核心假设成立。(1) SmolVLA flow-matching 样本的 inter-sample
+      协方差结构充分： 7-DOF action 空间中不同维度在分布偏移下展现差异化不确定性膨胀，CGS 提取的 45D 特征 (15-DOF × {std,
+      conformal_radius, ellipsoid_volume}) 编码了可利用的结构。 (2) K=10 + Ledoit-Wolf 在 p/n=0.7
+      条件下产生足够准确的协方差估计， 条件数从 ~10^4 降至 ~10^2，使 Mahalanobis 距离有意义。 (3) Synthetic augmentation
+      覆盖了 camera/noise/robot-state/light/background 5 类扰动， CRM 学到了维度选择性校正模式。(4) ACI+COC
+      在 LIBERO-Plus 上在线适应 conformal threshold， 补偿了 synthetic 训练集未覆盖的 layout/language
+      偏移。 名义 LIBERO 几乎无衰减因为 CRM 学到了"低 uncertainty 时少干预"——conformal radius 在 nominal
+      条件下窄，CRM 的残差输出接近零。15pp 增益分布不均匀，主要来自 camera (+20pp)、 sensor noise (+18pp)、robot-state
+      perturbation (+17pp) 等 CGS 可检测的连续偏移。
+
+      '
+    tables:
+    - name: 'Table 1: LIBERO & LIBERO-Plus Success Rate'
+      description: Base SmolVLA vs ACR-VLA, per-task & aggregate, nominal + L3-L5
+        perturbation levels
+    - name: 'Table 2: Inference Overhead Breakdown'
+      description: K=10 sampling, CGS computation, CRM forward pass 的延迟分解
+    figures_description:
+    - 'Fig 2: LIBERO-Plus success rate by perturbation level (L3/L4/L5), base vs ACR-VLA'
+    - 'Fig 3: Ellipsoid volume heatmap across 7 DOFs × perturbation types, showing
+      dimension-selective uncertainty inflation'
+    analysis: '15pp 绝对增益落在 best 档 [12,18] 中间偏上。CRM 在高不确定性维度（通常是 xyz 平移） 上施加较大校正，在低不确定性维度（gripper）上几乎不干预。
+      名义 LIBERO 仅下降 0.8pp，在统计误差范围内，满足 [0,1] 约束。 131K 参数 CRM 的推理开销 ~12ms 可忽略。
+
+      '
+  - name: Ablation A3 — CRM without Conformal Features
+    plan_id: plan_002
+    description: CRM 仅接收 observation embedding 作为输入，无 45D conformal 特征。等价于 A2C2-style
+      generic residual。Claim 1 的 make-or-break。
+    expected_results:
+      a3_libero_plus_success: 60.8
+      a3_ablation_gap_no_conformal_vs_full: 12.0
+      a3_libero_nominal_success: 96.2
+      a3_vs_base_gain: 3.0
+    result_rationale: '无 conformal 特征时，CRM 退化为盲目残差预测器。它仍能通过 observation embedding
+      学到"某些场景可能需要校正"的粗粒度信号，带来 ~3pp 微弱增益（类似 A2C2 的效果）。 但失去了维度选择性：不知道哪些 DOF 不确定，只能在所有维度上施加相似幅度的残差，
+      导致在确定维度上引入不必要扰动。12pp 的差距（best 档 [8,15] 区间内） 确认了 conformal 特征是 ACR-VLA 有效性的核心驱动因素，而非
+      CRM 架构本身。 这个差距远超 kill criterion (>2%)，Claim 1 安全通过。
+
+      '
+    tables:
+    - name: 'Table 3 row: A3 ablation results'
+      description: A3 vs full ACR-VLA 在 LIBERO-Plus 各 perturbation level 上的对比
+    figures_description:
+    - Fig 4 (ablation bar chart) 中 A3 对应的柱
+    analysis: '12pp 差距提供了 Claim 1 的最强证据。per-DOF conformal 特征不仅仅是"有帮助"， 而是 ACR-VLA
+      有效性的主要来源。A3 在各 perturbation type 上均弱于 full， 但在 camera/noise 上差距最大（因为这些扰动产生的
+      uncertainty 结构最丰富）。
+
+      '
+  - name: Ablation A4 — CRM with Scalar Uncertainty
+    plan_id: plan_003
+    description: CRM 使用 scalar Euclidean distance (à la ReconVLA) 替代 45D per-DOF 特征。验证
+      per-DOF > scalar。
+    expected_results:
+      a4_libero_plus_success: 66.8
+      a4_ablation_gap_scalar_vs_perDOF: 6.0
+      a4_libero_nominal_success: 96.4
+      a4_vs_base_gain: 9.0
+      a4_vs_a3_gap: 6.0
+    result_rationale: '标量 uncertainty（样本集的 Euclidean 距离均值/方差）仍然携带有意义的信息： "整体上这个时间步不确定"。CRM
+      可以据此调整残差幅度（不确定时校正更多）， 比 A3 的盲目残差好得多（+6pp）。但它丢失了跨维度区分——当 xyz 高度不确定而 rotation
+      确定时，标量信号无法让 CRM 只校正 xyz。这导致两类损失： (a) 在确定维度上的不必要干预，(b) 在高度不确定维度上校正不足（因为幅度被平均化）。
+      6pp 差距（best 档 [4,8]）验证了 per-DOF 结构的独特价值，且与 MVP 中 per-DOF vs scalar 的 6.7% MSE
+      改善趋势一致。
+
+      '
+    tables:
+    - name: 'Table 3 row: A4 ablation results'
+      description: A4 vs A3 vs full 三路对比
+    figures_description:
+    - Fig 4 (ablation bar chart) 中 A4 对应的柱
+    - 'Fig 5: Per-DOF correction magnitude visualization — A4(scalar) 在所有 DOF 上近似均匀
+      vs full(per-DOF) 的选择性模式'
+    analysis: 'A4 vs A3 的 6pp 差距说明即使是粗粒度 scalar uncertainty 也有价值。 A4 vs full 的 6pp
+      差距说明 per-DOF 结构提供了额外的等量价值。 形成了清晰的 none < scalar < per-DOF 梯度，机制可解释。
+
+      '
+  - name: ACR-VLA Stacked on SRPO
+    plan_id: plan_004
+    description: 在 SRPO-finetuned SmolVLA (82.1% LIBERO-Plus SOTA) 上部署 ACR-VLA。训练新
+      CRM。
+    expected_results:
+      srpo_baseline_libero_plus: 82.1
+      acr_srpo_libero_plus_success: 88.7
+      srpo_stacking_gain_abs: 6.6
+      srpo_stacked_absolute: 88.7
+      acr_srpo_libero_nominal: 97.8
+      srpo_libero_nominal: 98.1
+      stacking_nominal_drop: 0.3
+    result_rationale: 'best 档下第五条假设成立：SRPO 的 RL fine-tuning 虽然收窄了策略分布，但并未完全 消除 epistemic
+      uncertainty 结构。关键机制：SRPO 优化了训练分布上的 expected reward 但未见过 LIBERO-Plus 的测试时扰动，因此
+      flow-matching 在 OOD 条件下仍展现 差异化的 per-DOF 不确定性——只是基线成功率更高，绝对增益空间更小。 6.6pp 增益（best
+      档 [5,8]）主要来自 SRPO 仍然失败的 harder perturbation cases (L4-L5 level camera shift,
+      compound perturbations)。这些 case 中 SRPO 的 action prediction 质量虽优于 base VLA，但仍有系统性偏差，CGS
+      可检测到并由 CRM 校正。 88.7% 绝对值（best 档 [87,90]）构成 LIBERO-Plus 新 SOTA，且由两个正交方法 (training-time
+      RL + inference-time conformal correction) 叠加而成。 名义 LIBERO 几乎无衰减：SRPO checkpoint
+      在 nominal 下 uncertainty 极低， CRM 的残差自然趋近于零。
+
+      '
+    tables:
+    - name: 'Table 1 rows: SRPO baseline, ACR-VLA+SRPO'
+      description: SRPO vs ACR-VLA+SRPO 在 LIBERO 和 LIBERO-Plus 各级别上的对比
+    - name: 'Table 4: Stacking Analysis'
+      description: Base VLA / ACR-VLA / SRPO / ACR-VLA+SRPO 四路交叉对比
+    figures_description:
+    - 'Fig 6: Stacking bar chart — 四种配置在 LIBERO-Plus L3/L4/L5 上的成功率'
+    - 'Fig 7: Venn diagram of failure cases — ACR-VLA alone vs SRPO alone vs stacked
+      的失败集合交集分析'
+    analysis: '6.6pp stacking gain 远超 kill criterion (>2%)，Claim 3 安全通过。 失败集合分析是关键证据：ACR-VLA
+      和 SRPO 各自修复的 failure case 交集很小（<30%）， 说明二者确实正交。SRPO 修复的主要是 policy quality 问题（action
+      mean 偏差）， ACR-VLA 修复的主要是 uncertainty-driven 问题（高 variance 维度上的 outlier action）。
+      88.7% 标题数字有力支撑"orthogonal gains"叙事。
+
+      '
+  - name: COC Signal Validation
+    plan_id: plan_005
+    description: COC coverage fraction 与 task success 的 Spearman ρ；ACI 收敛曲线；ellipsoid
+      volume vs static calibration。
+    expected_results:
+      coc_success_spearman_rho: 0.61
+      coc_spearman_p_value: 3.0e-05
+      aci_converged_episodes: 47
+      aci_convergence_steps_median: 85
+      aci_mean_coverage_after_convergence: 0.893
+      aci_ellipsoid_volume_narrowing_pct: 28.0
+      static_calibration_coverage_actual: 0.78
+      aci_calibration_coverage_actual: 0.89
+    result_rationale: 'best 档下第三条假设成立：COC chunk overlap consistency 与 task success
+      存在强相关。 机制：成功 trajectory 中相邻 chunk 预测的重叠区域高度一致（overlap consistency > 0.85）， 因为
+      VLA 在正确执行时对未来 action 的预测稳定。失败 trajectory 中 VLA 的预测在 连续时间步间波动，overlap consistency
+      下降到 0.4-0.6。 ρ=0.61（best 档 [0.5,0.7]）反映了这不是完美信号（有些失败 case 中 VLA 自信但错误）， 但足以作为有效的
+      ACI 更新信号。 ACI 使用 COC 信号在线调整 conformal threshold：高 COC 时收紧（减小 ellipsoid）， 低 COC
+      时放松（增大 ellipsoid）。28% 的 volume narrowing（best 档 [20,35]） 意味着 ACI 在分布偏移下能动态收缩到比
+      static calibration 更紧的 conformal set， 同时维持 ~0.89 的有效覆盖率。Static calibration 在
+      LIBERO-Plus 上实际覆盖率 降至 0.78（因为 calibration set 和 test 分布不匹配），ACI 修复了这个问题。
+
+      '
+    tables:
+    - name: 'Table 5: COC-Success Correlation Analysis'
+      description: Spearman ρ, p-value, per-task breakdown
+    - name: 'Table 6: ACI vs Static Calibration'
+      description: Coverage, ellipsoid volume, success rate 的对比
+    figures_description:
+    - 'Fig 8: Scatter plot — episode COC coverage fraction vs binary task success,
+      with marginal histograms'
+    - 'Fig 9: ACI convergence curve — running coverage rate over episodes, with target
+      0.9 line'
+    - 'Fig 10: Ellipsoid volume time series — ACI (adaptive) vs static, showing narrowing
+      under distribution shift'
+    analysis: 'ρ=0.61 是 Claim 2 的核心证据。COC 作为 self-referential 信号不需要外部 reward， 这是区别于
+      episode-level ACI (需要 task success label) 的关键优势。 28% volume narrowing 说明 ACI
+      不只是维持覆盖——它在提供更紧（更有信息量）的 conformal set。 ACI 的 0.89 vs static 的 0.78 实际覆盖率差异直接说明了在线适应的价值。
+
+      '
+  - name: Ablation A1 — No ACI (Static Calibration)
+    plan_id: plan_006
+    description: CRM 使用 static CGS calibration，无在线 ACI 更新。隔离 ACI 贡献。
+    expected_results:
+      a1_libero_plus_success: 68.2
+      a1_vs_full_gap: 4.6
+      a1_libero_nominal_success: 96.8
+      a1_effective_coverage_libero_plus: 0.78
+    result_rationale: '去掉 ACI 后，conformal threshold 固定在 calibration set 上的值。在 LIBERO
+      nominal 上几乎无差异（分布匹配，static 和 adaptive 给出类似 threshold）。 但在 LIBERO-Plus 上，分布偏移使得
+      static threshold 过于宽松或过于严格 （取决于具体 perturbation type）：camera shift 下 uncertainty
+      系统性增大但 static threshold 不变，导致 conformal set 过大，CRM 得到的特征信噪比下降。 4.6pp 差距说明 ACI
+      的自适应能力贡献显著但非主导——CRM + static CGS 本身仍然 捕获了大部分 per-DOF 结构信息，只是 calibration 不够精准。
+
+      '
+    tables:
+    - name: 'Table 3 row: A1 ablation'
+      description: A1 vs full 在各 perturbation level 上的对比
+    figures_description:
+    - Fig 4 中 A1 对应的柱
+    analysis: '4.6pp 差距确认 ACI 是有价值的组件，但不是 ACR-VLA 有效性的主要来源。 主要价值在分布偏移更大的 L4-L5 level
+      显现（L3 几乎无差异）。
+
+      '
+  - name: Ablation A2 — No CRM (CGS + COC + Sample Selection Only)
+    plan_id: plan_007
+    description: 只用 CGS + COC + ACI 做样本选择（选择 Mahalanobis 距离最小的样本），不做学习型残差校正。类似 ReconVLA
+      的多元扩展。
+    expected_results:
+      a2_libero_plus_success: 63.5
+      a2_vs_full_gap: 9.3
+      a2_vs_base_gain: 5.7
+      a2_libero_nominal_success: 97.1
+    result_rationale: '样本选择（从 K=10 中选最优）能提供一定增益：在 conformal ellipsoid 内选择 Mahalanobis
+      距离最小的样本，倾向于选择"最不 outlier"的 action。 但天花板很低——它只能选择已有样本，不能合成更优的 action。当所有 K=10
+      样本 在某些 DOF 上都有偏差时（系统性分布偏移），选择最好的样本仍然有显著误差。 CRM 的价值在于它能合成一个优于任何单个样本的 corrected
+      action——特别是 在不同 DOF 上从不同样本"借鉴"最佳预测。9.3pp 差距量化了"选择 vs 校正"的价值。
+
+      '
+    tables:
+    - name: 'Table 3 row: A2 ablation'
+      description: A2 vs full vs A1 在 LIBERO-Plus 上的对比
+    figures_description:
+    - Fig 4 中 A2 对应的柱
+    analysis: 'A2 > base (5.7pp) 说明即使没有 CRM，结构化 multivariate CP 做样本选择也有价值 （优于 ReconVLA
+      的标量选择）。但 A2 << full (9.3pp 差距) 确认 CRM 的学习型 校正是 ACR-VLA 效果的主要来源。这为论文提供了清晰的 contribution
+      decomposition。
+
+      '
+  - name: Per-Perturbation-Dimension Breakdown
+    plan_id: plan_008
+    description: ACR-VLA gain 在 7 种 LIBERO-Plus perturbation 维度上的分解。
+    expected_results:
+      perturbation_dims_with_significant_gain: 6
+      gain_camera: 19.5
+      gain_sensor_noise: 17.8
+      gain_robot_state: 16.2
+      gain_lighting: 13.4
+      gain_background: 11.8
+      gain_layout: 5.2
+      gain_language: 2.1
+      gain_camera_p_value: 0.001
+      gain_sensor_noise_p_value: 0.002
+      gain_robot_state_p_value: 0.003
+      gain_lighting_p_value: 0.008
+      gain_background_p_value: 0.015
+      gain_layout_p_value: 0.042
+      gain_language_p_value: 0.31
+    result_rationale: 'best 档下 6/7 维度显示显著增益（best 档 [5,7]）。增益梯度与 CGS 可检测性直接相关： (1)
+      Camera perturbation (+19.5pp)：视角变化导致 VLA 的 action prediction 在 xyz 平移维度上 产生强烈的
+      inter-sample variance 膨胀和跨维度协方差变化，CGS 特征最丰富。 (2) Sensor noise (+17.8pp)：直接扰动
+      action 空间，CGS 立即检测到 per-DOF variance 变化。 (3) Robot-state perturbation (+16.2pp)：状态空间偏移导致
+      VLA 对某些 DOF 的预测 系统性偏移，CRM 学到了针对性校正。 (4) Lighting (+13.4pp)：影响视觉特征，间接导致 action
+      uncertainty 升高但仍可检测。 (5) Background (+11.8pp)：类似 lighting 但效果稍弱。 (6) Layout
+      (+5.2pp, p=0.042)：物体位置变化需要策略层面的适应，CGS 能检测到部分 不确定性但 CRM 的 synthetic training
+      未充分覆盖 layout 变化，增益有限。 (7) Language (+2.1pp, p=0.31)：语言指令变化不影响 action space 的
+      uncertainty 结构， CGS 几乎检测不到（语言变化不改变 flow-matching 采样分布的协方差），不显著。
+
+      '
+    tables:
+    - name: 'Table 7: Per-Perturbation Gain Breakdown'
+      description: 7 维度 × {base, ACR-VLA, gain, p-value} 完整表格
+    figures_description:
+    - 'Fig 11: Horizontal bar chart — per-perturbation absolute gain with 95% CI'
+    - 'Fig 12: Heatmap — 7 perturbation types × 7 action DOFs, showing CRM correction
+      magnitude'
+    analysis: 'camera/noise/robot-state 三类"CGS 可检测"的连续偏移占据了最大增益，符合预期。 layout 增益较小但仍显著（p<0.05），说明
+      ACI 在线适应部分弥补了训练集的不足。 language 不显著是 honest limitation——语言变化属于语义层面，不改变 action
+      的 epistemic uncertainty 结构。论文可将此作为 limitation 讨论并指出未来方向。
+
+      '
+  - name: Ablation A5 — CGS (Joint Mahalanobis) vs Per-DOF Bonferroni
+    plan_id: plan_009
+    description: 比较联合 Mahalanobis 非conformity score 与 per-DOF Bonferroni 校正的独立 CP。
+    expected_results:
+      a5_bonferroni_libero_plus_success: 69.4
+      a5_vs_full_gap: 3.4
+      a5_bonferroni_effective_coverage: 0.86
+      a5_bonferroni_ellipsoid_volume_ratio: 1.35
+    result_rationale: 'Bonferroni 校正对 7 个 DOF 独立做 CP，将 per-DOF 覆盖率设为 1-(α/7) 以保证 联合覆盖。这有两个损失：(1)
+      过度保守——Bonferroni 假设最坏情况独立性， 实际维度间存在正相关，导致 conformal set 过大（volume 比 CGS 大 35%）；
+      (2) 丢失跨维度协方差信息——CGS 的 Mahalanobis 距离编码了"xyz 一起偏 vs 只有 x 偏" 的区别，Bonferroni 无法捕获这一结构。3.4pp
+      差距虽不巨大但一致， 验证了 multivariate CP (CGS) 相比 naive per-DOF CP 的优势。
+
+      '
+    tables:
+    - name: 'Table S2: CGS vs Bonferroni CP Comparison'
+      description: Coverage, volume, CRM downstream success rate
+    figures_description:
+    - 'Fig S2: Conformal ellipsoid vs Bonferroni box — 2D projection 可视化 (选择协方差最大的两个
+      DOF)'
+    analysis: '3.4pp 差距说明 CGS 的联合 Mahalanobis approach 有实际价值，但主要效果来自 更紧的 conformal
+      set（volume 小 26%）给 CRM 提供了更高信噪比的特征。 这是 supplementary 级别的结果，支撑方法论选择但不构成独立 claim。
+
+      '
+  - name: Ablation A6 — COC Signal vs Episode-Level Task Success for ACI
+    plan_id: plan_010
+    description: 对比 COC (per-step self-referential) 和 episode-level task success (外部监督)
+      作为 ACI 更新信号。
+    expected_results:
+      a6_episode_aci_libero_plus_success: 72.1
+      a6_coc_aci_libero_plus_success: 72.8
+      a6_gap: 0.7
+      a6_episode_aci_convergence_speed_episodes: 120
+      a6_coc_aci_convergence_speed_episodes: 47
+      a6_coc_advantage_early_episodes_success: 4.2
+    result_rationale: 'COC 和 episode-level ACI 在充分收敛后达到相似的最终性能（差距 <1pp）， 因为两者最终都收敛到正确的
+      conformal threshold。但 COC 有两个关键优势： (1) 收敛速度快 2.5x（47 vs 120 episodes），因为 COC
+      提供 per-step 信号（每步一个 consistency 分数）而 episode-level 仅提供 per-episode 二值信号（成功/失败）；
+      (2) 不需要外部 task success 标签——部署时可能没有 reward signal。 早期 episode（前 50 个）中 COC-ACI
+      比 episode-ACI 高 4.2pp， 说明快速适应在实际部署中有价值。
+
+      '
+    tables:
+    - name: 'Table S3: COC-ACI vs Episode-ACI'
+      description: Convergence speed, final performance, early performance
+    figures_description:
+    - 'Fig S3: ACI convergence curve — COC vs episode-level, showing faster convergence
+      of COC'
+    analysis: '最终性能近似说明 ACI 的 asymptotic 行为不依赖信号源质量（只要信号与 coverage 相关，最终都收敛到 target
+      coverage）。COC 的价值在于 (a) 收敛速度, (b) 无需外部监督。 这是 Claim 2 的"自参考"子论点的独立验证。
+
+      '
+  - name: Ablation A7 — DiU Aleatoric vs CGS Epistemic Features
+    plan_id: plan_011
+    description: CRM 分别使用 DiU aleatoric features (7D)、CGS epistemic features (45D)、combined
+      (52D) 作为输入。
+    expected_results:
+      a7_diu_aleatoric_libero_plus_success: 63.9
+      a7_cgs_epistemic_libero_plus_success: 72.8
+      a7_combined_52d_libero_plus_success: 73.5
+      a7_diu_vs_cgs_gap: 8.9
+      a7_combined_vs_cgs_gap: 0.7
+      a7_diu_libero_nominal_success: 94.8
+      a7_diu_nominal_drop: 2.5
+    result_rationale: 'DiU 估计的 aleatoric uncertainty 反映数据固有噪声，在 nominal 和 OOD 条件下
+      都可能较高（如 gripper action 本身就有 stochasticity）。这导致两个问题： (1) 在 nominal 条件下 CRM 过度干预（2.5pp
+      drop），因为 aleatoric uncertainty 在正常情况下也不为零，CRM 无法区分"固有噪声"和"需要校正"； (2) 在 OOD 条件下信号不如
+      epistemic 清晰——CGS 的 epistemic uncertainty 在 分布偏移时显著升高而在 nominal 时低，提供了更干净的"是否需要校正"信号。
+      Combined 52D 仅比 CGS 45D 好 0.7pp：aleatoric 信息的边际价值很小， 因为 epistemic features 已经捕获了绝大部分可利用的结构。
+      这验证了 paper framing 中"CGS captures epistemic, DiU captures aleatoric"的区分， 以及
+      epistemic uncertainty 对 action correction 更有用的论点。
+
+      '
+    tables:
+    - name: 'Table S4: Epistemic vs Aleatoric Uncertainty Features'
+      description: DiU / CGS / Combined 三路对比, nominal + LIBERO-Plus
+    figures_description:
+    - 'Fig S4: Per-DOF uncertainty magnitude — DiU vs CGS 在 nominal 和 OOD 条件下的分布对比'
+    analysis: '8.9pp 差距是对 reviewer concern "DiU 更高效" 的直接回应：效率不是唯一考量， epistemic vs
+      aleatoric 的信号质量差异更重要。DiU 在 nominal 上的 2.5pp drop 是额外的 evidence point——aleatoric
+      conditioning 在没有分布偏移时反而有害。 Combined 的微弱改善不 justify 52D 的额外复杂度，支持了 45D CGS-only
+      的设计选择。
+
+      '
+  - name: Feature Importance Analysis
+    plan_id: plan_012
+    description: CRM 对 45 个 uncertainty 特征的梯度 magnitude 分析，按 perturbation type 分解。
+    expected_results:
+      top_features_overall:
+      - conformal_radius_x
+      - conformal_radius_y
+      - conformal_radius_z
+      - std_x
+      - ellipsoid_volume
+      - std_y
+      conformal_radius_gradient_share: 0.48
+      std_gradient_share: 0.31
+      ellipsoid_volume_gradient_share: 0.21
+      camera_perturbation_top_feature: conformal_radius_x
+      noise_perturbation_top_feature: std_z
+      robot_state_top_feature: conformal_radius_joint3
+    result_rationale: 'Conformal radius 是最重要的特征类别（48% gradient share），因为它直接编码了 "在该
+      DOF 上 conformal set 有多宽"——这是 calibrated 的 uncertainty measure， 比 raw std 更稳定。Per-DOF
+      std 次之（31%），提供互补的 raw dispersion 信息。 Ellipsoid volume（全局标量）虽然只有 21% 但在所有 perturbation
+      type 上贡献一致， 作为"整体 uncertainty level"的 contextual feature。 关键发现：不同 perturbation
+      type 下 CRM 关注的 DOF 不同——camera shift 主要 影响 xyz 平移因此 conformal_radius_{x,y,z}
+      梯度高；robot-state perturbation 主要影响关节角因此 conformal_radius_joint* 梯度高。这是"维度选择性校正"的
+      直接机制证据。
+
+      '
+    tables:
+    - name: 'Table 8: Feature Importance by Category'
+      description: 3 feature categories × 7 perturbation types 的 gradient magnitude
+        matrix
+    figures_description:
+    - 'Fig 13: Feature importance heatmap — 45 features × 7 perturbation types, gradient
+      magnitude'
+    - 'Fig 14: Top-3 features per perturbation type, showing dimension-selective attention
+      pattern'
+    analysis: 'Feature importance 分析提供了 Claim 1 的机制解释：CRM 不是黑盒——它确实在利用 per-DOF conformal
+      结构做维度选择性校正。不同 perturbation 下关注不同 DOF 的模式 与物理直觉一致。这是 reviewer 最可能 appreciate
+      的 interpretability result。
+
+      '
+  - name: SnapFlow Integration — K=10 × 1-Step Distilled Sampling
+    plan_id: plan_013
+    description: 用 SnapFlow 1-step distilled generation 替代标准 flow-matching 多步采样。测试样本多样性和推理加速。
+    expected_results:
+      snapflow_libero_plus_success: 71.2
+      snapflow_vs_full_gap: 1.6
+      snapflow_sample_diversity_ratio: 0.87
+      snapflow_inference_time_ms: 38
+      standard_inference_time_ms: 185
+      snapflow_speedup: 4.9
+      snapflow_libero_nominal_success: 96.1
+    result_rationale: 'SnapFlow 1-step distilled generation 将 K=10 的采样时间从 ~185ms 降至
+      ~38ms (4.9x speedup)，因为跳过了 flow-matching 的迭代 ODE 求解。 样本多样性保留 87%（用 K=10 样本集的
+      average pairwise distance 衡量）： distillation 轻微压缩了分布尾部，但核心的 inter-sample covariance
+      结构保留。 LIBERO-Plus 上仅损失 1.6pp，因为 CGS 在稍低多样性下仍能提取有意义的 per-DOF 特征——Ledoit-Wolf
+      shrinkage 对 slightly lower effective K 鲁棒。 这为实时部署场景提供了 practical speedup 且性能损失可接受。
+
+      '
+    tables:
+    - name: 'Table S5: SnapFlow vs Standard Sampling'
+      description: Inference time, sample diversity, downstream success
+    figures_description:
+    - 'Fig S5: Inference time breakdown — standard vs SnapFlow, showing per-component
+      cost'
+    analysis: 4.9x speedup 在 1.6pp 代价下是合理的 engineering tradeoff。 87% 样本多样性保留说明 1-step
+      distillation 保留了足够的 epistemic information。 这不是核心科学贡献但是重要的 practical result，回应了
+      reviewer 可能的 "K=10 采样太慢" concern。可放在 supplementary 或 practical considerations
+      section。
+  review_report: '---
+
+    dream_id: dream_20260513T023849
+
+    tier: best
+
+    overall_score: 5/10 — Borderline Reject
+
+    timestamp: 2026-05-13T03:12:12.046337+00:00
+
+    ---
+
+
+    # Dream Review Report: ACR-VLA
+
+
+    **Paper**: ACR-VLA: Inference-Time Dimension-Selective Action Correction via Multivariate
+    Conformal Prediction for Vision-Language-Action Models
+
+    **Target Venue**: CoRL 2026
+
+    **Review Mode**: Full (2-reviewer roundtable)
+
+    **Dream ID**: 20260513T023849
+
+
+    ---
+
+
+    ## Venue Calibration
+
+
+    **CoRL** evaluates on: Originality, Quality, Clarity, Significance, Relevance,
+    Limitations. Historical acceptance rate ~25–35%. Rating scale 1–10 (10=top 5%
+    seminal, 8=clear accept, 6=marginally above threshold, 5=marginally below). CoRL
+    places high value on robotics relevance, empirical rigor, real-world applicability,
+    and honest reporting of limitations.
+
+
+    ---
+
+
+    ## Roundtable Summary
+
+
+    ### Step 1: Independent Reviews
+
+
+    **R1 (Methods + Experiments) — Score: 4/10**
+
+    Focus: methodological soundness, experimental rigor, statistical reporting.
+
+
+    **R2 (Novelty + Related Work) — Score: 5/10**
+
+    Focus: novelty positioning, related work coverage, claim calibration.
+
+
+    ### Step 2: Cross-Sharing — Key Points Exchanged
+
+
+    R1→R2: Flagged absence of statistical reporting (no CIs, no seed variance, no
+    test methodology), no K sensitivity analysis despite ~15pp oracle-to-estimated
+    degradation in MVP, and CRM training confound (augmentation memorization vs. genuine
+    conformal utility). Also noted that all experimental figures referenced in text
+    are absent from the 7-page PDF.
+
+
+    R2→R1: Flagged that the 5-entry bibliography is a fatal deficiency (the text discusses
+    10+ methods by name without citations), the "first to combine X with Y" novelty
+    framing is narrow, and the "orthogonal gains" claim (Claim 3) is tested on only
+    one training-time method (SRPO). Also noted 45D feature dimensionality is arithmetically
+    inconsistent in the text.
+
+
+    ### Step 3: Convergence
+
+
+    Both reviewers converge on the following assessment:
+
+
+    **Points of Agreement:**
+
+    1. The ablation hierarchy (none 60.8% < scalar 66.8% < per-DOF 72.8%) is the paper''s
+    strongest evidence and is well-designed
+
+    2. The 5-reference bibliography is unacceptable at any venue — a fatal formatting
+    deficiency
+
+    3. Single VLA backbone (SmolVLA) and single benchmark (LIBERO/LIBERO-Plus) limit
+    generality claims
+
+    4. No experimental comparison with closest related methods (A2C2, ReconVLA, UPS,
+    CP-in-the-Loop)
+
+    5. Honest per-perturbation breakdown and transparent language-perturbation limitation
+    are commendable
+
+    6. The 45D dimensionality description contains internal inconsistencies
+
+    7. Statistical rigor is insufficient — no confidence intervals, error bars, or
+    multi-seed reporting
+
+    8. Practical engineering merits (12ms overhead, SnapFlow compatibility, 131K params)
+    are genuine strengths
+
+
+    **Points of Divergence (Resolved):**
+
+    - R1 initially scored lower (4) due to concerns about results provenance; R2 (5)
+    was more lenient on methodological concerns but harsher on novelty framing. After
+    cross-sharing, both agree the score should reflect: strong empirical promise +
+    significant presentation/rigor deficiencies. **Converged overall: 5/10 (Borderline
+    Reject / Weak Reject).**
+
+
+    ---
+
+
+    ## Consolidated Review
+
+
+    ### 1. Summary
+
+
+    ACR-VLA proposes an inference-time correction module for flow-matching VLAs that
+    extracts 45-dimensional per-DOF conformal statistics (CGS) from K=10 action samples
+    with Ledoit-Wolf shrinkage, adapts conformal thresholds online via a novel Chunk
+    Overlap Consistency (COC) signal, and feeds these features into a lightweight
+    131K-parameter CRM for dimension-selective residual correction. On LIBERO-Plus,
+    ACR-VLA improves base SmolVLA by +15pp and achieves 88.7% when stacked on SRPO
+    (+6.6pp), establishing a new SOTA. Ablations demonstrate a clean gradient (none
+    < scalar < per-DOF) and isolate per-DOF conformal features as the primary driver.
+
+
+    ### 2. Strengths
+
+
+    **S1. Well-designed ablation hierarchy.** The A1–A4 ablations provide clean decomposition:
+    A3 (no conformal features, 60.8%) < A4 (scalar, 66.8%) < Full (per-DOF, 72.8%).
+    The 12pp gap between CRM-without-conformal and full ACR-VLA is the paper''s most
+    convincing evidence. This is complemented by the MVP point-reaching validation
+    showing the same ranking in a controlled setting.
+
+
+    **S2. Principled statistical methodology.** Ledoit-Wolf shrinkage for the K=10,
+    d=7 regime (p/n=0.7) is well-motivated and correctly addresses the ill-conditioning
+    problem. The Mahalanobis-based nonconformity score capturing cross-dimensional
+    correlations is theoretically sound.
+
+
+    **S3. COC as self-referential signal is creative.** Exploiting temporal overlap
+    structure of action chunks for coverage feedback addresses a real deployment constraint
+    (no external reward). The 2.5× convergence speedup over episode-level supervision
+    is practically meaningful.
+
+
+    **S4. Epistemic vs. aleatoric distinction (A7) is well-argued.** CGS epistemic
+    (72.8%) >> DiU aleatoric (63.9%), with the key insight that aleatoric uncertainty
+    causes over-intervention on nominal data (−2.5pp). This is a genuine conceptual
+    contribution.
+
+
+    **S5. Honest limitation reporting.** Transparent disclosure that language perturbations
+    yield no significant gain (p=0.31) and that gains correlate with CGS detectability
+    is rare and appreciated. Per-perturbation breakdown with p-values (Table 4) raises
+    the paper''s credibility.
+
+
+    **S6. Strong practical engineering.** 131K parameters, ~12ms overhead, compatibility
+    with SnapFlow (4.9× speedup at −1.6pp), post-hoc deployment on frozen VLAs — all
+    indicate a system designed for real use.
+
+
+    **S7. Orthogonality evidence via SRPO stacking.** +6.6pp on top of an already-strong
+    82.1% baseline, with negligible nominal degradation (−0.3pp), is a meaningful
+    result that supports the inference-time/training-time complementarity thesis.
+
+
+    ### 3. Weaknesses
+
+
+    **W1 (Fatal). Bibliography contains only 5 entries.** The Related Work section
+    discusses 10+ methods by name (A2C2, CP-in-the-Loop, UPS, DiU, RobustVLA, DiG-Flow,
+    SnapFlow, etc.) without corresponding citations. This is unacceptable at any venue.
+    The authors clearly know the literature — the textual discussion is accurate and
+    specific — but the formal bibliography must include every referenced work. This
+    alone would trigger a desk-reject concern at CoRL.
+
+
+    **W2 (Major). No experimental comparison with closest baselines.** A2C2 (generic
+    residual correction), ReconVLA (scalar CP-based sample selection), UPS (CP for
+    strategy gating), and DiG-Flow (training-time augmentation) are all discussed
+    in Related Work but absent from experimental tables. Ablation A3 approximates
+    A2C2 but is not equivalent to running the actual method. Without head-to-head
+    comparisons, the reader cannot determine whether ACR-VLA''s gains come from its
+    specific conformal feature design or from general properties of any inference-time
+    correction applied to SmolVLA.
+
+
+    **W3 (Major). No statistical reporting.** No confidence intervals, standard deviations,
+    number of evaluation seeds, or test methodology descriptions appear anywhere.
+    For CoRL, reporting mean ± std across ≥3 seeds is expected. The +15pp headline
+    gain could be noisy if variance is high.
+
+
+    **W4 (Major). Single VLA backbone and single benchmark.** All experiments use
+    SmolVLA on LIBERO/LIBERO-Plus. The paper''s language ("any flow-matching VLA,"
+    "orthogonal to training-time methods") implies generality that is not empirically
+    supported. Testing on at least one additional VLA (e.g., π0, OpenVLA) would substantially
+    strengthen generality claims.
+
+
+    **W5 (Major). "Orthogonal gains" claim (Claim 3) is under-supported.** Tested
+    on only one training-time method (SRPO). Orthogonality is a stronger claim than
+    additive improvement — it requires showing gains are preserved across multiple
+    training-time approaches. No failure mode decomposition is provided to demonstrate
+    that ACR-VLA and SRPO correct non-overlapping failures.
+
+
+    **W6 (Moderate). No K sensitivity analysis.** K=10 is used throughout without
+    ablation. The MVP experiment shows ~15pp degradation from oracle to K=10 estimated
+    covariance. How does performance vary with K=5, K=15, K=20? This is essential
+    for understanding the method''s sensitivity and for practitioners choosing deployment
+    configurations.
+
+
+    **W7 (Moderate). CRM training confound.** CRM is trained on synthetically augmented
+    data covering 5 perturbation types. The per-perturbation breakdown (Table 4) shows
+    gains concentrated on augmentation-covered types (camera +19.5, noise +17.8) and
+    minimal on uncovered types (language +2.1). A held-out perturbation type experiment
+    (train CRM without one augmentation type, evaluate on it) would distinguish conformal
+    feature utility from augmentation memorization.
+
+
+    **W8 (Moderate). COC novelty may be overstated.** Temporal consistency checking
+    is well-established in sequential prediction. The specific application to action
+    chunk overlap is new, but the underlying principle is not. The COC-vs-episode-level
+    ablation (A6) shows only 0.7pp final performance difference — COC''s primary advantage
+    is convergence speed, not final quality. This should be stated more precisely.
+
+
+    **W9 (Moderate). 45D feature dimensionality is internally inconsistent.** Section
+    3.1 describes "15-dimensional feature vector per DOF ... plus scalar volume, totaling
+    45 dimensions." But 15 features × 7 DOFs = 105, not 45. The actual construction
+    (7 std + 7 conformal radii + 1 ellipsoid volume per action chunk timestep) needs
+    arithmetic clarification.
+
+
+    **W10 (Minor). "Conformal" framing may mislead.** Once CGS features pass through
+    CRM, the corrected action carries no formal coverage guarantee. The paper should
+    explicitly state that CP is used as a feature extractor, not as a guarantor of
+    output quality. "Conformal Refinement Module" may create misleading expectations.
+
+
+    **W11 (Minor). Missing figures.** The paper references an extensive figure set
+    (Figs 2–14, S1–S5) in the experiment design, but the 7-page PDF contains only
+    tables. Key visualizations — ellipsoid volume heatmaps, per-DOF correction magnitude
+    comparisons, ACI convergence curves — would substantially strengthen the empirical
+    narrative.
+
+
+    ### 4. Questions for Authors
+
+
+    1. **Bibliography**: Is the 5-entry reference list a draft artifact? Will the
+    camera-ready include full citations for all discussed methods?
+
+
+    2. **Baseline comparisons**: Have you run A2C2 or ReconVLA on your setup? If A2C2
+    achieves above A3''s 60.8%, that would narrow the claimed gap attributable to
+    conformal features specifically.
+
+
+    3. **Statistical significance**: How many seeds were used? What are the standard
+    deviations on the headline numbers (72.8%, 88.7%)? Would the +15pp gain survive
+    a paired bootstrap test?
+
+
+    4. **K sensitivity**: How does performance degrade at K=5? How much does it improve
+    at K=20? Is there a diminishing-returns curve?
+
+
+    5. **Held-out perturbation**: If CRM is trained without camera augmentation, what
+    is the gain on camera perturbation specifically? This isolates conformal feature
+    utility from augmentation coverage.
+
+
+    6. **Orthogonality breadth**: Have you tested ACR-VLA stacked on DiG-Flow or RobustVLA?
+    If gains disappear for another training-time method, the "orthogonal" claim reduces
+    to "complementary to SRPO."
+
+
+    7. **Feature importance implications**: Your gradient analysis shows covariance-related
+    features contribute only ~21% (ellipsoid volume). Does this undermine the multivariate
+    CP motivation? Would a simpler "per-DOF std + scalar volume" feature set achieve
+    similar results without Mahalanobis computation?
+
+
+    8. **Coverage guarantee**: Can you state any formal guarantee on the corrected
+    action, or is CP purely a feature extractor? Would "uncertainty-conditioned residual
+    correction" be a more accurate description than "conformal refinement"?
+
+
+    ### 5. Scores
+
+
+    | Dimension | R1 | R2 | Converged | Rationale |
+
+    |-----------|----|----|-----------|-----------|
+
+    | **Originality** | 5 | 5 | **5** | Combination novelty (CP features → learned
+    residual) is genuine but narrow. Individual components are established. COC is
+    a creative instantiation of temporal consistency. |
+
+    | **Quality / Soundness** | 4 | 6 | **5** | Ablation design is strong; execution
+    has gaps (no CIs, no K ablation, no head-to-head baselines, single VLA). |
+
+    | **Clarity** | 6 | 7 | **6** | Writing is clear and logical. 5-reference bibliography,
+    45D arithmetic error, and missing figures are significant presentation issues.
+    |
+
+    | **Significance** | 5 | 6 | **5** | +15pp and 88.7% SOTA are meaningful if robust;
+    single-benchmark evaluation, missing baselines, and no statistical reporting limit
+    assessed significance. |
+
+    | **Relevance** | — | — | **8** | Highly relevant to CoRL: inference-time robustness
+    for VLA deployment is a timely, practical problem. |
+
+    | **Overall** | 4 | 5 | **5** | Borderline Reject / Weak Reject |
+
+    | **Confidence** | 4/5 | 4/5 | **4/5** | |
+
+
+    ### 6. Meta-Review / Recommendation
+
+
+    **Overall Assessment: 5/10 — Borderline Reject**
+
+
+    ACR-VLA addresses a well-identified gap (no prior method uses structured per-DOF
+    conformal statistics as input features for learned action correction) with a technically
+    sound pipeline and a clean ablation hierarchy that convincingly demonstrates per-DOF
+    > scalar > none. The COC signal, epistemic-vs-aleatoric analysis, and SRPO stacking
+    results are additional strengths. The practical engineering (12ms, 131K params,
+    SnapFlow compatibility) is commendable.
+
+
+    However, the paper has several deficiencies that prevent acceptance in its current
+    form:
+
+
+    1. **The 5-reference bibliography is a fatal formatting issue** that must be fixed
+    before any venue submission.
+
+    2. **No head-to-head experimental comparison** with the closest related methods
+    (A2C2, ReconVLA) leaves the core novelty claim empirically under-supported.
+
+    3. **No statistical reporting** (CIs, seed variance) undermines confidence in
+    the headline numbers.
+
+    4. **Single VLA + single benchmark** limits the generality claims that pervade
+    the text.
+
+    5. **The "orthogonal gains" claim** is tested on one training-time method only.
+
+
+    **Path to acceptance**: Fix the bibliography. Add A2C2 and ReconVLA as experimental
+    baselines. Report mean ± std across ≥3 seeds. Add K sensitivity analysis. Test
+    on one additional VLA backbone. Reframe "orthogonal" to "complementary to SRPO"
+    unless tested on multiple training-time methods. Clarify 45D arithmetic. Add key
+    figures (ellipsoid visualization, ACI convergence, per-DOF correction patterns).
+    With these additions, the paper''s strong ablation design and practical value
+    proposition could reach accept at CoRL.
+
+
+    ### 7. Experiment Coverage Assessment
+
+
+    Comparing against the full experiment design (review_context.yaml, 14 planned
+    experiments):
+
+
+    | Experiment | In Paper? | Assessment |
+
+    |-----------|-----------|------------|
+
+    | MVP Point-Reaching (plan_000) | ✅ Table 1 | Clean validation of core hypothesis
+    |
+
+    | Full Pipeline (plan_001) | ✅ Table 2 | Main result, needs error bars |
+
+    | A3: No Conformal Features (plan_002) | ✅ Table 3 | Key ablation, convincing
+    gap |
+
+    | A4: Scalar Uncertainty (plan_003) | ✅ Table 3 | Establishes clean gradient |
+
+    | SRPO Stacking (plan_004) | ✅ Table 2 | Headline SOTA result |
+
+    | COC Validation (plan_005) | ✅ Table 5 | Self-referential signal validated |
+
+    | A1: No ACI (plan_006) | ✅ Table 3 | ACI contribution isolated |
+
+    | A2: No CRM (plan_007) | ✅ Table 3 | Selection vs. correction quantified |
+
+    | Per-Perturbation (plan_008) | ✅ Table 4 | Thorough, with p-values |
+
+    | A5: Bonferroni (plan_009) | ✅ §4.7 | Joint > Bonferroni confirmed |
+
+    | A6: COC vs Episode (plan_010) | ✅ §4.6 | Convergence speed is primary advantage
+    |
+
+    | A7: Epistemic vs Aleatoric (plan_011) | ✅ Table 6 | Strong conceptual contribution
+    |
+
+    | Feature Importance (plan_012) | ✅ Table 7, §4.9 | Mechanistic evidence |
+
+    | SnapFlow (plan_013) | ✅ Table 8 | Practical speedup result |
+
+
+    **Coverage: 14/14 experiments reported.** The experiment design is comprehensive
+    and all planned experiments appear in the paper. The primary gaps are in reporting
+    rigor (statistics, figures) and missing external baselines, not in experiment
+    coverage.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/median/paper.pdf
+  imagined_experiments:
+  - name: ACR-VLA Full Pipeline (SmolVLA base)
+    plan_id: plan_001
+    description: 'Full ACR-VLA pipeline: CGS (K=10, Ledoit-Wolf) + ACI/COC + CRM (131K
+      params). CRM trained on LIBERO demos + synthetic augmentation (camera jitter,
+      Gaussian noise, robot-state perturbation). Evaluated on LIBERO nominal (10 tasks)
+      and LIBERO-Plus (7 perturbation dimensions × 10 tasks).
+
+      '
+    expected_results:
+      libero_nominal_success_rate: 92.6
+      libero_nominal_base: 94.8
+      libero_nominal_drop: 2.2
+      libero_plus_aggregate_success_rate: 70.5
+      libero_plus_base: 62.3
+      libero_plus_gain_abs: 8.2
+      libero_plus_camera_shift: 70.8
+      libero_plus_sensor_noise: 66.4
+      libero_plus_robot_state: 65.3
+      libero_plus_lighting: 71.2
+      libero_plus_background: 71.5
+      libero_plus_layout: 73.0
+      libero_plus_language: 72.4
+      crm_inference_overhead_ms: 3.2
+      cgs_k10_sampling_time_ms: 118
+      total_inference_time_per_step_ms: 134
+    result_rationale: 'Flow-matching samples from real VLA have covariance structure
+      but noisier than synthetic MVP: K=10 Ledoit-Wolf estimates are adequate but
+      not tight, introducing ~15-20% feature quality degradation vs oracle covariance.
+      CRM still learns meaningful correction patterns because per-DOF std and conformal
+      radii carry genuine distributional information even with shrunk covariance.
+      The 8.2% aggregate gain comes primarily from camera/noise/robot-state dimensions
+      where synthetic augmentation provides good calibration-set coverage — CRM learns
+      to suppress high-uncertainty DOFs (typically wrist rotation and z-translation
+      under camera shift) while preserving confident DOFs. The 2.2% nominal drop is
+      CRM occasionally over-correcting in-distribution actions where CGS correctly
+      reports low uncertainty but CRM''s learned residual still nudges slightly; this
+      is the cost of the correction module''s expressivity. Gain is real but not as
+      dramatic as the MVP''s ~27% per-DOF advantage because real VLA action distributions
+      are higher-dimensional (7-DOF chunks vs 3D), multimodal, and the covariance
+      structure is harder to estimate reliably with K=10.
+
+      '
+    tables:
+    - name: 'Table 1: LIBERO and LIBERO-Plus Success Rates'
+      content: '| Method       | LIBERO (nominal) | LIBERO-Plus (agg.) | Δ Plus |
+
+        |-------------|------------------|-------------------|--------|
+
+        | SmolVLA     | 94.8             | 62.3              | —      |
+
+        | ACR-VLA     | 92.6             | 70.5              | +8.2   |
+
+        '
+    - name: 'Table 1 (extended): Per-Perturbation Breakdown'
+      content: '| Perturbation  | SmolVLA | ACR-VLA | Δ     | Significant? |
+
+        |--------------|---------|---------|-------|-------------|
+
+        | camera_shift | 58.2    | 70.8    | +12.6 | ✓           |
+
+        | sensor_noise | 55.6    | 66.4    | +10.8 | ✓           |
+
+        | robot_state  | 56.8    | 65.3    | +8.5  | ✓           |
+
+        | lighting     | 65.4    | 71.2    | +5.8  | ✓           |
+
+        | background   | 68.3    | 71.5    | +3.2  | ✗           |
+
+        | layout       | 72.1    | 73.0    | +0.9  | ✗           |
+
+        | language     | 71.5    | 72.4    | +0.9  | ✗           |
+
+        '
+    figures_description:
+    - 'Fig 2a: Grouped bar chart — SmolVLA vs ACR-VLA success rate across 7 perturbation
+      dimensions + nominal, sorted by ACR-VLA gain. Clear visual separation on camera/noise/robot-state,
+      overlapping bars on layout/language.'
+    - 'Fig 2b: Per-task heatmap (10 tasks × 7 perturbations) showing success rate
+      delta. Reveals that gains are concentrated in manipulation-heavy tasks (e.g.,
+      pick-and-place, drawer) rather than navigation tasks.'
+    analysis: 'The 8.2% aggregate gain is solidly within the median range [6, 11].
+      The per-perturbation structure is informative: the 4 dimensions with significant
+      gain (camera, noise, robot-state, lighting) are precisely those covered by synthetic
+      augmentation, confirming that CGS calibration quality is the bottleneck. Layout
+      and language perturbations involve semantic shifts that synthetic augmentation
+      cannot cover — CGS features for these are essentially noise, and CRM correctly
+      learns to make near-zero corrections. The 2.2% nominal drop is acceptable for
+      CoRL but should be discussed honestly.
+
+      '
+  - name: A3 Ablation — CRM without Conformal Features
+    plan_id: plan_002
+    description: 'CRM receives only observation embeddings (from VLA encoder) as input,
+      no CGS-derived uncertainty features. Equivalent to an A2C2-style generic learned
+      residual policy. Same CRM architecture (131K params), same training data and
+      procedure as full ACR-VLA.
+
+      '
+    expected_results:
+      libero_plus_aggregate_success_rate: 65.8
+      libero_plus_gain_over_base: 3.5
+      a3_gap_to_full_acr_vla: 4.7
+      libero_nominal_success_rate: 93.8
+      libero_plus_camera_shift: 63.1
+      libero_plus_sensor_noise: 60.2
+      libero_plus_robot_state: 60.9
+      libero_plus_lighting: 67.8
+      libero_plus_background: 69.5
+      libero_plus_layout: 72.6
+      libero_plus_language: 71.8
+    result_rationale: 'Without uncertainty features, CRM can only learn a fixed residual
+      correction pattern conditioned on visual observations. It captures some systematic
+      biases (e.g., consistent z-offset under camera shift) but cannot adapt correction
+      magnitude or direction to per-step uncertainty. The 3.5% gain over base reflects
+      that observation-conditioned residuals capture low-hanging fruit — average correction
+      vectors that are right more often than wrong. But the lack of dimension-selective
+      information means CRM applies similar corrections to confident and uncertain
+      DOFs alike, sometimes degrading already-accurate dimensions. The 4.7% gap to
+      full ACR-VLA (within [3,7]) confirms that conformal features provide substantial
+      value — almost as much as the residual module itself — but the gap isn''t overwhelming,
+      consistent with the median tier''s "per-DOF advantage exists but attenuated"
+      characterization. The kill criterion (gap < 2%) is clearly survived; Claim 1
+      holds with the softened framing.
+
+      '
+    tables:
+    - name: Ablation Table Row (A3)
+      content: '| Variant              | LIBERO-Plus | Δ vs Base | Δ vs Full ACR-VLA
+        |
+
+        |---------------------|-------------|-----------|-------------------|
+
+        | SmolVLA (base)      | 62.3        | —         | -8.2              |
+
+        | A3: CRM, no unc.   | 65.8        | +3.5      | -4.7              |
+
+        | Full ACR-VLA        | 70.5        | +8.2      | —                 |
+
+        '
+    figures_description:
+    - 'Part of Fig 3 (ablation bar chart): A3 bar sits between base and full ACR-VLA,
+      visually demonstrating that conformal features account for roughly 57% of the
+      total gain (4.7/8.2).'
+    analysis: 'A3 gap of 4.7% clearly exceeds the 2% kill threshold. Claim 1 survives
+      but the narrative must acknowledge that observation-conditioned residuals alone
+      provide non-trivial value (+3.5%). The story should frame this as: "CRM provides
+      a correction mechanism; conformal features provide the information that makes
+      the correction dimension-selective and magnitude-appropriate."
+
+      '
+  - name: A4 Ablation — Scalar Uncertainty Features
+    plan_id: plan_003
+    description: 'CRM receives observation embeddings + scalar uncertainty features
+      (Euclidean distance from mean to nearest calibration point, analogous to ReconVLA''s
+      approach) instead of 45D per-DOF features. Scalar features: 1D distance + 1D
+      log-likelihood + 1D normalized rank = 3D total.
+
+      '
+    expected_results:
+      libero_plus_aggregate_success_rate: 68.4
+      libero_plus_gain_over_base: 6.1
+      a4_gap_to_full_acr_vla: 2.1
+      a4_gap_to_a3: 2.6
+      libero_nominal_success_rate: 93.2
+      libero_plus_camera_shift: 67.5
+      libero_plus_sensor_noise: 63.8
+      libero_plus_robot_state: 63.0
+      libero_plus_lighting: 69.8
+      libero_plus_background: 70.4
+      libero_plus_layout: 72.8
+      libero_plus_language: 72.1
+    result_rationale: 'Scalar uncertainty gives CRM a "how uncertain overall" signal,
+      enabling it to modulate correction magnitude globally — correct more aggressively
+      when scalar uncertainty is high, less when low. This captures the bulk of the
+      uncertainty-conditioning benefit (+2.6% over A3), because the dominant failure
+      mode under distribution shift is "everything is somewhat off" rather than "one
+      specific DOF is wrong." The remaining per-DOF advantage (+2.1%) comes from the
+      minority of cases where uncertainty is truly dimension-selective: e.g., camera
+      shift primarily affecting x/y while z remains well-estimated, or robot-state
+      perturbation affecting specific joints. In these cases, per-DOF features allow
+      CRM to correct the problematic dimensions without disturbing the accurate ones.
+      The 2.1% gap (within [1,3]) is modest but positive, supporting the softened
+      claim that "per-DOF provides incremental gains over scalar." Most of the information-theoretic
+      content of the 45D features is captured by the scalar summary — the per-DOF
+      structure adds refinement rather than fundamentally new capability.
+
+      '
+    tables:
+    - name: Ablation Table Row (A4)
+      content: '| Variant              | LIBERO-Plus | Δ vs Base | Δ vs A3 | Δ vs
+        Full |
+
+        |---------------------|-------------|-----------|---------|-----------|
+
+        | SmolVLA (base)      | 62.3        | —         | —       | -8.2      |
+
+        | A3: CRM, no unc.   | 65.8        | +3.5      | —       | -4.7      |
+
+        | A4: CRM + scalar   | 68.4        | +6.1      | +2.6    | -2.1      |
+
+        | Full ACR-VLA        | 70.5        | +8.2      | +4.7    | —         |
+
+        '
+    figures_description:
+    - 'Part of Fig 3 (ablation bar chart): A4 bar closer to full ACR-VLA than to A3,
+      visually showing that most of the ''uncertainty signal'' value is captured by
+      scalar, with per-DOF providing incremental lift.'
+    - 'Fig 3 inset: Stacked contribution decomposition — CRM alone (3.5%), +scalar
+      unc. (2.6%), +per-DOF upgrade (2.1%). Shows ''any uncertainty >> none'' while
+      per-DOF is beneficial but not dominant.'
+    analysis: 'The A4 gap of 2.1% is within [1,3] as expected for median tier. The
+      critical insight for the paper: the decomposition base→A3→A4→Full shows gains
+      of +3.5/+2.6/+2.1. The transition from "no uncertainty" to "any uncertainty"
+      (+2.6) is larger than "scalar to per-DOF" (+2.1), but per-DOF still provides
+      meaningful additional value. The narrative should emphasize that all three components
+      contribute and per-DOF is the final piece that enables truly dimension-selective
+      correction.
+
+      '
+  - name: ACR-VLA Stacked on SRPO
+    plan_id: plan_004
+    description: 'Train new CRM on SRPO-finetuned VLA checkpoint. New CGS calibration
+      on SRPO samples (K=10). SRPO already partially addresses robustness via training-time
+      optimization — question is whether inference-time conformal correction provides
+      orthogonal value.
+
+      '
+    expected_results:
+      srpo_base_libero_plus: 82.1
+      srpo_plus_acr_vla_libero_plus: 85.0
+      srpo_stacking_gain_abs: 2.9
+      srpo_plus_acr_vla_libero_nominal: 93.1
+      srpo_base_libero_nominal: 95.6
+      srpo_plus_acr_vla_camera: 87.2
+      srpo_plus_acr_vla_noise: 84.6
+      srpo_plus_acr_vla_robot_state: 83.8
+      srpo_plus_acr_vla_lighting: 85.4
+      srpo_plus_acr_vla_background: 84.8
+      srpo_plus_acr_vla_layout: 83.5
+      srpo_plus_acr_vla_language: 83.2
+      crm_on_srpo_feature_quality_degradation_pct: 22
+    result_rationale: 'SRPO''s training-time optimization partially collapses the
+      flow-matching sample diversity — the model is more deterministic post-finetuning,
+      reducing the information content of K=10 samples. CGS features extracted from
+      SRPO samples have ~22% lower variance compared to base VLA samples, meaning
+      the uncertainty signal is attenuated. CRM still finds residual patterns to correct
+      but the margin is narrower because SRPO has already addressed many of the systematic
+      biases that CRM would otherwise correct. The 2.9% stacking gain (within [2,4])
+      comes from: (1) dimensions where SRPO''s training augmentation didn''t cover
+      the specific perturbation pattern (e.g., specific camera angle combinations),
+      and (2) high-uncertainty steps where SRPO''s flow-matching still produces diffuse
+      samples and CRM''s conformal features provide useful correction signal. The
+      gain is near but above the 2% kill threshold, supporting the claim "complementary
+      in principle, with modest empirical stacking gains." The 85.0% stacked result
+      (within [84,86]) would be a new LIBERO-Plus SOTA.
+
+      '
+    tables:
+    - name: 'Table 2: SRPO Stacking Results'
+      content: '| Method              | LIBERO (nom.) | LIBERO-Plus | Δ Plus  |
+
+        |--------------------|---------------|-------------|---------|
+
+        | SmolVLA (base)     | 94.8          | 62.3        | —       |
+
+        | ACR-VLA            | 92.6          | 70.5        | +8.2    |
+
+        | SRPO               | 95.6          | 82.1        | +19.8   |
+
+        | SRPO + ACR-VLA     | 93.1          | 85.0        | +22.7   |
+
+        | Stacking gain      | -2.5          | +2.9        |         |
+
+        '
+    figures_description:
+    - 'Fig 4: Bar chart comparing SRPO vs SRPO+ACR-VLA across perturbation dimensions.
+      Gains are small but consistent. Annotation highlighting 2.9% aggregate gain
+      with 95% CI from 5 seeds.'
+    - 'Fig 4 inset: CGS feature variance comparison — base VLA vs SRPO samples. Shows
+      ~22% variance reduction, explaining attenuated per-DOF signal.'
+    analysis: 'The 2.9% stacking gain survives the kill criterion (>2%) but barely.
+      The paper should frame this cautiously: "ACR-VLA provides orthogonal value even
+      atop training-time optimization, though the margin is modest — consistent with
+      SRPO having already resolved many of the uncertainty patterns that ACR-VLA targets."
+      The 85.0% SOTA claim is legitimate but should acknowledge the narrow margin.
+      Nominal drop of 2.5% on SRPO is slightly higher than on base VLA, possibly because
+      SRPO''s actions are more precise and CRM''s residuals are more likely to degrade
+      already-good actions.
+
+      '
+  - name: COC Signal Validation
+    plan_id: plan_005
+    description: 'Three-part validation of Chunk Overlap Consistency as self-referential
+      ACI update signal: (a) Spearman ρ between episode-level COC coverage fraction
+      and binary task success, (b) ACI alpha_t convergence trajectory over evaluation
+      episodes, (c) Ellipsoid volume comparison between ACI-adaptive and static calibration
+      at matched marginal coverage.
+
+      '
+    expected_results:
+      coc_success_spearman_rho: 0.38
+      coc_success_spearman_p_value: 0.003
+      aci_convergence_episodes_to_0p02: 148
+      aci_target_coverage: 0.9
+      aci_achieved_coverage_at_convergence: 0.89
+      aci_overshoot_peak_alpha: 0.22
+      aci_steady_state_alpha: 0.11
+      ellipsoid_volume_ratio_adaptive_vs_static: 0.847
+      ellipsoid_volume_narrowing_pct: 15.3
+      static_calibration_coverage_achieved: 0.9
+      adaptive_calibration_coverage_achieved: 0.89
+    result_rationale: 'COC provides a per-step proxy for whether the model''s predictions
+      are self-consistent across overlapping action chunks — high overlap agreement
+      correlates with accurate predictions, low agreement with uncertain/inaccurate
+      ones. However, the correlation with task success is attenuated (ρ=0.38, within
+      [0.3, 0.5]) because: (1) task success is binary while COC is continuous, creating
+      threshold effects; (2) a single bad step can fail a task regardless of high
+      average COC; (3) some tasks succeed despite low COC through robustness of the
+      underlying dynamics. The positive but weak correlation means COC is a "promising"
+      self-referential signal but not "reliable" enough to be the primary ACI driver
+      — episode-level success (when available) would be more informative. ACI converges
+      but slowly (~148 episodes, within expected range for weak signal) with initial
+      overshoot (alpha peaks at 0.22 before settling to 0.11) because COC-based updates
+      have high variance. The 15.3% ellipsoid narrowing (within [10, 20]) demonstrates
+      that adaptive calibration produces tighter prediction sets than static — same
+      coverage guarantee but more informative uncertainty regions. The narrowing is
+      modest because K=10 covariance estimates limit how sharp the ellipsoids can
+      get.
+
+      '
+    tables:
+    - name: 'Table 3: COC Signal Quality'
+      content: '| Metric                              | Value  |
+
+        |-------------------------------------|--------|
+
+        | Spearman ρ (COC ↔ success)          | 0.38   |
+
+        | p-value                              | 0.003  |
+
+        | ACI convergence (episodes to ±0.02) | 148    |
+
+        | ACI achieved coverage               | 0.89   |
+
+        | Ellipsoid narrowing vs static        | 15.3%  |
+
+        '
+    figures_description:
+    - 'Fig 5a: Scatter plot of episode-level COC coverage fraction (x) vs task success
+      (y, jittered binary). Spearman ρ=0.38 annotated. Clear positive trend but substantial
+      scatter.'
+    - 'Fig 5b: ACI convergence plot — alpha_t over 300 episodes with target coverage
+      line (0.90). Shows initial overshoot, oscillation, and eventual convergence.
+      Shaded band = 5 seed variance.'
+    - 'Fig 5c: Ellipsoid volume CDF — adaptive (solid) vs static (dashed) at matched
+      90% coverage. Adaptive curve shifted left, demonstrating 15.3% tighter volumes.'
+    analysis: 'COC is validated as a positive but weak signal. ρ=0.38 is statistically
+      significant (p=0.003) but far from the "reliable" threshold that would make
+      COC a standalone monitoring tool. The paper should position COC as: "a step
+      toward fully self-referential uncertainty monitoring that shows promise but
+      requires further development for deployment-grade reliability." ACI convergence
+      demonstrates the theoretical guarantee holds in practice, but the slow convergence
+      and overshoot suggest that COC''s noisy signal makes online adaptation sluggish.
+      The ellipsoid narrowing result is the strongest evidence for ACI''s value —
+      same coverage with tighter sets means more informative uncertainty features
+      for CRM.
+
+      '
+  - name: A1 Ablation — CRM without ACI (Static Calibration)
+    plan_id: plan_006
+    description: 'Full CRM with per-DOF conformal features, but CGS thresholds fixed
+      at calibration-set values — no online ACI adaptation. COC is not computed. Tests
+      the marginal contribution of ACI.
+
+      '
+    expected_results:
+      libero_plus_aggregate_success_rate: 67.8
+      libero_plus_gain_over_base: 5.5
+      a1_gap_to_full_acr_vla: 2.7
+      libero_nominal_success_rate: 93.4
+      static_coverage_at_early_episodes: 0.93
+      static_coverage_at_late_episodes: 0.82
+    result_rationale: 'Without ACI, conformal thresholds are calibrated on the training
+      distribution and remain fixed. Under LIBERO-Plus perturbations, the calibration
+      set is no longer representative: early evaluation episodes see conservative
+      over-coverage (0.93 vs target 0.90) because perturbations haven''t fully diverged
+      from calibration conditions, but later episodes see under-coverage (0.82) as
+      distribution shift accumulates. This miscalibration means CRM receives systematically
+      biased uncertainty features — over-estimated for some perturbation types, under-estimated
+      for others. The 2.7% gap to full ACR-VLA reflects that ACI''s online correction
+      produces better-calibrated inputs for CRM, particularly for perturbation dimensions
+      where the shift is gradual and ACI can track it (camera, lighting). For abrupt
+      shifts (layout, language), ACI has less time to adapt, so the gap is smaller
+      there. The result validates ACI''s contribution but shows it''s not the dominant
+      factor — static conformal features still carry most of the correction signal.
+
+      '
+    tables:
+    - name: Ablation Table Row (A1)
+      content: '| Variant                | LIBERO-Plus | Δ vs Full |
+
+        |-----------------------|-------------|-----------|
+
+        | A1: CRM, static CGS  | 67.8        | -2.7      |
+
+        | Full ACR-VLA          | 70.5        | —         |
+
+        '
+    figures_description:
+    - 'Part of Fig 3 (ablation chart). Additionally: supplementary figure showing
+      coverage drift over episodes — static (drifting down) vs ACI-adaptive (hovering
+      near 0.90).'
+    analysis: 'ACI contributes ~2.7% absolute, which is meaningful but secondary to
+      the conformal features themselves. The coverage drift analysis (0.93→0.82 for
+      static) provides a clean mechanistic explanation for why adaptive calibration
+      helps. This supports Claim 2 but with caveats — ACI is beneficial but not transformative.
+
+      '
+  - name: A2 Ablation — ACI without CRM (Sample Selection Only)
+    plan_id: plan_007
+    description: 'CGS + COC + ACI pipeline but instead of CRM, uses multivariate-CP-guided
+      sample selection (extend ReconVLA''s approach to leverage per-DOF conformal
+      radii for selecting best sample from K=10). No learned correction, just informed
+      selection.
+
+      '
+    expected_results:
+      libero_plus_aggregate_success_rate: 66.9
+      libero_plus_gain_over_base: 4.6
+      a2_gap_to_full_acr_vla: 3.6
+      libero_nominal_success_rate: 94.2
+    result_rationale: 'Sample selection with multivariate CP features is a strict
+      improvement over ReconVLA''s scalar selection — per-DOF conformal radii enable
+      selecting the sample that is best specifically in the most-uncertain dimensions,
+      rather than best in aggregate Euclidean distance. The 4.6% gain over base is
+      substantial and validates that CGS features contain useful information. However,
+      selection is fundamentally limited to choosing among the K=10 samples — it cannot
+      synthesize an action better than any individual sample, which is CRM''s advantage.
+      The 3.6% gap to full ACR-VLA quantifies CRM''s contribution as a learned synthesizer.
+      Notably, the 0.6% nominal drop is much smaller than full ACR-VLA''s 2.2% — because
+      sample selection is conservative (it only picks from generated samples, never
+      modifying them), it''s less likely to degrade in-distribution performance. This
+      creates an interesting trade-off for the paper to discuss.
+
+      '
+    tables:
+    - name: Ablation Table Row (A2)
+      content: '| Variant               | LIBERO-Plus | LIBERO (nom.) | Δ Plus vs
+        Full |
+
+        |----------------------|-------------|---------------|----------------|
+
+        | A2: Selection only   | 66.9        | 94.2          | -3.6           |
+
+        | Full ACR-VLA         | 70.5        | 92.6          | —              |
+
+        '
+    figures_description:
+    - 'Part of Fig 3. A2 bar annotated with note: ''selection-only — lower OOD gain
+      but minimal nominal drop.'''
+    analysis: 'A2 provides a useful reference point — it validates that CGS features
+      enable better sample selection (extending ReconVLA), and quantifies CRM''s value
+      as a learned corrector (+3.6%). The nominal preservation advantage of A2 is
+      worth discussing as a practical deployment consideration: if nominal drop must
+      be minimized, selection-only is safer.
+
+      '
+  - name: Per-Perturbation-Dimension Breakdown
+    plan_id: plan_008
+    description: 'Detailed ACR-VLA gain analysis across 7 LIBERO-Plus perturbation
+      dimensions, evaluated per-task (10 tasks × 7 dimensions = 70 cells). Statistical
+      significance via paired bootstrap (1000 resamples, α=0.05) over 5 seeds.
+
+      '
+    expected_results:
+      camera_shift_gain: 12.6
+      camera_shift_p_value: 0.001
+      sensor_noise_gain: 10.8
+      sensor_noise_p_value: 0.002
+      robot_state_gain: 8.5
+      robot_state_p_value: 0.008
+      lighting_gain: 5.8
+      lighting_p_value: 0.031
+      background_gain: 3.2
+      background_p_value: 0.112
+      layout_gain: 0.9
+      layout_p_value: 0.483
+      language_gain: 0.9
+      language_p_value: 0.501
+      dims_with_significant_gain: 4
+      dims_significant_list: camera_shift, sensor_noise, robot_state, lighting
+    result_rationale: 'The per-perturbation structure directly reflects synthetic
+      augmentation coverage. Camera jitter, Gaussian sensor noise, and robot-state
+      perturbation are all covered by synthetic augmentation — CGS sees similar distribution
+      shifts during calibration, producing well-calibrated conformal features that
+      CRM can exploit. Camera shift shows the largest gain (+12.6%) because it primarily
+      affects translational DOFs (x, y) where per-DOF conformal features are most
+      discriminative — camera shift makes position uncertain while orientation remains
+      relatively stable, and per-DOF features capture this asymmetry. Lighting (+5.8%)
+      reaches significance because brightness changes create predictable patterns
+      in flow-matching sample variance. Background changes (+3.2%) cause modest, diffuse
+      uncertainty increase that CRM partially addresses, but the effect is not statistically
+      significant at α=0.05. Layout (+0.9%) and language (+0.9%) are essentially unaddressed
+      because these are semantic shifts that synthetic augmentation cannot cover —
+      the calibration set contains no examples of rearranged furniture or paraphrased
+      instructions, so CGS features under these perturbations are poorly calibrated
+      and CRM cannot extract useful correction signal.
+
+      '
+    tables:
+    - name: 'Table 4: Per-Perturbation ACR-VLA Gains'
+      content: '| Perturbation   | Base  | ACR-VLA | Δ     | p-value | Sig.? |
+
+        |---------------|-------|---------|-------|---------|-------|
+
+        | camera_shift  | 58.2  | 70.8    | +12.6 | 0.001   | ✓     |
+
+        | sensor_noise  | 55.6  | 66.4    | +10.8 | 0.002   | ✓     |
+
+        | robot_state   | 56.8  | 65.3    | +8.5  | 0.008   | ✓     |
+
+        | lighting      | 65.4  | 71.2    | +5.8  | 0.031   | ✓     |
+
+        | background    | 68.3  | 71.5    | +3.2  | 0.112   | ✗     |
+
+        | layout        | 72.1  | 73.0    | +0.9  | 0.483   | ✗     |
+
+        | language      | 71.5  | 72.4    | +0.9  | 0.501   | ✗     |
+
+        '
+    - name: 'Table 4b: Per-Task × Per-Perturbation Heatmap Data (top-5 tasks by gain)'
+      content: '| Task              | camera | noise | robot | light | bg   | layout
+        | lang |
+
+        |-------------------|--------|-------|-------|-------|------|--------|------|
+
+        | pick_place_can    | +18.0  | +14.0 | +12.0 | +8.0  | +4.0 | +2.0   | +0.0
+        |
+
+        | open_drawer       | +16.0  | +12.0 | +10.0 | +6.0  | +4.0 | +0.0   | +2.0
+        |
+
+        | stack_blocks      | +14.0  | +14.0 | +10.0 | +8.0  | +2.0 | +0.0   | +0.0
+        |
+
+        | close_microwave   | +12.0  | +10.0 | +8.0  | +6.0  | +4.0 | +2.0   | +0.0
+        |
+
+        | turn_faucet       | +10.0  | +8.0  | +6.0  | +4.0  | +2.0 | +0.0   | +2.0
+        |
+
+        '
+    figures_description:
+    - 'Fig 6: Radar chart showing ACR-VLA gain (%) across 7 perturbation dimensions.
+      Clear asymmetry — gain concentrated in camera/noise/robot-state lobe, flat on
+      layout/language.'
+    - 'Fig 6b: 10×7 heatmap of per-task per-perturbation success rate deltas. Reveals
+      task-perturbation interaction patterns.'
+    - 'Fig 6c: Correlation between synthetic augmentation coverage (measured as calibration
+      set overlap with each perturbation) and ACR-VLA gain. Strong positive correlation
+      (r=0.91).'
+    analysis: '4/7 dimensions with significant gain is within [3, 5]. This result
+      is central to the median-tier narrative: ACR-VLA works well where calibration
+      coverage exists, honestly fails where it doesn''t. The paper should present
+      this transparency as a strength — "we clearly identify the boundary of our method''s
+      applicability and provide a mechanistic explanation." The correlation between
+      augmentation coverage and gain (r=0.91) is a strong explanatory result that
+      reviewers will appreciate. Layout/language as honest limitations, with ACI online
+      adaptation as partial mitigation and future work on semantic augmentation as
+      natural extension.
+
+      '
+  - name: A5 Ablation — CGS Joint Mahalanobis vs Per-DOF Bonferroni
+    plan_id: plan_009
+    description: 'Compare full CGS (joint Mahalanobis with Ledoit-Wolf shrunk covariance)
+      vs per-DOF independent Bonferroni-corrected intervals. Tests whether multivariate
+      CP''s joint structure provides value beyond simply having per-DOF information.
+
+      '
+    expected_results:
+      joint_mahalanobis_libero_plus: 70.5
+      bonferroni_libero_plus: 69.1
+      gap_joint_vs_bonferroni: 1.4
+      bonferroni_coverage: 0.94
+      joint_coverage: 0.9
+      bonferroni_avg_ellipsoid_volume: 1.0
+      joint_avg_ellipsoid_volume: 0.72
+    result_rationale: 'Bonferroni correction treats each DOF independently and inflates
+      thresholds to maintain joint coverage — producing conservative, hypercubic confidence
+      regions that ignore cross-DOF covariance. Joint Mahalanobis with shrunk covariance
+      produces ellipsoidal regions aligned with the actual covariance structure, yielding
+      tighter (28% smaller volume) regions at the same coverage level. The 1.4% performance
+      gap comes from CRM receiving more informative features: joint CGS features encode
+      which DOF pairs co-vary (e.g., x and y under camera shift), enabling CRM to
+      make correlated corrections across related DOFs. With Bonferroni, CRM sees each
+      DOF''s uncertainty independently and must re-learn any cross-DOF correction
+      patterns from the observation embedding alone. The gap is modest because K=10
+      Ledoit-Wolf covariance is noisy — the theoretical advantage of joint Mahalanobis
+      is attenuated by covariance estimation error, and Bonferroni''s conservative
+      margins partially compensate by providing wider "safety padding."
+
+      '
+    tables:
+    - name: A5 Ablation Results
+      content: '| CGS Variant         | LIBERO-Plus | Coverage | Avg. Volume |
+
+        |--------------------|-------------|----------|-------------|
+
+        | Joint Mahalanobis  | 70.5        | 0.90     | 0.72 (norm) |
+
+        | Per-DOF Bonferroni | 69.1        | 0.94     | 1.00 (norm) |
+
+        '
+    figures_description:
+    - 'Supplementary Fig S1: 2D slices of confidence regions — ellipsoidal (joint)
+      vs rectangular (Bonferroni) for example action dimensions. Shows tighter ellipsoidal
+      regions capturing covariance tilt.'
+    analysis: 'The 1.4% gap is small but validates that joint multivariate CP provides
+      value through covariance-aware regions. Worth reporting as a supplementary ablation
+      to support the multivariate CP design choice. The over-coverage of Bonferroni
+      (0.94 vs target 0.90) is an inherent inefficiency that the joint approach avoids.
+
+      '
+  - name: A6 Ablation — COC Signal vs Episode-Level Success for ACI
+    plan_id: plan_010
+    description: 'Compare ACI driven by COC (self-referential, per-step) vs ACI driven
+      by episode-level binary task success (stronger signal, but requires ground-truth
+      outcome and only updates once per episode).
+
+      '
+    expected_results:
+      coc_based_aci_libero_plus: 70.5
+      episode_based_aci_libero_plus: 71.8
+      gap_episode_vs_coc: 1.3
+      coc_aci_convergence_episodes: 148
+      episode_aci_convergence_episodes: 42
+      coc_aci_coverage_variance: 0.018
+      episode_aci_coverage_variance: 0.006
+    result_rationale: 'Episode-level success is a stronger, lower-variance signal
+      for ACI — it directly reflects whether the uncertainty calibration led to good
+      outcomes. COC is noisy because chunk overlap consistency is only a proxy for
+      prediction quality, and individual step-level COC values have high variance.
+      The 1.3% gap reflects that episode-based ACI converges ~3.5x faster (42 vs 148
+      episodes) and maintains tighter coverage tracking (variance 0.006 vs 0.018).
+      However, episode-level success requires ground-truth task outcomes — available
+      in simulation but not in real deployment. This is the key argument for COC:
+      it''s self-referential (no external supervision). The paper should present this
+      as a trade-off: "episode-level ACI is preferable when outcomes are available;
+      COC-based ACI sacrifices ~1.3% performance for full self-referentiality." In
+      the median tier, COC''s disadvantage is noticeable but not disqualifying — it
+      still converges and provides meaningful adaptation, just more slowly and with
+      more variance.
+
+      '
+    tables:
+    - name: 'A6 Ablation: ACI Signal Comparison'
+      content: '| ACI Signal     | LIBERO-Plus | Convergence (eps) | Coverage Var.
+        |
+
+        |---------------|-------------|-------------------|---------------|
+
+        | COC (self-ref)| 70.5        | 148               | 0.018         |
+
+        | Episode success| 71.8       | 42                | 0.006         |
+
+        '
+    figures_description:
+    - 'Supplementary Fig S2: Side-by-side ACI convergence plots — COC-driven (noisy,
+      slow) vs episode-driven (smooth, fast). Both converge to target coverage but
+      with very different dynamics.'
+    analysis: 'Episode-based ACI is clearly superior when ground-truth is available.
+      COC''s value proposition is self-referentiality for deployment scenarios without
+      outcome feedback. The 1.3% gap and 3.5x convergence slowdown are honest costs
+      of self-referentiality. Paper recommendation: use episode-level ACI as the default
+      in simulation experiments; present COC as a deployment-oriented variant with
+      known performance trade-offs. This supports repositioning COC as "promising
+      future work" rather than the primary ACI signal.
+
+      '
+  - name: A7 Ablation — DiU Aleatoric vs CGS Epistemic Features
+    plan_id: plan_011
+    description: 'Replace CGS epistemic uncertainty features (45D) with DiU-style
+      aleatoric uncertainty features (7D per-DOF variance from single forward pass).
+      Also test combined epistemic+aleatoric (52D). Validates that epistemic (distribution-shift-sensitive)
+      features are more useful than aleatoric (in-distribution-also-high) features
+      for OOD correction.
+
+      '
+    expected_results:
+      cgs_epistemic_libero_plus: 70.5
+      diu_aleatoric_libero_plus: 67.4
+      combined_52d_libero_plus: 71.1
+      gap_epistemic_vs_aleatoric: 3.1
+      cgs_epistemic_libero_nominal: 92.6
+      diu_aleatoric_libero_nominal: 93.9
+      combined_52d_libero_nominal: 92.4
+      diu_aleatoric_in_dist_variance: 0.048
+      cgs_epistemic_in_dist_variance: 0.012
+      diu_aleatoric_ood_variance: 0.063
+      cgs_epistemic_ood_variance: 0.089
+    result_rationale: 'DiU captures aleatoric uncertainty — inherent action ambiguity
+      that exists even in-distribution. Under distribution shift, DiU''s signal increases
+      only modestly (+31%, 0.048→0.063) because most of what DiU measures is irreducible
+      noise. CGS epistemic features, in contrast, are low in-distribution (0.012)
+      and spike dramatically under shift (+642%, 0.012→0.089), providing a clear signal
+      for "this is out-of-distribution." CRM conditioned on epistemic features can
+      discriminate OOD steps that need correction from in-distribution steps that
+      don''t. With aleatoric features, CRM sees consistently elevated uncertainty
+      everywhere, reducing its ability to be selective. The 3.1% gap validates the
+      epistemic-vs-aleatoric distinction. The combined 52D features provide a marginal
+      +0.6% over epistemic alone — aleatoric features add some complementary information
+      about inherent action ambiguity (useful for multi-modal tasks like placing objects
+      with rotational symmetry), but the gain is small because most of the relevant
+      signal is already captured by epistemic features. The lower nominal drop of
+      DiU (0.9% vs 2.2% for CGS) reflects that aleatoric features are less "aggressive"
+      — they don''t provoke large corrections because their signal doesn''t differentiate
+      ID from OOD.
+
+      '
+    tables:
+    - name: 'A7 Ablation: Feature Type Comparison'
+      content: '| Feature Type        | Dim | LIBERO (nom.) | LIBERO-Plus | Δ Plus
+        vs Base |
+
+        |--------------------|-----|---------------|-------------|----------------|
+
+        | CGS epistemic       | 45  | 92.6          | 70.5        | +8.2           |
+
+        | DiU aleatoric       | 7   | 93.9          | 67.4        | +5.1           |
+
+        | Combined            | 52  | 92.4          | 71.1        | +8.8           |
+
+        '
+    - name: 'A7: Signal Discrimination'
+      content: '| Feature Source | In-Dist Var. | OOD Var. | Ratio (OOD/ID) |
+
+        |--------------|-------------|---------|----------------|
+
+        | CGS epistemic | 0.012       | 0.089   | 7.42           |
+
+        | DiU aleatoric | 0.048       | 0.063   | 1.31           |
+
+        '
+    figures_description:
+    - 'Supplementary Fig S3a: Violin plots of feature magnitude distributions (ID
+      vs OOD) for epistemic and aleatoric features. CGS shows clear bimodal separation;
+      DiU shows overlapping distributions.'
+    - 'Supplementary Fig S3b: CRM correction magnitude conditioned on feature type
+      — epistemic-conditioned CRM applies larger corrections OOD and smaller ID; aleatoric-conditioned
+      CRM applies similar corrections everywhere.'
+    analysis: 'The 7.42x OOD/ID ratio for epistemic features vs 1.31x for aleatoric
+      validates the core design choice. This is one of the cleaner results — it mechanistically
+      explains why flow-matching sample diversity (epistemic) is more informative
+      than single-pass variance (aleatoric) for distribution shift detection. The
+      combined 52D result (+0.6% over epistemic alone) suggests that adding aleatoric
+      features is marginally beneficial — worth mentioning but not worth the complexity
+      for most applications.
+
+      '
+  - name: Feature Importance Analysis
+    plan_id: plan_012
+    description: 'Gradient-based feature importance: compute |∂correction/∂feature|
+      averaged over evaluation episodes, broken down by perturbation type. Identifies
+      which of the 45 CGS features drive CRM''s corrections for each perturbation
+      dimension.
+
+      '
+    expected_results:
+      top_features_camera_shift: per-DOF std (x, y) — 34% of total gradient; conformal
+        radius (x, y) — 22%
+      top_features_sensor_noise: per-DOF std (all DOFs) — 41%; ellipsoid volume —
+        18%
+      top_features_robot_state: conformal radius (joint 1-4) — 38%; per-DOF std (joint
+        1-4) — 25%
+      top_features_lighting: per-DOF std (x, y, z) — 29%; ellipsoid volume — 21%
+      per_dof_std_importance_share: 0.42
+      conformal_radius_importance_share: 0.31
+      ellipsoid_volume_importance_share: 0.14
+      cross_dof_covariance_importance_share: 0.13
+    result_rationale: 'Per-DOF std features are the most important (42% of gradient
+      magnitude) because they directly encode "how uncertain is this specific DOF"
+      — the most actionable information for dimension-selective correction. Conformal
+      radius features rank second (31%) because they encode calibrated confidence
+      intervals that are more robust than raw std to distributional assumptions. Ellipsoid
+      volume (14%) is a global uncertainty summary — useful for CRM''s gating mechanism
+      (how much total correction to apply) but less informative for dimension selection.
+      Cross-DOF covariance features (13%) capture correlation structure; their moderate
+      importance reflects that K=10 covariance estimates are noisy, limiting the information
+      content of off-diagonal terms. The perturbation-specific patterns are illuminating:
+      camera shift activates translational DOF features (x, y) because it primarily
+      affects workspace position estimation; robot-state perturbation activates joint-specific
+      conformal radii because it directly perturbs joint configurations; sensor noise
+      activates broad std features because it diffusely increases all DOF uncertainties.
+
+      '
+    tables:
+    - name: 'Table 5: Feature Importance by Category'
+      content: '| Feature Category    | Importance Share | Primary Perturbations |
+
+        |--------------------|-----------------|----------------------|
+
+        | Per-DOF std (7D)   | 42%             | noise, camera, light |
+
+        | Conformal radius (7D)| 31%           | robot-state, camera  |
+
+        | Ellipsoid volume (1D)| 14%           | all (gating)         |
+
+        | Cross-DOF cov (30D) | 13%            | robot-state          |
+
+        '
+    figures_description:
+    - 'Fig 7a: Stacked bar chart — feature importance share by category, one bar per
+      perturbation dimension. Shows distinct feature activation patterns per perturbation
+      type.'
+    - 'Fig 7b: 45-feature × 7-perturbation heatmap of gradient magnitudes. Reveals
+      sparse, interpretable activation patterns — CRM learns perturbation-specific
+      feature usage without explicit supervision.'
+    analysis: 'The feature importance analysis validates the dimension-selective correction
+      mechanism: CRM learns to attend to different uncertainty features for different
+      perturbation types, without explicit supervision about which perturbation is
+      active. This is a compelling interpretability result for the paper. The 42%+31%
+      = 73% importance of per-DOF features (std + conformal radius) supports Claim
+      1''s emphasis on per-DOF structure, even though the A4 ablation showed only
+      +2.1% over scalar — the mechanism is clearly there, even if the aggregate performance
+      gain is modest.
+
+      '
+  - name: SnapFlow Integration (K=10 × 1-step)
+    plan_id: plan_013
+    description: 'Replace K=10 full denoising trajectories with K=10 single-step distilled
+      generation via SnapFlow-style consistency distillation. Test: (a) inference
+      speedup, (b) sample diversity preservation, (c) downstream ACR-VLA performance.
+
+      '
+    expected_results:
+      full_denoising_inference_ms: 118
+      snapflow_1step_inference_ms: 38
+      speedup_factor: 3.1
+      diversity_trace_ratio: 0.83
+      full_denoising_libero_plus: 70.5
+      snapflow_libero_plus: 69.8
+      performance_drop: 0.7
+      snapflow_covariance_frobenius_error: 0.21
+    result_rationale: 'Single-step distilled generation produces samples ~3.1x faster
+      but with reduced diversity: the trace ratio of 0.83 means 1-step samples capture
+      83% of the covariance structure of full denoising samples. The 17% diversity
+      loss comes from the distillation process collapsing minor modes in the action
+      distribution — the dominant mode is well-preserved but tail samples are pulled
+      inward. This propagates to a modest 0.7% ACR-VLA performance drop because the
+      CGS features computed from less-diverse samples have slightly attenuated covariance
+      structure, reducing the per-DOF signal quality. The Frobenius error of 0.21
+      (normalized) in covariance estimation means the Ledoit-Wolf shrinkage target
+      absorbs more weight, further compressing the estimated covariance toward the
+      identity-like shrinkage target. The practical trade-off is favorable: 3.1x speedup
+      for 0.7% accuracy cost, making real-time deployment more feasible. This is a
+      supplementary result that strengthens the practical narrative without affecting
+      claims.
+
+      '
+    tables:
+    - name: 'Table S1: SnapFlow Integration'
+      content: '| Sampling Method     | K=10 Time (ms) | Diversity | LIBERO-Plus |
+        Δ   |
+
+        |--------------------|----------------|-----------|-------------|-----|
+
+        | Full denoising     | 118            | 1.00      | 70.5        | —   |
+
+        | SnapFlow 1-step    | 38             | 0.83      | 69.8        | -0.7|
+
+        '
+    figures_description:
+    - 'Supplementary Fig S4: Pareto plot — inference time vs LIBERO-Plus success rate.
+      SnapFlow point near the Pareto frontier, showing favorable speed-accuracy trade-off.'
+    analysis: SnapFlow integration is a practical engineering contribution. The 0.7%
+      drop is small enough that the 3.1x speedup is clearly worthwhile for deployment.
+      The diversity reduction is the primary concern — if future work increases K
+      beyond 10, SnapFlow's diversity loss may compound. Report as supplementary result
+      demonstrating deployment feasibility.
+  review_report: '---
+
+    dream_id: dream_20260513T023849
+
+    tier: median
+
+    overall_score: 5/10 — Weak Reject (Marginally Below Acceptance)
+
+    timestamp: 2026-05-13T03:19:16.171806+00:00
+
+    ---
+
+
+    # ACR-VLA Dream Review Report
+
+
+    **Paper:** ACR-VLA: Inference-Time Action Correction via Structured Conformal
+    Uncertainty Features for Vision-Language-Action Models
+
+    **Venue:** CoRL 2026 | **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Date:** 2026-05-13
+
+
+    ---
+
+
+    ## Reviewer Panel
+
+
+    | Reviewer | Focus | Overall Score |
+
+    |----------|-------|---------------|
+
+    | R1 | Methods + Experiments | 4/10 |
+
+    | R2 | Novelty + Related Work | 5/10 |
+
+    | **Consensus** | | **5/10 — Marginally Below Acceptance** |
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    ACR-VLA proposes an inference-time action correction framework for flow-matching
+    VLAs with three components: (1) a Conformal Gaussian Summarizer (CGS) extracting
+    45D per-DOF conformal features from K=10 flow-matching samples via Ledoit-Wolf
+    covariance + multivariate CP; (2) a 131K-parameter Conformal Residual Module (CRM)
+    conditioned on these features for dimension-selective action correction; (3) Adaptive
+    Conformal Inference (ACI) with Chunk Overlap Consistency (COC) for online threshold
+    recalibration. On LIBERO-Plus, ACR-VLA improves SmolVLA from 62.3% to 70.5% (+8.2%),
+    with statistically significant gains in 4/7 perturbation dimensions. When stacked
+    on SRPO (82.1%), it reaches 85.0% (+2.9%). Ablations decompose: CRM alone +3.5%,
+    scalar uncertainty +2.6%, per-DOF +2.1%.
+
+
+    ---
+
+
+    ## 2. Strengths (Consensus)
+
+
+    **S1. Well-structured ablation decomposition (R1, R2).** The A3/A4/Full hierarchy
+    (62.3→65.8→68.4→70.5) cleanly decomposes contributions into three additive components.
+    The finding that combined uncertainty contribution (+4.7%) exceeds residual-only
+    (+3.5%) supports the central claim. This is the paper''s strongest evidence and
+    both reviewers found it convincing.
+
+
+    **S2. Epistemic vs. aleatoric distinction is a genuine insight (R1, R2).** The
+    A7 ablation showing 7.42× OOD/ID variance ratio for CGS epistemic features vs.
+    1.31× for DiU aleatoric features provides clean mechanistic evidence. This is
+    a useful contribution to the broader uncertainty-in-robotics community, independent
+    of the specific method.
+
+
+    **S3. Honest and well-calibrated claims (R1, R2).** Both reviewers found the transparent
+    per-perturbation reporting (showing 3/7 non-significant dimensions), the acknowledgment
+    that per-DOF is "additionally beneficial rather than essential," and the characterization
+    of COC as "promising rather than reliable" to be unusually honest. This credibility
+    is rare and appreciated.
+
+
+    **S4. Principled statistical methodology (R1).** Ledoit-Wolf shrinkage is the
+    correct choice for p=7, n=10 (p/n=0.7). Mahalanobis-based joint nonconformity
+    scores avoid Bonferroni conservatism, validated by A5 ablation (28% smaller regions
+    at matched coverage).
+
+
+    **S5. COC as self-referential signal is creative (R1, R2).** Exploiting temporal
+    overlap structure of action chunks for coverage feedback without external supervision
+    is a non-obvious idea with genuine deployment relevance.
+
+
+    **S6. Practical engineering awareness (R1, R2).** 131K params, 3.2ms CRM overhead,
+    SnapFlow compatibility (3.1× speedup at −0.7%), and frozen-base-VLA deployment
+    model show deployment awareness unusual for an academic paper.
+
+
+    ---
+
+
+    ## 3. Weaknesses (Consensus)
+
+
+    ### Major Issues
+
+
+    **W1. No head-to-head comparison with any external baseline (R1: Major, R2: Critical
+    for novelty).** The experimental tables contain only SmolVLA, ACR-VLA variants,
+    and SRPO. A2C2 (closest residual correction), ReconVLA (closest CP-based selection),
+    UPS (CP gating), and PLD (residual RL) are discussed in Related Work but absent
+    from experiments. The A3 ablation approximates a generic residual policy but is
+    not equivalent to the actual methods. Without head-to-head comparisons, the reader
+    cannot determine whether ACR-VLA''s gains stem from conformal features specifically
+    or from any inference-time correction applied to SmolVLA. **Both reviewers identified
+    this as the single most critical experimental gap.**
+
+
+    **W2. Per-DOF advantage is modest relative to paper framing (R1, R2).** The headline
+    contribution is dimension-selective correction via per-DOF features, yet the actual
+    per-DOF advantage over scalar is only +2.1% (A4→Full). The paper''s title, method
+    name, and core claims are built around per-DOF structure, which contributes the
+    smallest increment in the A3→A4→Full decomposition (+3.5/+2.6/+2.1). R2 notes
+    this "inverts the rhetorical structure: the paper emphasizes the least impactful
+    component." The paper''s own honest framing partially mitigates this, but the
+    mismatch between emphasis and evidence remains.
+
+
+    **W3. No confidence intervals on main results (R1: Major).** Tables 1, 3, and
+    4 report point estimates only despite 5-seed evaluation. Error bars appear only
+    in the per-perturbation table (Table 2). The +2.1% per-DOF advantage, +2.9% SRPO
+    stacking gain, and +2.7% ACI contribution are all small enough to be potentially
+    within noise. Statistical significance of these margins is unverifiable.
+
+
+    **W4. No K sensitivity analysis (R1: Major, R2 concurs).** K=10 is fixed throughout
+    with zero ablation. Given the ~15-20% CGS feature quality degradation from oracle
+    to K=10 covariance, understanding performance at K=5 and K=20 is critical for
+    both scientific understanding and deployment guidance. This is the most important
+    practical hyperparameter.
+
+
+    **W5. Augmentation memorization confound (R1: Major).** The near-perfect correlation
+    (r=0.91, noted in design context) between synthetic augmentation coverage and
+    ACR-VLA gain raises a fundamental question: is CRM learning to use conformal features
+    for genuine distributional reasoning, or memorizing correction patterns for specific
+    training augmentations? A held-out perturbation experiment (train without camera
+    augmentation, evaluate on camera shift) would disentangle these. Without this,
+    the "dimension-selective correction via conformal features" narrative may be partially
+    confounded.
+
+
+    ### Moderate Issues
+
+
+    **W6. Single VLA backbone limits generality (R1, R2).** All experiments use SmolVLA
+    only. Claims about applicability to "any flow-matching VLA" are unsupported. CGS
+    feature quality likely varies with model scale and architecture.
+
+
+    **W7. Novelty is primarily combination (R2).** Each component (Ledoit-Wolf, Mahalanobis
+    CP, ACI, residual correction) is well-established. The paper''s contribution is
+    combining them. R2 notes improvements are additive rather than synergistic — no
+    evidence of super-additive interaction between components.
+
+
+    **W8. Narrow novelty claim (R2).** "First to use multivariate CP statistics as
+    direct input features for a learned correction module" is technically true but
+    defines such a precise category that being first is nearly tautological. Using
+    per-DOF sample statistics from flow-matching as MLP conditioning is not fundamentally
+    different from ensemble disagreement or MC-dropout variance as residual policy
+    inputs.
+
+
+    **W9. SRPO stacking gain near kill threshold (R1, R2).** +2.9% barely exceeds
+    the pre-specified 2% kill criterion. Without error bars, statistical significance
+    is questionable. The 2.5% nominal drop on SRPO (larger than 2.2% on base VLA)
+    suggests CRM degrades already-precise SRPO actions more.
+
+
+    **W10. COC practical value is limited (R1, R2).** ρ=0.38 explains only ~14% of
+    task outcome variance. ACI convergence requires ~148 episodes (vs. 42 for episode-level).
+    Episode-level ACI outperforms COC-based by 1.3%. COC is effectively a weaker alternative
+    to episode-level ACI, not a superior signal.
+
+
+    **W11. Missing related work (R2).** "Shifting Uncertainty to Critical Moments"
+    (per-DOF instability indicators for VLAs) is the most directly related concurrent
+    work on per-DOF uncertainty features for robot actions and is not discussed. Several
+    other inference-time correction methods (PDF, VLA-in-the-Loop) are also missing.
+    Bibliography has only 14 entries, several placeholder-quality.
+
+
+    ### Minor Issues
+
+
+    **W12. 45D feature vector arithmetic inconsistency (R1).** Section 3.2 lists cross-DOF
+    covariance as 21D (upper triangle of 7×7), but Table 7 lists 30D for the same
+    category. The two decompositions do not reconcile.
+
+
+    **W13. "Conformal" label is misleading (R1, R2).** Once CGS features pass through
+    CRM, no formal coverage guarantee transfers to the corrected action. "Conformal"
+    in the method name may create expectations the method does not deliver.
+
+
+    **W14. CRM architecture details insufficient (R1).** Hidden dimensions, activations,
+    normalization, learning rate, batch size, epochs, train/val split, and training
+    curves are not reported.
+
+
+    ---
+
+
+    ## 4. Key Questions for Authors
+
+
+    1. **External baselines**: Can you run A2C2 and ReconVLA on SmolVLA + LIBERO-Plus?
+    If A2C2 exceeds 65.8% (A3 result), the conformal feature contribution narrows.
+
+
+    2. **Held-out perturbation**: If CRM is trained without camera augmentation, what
+    is the gain on camera shift? This isolates conformal features from augmentation
+    memorization.
+
+
+    3. **Error bars**: What are the 95% CIs on the +2.1% per-DOF gap, +2.9% SRPO stacking,
+    and +2.7% ACI contribution?
+
+
+    4. **K sensitivity**: How does performance vary at K ∈ {5, 10, 15, 20}? What is
+    the cost-performance Pareto frontier?
+
+
+    5. **45D reconciliation**: Is cross-DOF covariance 21D or 30D? Please reconcile
+    the two decompositions.
+
+
+    6. **Second VLA**: Have you tested on pi0 or another flow-matching VLA?
+
+
+    7. **Feature reduction**: Per-DOF std (42%) and conformal radius (31%) are highly
+    correlated (radius = std × √q). Does a reduced feature set achieve comparable
+    results?
+
+
+    8. **Relationship to "Shifting Uncertainty to Critical Moments"**: How does this
+    concurrent work on per-DOF instability indicators relate to your CGS features?
+
+
+    ---
+
+
+    ## 5. Experiment Coverage Assessment
+
+
+    All 13 imagined experiments from the design document are covered in the paper:
+
+
+    | Experiment | Covered | Notes |
+
+    |-----------|---------|-------|
+
+    | Full pipeline (plan_001) | ✓ | Table 1 |
+
+    | A3 ablation (plan_002) | ✓ | Table 3 |
+
+    | A4 ablation (plan_003) | ✓ | Table 3 |
+
+    | SRPO stacking (plan_004) | ✓ | Table 1 |
+
+    | COC validation (plan_005) | ✓ | Table 6 |
+
+    | A1 ablation (plan_006) | ✓ | Table 4 |
+
+    | A2 ablation (plan_007) | ✓ | Table 4 |
+
+    | Per-perturbation (plan_008) | ✓ | Table 2 |
+
+    | A5 Bonferroni (plan_009) | ✓ | Table 4 |
+
+    | A6 episode vs COC (plan_010) | ✓ | Table 4 |
+
+    | A7 epistemic vs aleatoric (plan_011) | ✓ | Table 5 |
+
+    | Feature importance (plan_012) | ✓ | Table 7 |
+
+    | SnapFlow (plan_013) | ✓ | Table 8 |
+
+
+    Coverage is complete, but the paper is dense with internal ablations while lacking
+    any external baseline comparison.
+
+
+    ---
+
+
+    ## 6. Scores
+
+
+    ### R1 (Methods + Experiments)
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Soundness | 2.5/4 |
+
+    | Empirical Methodology | 2/4 |
+
+    | Clarity | 2.5/4 |
+
+    | Overall | 4/10 |
+
+    | Confidence | 4/5 |
+
+
+    ### R2 (Novelty + Related Work)
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Novelty | 2/4 |
+
+    | Related Work Coverage | 2/4 |
+
+    | Significance | 2/4 |
+
+    | Overall | 5/10 |
+
+    | Confidence | 4/5 |
+
+
+    ### Consensus Assessment
+
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | **Overall** | **5/10 — Marginally Below Acceptance Threshold** |
+
+    | Soundness | 2.5/4 |
+
+    | Novelty | 2/4 |
+
+    | Empirical Rigor | 2/4 |
+
+    | Clarity | 2.5/4 |
+
+    | Significance | 2/4 |
+
+    | Confidence | 4/5 |
+
+
+    **Decision: Weak Reject**
+
+
+    ---
+
+
+    ## 7. Verdict & Actionable Recommendations
+
+
+    The paper identifies a genuine gap (structured uncertainty features for inference-time
+    VLA correction) and proposes a well-engineered solution with commendable honesty
+    about limitations. The ablation hierarchy is the paper''s strongest contribution.
+    However, the absence of any external baseline comparison is disqualifying at the
+    current stage — without knowing how ACR-VLA compares to A2C2, ReconVLA, or UPS,
+    the contribution cannot be properly assessed. The per-DOF advantage (+2.1%), while
+    real, is modest relative to the paper''s emphasis and potentially within noise
+    without error bars.
+
+
+    **To reach acceptance, the paper needs:**
+
+
+    1. **[Critical] Head-to-head with A2C2 and ReconVLA** on the same SmolVLA + LIBERO-Plus
+    setup
+
+    2. **[Critical] Error bars (mean ± std) on all main tables** with significance
+    tests for key margins
+
+    3. **[Important] K sensitivity sweep** (K ∈ {5, 10, 15, 20})
+
+    4. **[Important] Held-out perturbation test** to address augmentation memorization
+    confound
+
+    5. **[Important] Second VLA backbone** (e.g., pi0) for generality
+
+    6. **[Moderate] Fix 45D feature arithmetic inconsistency** and add CRM architecture
+    details
+
+    7. **[Moderate] Expand bibliography and discuss concurrent per-DOF uncertainty
+    work**
+
+    8. **[Moderate] Reframe narrative** to match evidence: the residual + uncertainty
+    conditioning story (+4.7%) is stronger than the per-DOF story (+2.1%)
+
+
+    The paper has clear potential for CoRL poster with these additions. The ablation
+    design, epistemic vs. aleatoric analysis, and honest reporting are strengths that
+    a revised version should preserve.
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/worst/paper.pdf
+  imagined_experiments:
+  - name: ACR-VLA Full Pipeline on SmolVLA
+    plan_id: plan_001
+    description: 'ACR-VLA full pipeline on SmolVLA base: CGS + ACI/COC + CRM. Train
+      CRM on LIBERO demos + synthetic augmentation. Evaluate on LIBERO (nominal preservation)
+      + LIBERO-Plus L3-L5.
+
+      '
+    expected_results:
+      libero_nominal_success_rate_base: 0.95
+      libero_nominal_success_rate_acr: 0.91
+      libero_nominal_drop_pct: 4.2
+      libero_plus_L3_success_base: 0.42
+      libero_plus_L3_success_acr: 0.45
+      libero_plus_L4_success_base: 0.28
+      libero_plus_L4_success_acr: 0.31
+      libero_plus_L5_success_base: 0.15
+      libero_plus_L5_success_acr: 0.18
+      libero_plus_avg_success_gain_abs: 3.3
+      crm_train_loss_final: 0.0082
+      cgs_avg_coverage_empirical: 0.87
+      cgs_ledoit_wolf_shrinkage_intensity: 0.91
+      inference_latency_overhead_ms: 14.2
+    result_rationale: '在 worst 档下，ACR-VLA 全流程仅带来 ~3% 的 LIBERO-Plus 绝对增益。根本原因在于 flow-matching
+      VLA 的 K=10 样本在 7D action space 中的协方差结构严重退化：Ledoit-Wolf shrinkage intensity 达
+      0.91（接近 1.0 = 对角阵），意味着估计的协方差几乎完全被 shrink 到对角形式，CGS 提取的 per-DOF conformal 特征实质上退化为独立的
+      per-dimension marginal 信息，丧失了 multivariate CP 的核心优势——跨维度协方差编码。CRM 仍然学到了一些有用的观测条件残差（来自
+      observation embedding）， 但 conformal 特征的贡献微乎其微。名义性能下降 4.2% 超过理想范围，因为 CRM 在 in-distribution
+      数据上的残差校正引入了不必要的扰动——分布内样本本身质量较高，校正反而降低了精度。
+
+      '
+    tables:
+    - name: 'Table 1: LIBERO / LIBERO-Plus Success Rates'
+      columns:
+      - Method
+      - LIBERO (nominal)
+      - L3
+      - L4
+      - L5
+      - Plus-Avg
+      - Δ vs Base
+      rows:
+      - - SmolVLA (base)
+        - 95.0%
+        - 42.0%
+        - 28.0%
+        - 15.0%
+        - 28.3%
+        - —
+      - - ACR-VLA (ours)
+        - 91.0%
+        - 45.0%
+        - 31.0%
+        - 18.0%
+        - 31.3%
+        - '+3.0'
+      - - SRPO (reported)
+        - —
+        - —
+        - —
+        - —
+        - 82.1%
+        - —
+    - name: 'Table 2: CGS Covariance Diagnostics'
+      columns:
+      - Metric
+      - MVP (3D)
+      - VLA (7D)
+      rows:
+      - - Ledoit-Wolf shrinkage intensity
+        - '0.42'
+        - '0.91'
+      - - Effective rank of Σ̂
+        - '2.7'
+        - '1.3'
+      - - Off-diagonal magnitude (mean |r_ij|)
+        - '0.38'
+        - '0.06'
+      - - Condition number (shrunk Σ̂)
+        - '4.2'
+        - '1.8'
+    figures_description:
+    - 'Fig: Covariance heatmap comparison — MVP 3D (clear off-diagonal structure)
+      vs VLA 7D (near-diagonal after shrinkage). 直观展示 K=10 + high-dim 导致协方差信息丧失。'
+    - 'Fig: Per-task success rate scatter — base vs ACR-VLA on LIBERO-Plus 10 tasks.
+      多数任务增益 <5%, 个别任务出现负增益。'
+    analysis: '全流程结果确认了 worst 档核心假设：K=10 样本在 7D 空间下的 Ledoit-Wolf 估计产生近对角协方差， CGS 的
+      multivariate CP 优势不存在。3.3% 的增益主要来自 CRM 的 observation-conditioned 残差 能力，而非 conformal
+      特征。名义性能 4.2% 下降是一个严重信号，表明 CRM 在 in-distribution 上 过度校正。这为后续 A3 ablation 设定了基线——如果
+      A3 gap 很小，则确认 conformal 特征无贡献。
+
+      '
+  - name: A3 Ablation — CRM without Conformal Features
+    plan_id: plan_002
+    description: 'CRM without conformal features (observation-conditioned residual
+      only, equivalent to A2C2-style generic residual). MAKE-OR-BREAK for Claim 1.
+
+      '
+    expected_results:
+      libero_plus_avg_success_acr_full: 0.313
+      libero_plus_avg_success_a3_no_conformal: 0.305
+      a3_ablation_gap_abs: 0.8
+      a3_ablation_gap_pct_relative: 2.6
+      libero_nominal_a3: 0.92
+      a3_vs_full_pvalue_paired_ttest: 0.38
+    result_rationale: 'A3 kill criterion 触发。去掉 45D conformal 特征后，CRM 仅依赖 observation
+      embedding 做残差 校正，性能仅下降 0.8 个百分点（统计不显著，p=0.38）。这直接证明在真实 VLA 设置下，conformal 特征几乎不携带
+      CRM 无法从 observation 中获取的额外信息。原因有二：(1) 如 plan_001 分析， K=10 + Ledoit-Wolf 产生的协方差过度
+      shrink，per-DOF 特征退化为近似 isotropic 的无差别信号； (2) CRM 的 observation encoder 已经隐式捕获了"当前观测与训练分布的偏差"信息，这与
+      CGS 试图 编码的 epistemic uncertainty 高度冗余。在 MVP 3D 环境下 per-DOF 特征有效是因为：3D 空间 K=10
+      给出 p/n=0.3 的合理比率，协方差结构保留完好；而 7D 空间 p/n=0.7 时结构信息被 shrinkage 抹杀。这是一个 dimensionality-driven
+      的 transfer failure。
+
+      '
+    tables:
+    - name: 'Table 3: A3 Ablation — Conformal Features Kill Test'
+      columns:
+      - Method
+      - LIBERO (nom.)
+      - Plus-Avg
+      - Δ vs Full
+      - p-value
+      rows:
+      - - ACR-VLA (full, 45D conf.)
+        - 91.0%
+        - 31.3%
+        - —
+        - —
+      - - 'A3: no conformal (obs only)'
+        - 92.0%
+        - 30.5%
+        - '-0.8'
+        - '0.38'
+      - - SmolVLA (base, no CRM)
+        - 95.0%
+        - 28.3%
+        - —
+        - —
+    - name: 'Table 4: A3 Detailed Per-Level Breakdown'
+      columns:
+      - Level
+      - Full ACR-VLA
+      - A3 (no conf.)
+      - Δ
+      rows:
+      - - L3
+        - 45.0%
+        - 44.5%
+        - '-0.5'
+      - - L4
+        - 31.0%
+        - 30.0%
+        - '-1.0'
+      - - L5
+        - 18.0%
+        - 17.0%
+        - '-1.0'
+    figures_description:
+    - 'Fig: Bar chart with error bars — Full ACR-VLA vs A3 vs Base on LIBERO-Plus.
+      Error bars (95% CI) 大幅重叠，gap 不显著。'
+    analysis: 'Kill criterion 触发：A3 gap = 0.8% < 2% 阈值，且统计不显著。Claim 1 ("per-DOF conformal
+      features enable dimension-selective correction") 在真实 VLA 上不成立。CRM 的全部增益来自 observation-conditioned
+      残差，与 A2C2 类方法功能等价。这是论文核心贡献的致命打击——方法的独特卖点（将 multivariate CP 统计量 作为校正网络输入特征）被证伪。值得保留的发现是
+      CRM 残差本身仍有 ~2-3% 的增益（A3 vs base），但这 不构成新颖贡献。
+
+      '
+  - name: A4 Ablation — Scalar vs Per-DOF Uncertainty Features
+    plan_id: plan_003
+    description: 'CRM with scalar uncertainty (Euclidean distance like ReconVLA) replacing
+      45D per-DOF features. Validates per-DOF > scalar.
+
+      '
+    expected_results:
+      libero_plus_avg_success_a4_scalar: 0.31
+      libero_plus_avg_success_full_perDOF: 0.313
+      a4_ablation_gap_abs: 0.3
+      a4_pvalue: 0.62
+      libero_nominal_a4: 0.915
+    result_rationale: 'Per-DOF vs scalar gap 仅 0.3 个百分点，完全在噪声范围内（p=0.62），落入 worst
+      档的 [-1, 1] 区间。 这与 A3 结果高度一致：如果 conformal 特征整体贡献几乎为零（A3 gap ~0.8%），那么 conformal
+      特征的 granularity（per-DOF vs scalar）自然也不会有区别。两种特征形式都只是噪声输入，CRM 学会 忽略它们而依赖 observation
+      embedding。这进一步确认了 worst 档假设——在 K=10 flow-matching 样本的退化协方差下，无论用 45D 还是 1D 编码
+      uncertainty，信息量都接近零。MVP 中 per-DOF 的 显著优势（group6: 0.024512 vs 0.029498, ~17%
+      相对改善）完全无法复现，因为 MVP 的 3D 空间 协方差结构是真实可估计的，而 7D VLA 空间中协方差信息被 shrinkage 摧毁。
+
+      '
+    tables:
+    - name: 'Table 5: A4 Ablation — Per-DOF vs Scalar'
+      columns:
+      - Feature Type
+      - Dim
+      - Plus-Avg
+      - Δ vs Full
+      - p-value
+      rows:
+      - - Per-DOF (full ACR-VLA)
+        - 45D
+        - 31.3%
+        - —
+        - —
+      - - Scalar (Euclidean)
+        - 1D
+        - 31.0%
+        - '-0.3'
+        - '0.62'
+      - - No conformal (A3)
+        - 0D
+        - 30.5%
+        - '-0.8'
+        - '0.38'
+    figures_description:
+    - 'Fig: 三种 feature granularity (45D, 1D, 0D) 的 LIBERO-Plus 成功率。三者几乎持平，error bars
+      完全重叠。对比 MVP 结果中 per-DOF 的显著优势，展示 transfer gap。'
+    analysis: 'A4 结果与 A3 形成完整的否定证据链：不仅 conformal 特征整体贡献微弱（A3），per-DOF 的额外 granularity
+      也不提供任何增量（A4）。这否定了 Claim 1 的全部两层逻辑。对 empirical study reframe 而言，这是一个有价值的负面结果——可以精确量化
+      MVP-to-VLA transfer gap 并分析 root cause。
+
+      '
+  - name: SRPO Stacking
+    plan_id: plan_004
+    description: 'ACR-VLA stacked on SRPO-finetuned VLA. Train new CRM on SRPO checkpoint
+      + LIBERO demos. Evaluate on LIBERO-Plus.
+
+      '
+    expected_results:
+      srpo_baseline_libero_plus: 0.821
+      srpo_plus_acr_libero_plus: 0.832
+      srpo_stacking_gain_abs: 1.1
+      srpo_stacking_pvalue: 0.29
+      srpo_nominal_drop: 1.8
+    result_rationale: 'SRPO stacking gain 仅 1.1%（82.1% → 83.2%），落入 worst 档 [0, 2]
+      区间且统计不显著。 根本原因：SRPO 通过 RL finetuning 已经在训练时对 LIBERO-Plus 的分布偏移做了适应，留给 inference-time
+      correction 的残差空间极小。SRPO 已将 base VLA 从 ~28% 提升到 82.1%， 吃掉了绝大部分可恢复的性能差距。CRM 能校正的残余错误主要是
+      SRPO 也无法解决的 fundamental failures（如完全未见过的 layout 组合），这些 failure modes 不是简单的 action
+      bias 可以 通过残差校正解决的。此外，SRPO 的 policy 已经过 RL 优化，action distribution 更加 peaked，
+      K=10 flow-matching 样本的多样性更低，进一步削弱了 CGS 的统计估计质量。
+
+      '
+    tables:
+    - name: 'Table 6: SRPO Stacking Results'
+      columns:
+      - Method
+      - Plus-Avg
+      - Δ vs SRPO
+      - p-value
+      rows:
+      - - SRPO (baseline)
+        - 82.1%
+        - —
+        - —
+      - - SRPO + ACR-VLA
+        - 83.2%
+        - '+1.1'
+        - '0.29'
+      - - SmolVLA + ACR-VLA
+        - 31.3%
+        - +3.0 vs base
+        - —
+    figures_description:
+    - 'Fig: Stacking gain diminishing returns — X轴: base policy 性能，Y轴: ACR-VLA 增量。展示
+      base 越强增量越小的趋势。'
+    analysis: 'Claim 3 降级为 "complementary in principle"。1.1% 增益不构成 convincing evidence
+      of orthogonal value。对 reframed paper，这支持一个 insight：inference-time correction
+      的 ceiling 受限于 training-time optimization 已覆盖的 error modes。当 base policy 很强时，剩余
+      failures 是 结构性的，不可通过 action residual 修复。
+
+      '
+  - name: COC Signal Validation
+    plan_id: plan_005
+    description: 'COC signal validation: (a) Spearman ρ between episode COC coverage
+      fraction and task success, (b) ACI convergence plot, (c) ellipsoid volume comparison
+      vs static calibration.
+
+      '
+    expected_results:
+      coc_success_spearman_rho: 0.18
+      coc_success_spearman_pvalue: 0.04
+      aci_converged_episodes_pct: 0.72
+      aci_convergence_steps_median: 85
+      aci_final_coverage_mean: 0.89
+      aci_target_coverage: 0.9
+      ellipsoid_volume_aci_vs_static_narrowing_pct: 6.5
+      ellipsoid_volume_aci_mean_log: 2.31
+      ellipsoid_volume_static_mean_log: 2.47
+    result_rationale: 'COC-success Spearman ρ = 0.18，虽统计显著（p=0.04，因为 N 足够大）但实质相关性极弱，远低于
+      可用阈值。核心问题：COC 是一个 chunk-overlap 一致性度量，衡量相邻 action chunks 的预测 一致性。在高分布偏移下（L4-L5），VLA
+      的预测本身已经高度不稳定，COC 信号的 noise floor 很高。 更根本的是，COC 衡量的是"预测一致性"而非"预测正确性"——一个 consistently
+      wrong 的 policy 会产生高 COC 但低 success。ACI 虽然 converge 到接近目标覆盖率（0.89 vs 0.90 target），
+      但 ellipsoid volume 仅收窄 6.5%（低于 10% 阈值），说明 ACI 的在线适应相比 static calibration 几乎没有
+      tighten confidence region 的效果。原因是 COC 信号太嘈杂，ACI 的 step-size 需要 设得很小才能 converge，导致适应速度极慢，ellipsoid
+      几乎不变。
+
+      '
+    tables:
+    - name: 'Table 7: COC Signal Quality'
+      columns:
+      - Metric
+      - Value
+      - Threshold
+      - Pass?
+      rows:
+      - - Spearman ρ (COC vs success)
+        - '0.18'
+        - '>0.3'
+        - FAIL
+      - - p-value
+        - '0.04'
+        - <0.05
+        - PASS (but weak ρ)
+      - - Ellipsoid narrowing vs static
+        - 6.5%
+        - '>10%'
+        - FAIL
+      - - ACI coverage (target=0.90)
+        - '0.89'
+        - ±0.02
+        - PASS
+    - name: 'Table 8: ACI Convergence by Perturbation Level'
+      columns:
+      - Level
+      - Converged %
+      - Median Steps
+      - Final Coverage
+      rows:
+      - - L3
+        - 82%
+        - '62'
+        - '0.90'
+      - - L4
+        - 70%
+        - '91'
+        - '0.88'
+      - - L5
+        - 58%
+        - '118'
+        - '0.87'
+    figures_description:
+    - 'Fig: Scatter plot — COC episode fraction (X) vs task success (Y, binary). 点云分散，弱正相关趋势几乎不可辨。'
+    - 'Fig: ACI alpha trajectory across episodes，分 L3/L4/L5。L3 平稳收敛，L5 oscillate 严重。'
+    - 'Fig: Ellipsoid volume CDF — ACI vs static。两条曲线几乎重合，narrowing 微弱。'
+    analysis: 'COC 作为自参考校准信号在真实 VLA 上不可靠。Claim 2 的 kill criterion 部分触发（ρ < 0.3 AND
+      narrowing < 10% 均满足）。ACI 虽然能 converge coverage，但这只是因为 conformal prediction 的理论保证——它并不意味着
+      ACI 提供了比 static 更有用的 uncertainty 估计。对 reframed paper， COC 失败模式分析本身是有价值的贡献：可以系统地刻画什么条件下
+      self-referential calibration 信号 可靠（低偏移、policy 足够 smooth）vs 不可靠（高偏移、prediction
+      instability）。
+
+      '
+  - name: A1 Ablation — CRM without ACI
+    plan_id: plan_006
+    description: 'CRM without ACI (static CGS calibration, no online adaptation).
+      Isolates ACI contribution.
+
+      '
+    expected_results:
+      libero_plus_avg_a1_static: 0.308
+      libero_plus_avg_full_aci: 0.313
+      a1_gap_abs: 0.5
+      a1_pvalue: 0.51
+      libero_nominal_a1: 0.915
+    result_rationale: 'ACI 贡献仅 0.5 个百分点，不显著。与 plan_005 的 COC 信号分析一致：如果 COC 信号本身就不
+      可靠（ρ=0.18），那么基于 COC 的 ACI 在线更新自然不能比 static calibration 做得更好。 ACI 的 alpha 调整幅度太小（因为
+      step size 保守以应对 noisy COC），实质上 conformal threshold 几乎没有偏离初始 static 值。此外，由于 A3
+      已表明 conformal 特征整体贡献微弱，ACI 对 conformal threshold 的精细调整更是无关紧要——即便 threshold 是完美的，产生的
+      per-DOF 特征也不被 CRM 有效利用。
+
+      '
+    tables:
+    - name: 'Table 9: A1 Ablation — ACI Contribution'
+      columns:
+      - Method
+      - Plus-Avg
+      - Δ vs Full
+      rows:
+      - - Full ACR-VLA (ACI)
+        - 31.3%
+        - —
+      - - 'A1: Static CGS (no ACI)'
+        - 30.8%
+        - '-0.5'
+    figures_description:
+    - 'Fig: ACI vs Static alpha 轨迹对比。Static 保持恒定，ACI 仅微小波动，两者产生的 conformal region
+      几乎相同。'
+    analysis: 'ACI 组件在 worst 档下无实质贡献。结合 A3 的 conformal features 无贡献结论，ACI 优化的是 一个本身就无用的信号通道。
+
+      '
+  - name: A2 Ablation — ACI without CRM
+    plan_id: plan_007
+    description: 'ACI without CRM (CGS + COC + sample selection only, extending ReconVLA
+      to multivariate). Isolates CRM contribution.
+
+      '
+    expected_results:
+      libero_plus_avg_a2_no_crm: 0.295
+      libero_plus_avg_full: 0.313
+      a2_vs_base_gain: 1.2
+      a2_vs_full_gap: 1.8
+      libero_nominal_a2: 0.94
+    result_rationale: '无 CRM 时，ACR-VLA 退化为基于 multivariate CP 的 sample selection 方法（类似
+      ReconVLA 但用 Mahalanobis distance 替代 Euclidean distance）。增益仅 1.2%（vs base 28.3%
+      → 29.5%）。 原因：(1) 样本选择只能从 K=10 个已有样本中选最好的，不能合成新动作——ceiling 很低； (2) 在 K=10 退化协方差下，Mahalanobis
+      distance 和 Euclidean distance 高度相关（因为协方差 近对角），multivariate extension 不比 ReconVLA
+      的标量方案好多少。CRM 的存在至少提供了 observation-conditioned 残差校正能力（A2 vs full gap = 1.8%），这是该
+      pipeline 中唯一 有实质贡献的组件，但这个贡献不依赖 conformal features（如 A3 所示）。
+
+      '
+    tables:
+    - name: 'Table 10: A2 Ablation — CRM Contribution'
+      columns:
+      - Method
+      - Plus-Avg
+      - Nominal
+      - Δ vs Base
+      rows:
+      - - Base SmolVLA
+        - 28.3%
+        - 95.0%
+        - —
+      - - 'A2: CGS+ACI only (no CRM)'
+        - 29.5%
+        - 94.0%
+        - '+1.2'
+      - - Full ACR-VLA
+        - 31.3%
+        - 91.0%
+        - '+3.0'
+    figures_description:
+    - 'Fig: 组件分解 bar chart — Base → +CGS/ACI selection → +CRM。Selection 贡献 ~1.2%,
+      CRM 贡献 ~1.8%。'
+    analysis: 'A2 确认 CRM（残差校正）是 pipeline 中唯一有意义的组件。但 A3 已证明 CRM 的效果不依赖 conformal features。组合
+      A2+A3 的结论：ACR-VLA = observation-conditioned residual + marginal sample selection
+      benefit，与原始 framing 的 "structured uncertainty-driven correction" 无关。
+
+      '
+  - name: Per-Perturbation Breakdown
+    plan_id: plan_008
+    description: 'ACR-VLA gain across 7 LIBERO-Plus perturbation dimensions (camera,
+      noise, robot-state, light, background, layout, language).
+
+      '
+    expected_results:
+      gain_camera: 5.2
+      gain_noise: 4.8
+      gain_robot_state: 3.1
+      gain_light: 2.5
+      gain_background: 1.8
+      gain_layout: -0.5
+      gain_language: -1.2
+      perturbation_dims_with_significant_gain: 2
+      perturbation_dims_with_negative: 2
+    result_rationale: '仅 2 个维度（camera, noise）显示显著增益（>3%），与 worst 档 [0, 2] 维度范围吻合。
+      Camera 和 noise 是 synthetic augmentation 能较好覆盖的偏移类型——随机 crop/resize 和 Gaussian
+      noise 是标准数据增强，CRM 在这两类偏移上有充足的训练数据。但即使在这两个维度上， 增益也主要来自 observation-conditioned
+      residual（与 A3 一致），而非 conformal features。 Layout 和 language 出现负增益，因为这两类偏移无法通过
+      synthetic augmentation 覆盖， CRM 面临 out-of-distribution 输入且过度校正。Layout 改变了物体空间关系，CRM
+      学到的 残差模式不适用；language 改变了任务语义，CRM 的 observation encoder 无法正确解读意图。 这两个维度的 negative
+      transfer 是 worst 档的典型特征——CRM 在未见过的偏移类型上有害。
+
+      '
+    tables:
+    - name: 'Table 11: Per-Perturbation Success Rate Breakdown'
+      columns:
+      - Perturbation
+      - Base
+      - ACR-VLA
+      - Δ
+      - Significant?
+      rows:
+      - - Camera
+        - 38.0%
+        - 43.2%
+        - '+5.2'
+        - Yes (p<0.05)
+      - - Noise
+        - 35.0%
+        - 39.8%
+        - '+4.8'
+        - Yes (p<0.05)
+      - - Robot-state
+        - 30.0%
+        - 33.1%
+        - '+3.1'
+        - Marginal (p=0.08)
+      - - Light
+        - 42.0%
+        - 44.5%
+        - '+2.5'
+        - No (p=0.15)
+      - - Background
+        - 40.0%
+        - 41.8%
+        - '+1.8'
+        - No (p=0.22)
+      - - Layout
+        - 22.0%
+        - 21.5%
+        - '-0.5'
+        - 'No'
+      - - Language
+        - 18.0%
+        - 16.8%
+        - '-1.2'
+        - 'No'
+    figures_description:
+    - 'Fig: Radar/spider chart — 7 perturbation dimensions 的 ACR-VLA gain。右侧 camera/noise
+      突出，左侧 layout/language 凹陷。'
+    - 'Fig: Heatmap — perturbation type × action DOF 的 CRM correction magnitude。展示
+      CRM 在不同偏移下的校正行为模式。'
+    analysis: 'Per-perturbation 分析揭示了 synthetic augmentation 的根本局限：只有 augmentation
+      能覆盖的 偏移类型（camera, noise）才有增益，无法覆盖的类型（layout, language）反而有害。这对 reframed paper
+      是一个有价值的 finding：practitioner guidance 应强调 inference-time correction 方法 需要与 training-time
+      augmentation 的 coverage 匹配。
+
+      '
+  - name: A5 Ablation — CGS vs Bonferroni
+    plan_id: plan_009
+    description: 'CGS (joint Mahalanobis) vs per-DOF Bonferroni correction. Validates
+      multivariate CP advantage.
+
+      '
+    expected_results:
+      libero_plus_avg_cgs_joint: 0.313
+      libero_plus_avg_bonferroni: 0.311
+      a5_gap_abs: 0.2
+      a5_pvalue: 0.74
+    result_rationale: 'CGS vs Bonferroni gap 仅 0.2%，完全在噪声范围内。由于 K=10 Ledoit-Wolf shrinkage
+      将协方差 矩阵推向近对角形式，joint Mahalanobis ellipsoid 和 per-DOF Bonferroni rectangle 在形状上
+      高度相似（均近似 axis-aligned）。multivariate CP 相对于 marginal Bonferroni 的理论优势 （更紧的 joint
+      region、跨维度协方差利用）在协方差退化时不存在。这从另一个角度确认了 worst 档核心问题：K=10 在 7D 空间中不足以支撑有意义的 multivariate
+      统计。
+
+      '
+    tables:
+    - name: 'Table 12: A5 — CGS vs Bonferroni'
+      columns:
+      - CP Method
+      - Plus-Avg
+      - Ellipsoid Vol (log)
+      - Δ
+      rows:
+      - - CGS (joint Mahal.)
+        - 31.3%
+        - '2.31'
+        - —
+      - - Bonferroni (per-DOF)
+        - 31.1%
+        - '2.45'
+        - '-0.2'
+    figures_description:
+    - 'Fig: 2D slice (DOF 1 vs DOF 2) of CGS ellipse vs Bonferroni rectangle。两者几乎重合（ellipse
+      nearly circular, rectangle nearly square）。'
+    analysis: '进一步确认 multivariate CP 在 K=10 + high-dim 下无优势。对 reframed paper 的贡献：
+      提供了 p/n ratio threshold 的 empirical evidence——multivariate CP 何时 degrade 到 与
+      marginal 等价。
+
+      '
+  - name: A6 Ablation — COC vs Episode-Level Success for ACI
+    plan_id: plan_010
+    description: 'COC signal vs episode-level task success for ACI update. Validates
+      self-referential per-step signal.
+
+      '
+    expected_results:
+      libero_plus_avg_a6_episode_signal: 0.318
+      libero_plus_avg_coc_signal: 0.313
+      a6_gap_abs: -0.5
+      ellipsoid_narrowing_episode_pct: 12.8
+      ellipsoid_narrowing_coc_pct: 6.5
+    result_rationale: 'Episode-level success signal 实际上比 COC 自参考信号表现更好（+0.5%），且 ellipsoid
+      narrowing 更大（12.8% vs 6.5%）。这直接否定了 Claim 2 的核心 value proposition—— 自参考 COC 信号应该比需要外部监督的
+      episode signal 更有价值，但事实相反。原因是 episode success 是 ground truth supervision，虽然粒度更粗（per-episode
+      vs per-step）且需要 等到 episode 结束，但信号质量远高于 COC 的嘈杂 proxy。COC 作为 per-step 信号的优势 （更快适应、不需要外部
+      reward）在实践中被其 noise 抵消。这对 reframed paper 是一个重要 negative result：self-referential
+      calibration 在信号质量上无法替代 external supervision。
+
+      '
+    tables:
+    - name: 'Table 13: A6 — ACI Signal Source Comparison'
+      columns:
+      - Signal
+      - Plus-Avg
+      - Ellipsoid Narrowing
+      - Requires External?
+      rows:
+      - - COC (self-referential)
+        - 31.3%
+        - 6.5%
+        - 'No'
+      - - Episode success
+        - 31.8%
+        - 12.8%
+        - 'Yes'
+      - - Static (no adaptation)
+        - 30.8%
+        - 0%
+        - 'No'
+    figures_description:
+    - 'Fig: ACI alpha 轨迹对比——COC signal (高 variance oscillation) vs episode signal
+      (smooth convergence)。'
+    analysis: 'Self-referential COC 信号劣于 episode-level external signal，否定 Claim 2
+      的 practical value。 对 empirical study reframe 有价值：量化了 self-referential vs supervised
+      calibration 的 gap， 提供 guidance on when self-referential is acceptable（低偏移、高
+      SNR 场景）vs not（高偏移）。
+
+      '
+  - name: A7 Ablation — DiU Aleatoric vs CGS Epistemic Features
+    plan_id: plan_011
+    description: 'CRM with DiU aleatoric features replacing CGS epistemic features.
+      Also test combined epistemic+aleatoric 52D input.
+
+      '
+    expected_results:
+      libero_plus_avg_cgs_epistemic: 0.313
+      libero_plus_avg_diu_aleatoric: 0.316
+      libero_plus_avg_combined_52d: 0.314
+      a7_diu_vs_cgs_gap: 0.3
+      a7_combined_vs_cgs_gap: 0.1
+    result_rationale: 'DiU aleatoric features 略优于 CGS epistemic features（+0.3%），但差异不显著，三种配置几乎
+      持平。结合 A3 结论（conformal features 整体贡献 ~0.8%），epistemic vs aleatoric 的区分 在 0.8%
+      的总预算内进行比较本身就意义有限。DiU 略优的可能原因：DiU 的 single-pass aleatoric uncertainty 不依赖 K=10
+      多次采样的协方差估计，避免了 K=10 退化问题，提供了稍微更稳定的 per-DOF uncertainty signal。但这个优势极其微弱，不足以支撑任何
+      claim。Combined 52D 没有 额外增益，说明两类特征高度冗余或都不被 CRM 有效利用。
+
+      '
+    tables:
+    - name: 'Table 14: A7 — Epistemic vs Aleatoric Features'
+      columns:
+      - Feature Source
+      - Dim
+      - Plus-Avg
+      - Δ vs CGS
+      rows:
+      - - CGS epistemic
+        - 45D
+        - 31.3%
+        - —
+      - - DiU aleatoric
+        - 7D
+        - 31.6%
+        - '+0.3'
+      - - Combined
+        - 52D
+        - 31.4%
+        - '+0.1'
+      - - No features (A3)
+        - 0D
+        - 30.5%
+        - '-0.8'
+    figures_description:
+    - 'Fig: CGS vs DiU per-DOF uncertainty correlation scatter。若协方差退化，CGS per-DOF
+      std ≈ marginal std ≈ DiU 的近似值，两者高度相关。'
+    analysis: 'Epistemic vs aleatoric 区分在 worst 档下无实质意义。所有 uncertainty features 的贡献都被
+      K=10 协方差退化所限制。对 reframed paper：可以分析在什么 K 值下 epistemic (multi-sample) features
+      才开始优于 aleatoric (single-pass) features，为 future work 指明方向。
+
+      '
+  - name: Feature Importance Analysis
+    plan_id: plan_012
+    description: 'CRM gradient magnitude w.r.t. 45 uncertainty features, broken down
+      by perturbation type. Validates dimension-selective correction mechanism.
+
+      '
+    expected_results:
+      avg_gradient_conformal_features: 0.003
+      avg_gradient_observation_features: 0.041
+      gradient_ratio_obs_over_conf: 13.7
+      top5_features_all_observation: true
+      conformal_feature_gradient_std: 0.001
+      perturbation_specific_pattern: false
+    result_rationale: 'CRM 对 conformal features 的梯度幅值仅为 observation features 的 1/14，且
+      conformal features 之间的梯度差异极小（std=0.001），说明 CRM 没有学到 dimension-selective 的利用模式。
+      所有 top-5 重要特征均来自 observation embedding，而非 conformal 特征。这直接反映了 conformal 特征在
+      K=10 退化下的信息匮乏：CRM 的梯度下降过程中自然地学会降低对低信息量 输入的依赖权重。没有 perturbation-specific 的特征利用模式（所有偏移类型下的梯度分布
+      几乎相同），否定了 "dimension-selective correction" 的机制假设——CRM 没有在不同偏移下 选择性地依赖不同 DOF
+      的 conformal 信息。
+
+      '
+    tables:
+    - name: 'Table 15: Feature Importance (Gradient Magnitude)'
+      columns:
+      - Feature Group
+      - Mean |∇|
+      - Std |∇|
+      - Top-5 Count
+      rows:
+      - - Observation embedding (128D)
+        - '0.041'
+        - '0.018'
+        - 5/5
+      - - Per-DOF std (7D)
+        - '0.004'
+        - '0.001'
+        - 0/5
+      - - Per-DOF conformal radius (7D)
+        - '0.003'
+        - '0.001'
+        - 0/5
+      - - Ellipsoid features (3D)
+        - '0.002'
+        - '0.001'
+        - 0/5
+      - - Cross-DOF covariance (28D)
+        - '0.002'
+        - '0.001'
+        - 0/5
+    figures_description:
+    - 'Fig: Gradient magnitude heatmap — 45 conformal features × 7 perturbation types。整体呈均匀低值，无
+      perturbation-specific pattern。'
+    - 'Fig: Feature importance bar chart — observation 远超 conformal，所有 conformal 子组几乎持平。'
+    analysis: 'Feature importance 分析提供了 mechanism-level 的证据：CRM 未学到 dimension-selective
+      correction。这从网络内部行为角度解释了为什么 A3、A4 的 ablation gap 如此小——conformal features 在 forward
+      pass 中就被实质性忽略了。对 reframed paper，这是一个关键的 analysis 贡献：精确地展示了 what happens inside
+      the correction network when conformal features are uninformative。
+
+      '
+  - name: SnapFlow Integration
+    plan_id: plan_013
+    description: 'K=10 × 1-step distilled generation. Test sample diversity preservation
+      and inference speedup.
+
+      '
+    expected_results:
+      snapflow_inference_time_ms: 18
+      original_inference_time_ms: 142
+      speedup_factor: 7.9
+      snapflow_sample_diversity_std_mean: 0.008
+      original_sample_diversity_std_mean: 0.023
+      diversity_preservation_ratio: 0.35
+      snapflow_libero_plus_acr: 0.292
+      original_libero_plus_acr: 0.313
+      snapflow_performance_drop: 2.1
+    result_rationale: 'SnapFlow 1-step distillation 实现 7.9x 推理加速，但样本多样性仅保留 35%（std
+      从 0.023 降到 0.008）。多样性大幅下降直接恶化了 CGS 的统计估计质量：K=10 样本本身就不多，distillation 进一步压缩了样本空间覆盖，导致协方差估计更加退化。在
+      worst 档下这个影响被放大——原始 K=10 已经不够用，SnapFlow 的 diversity collapse 使情况更差。性能下降 2.1%
+      在可接受范围但不理想。 对 reframed paper 的意义有限，仅作为 efficiency-accuracy trade-off 的一个数据点。
+
+      '
+    tables:
+    - name: 'Table 16: SnapFlow Integration'
+      columns:
+      - Config
+      - Inference (ms)
+      - Sample Div.
+      - Plus-Avg
+      rows:
+      - - Original (50-step)
+        - '142'
+        - '0.023'
+        - 31.3%
+      - - SnapFlow (1-step)
+        - '18'
+        - '0.008'
+        - 29.2%
+    figures_description:
+    - 'Fig: SnapFlow vs original sample distribution — t-SNE of K=10 samples showing
+      diversity collapse under distillation。'
+    analysis: SnapFlow 加速显著但样本多样性损失严重。在 worst 档下，原始 K=10 协方差已退化，SnapFlow 进一步加剧问题。这提供了一个
+      practical insight：inference-time correction 依赖多样化样本 的方法不应与 aggressive distillation
+      组合使用。
+  review_report: '---
+
+    dream_id: dream_20260513T023849
+
+    tier: worst
+
+    overall_score: 4/10 — reject
+
+    timestamp: 2026-05-13T03:26:05.801922+00:00
+
+    ---
+
+
+    # Dream Review Report: ACR-VLA Conformal Refinement (Worst Tier)
+
+
+    **Paper:** "When Does Multivariate Conformal Prediction Help Robot Action Correction?
+    A Systematic Empirical Study"
+
+    **Venue:** CoRL 2026
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Date:** 2026-05-13
+
+
+    ---
+
+
+    ## Venue Calibration: CoRL 2026
+
+
+    CoRL uses a 1–10 overall rating scale on OpenReview. Acceptance rate is ~30–35%.
+    Review dimensions include originality, quality, clarity, significance, relevance
+    to robot learning, and limitations. CoRL values both theoretical and empirical
+    contributions; beating SOTA is neither necessary nor sufficient — novel perspectives
+    and insights matter. Negative-result papers are acceptable if they provide sufficient
+    knowledge advancement.
+
+
+    ---
+
+
+    ## R1 Review: Methods & Experiments
+
+
+    ### Summary
+
+    ACR-VLA is a three-component pipeline (CGS + ACI/COC + CRM) applying multivariate
+    conformal prediction to VLA action correction. Framed as a systematic negative-result
+    study, all three pre-registered claims fail their kill criteria across 11 experiments
+    on LIBERO/LIBERO-Plus. The root cause is covariance degeneracy: K=10 samples in
+    7D yield Ledoit-Wolf shrinkage intensity 0.91 (effective rank 1.3), collapsing
+    per-DOF features to near-isotropic signals.
+
+
+    ### Strengths
+
+    1. **Pre-registered kill criteria with honest reporting.** Defining quantitative
+    thresholds (A3 gap <2pp, COC ρ<0.3, SRPO stacking <2pp) before experimentation
+    and reporting failures transparently is rare and commendable.
+
+    2. **Comprehensive ablation suite.** The 7 ablations (A1–A7) systematically isolate
+    each pipeline component. A3 (conformal features), A4 (per-DOF vs scalar), A5 (CGS
+    vs Bonferroni), A6 (COC vs episode signal), A7 (epistemic vs aleatoric) form a
+    thorough decomposition.
+
+    3. **Mechanistic diagnosis via covariance analysis.** Table 2''s diagnostics (shrinkage=0.91,
+    effective rank=1.3 for VLA vs shrinkage=0.42, rank=2.7 for MVP) provide a precise,
+    quantitative explanation for the failure, going beyond "it didn''t work."
+
+    4. **Feature importance analysis as "smoking gun."** Table 8 shows CRM assigns
+    14× more gradient magnitude to observation features (0.041) than conformal features
+    (0.002–0.004), with no perturbation-specific routing pattern — directly contradicting
+    the dimension-selective correction hypothesis at the mechanism level.
+
+    5. **Per-perturbation analysis is well-constructed.** Table 14 correctly attributes
+    gains to augmentation coverage (camera +5.2, noise +4.8) and identifies negative
+    transfer on uncovered types (layout −0.5, language −1.2).
+
+
+    ### Weaknesses
+
+    1. **Insufficient statistical power for a negative-result paper (Major).** With
+    3 seeds and 50 tasks, the standard error on success rate differences is ~1.5–2.5pp.
+    The key A3 result (0.8pp gap, p=0.38) correctly fails to reject the null, but
+    this low power also cannot rule out a meaningful 2–4pp true effect. A negative-result
+    paper needs ≥5–10 seeds to convincingly bound the true effect size. The kill criterion
+    failure is consistent with both "conformal features are useless" and "conformal
+    features provide a small but real benefit masked by noise."
+
+    2. **Two distinct failure modes are conflated (Major).** Covariance collapse (shrinkage
+    0.91) and CRM''s failure to exploit residual structure are treated as one phenomenon.
+    These are separable: (a) is the covariance estimate uninformative? (b) even if
+    somewhat informative, is the CRM architecture insufficient to exploit it? No alternative
+    CRM designs (e.g., attention over DOFs, contrastive auxiliary objectives) are
+    tested. The negative result applies to "this specific pipeline" rather than "per-DOF
+    conformal features for VLA correction" in general.
+
+    3. **K is never varied (Major).** The paper''s central diagnostic claim is that
+    K/p ratio governs feature quality, but K=10 is the only value tested on the full
+    VLA pipeline. Testing K=20 or K=30 would directly validate or falsify the scaling
+    hypothesis. This is the most critical missing experiment.
+
+    4. **Nominal degradation underanalyzed.** The −4.2pp nominal drop (95.0% → 91.0%)
+    is substantial. No per-task breakdown, no analysis of correlation with CRM residual
+    magnitude, and no gating mechanism tested (apply CRM only above an uncertainty
+    threshold).
+
+    5. **SRPO stacking experiment lacks controls.** The +1.1pp result tests one training-time
+    method with a CRM trained on standard LIBERO augmentation, not SRPO''s failure
+    distribution. The stacking failure could be training distribution mismatch rather
+    than a fundamental limitation.
+
+    6. **No error bars or confidence intervals on main results.** The absence of uncertainty
+    quantification on the results of an uncertainty-quantification paper is ironic
+    and weakens statistical claims.
+
+
+    ### Questions for Authors
+
+    1. What is the empirical coverage rate of conformal prediction regions under both
+    static and ACI-adapted calibration?
+
+    2. Have you considered diagonal-only CGS features (14D: per-DOF mean + std, no
+    cross-DOF terms) as an intermediate baseline?
+
+    3. Is CGS computed per-timestep (d=7) or per-chunk (d=30–35)? If per-chunk, p/n
+    rises to 3.0–3.5, making the covariance far more ill-conditioned than reported.
+
+    4. What is the inference latency for K>10? Is K=50 prohibitively expensive on
+    modern GPUs?
+
+
+    ### Missing Experiments
+
+    1. **K sensitivity sweep (K=5, 10, 20, 30, 50) on full VLA pipeline** — the single
+    most important missing experiment.
+
+    2. **CRM gating mechanism** to suppress correction when uncertainty is low, potentially
+    eliminating nominal degradation.
+
+    3. **A second base VLA** (e.g., OpenVLA) to test generality beyond SmolVLA.
+
+    4. **Confidence intervals / bootstrap CIs** on all main results.
+
+
+    ### R1 Scores
+
+    - Soundness: 2/4
+
+    - Empirical Methodology: 2/4
+
+    - Reproducibility: 3/4
+
+    - Overall: **4/10**
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## R2 Review: Novelty & Related Work
+
+
+    ### Summary
+
+    The paper documents a negative result: multivariate conformal prediction features
+    from K=10 flow-matching samples provide no statistically significant benefit for
+    VLA action correction in 7D. While the pre-registered kill criteria and covariance
+    diagnostics are credible, the negative finding is largely predictable from standard
+    statistics (p/n=0.7 is a well-known degenerate regime for covariance estimation),
+    and the paper does not explore the boundary conditions (varying K) that would
+    make the characterization actionable.
+
+
+    ### Strengths
+
+    1. **Pre-registered kill criteria raise credibility** of the negative results
+    above typical post-hoc negative reporting.
+
+    2. **Root cause analysis is precise and educational.** The Ledoit-Wolf shrinkage
+    intensity characterization (0.42 in 3D vs 0.91 in 7D) is a clean, quantitative
+    explanation transferable to other domains.
+
+    3. **Per-perturbation analysis revealing augmentation-bounded correction is informative.**
+    Gains concentrate on perturbation types covered by synthetic augmentation; uncovered
+    types show negative transfer.
+
+    4. **Addresses a genuine gap.** No prior work had attempted to use structured
+    per-DOF conformal statistics as learned correction features for VLA actions.
+
+
+    ### Weaknesses
+
+    1. **Core negative result is largely predictable from first principles (Major).**
+    With K=10 and p=7, p/n=0.7 is firmly in the regime where sample covariance matrices
+    are known to be unreliable. The Marchenko-Pastur law predicts ~30–40% relative
+    error in eigenvalue estimation. Any statistician would predict Ledoit-Wolf shrinkage
+    would dominate, collapsing covariance toward identity. The surprise value is low.
+
+    2. **No exploration of the positive regime (Major).** The paper identifies K as
+    the bottleneck but never tests K>10. A K sweep would transform this from "it doesn''t
+    work at K=10" to "it requires K≥N_threshold, here''s the cost-benefit curve."
+    The title asks "When Does Multivariate CP Help?" but only answers when it does
+    not.
+
+    3. **Only 10 references — far below CoRL standards (Major).** Key omissions include:
+    Conformalized Teleoperation (RSS 2024), TT-VLA, CP surveys (Angelopoulos & Bates
+    2023), ensemble/MC-dropout uncertainty literature, broader VLA robustness landscape
+    (Cosmos-Policy, VLA-GSE), and concurrent works on per-DOF uncertainty for VLAs.
+
+    4. **No experimental comparison with external baselines (Major).** ReconVLA, A2C2,
+    and UPS are discussed textually but not compared experimentally. Showing ACR-VLA
+    merely matches simpler baselines would strengthen the negative argument.
+
+    5. **Three stated contributions are thin individually (Moderate).** Contribution
+    1 (negative result + covariance diagnostics) is the only substantial one. Contribution
+    2 (COC ρ=0.18) is a single correlation statistic. Contribution 3 (augmentation-bounded
+    correction) follows trivially from generalization theory.
+
+    6. **Claim 3 testing is weak (Moderate).** A single stacking experiment on SRPO
+    cannot support a general claim about inference-time vs training-time orthogonality.
+    The stacking failure may simply inherit the base method''s failure.
+
+    7. **MVP-to-VLA narrative transition is underdeveloped.** The paper should make
+    the 3D→7D transition its central analytical thread, clearly explaining why MVP
+    (p/n=0.3) succeeds and VLA (p/n=0.7) fails.
+
+
+    ### Missing Related Work
+
+    - Conformalized Teleoperation (RSS 2024) — ACI applied to robot actions
+
+    - TT-VLA — test-time VLA adaptation
+
+    - CP surveys (Angelopoulos & Bates 2023)
+
+    - Ensemble/MC-dropout uncertainty in robotics
+
+    - Cosmos-Policy, VLA-GSE — LIBERO-Plus SOTA context
+
+    - SnapFlow — 1-step flow matching (cited in experiments but not referenced)
+
+    - DiU — single-pass uncertainty for flow matching
+
+    - A2C2, UPS — cited in text but absent from bibliography and experiments
+
+
+    ### R2 Scores
+
+    - Novelty: 1.5/4
+
+    - Significance: 1.5/4
+
+    - Clarity: 2.5/4
+
+    - Related Work Coverage: 1/4
+
+    - Overall: **3/10**
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## Roundtable Convergence
+
+
+    ### Step 2: Cross-Sharing
+
+    Both reviewers independently identified the same critical gaps, indicating high
+    inter-reviewer agreement on the paper''s core limitations.
+
+
+    ### Step 3: Points of Agreement
+
+    1. **Pre-registered kill criteria are exemplary.** Both reviewers single this
+    out as the paper''s strongest methodological contribution.
+
+    2. **Missing K sweep is the most critical gap.** Both identify this as the experiment
+    that would transform the paper from a narrow negative result to actionable guidance.
+
+    3. **Covariance diagnostics are the strongest technical contribution.** The shrinkage
+    intensity / effective rank analysis is precise and educational.
+
+    4. **10 references are insufficient** for a CoRL submission.
+
+    5. **Nominal degradation (−4.2pp) is concerning and underanalyzed.**
+
+    6. **The negative result has limited surprise value** given well-known statistics
+    of covariance estimation in the p/n=0.7 regime.
+
+    7. **No external baselines** weaken the paper''s positioning.
+
+
+    ### Step 3: Points of Divergence
+
+    - **R1** values the experimental design more highly (soundness of ablation structure)
+    and gives slightly more credit for the mechanistic diagnosis, resulting in 4/10.
+
+    - **R2** places more weight on the predictability of the outcome and the thin
+    related work, resulting in 3/10.
+
+    - **R1** emphasizes the conflation of covariance degeneracy vs. CRM architecture
+    failure as a key methodological weakness; **R2** focuses more on the absence of
+    positive-regime exploration.
+
+
+    ### Step 4: Consolidated Assessment
+
+
+    **Consensus Overall Score: 4/10 (reject)**
+
+
+    **Recommendation: Reject.** The paper would fall below the acceptance threshold
+    at CoRL 2026.
+
+
+    ### Rationale
+
+
+    **What works:**
+
+    - The pre-registered kill criteria framework is a model for negative-result studies
+
+    - The covariance degeneracy diagnosis (shrinkage=0.91, effective rank=1.3) is
+    precise and well-presented
+
+    - The ablation suite (A1–A7) is comprehensive and well-structured
+
+    - The per-perturbation analysis identifying augmentation-bounded correction is
+    a useful empirical finding
+
+
+    **Why it falls short for CoRL:**
+
+
+    1. **Predictability.** The core negative result — that K=10 samples in 7D yield
+    degenerate covariance — is foreseeable from elementary statistics (p/n=0.7, Marchenko-Pastur
+    regime). A negative-result paper at CoRL must either refute a widely-held belief
+    with surprising evidence or provide comprehensive failure-mode characterization
+    with actionable guidance. This paper does neither convincingly.
+
+
+    2. **Incomplete characterization.** The title asks "When Does Multivariate CP
+    Help?" but only shows when it does not (K=10, p=7). Without a K sweep, the paper
+    cannot provide the actionable threshold (K≥?) that would make the result genuinely
+    useful to practitioners.
+
+
+    3. **Insufficient statistical power.** Three seeds cannot convincingly establish
+    a negative result — the confidence intervals are too wide to distinguish "no effect"
+    from "small but real effect."
+
+
+    4. **Thin scholarship.** Ten references and no experimental baselines against
+    prior methods (ReconVLA, A2C2) are below CoRL standards.
+
+
+    5. **Nominal degradation.** The −4.2pp nominal drop means the method has negative
+    practical value in many deployment scenarios, yet this critical finding is underanalyzed.
+
+
+    ### Actionable Revision Guidance
+
+
+    To reach CoRL acceptance (or reframe for ICLR 2027 workshop/main):
+
+
+    1. **Add K sweep (K=5, 10, 20, 30, 50).** This single experiment would transform
+    the paper''s contribution from "K=10 doesn''t work" to "multivariate CP requires
+    K≥N with cost X, here is the regime map."
+
+    2. **Increase seeds to ≥5–10** for credible negative-result claims with tighter
+    CIs.
+
+    3. **Add experimental baselines** against ReconVLA and A2C2 on the same setup.
+
+    4. **Expand references to ≥25.** Cover CP surveys, conformalized teleoperation,
+    TT-VLA, ensemble uncertainty literature, and LIBERO-Plus SOTA landscape.
+
+    5. **Analyze and mitigate nominal degradation.** Test CRM gating (apply only when
+    uncertainty exceeds threshold).
+
+    6. **Disentangle covariance degeneracy from CRM architecture failure.** Test alternative
+    CRM designs that might exploit per-DOF features differently.
+
+    7. **Reframe as "regime map" paper.** The title is right ("When does...?") but
+    the content only covers the negative side. A compelling version would show: (a)
+    works at K=30+/3D, (b) fails at K=10/7D, (c) here is the p/n threshold, (d) here
+    is the practitioner decision tree.
+
+
+    ### Score Summary
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Soundness / Novelty | 2/4 | 1.5/4 | 2/4 |
+
+    | Empirical Method / Significance | 2/4 | 1.5/4 | 2/4 |
+
+    | Reproducibility / Clarity | 3/4 | 2.5/4 | 3/4 |
+
+    | — / Related Work | — | 1/4 | 1/4 |
+
+    | **Overall** | **4/10** | **3/10** | **4/10** |
+
+    | Confidence | 4/5 | 4/5 | 4/5 |
+
+    '
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-13T03:26:18+00:00'
