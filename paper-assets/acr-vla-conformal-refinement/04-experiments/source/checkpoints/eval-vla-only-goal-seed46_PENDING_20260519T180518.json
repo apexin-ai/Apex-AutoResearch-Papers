@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-vla-only-goal-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:05:08.765Z",
+    "updated_at": "2026-05-19T18:05:18.116Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Goal seed46. 补齐 Goal suite n=5 数据，与 seed42/43/44/45 配套。"
+  },
+  "timestamp": "2026-05-19T18:05:18.652434+00:00",
+  "trigger": "update_registry"
+}

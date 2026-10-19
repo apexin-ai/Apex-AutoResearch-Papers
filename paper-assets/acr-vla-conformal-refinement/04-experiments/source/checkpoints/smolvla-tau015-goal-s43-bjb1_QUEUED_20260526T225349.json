@@ -1,0 +1,15 @@
+{
+  "exp_id": "smolvla-tau015-goal-s43-bjb1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:51:30.970Z",
+    "updated_at": "2026-05-26T22:53:46.142Z",
+    "hypothesis": "SmolVLA adaptive_conformal_crm (K=2, τ=0.15) on Goal s43. Lower threshold increases trigger rate. τ-sweep data point for Appendix tau sensitivity analysis. Migrated from westd-49937 (env failures) to bjb1-18228."
+  },
+  "timestamp": "2026-05-26T22:53:49.574539+00:00",
+  "trigger": "update_registry"
+}

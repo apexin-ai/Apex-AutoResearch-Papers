@@ -1,0 +1,23 @@
+{
+  "exp_id": "eval-mag-perdof-norm02",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:16:13.281Z",
+    "updated_at": "2026-05-15T03:34:12.755Z",
+    "spec": {
+      "hypothesis": "Magnitude sensitivity analysis: acr_vla CRM v3-norm with max_correction_norm=0.2 on LIBERO spatial. Part of 6-way sweep for CoRL paper.",
+      "data_path": "/root/autodl-tmp/libero_data/",
+      "data_count": 100,
+      "model_name": "ACR-VLA (CRM v3-norm perdof, max_correction_norm=0.2)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "LIBERO spatial 10 tasks x 10 rollouts"
+    }
+  },
+  "timestamp": "2026-05-15T03:34:12.871867+00:00",
+  "trigger": "update_registry"
+}

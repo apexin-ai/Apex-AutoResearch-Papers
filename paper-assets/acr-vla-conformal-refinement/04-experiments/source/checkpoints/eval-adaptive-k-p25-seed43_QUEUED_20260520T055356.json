@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval-adaptive-k-p25-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:53:06.901Z",
+    "updated_at": "2026-05-20T05:53:55.055Z",
+    "hypothesis": "Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed43. ~75% steps trigger K=10+CRM. P25 sweep 第二个 seed。",
+    "spec": {
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "85763",
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.054959 --k_full 10 --benchmark object --seed 43 --n_rollouts 10 --output_file logs/eval_adaptive_k_p25_seed43.json\"",
+      "data_path": "LIBERO-Object",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA + CRM obs_only (adaptive_k)",
+      "seed": 43,
+      "adaptive_threshold": 0.054959,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "LIBERO-Object (10 tasks x 10 rollouts)",
+      "mode": "adaptive_k"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.13,
+      "avg_actual_k": 4.788,
+      "fast_path_ratio": 0.6515,
+      "total_steps": 28207,
+      "fast_steps": 18377,
+      "full_steps": 9830
+    }
+  },
+  "timestamp": "2026-05-20T05:53:56.300192+00:00",
+  "trigger": "update_registry"
+}

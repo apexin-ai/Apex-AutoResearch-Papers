@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-spatial-k2mean-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:41:52.628Z",
+    "updated_at": "2026-05-23T23:43:49.857Z",
+    "hypothesis": "K=2 mean baseline on Spatial suite seed46. Fifth seed extending Spatial K2mean coverage for variance analysis."
+  },
+  "timestamp": "2026-05-23T23:43:54.621679+00:00",
+  "trigger": "update_registry"
+}

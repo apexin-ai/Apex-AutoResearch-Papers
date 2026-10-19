@@ -1,0 +1,30 @@
+{
+  "exp_id": "crm-train-pi05-object",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T17:52:37.705Z",
+    "updated_at": "2026-05-21T18:10:26.906Z",
+    "hypothesis": "CRM projection trained on π0.5 precomputed features (49700 object samples, K=10) will learn to predict conformal refinement corrections that improve upon π0.5 VLA-only baseline (81.5%) on LIBERO-Object, validating cross-VLA generalization of CRM beyond SmolVLA",
+    "spec": {
+      "command": "nohup python src/train_crm.py --benchmark object --cache_dir /root/autodl-tmp/crm_cache_pi05/ --output_dir /root/autodl-tmp/checkpoints/crm_pi05/object/ --epochs 50 --batch_size 32 --obs_dim 2048",
+      "server": "bjb1-18228",
+      "gpu": "cuda:0",
+      "pid": 795874,
+      "data_path": "/root/autodl-tmp/crm_cache_pi05/object/",
+      "data_count": 49700,
+      "model_name": "crm-pi05-object",
+      "seed": 42,
+      "checkpoint_path": "N/A - incomplete data, pipeline validation only",
+      "log_path": "N/A"
+    },
+    "notes": "⚠️ INCOMPLETE DATA (68.5% coverage). Pipeline validation only - checkpoint NOT for paper. Will retrain after precompute completes with full ~72500 samples.",
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T18:10:26.906Z"
+  },
+  "timestamp": "2026-05-21T18:10:27.892201+00:00",
+  "trigger": "update_registry"
+}

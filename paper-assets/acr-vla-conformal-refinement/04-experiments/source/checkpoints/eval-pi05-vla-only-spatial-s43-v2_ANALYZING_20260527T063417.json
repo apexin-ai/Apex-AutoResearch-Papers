@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval-pi05-vla-only-spatial-s43-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:20:41.402Z",
+    "updated_at": "2026-05-27T06:34:16.016Z",
+    "hypothesis": "π0.5 VLA-only baseline on Spatial s43. Cross-architecture validation without CRM.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark spatial --seed 43 --n_rollouts 20 2>&1 | tee logs/eval-pi05-vla-only-spatial-s43-v2.log\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "581958",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-spatial-s43-v2.log",
+      "submitted_at": "2026-05-24T18:21:48.585Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 20,
+      "model_name": "pi05",
+      "seed": 43
+    },
+    "metrics": {
+      "success_rate": 0.96,
+      "n_rollouts": 20,
+      "benchmark": "spatial"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-27T06:34:17.850902+00:00",
+  "trigger": "update_registry"
+}

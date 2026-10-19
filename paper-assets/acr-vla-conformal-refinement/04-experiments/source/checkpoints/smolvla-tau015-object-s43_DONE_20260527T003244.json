@@ -1,0 +1,45 @@
+{
+  "exp_id": "smolvla-tau015-object-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-26T22:06:55.992Z",
+    "updated_at": "2026-05-27T00:32:40.132Z",
+    "reproduce": {
+      "finished_at": "2026-05-27T00:31:57.595Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T22:22:11.828596+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "completed_at": "2026-05-26T22:49:14.628Z",
+    "spec": {
+      "command": "bash -c \"... --conformal_threshold 0.15 --benchmark object --seed 43\"",
+      "server": "westd-49937",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "648711",
+      "log_path": "~/runs/acr-vla-conformal-refinement/smolvla-tau015-object-s43.log",
+      "model_name": "smolvla",
+      "seed": 43,
+      "data_path": "LIBERO-Object",
+      "data_count": 200
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-27T00:32:44.315490+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,72 @@
+{
+  "exp_id": "eval-supp-adapt-tau025-spatial-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:12:16.652Z",
+    "updated_at": "2026-05-23T08:36:01.573Z",
+    "hypothesis": "Adaptive CRM tau=0.25 multi-seed validation on Spatial (seed43). tau=0.25 confirmed optimal on seed42 (82% SR, +3.5pp over VLA-only, trigger_rate 19.4%). Testing reproducibility across seeds.",
+    "parent": "eval-supp-adapt-tau025-spatial-s42-r2",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.25 --benchmark spatial --seed 43 --n_rollouts 20 --max_correction_norm 0.2 2>&1 | tee logs/eval-supp-adapt-tau025-spatial-s43.log\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "741944",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-adapt-tau025-spatial-s43.log",
+      "submitted_at": "2026-05-23T06:33:05.214Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 200,
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "model_name": "smolvla",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial",
+      "wall_clock_seconds": 7376.4,
+      "gpu_hours": 2.05
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T08:30:41.278Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T08:31:41.130184+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 80,
+      "trigger_rate": 19.4,
+      "mean_unc": 0.1845,
+      "total_rollouts": 200,
+      "total_successes": 160,
+      "per_task": {
+        "between_plate_and_ramekin": 95,
+        "next_to_ramekin": 95,
+        "from_table_center": 95,
+        "on_cookie_box": 100,
+        "in_top_drawer_wooden_cabinet": 70,
+        "on_ramekin": 0,
+        "next_to_cookie_box": 100,
+        "on_stove": 80,
+        "next_to_plate": 85,
+        "on_wooden_cabinet": 80
+      }
+    },
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T08:36:01.573Z"
+  },
+  "timestamp": "2026-05-23T08:36:03.676738+00:00",
+  "trigger": "update_registry"
+}

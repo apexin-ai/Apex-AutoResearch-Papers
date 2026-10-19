@@ -1,0 +1,38 @@
+{
+  "exp_id": "plan_001-crm-smolvla",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T03:01:07.682Z",
+    "updated_at": "2026-05-13T05:44:07.131Z",
+    "spec": {
+      "command": "python -u src/train_crm.py --auto --benchmark spatial object --epochs 50 --batch_size 32 --lr 1e-3 --seed 42 --K 10",
+      "server": "autodl-4090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "32811",
+      "log_path": "~/runs/acr-vla-conformal-refinement/plan_001-crm-smolvla.log",
+      "submitted_at": "2026-05-13T04:54:14.975Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/libero_data/ (spatial + object)",
+      "data_count": 1000,
+      "model_name": "CRM (337K) + SmolVLA (450M)",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm/",
+      "hypothesis": "Per-DOF conformal features enable dimension-selective action correction on LIBERO",
+      "wall_clock_seconds": 2992.2,
+      "gpu_hours": 0.83
+    },
+    "conclusion": "failed",
+    "failure_reason": "startup recovery: process dead, no active cron monitor",
+    "completed_at": "2026-05-13T05:44:07.131Z"
+  },
+  "timestamp": "2026-05-13T05:44:07.142154+00:00",
+  "trigger": "update_registry"
+}

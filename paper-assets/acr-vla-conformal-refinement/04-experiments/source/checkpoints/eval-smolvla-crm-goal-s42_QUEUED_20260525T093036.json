@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-smolvla-crm-goal-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T09:30:10.261Z",
+    "updated_at": "2026-05-25T09:30:34.660Z",
+    "hypothesis": "SmolVLA CRM obs_only (K=10) Goal s42。Table 1 CRM 列补充数据，seed 方案 Goal 用 s42/s43/s44。"
+  },
+  "timestamp": "2026-05-25T09:30:36.342508+00:00",
+  "trigger": "update_registry"
+}

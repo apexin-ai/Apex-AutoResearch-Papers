@@ -1,0 +1,1932 @@
+# analysis k2 l2 fmvd reanalysis
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_analysis_k2-l2-fmvd-reanalysis_20260519T190700.log`
+- **Structured JSON:** [`a6f55e5204c4ad4ffe5a.json`](../../sessions/a6/a6f55e5204c4ad4ffe5a.json)
+
+## Before a recorded user message
+
+40 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d2d8a972-76ed-44c4-bedf-5ccdf5202e69",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779223200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "6ac27b64-a0d2-49aa-b5ba-ff8d07a1e4d7",
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the calibration data structure on the server, then write and run the analysis script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "f91b6c55-b9fc-443a-8836-ea84e9e98681",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MKgpYNkjQic61jS1cUV1SU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11674,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11674
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先探测数据结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "17318d28-b9ba-4e7a-a232-ea45883d2754",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MKgpYNkjQic61jS1cUV1SU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11674,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11674
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SUzwzEnky3hFehWqGYFziz`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "0bc70114-dc82-4487-9e2f-556010c125b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MKgpYNkjQic61jS1cUV1SU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11674,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11674
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T19:07:19.108Z_
+
+<details><summary>↩ Tool result · `toolu_01SUzwzEnky3hFehWqGYFziz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "3da911d3-84bc-4866-be6f-03b5a86c6780",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012WzHyNMUNLad59ygKGXRhJ`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "python3 -c \"import json; d=json.load(open('/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json')); print(type(d)); print(list(d.keys())[:20] if isinstance(d,dict) else f'list len={len(d)}, first keys={list(d[0].keys())}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "178642f7-67a9-4e84-9fcf-fb3e4a0cdb23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011w9pQDYJPK4JryUddmeK7w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12146,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12146
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T19:07:23.360Z_
+
+<details><summary>↩ Tool result · `toolu_012WzHyNMUNLad59ygKGXRhJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "a53fd0d6-fbf7-43d2-a6df-7396d695d104",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014YYiFpFrUFhvVi7QTj46nu`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "python3 -c \"import json\nd=json.load(open('/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json'))\nprint(type(d))\nif isinstance(d,dict):\n    print(list(d.keys())[:20])\nelse:\n    print(f'list len={len(d)}')\n    print(list(d[0].keys()))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "99fa4844-3c99-4b06-bd91-825ae5c94035",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VvKAHUDhoWS7TfpFJAhhnm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 290,
+      "cache_read_input_tokens": 23987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 290
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T19:07:26.840Z_
+
+<details><summary>↩ Tool result · `toolu_014YYiFpFrUFhvVi7QTj46nu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "e27384b7-f8ec-47a3-9a17-5c3600d96290",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BkTu3GxAwLTWMTxJLAyj26`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "head -c 3000 /root/acr-vla-conformal-refinement/logs/fmvd_calibration.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "8002f553-31bf-48a5-9406-c793ba60d3cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GqeZHFnggfCxj6ZAia6CFZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 293,
+      "cache_read_input_tokens": 24277,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 293
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T19:07:31.154Z_
+
+<details><summary>↩ Tool result · `toolu_01BkTu3GxAwLTWMTxJLAyj26`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"benchmark\\\": \\\"object\\\",\\n    \\\"n_episodes\\\": 5,\\n    \\\"seed\\\": 42,\\n    \\\"n_steps_collected\\\": 14512,\\n    \\\"num_ode_steps\\\": 10\\n  },\\n  \\\"statistics\\\": {\\n    \\\"fmvd_mean\\\": 0.054867,\\n    \\\"fmvd_std\\\": 0.040291,\\n    \\\"fmvd_percentiles\\\": {\\n      \\\"P25\\\": 0.027738,\\n      \\\"P50\\\": 0.046693,\\n      \\\"P75\\\": 0.070899,\\n      \\\"P90\\\": 0.093805\\n    },\\n    \\\"k10_variance_mean\\\": 0.004888,\\n    \\\"k10_variance_std\\\": 0.005635,\\n    \\\"spearman_rho\\\": 0.082528,\\n    \\\"spearman_pvalue\\\": 2.3276188581837622e-23\\n  },\\n  \\\"per_step_data\\\": [\\n    {\\n      \\\"step\\\": 0,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 0,\\n      \\\"fmvd\\\": 0.035418,\\n      \\\"k10_variance\\\": 0.006771,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 1,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 1,\\n      \\\"fmvd\\\": 0.04047,\\n      \\\"k10_variance\\\": 0.013842,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 2,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 2,\\n      \\\"fmvd\\\": 0.053366,\\n      \\\"k10_variance\\\": 0.005597,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 3,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 3,\\n      \\\"fmvd\\\": 0.080012,\\n      \\\"k10_variance\\\": 0.007209,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 4,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 4,\\n      \\\"fmvd\\\": 0.055463,\\n      \\\"k10_variance\\\": 0.00453,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 5,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 5,\\n      \\\"fmvd\\\": 0.045602,\\n      \\\"k10_variance\\\": 0.003994,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 6,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 6,\\n      \\\"fmvd\\\": 0.057073,\\n      \\\"k10_variance\\\": 0.007955,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 7,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 7,\\n      \\\"fmvd\\\": 0.055695,\\n      \\\"k10_variance\\\": 0.00382,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 8,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 8,\\n      \\\"fmvd\\\": 0.057416,\\n      \\\"k10_variance\\\": 0.012315,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 9,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 9,\\n      \\\"fmvd\\\": 0.051594,\\n      \\\"k10_variance\\\": 0.005676,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 10,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 10,\\n      \\\"fmvd\\\": 0.075598,\\n      \\\"k10_variance\\\": 0.006945,\\n      \\\"episode_success\\\":\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "0b7e239a-63d6-4ed0-8738-1d201af9de55",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n    \\\\\\\"n_episodes\\\\\\\": 5,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"n_steps_collected\\\\\\\": 14512,\\\\n    \\\\\\\"num_ode_steps\\\\\\\": 10\\\\n  },\\\\n  \\\\\\\"statistics\\\\\\\": {\\\\n    \\\\\\\"fmvd_mean\\\\\\\": 0.054867,\\\\n    \\\\\\\"fmvd_std\\\\\\\": 0.040291,\\\\n    \\\\\\\"fmvd_percentiles\\\\\\\": {\\\\n      \\\\\\\"P25\\\\\\\": 0.027738,\\\\n      \\\\\\\"P50\\\\\\\": 0.046693,\\\\n      \\\\\\\"P75\\\\\\\": 0.070899,\\\\n      \\\\\\\"P90\\\\\\\": 0.093805\\\\n    },\\\\n    \\\\\\\"k10_variance_mean\\\\\\\": 0.004888,\\\\n    \\\\\\\"k10_variance_std\\\\\\\": 0.005635,\\\\n    \\\\\\\"spearman_rho\\\\\\\": 0.082528,\\\\n    \\\\\\\"spearman_pvalue\\\\\\\": 2.3276188581837622e-23\\\\n  },\\\\n  \\\\\\\"per_step_data\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 0,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 0,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.035418,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.006771,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 1,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 1,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.04047,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.013842,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 2,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 2,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.053366,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.005597,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 3,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 3,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.080012,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.007209,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 4,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 4,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.055463,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.00453,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 5,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 5,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.045602,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.003994,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 6,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 6,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.057073,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.007955,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 7,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 7,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.055695,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.00382,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 8,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 8,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.057416,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.012315,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 9,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 9,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.051594,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.005676,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 10,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 10,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.075598,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.006945,\\\\n      \\\\\\\"episode_success\\\\\\\":\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"benchmark\\\": \\\"object\\\",\\n    \\\"n_episodes\\\": 5,\\n    \\\"seed\\\": 42,\\n    \\\"n_steps_collected\\\": 14512,\\n    \\\"num_ode_steps\\\": 10\\n  },\\n  \\\"statistics\\\": {\\n    \\\"fmvd_mean\\\": 0.054867,\\n    \\\"fmvd_std\\\": 0.040291,\\n    \\\"fmvd_percentiles\\\": {\\n      \\\"P25\\\": 0.027738,\\n      \\\"P50\\\": 0.046693,\\n      \\\"P75\\\": 0.070899,\\n      \\\"P90\\\": 0.093805\\n    },\\n    \\\"k10_variance_mean\\\": 0.004888,\\n    \\\"k10_variance_std\\\": 0.005635,\\n    \\\"spearman_rho\\\": 0.082528,\\n    \\\"spearman_pvalue\\\": 2.3276188581837622e-23\\n  },\\n  \\\"per_step_data\\\": [\\n    {\\n      \\\"step\\\": 0,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 0,\\n      \\\"fmvd\\\": 0.035418,\\n      \\\"k10_variance\\\": 0.006771,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 1,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 1,\\n      \\\"fmvd\\\": 0.04047,\\n      \\\"k10_variance\\\": 0.013842,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 2,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 2,\\n      \\\"fmvd\\\": 0.053366,\\n      \\\"k10_variance\\\": 0.005597,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 3,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 3,\\n      \\\"fmvd\\\": 0.080012,\\n      \\\"k10_variance\\\": 0.007209,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 4,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 4,\\n      \\\"fmvd\\\": 0.055463,\\n      \\\"k10_variance\\\": 0.00453,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 5,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 5,\\n      \\\"fmvd\\\": 0.045602,\\n      \\\"k10_variance\\\": 0.003994,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 6,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 6,\\n      \\\"fmvd\\\": 0.057073,\\n      \\\"k10_variance\\\": 0.007955,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 7,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 7,\\n      \\\"fmvd\\\": 0.055695,\\n      \\\"k10_variance\\\": 0.00382,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 8,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 8,\\n      \\\"fmvd\\\": 0.057416,\\n      \\\"k10_variance\\\": 0.012315,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 9,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 9,\\n      \\\"fmvd\\\": 0.051594,\\n      \\\"k10_variance\\\": 0.005676,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 10,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 10,\\n      \\\"fmvd\\\": 0.075598,\\n      \\\"k10_variance\\\": 0.006945,\\n      \\\"episode_success\\\":\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The data structure has:
+- `config`: metadata
+- `statistics`: aggregated stats including the spearman_rho=0.082528 (the NO-GO result)
+- `per_step_data`: list of per-step entries with `fmvd`, `k10_variance`, but NO raw K=10 action samples
+
+The per_step_data only has aggregated values (fmvd, k10_variance), not the raw K=10 action samples. Let me check if there are any raw samples stored elsewhere. Let me also check if there are per-DOF variance data or raw action samples.
+
+
+I'm scanning the end of the file to see if there are any other keys I might have missed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "a973d57c-0fb6-46d5-8cbf-b917da76afd7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZ1JQPb6NSx3bv3qv3eJRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2055,
+      "cache_read_input_tokens": 24570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2055
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+数据只有聚合统计（fmvd, k10_variance），没有原始 K=10 action samples。让我确认是否有其他字段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "e112a4b1-40ab-4a4b-b7da-93a8526a7c45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZ1JQPb6NSx3bv3qv3eJRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2055,
+      "cache_read_input_tokens": 24570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2055
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YKPBEo7ANB78kMwhZjyaRY`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tail -c 2000 /root/acr-vla-conformal-refinement/logs/fmvd_calibration.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "b2109cd8-4608-4ae9-bec7-bfc1b2c9dae1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZ1JQPb6NSx3bv3qv3eJRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2055,
+      "cache_read_input_tokens": 24570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2055
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T19:07:38.819Z_
+
+<details><summary>↩ Tool result · `toolu_01YKPBEo7ANB78kMwhZjyaRY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"episode\\\": 4,\\n      \\\"env_step\\\": 291,\\n      \\\"fmvd\\\": 0.01717,\\n      \\\"k10_variance\\\": 0.000508,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14504,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 292,\\n      \\\"fmvd\\\": 0.015908,\\n      \\\"k10_variance\\\": 0.000581,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14505,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 293,\\n      \\\"fmvd\\\": 0.018164,\\n      \\\"k10_variance\\\": 0.000429,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14506,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 294,\\n      \\\"fmvd\\\": 0.014182,\\n      \\\"k10_variance\\\": 0.000514,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14507,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 295,\\n      \\\"fmvd\\\": 0.015239,\\n      \\\"k10_variance\\\": 0.000267,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14508,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 296,\\n      \\\"fmvd\\\": 0.017881,\\n      \\\"k10_variance\\\": 0.000467,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14509,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 297,\\n      \\\"fmvd\\\": 0.011941,\\n      \\\"k10_variance\\\": 0.000965,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14510,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 298,\\n      \\\"fmvd\\\": 0.022637,\\n      \\\"k10_variance\\\": 0.000556,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14511,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 299,\\n      \\\"fmvd\\\": 0.014696,\\n      \\\"k10_variance\\\": 0.000475,\\n      \\\"episode_success\\\": false\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "3866b4d8-7c9f-4b96-b487-00e317857af1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 291,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.01717,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000508,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14504,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 292,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.015908,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000581,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14505,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 293,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.018164,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000429,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14506,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 294,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.014182,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000514,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14507,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 295,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.015239,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000267,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14508,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 296,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.017881,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000467,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14509,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 297,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.011941,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000965,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14510,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 298,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.022637,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000556,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14511,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 299,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.014696,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000475,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"episode\\\": 4,\\n      \\\"env_step\\\": 291,\\n      \\\"fmvd\\\": 0.01717,\\n      \\\"k10_variance\\\": 0.000508,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14504,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 292,\\n      \\\"fmvd\\\": 0.015908,\\n      \\\"k10_variance\\\": 0.000581,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14505,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 293,\\n      \\\"fmvd\\\": 0.018164,\\n      \\\"k10_variance\\\": 0.000429,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14506,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 294,\\n      \\\"fmvd\\\": 0.014182,\\n      \\\"k10_variance\\\": 0.000514,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14507,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 295,\\n      \\\"fmvd\\\": 0.015239,\\n      \\\"k10_variance\\\": 0.000267,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14508,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 296,\\n      \\\"fmvd\\\": 0.017881,\\n      \\\"k10_variance\\\": 0.000467,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14509,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 297,\\n      \\\"fmvd\\\": 0.011941,\\n      \\\"k10_variance\\\": 0.000965,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14510,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 298,\\n      \\\"fmvd\\\": 0.022637,\\n      \\\"k10_variance\\\": 0.000556,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14511,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 299,\\n      \\\"fmvd\\\": 0.014696,\\n      \\\"k10_variance\\\": 0.000475,\\n      \\\"episode_success\\\": false\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AeeYuWuZ6hdwTbe8JmCpqu`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "grep -o '\"[a-z_]*\":' /root/acr-vla-conformal-refinement/logs/fmvd_calibration.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "794915a2-3a4a-4e08-a4d9-5d1c5505100e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZ1JQPb6NSx3bv3qv3eJRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2055,
+      "cache_read_input_tokens": 24570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2055
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HzEKCXsRajTe2HwCmEjz5L`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ls -la /root/acr-vla-conformal-refinement/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "d39ae1b1-1bc1-41d8-9864-d68db996a594",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZ1JQPb6NSx3bv3qv3eJRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2055,
+      "cache_read_input_tokens": 24570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2055
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T19:07:40.226Z_
+
+<details><summary>↩ Tool result · `toolu_01AeeYuWuZ6hdwTbe8JmCpqu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"config\\\":\\n\\\"benchmark\\\":\\n\\\"n_episodes\\\":\\n\\\"seed\\\":\\n\\\"n_steps_collected\\\":\\n\\\"num_ode_steps\\\":\\n\\\"statistics\\\":\\n\\\"fmvd_mean\\\":\\n\\\"fmvd_std\\\":\\n\\\"fmvd_percentiles\\\":\\n\\\"spearman_rho\\\":\\n\\\"spearman_pvalue\\\":\\n\\\"per_step_data\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\n\\n... [截断: 输出过长，省略 949986 字符] ...\\n\\n\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "66ba1792-29cb-4aee-af56-b71e85950150",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"config\\\\\\\":\\\\n\\\\\\\"benchmark\\\\\\\":\\\\n\\\\\\\"n_episodes\\\\\\\":\\\\n\\\\\\\"seed\\\\\\\":\\\\n\\\\\\\"n_steps_collected\\\\\\\":\\\\n\\\\\\\"num_ode_steps\\\\\\\":\\\\n\\\\\\\"statistics\\\\\\\":\\\\n\\\\\\\"fmvd_mean\\\\\\\":\\\\n\\\\\\\"fmvd_std\\\\\\\":\\\\n\\\\\\\"fmvd_percentiles\\\\\\\":\\\\n\\\\\\\"spearman_rho\\\\\\\":\\\\n\\\\\\\"spearman_pvalue\\\\\\\":\\\\n\\\\\\\"per_step_data\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\n\\\\n... [截断: 输出过长，省略 949986 字符] ...\\\\n\\\\n\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\\\\\"step\\\\\\\":\\\\n\\\\\\\"task\\\\\\\":\\\\n\\\\\\\"episode\\\\\\\":\\\\n\\\\\\\"env_step\\\\\\\":\\\\n\\\\\\\"fmvd\\\\\\\":\\\\n\\\\\\\"episode_success\\\\\\\":\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"config\\\":\\n\\\"benchmark\\\":\\n\\\"n_episodes\\\":\\n\\\"seed\\\":\\n\\\"n_steps_collected\\\":\\n\\\"num_ode_steps\\\":\\n\\\"statistics\\\":\\n\\\"fmvd_mean\\\":\\n\\\"fmvd_std\\\":\\n\\\"fmvd_percentiles\\\":\\n\\\"spearman_rho\\\":\\n\\\"spearman_pvalue\\\":\\n\\\"per_step_data\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\n\\n... [截断: 输出过长，省略 949986 字符] ...\\n\\n\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\\\"step\\\":\\n\\\"task\\\":\\n\\\"episode\\\":\\n\\\"env_step\\\":\\n\\\"fmvd\\\":\\n\\\"episode_success\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T19:07:40.593Z_
+
+<details><summary>↩ Tool result · `toolu_01HzEKCXsRajTe2HwCmEjz5L`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4088\\ndrwxr-xr-x 3 root root    8192 May 20 02:59 .\\ndrwxr-xr-x 6 root root      81 May 16 19:17 ..\\n-rw-r--r-- 1 root root    1314 May 20 02:20 eval_goal_vla_only_seed44_r2.json\\n-rw-r--r-- 1 root root    1313 May 20 02:55 eval_goal_vla_only_seed45.json\\n-rw-r--r-- 1 root root    1489 May 18 04:24 eval_k1_crm_multiscale_object_seed42.json\\n-rw-r--r-- 1 root root   11252 May 18 04:24 eval_k1_crm_multiscale_object_seed42.log\\n-rw-r--r-- 1 root root    1486 May 17 08:29 eval_object_argmin_seed45.json\\n-rw-r--r-- 1 root root    1494 May 18 01:29 eval_object_obs_only_default_seed45.json\\n-rw-r--r-- 1 root root    6010 May 18 01:29 eval_object_obs_only_default_seed45.log\\n-rw-r--r-- 1 root root    1490 May 19 12:20 eval_object_obs_only_default_seed45_r2.json\\n-rw-r--r-- 1 root root    1490 May 19 16:08 eval_object_obs_only_default_seed48.json\\n-rw-r--r-- 1 root root   11229 May 19 16:08 eval_object_obs_only_default_seed48.log\\n-rw-r--r-- 1 root root    1490 May 16 16:16 eval_object_obs_only_norm005.json\\n-rw-r--r-- 1 root root    4241 May 16 16:16 eval_object_obs_only_norm005.log\\n-rw-r--r-- 1 root root    2441 May 18 06:54 eval_object_obs_only_norm005_seed43.log\\n-rw-r--r-- 1 root root    1490 May 19 19:09 eval_object_obs_only_norm005_seed47.json\\n-rw-r--r-- 1 root root   11267 May 19 19:09 eval_object_obs_only_norm005_seed47.log\\n-rw-r--r-- 1 root root    1490 May 18 23:16 eval_object_obs_only_norm01_seed42.json\\n-rw-r--r-- 1 root root   11264 May 18 23:16 eval_object_obs_only_norm01_seed42.log\\n-rw-r--r-- 1 root root    1490 May 19 12:57 eval_object_obs_only_norm01_seed45_r2.json\\n-rw-r--r-- 1 root root    1888 May 17 18:17 eval_object_obs_only_norm01_seed47.log\\n-rw-r--r-- 1 root root    1490 May 18 20:28 eval_object_obs_only_norm02_k5_seed43.json\\n-rw-r--r-- 1 root root    1490 May 19 04:49 eval_object_obs_only_norm02_k5_seed44.json\\n-rw-r--r-- 1 root root    1490 May 19 08:38 eval_object_obs_only_norm02_k5_seed45.json\\n-rw-r--r-- 1 root root   11186 May 19 08:38 eval_object_obs_only_norm02_k5_seed45.log\\n-rw-r--r-- 1 root root    1366 May 17 18:36 eval_object_obs_only_norm02_seed46.log\\n-rw-r--r-- 1 root root    1490 May 16 15:26 eval_object_obs_only_norm03.json\\n-rw-r--r-- 1 root root    4239 May 16 15:26 eval_object_obs_only_norm03.log\\n-rw-r--r-- 1 root root    1368 May 16 19:07 eval_object_obs_only_norm03_seed45.log\\n-rw-r--r-- 1 root root    1490 May 17 15:00 eval_object_obs_only_norm03_seed45_r2.json\\n-rw-r--r-- 1 root root    1314 May 16 00:52 eval_object_perdof_default_norm.log\\n-rw-r--r-- 1 root root    1487 May 19 17:26 eval_object_perdof_default_seed47.json\\n-rw-r--r-- 1 root root   11201 May 19 17:26 eval_object_perdof_default_seed47.log\\n-rw-r--r-- 1 root root    1488 May 16 16:07 eval_object_perdof_norm003.json\\n-rw-r--r-- 1 root root    1488 May 19 16:04 eval_object_perdof_norm003_seed46.json\\n-rw-r--r-- 1 root root   11255 May 19 16:04 eval_object_perdof_norm003_seed46.log\\n-rw-r--r-- 1 root root    1488 May 16 16:29 eval_object_perdof_norm005.json\\n-rw-r--r-- 1 root root    1487 May 19 21:24 eval_object_perdof_norm005_seed45.json\\n-rw-r--r-- 1 root root   11251 May 19 21:24 eval_object_perdof_norm005_seed45.log\\n-rw-r--r-- 1 root root    1488 May 18 23:12 eval_object_perdof_norm01_seed42.json\\n-rw-r--r-- 1 root root   11166 May 18 23:12 eval_object_perdof_norm01_seed42.log\\n-rw-r--r-- 1 root root    1354 May 17 14:52 eval_object_perdof_norm01_seed47.log\\n-rw-r--r-- 1 root root    1358 May 17 19:38 eval_object_perdof_norm02_seed43.log\\n-rw-r--r-- 1 root root    1488 May 16 18:38 eval_object_perdof_norm02_seed43_r3.json\\n-rw-r--r-- 1 root root    1487 May 18 00:48 eval_object_perdof_norm02_seed44.json\\n-rw-r--r-- 1 root root    1492 May 18 01:00 eval_object_perdof_norm02_seed45.json\\n-rw-r--r-- 1 root root    6032 May 18 01:00 eval_object_perdof_norm02_seed45.log\\n-rw-r--r-- 1 root root    1488 May 18 10:21 eval_object_perdof_norm02_seed46.json\\n-rw-r--r-- 1 root root    4232 May 18 10:21 eval_object_perdof_norm02_seed46.log\\n-rw-r--r-- 1 root root    14\\n\\n... [截断: 输出过长，省略 9 字符] ...\\n\\n 12:34 eval_object_perdof_norm02_seed47.json\\n-rw-r--r-- 1 root root    4240 May 18 12:34 eval_object_perdof_norm02_seed47.log\\n-rw-r--r-- 1 root root    1488 May 18 22:34 eval_object_perdof_norm02_seed48.json\\n-rw-r--r-- 1 root root    1441 May 16 02:25 eval_object_perdof_norm03.log\\n-rw-r--r-- 1 root root    3130 May 16 03:15 eval_object_perdof_norm03_r2.log\\n-rw-r--r-- 1 root root    1488 May 16 19:02 eval_object_perdof_norm03_r3.json\\n-rw-r--r-- 1 root root    1356 May 17 19:02 eval_object_perdof_norm03_seed46.log\\n-rw-r--r-- 1 root root    1488 May 19 16:40 eval_object_perdof_norm03_seed47.json\\n-rw-r--r-- 1 root root   11334 May 19 16:40 eval_object_perdof_norm03_seed47.log\\n-rw-r--r-- 1 root root    1494 May 20 00:03 eval_object_random_selection_k5_seed43.json\\n-rw-r--r-- 1 root root    4144 May 20 00:03 eval_object_random_selection_k5_seed43.log\\n-rw-r--r-- 1 root root    1494 May 18 23:45 eval_object_random_selection_seed43.json\\n-rw-r--r-- 1 root root    1494 May 19 02:00 eval_object_random_selection_seed44.json\\n-rw-r--r-- 1 root root    1493 May 19 16:29 eval_object_random_selection_seed45.json\\n-rw-r--r-- 1 root root   11082 May 19 16:29 eval_object_random_selection_seed45.log\\n-rw-r--r-- 1 root root    9923 May 20 00:41 eval_object_random_selection_seed46.log\\n-rw-r--r-- 1 root root    1486 May 19 20:21 eval_object_reconvla_k5_seed42.json\\n-rw-r--r-- 1 root root    1496 May 18 01:26 eval_object_scalar_seed45.json\\n-rw-r--r-- 1 root root    6023 May 18 01:26 eval_object_scalar_seed45.log\\n-rw-r--r-- 1 root root    1484 May 17 11:27 eval_object_vla_mean_seed45.json\\n-rw-r--r-- 1 root root    5146 May 15 10:41 eval_object_vla_only.log\\n-rw-r--r-- 1 root root    1492 May 16 20:36 eval_object_vla_only_seed45.json\\n-rw-r--r-- 1 root root    5816 May 16 20:36 eval_object_vla_only_seed45.log\\n-rw-r--r-- 1 root root    1897 May 17 18:25 eval_obs_only_object_norm01_seed46.log\\n-rw-r--r-- 1 root root   13528 May 19 22:03 eval_spatial_norm02_seed44.log\\n-rw-r--r-- 1 root root    1697 May 19 18:55 eval_spatial_obs_only_norm02_k5_seed42.json\\n-rw-r--r-- 1 root root    1698 May 19 23:45 eval_spatial_obs_only_norm02_k5_seed44.json\\n-rw-r--r-- 1 root root    4965 May 19 23:45 eval_spatial_obs_only_norm02_k5_seed44.log\\n-rw-r--r-- 1 root root    1697 May 19 23:49 eval_spatial_obs_only_norm02_k5_seed45.json\\n-rw-r--r-- 1 root root    4958 May 19 23:49 eval_spatial_obs_only_norm02_k5_seed45.log\\n-rw-r--r-- 1 root root    1698 May 19 22:03 eval_spatial_obs_only_norm02_seed44.json\\n-rw-r--r-- 1 root root    1697 May 20 02:50 eval_spatial_obs_only_norm02_seed46_r2.json\\n-rw-r--r-- 1 root root    1329 May 15 11:19 eval_spatial_obsonly_norm005.log\\n-rw-r--r-- 1 root root    1329 May 15 11:21 eval_spatial_obsonly_norm02.log\\n-rw-r--r-- 1 root root    1313 May 15 11:11 eval_spatial_perdof_norm003.log\\n-rw-r--r-- 1 root root    1315 May 15 11:12 eval_spatial_perdof_norm005.log\\n-rw-r--r-- 1 root root    1311 May 15 11:14 eval_spatial_perdof_norm02.log\\n-rw-r--r-- 1 root root    1313 May 15 11:17 eval_spatial_perdof_norm03.log\\n-rw-r--r-- 1 root root    1693 May 19 23:25 eval_spatial_vla_only_seed44.json\\n-rw-r--r-- 1 root root 3339497 May 20 02:59 fmvd_calibration.json\\n-rw-r--r-- 1 root root    2143 May 18 02:33 latency_profile.json\\n-rw-r--r-- 1 root root    2899 May 18 02:33 latency_profile.log\\n-rw-r--r-- 1 root root      99 May 17 23:09 libero_download.log\\n-rw-r--r-- 1 root root  261318 May 17 23:42 libero_download_aria2.log\\n-rw-r--r-- 1 root root    1366 May 16 03:25 nohup_eval_object_obs_only_norm02_v2.log\\n-rw-r--r-- 1 root root    4229 May 16 16:29 nohup_eval_object_perdof_norm005.log\\n-rw-r--r-- 1 root root    4229 May 16 19:02 nohup_eval_object_perdof_norm03_r3.log\\n-rw-r--r-- 1 root root     192 May 17 23:50 redownload_tomato.log\\ndrwxr-xr-x 2 root root      10 May 17 22:56 sentinels\\n-rw-r--r-- 1 root root    2256 May 17 22:04 train_crm_k1.log\\n-rw-r--r-- 1 root root    2272 May 17 22:48 train_crm_k1_accg.log\\n-rw-r--r-- 1 root root   10434 May 18 01:15 train_crm_k1_full.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "77fe7c43-b798-4622-908f-20986ed264b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4088\\\\ndrwxr-xr-x 3 root root    8192 May 20 02:59 .\\\\ndrwxr-xr-x 6 root root      81 May 16 19:17 ..\\\\n-rw-r--r-- 1 root root    1314 May 20 02:20 eval_goal_vla_only_seed44_r2.json\\\\n-rw-r--r-- 1 root root    1313 May 20 02:55 eval_goal_vla_only_seed45.json\\\\n-rw-r--r-- 1 root root    1489 May 18 04:24 eval_k1_crm_multiscale_object_seed42.json\\\\n-rw-r--r-- 1 root root   11252 May 18 04:24 eval_k1_crm_multiscale_object_seed42.log\\\\n-rw-r--r-- 1 root root    1486 May 17 08:29 eval_object_argmin_seed45.json\\\\n-rw-r--r-- 1 root root    1494 May 18 01:29 eval_object_obs_only_default_seed45.json\\\\n-rw-r--r-- 1 root root    6010 May 18 01:29 eval_object_obs_only_default_seed45.log\\\\n-rw-r--r-- 1 root root    1490 May 19 12:20 eval_object_obs_only_default_seed45_r2.json\\\\n-rw-r--r-- 1 root root    1490 May 19 16:08 eval_object_obs_only_default_seed48.json\\\\n-rw-r--r-- 1 root root   11229 May 19 16:08 eval_object_obs_only_default_seed48.log\\\\n-rw-r--r-- 1 root root    1490 May 16 16:16 eval_object_obs_only_norm005.json\\\\n-rw-r--r-- 1 root root    4241 May 16 16:16 eval_object_obs_only_norm005.log\\\\n-rw-r--r-- 1 root root    2441 May 18 06:54 eval_object_obs_only_norm005_seed43.log\\\\n-rw-r--r-- 1 root root    1490 May 19 19:09 eval_object_obs_only_norm005_seed47.json\\\\n-rw-r--r-- 1 root root   11267 May 19 19:09 eval_object_obs_only_norm005_seed47.log\\\\n-rw-r--r-- 1 root root    1490 May 18 23:16 eval_object_obs_only_norm01_seed42.json\\\\n-rw-r--r-- 1 root root   11264 May 18 23:16 eval_object_obs_only_norm01_seed42.log\\\\n-rw-r--r-- 1 root root    1490 May 19 12:57 eval_object_obs_only_norm01_seed45_r2.json\\\\n-rw-r--r-- 1 root root    1888 May 17 18:17 eval_object_obs_only_norm01_seed47.log\\\\n-rw-r--r-- 1 root root    1490 May 18 20:28 eval_object_obs_only_norm02_k5_seed43.json\\\\n-rw-r--r-- 1 root root    1490 May 19 04:49 eval_object_obs_only_norm02_k5_seed44.json\\\\n-rw-r--r-- 1 root root    1490 May 19 08:38 eval_object_obs_only_norm02_k5_seed45.json\\\\n-rw-r--r-- 1 root root   11186 May 19 08:38 eval_object_obs_only_norm02_k5_seed45.log\\\\n-rw-r--r-- 1 root root    1366 May 17 18:36 eval_object_obs_only_norm02_seed46.log\\\\n-rw-r--r-- 1 root root    1490 May 16 15:26 eval_object_obs_only_norm03.json\\\\n-rw-r--r-- 1 root root    4239 May 16 15:26 eval_object_obs_only_norm03.log\\\\n-rw-r--r-- 1 root root    1368 May 16 19:07 eval_object_obs_only_norm03_seed45.log\\\\n-rw-r--r-- 1 root root    1490 May 17 15:00 eval_object_obs_only_norm03_seed45_r2.json\\\\n-rw-r--r-- 1 root root    1314 May 16 00:52 eval_object_perdof_default_norm.log\\\\n-rw-r--r-- 1 root root    1487 May 19 17:26 eval_object_perdof_default_seed47.json\\\\n-rw-r--r-- 1 root root   11201 May 19 17:26 eval_object_perdof_default_seed47.log\\\\n-rw-r--r-- 1 root root    1488 May 16 16:07 eval_object_perdof_norm003.json\\\\n-rw-r--r-- 1 root root    1488 May 19 16:04 eval_object_perdof_norm003_seed46.json\\\\n-rw-r--r-- 1 root root   11255 May 19 16:04 eval_object_perdof_norm003_seed46.log\\\\n-rw-r--r-- 1 root root    1488 May 16 16:29 eval_object_perdof_norm005.json\\\\n-rw-r--r-- 1 root root    1487 May 19 21:24 eval_object_perdof_norm005_seed45.json\\\\n-rw-r--r-- 1 root root   11251 May 19 21:24 eval_object_perdof_norm005_seed45.log\\\\n-rw-r--r-- 1 root root    1488 May 18 23:12 eval_object_perdof_norm01_seed42.json\\\\n-rw-r--r-- 1 root root   11166 May 18 23:12 eval_object_perdof_norm01_seed42.log\\\\n-rw-r--r-- 1 root root    1354 May 17 14:52 eval_object_perdof_norm01_seed47.log\\\\n-rw-r--r-- 1 root root    1358 May 17 19:38 eval_object_perdof_norm02_seed43.log\\\\n-rw-r--r-- 1 root root    1488 May 16 18:38 eval_object_perdof_norm02_seed43_r3.json\\\\n-rw-r--r-- 1 root root    1487 May 18 00:48 eval_object_perdof_norm02_seed44.json\\\\n-rw-r--r-- 1 root root    1492 May 18 01:00 eval_object_perdof_norm02_seed45.json\\\\n-rw-r--r-- 1 root root    6032 May 18 01:00 eval_object_perdof_norm02_seed45.log\\\\n-rw-r--r-- 1 root root    1488 May 18 10:21 eval_object_perdof_norm02_seed46.json\\\\n-rw-r--r-- 1 root root    4232 May 18 10:21 eval_object_perdof_norm02_seed46.log\\\\n-rw-r--r-- 1 root root    14\\\\n\\\\n... [截断: 输出过长，省略 9 字符] ...\\\\n\\\\n 12:34 eval_object_perdof_norm02_seed47.json\\\\n-rw-r--r-- 1 root root    4240 May 18 12:34 eval_object_perdof_norm02_seed47.log\\\\n-rw-r--r-- 1 root root    1488 May 18 22:34 eval_object_perdof_norm02_seed48.json\\\\n-rw-r--r-- 1 root root    1441 May 16 02:25 eval_object_perdof_norm03.log\\\\n-rw-r--r-- 1 root root    3130 May 16 03:15 eval_object_perdof_norm03_r2.log\\\\n-rw-r--r-- 1 root root    1488 May 16 19:02 eval_object_perdof_norm03_r3.json\\\\n-rw-r--r-- 1 root root    1356 May 17 19:02 eval_object_perdof_norm03_seed46.log\\\\n-rw-r--r-- 1 root root    1488 May 19 16:40 eval_object_perdof_norm03_seed47.json\\\\n-rw-r--r-- 1 root root   11334 May 19 16:40 eval_object_perdof_norm03_seed47.log\\\\n-rw-r--r-- 1 root root    1494 May 20 00:03 eval_object_random_selection_k5_seed43.json\\\\n-rw-r--r-- 1 root root    4144 May 20 00:03 eval_object_random_selection_k5_seed43.log\\\\n-rw-r--r-- 1 root root    1494 May 18 23:45 eval_object_random_selection_seed43.json\\\\n-rw-r--r-- 1 root root    1494 May 19 02:00 eval_object_random_selection_seed44.json\\\\n-rw-r--r-- 1 root root    1493 May 19 16:29 eval_object_random_selection_seed45.json\\\\n-rw-r--r-- 1 root root   11082 May 19 16:29 eval_object_random_selection_seed45.log\\\\n-rw-r--r-- 1 root root    9923 May 20 00:41 eval_object_random_selection_seed46.log\\\\n-rw-r--r-- 1 root root    1486 May 19 20:21 eval_object_reconvla_k5_seed42.json\\\\n-rw-r--r-- 1 root root    1496 May 18 01:26 eval_object_scalar_seed45.json\\\\n-rw-r--r-- 1 root root    6023 May 18 01:26 eval_object_scalar_seed45.log\\\\n-rw-r--r-- 1 root root    1484 May 17 11:27 eval_object_vla_mean_seed45.json\\\\n-rw-r--r-- 1 root root    5146 May 15 10:41 eval_object_vla_only.log\\\\n-rw-r--r-- 1 root root    1492 May 16 20:36 eval_object_vla_only_seed45.json\\\\n-rw-r--r-- 1 root root    5816 May 16 20:36 eval_object_vla_only_seed45.log\\\\n-rw-r--r-- 1 root root    1897 May 17 18:25 eval_obs_only_object_norm01_seed46.log\\\\n-rw-r--r-- 1 root root   13528 May 19 22:03 eval_spatial_norm02_seed44.log\\\\n-rw-r--r-- 1 root root    1697 May 19 18:55 eval_spatial_obs_only_norm02_k5_seed42.json\\\\n-rw-r--r-- 1 root root    1698 May 19 23:45 eval_spatial_obs_only_norm02_k5_seed44.json\\\\n-rw-r--r-- 1 root root    4965 May 19 23:45 eval_spatial_obs_only_norm02_k5_seed44.log\\\\n-rw-r--r-- 1 root root    1697 May 19 23:49 eval_spatial_obs_only_norm02_k5_seed45.json\\\\n-rw-r--r-- 1 root root    4958 May 19 23:49 eval_spatial_obs_only_norm02_k5_seed45.log\\\\n-rw-r--r-- 1 root root    1698 May 19 22:03 eval_spatial_obs_only_norm02_seed44.json\\\\n-rw-r--r-- 1 root root    1697 May 20 02:50 eval_spatial_obs_only_norm02_seed46_r2.json\\\\n-rw-r--r-- 1 root root    1329 May 15 11:19 eval_spatial_obsonly_norm005.log\\\\n-rw-r--r-- 1 root root    1329 May 15 11:21 eval_spatial_obsonly_norm02.log\\\\n-rw-r--r-- 1 root root    1313 May 15 11:11 eval_spatial_perdof_norm003.log\\\\n-rw-r--r-- 1 root root    1315 May 15 11:12 eval_spatial_perdof_norm005.log\\\\n-rw-r--r-- 1 root root    1311 May 15 11:14 eval_spatial_perdof_norm02.log\\\\n-rw-r--r-- 1 root root    1313 May 15 11:17 eval_spatial_perdof_norm03.log\\\\n-rw-r--r-- 1 root root    1693 May 19 23:25 eval_spatial_vla_only_seed44.json\\\\n-rw-r--r-- 1 root root 3339497 May 20 02:59 fmvd_calibration.json\\\\n-rw-r--r-- 1 root root    2143 May 18 02:33 latency_profile.json\\\\n-rw-r--r-- 1 root root    2899 May 18 02:33 latency_profile.log\\\\n-rw-r--r-- 1 root root      99 May 17 23:09 libero_download.log\\\\n-rw-r--r-- 1 root root  261318 May 17 23:42 libero_download_aria2.log\\\\n-rw-r--r-- 1 root root    1366 May 16 03:25 nohup_eval_object_obs_only_norm02_v2.log\\\\n-rw-r--r-- 1 root root    4229 May 16 16:29 nohup_eval_object_perdof_norm005.log\\\\n-rw-r--r-- 1 root root    4229 May 16 19:02 nohup_eval_object_perdof_norm03_r3.log\\\\n-rw-r--r-- 1 root root     192 May 17 23:50 redownload_tomato.log\\\\ndrwxr-xr-x 2 root root      10 May 17 22:56 sentinels\\\\n-rw-r--r-- 1 root root    2256 May 17 22:04 train_crm_k1.log\\\\n-rw-r--r-- 1 root root    2272 May 17 22:48 train_crm_k1_accg.log\\\\n-rw-r--r-- 1 root root   10434 May 18 01:15 train_crm_k1_full.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4088\\ndrwxr-xr-x 3 root root    8192 May 20 02:59 .\\ndrwxr-xr-x 6 root root      81 May 16 19:17 ..\\n-rw-r--r-- 1 root root    1314 May 20 02:20 eval_goal_vla_only_seed44_r2.json\\n-rw-r--r-- 1 root root    1313 May 20 02:55 eval_goal_vla_only_seed45.json\\n-rw-r--r-- 1 root root    1489 May 18 04:24 eval_k1_crm_multiscale_object_seed42.json\\n-rw-r--r-- 1 root root   11252 May 18 04:24 eval_k1_crm_multiscale_object_seed42.log\\n-rw-r--r-- 1 root root    1486 May 17 08:29 eval_object_argmin_seed45.json\\n-rw-r--r-- 1 root root    1494 May 18 01:29 eval_object_obs_only_default_seed45.json\\n-rw-r--r-- 1 root root    6010 May 18 01:29 eval_object_obs_only_default_seed45.log\\n-rw-r--r-- 1 root root    1490 May 19 12:20 eval_object_obs_only_default_seed45_r2.json\\n-rw-r--r-- 1 root root    1490 May 19 16:08 eval_object_obs_only_default_seed48.json\\n-rw-r--r-- 1 root root   11229 May 19 16:08 eval_object_obs_only_default_seed48.log\\n-rw-r--r-- 1 root root    1490 May 16 16:16 eval_object_obs_only_norm005.json\\n-rw-r--r-- 1 root root    4241 May 16 16:16 eval_object_obs_only_norm005.log\\n-rw-r--r-- 1 root root    2441 May 18 06:54 eval_object_obs_only_norm005_seed43.log\\n-rw-r--r-- 1 root root    1490 May 19 19:09 eval_object_obs_only_norm005_seed47.json\\n-rw-r--r-- 1 root root   11267 May 19 19:09 eval_object_obs_only_norm005_seed47.log\\n-rw-r--r-- 1 root root    1490 May 18 23:16 eval_object_obs_only_norm01_seed42.json\\n-rw-r--r-- 1 root root   11264 May 18 23:16 eval_object_obs_only_norm01_seed42.log\\n-rw-r--r-- 1 root root    1490 May 19 12:57 eval_object_obs_only_norm01_seed45_r2.json\\n-rw-r--r-- 1 root root    1888 May 17 18:17 eval_object_obs_only_norm01_seed47.log\\n-rw-r--r-- 1 root root    1490 May 18 20:28 eval_object_obs_only_norm02_k5_seed43.json\\n-rw-r--r-- 1 root root    1490 May 19 04:49 eval_object_obs_only_norm02_k5_seed44.json\\n-rw-r--r-- 1 root root    1490 May 19 08:38 eval_object_obs_only_norm02_k5_seed45.json\\n-rw-r--r-- 1 root root   11186 May 19 08:38 eval_object_obs_only_norm02_k5_seed45.log\\n-rw-r--r-- 1 root root    1366 May 17 18:36 eval_object_obs_only_norm02_seed46.log\\n-rw-r--r-- 1 root root    1490 May 16 15:26 eval_object_obs_only_norm03.json\\n-rw-r--r-- 1 root root    4239 May 16 15:26 eval_object_obs_only_norm03.log\\n-rw-r--r-- 1 root root    1368 May 16 19:07 eval_object_obs_only_norm03_seed45.log\\n-rw-r--r-- 1 root root    1490 May 17 15:00 eval_object_obs_only_norm03_seed45_r2.json\\n-rw-r--r-- 1 root root    1314 May 16 00:52 eval_object_perdof_default_norm.log\\n-rw-r--r-- 1 root root    1487 May 19 17:26 eval_object_perdof_default_seed47.json\\n-rw-r--r-- 1 root root   11201 May 19 17:26 eval_object_perdof_default_seed47.log\\n-rw-r--r-- 1 root root    1488 May 16 16:07 eval_object_perdof_norm003.json\\n-rw-r--r-- 1 root root    1488 May 19 16:04 eval_object_perdof_norm003_seed46.json\\n-rw-r--r-- 1 root root   11255 May 19 16:04 eval_object_perdof_norm003_seed46.log\\n-rw-r--r-- 1 root root    1488 May 16 16:29 eval_object_perdof_norm005.json\\n-rw-r--r-- 1 root root    1487 May 19 21:24 eval_object_perdof_norm005_seed45.json\\n-rw-r--r-- 1 root root   11251 May 19 21:24 eval_object_perdof_norm005_seed45.log\\n-rw-r--r-- 1 root root    1488 May 18 23:12 eval_object_perdof_norm01_seed42.json\\n-rw-r--r-- 1 root root   11166 May 18 23:12 eval_object_perdof_norm01_seed42.log\\n-rw-r--r-- 1 root root    1354 May 17 14:52 eval_object_perdof_norm01_seed47.log\\n-rw-r--r-- 1 root root    1358 May 17 19:38 eval_object_perdof_norm02_seed43.log\\n-rw-r--r-- 1 root root    1488 May 16 18:38 eval_object_perdof_norm02_seed43_r3.json\\n-rw-r--r-- 1 root root    1487 May 18 00:48 eval_object_perdof_norm02_seed44.json\\n-rw-r--r-- 1 root root    1492 May 18 01:00 eval_object_perdof_norm02_seed45.json\\n-rw-r--r-- 1 root root    6032 May 18 01:00 eval_object_perdof_norm02_seed45.log\\n-rw-r--r-- 1 root root    1488 May 18 10:21 eval_object_perdof_norm02_seed46.json\\n-rw-r--r-- 1 root root    4232 May 18 10:21 eval_object_perdof_norm02_seed46.log\\n-rw-r--r-- 1 root root    14\\n\\n... [截断: 输出过长，省略 9 字符] ...\\n\\n 12:34 eval_object_perdof_norm02_seed47.json\\n-rw-r--r-- 1 root root    4240 May 18 12:34 eval_object_perdof_norm02_seed47.log\\n-rw-r--r-- 1 root root    1488 May 18 22:34 eval_object_perdof_norm02_seed48.json\\n-rw-r--r-- 1 root root    1441 May 16 02:25 eval_object_perdof_norm03.log\\n-rw-r--r-- 1 root root    3130 May 16 03:15 eval_object_perdof_norm03_r2.log\\n-rw-r--r-- 1 root root    1488 May 16 19:02 eval_object_perdof_norm03_r3.json\\n-rw-r--r-- 1 root root    1356 May 17 19:02 eval_object_perdof_norm03_seed46.log\\n-rw-r--r-- 1 root root    1488 May 19 16:40 eval_object_perdof_norm03_seed47.json\\n-rw-r--r-- 1 root root   11334 May 19 16:40 eval_object_perdof_norm03_seed47.log\\n-rw-r--r-- 1 root root    1494 May 20 00:03 eval_object_random_selection_k5_seed43.json\\n-rw-r--r-- 1 root root    4144 May 20 00:03 eval_object_random_selection_k5_seed43.log\\n-rw-r--r-- 1 root root    1494 May 18 23:45 eval_object_random_selection_seed43.json\\n-rw-r--r-- 1 root root    1494 May 19 02:00 eval_object_random_selection_seed44.json\\n-rw-r--r-- 1 root root    1493 May 19 16:29 eval_object_random_selection_seed45.json\\n-rw-r--r-- 1 root root   11082 May 19 16:29 eval_object_random_selection_seed45.log\\n-rw-r--r-- 1 root root    9923 May 20 00:41 eval_object_random_selection_seed46.log\\n-rw-r--r-- 1 root root    1486 May 19 20:21 eval_object_reconvla_k5_seed42.json\\n-rw-r--r-- 1 root root    1496 May 18 01:26 eval_object_scalar_seed45.json\\n-rw-r--r-- 1 root root    6023 May 18 01:26 eval_object_scalar_seed45.log\\n-rw-r--r-- 1 root root    1484 May 17 11:27 eval_object_vla_mean_seed45.json\\n-rw-r--r-- 1 root root    5146 May 15 10:41 eval_object_vla_only.log\\n-rw-r--r-- 1 root root    1492 May 16 20:36 eval_object_vla_only_seed45.json\\n-rw-r--r-- 1 root root    5816 May 16 20:36 eval_object_vla_only_seed45.log\\n-rw-r--r-- 1 root root    1897 May 17 18:25 eval_obs_only_object_norm01_seed46.log\\n-rw-r--r-- 1 root root   13528 May 19 22:03 eval_spatial_norm02_seed44.log\\n-rw-r--r-- 1 root root    1697 May 19 18:55 eval_spatial_obs_only_norm02_k5_seed42.json\\n-rw-r--r-- 1 root root    1698 May 19 23:45 eval_spatial_obs_only_norm02_k5_seed44.json\\n-rw-r--r-- 1 root root    4965 May 19 23:45 eval_spatial_obs_only_norm02_k5_seed44.log\\n-rw-r--r-- 1 root root    1697 May 19 23:49 eval_spatial_obs_only_norm02_k5_seed45.json\\n-rw-r--r-- 1 root root    4958 May 19 23:49 eval_spatial_obs_only_norm02_k5_seed45.log\\n-rw-r--r-- 1 root root    1698 May 19 22:03 eval_spatial_obs_only_norm02_seed44.json\\n-rw-r--r-- 1 root root    1697 May 20 02:50 eval_spatial_obs_only_norm02_seed46_r2.json\\n-rw-r--r-- 1 root root    1329 May 15 11:19 eval_spatial_obsonly_norm005.log\\n-rw-r--r-- 1 root root    1329 May 15 11:21 eval_spatial_obsonly_norm02.log\\n-rw-r--r-- 1 root root    1313 May 15 11:11 eval_spatial_perdof_norm003.log\\n-rw-r--r-- 1 root root    1315 May 15 11:12 eval_spatial_perdof_norm005.log\\n-rw-r--r-- 1 root root    1311 May 15 11:14 eval_spatial_perdof_norm02.log\\n-rw-r--r-- 1 root root    1313 May 15 11:17 eval_spatial_perdof_norm03.log\\n-rw-r--r-- 1 root root    1693 May 19 23:25 eval_spatial_vla_only_seed44.json\\n-rw-r--r-- 1 root root 3339497 May 20 02:59 fmvd_calibration.json\\n-rw-r--r-- 1 root root    2143 May 18 02:33 latency_profile.json\\n-rw-r--r-- 1 root root    2899 May 18 02:33 latency_profile.log\\n-rw-r--r-- 1 root root      99 May 17 23:09 libero_download.log\\n-rw-r--r-- 1 root root  261318 May 17 23:42 libero_download_aria2.log\\n-rw-r--r-- 1 root root    1366 May 16 03:25 nohup_eval_object_obs_only_norm02_v2.log\\n-rw-r--r-- 1 root root    4229 May 16 16:29 nohup_eval_object_perdof_norm005.log\\n-rw-r--r-- 1 root root    4229 May 16 19:02 nohup_eval_object_perdof_norm03_r3.log\\n-rw-r--r-- 1 root root     192 May 17 23:50 redownload_tomato.log\\ndrwxr-xr-x 2 root root      10 May 17 22:56 sentinels\\n-rw-r--r-- 1 root root    2256 May 17 22:04 train_crm_k1.log\\n-rw-r--r-- 1 root root    2272 May 17 22:48 train_crm_k1_accg.log\\n-rw-r--r-- 1 root root   10434 May 18 01:15 train_crm_k1_full.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The data structure is clear. Each entry in `per_step_data` has:
+- `step`, `task`, `episode`, `env_step`, `fmvd`, `k10_variance`, `episode_success`
+
+There are NO raw K=10 action samples - only aggregated `fmvd` (which is likely the mean variance across DOFs or something similar) and `k10_variance`. There are also no per-DOF variance values or raw action samples.
+
+But wait - the grep output only showed keys: config, benchmark, n_episodes, seed, n_steps_collected, num_ode_steps, statistics, fmvd_mean, fmvd_std, fmvd_percentiles, spearman_rho, spearman_pvalue, per_step_data, step, task, episode, env_step, fmvd, episode_success, k10_variance.
+
+
+So without raw K=10 action samples in the data, I can't subsample K=2 from them - I only have the aggregated statistics. Looking at what these metrics actually represent: `fmvd` appears to be a scalar per step (possibly Flow Matching Variance Divergence), and `k10_variance` is also a scalar per step, with the original analysis computing a Spearman correlation between them.
+
+But wait, the file is 3.3 MB with 14,512 steps, which is larger than what the field list accounts for - there might be additional fields I'm not seeing from the grep output since it was only matching field names.
+
+Let me search more carefully for fields that might contain the raw samples, like ones with numbers or uppercase letters that my pattern missed, or check if there's a separate file with the action samples I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "c8370173-1ddb-4893-87e9-10fb8ddd088f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XQ4kc5sUewuW73s9hcG17",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12133,
+      "cache_read_input_tokens": 26625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+数据只有聚合值。让我检查是否有原始 samples 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "e7612b07-47a5-4d4d-8fd4-43f73481d0d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XQ4kc5sUewuW73s9hcG17",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12133,
+      "cache_read_input_tokens": 26625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QjBhu7vGSYFF1GNdNMk91j`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "grep -c \"samples\" /root/acr-vla-conformal-refinement/logs/fmvd_calibration.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "089e8287-56b2-43ed-9623-fc1215ea2329",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XQ4kc5sUewuW73s9hcG17",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12133,
+      "cache_read_input_tokens": 26625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T19:08:03.404Z_
+
+<details><summary>↩ Tool result · `toolu_01QjBhu7vGSYFF1GNdNMk91j`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "8fd54691-a716-43b2-9ea7-abdd3573dc13",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012pUxVxURRKGDRSbxHUwC3f`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "grep -c \"per_dof\\|actions\\|raw\\|k10_action\\|action_sample\" /root/acr-vla-conformal-refinement/logs/fmvd_calibration.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "3d27213f-895b-4414-ade7-81f08f5a59e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XQ4kc5sUewuW73s9hcG17",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12133,
+      "cache_read_input_tokens": 26625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T19:08:04.690Z_
+
+<details><summary>↩ Tool result · `toolu_012pUxVxURRKGDRSbxHUwC3f`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "351a18cb-2d16-4249-845a-0350abf8ca3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QL3BTyvUSb8hgXwhn1uiFi`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "find /root/acr-vla-conformal-refinement/logs/ -name \"*sample*\" -o -name \"*raw*\" -o -name \"*action*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "3b6d1179-bfc9-4777-915a-a5e16005c0a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XQ4kc5sUewuW73s9hcG17",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12133,
+      "cache_read_input_tokens": 26625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T19:08:05.921Z_
+
+<details><summary>↩ Tool result · `toolu_01QL3BTyvUSb8hgXwhn1uiFi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "3887a9a2-d8f6-4a9d-8ffc-f54ca19ddeaa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No raw samples exist. The JSON only has aggregated `fmvd` and `k10_variance` per step. No raw K=10 action samples, no per-DOF data.
+
+But wait - let me think about this differently. The user's request says to test K=2 as an alternative signal. Without raw K=10 samples, we can't subsample K=2 from them. 
+
+However, let me check if the calibration script that generated this data still exists and if we can look at how it was generated. Maybe we can modify it to save raw samples. But the user says "5 minutes" and "data already in JSON, don't need to re-run model."
+
+
+Let me search the project for any cached raw data files or check the FMVD calibration script to see if there's another location where the raw samples might be stored.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "23531020-d795-4fb1-9411-54ef121ea6d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQma2StJaPj4sJhVx9UxCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 38758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+没有原始 samples 文件。让我检查代码中是否保存了原始数据到其他位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "abcb4683-95a5-471f-922c-a3de0ad214d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQma2StJaPj4sJhVx9UxCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 38758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017aJUVeiEDcKm5roknUNSdc`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "find /root/acr-vla-conformal-refinement/ -name \"*calibrat*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "274c113a-b6f6-4192-9035-2a65e63f7bc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQma2StJaPj4sJhVx9UxCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 38758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T19:08:15.393Z_
+
+<details><summary>↩ Tool result · `toolu_017aJUVeiEDcKm5roknUNSdc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/calibrate_threshold.py\\n/root/acr-vla-conformal-refinement/src/calibrate_fmvd.py\\n/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "7c6df237-7860-4056-a716-ab1f870181e8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/src/calibrate_threshold.py\\\\n/root/acr-vla-conformal-refinement/src/calibrate_fmvd.py\\\\n/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/calibrate_threshold.py\\n/root/acr-vla-conformal-refinement/src/calibrate_fmvd.py\\n/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011xmCcwPciYoZo8YnX1VpD9`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "find /root/acr-vla-conformal-refinement/ -name \"*.npz\" -o -name \"*.npy\" -o -name \"*.pt\" -o -name \"*.pkl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "7bf30598-8f14-4026-84b8-6bef0abd9a0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQma2StJaPj4sJhVx9UxCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 38758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T19:08:16.420Z_
+
+<details><summary>↩ Tool result · `toolu_011xmCcwPciYoZo8YnX1VpD9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "31666faa-6ef6-4e7d-bfb8-6675198d3430",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013LSYck5TPtWgmjmzLMkJnV`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/src/calibrate_fmvd.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "80833063-538f-43e9-9f89-3108ad0ffec2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012AH7UnFnkP22dmmNFyUBSE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 40369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 830
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T19:08:22.753Z_
+
+<details><summary>↩ Tool result · `toolu_013LSYck5TPtWgmjmzLMkJnV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nFMVD Signal Validation for Adaptive K.\\n\\nFMVD = std of ||v_t|| across ODE steps during K=1 denoising.\\nCorrelates FMVD with K=10 action variance to validate as uncertainty signal.\\nGo/no-go gate: Spearman rho > 0.3.\\n\\\"\\\"\\\"\\nimport argparse\\nimport functools\\nbuiltins_print = print\\nprint = functools.partial(builtins_print, flush=True)\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nif \\\"MUJOCO_EGL_DEVICE_ID\\\" not in os.environ and \\\"CUDA_VISIBLE_DEVICES\\\" in os.environ:\\n    os.environ[\\\"MUJOCO_EGL_DEVICE_ID\\\"] = os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"].split(\\\",\\\")[0]\\n\\nimport sys\\nimport types\\n# Patch: create dummy masking_utils to prevent PI0/pi_gemma import failure\\n# with older transformers (< 4.45) — we only need SmolVLA, not PI0\\ntry:\\n    from transformers import masking_utils as _mu\\nexcept ImportError:\\n    _dummy = types.ModuleType('transformers.masking_utils')\\n    _dummy.create_causal_mask = None\\n    sys.modules['transformers.masking_utils'] = _dummy\\n\\nimport json\\nimport time\\nimport signal\\nfrom pathlib import Path\\n\\nimport torch\\nimport numpy as np\\nfrom scipy import stats as scipy_stats\\nfrom robosuite.utils.transform_utils import quat2axisangle\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom smolvla_wrapper import SmolVLAWrapper\\nfrom utils import set_seed, FULL_ACTION_DIM, CORRECTION_DIM, H_EFF\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"FMVD Signal Validation\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--n_episodes\\\", type=int, default=5,\\n                   help=\\\"Episodes per task\\\")\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=300)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--smolvla_path\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--output\\\", type=str, default=\\\"logs/fmvd_calibration.json\\\")\\n    return p.parse_args()\\n\\n\\ndef get_robot_state(obs):\\n    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n    eef_axisangle = quat2axisangle(obs[\\\"robot0_eef_quat\\\"])\\n    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\\n\\ndef load_libero_env(benchmark_name):\\n    from libero.libero import benchmark as bm\\n    from libero.libero.envs import OffScreenRenderEnv\\n\\n    benchmark_dict = {\\n        \\\"spatial\\\": \\\"libero_spatial\\\",\\n        \\\"object\\\": \\\"libero_object\\\",\\n        \\\"goal\\\": \\\"libero_goal\\\",\\n        \\\"long\\\": \\\"libero_10\\\",\\n        \\\"90\\\": \\\"libero_90\\\",\\n    }\\n    bm_name = benchmark_dict[benchmark_name]\\n    benchmark_instance = bm.get_benchmark(bm_name)()\\n\\n    task_envs = []\\n    for task_idx in range(benchmark_instance.n_tasks):\\n        task = benchmark_instance.get_task(task_idx)\\n        task_bddl = benchmark_instance.get_task_bddl_file_path(task_idx)\\n\\n        env_args = {\\n            \\\"bddl_file_name\\\": task_bddl,\\n            \\\"camera_heights\\\": 256,\\n            \\\"camera_widths\\\": 256,\\n            \\\"camera_names\\\": [\\\"agentview\\\", \\\"robot0_eye_in_hand\\\"],\\n            \\\"render_gpu_device_id\\\": int(os.environ.get(\\\"MUJOCO_EGL_DEVICE_ID\\\", \\\"0\\\")),\\n        }\\n        env = OffScreenRenderEnv(**env_args)\\n        env.seed(42)\\n\\n        task_envs.append({\\n            \\\"task_name\\\": task.name,\\n            \\\"task_description\\\": task.language,\\n            \\\"env\\\": env,\\n            \\\"init_states\\\": benchmark_instance.get_task_init_states(task_idx),\\n        })\\n\\n    return task_envs\\n\\n\\n@torch.no_grad()\\ndef generate_k1_with_fmvd(wrapper, kv_cache, pad_masks):\\n    \\\"\\\"\\\"K=1 denoising with velocity norm recording. Returns (action, fmvd).\\\"\\\"\\\"\\n    flow = wrapper.flow\\n    device = wrapper.device\\n    config = wrapper.config\\n\\n    B = pad_masks.shape[0]\\n    chunk_size = config.chunk_size\\n    max_act_dim = config.max_action_dim\\n    num_steps = config.num_steps\\n    dt = -1.0 / num_steps\\n\\n    noise = flow.sample_noise((B, chunk_size, max_act_dim), device)\\n    x_t = noise\\n\\n \\n\\n... [截断: 输出过长，省略 2097 字符] ...\\n\\n            episode_success = False\\n            ep_start_idx = len(per_step_data)\\n\\n            for step in range(args.max_steps):\\n                agentview = obs[\\\"agentview_image\\\"]\\n                eye_in_hand = obs.get(\\\"robot0_eye_in_hand_image\\\", None)\\n                robot_state = get_robot_state(obs)\\n\\n                imgs, img_masks, lt, lm, state = wrapper.preprocess_obs(\\n                    agentview, task_desc, robot_state, eye_in_hand\\n                )\\n                obs_feat, kv_cache, pad_masks = wrapper.encode_prefix(\\n                    imgs, img_masks, lt, lm, state\\n                )\\n\\n                action_k1, fmvd = generate_k1_with_fmvd(wrapper, kv_cache, pad_masks)\\n                k10_var = compute_k10_variance(wrapper, kv_cache, pad_masks)\\n\\n                per_step_data.append({\\n                    \\\"step\\\": total_steps,\\n                    \\\"task\\\": task_name,\\n                    \\\"episode\\\": ep,\\n                    \\\"env_step\\\": step,\\n                    \\\"fmvd\\\": round(fmvd, 6),\\n                    \\\"k10_variance\\\": round(k10_var, 6),\\n                    \\\"episode_success\\\": None,\\n                })\\n                total_steps += 1\\n\\n                action_7d = action_k1[0, 0].cpu().numpy()\\n                obs, reward, done, info = env.step(action_7d)\\n\\n                if done or info.get(\\\"success\\\", False):\\n                    episode_success = True\\n                    break\\n\\n            for i in range(ep_start_idx, len(per_step_data)):\\n                per_step_data[i][\\\"episode_success\\\"] = episode_success\\n\\n            elapsed = time.time() - t0\\n            print(f\\\"  [{task_name}] ep {ep+1}/{args.n_episodes}: \\\"\\n                  f\\\"{'OK' if episode_success else 'FAIL'} ({step+1} steps) \\\"\\n                  f\\\"| total={total_steps} | {elapsed:.0f}s\\\")\\n\\n        env.close()\\n\\n    fmvd_vals = np.array([d[\\\"fmvd\\\"] for d in per_step_data])\\n    k10_vals = np.array([d[\\\"k10_variance\\\"] for d in per_step_data])\\n\\n    rho, pvalue = scipy_stats.spearmanr(fmvd_vals, k10_vals)\\n    fmvd_pcts = np.percentile(fmvd_vals, [25, 50, 75, 90])\\n\\n    result = {\\n        \\\"config\\\": {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"n_episodes\\\": args.n_episodes,\\n            \\\"seed\\\": args.seed,\\n            \\\"n_steps_collected\\\": total_steps,\\n            \\\"num_ode_steps\\\": num_steps,\\n        },\\n        \\\"statistics\\\": {\\n            \\\"fmvd_mean\\\": round(float(fmvd_vals.mean()), 6),\\n            \\\"fmvd_std\\\": round(float(fmvd_vals.std()), 6),\\n            \\\"fmvd_percentiles\\\": {\\n                \\\"P25\\\": round(float(fmvd_pcts[0]), 6),\\n                \\\"P50\\\": round(float(fmvd_pcts[1]), 6),\\n                \\\"P75\\\": round(float(fmvd_pcts[2]), 6),\\n                \\\"P90\\\": round(float(fmvd_pcts[3]), 6),\\n            },\\n            \\\"k10_variance_mean\\\": round(float(k10_vals.mean()), 6),\\n            \\\"k10_variance_std\\\": round(float(k10_vals.std()), 6),\\n            \\\"spearman_rho\\\": round(float(rho), 6),\\n            \\\"spearman_pvalue\\\": float(pvalue),\\n        },\\n        \\\"per_step_data\\\": per_step_data,\\n    }\\n\\n    go = abs(rho) > 0.3\\n    print(f\\\"\\\\n=== FMVD Calibration Results ===\\\")\\n    print(f\\\"Steps collected: {total_steps}\\\")\\n    print(f\\\"FMVD: mean={fmvd_vals.mean():.4f} std={fmvd_vals.std():.4f} \\\"\\n          f\\\"[P25={fmvd_pcts[0]:.4f} P50={fmvd_pcts[1]:.4f} \\\"\\n          f\\\"P75={fmvd_pcts[2]:.4f} P90={fmvd_pcts[3]:.4f}]\\\")\\n    print(f\\\"K=10 Variance: mean={k10_vals.mean():.4f} std={k10_vals.std():.4f}\\\")\\n    print(f\\\"Spearman rho(FMVD, K10_var) = {rho:.4f} (p={pvalue:.2e})\\\")\\n    print(f\\\"GO/NO-GO: {'GO' if go else 'NO-GO'} (threshold: rho > 0.3)\\\")\\n\\n    out_path = Path(args.output)\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    out_path.write_text(json.dumps(result, indent=2))\\n    print(f\\\"[fmvd] Results saved to {args.output}\\\")\\n\\n    return result\\n\\n\\ndef main():\\n    signal.signal(signal.SIGSEGV, lambda s, f: (print(f\\\"[fmvd] FATAL: signal {s}\\\"), sys.exit(139)))\\n    args = parse_args()\\n    print(f\\\"[fmvd] args: {vars(args)}\\\")\\n    calibrate(args)\\n    sys.exit(0)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "e6494eb1-89b4-46f9-be94-281100b4186a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nFMVD Signal Validation for Adaptive K.\\\\n\\\\nFMVD = std of ||v_t|| across ODE steps during K=1 denoising.\\\\nCorrelates FMVD with K=10 action variance to validate as uncertainty signal.\\\\nGo/no-go gate: Spearman rho > 0.3.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport functools\\\\nbuiltins_print = print\\\\nprint = functools.partial(builtins_print, flush=True)\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nif \\\\\\\"MUJOCO_EGL_DEVICE_ID\\\\\\\" not in os.environ and \\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\" in os.environ:\\\\n    os.environ[\\\\\\\"MUJOCO_EGL_DEVICE_ID\\\\\\\"] = os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"].split(\\\\\\\",\\\\\\\")[0]\\\\n\\\\nimport sys\\\\nimport types\\\\n# Patch: create dummy masking_utils to prevent PI0/pi_gemma import failure\\\\n# with older transformers (< 4.45) — we only need SmolVLA, not PI0\\\\ntry:\\\\n    from transformers import masking_utils as _mu\\\\nexcept ImportError:\\\\n    _dummy = types.ModuleType('transformers.masking_utils')\\\\n    _dummy.create_causal_mask = None\\\\n    sys.modules['transformers.masking_utils'] = _dummy\\\\n\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nfrom scipy import stats as scipy_stats\\\\nfrom robosuite.utils.transform_utils import quat2axisangle\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom smolvla_wrapper import SmolVLAWrapper\\\\nfrom utils import set_seed, FULL_ACTION_DIM, CORRECTION_DIM, H_EFF\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"FMVD Signal Validation\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=\\\\\\\"object\\\\\\\",\\\\n                   choices=[\\\\\\\"object\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"90\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--n_episodes\\\\\\\", type=int, default=5,\\\\n                   help=\\\\\\\"Episodes per task\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=300)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--smolvla_path\\\\\\\", type=str,\\\\n                   default=\\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=\\\\\\\"logs/fmvd_calibration.json\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef get_robot_state(obs):\\\\n    eef_pos = obs[\\\\\\\"robot0_eef_pos\\\\\\\"]\\\\n    eef_axisangle = quat2axisangle(obs[\\\\\\\"robot0_eef_quat\\\\\\\"])\\\\n    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\\\n\\\\n\\\\ndef load_libero_env(benchmark_name):\\\\n    from libero.libero import benchmark as bm\\\\n    from libero.libero.envs import OffScreenRenderEnv\\\\n\\\\n    benchmark_dict = {\\\\n        \\\\\\\"spatial\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n        \\\\\\\"object\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n        \\\\\\\"goal\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n        \\\\\\\"long\\\\\\\": \\\\\\\"libero_10\\\\\\\",\\\\n        \\\\\\\"90\\\\\\\": \\\\\\\"libero_90\\\\\\\",\\\\n    }\\\\n    bm_name = benchmark_dict[benchmark_name]\\\\n    benchmark_instance = bm.get_benchmark(bm_name)()\\\\n\\\\n    task_envs = []\\\\n    for task_idx in range(benchmark_instance.n_tasks):\\\\n        task = benchmark_instance.get_task(task_idx)\\\\n        task_bddl = benchmark_instance.get_task_bddl_file_path(task_idx)\\\\n\\\\n        env_args = {\\\\n            \\\\\\\"bddl_file_name\\\\\\\": task_bddl,\\\\n            \\\\\\\"camera_heights\\\\\\\": 256,\\\\n            \\\\\\\"camera_widths\\\\\\\": 256,\\\\n            \\\\\\\"camera_names\\\\\\\": [\\\\\\\"agentview\\\\\\\", \\\\\\\"robot0_eye_in_hand\\\\\\\"],\\\\n            \\\\\\\"render_gpu_device_id\\\\\\\": int(os.environ.get(\\\\\\\"MUJOCO_EGL_DEVICE_ID\\\\\\\", \\\\\\\"0\\\\\\\")),\\\\n        }\\\\n        env = OffScreenRenderEnv(**env_args)\\\\n        env.seed(42)\\\\n\\\\n        task_envs.append({\\\\n            \\\\\\\"task_name\\\\\\\": task.name,\\\\n            \\\\\\\"task_description\\\\\\\": task.language,\\\\n            \\\\\\\"env\\\\\\\": env,\\\\n            \\\\\\\"init_states\\\\\\\": benchmark_instance.get_task_init_states(task_idx),\\\\n        })\\\\n\\\\n    return task_envs\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef generate_k1_with_fmvd(wrapper, kv_cache, pad_masks):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"K=1 denoising with velocity norm recording. Returns (action, fmvd).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    flow = wrapper.flow\\\\n    device = wrapper.device\\\\n    config = wrapper.config\\\\n\\\\n    B = pad_masks.shape[0]\\\\n    chunk_size = config.chunk_size\\\\n    max_act_dim = config.max_action_dim\\\\n    num_steps = config.num_steps\\\\n    dt = -1.0 / num_steps\\\\n\\\\n    noise = flow.sample_noise((B, chunk_size, max_act_dim), device)\\\\n    x_t = noise\\\\n\\\\n \\\\n\\\\n... [截断: 输出过长，省略 2097 字符] ...\\\\n\\\\n            episode_success = False\\\\n            ep_start_idx = len(per_step_data)\\\\n\\\\n            for step in range(args.max_steps):\\\\n                agentview = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n                eye_in_hand = obs.get(\\\\\\\"robot0_eye_in_hand_image\\\\\\\", None)\\\\n                robot_state = get_robot_state(obs)\\\\n\\\\n                imgs, img_masks, lt, lm, state = wrapper.preprocess_obs(\\\\n                    agentview, task_desc, robot_state, eye_in_hand\\\\n                )\\\\n                obs_feat, kv_cache, pad_masks = wrapper.encode_prefix(\\\\n                    imgs, img_masks, lt, lm, state\\\\n                )\\\\n\\\\n                action_k1, fmvd = generate_k1_with_fmvd(wrapper, kv_cache, pad_masks)\\\\n                k10_var = compute_k10_variance(wrapper, kv_cache, pad_masks)\\\\n\\\\n                per_step_data.append({\\\\n                    \\\\\\\"step\\\\\\\": total_steps,\\\\n                    \\\\\\\"task\\\\\\\": task_name,\\\\n                    \\\\\\\"episode\\\\\\\": ep,\\\\n                    \\\\\\\"env_step\\\\\\\": step,\\\\n                    \\\\\\\"fmvd\\\\\\\": round(fmvd, 6),\\\\n                    \\\\\\\"k10_variance\\\\\\\": round(k10_var, 6),\\\\n                    \\\\\\\"episode_success\\\\\\\": None,\\\\n                })\\\\n                total_steps += 1\\\\n\\\\n                action_7d = action_k1[0, 0].cpu().numpy()\\\\n                obs, reward, done, info = env.step(action_7d)\\\\n\\\\n                if done or info.get(\\\\\\\"success\\\\\\\", False):\\\\n                    episode_success = True\\\\n                    break\\\\n\\\\n            for i in range(ep_start_idx, len(per_step_data)):\\\\n                per_step_data[i][\\\\\\\"episode_success\\\\\\\"] = episode_success\\\\n\\\\n            elapsed = time.time() - t0\\\\n            print(f\\\\\\\"  [{task_name}] ep {ep+1}/{args.n_episodes}: \\\\\\\"\\\\n                  f\\\\\\\"{'OK' if episode_success else 'FAIL'} ({step+1} steps) \\\\\\\"\\\\n                  f\\\\\\\"| total={total_steps} | {elapsed:.0f}s\\\\\\\")\\\\n\\\\n        env.close()\\\\n\\\\n    fmvd_vals = np.array([d[\\\\\\\"fmvd\\\\\\\"] for d in per_step_data])\\\\n    k10_vals = np.array([d[\\\\\\\"k10_variance\\\\\\\"] for d in per_step_data])\\\\n\\\\n    rho, pvalue = scipy_stats.spearmanr(fmvd_vals, k10_vals)\\\\n    fmvd_pcts = np.percentile(fmvd_vals, [25, 50, 75, 90])\\\\n\\\\n    result = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n            \\\\\\\"n_episodes\\\\\\\": args.n_episodes,\\\\n            \\\\\\\"seed\\\\\\\": args.seed,\\\\n            \\\\\\\"n_steps_collected\\\\\\\": total_steps,\\\\n            \\\\\\\"num_ode_steps\\\\\\\": num_steps,\\\\n        },\\\\n        \\\\\\\"statistics\\\\\\\": {\\\\n            \\\\\\\"fmvd_mean\\\\\\\": round(float(fmvd_vals.mean()), 6),\\\\n            \\\\\\\"fmvd_std\\\\\\\": round(float(fmvd_vals.std()), 6),\\\\n            \\\\\\\"fmvd_percentiles\\\\\\\": {\\\\n                \\\\\\\"P25\\\\\\\": round(float(fmvd_pcts[0]), 6),\\\\n                \\\\\\\"P50\\\\\\\": round(float(fmvd_pcts[1]), 6),\\\\n                \\\\\\\"P75\\\\\\\": round(float(fmvd_pcts[2]), 6),\\\\n                \\\\\\\"P90\\\\\\\": round(float(fmvd_pcts[3]), 6),\\\\n            },\\\\n            \\\\\\\"k10_variance_mean\\\\\\\": round(float(k10_vals.mean()), 6),\\\\n            \\\\\\\"k10_variance_std\\\\\\\": round(float(k10_vals.std()), 6),\\\\n            \\\\\\\"spearman_rho\\\\\\\": round(float(rho), 6),\\\\n            \\\\\\\"spearman_pvalue\\\\\\\": float(pvalue),\\\\n        },\\\\n        \\\\\\\"per_step_data\\\\\\\": per_step_data,\\\\n    }\\\\n\\\\n    go = abs(rho) > 0.3\\\\n    print(f\\\\\\\"\\\\\\\\n=== FMVD Calibration Results ===\\\\\\\")\\\\n    print(f\\\\\\\"Steps collected: {total_steps}\\\\\\\")\\\\n    print(f\\\\\\\"FMVD: mean={fmvd_vals.mean():.4f} std={fmvd_vals.std():.4f} \\\\\\\"\\\\n          f\\\\\\\"[P25={fmvd_pcts[0]:.4f} P50={fmvd_pcts[1]:.4f} \\\\\\\"\\\\n          f\\\\\\\"P75={fmvd_pcts[2]:.4f} P90={fmvd_pcts[3]:.4f}]\\\\\\\")\\\\n    print(f\\\\\\\"K=10 Variance: mean={k10_vals.mean():.4f} std={k10_vals.std():.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Spearman rho(FMVD, K10_var) = {rho:.4f} (p={pvalue:.2e})\\\\\\\")\\\\n    print(f\\\\\\\"GO/NO-GO: {'GO' if go else 'NO-GO'} (threshold: rho > 0.3)\\\\\\\")\\\\n\\\\n    out_path = Path(args.output)\\\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    out_path.write_text(json.dumps(result, indent=2))\\\\n    print(f\\\\\\\"[fmvd] Results saved to {args.output}\\\\\\\")\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    signal.signal(signal.SIGSEGV, lambda s, f: (print(f\\\\\\\"[fmvd] FATAL: signal {s}\\\\\\\"), sys.exit(139)))\\\\n    args = parse_args()\\\\n    print(f\\\\\\\"[fmvd] args: {vars(args)}\\\\\\\")\\\\n    calibrate(args)\\\\n    sys.exit(0)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nFMVD Signal Validation for Adaptive K.\\n\\nFMVD = std of ||v_t|| across ODE steps during K=1 denoising.\\nCorrelates FMVD with K=10 action variance to validate as uncertainty signal.\\nGo/no-go gate: Spearman rho > 0.3.\\n\\\"\\\"\\\"\\nimport argparse\\nimport functools\\nbuiltins_print = print\\nprint = functools.partial(builtins_print, flush=True)\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nif \\\"MUJOCO_EGL_DEVICE_ID\\\" not in os.environ and \\\"CUDA_VISIBLE_DEVICES\\\" in os.environ:\\n    os.environ[\\\"MUJOCO_EGL_DEVICE_ID\\\"] = os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"].split(\\\",\\\")[0]\\n\\nimport sys\\nimport types\\n# Patch: create dummy masking_utils to prevent PI0/pi_gemma import failure\\n# with older transformers (< 4.45) — we only need SmolVLA, not PI0\\ntry:\\n    from transformers import masking_utils as _mu\\nexcept ImportError:\\n    _dummy = types.ModuleType('transformers.masking_utils')\\n    _dummy.create_causal_mask = None\\n    sys.modules['transformers.masking_utils'] = _dummy\\n\\nimport json\\nimport time\\nimport signal\\nfrom pathlib import Path\\n\\nimport torch\\nimport numpy as np\\nfrom scipy import stats as scipy_stats\\nfrom robosuite.utils.transform_utils import quat2axisangle\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom smolvla_wrapper import SmolVLAWrapper\\nfrom utils import set_seed, FULL_ACTION_DIM, CORRECTION_DIM, H_EFF\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"FMVD Signal Validation\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--n_episodes\\\", type=int, default=5,\\n                   help=\\\"Episodes per task\\\")\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=300)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--smolvla_path\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--output\\\", type=str, default=\\\"logs/fmvd_calibration.json\\\")\\n    return p.parse_args()\\n\\n\\ndef get_robot_state(obs):\\n    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n    eef_axisangle = quat2axisangle(obs[\\\"robot0_eef_quat\\\"])\\n    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\\n\\ndef load_libero_env(benchmark_name):\\n    from libero.libero import benchmark as bm\\n    from libero.libero.envs import OffScreenRenderEnv\\n\\n    benchmark_dict = {\\n        \\\"spatial\\\": \\\"libero_spatial\\\",\\n        \\\"object\\\": \\\"libero_object\\\",\\n        \\\"goal\\\": \\\"libero_goal\\\",\\n        \\\"long\\\": \\\"libero_10\\\",\\n        \\\"90\\\": \\\"libero_90\\\",\\n    }\\n    bm_name = benchmark_dict[benchmark_name]\\n    benchmark_instance = bm.get_benchmark(bm_name)()\\n\\n    task_envs = []\\n    for task_idx in range(benchmark_instance.n_tasks):\\n        task = benchmark_instance.get_task(task_idx)\\n        task_bddl = benchmark_instance.get_task_bddl_file_path(task_idx)\\n\\n        env_args = {\\n            \\\"bddl_file_name\\\": task_bddl,\\n            \\\"camera_heights\\\": 256,\\n            \\\"camera_widths\\\": 256,\\n            \\\"camera_names\\\": [\\\"agentview\\\", \\\"robot0_eye_in_hand\\\"],\\n            \\\"render_gpu_device_id\\\": int(os.environ.get(\\\"MUJOCO_EGL_DEVICE_ID\\\", \\\"0\\\")),\\n        }\\n        env = OffScreenRenderEnv(**env_args)\\n        env.seed(42)\\n\\n        task_envs.append({\\n            \\\"task_name\\\": task.name,\\n            \\\"task_description\\\": task.language,\\n            \\\"env\\\": env,\\n            \\\"init_states\\\": benchmark_instance.get_task_init_states(task_idx),\\n        })\\n\\n    return task_envs\\n\\n\\n@torch.no_grad()\\ndef generate_k1_with_fmvd(wrapper, kv_cache, pad_masks):\\n    \\\"\\\"\\\"K=1 denoising with velocity norm recording. Returns (action, fmvd).\\\"\\\"\\\"\\n    flow = wrapper.flow\\n    device = wrapper.device\\n    config = wrapper.config\\n\\n    B = pad_masks.shape[0]\\n    chunk_size = config.chunk_size\\n    max_act_dim = config.max_action_dim\\n    num_steps = config.num_steps\\n    dt = -1.0 / num_steps\\n\\n    noise = flow.sample_noise((B, chunk_size, max_act_dim), device)\\n    x_t = noise\\n\\n \\n\\n... [截断: 输出过长，省略 2097 字符] ...\\n\\n            episode_success = False\\n            ep_start_idx = len(per_step_data)\\n\\n            for step in range(args.max_steps):\\n                agentview = obs[\\\"agentview_image\\\"]\\n                eye_in_hand = obs.get(\\\"robot0_eye_in_hand_image\\\", None)\\n                robot_state = get_robot_state(obs)\\n\\n                imgs, img_masks, lt, lm, state = wrapper.preprocess_obs(\\n                    agentview, task_desc, robot_state, eye_in_hand\\n                )\\n                obs_feat, kv_cache, pad_masks = wrapper.encode_prefix(\\n                    imgs, img_masks, lt, lm, state\\n                )\\n\\n                action_k1, fmvd = generate_k1_with_fmvd(wrapper, kv_cache, pad_masks)\\n                k10_var = compute_k10_variance(wrapper, kv_cache, pad_masks)\\n\\n                per_step_data.append({\\n                    \\\"step\\\": total_steps,\\n                    \\\"task\\\": task_name,\\n                    \\\"episode\\\": ep,\\n                    \\\"env_step\\\": step,\\n                    \\\"fmvd\\\": round(fmvd, 6),\\n                    \\\"k10_variance\\\": round(k10_var, 6),\\n                    \\\"episode_success\\\": None,\\n                })\\n                total_steps += 1\\n\\n                action_7d = action_k1[0, 0].cpu().numpy()\\n                obs, reward, done, info = env.step(action_7d)\\n\\n                if done or info.get(\\\"success\\\", False):\\n                    episode_success = True\\n                    break\\n\\n            for i in range(ep_start_idx, len(per_step_data)):\\n                per_step_data[i][\\\"episode_success\\\"] = episode_success\\n\\n            elapsed = time.time() - t0\\n            print(f\\\"  [{task_name}] ep {ep+1}/{args.n_episodes}: \\\"\\n                  f\\\"{'OK' if episode_success else 'FAIL'} ({step+1} steps) \\\"\\n                  f\\\"| total={total_steps} | {elapsed:.0f}s\\\")\\n\\n        env.close()\\n\\n    fmvd_vals = np.array([d[\\\"fmvd\\\"] for d in per_step_data])\\n    k10_vals = np.array([d[\\\"k10_variance\\\"] for d in per_step_data])\\n\\n    rho, pvalue = scipy_stats.spearmanr(fmvd_vals, k10_vals)\\n    fmvd_pcts = np.percentile(fmvd_vals, [25, 50, 75, 90])\\n\\n    result = {\\n        \\\"config\\\": {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"n_episodes\\\": args.n_episodes,\\n            \\\"seed\\\": args.seed,\\n            \\\"n_steps_collected\\\": total_steps,\\n            \\\"num_ode_steps\\\": num_steps,\\n        },\\n        \\\"statistics\\\": {\\n            \\\"fmvd_mean\\\": round(float(fmvd_vals.mean()), 6),\\n            \\\"fmvd_std\\\": round(float(fmvd_vals.std()), 6),\\n            \\\"fmvd_percentiles\\\": {\\n                \\\"P25\\\": round(float(fmvd_pcts[0]), 6),\\n                \\\"P50\\\": round(float(fmvd_pcts[1]), 6),\\n                \\\"P75\\\": round(float(fmvd_pcts[2]), 6),\\n                \\\"P90\\\": round(float(fmvd_pcts[3]), 6),\\n            },\\n            \\\"k10_variance_mean\\\": round(float(k10_vals.mean()), 6),\\n            \\\"k10_variance_std\\\": round(float(k10_vals.std()), 6),\\n            \\\"spearman_rho\\\": round(float(rho), 6),\\n            \\\"spearman_pvalue\\\": float(pvalue),\\n        },\\n        \\\"per_step_data\\\": per_step_data,\\n    }\\n\\n    go = abs(rho) > 0.3\\n    print(f\\\"\\\\n=== FMVD Calibration Results ===\\\")\\n    print(f\\\"Steps collected: {total_steps}\\\")\\n    print(f\\\"FMVD: mean={fmvd_vals.mean():.4f} std={fmvd_vals.std():.4f} \\\"\\n          f\\\"[P25={fmvd_pcts[0]:.4f} P50={fmvd_pcts[1]:.4f} \\\"\\n          f\\\"P75={fmvd_pcts[2]:.4f} P90={fmvd_pcts[3]:.4f}]\\\")\\n    print(f\\\"K=10 Variance: mean={k10_vals.mean():.4f} std={k10_vals.std():.4f}\\\")\\n    print(f\\\"Spearman rho(FMVD, K10_var) = {rho:.4f} (p={pvalue:.2e})\\\")\\n    print(f\\\"GO/NO-GO: {'GO' if go else 'NO-GO'} (threshold: rho > 0.3)\\\")\\n\\n    out_path = Path(args.output)\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    out_path.write_text(json.dumps(result, indent=2))\\n    print(f\\\"[fmvd] Results saved to {args.output}\\\")\\n\\n    return result\\n\\n\\ndef main():\\n    signal.signal(signal.SIGSEGV, lambda s, f: (print(f\\\"[fmvd] FATAL: signal {s}\\\"), sys.exit(139)))\\n    args = parse_args()\\n    print(f\\\"[fmvd] args: {vars(args)}\\\")\\n    calibrate(args)\\n    sys.exit(0)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full picture:
+
+1. `fmvd` = std of ||v_t|| across ODE steps during K=1 denoising (a single-pass signal)
+2. `k10_variance` = `compute_k10_variance(wrapper, kv_cache, pad_masks)` — this generates K=10 actions and computes their variance
+3. The JSON only stores aggregated values — no raw K=10 action samples
+
+The `compute_k10_variance` function generates 10 actions and computes the overall variance, but doesn't save the individual actions.
+
+So: **we cannot do K=2 subsampling from this data** because the raw K=10 action samples were not saved.
+
+
+The user wants K=2 alternative signal analysis, but looking at how `compute_k10_variance` works, it only stores the final variance scalar without preserving the individual action samples, so there's no way to subsample or reanalyze the K=10 data.
+
+Without those raw samples, I can't compute K=2 metrics like L2 distance, cosine distance, or per-DOF statistics. I could verify the existing ρ=0.0825 result or explore the distribution of the stored scalars, but that's not what they're asking for—they specifically need K=2 signal analysis, which requires re-running the model to capture the raw action data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "984fe798-4039-4f3d-81eb-d8bcbe1fbee8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147HUSh6xF675iQcfam9KcX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3747,
+      "cache_read_input_tokens": 41199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3747
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+**数据限制：无法完成 K=2 分析。**
+
+检查了 `fmvd_calibration.json` 和生成脚本 `calibrate_fmvd.py`：
+
+- `compute_k10_variance()` 生成了 K=10 个 action samples，但只保存了聚合的标量 `k10_variance`（overall variance）
+- 原始 K=10 action vectors **没有写入 JSON**
+- 每步数据仅有：`fmvd`（标量）、`k10_variance`（标量）、`episode_success`
+- 无 per-DOF variance，无 raw action samples
+
+**结论：** 从现有数据无法做 K=2 子采样。需要修改 `calibrate_fmvd.py`，在 `compute_k10_variance()` 中保存原始 K=10 action vectors，然后重新跑校准。
+
+两个选项：
+
+1. **快速路径（~30min GPU）**：修改脚本，只收集 K=10 raw samples 并保存，不跑完整 evaluation。可以复用已有的环境 rollout 逻辑，只是多存一个 `k10_actions: [10, 7]` 字段
+2. **更快的近似（~5min GPU）**：只跑 K=2（不跑 K=10），直接收集 K=2 pairs 的 L2 距离，与已有的 `k10_variance` 做 Spearman 比对。省掉 8 次多余 forward pass
+
+要我走哪个方案？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "uuid": "4456e3a6-6cb3-4dfe-909d-48e7b4b89e5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147HUSh6xF675iQcfam9KcX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3747,
+      "cache_read_input_tokens": 41199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3747
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 40_
+
+**数据限制：无法完成 K=2 分析。**
+
+检查了 `fmvd_calibration.json` 和生成脚本 `calibrate_fmvd.py`：
+
+- `compute_k10_variance()` 生成了 K=10 个 action samples，但只保存了聚合的标量 `k10_variance`（overall variance）
+- 原始 K=10 action vectors **没有写入 JSON**
+- 每步数据仅有：`fmvd`（标量）、`k10_variance`（标量）、`episode_success`
+- 无 per-DOF variance，无 raw action samples
+
+**结论：** 从现有数据无法做 K=2 子采样。需要修改 `calibrate_fmvd.py`，在 `compute_k10_variance()` 中保存原始 K=10 action vectors，然后重新跑校准。
+
+两个选项：
+
+1. **快速路径（~30min GPU）**：修改脚本，只收集 K=10 raw samples 并保存，不跑完整 evaluation。可以复用已有的环境 rollout 逻辑，只是多存一个 `k10_actions: [10, 7]` 字段
+2. **更快的近似（~5min GPU）**：只跑 K=2（不跑 K=10），直接收集 K=2 pairs 的 L2 距离，与已有的 `k10_variance` 做 Spearman 比对。省掉 8 次多余 forward pass
+
+要我走哪个方案？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 94109,
+  "duration_api_ms": 92623,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "3adc8c66-14bb-4ab5-b56f-984a4d4b4d41",
+  "total_cost_usd": 0.5051092500000001,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 44779,
+    "cache_read_input_tokens": 243467,
+    "output_tokens": 4077,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 44779,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 981,
+        "cache_read_input_tokens": 41199,
+        "cache_creation_input_tokens": 3747,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3747
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1392,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0015170000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 4077,
+      "cacheReadInputTokens": 243467,
+      "cacheCreationInputTokens": 44779,
+      "webSearchRequests": 0,
+      "costUSD": 0.50359225,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "73110d1d-c9a8-49e9-9d17-dcda2c1ae63f"
+}
+```
+
+</details>
+
+---

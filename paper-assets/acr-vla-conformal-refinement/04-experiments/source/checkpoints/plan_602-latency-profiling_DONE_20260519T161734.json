@@ -1,0 +1,38 @@
+{
+  "exp_id": "plan_602-latency-profiling",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:13:57.251Z",
+    "updated_at": "2026-05-19T16:17:33.738Z",
+    "hypothesis": "Latency profiling: 正式测量 VLA+CRM pipeline 各组件 wall-clock time，覆盖 K=1/5/10/20 batched vs sequential，生成论文 Table 级结果。预期 CRM overhead < 1ms，pipeline 主要 bottleneck 在 VLA flow-matching sampling。",
+    "spec": {
+      "command": "python profile_latency.py",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "107232",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/latency_profile.json",
+      "submitted_at": "2026-05-19T16:14:41.817Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/libero_data/libero_object/",
+      "data_count": 1,
+      "model_name": "SmolVLA+CRM_obs_only",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 171.9,
+      "gpu_hours": 0.05
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T16:17:33.738Z"
+  },
+  "timestamp": "2026-05-19T16:17:34.258372+00:00",
+  "trigger": "update_registry"
+}

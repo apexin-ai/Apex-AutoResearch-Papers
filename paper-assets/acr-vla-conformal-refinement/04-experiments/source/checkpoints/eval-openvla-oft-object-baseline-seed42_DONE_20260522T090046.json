@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval-openvla-oft-object-baseline-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:56:24.604Z",
+    "updated_at": "2026-05-22T09:00:45.065Z",
+    "hypothesis": "OpenVLA-OFT (7B deterministic VLA) baseline eval on LIBERO-Object to establish cross-model comparison point; D107 gate CLOSED means no CRM pipeline but VLA-only baseline is needed for paper Table",
+    "spec": {
+      "command": "python src/evaluate.py --model openvla_oft --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --obs_dim 4096",
+      "server": "bjb2-40593",
+      "gpu": "cuda:0",
+      "pid": 925107,
+      "data_path": "/root/autodl-tmp/libero_data/libero_object/",
+      "data_count": "10 tasks x 20 rollouts = 200 episodes",
+      "model_name": "openvla-oft-7b",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/root/runs/acr-vla-conformal-refinement/eval-openvla-oft-object-seed42.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "overall_sr": 0,
+      "per_task_sr": "all 10 tasks 0.0%",
+      "n_rollouts": 20,
+      "total_episodes": 200
+    },
+    "completed_at": "2026-05-22T09:00:45.065Z"
+  },
+  "timestamp": "2026-05-22T09:00:46.290622+00:00",
+  "trigger": "update_registry"
+}

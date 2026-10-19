@@ -1,0 +1,32 @@
+{
+  "exp_id": "smolvla-tau015-spatial-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:54:46.984Z",
+    "updated_at": "2026-05-27T01:58:08.899Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.15 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark spatial --seed 43 --n_rollouts 20 --output_file logs/eval_spatial_adaptive_tau015_s43.json\"",
+      "server": "westd-49937",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "780764",
+      "log_path": "~/runs/acr-vla-conformal-refinement/smolvla-tau015-spatial-s43.log",
+      "submitted_at": "2026-05-27T00:54:42.868Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 20,
+      "model_name": "smolvla",
+      "seed": 43,
+      "hypothesis": "SmolVLA spatial τ=0.15 s43 cross-seed validation of high-intervention CRM regime on spatial tasks"
+    }
+  },
+  "timestamp": "2026-05-27T01:58:14.638621+00:00",
+  "trigger": "update_registry"
+}

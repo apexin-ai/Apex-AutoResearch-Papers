@@ -1,0 +1,68 @@
+{
+  "exp_id": "eval-mag-obsonly-norm003-b2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:20:45.606Z",
+    "updated_at": "2026-05-16T00:49:13.751Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_mag_obsonly_norm003.json",
+      "server": "bjb2-40593",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "225139",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-mag-obsonly-norm003-b2.log",
+      "submitted_at": "2026-05-15T05:20:45.407Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/libero_data/libero_spatial",
+      "data_count": 10,
+      "model_name": "crm_v3_norm_obs_only",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "libero_spatial",
+      "wall_clock_seconds": 70039.8,
+      "gpu_hours": 19.46
+    },
+    "pid": 227426,
+    "notes": "Ghost PID 211962 killed, b2 now running solo on bjb2-40593 cuda:0. PID 227434 confirmed alive (15min uptime, model loaded, eval executing, GPU 6185MiB/24564MiB, 12% util).",
+    "metrics": {
+      "overall_sr_10task": 0.34,
+      "per_task": {
+        "between_plate_and_ramekin": 0.9,
+        "next_to_ramekin": 1,
+        "from_table_center": 0,
+        "on_cookie_box": 0.3,
+        "in_top_drawer": 0.1,
+        "on_ramekin": 0,
+        "next_to_cookie_box": 0.8,
+        "on_stove": 0,
+        "next_to_plate": 0.3,
+        "on_wooden_cabinet": 0
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T00:42:50.652Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T00:43:27.876843+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (eval only)",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval_mag_obsonly_norm003.json",
+    "completed_at": "2026-05-16T00:48:05.254Z"
+  },
+  "timestamp": "2026-05-16T00:49:14.920110+00:00",
+  "trigger": "update_registry"
+}

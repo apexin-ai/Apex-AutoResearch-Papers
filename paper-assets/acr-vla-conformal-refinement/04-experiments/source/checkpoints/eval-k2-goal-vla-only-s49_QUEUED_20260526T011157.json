@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval-k2-goal-vla-only-s49",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T01:11:55.792Z",
+    "updated_at": "2026-05-26T01:11:55.792Z"
+  },
+  "timestamp": "2026-05-26T01:11:57.341145+00:00",
+  "trigger": "update_registry"
+}

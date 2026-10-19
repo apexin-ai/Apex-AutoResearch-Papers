@@ -1,0 +1,73 @@
+{
+  "exp_id": "eval-supp-adapt-tau035-spatial-s42-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:11:54.911Z",
+    "updated_at": "2026-05-23T06:20:31.236Z",
+    "spec": {
+      "command": "evaluate.py --mode adaptive_conformal_crm --conformal_threshold 0.35",
+      "server": "bjb1-32546",
+      "gpu": "cuda:4",
+      "pid": 667018,
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval-supp-adapt-tau035-spatial-s42-r2.log",
+      "submitted_at": "2026-05-23T04:11:49.182Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "wall_clock_seconds": 7722.1,
+      "gpu_hours": 2.15
+    },
+    "hypothesis": "Adaptive CRM with tau=0.35 (conservative, ~10% trigger rate) tests whether very selective CRM application still provides benefit on LIBERO-Spatial",
+    "parent": "eval-3dir-adaptive-spatial-s42",
+    "reproduce": {
+      "finished_at": "2026-05-23T06:16:49.605Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T06:17:16.809341+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 80,
+      "n_success": 160,
+      "n_total": 200,
+      "trigger_rate": 12.17,
+      "mean_unc": 0.1873,
+      "conformal_threshold": 0.35,
+      "max_correction_norm": 0.2,
+      "crm_applied_steps": 3474,
+      "total_steps": 28549,
+      "per_task_sr": {
+        "between_plate_and_ramekin": 95,
+        "next_to_ramekin": 100,
+        "from_table_center": 90,
+        "on_cookie_box": 95,
+        "in_top_drawer": 70,
+        "on_ramekin": 0,
+        "next_to_cookie_box": 95,
+        "on_stove": 85,
+        "next_to_plate": 85,
+        "on_wooden_cabinet": 85
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T06:20:31.236Z"
+  },
+  "timestamp": "2026-05-23T06:20:32.356135+00:00",
+  "trigger": "update_registry"
+}

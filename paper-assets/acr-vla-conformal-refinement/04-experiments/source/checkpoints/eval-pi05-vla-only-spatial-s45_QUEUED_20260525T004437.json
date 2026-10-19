@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-pi05-vla-only-spatial-s45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T00:44:07.720Z",
+    "updated_at": "2026-05-25T00:44:35.594Z",
+    "hypothesis": "π0.5 VLA-only baseline on LIBERO-Spatial (seed 45, 20 rollouts). Replicate seed for variance estimation."
+  },
+  "timestamp": "2026-05-25T00:44:37.051087+00:00",
+  "trigger": "update_registry"
+}

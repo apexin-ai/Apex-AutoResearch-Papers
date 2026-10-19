@@ -1,0 +1,18 @@
+{
+  "exp_id": "eval-acr-object-obs-only-norm02",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:20:46.639Z",
+    "updated_at": "2026-05-15T05:22:02.869Z",
+    "spec": {
+      "hypothesis": "obs-only CRM with norm=0.2 on object benchmark. Cross-benchmark norm sensitivity test — paired with eval-mag-obsonly-norm02 on spatial. If obs-only at norm=0.2 > norm=0.1 on both benchmarks → robust 'observation-conditioned correction' story.",
+      "parent": "eval-acr-object-v4-obs-only"
+    }
+  },
+  "timestamp": "2026-05-15T05:22:03.001230+00:00",
+  "trigger": "update_registry"
+}

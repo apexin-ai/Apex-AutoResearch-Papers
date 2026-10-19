@@ -1,0 +1,16 @@
+{
+  "exp_id": "crm-train-v3-norm",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:45:12.565Z",
+    "updated_at": "2026-05-14T18:49:50.130Z",
+    "hypothesis": "D018: Input normalization fixes 1500x scale imbalance in CRM inputs, enabling proper gradient flow and meaningful per-DOF correction learning",
+    "parent": "crm-train-v3-perdof"
+  },
+  "timestamp": "2026-05-14T18:49:50.237009+00:00",
+  "trigger": "update_registry"
+}

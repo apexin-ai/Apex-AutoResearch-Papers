@@ -1,0 +1,29 @@
+{
+  "exp_id": "k2-l2-calibration-phase1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:32:52.408Z",
+    "updated_at": "2026-05-19T20:57:37.614Z",
+    "hypothesis": "K=2 L2 divergence (mean pairwise L2 from K=10 samples) as uncertainty proxy for Adaptive K. Measures action-space disagreement directly. Go/no-go: Spearman ρ(mean_pair_l2, k10_variance) > 0.3.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/k2_l2_calibration.json",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO object benchmark (10 tasks x 5 episodes)",
+      "data_count": 50,
+      "model_name": "smolvla_libero",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T20:57:30.913Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T20:57:36.071Z"
+  },
+  "timestamp": "2026-05-19T20:57:38.587860+00:00",
+  "trigger": "update_registry"
+}

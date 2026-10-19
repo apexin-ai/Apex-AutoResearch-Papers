@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval-k2-tau020-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T21:37:23.017Z",
+    "updated_at": "2026-05-25T01:00:15.617Z",
+    "hypothesis": "K=2 τ-sweep: τ=0.20 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting. Key comparison point — τ=0.20 was peak SR under K=10 (81.0%).",
+    "spec": {
+      "command": "python evaluate.py --mode adaptive_conformal_crm --K 2 --conformal_threshold 0.20 --benchmark spatial --seed 42 --n_rollouts 20",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "788081",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-k2-tau020-spatial-s42.log",
+      "submitted_at": "2026-05-24T21:57:59.368Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "SmolVLA+CRM",
+      "seed": 42,
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "wall_clock_seconds": 10936.2,
+      "gpu_hours": 3.04
+    },
+    "reproduce": {
+      "finished_at": "2026-05-25T01:00:11.989Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-25T01:00:15.617Z"
+  },
+  "timestamp": "2026-05-25T01:00:17.258215+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1579 @@
+# analysis pi05 crm k2 object s44 20260526T141604 retry1
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_analysis_pi05-crm-k2-object-s44_20260526T141604_retry1.log`
+- **Structured JSON:** [`46c7e5958ea9b8cccce4.json`](../../sessions/46/46c7e5958ea9b8cccce4.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-7[1m]",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "916a60dc-eee4-4feb-8c79-c9f311318a64",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1780063200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.95,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "62f37c75-255d-4808-b41a-d2481f844bf0",
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "34a7b90e-c2a1-4a80-8bed-dc51c8b10aa1",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01YYoPcfzGgEhfnfniNpQTPa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15029,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15029
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Pvd45gKR8jDNzPNfUx14Zc`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "9ce24745-1198-4af4-b683-c4068b64b836",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01YYoPcfzGgEhfnfniNpQTPa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15029,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15029
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T14:16:35.520Z_
+
+<details><summary>↩ Tool result · `toolu_01Pvd45gKR8jDNzPNfUx14Zc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "0be380c6-5791-4913-bd9a-0a7c6dc57c1e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Sp2mC2vjLsf79nAJQeSynN`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -200 /root/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "6a5d6c33-f16f-4d63-a572-6e20a15c078a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KdzZd3ouDzeLFcHCH71xjF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 16755,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16755
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 28895
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BkQeWz1K7MZz9BDKMUsXpy`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ls -la /root/acr-vla-conformal-refinement/logs/ 2>/dev/null | grep -i object | grep -i s44",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "9fa76432-2e27-4996-bba4-a02367ab40f9",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KdzZd3ouDzeLFcHCH71xjF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 16755,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16755
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 28895
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-26T14:16:40.898Z_
+
+<details><summary>↩ Tool result · `toolu_01Sp2mC2vjLsf79nAJQeSynN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_crm_k2_pi05_seed44.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: object\\n[eval] max_steps set to 280 for benchmark object\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 20/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 100.0% (20/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 19/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 95.0% (19/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 19/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 95.0% (19/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 12/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 60.0% (12/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 20/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 100.0% (20/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 20/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 100.0% (20/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 88.0% (176/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_crm_k2_pi05_seed44.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "621fde79-d908-4656-9487-a29a171fdf45",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_crm_k2_pi05_seed44.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: object\\\\n[eval] max_steps set to 280 for benchmark object\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\\\n[eval] Override max_correction_norm = 0.05\\\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 20/20\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 100.0% (20/20)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 19/20\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 95.0% (19/20)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 19/20\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 95.0% (19/20)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 12/20\\\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 60.0% (12/20)\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 20/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 100.0% (20/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 20/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 100.0% (20/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\\\n\\\\n============================================================\\\\nOverall success rate (crm_obs_only): 88.0% (176/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_crm_k2_pi05_seed44.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_crm_k2_pi05_seed44.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: object\\n[eval] max_steps set to 280 for benchmark object\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 20/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 100.0% (20/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 19/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 95.0% (19/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 19/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 95.0% (19/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 12/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 60.0% (12/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 20/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 100.0% (20/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 15/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 20/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 100.0% (20/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 88.0% (176/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_crm_k2_pi05_seed44.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T14:16:40.990Z_
+
+<details><summary>↩ Tool result · `toolu_01BkQeWz1K7MZz9BDKMUsXpy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "bb9a7bb3-87b8-45ec-a5c7-781d1270d0e8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "b38f7e5a-c8e0-4e15-9076-07b9ee736e63",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_011fRxdmAaABBfPgTGsLV7at",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4299,
+      "cache_read_input_tokens": 33089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4299
+      },
+      "output_tokens": 84,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TnbFWsLwU5pf18yBDJ8jur`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_crm_k2_pi05_seed44.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "1059221f-63e2-4fe3-8784-29a05d486dfc",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_011fRxdmAaABBfPgTGsLV7at",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4299,
+      "cache_read_input_tokens": 33089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4299
+      },
+      "output_tokens": 84,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-26T14:16:46.591Z_
+
+<details><summary>↩ Tool result · `toolu_01TnbFWsLwU5pf18yBDJ8jur`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.88,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "ddfd40e8-46e8-408d-885c-5464f1d0e7df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"crm_obs_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.88,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.6,\\\\n      \\\\\\\"successes\\\\\\\": 12,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.88,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01KYEJ8NHh7ahHCq1vvWpcZA`</summary>
+
+```json
+{
+  "filters": {
+    "benchmark": "object"
+  },
+  "project": "acr-vla-conformal-refinement",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "e6ddedf8-65e8-4d6a-9531-9983177b1b8e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_011fRxdmAaABBfPgTGsLV7at",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4299,
+      "cache_read_input_tokens": 33089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4299
+      },
+      "output_tokens": 84,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-26T14:16:51.693Z_
+
+<details><summary>↩ Tool result · `toolu_01KYEJ8NHh7ahHCq1vvWpcZA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.9933}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "89793331-13fd-4970-8426-bcff6590e661",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.9933}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.9933}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "bf34ec82-c3c5-447e-b3b7-307d8d8377f5",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01HDmJx9de61xUyxkZE4ZNoM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 37388,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1744
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01ARi16ty1o2whngaPN6B6qc`</summary>
+
+```json
+{
+  "filters": {
+    "conclusion": "success"
+  },
+  "project": "acr-vla-conformal-refinement",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "303b7239-20f0-48a0-9b24-c52ef93331c7",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01HDmJx9de61xUyxkZE4ZNoM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 37388,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1744
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-26T14:17:01.800Z_
+
+<details><summary>↩ Tool result · `toolu_01ARi16ty1o2whngaPN6B6qc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"pi05-adaptive-spatial-s44-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:47.784Z\", \"updated_at\": \"2026-05-26T13:57:09.900Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s44. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97, \"successes\": 194, \"total_rollouts\": 200, \"trigger_rate\": 3.9, \"mean_unc\": 0.0975}}, \"pi05-adaptive-spatial-s43-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:43.728Z\", \"updated_at\": \"2026-05-26T13:56:35.903Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s43. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 98, \"successes\": 196, \"total_rollouts\": 200, \"trigger_rate\": 4.4, \"mean_unc\": 0.1062}}, \"pi05-adaptive-spatial-s42-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:39.703Z\", \"updated_at\": \"2026-05-26T13:55:59.996Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s42. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 96.5, \"successes\": 193, \"total_rollouts\": 200, \"trigger_rate\": 4.8, \"mean_unc\": 0.1056}}, \"pi05-crm-k2-spatial-s44-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:35.735Z\", \"updated_at\": \"2026-05-26T13:55:37.615Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s44. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97, \"successes\": 194, \"total_rollouts\": 200}}, \"pi05-crm-k2-spatial-s43-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:31.701Z\", \"updated_at\": \"2026-05-26T13:55:03.681Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s43. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97, \"successes\": 194, \"total_rollouts\": 200}}, \"pi05-crm-k2-spatial-s42-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:27.403Z\", \"updated_at\": \"2026-05-26T13:54:23.389Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s42. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 96.5, \"successes\": 193, \"total_rollouts\": 200}}, \"pi05-crm-k2-goal-s44-bjb1-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:44:33.740Z\", \"updated_at\": \"2026-05-26T13:51:15.545Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Goal s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-goal-s44-bjb1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 85, \"successes\": 170, \"total_rollouts\": 200}}, \"pi05-crm-k2-goal-s43-bjb1-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:44:29.605Z\", \"updated_at\": \"2026-05-26T13:50:24.372Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Goal s43. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-goal-s43-bjb1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 83, \"successes\": 166, \"total_rollouts\": 200}}, \"pi05-crm-k2-goal-s42-bjb1-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:44:25.673Z\", \"updated_at\": \"2026-05-26T13:49:29.425Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Goal s42. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-goal-s42-bjb1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 82.5, \"successes\": 165, \"total_rollouts\": 200}}, \"westd-pi05-vla-only-long-s44-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:00:13.951Z\", \"updated_at\": \"2026-05-26T13:21:24.701Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Long s44. westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only gap.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.96, \"benchmark\": \"long\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"total_successes\": 192}}, \"westd-pi05-vla-only-long-s43-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:00:43.452Z\", \"updated_at\": \"2026-05-26T13:05:08.426Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Long s43. westd same-server paired comparison (Blackwell). Complete Long VLA-only 3-seed coverage.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.945, \"benchmark\": \"long\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"westd-pi05-vla-only-spatial-s43-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:58:45.293Z\", \"updated_at\": \"2026-05-26T12:58:43.742Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Spatial s43. westd same-server paired comparison (Blackwell). Fills Table 2 Spatial VLA-only gap.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.975, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"total_successes\": 195}}, \"westd-pi05-vla-only-spatial-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:56:11.874Z\", \"updated_at\": \"2026-05-26T12:58:32.823Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Spatial s42. westd same-server paired comparison (Blackwell). Fills Table 2 Spatial VLA-only gap.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.98, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"total_successes\": 196}}, \"westd-pi05-vla-only-spatial-s44-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:59:17.322Z\", \"updated_at\": \"2026-05-26T12:57:09.184Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Spatial s44. westd same-server paired comparison (Blackwell). Fills Table 2 Spatial VLA-only gap.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.985, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"total_successes\": 197}}, \"westd-pi05-vla-only-long-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:59:43.428Z\", \"updated_at\": \"2026-05-26T12:55:13.887Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Long s42. westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only gap.\", \"metrics\": {\"success_rate\": 0.98, \"successes\": 196, \"total\": 200}, \"conclusion\": \"success\"}, \"westd-pi05-vla-only-object-s44-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:02:45.036Z\", \"updated_at\": \"2026-05-26T12:46:06.812Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"westd-pi05-vla-only-object-s43-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:02:30.548Z\", \"updated_at\": \"2026-05-26T12:45:24.165Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 1, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"westd-pi05-vla-only-object-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:02:15.888Z\", \"updated_at\": \"2026-05-26T12:44:44.987Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"westd-pi05-vla-only-goal-s44-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:02:01.323Z\", \"updated_at\": \"2026-05-26T12:43:50.101Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s44 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.955, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"westd-pi05-vla-only-goal-s43-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:01:46.159Z\", \"updated_at\": \"2026-05-26T12:42:15.670Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.965, \"per_task_sr\": {\"open_the_middle_drawer_of_the_cabinet\": 1, \"put_the_bowl_on_the_stove\": 1, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.9, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.85, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 1, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.9}, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi0.5\", \"n_rollouts\": 20}}, \"westd-pi05-vla-only-goal-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:01:32.135Z\", \"updated_at\": \"2026-05-26T12:41:55.953Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.975, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"pi05-adaptive-object-s42-cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:53:47.761Z\", \"updated_at\": \"2026-05-26T12:37:53.890Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM on Object s42. 4090 cluster backup for westd result, controlling Blackwell architecture bias.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.855, \"trigger_rate\": 0.0368, \"mean_correction_norm\": 0.2, \"mean_uncertainty\": 0.0842, \"benchmark\": \"object\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"pi05-adaptive-long-s42-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T03:44:44.161Z\", \"updated_at\": \"2026-05-26T12:22:08.789Z\", \"hypothesis\": \"π0.5 Adaptive Conformal on Long s42 (re-run after cqa1 crash). Cross-suite validation for π0.5 Table 2.\", \"metrics\": {\"success_rate\": 0.805, \"successes\": 161, \"total\": 200, \"mode\": \"adaptive_conformal_crm\", \"K\": 2, \"max_correction_norm\": 0.2, \"conformal_threshold\": 0.25, \"trigger_rate\": 0.039, \"mean_uncertainty\": 0.087, \"benchmark\": \"long\", \"seed\": 42}, \"conclusion\": \"success\"}, \"pi05-adaptive-object-s43-bjb2-24035\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T10:51:28.267Z\", \"updated_at\": \"2026-05-26T12:18:01.914Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Object s43. Table 2 cross-architecture gating analysis. Tests adaptive gating on Object suite.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.83}}, \"pi05-adaptive-goal-s42-cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:53:55.121Z\", \"updated_at\": \"2026-05-26T11:28:57.790Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM on Goal s42. 4090 cluster backup for westd result, controlling Blackwell architecture bias.\", \"metrics\": {\"success_rate\": 0.895, \"success_count\": 179, \"total_rollouts\": 200, \"trigger_rate\": 0.081, \"mean_unc\": 0.1152, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"K\": 2, \"max_correction_norm\": 0.2, \"conformal_threshold\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.7, \"put_the_bowl_on_the_stove\": 0.95, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.85, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.7, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 0.9, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.85}}, \"conclusion\": \"success\"}, \"westd-pi05-crm-k2-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:26:05.028Z\", \"updated_at\": \"2026-05-26T10:52:23.271Z\", \"hypothesis\": \"π0.5 CRM obs_only K=2 (ε=0.05, always-on) on LIBERO-Goal s42. Tests whether unconditional CRM correction (no adaptive gating) helps π0.5 on goal suite. Comparison vs adaptive gating and K=2 mean baseline.\", \"metrics\": {\"success_rate\": 0.855, \"benchmark\": \"goal\", \"mode\": \"crm_obs_only\", \"seed\": 42, \"K\": 2, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-object-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:53.085Z\", \"updated_at\": \"2026-05-26T10:52:12.970Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Object s42. Cross-suite validation of adaptive conformal refinement on π0.5.\", \"metrics\": {\"success_rate\": 0.835, \"benchmark\": \"object\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-goal-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:43.389Z\", \"updated_at\": \"2026-05-26T10:51:54.441Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s43. Seed variation for 3-seed mean±std on Goal benchmark.\", \"metrics\": {\"success_rate\": 0.875, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:38.990Z\", \"updated_at\": \"2026-05-26T10:51:37.558Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s42. Tests whether adaptive conformal refinement improves π0.5 on goal-conditioned tasks.\", \"metrics\": {\"success_rate\": 0.88, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"pi05-adaptive-goal-s43-bjb1-18228\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:45:32.801Z\", \"updated_at\": \"2026-05-26T10:24:06.070Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on Goal s43. 4090 cluster cross-validation for westd Goal s43, controlling Blackwell architecture bias.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 89.5}}, \"eval-adaptive-spatial-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:22.983Z\", \"updated_at\": \"2026-05-26T08:53:46.783Z\", \"metrics\": {\"overall_success_rate\": 0.805, \"trigger_rate\": 0.195, \"successes\": 161, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed44_paired_r2.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed44. Paired with s42 (SR=0.795) and s43 for 3-seed mean±std of Adaptive method on Spatial.\", \"conclusion\": \"success\"}, \"eval-adaptive-spatial-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:18.913Z\", \"updated_at\": \"2026-05-26T08:53:39.086Z\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.203, \"successes\": 159, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed43_paired_r2.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed43. Paired with s42 (SR=0.795) and s44 for 3-seed mean±std of Adaptive method on Spatial.\", \"conclusion\": \"success\"}, \"eval-adaptive-goal-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:14.632Z\", \"updated_at\": \"2026-05-26T08:53:31.602Z\", \"metrics\": {\"overall_success_rate\": 0.865, \"trigger_rate\": 0.068, \"successes\": 173, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed44. Paired with s42 (SR=0.835) and s43 for 3-seed mean±std of Adaptive method on Goal.\", \"conclusion\": \"success\"}, \"eval-adaptive-goal-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:10.566Z\", \"updated_at\": \"2026-05-26T08:53:24.015Z\", \"metrics\": {\"overall_success_rate\": 0.845, \"trigger_rate\": 0.088, \"successes\": 169, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed43. Paired with s42 (SR=0.835) and s44 for 3-seed mean±std of Adaptive method on Goal.\", \"conclusion\": \"success\"}, \"eval-adaptive-object-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:06.313Z\", \"updated_at\": \"2026-05-26T08:53:16.512Z\", \"metrics\": {\"overall_success_rate\": 0.75, \"trigger_rate\": 0.036, \"successes\": 150, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed44. Paired with s42 (SR=0.81) and s43 for 3-seed mean±std of Adaptive method on Object.\", \"conclusion\": \"success\"}, \"eval-adaptive-object-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:02.246Z\", \"updated_at\": \"2026-05-26T08:53:07.449Z\", \"metrics\": {\"overall_success_rate\": 0.775, \"trigger_rate\": 0.037, \"successes\": 155, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed43. Paired with s42 (SR=0.81) and s44 for 3-seed mean±std of Adaptive method on Object.\", \"conclusion\": \"success\"}, \"eval-adaptive-spatial-k1-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:18:42.872Z\", \"updated_at\": \"2026-05-26T08:47:52.554Z\", \"hypothesis\": \"K=1 Adaptive Conformal on Spatial s42 at τ=0.20. Single-sample correction vs K=10 multi-sample centering — if K=1 SR is lower, it supports the claim that multi-sample centering improves correction quality by reducing noise in the correction vector.\", \"conclusion\": \"success\", \"notes\": \"K=1 Adaptive eval completed on bjb2-28827. Metrics need harvesting from log. K=1 single-sample correction baseline for K-sweep comparison.\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.198, \"successes\": 159, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed42_paired_r2.json\"}}, \"westd-pi05-vla-only-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:44:47.876Z\", \"updated_at\": \"2026-05-26T08:35:57.908Z\", \"hypothesis\": \"π0.5 VLA-only single-sample baseline (K=1) on LIBERO-Goal s42. D158: must run on westd for paired comparison with westd Adaptive Goal s42, controlling for hardware variation.\", \"metrics\": {\"overall_success_rate\": 0.975, \"successes\": 195, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.9, \"successes\": 18, \"total\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}}, \"delta_vs_4090_s42\": \"+2.0pp (97.5% vs 95.5%)\"}, \"conclusion\": \"success\"}, \"eval-supp-goal-vla-only-wrapper-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T11:34:09.581Z\", \"updated_at\": \"2026-05-26T07:27:17.856Z\", \"hypothesis\": \"Goal VLA-only wrapper fresh eval seed43. Confirms 83.5% baseline across seeds. r4 files (97.5-98%) confirmed as Pi0.5.\", \"metrics\": {\"success_rate\": 82.5, \"source\": \"JSON file eval_goal_vla_only_seed43.json on bjb1-32546, harvested 2026-05-26\"}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau090_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:49:10.797Z\", \"updated_at\": \"2026-05-26T07:00:51.716Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.90 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.89, \"mean_uncertainty\": 0.1148, \"trigger_rate\": 0.0035, \"crm_applied_steps\": 94, \"total_steps\": 26628, \"tau\": 0.9, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau070_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:49:02.809Z\", \"updated_at\": \"2026-05-26T07:00:47.412Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.70 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.87, \"mean_uncertainty\": 0.121, \"trigger_rate\": 0.0104, \"crm_applied_steps\": 283, \"total_steps\": 27265, \"tau\": 0.7, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau050_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:46:41.927Z\", \"updated_at\": \"2026-05-26T07:00:43.156Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.50 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.87, \"mean_uncertainty\": 0.1196, \"trigger_rate\": 0.0206, \"crm_applied_steps\": 565, \"total_steps\": 27431, \"tau\": 0.5, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"goal_vla_only_s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:08:05.449Z\", \"updated_at\": \"2026-05-26T06:52:16.465Z\", \"hypothesis\": \"SmolVLA VLA-only baseline on LIBERO-Goal s48. Provides baseline data point for paired comparison against adaptive conformal CRM at same seed.\", \"metrics\": {\"success_rate\": 0.795, \"n_rollouts\": 200}, \"conclusion\": \"success\"}, \"goal_adapt_s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:08:15.451Z\", \"updated_at\": \"2026-05-26T06:52:02.185Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s48. Tests if conformal-gated CRM correction improves SmolVLA goal performance at seed 48 vs VLA-only baseline.\", \"metrics\": {\"success_rate\": 0.85, \"n_rollouts\": 200, \"delta_vs_baseline_pp\": 5.5}, \"conclusion\": \"success\"}, \"westd-pi05-k2mean-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:26:00.379Z\", \"updated_at\": \"2026-05-26T06:45:41.247Z\", \"hypothesis\": \"π0.5 K=2 mean baseline (vla_only, no CRM) on LIBERO-Goal s42. Isolates sampling effect (K=2 averaging) from CRM correction for π0.5 mechanism analysis. Paired with adaptive_conformal_crm at same seed.\", \"metrics\": {\"success_rate\": 0.995}, \"conclusion\": \"success\"}, \"eval-goal-vla-only-s49-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:09:43.708Z\", \"updated_at\": \"2026-05-26T06:04:17.775Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Goal s49. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.835, \"n_rollouts\": 200, \"benchmark\": \"goal\", \"seed\": 49}, \"conclusion\": \"success\"}, \"eval-spatial-vla-only-s48-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:21.164Z\", \"updated_at\": \"2026-05-26T06:04:02.289Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Spatial s48. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.775, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 48}, \"conclusion\": \"success\"}, \"eval-spatial-vla-only-s46-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:02.079Z\", \"updated_at\": \"2026-05-26T06:03:54.343Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Spatial s46. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.8, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 46}, \"conclusion\": \"success\"}, \"eval-spatial-adapt-tau025-s48-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:29.000Z\", \"updated_at\": \"2026-05-26T06:03:45.555Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Spatial s48. Paired with vla_only s48 for SR uplift measurement.\", \"metrics\": {\"success_rate\": 0.81, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 48}, \"conclusion\": \"success\"}, \"pi05-crm-k2-long-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T23:33:23.785Z\", \"updated_at\": \"2026-05-26T03:41:20.154Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only on LIBERO-Long s44. Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"benchmark\": \"long\", \"model\": \"pi0.5\", \"mode\": \"crm_obs_only\", \"K\": 2, \"norm\": 0.05, \"seed\": 44, \"per_task\": {\"LIVING_ROOM_SCENE2_soup_sauce\": 1, \"LIVING_ROOM_SCENE2_cream_butter\": 0.95, \"KITCHEN_SCENE3_stove_moka\": 0.95, \"KITCHEN_SCENE4_bowl_drawer\": 0.85, \"LIVING_ROOM_SCENE5_mugs_plates\": 1, \"STUDY_SCENE1_book_caddy\": 0.6, \"LIVING_ROOM_SCENE6_mug_pudding\": 0.65, \"LIVING_ROOM_SCENE1_soup_cream\": 0.9, \"KITCHEN_SCENE8_moka_pots\": 0.2, \"KITCHEN_SCENE6_mug_microwave\": 0.9}}}, \"eval-k2-tau030-spatial-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:37:30.605Z\", \"updated_at\": \"2026-05-26T02:22:03.983Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.30 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"trigger_rate\": 0.168, \"benchmark\": \"spatial\", \"seed\": 42, \"tau\": 0.3, \"K\": 2, \"norm\": 0.2}}, \"eval-k2-tau020-spatial-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:37:23.017Z\", \"updated_at\": \"2026-05-26T02:21:56.906Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.20 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting. Key comparison point — τ=0.20 was peak SR under K=10 (81.0%).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.81, \"trigger_rate\": 0.267, \"benchmark\": \"spatial\", \"seed\": 42, \"tau\": 0.2, \"K\": 2, \"norm\": 0.2}, \"notes\": \"Cron 报告 EXIT_CODE=124，但日志分析显示 τ=0.20 eval 已完成 (SR=80.5%, 161/200)。超时发生在同 tmux session 继续跑 τ=0.25 时。数据完整，纠正为 success。\"}, \"precompute-pi05-long-2048-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T06:18:31.140Z\", \"updated_at\": \"2026-05-25T22:40:55.662Z\", \"hypothesis\": \"Precomputing π0.5 obs_features and K=2048 action samples on LIBERO-Long enables downstream CRM training for cross-model (SmolVLA→π0.5) generalization verification without re-running inference at train time.\", \"conclusion\": \"success\"}, \"eval-vla-only-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T18:04:32.173Z\", \"updated_at\": \"2026-05-25T18:07:31.799Z\", \"hypothesis\": \"SmolVLA VLA-only baseline 在 LIBERO-Long suite 上的 SR（seed=44，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.545}}, \"eval-adaptive-long-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T13:29:54.027Z\", \"updated_at\": \"2026-05-25T18:07:24.041Z\", \"hypothesis\": \"SmolVLA Adaptive CRM (K=2, norm=0.2, τ=0.25) 在 LIBERO-Long suite 上的 gated correction 效果（seed=43，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.58}}, \"eval-crm-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T13:29:36.645Z\", \"updated_at\": \"2026-05-25T18:07:16.146Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10) Long s44 — D149 缺失格，完成 CRM Long 3-seed 数据\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.555}}, \"eval-crm-long-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T18:04:09.941Z\", \"updated_at\": \"2026-05-25T18:07:06.638Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10, norm=0.05) 在 LIBERO-Long suite 上的 action correction 效果（seed=43，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.545}}, \"eval-smolvla-crm-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:30:10.261Z\", \"updated_at\": \"2026-05-25T17:51:36.375Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10) Goal s42。Table 1 CRM 列补充数据，seed 方案 Goal 用 s42/s43/s44。\", \"metrics\": {\"success_rate\": 0.83}, \"conclusion\": \"success\"}, \"eval-crm-long-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T11:20:45.404Z\", \"updated_at\": \"2026-05-25T17:51:24.699Z\", \"hypothesis\": \"SmolVLA CRM (K=10, norm=0.05) 在 Long benchmark 上的 action correction 效果（Table 1 D149 seed，CRM 用 3suite checkpoint 跨 suite 泛化）\", \"metrics\": {\"success_rate\": 0.565}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-object-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T18:17:27.320Z\", \"updated_at\": \"2026-05-25T17:51:17.181Z\", \"hypothesis\": \"π0.5 VLA-only baseline Object s43。跨模型验证 baseline。\", \"metrics\": {\"success_rate\": 0.985}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-goal-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:10:26.481Z\", \"updated_at\": \"2026-05-25T17:51:09.042Z\", \"hypothesis\": \"π0.5 VLA-only baseline Goal s44。跨模型验证 baseline。\", \"metrics\": {\"success_rate\": 0.975}, \"conclusion\": \"success\"}, \"eval-smolvla-crm-goal-seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:10:37.288Z\", \"updated_at\": \"2026-05-25T17:50:35.892Z\", \"hypothesis\": \"CRM obs_only (K=10, norm=0.05) on Goal s44. Completes Goal CRM seed coverage for Table 1.\", \"parent\": \"train-crm-smolvla-3suite-v1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.825, \"successes\": 165, \"total\": 200}}, \"eval-vla-only-spatial-bjb1-s49\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T01:32:07.247Z\", \"updated_at\": \"2026-05-25T17:50:28.137Z\", \"hypothesis\": \"VLA-only baseline on Spatial s49 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200}}, \"eval-vla-only-spatial-bjb1-s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T01:32:03.658Z\", \"updated_at\": \"2026-05-25T17:50:15.719Z\", \"hypothesis\": \"VLA-only baseline on Spatial s48 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.775, \"successes\": 155, \"total\": 200}}, \"eval-adaptive-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:31.160Z\", \"updated_at\": \"2026-05-25T17:50:07.726Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s44 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.54, \"trigger_rate\": 0.045, \"mean_uncertainty\": 0.126}}, \"eval-adaptive-long-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:27.324Z\", \"updated_at\": \"2026-05-25T17:49:59.707Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.58, \"trigger_rate\": 0.043, \"mean_uncertainty\": 0.125}}, \"eval-k2-spatial-vla-only-s44-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:39.553Z\", \"updated_at\": \"2026-05-25T17:49:20.052Z\", \"hypothesis\": \"VLA-only baseline on Spatial s44, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200}}, \"eval-k2-spatial-vla-only-s43-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:27.742Z\", \"updated_at\": \"2026-05-25T17:49:12.564Z\", \"hypothesis\": \"VLA-only baseline on Spatial s43, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200}}, \"eval-k2-spatial-vla-only-s42-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:14.262Z\", \"updated_at\": \"2026-05-25T17:49:04.857Z\", \"hypothesis\": \"VLA-only baseline on Spatial s42, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.785, \"successes\": 157, \"total\": 200}}, \"eval-k2-spatial-adapt-s44-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:33.724Z\", \"updated_at\": \"2026-05-25T17:48:57.202Z\", \"hypothesis\": \"K=2 Adaptive CRM (τ=0.25) on Spatial s44, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.805, \"successes\": 161, \"total\": 200, \"trigger_rate\": 0.195, \"paired_vla_only_sr\": 0.8}}, \"eval-k2-spatial-adapt-s43-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:21.430Z\", \"updated_at\": \"2026-05-25T17:48:49.637Z\", \"hypothesis\": \"K=2 Adaptive CRM (τ=0.25) on Spatial s43, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200, \"trigger_rate\": 0.203, \"paired_vla_only_sr\": 0.795}}, \"eval-k2-spatial-adapt-s42-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:08.065Z\", \"updated_at\": \"2026-05-25T17:48:40.986Z\", \"hypothesis\": \"K=2 Adaptive CRM (τ=0.25) on Spatial s42, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200, \"trigger_rate\": 0.198, \"paired_vla_only_sr\": 0.785}}, \"eval-vla-only-spatial-s47-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:38.756Z\", \"updated_at\": \"2026-05-25T17:44:42.858Z\", \"hypothesis\": \"SmolVLA VLA-only baseline 在 spatial s47 的 n=20 完整评估（Table 1 D149 spatial s47 补 n=20）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.785}}, \"eval-adaptive-object-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:23.470Z\", \"updated_at\": \"2026-05-25T17:44:38.401Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 object 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.81, \"trigger_rate\": 0.035}}, \"eval-pi05-adaptive-goal-s42-dryrun\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T12:08:38.644Z\", \"updated_at\": \"2026-05-25T13:25:25.080Z\", \"hypothesis\": \"π0.5 Adaptive (τ=0.25, K=2) Goal dry-run — 验证 OOM fix 后 VRAM 稳定性和 trigger_rate 合理性\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.65, \"vram_peak_mib\": 13920, \"vram_stable\": true}}, \"eval-adaptive-spatial-s47-bjb1-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:42.635Z\", \"updated_at\": \"2026-05-25T13:25:17.894Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 spatial 上的选择性 gating 效果（Table 1 D149 seed s47 补跑，bjb1 副本）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.81, \"trigger_rate\": 0.191}}, \"eval-adaptive-spatial-s47-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:34.917Z\", \"updated_at\": \"2026-05-25T13:25:02.181Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 spatial 上的选择性 gating 效果（Table 1 D149 seed s47 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.192}}, \"eval-adaptive-goal-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:19.669Z\", \"updated_at\": \"2026-05-25T13:24:47.316Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 goal 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.835, \"trigger_rate\": 0.083}}, \"eval-pi05-vla-only-spatial-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T11:45:42.796Z\", \"updated_at\": \"2026-05-25T11:50:28.806Z\", \"hypothesis\": \"π0.5 在 LIBERO-Spatial suite 上的 baseline SR——纯 VLA 推理（无 CRM 修正），用于消融基线对比（seed=44, 已完成 SR=99.0%）\", \"metrics\": {\"overall_success_rate\": 0.99, \"successes\": 198, \"total\": 200, \"n_tasks\": 10}, \"conclusion\": \"success\", \"notes\": \"π0.5 LIBERO-Spatial (seed=44) baseline SR=99.0% (198/200). 10 tasks 中 9 个 100%, 1 个 (black_bowl_on_the_ramekin) 90%. 作为 CRM 修正模式的 baseline 对照之一.\"}, \"eval-k2-tau010-spatial-s42-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T00:52:49.412Z\", \"updated_at\": \"2026-05-25T09:28:04.013Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.10 Adaptive Conformal on Spatial s42. Retry #3 on bjb2-28827 with 14400s timeout. Prior attempts timed out due to insufficient timeout and GPU contention on bjb2-40593.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.78, \"successes\": 156, \"total\": 200, \"trigger_rate\": 0.744, \"mean_uncertainty\": 0.1854}}, \"eval-k2-tau0075-spatial-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T04:09:13.381Z\", \"updated_at\": \"2026-05-25T09:28:00.083Z\", \"hypothesis\": \"K=2 τ-sweep 补点: τ=0.075 Adaptive Conformal on Spatial s42。τ-sweep 图中该点是 SR 峰值(81.0%)，supplementary figure 需要。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.78, \"successes\": 156, \"total\": 200, \"trigger_rate\": 0.92, \"mean_uncertainty\": 0.1811}}, \"eval-k2-tau015-spatial-s42-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T00:52:41.760Z\", \"updated_at\": \"2026-05-25T09:25:00.633Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.15 Adaptive Conformal on Spatial s42. Retry on bjb2-28827 with 14400s timeout after first attempt timed out on bjb2-40593 (7200s, completed only 4/10 tasks).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"trigger_rate\": 0.412, \"mean_uncertainty\": 0.1855}}, \"eval-k2-goal-vla-only-s46-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:23.483Z\", \"updated_at\": \"2026-05-25T09:24:31.458Z\", \"hypothesis\": \"VLA-only baseline on Goal s46, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test.\", \"metrics\": {\"success_rate\": 0.82, \"successes\": 164, \"total\": 200}, \"conclusion\": \"success\"}, \"eval-k2-goal-vla-only-s45-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:15.041Z\", \"updated_at\": \"2026-05-25T09:24:24.387Z\", \"hypothesis\": \"VLA-only baseline on Goal s45, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test.\", \"metrics\": {\"success_rate\": 0.835, \"successes\": 167, \"total\": 200}, \"conclusion\": \"success\"}, \"eval-k2-goal-adapt-s47-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:28.049Z\", \"updated_at\": \"2026-05-25T09:24:17.113Z\", \"hypothesis\": \"K=2 Adaptive CRM (tau=0.25) on Goal s47, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test and trigger rate correlation.\", \"metrics\": {\"success_rate\": 0.825, \"successes\": 165, \"total\": 200, \"trigger_rate\": 0.098, \"mean_uncertainty\": 0.1499}, \"conclusion\": \"success\"}, \"eval-k2-goal-adapt-s46-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:19.812Z\", \"updated_at\": \"2026-05-25T09:24:10.113Z\", \"hypothesis\": \"K=2 Adaptive CRM (tau=0.25) on Goal s46, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test and trigger rate correlation.\", \"metrics\": {\"success_rate\": 0.84, \"successes\": 168, \"total\": 200, \"trigger_rate\": 0.088, \"mean_uncertainty\": 0.1482}, \"conclusion\": \"success\"}, \"eval-k2-goal-vla-only-s47-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:33.713Z\", \"updated_at\": \"2026-05-25T09:23:31.276Z\", \"hypothesis\": \"VLA-only baseline on Goal s47, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test.\", \"metrics\": {\"success_rate\": 0.835, \"successes\": 167, \"total\": 200}, \"conclusion\": \"success\"}, \"eval-k2-goal-adapt-s45-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:05.643Z\", \"updated_at\": \"2026-05-25T09:23:24.109Z\", \"hypothesis\": \"K=2 Adaptive CRM (tau=0.25) on Goal s45, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test and trigger rate correlation.\", \"metrics\": {\"success_rate\": 0.82, \"successes\": 164, \"total\": 200, \"trigger_rate\": 0.094, \"mean_uncertainty\": 0.1495}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-spatial-s43-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T07:34:11.243Z\", \"updated_at\": \"2026-05-25T08:42:53.773Z\", \"hypothesis\": \"π0.5 VLA-only baseline rerun on LIBERO-Spatial s43 (bjb1-18228 cuda:2). Redundant replication on a different server to fill idle GPU; prior run (-s43) reached 0.96 success rate on bjb1-32546.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.975, \"successes\": 195, \"total\": 200}}, \"eval-pi05-vla-only-spatial-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T04:30:12.187Z\", \"updated_at\": \"2026-05-25T08:33:04.033Z\", \"hypothesis\": \"π0.5 VLA-only baseline Spatial s42 on bjb1-18228. 跨模型验证的 baseline，与后续 π0.5 Adaptive 同服务器配对。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.98, \"successes\": 196, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"spatial\", \"seed\": 42, \"model\": \"pi05\"}}, \"eval-pi05-vla-only-goal-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T04:30:16.021Z\", \"updated_at\": \"2026-05-25T08:32:56.678Z\", \"hypothesis\": \"π0.5 VLA-only baseline Goal s42 on bjb1-18228. 跨模型验证的 baseline。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.98, \"successes\": 196, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"goal\", \"seed\": 42, \"model\": \"pi05\"}}, \"eval-pi05-vla-only-goal-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T18:17:20.358Z\", \"updated_at\": \"2026-05-25T08:05:42.148Z\", \"hypothesis\": \"π0.5 VLA-only baseline Goal s43 on bjb1-18228. Multi-seed π0.5 validation.\", \"metrics\": {\"overall_success_rate\": 0.97, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"model\": \"pi0.5\"}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-spatial-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T18:17:13.434Z\", \"updated_at\": \"2026-05-25T07:32:37.026Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Spatial s43 (bjb1-18228, cuda:2). Multi-seed replication for π0.5 VLA-only baseline; seed43 complements seed42/44 to bracket variance of frozen-VLA success rate for Spatial benchmark.\", \"metrics\": {\"overall_success_rate\": 0.96, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"benchmark\": \"spatial\", \"mode\": \"vla_only\", \"model\": \"pi0.5\"}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-object-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T18:17:23.924Z\", \"updated_at\": \"2026-05-25T07:32:33.237Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object s42 (bjb1-18228, cuda:1). Cross-model baseline replication: VLA-only success rate should match prior smolvla VLA-only baseline within seed variance, confirming π0.5 wrapper integration parity before evaluating CRM-augmented modes.\", \"metrics\": {\"overall_success_rate\": 0.965, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"model\": \"pi0.5\"}, \"conclusion\": \"success\"}, \"eval-k2-spatial-vla-only-s47-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:59:11.109Z\", \"updated_at\": \"2026-05-25T05:59:47.447Z\", \"hypothesis\": \"VLA-only baseline on Spatial s47, same-server paired with Adaptive s47 on bjb2-28827 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.765, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"spatial\", \"seed\": 47}}, \"eval-k2-spatial-adapt-s47-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:59:07.111Z\", \"updated_at\": \"2026-05-25T05:59:40.158Z\", \"hypothesis\": \"K=2 Adaptive CRM (τ=0.25) on Spatial s47, same-server paired with VLA-only s47 on bjb2-28827 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"total\": 200, \"mode\": \"adaptive_conformal_crm\", \"benchmark\": \"spatial\", \"seed\": 47, \"K\": 2, \"tau\": 0.25, \"trigger_rate\": 0.208, \"mean_unc\": 0.188}}, \"eval-k2-spatial-vla-only-s45-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:59:03.315Z\", \"updated_at\": \"2026-05-25T05:59:32.762Z\", \"hypothesis\": \"VLA-only baseline on Spatial s45, same-server paired with Adaptive s45 on bjb2-28827 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.805, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"spatial\", \"seed\": 45}}, \"eval-k2-spatial-adapt-s45-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:58:59.555Z\", \"updated_at\": \"2026-05-25T05:59:25.317Z\", \"hypothesis\": \"K=2 Adaptive CRM (τ=0.25) on Spatial s45, same-server paired with VLA-only s45 on bjb2-28827 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"total\": 200, \"mode\": \"adaptive_conformal_crm\", \"benchmark\": \"spatial\", \"seed\": 45, \"K\": 2, \"tau\": 0.25, \"trigger_rate\": 0.201, \"mean_unc\": 0.186}}, \"eval-k2-spatial-vla-only-s49-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:34:12.915Z\", \"updated_at\": \"2026-05-25T05:35:31.859Z\", \"hypothesis\": \"VLA-only baseline on Spatial s49, same-server paired with Adaptive s49 on bjb1-32546 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"spatial\", \"seed\": 49}}, \"eval-k2-spatial-vla-only-s48-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:34:08.427Z\", \"updated_at\": \"2026-05-25T05:35:28.262Z\", \"hypothesis\": \"VLA-only baseline on Spatial s48, same-server paired with Adaptive s48 on bjb1-32546 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.775, \"successes\": 155, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"spatial\", \"seed\": 48}}}, \"count\": 100, \"total\": 618, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.4515}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "3af3f120-a37f-4de8-a578-3e3a94bd0dfc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"pi05-adaptive-spatial-s44-bjb2-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:47.784Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:57:09.900Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s44. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 97, \\\"successes\\\": 194, \\\"total_rollouts\\\": 200, \\\"trigger_rate\\\": 3.9, \\\"mean_unc\\\": 0.0975}}, \\\"pi05-adaptive-spatial-s43-bjb2-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:43.728Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:56:35.903Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s43. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 98, \\\"successes\\\": 196, \\\"total_rollouts\\\": 200, \\\"trigger_rate\\\": 4.4, \\\"mean_unc\\\": 0.1062}}, \\\"pi05-adaptive-spatial-s42-bjb2-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:39.703Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:55:59.996Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s42. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 96.5, \\\"successes\\\": 193, \\\"total_rollouts\\\": 200, \\\"trigger_rate\\\": 4.8, \\\"mean_unc\\\": 0.1056}}, \\\"pi05-crm-k2-spatial-s44-bjb2-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:35.735Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:55:37.615Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s44. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 97, \\\"successes\\\": 194, \\\"total_rollouts\\\": 200}}, \\\"pi05-crm-k2-spatial-s43-bjb2-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:31.701Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:55:03.681Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s43. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 97, \\\"successes\\\": 194, \\\"total_rollouts\\\": 200}}, \\\"pi05-crm-k2-spatial-s42-bjb2-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:27.403Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:54:23.389Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s42. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 96.5, \\\"successes\\\": 193, \\\"total_rollouts\\\": 200}}, \\\"pi05-crm-k2-goal-s44-bjb1-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:44:33.740Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:51:15.545Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Goal s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\\\", \\\"parent\\\": \\\"pi05-crm-k2-goal-s44-bjb1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 85, \\\"successes\\\": 170, \\\"total_rollouts\\\": 200}}, \\\"pi05-crm-k2-goal-s43-bjb1-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:44:29.605Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:50:24.372Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Goal s43. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\\\", \\\"parent\\\": \\\"pi05-crm-k2-goal-s43-bjb1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 83, \\\"successes\\\": 166, \\\"total_rollouts\\\": 200}}, \\\"pi05-crm-k2-goal-s42-bjb1-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:44:25.673Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:49:29.425Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Goal s42. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\\\", \\\"parent\\\": \\\"pi05-crm-k2-goal-s42-bjb1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 82.5, \\\"successes\\\": 165, \\\"total_rollouts\\\": 200}}, \\\"westd-pi05-vla-only-long-s44-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T12:00:13.951Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:21:24.701Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Long s44. westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only gap.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.96, \\\"benchmark\\\": \\\"long\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 44, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"total_rollouts\\\": 200, \\\"total_successes\\\": 192}}, \\\"westd-pi05-vla-only-long-s43-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T12:00:43.452Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:05:08.426Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Long s43. westd same-server paired comparison (Blackwell). Complete Long VLA-only 3-seed coverage.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.945, \\\"benchmark\\\": \\\"long\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}}, \\\"westd-pi05-vla-only-spatial-s43-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:58:45.293Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:58:43.742Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Spatial s43. westd same-server paired comparison (Blackwell). Fills Table 2 Spatial VLA-only gap.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.975, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"total_rollouts\\\": 200, \\\"total_successes\\\": 195}}, \\\"westd-pi05-vla-only-spatial-s42-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:56:11.874Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:58:32.823Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Spatial s42. westd same-server paired comparison (Blackwell). Fills Table 2 Spatial VLA-only gap.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.98, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"total_rollouts\\\": 200, \\\"total_successes\\\": 196}}, \\\"westd-pi05-vla-only-spatial-s44-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:59:17.322Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:57:09.184Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Spatial s44. westd same-server paired comparison (Blackwell). Fills Table 2 Spatial VLA-only gap.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.985, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"total_rollouts\\\": 200, \\\"total_successes\\\": 197}}, \\\"westd-pi05-vla-only-long-s42-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:59:43.428Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:55:13.887Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Long s42. westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only gap.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.98, \\\"successes\\\": 196, \\\"total\\\": 200}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-vla-only-object-s44-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:02:45.036Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:46:06.812Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.995, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 44, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}}, \\\"westd-pi05-vla-only-object-s43-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:02:30.548Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:45:24.165Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 1, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}}, \\\"westd-pi05-vla-only-object-s42-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:02:15.888Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:44:44.987Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.995, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}}, \\\"westd-pi05-vla-only-goal-s44-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:02:01.323Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:43:50.101Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Goal s44 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.955, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 44, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}}, \\\"westd-pi05-vla-only-goal-s43-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:01:46.159Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:42:15.670Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Goal s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.965, \\\"per_task_sr\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": 1, \\\"put_the_bowl_on_the_stove\\\": 1, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.9, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.85, \\\"put_the_bowl_on_top_of_the_cabinet\\\": 1, \\\"push_the_plate_to_the_front_of_the_stove\\\": 1, \\\"put_the_cream_cheese_in_the_bowl\\\": 1, \\\"turn_on_the_stove\\\": 1, \\\"put_the_bowl_on_the_plate\\\": 1, \\\"put_the_wine_bottle_on_the_rack\\\": 0.9}, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi0.5\\\", \\\"n_rollouts\\\": 20}}, \\\"westd-pi05-vla-only-goal-s42-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:01:32.135Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:41:55.953Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Goal s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.975, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}}, \\\"pi05-adaptive-object-s42-cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:53:47.761Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:37:53.890Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM on Object s42. 4090 cluster backup for westd result, controlling Blackwell architecture bias.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.855, \\\"trigger_rate\\\": 0.0368, \\\"mean_correction_norm\\\": 0.2, \\\"mean_uncertainty\\\": 0.0842, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}}, \\\"pi05-adaptive-long-s42-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T03:44:44.161Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:22:08.789Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal on Long s42 (re-run after cqa1 crash). Cross-suite validation for π0.5 Table 2.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.805, \\\"successes\\\": 161, \\\"total\\\": 200, \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"K\\\": 2, \\\"max_correction_norm\\\": 0.2, \\\"conformal_threshold\\\": 0.25, \\\"trigger_rate\\\": 0.039, \\\"mean_uncertainty\\\": 0.087, \\\"benchmark\\\": \\\"long\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\"}, \\\"pi05-adaptive-object-s43-bjb2-24035\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T10:51:28.267Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:18:01.914Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Object s43. Table 2 cross-architecture gating analysis. Tests adaptive gating on Object suite.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.83}}, \\\"pi05-adaptive-goal-s42-cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:53:55.121Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:28:57.790Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM on Goal s42. 4090 cluster backup for westd result, controlling Blackwell architecture bias.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.895, \\\"success_count\\\": 179, \\\"total_rollouts\\\": 200, \\\"trigger_rate\\\": 0.081, \\\"mean_unc\\\": 0.1152, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"K\\\": 2, \\\"max_correction_norm\\\": 0.2, \\\"conformal_threshold\\\": 0.25, \\\"per_task\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": 0.7, \\\"put_the_bowl_on_the_stove\\\": 0.95, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.85, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7, \\\"put_the_bowl_on_top_of_the_cabinet\\\": 1, \\\"push_the_plate_to_the_front_of_the_stove\\\": 1, \\\"put_the_cream_cheese_in_the_bowl\\\": 0.9, \\\"turn_on_the_stove\\\": 1, \\\"put_the_bowl_on_the_plate\\\": 1, \\\"put_the_wine_bottle_on_the_rack\\\": 0.85}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-crm-k2-goal-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T04:26:05.028Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:52:23.271Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM obs_only K=2 (ε=0.05, always-on) on LIBERO-Goal s42. Tests whether unconditional CRM correction (no adaptive gating) helps π0.5 on goal suite. Comparison vs adaptive gating and K=2 mean baseline.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.855, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"crm_obs_only\\\", \\\"seed\\\": 42, \\\"K\\\": 2, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-adaptive-object-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T04:19:53.085Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:52:12.970Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Object s42. Cross-suite validation of adaptive conformal refinement on π0.5.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.835, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-adaptive-goal-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T04:19:43.389Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:51:54.441Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s43. Seed variation for 3-seed mean±std on Goal benchmark.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.875, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-adaptive-goal-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T04:19:38.990Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:51:37.558Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s42. Tests whether adaptive conformal refinement improves π0.5 on goal-conditioned tasks.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.88, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}, \\\"conclusion\\\": \\\"success\\\"}, \\\"pi05-adaptive-goal-s43-bjb1-18228\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:45:32.801Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:24:06.070Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on Goal s43. 4090 cluster cross-validation for westd Goal s43, controlling Blackwell architecture bias.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 89.5}}, \\\"eval-adaptive-spatial-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:22.983Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:46.783Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.805, \\\"trigger_rate\\\": 0.195, \\\"successes\\\": 161, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_spatial_adaptive_k2_tau025_seed44_paired_r2.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed44. Paired with s42 (SR=0.795) and s43 for 3-seed mean±std of Adaptive method on Spatial.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-spatial-s43-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:18.913Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:39.086Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.795, \\\"trigger_rate\\\": 0.203, \\\"successes\\\": 159, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_spatial_adaptive_k2_tau025_seed43_paired_r2.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed43. Paired with s42 (SR=0.795) and s44 for 3-seed mean±std of Adaptive method on Spatial.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-goal-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:14.632Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:31.602Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.865, \\\"trigger_rate\\\": 0.068, \\\"successes\\\": 173, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed44. Paired with s42 (SR=0.835) and s43 for 3-seed mean±std of Adaptive method on Goal.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-goal-s43-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:10.566Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:24.015Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.845, \\\"trigger_rate\\\": 0.088, \\\"successes\\\": 169, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed43. Paired with s42 (SR=0.835) and s44 for 3-seed mean±std of Adaptive method on Goal.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-object-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:06.313Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:16.512Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.75, \\\"trigger_rate\\\": 0.036, \\\"successes\\\": 150, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed44. Paired with s42 (SR=0.81) and s43 for 3-seed mean±std of Adaptive method on Object.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-object-s43-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:02.246Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:07.449Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.775, \\\"trigger_rate\\\": 0.037, \\\"successes\\\": 155, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed43. Paired with s42 (SR=0.81) and s44 for 3-seed mean±std of Adaptive method on Object.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-spatial-k1-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T21:18:42.872Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:47:52.554Z\\\", \\\"hypothesis\\\": \\\"K=1 Adaptive Conformal on Spatial s42 at τ=0.20. Single-sample correction vs K=10 multi-sample centering — if K=1 SR is lower, it supports the claim that multi-sample centering improves correction quality by reducing noise in the correction vector.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"K=1 Adaptive eval completed on bjb2-28827. Metrics need harvesting from log. K=1 single-sample correction baseline for K-sweep comparison.\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.795, \\\"trigger_rate\\\": 0.198, \\\"successes\\\": 159, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_spatial_adaptive_k2_tau025_seed42_paired_r2.json\\\"}}, \\\"westd-pi05-vla-only-goal-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:44:47.876Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:35:57.908Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only single-sample baseline (K=1) on LIBERO-Goal s42. D158: must run on westd for paired comparison with westd Adaptive Goal s42, controlling for hardware variation.\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.975, \\\"successes\\\": 195, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"per_task\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": {\\\"sr\\\": 0.95, \\\"successes\\\": 19, \\\"total\\\": 20}, \\\"put_the_bowl_on_the_stove\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\\"sr\\\": 0.9, \\\"successes\\\": 18, \\\"total\\\": 20}, \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\\"sr\\\": 0.95, \\\"successes\\\": 19, \\\"total\\\": 20}, \\\"put_the_cream_cheese_in_the_bowl\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"turn_on_the_stove\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"put_the_bowl_on_the_plate\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"put_the_wine_bottle_on_the_rack\\\": {\\\"sr\\\": 0.95, \\\"successes\\\": 19, \\\"total\\\": 20}}, \\\"delta_vs_4090_s42\\\": \\\"+2.0pp (97.5% vs 95.5%)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-supp-goal-vla-only-wrapper-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T11:34:09.581Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:27:17.856Z\\\", \\\"hypothesis\\\": \\\"Goal VLA-only wrapper fresh eval seed43. Confirms 83.5% baseline across seeds. r4 files (97.5-98%) confirmed as Pi0.5.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 82.5, \\\"source\\\": \\\"JSON file eval_goal_vla_only_seed43.json on bjb1-32546, harvested 2026-05-26\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"tau_sweep_goal_tau090_s42_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:49:10.797Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:00:51.716Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive Conformal τ=0.90 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.89, \\\"mean_uncertainty\\\": 0.1148, \\\"trigger_rate\\\": 0.0035, \\\"crm_applied_steps\\\": 94, \\\"total_steps\\\": 26628, \\\"tau\\\": 0.9, \\\"n_rollouts\\\": 20}, \\\"conclusion\\\": \\\"success\\\"}, \\\"tau_sweep_goal_tau070_s42_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:49:02.809Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:00:47.412Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive Conformal τ=0.70 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.87, \\\"mean_uncertainty\\\": 0.121, \\\"trigger_rate\\\": 0.0104, \\\"crm_applied_steps\\\": 283, \\\"total_steps\\\": 27265, \\\"tau\\\": 0.7, \\\"n_rollouts\\\": 20}, \\\"conclusion\\\": \\\"success\\\"}, \\\"tau_sweep_goal_tau050_s42_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:46:41.927Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:00:43.156Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive Conformal τ=0.50 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.87, \\\"mean_uncertainty\\\": 0.1196, \\\"trigger_rate\\\": 0.0206, \\\"crm_applied_steps\\\": 565, \\\"total_steps\\\": 27431, \\\"tau\\\": 0.5, \\\"n_rollouts\\\": 20}, \\\"conclusion\\\": \\\"success\\\"}, \\\"goal_vla_only_s48\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:08:05.449Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:52:16.465Z\\\", \\\"hypothesis\\\": \\\"SmolVLA VLA-only baseline on LIBERO-Goal s48. Provides baseline data point for paired comparison against adaptive conformal CRM at same seed.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"n_rollouts\\\": 200}, \\\"conclusion\\\": \\\"success\\\"}, \\\"goal_adapt_s48\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:08:15.451Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:52:02.185Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s48. Tests if conformal-gated CRM correction improves SmolVLA goal performance at seed 48 vs VLA-only baseline.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.85, \\\"n_rollouts\\\": 200, \\\"delta_vs_baseline_pp\\\": 5.5}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-k2mean-goal-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T04:26:00.379Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:45:41.247Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline (vla_only, no CRM) on LIBERO-Goal s42. Isolates sampling effect (K=2 averaging) from CRM correction for π0.5 mechanism analysis. Paired with adaptive_conformal_crm at same seed.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.995}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-goal-vla-only-s49-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:09:43.708Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:04:17.775Z\\\", \\\"hypothesis\\\": \\\"SmolVLA vla_only baseline on LIBERO-Goal s49. Paired baseline for Adaptive Conformal CRM uplift measurement.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.835, \\\"n_rollouts\\\": 200, \\\"benchmark\\\": \\\"goal\\\", \\\"seed\\\": 49}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-spatial-vla-only-s48-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:10:21.164Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:04:02.289Z\\\", \\\"hypothesis\\\": \\\"SmolVLA vla_only baseline on LIBERO-Spatial s48. Paired baseline for Adaptive Conformal CRM uplift measurement.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.775, \\\"n_rollouts\\\": 200, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 48}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-spatial-vla-only-s46-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:10:02.079Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:03:54.343Z\\\", \\\"hypothesis\\\": \\\"SmolVLA vla_only baseline on LIBERO-Spatial s46. Paired baseline for Adaptive Conformal CRM uplift measurement.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.8, \\\"n_rollouts\\\": 200, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 46}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-spatial-adapt-tau025-s48-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:10:29.000Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:03:45.555Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Spatial s48. Paired with vla_only s48 for SR uplift measurement.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.81, \\\"n_rollouts\\\": 200, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 48}, \\\"conclusion\\\": \\\"success\\\"}, \\\"pi05-crm-k2-long-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T23:33:23.785Z\\\", \\\"updated_at\\\": \\\"2026-05-26T03:41:20.154Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only on LIBERO-Long s44. Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200, \\\"benchmark\\\": \\\"long\\\", \\\"model\\\": \\\"pi0.5\\\", \\\"mode\\\": \\\"crm_obs_only\\\", \\\"K\\\": 2, \\\"norm\\\": 0.05, \\\"seed\\\": 44, \\\"per_task\\\": {\\\"LIVING_ROOM_SCENE2_soup_sauce\\\": 1, \\\"LIVING_ROOM_SCENE2_cream_butter\\\": 0.95, \\\"KITCHEN_SCENE3_stove_moka\\\": 0.95, \\\"KITCHEN_SCENE4_bowl_drawer\\\": 0.85, \\\"LIVING_ROOM_SCENE5_mugs_plates\\\": 1, \\\"STUDY_SCENE1_book_caddy\\\": 0.6, \\\"LIVING_ROOM_SCENE6_mug_pudding\\\": 0.65, \\\"LIVING_ROOM_SCENE1_soup_cream\\\": 0.9, \\\"KITCHEN_SCENE8_moka_pots\\\": 0.2, \\\"KITCHEN_SCENE6_mug_microwave\\\": 0.9}}}, \\\"eval-k2-tau030-spatial-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T21:37:30.605Z\\\", \\\"updated_at\\\": \\\"2026-05-26T02:22:03.983Z\\\", \\\"hypothesis\\\": \\\"K=2 τ-sweep: τ=0.30 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"trigger_rate\\\": 0.168, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42, \\\"tau\\\": 0.3, \\\"K\\\": 2, \\\"norm\\\": 0.2}}, \\\"eval-k2-tau020-spatial-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T21:37:23.017Z\\\", \\\"updated_at\\\": \\\"2026-05-26T02:21:56.906Z\\\", \\\"hypothesis\\\": \\\"K=2 τ-sweep: τ=0.20 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting. Key comparison point — τ=0.20 was peak SR under K=10 (81.0%).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.81, \\\"trigger_rate\\\": 0.267, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42, \\\"tau\\\": 0.2, \\\"K\\\": 2, \\\"norm\\\": 0.2}, \\\"notes\\\": \\\"Cron 报告 EXIT_CODE=124，但日志分析显示 τ=0.20 eval 已完成 (SR=80.5%, 161/200)。超时发生在同 tmux session 继续跑 τ=0.25 时。数据完整，纠正为 success。\\\"}, \\\"precompute-pi05-long-2048-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T06:18:31.140Z\\\", \\\"updated_at\\\": \\\"2026-05-25T22:40:55.662Z\\\", \\\"hypothesis\\\": \\\"Precomputing π0.5 obs_features and K=2048 action samples on LIBERO-Long enables downstream CRM training for cross-model (SmolVLA→π0.5) generalization verification without re-running inference at train time.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-vla-only-long-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T18:04:32.173Z\\\", \\\"updated_at\\\": \\\"2026-05-25T18:07:31.799Z\\\", \\\"hypothesis\\\": \\\"SmolVLA VLA-only baseline 在 LIBERO-Long suite 上的 SR（seed=44，D149 Table 1 数据填充）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.545}}, \\\"eval-adaptive-long-s43-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T13:29:54.027Z\\\", \\\"updated_at\\\": \\\"2026-05-25T18:07:24.041Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive CRM (K=2, norm=0.2, τ=0.25) 在 LIBERO-Long suite 上的 gated correction 效果（seed=43，D149 Table 1 数据填充）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.58}}, \\\"eval-crm-long-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T13:29:36.645Z\\\", \\\"updated_at\\\": \\\"2026-05-25T18:07:16.146Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM obs_only (K=10) Long s44 — D149 缺失格，完成 CRM Long 3-seed 数据\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.555}}, \\\"eval-crm-long-s43-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T18:04:09.941Z\\\", \\\"updated_at\\\": \\\"2026-05-25T18:07:06.638Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM obs_only (K=10, norm=0.05) 在 LIBERO-Long suite 上的 action correction 效果（seed=43，D149 Table 1 数据填充）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.545}}, \\\"eval-smolvla-crm-goal-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T09:30:10.261Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:51:36.375Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM obs_only (K=10) Goal s42。Table 1 CRM 列补充数据，seed 方案 Goal 用 s42/s43/s44。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.83}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-crm-long-s42-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T11:20:45.404Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:51:24.699Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 Long benchmark 上的 action correction 效果（Table 1 D149 seed，CRM 用 3suite checkpoint 跨 suite 泛化）\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.565}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-pi05-vla-only-object-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:27.320Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:51:17.181Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline Object s43。跨模型验证 baseline。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.985}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-pi05-vla-only-goal-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T09:10:26.481Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:51:09.042Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline Goal s44。跨模型验证 baseline。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.975}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-smolvla-crm-goal-seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T05:10:37.288Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:50:35.892Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (K=10, norm=0.05) on Goal s44. Completes Goal CRM seed coverage for Table 1.\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.825, \\\"successes\\\": 165, \\\"total\\\": 200}}, \\\"eval-vla-only-spatial-bjb1-s49\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T01:32:07.247Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:50:28.137Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s49 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"successes\\\": 159, \\\"total\\\": 200}}, \\\"eval-vla-only-spatial-bjb1-s48\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T01:32:03.658Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:50:15.719Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s48 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.775, \\\"successes\\\": 155, \\\"total\\\": 200}}, \\\"eval-adaptive-long-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T10:25:31.160Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:50:07.726Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s44 补跑）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.54, \\\"trigger_rate\\\": 0.045, \\\"mean_uncertainty\\\": 0.126}}, \\\"eval-adaptive-long-s42-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T10:25:27.324Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:49:59.707Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.58, \\\"trigger_rate\\\": 0.043, \\\"mean_uncertainty\\\": 0.125}}, \\\"eval-k2-spatial-vla-only-s44-paired-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:05:39.553Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:49:20.052Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s44, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200}}, \\\"eval-k2-spatial-vla-only-s43-paired-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:05:27.742Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:49:12.564Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s43, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"successes\\\": 159, \\\"total\\\": 200}}, \\\"eval-k2-spatial-vla-only-s42-paired-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:05:14.262Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:49:04.857Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s42, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.785, \\\"successes\\\": 157, \\\"total\\\": 200}}, \\\"eval-k2-spatial-adapt-s44-paired-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:05:33.724Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:48:57.202Z\\\", \\\"hypothesis\\\": \\\"K=2 Adaptive CRM (τ=0.25) on Spatial s44, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.805, \\\"successes\\\": 161, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.195, \\\"paired_vla_only_sr\\\": 0.8}}, \\\"eval-k2-spatial-adapt-s43-paired-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:05:21.430Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:48:49.637Z\\\", \\\"hypothesis\\\": \\\"K=2 Adaptive CRM (τ=0.25) on Spatial s43, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"successes\\\": 159, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.203, \\\"paired_vla_only_sr\\\": 0.795}}, \\\"eval-k2-spatial-adapt-s42-paired-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:05:08.065Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:48:40.986Z\\\", \\\"hypothesis\\\": \\\"K=2 Adaptive CRM (τ=0.25) on Spatial s42, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"successes\\\": 159, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.198, \\\"paired_vla_only_sr\\\": 0.785}}, \\\"eval-vla-only-spatial-s47-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T10:25:38.756Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:44:42.858Z\\\", \\\"hypothesis\\\": \\\"SmolVLA VLA-only baseline 在 spatial s47 的 n=20 完整评估（Table 1 D149 spatial s47 补 n=20）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.785}}, \\\"eval-adaptive-object-s42-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T10:25:23.470Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:44:38.401Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive (τ=0.25, K=2) 在 object 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.81, \\\"trigger_rate\\\": 0.035}}, \\\"eval-pi05-adaptive-goal-s42-dryrun\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T12:08:38.644Z\\\", \\\"updated_at\\\": \\\"2026-05-25T13:25:25.080Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive (τ=0.25, K=2) Goal dry-run — 验证 OOM fix 后 VRAM 稳定性和 trigger_rate 合理性\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.65, \\\"vram_peak_mib\\\": 13920, \\\"vram_stable\\\": true}}, \\\"eval-adaptive-spatial-s47-bjb1-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T10:25:42.635Z\\\", \\\"updated_at\\\": \\\"2026-05-25T13:25:17.894Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive (τ=0.25, K=2) 在 spatial 上的选择性 gating 效果（Table 1 D149 seed s47 补跑，bjb1 副本）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.81, \\\"trigger_rate\\\": 0.191}}, \\\"eval-adaptive-spatial-s47-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T10:25:34.917Z\\\", \\\"updated_at\\\": \\\"2026-05-25T13:25:02.181Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive (τ=0.25, K=2) 在 spatial 上的选择性 gating 效果（Table 1 D149 seed s47 补跑）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.795, \\\"trigger_rate\\\": 0.192}}, \\\"eval-adaptive-goal-s42-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T10:25:19.669Z\\\", \\\"updated_at\\\": \\\"2026-05-25T13:24:47.316Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive (τ=0.25, K=2) 在 goal 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.835, \\\"trigger_rate\\\": 0.083}}, \\\"eval-pi05-vla-only-spatial-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T11:45:42.796Z\\\", \\\"updated_at\\\": \\\"2026-05-25T11:50:28.806Z\\\", \\\"hypothesis\\\": \\\"π0.5 在 LIBERO-Spatial suite 上的 baseline SR——纯 VLA 推理（无 CRM 修正），用于消融基线对比（seed=44, 已完成 SR=99.0%）\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.99, \\\"successes\\\": 198, \\\"total\\\": 200, \\\"n_tasks\\\": 10}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"π0.5 LIBERO-Spatial (seed=44) baseline SR=99.0% (198/200). 10 tasks 中 9 个 100%, 1 个 (black_bowl_on_the_ramekin) 90%. 作为 CRM 修正模式的 baseline 对照之一.\\\"}, \\\"eval-k2-tau010-spatial-s42-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T00:52:49.412Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:28:04.013Z\\\", \\\"hypothesis\\\": \\\"K=2 τ-sweep: τ=0.10 Adaptive Conformal on Spatial s42. Retry #3 on bjb2-28827 with 14400s timeout. Prior attempts timed out due to insufficient timeout and GPU contention on bjb2-40593.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.78, \\\"successes\\\": 156, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.744, \\\"mean_uncertainty\\\": 0.1854}}, \\\"eval-k2-tau0075-spatial-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T04:09:13.381Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:28:00.083Z\\\", \\\"hypothesis\\\": \\\"K=2 τ-sweep 补点: τ=0.075 Adaptive Conformal on Spatial s42。τ-sweep 图中该点是 SR 峰值(81.0%)，supplementary figure 需要。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.78, \\\"successes\\\": 156, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.92, \\\"mean_uncertainty\\\": 0.1811}}, \\\"eval-k2-tau015-spatial-s42-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T00:52:41.760Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:25:00.633Z\\\", \\\"hypothesis\\\": \\\"K=2 τ-sweep: τ=0.15 Adaptive Conformal on Spatial s42. Retry on bjb2-28827 with 14400s timeout after first attempt timed out on bjb2-40593 (7200s, completed only 4/10 tasks).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.412, \\\"mean_uncertainty\\\": 0.1855}}, \\\"eval-k2-goal-vla-only-s46-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:08:23.483Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:24:31.458Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Goal s46, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.82, \\\"successes\\\": 164, \\\"total\\\": 200}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-k2-goal-vla-only-s45-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:08:15.041Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:24:24.387Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Goal s45, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.835, \\\"successes\\\": 167, \\\"total\\\": 200}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-k2-goal-adapt-s47-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:08:28.049Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:24:17.113Z\\\", \\\"hypothesis\\\": \\\"K=2 Adaptive CRM (tau=0.25) on Goal s47, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test and trigger rate correlation.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.825, \\\"successes\\\": 165, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.098, \\\"mean_uncertainty\\\": 0.1499}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-k2-goal-adapt-s46-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:08:19.812Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:24:10.113Z\\\", \\\"hypothesis\\\": \\\"K=2 Adaptive CRM (tau=0.25) on Goal s46, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test and trigger rate correlation.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.84, \\\"successes\\\": 168, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.088, \\\"mean_uncertainty\\\": 0.1482}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-k2-goal-vla-only-s47-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:08:33.713Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:23:31.276Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Goal s47, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.835, \\\"successes\\\": 167, \\\"total\\\": 200}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-k2-goal-adapt-s45-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:08:05.643Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:23:24.109Z\\\", \\\"hypothesis\\\": \\\"K=2 Adaptive CRM (tau=0.25) on Goal s45, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test and trigger rate correlation.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.82, \\\"successes\\\": 164, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.094, \\\"mean_uncertainty\\\": 0.1495}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-pi05-vla-only-spatial-s43-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T07:34:11.243Z\\\", \\\"updated_at\\\": \\\"2026-05-25T08:42:53.773Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline rerun on LIBERO-Spatial s43 (bjb1-18228 cuda:2). Redundant replication on a different server to fill idle GPU; prior run (-s43) reached 0.96 success rate on bjb1-32546.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.975, \\\"successes\\\": 195, \\\"total\\\": 200}}, \\\"eval-pi05-vla-only-spatial-s42-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T04:30:12.187Z\\\", \\\"updated_at\\\": \\\"2026-05-25T08:33:04.033Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline Spatial s42 on bjb1-18228. 跨模型验证的 baseline，与后续 π0.5 Adaptive 同服务器配对。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.98, \\\"successes\\\": 196, \\\"total\\\": 200, \\\"mode\\\": \\\"vla_only\\\", \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\"}}, \\\"eval-pi05-vla-only-goal-s42-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T04:30:16.021Z\\\", \\\"updated_at\\\": \\\"2026-05-25T08:32:56.678Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline Goal s42 on bjb1-18228. 跨模型验证的 baseline。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.98, \\\"successes\\\": 196, \\\"total\\\": 200, \\\"mode\\\": \\\"vla_only\\\", \\\"benchmark\\\": \\\"goal\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\"}}, \\\"eval-pi05-vla-only-goal-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:20.358Z\\\", \\\"updated_at\\\": \\\"2026-05-25T08:05:42.148Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline Goal s43 on bjb1-18228. Multi-seed π0.5 validation.\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.97, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi0.5\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-pi05-vla-only-spatial-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:13.434Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:32:37.026Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Spatial s43 (bjb1-18228, cuda:2). Multi-seed replication for π0.5 VLA-only baseline; seed43 complements seed42/44 to bracket variance of frozen-VLA success rate for Spatial benchmark.\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.96, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"spatial\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi0.5\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-pi05-vla-only-object-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:23.924Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:32:33.237Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object s42 (bjb1-18228, cuda:1). Cross-model baseline replication: VLA-only success rate should match prior smolvla VLA-only baseline within seed variance, confirming π0.5 wrapper integration parity before evaluating CRM-augmented modes.\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.965, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi0.5\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-k2-spatial-vla-only-s47-paired\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-25T05:59:11.109Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:59:47.447Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s47, same-server paired with Adaptive s47 on bjb2-28827 for paired t-test.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.765, \\\"total\\\": 200, \\\"mode\\\": \\\"vla_only\\\", \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 47}}, \\\"eval-k2-spatial-adapt-s47-paired\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-25T05:59:07.111Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:59:40.158Z\\\", \\\"hypothesis\\\": \\\"K=2 Adaptive CRM (τ=0.25) on Spatial s47, same-server paired with VLA-only s47 on bjb2-28827 for paired t-test.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"total\\\": 200, \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 47, \\\"K\\\": 2, \\\"tau\\\": 0.25, \\\"trigger_rate\\\": 0.208, \\\"mean_unc\\\": 0.188}}, \\\"eval-k2-spatial-vla-only-s45-paired\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-25T05:59:03.315Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:59:32.762Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s45, same-server paired with Adaptive s45 on bjb2-28827 for paired t-test.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.805, \\\"total\\\": 200, \\\"mode\\\": \\\"vla_only\\\", \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 45}}, \\\"eval-k2-spatial-adapt-s45-paired\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-25T05:58:59.555Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:59:25.317Z\\\", \\\"hypothesis\\\": \\\"K=2 Adaptive CRM (τ=0.25) on Spatial s45, same-server paired with VLA-only s45 on bjb2-28827 for paired t-test.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.8, \\\"total\\\": 200, \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 45, \\\"K\\\": 2, \\\"tau\\\": 0.25, \\\"trigger_rate\\\": 0.201, \\\"mean_unc\\\": 0.186}}, \\\"eval-k2-spatial-vla-only-s49-paired\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-25T05:34:12.915Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:35:31.859Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s49, same-server paired with Adaptive s49 on bjb1-32546 for paired t-test.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"successes\\\": 159, \\\"total\\\": 200, \\\"mode\\\": \\\"vla_only\\\", \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 49}}, \\\"eval-k2-spatial-vla-only-s48-paired\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-25T05:34:08.427Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:35:28.262Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s48, same-server paired with Adaptive s48 on bjb1-32546 for paired t-test.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.775, \\\"successes\\\": 155, \\\"total\\\": 200, \\\"mode\\\": \\\"vla_only\\\", \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 48}}}, \\\"count\\\": 100, \\\"total\\\": 618, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.4515}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"pi05-adaptive-spatial-s44-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:47.784Z\", \"updated_at\": \"2026-05-26T13:57:09.900Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s44. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97, \"successes\": 194, \"total_rollouts\": 200, \"trigger_rate\": 3.9, \"mean_unc\": 0.0975}}, \"pi05-adaptive-spatial-s43-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:43.728Z\", \"updated_at\": \"2026-05-26T13:56:35.903Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s43. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 98, \"successes\": 196, \"total_rollouts\": 200, \"trigger_rate\": 4.4, \"mean_unc\": 0.1062}}, \"pi05-adaptive-spatial-s42-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:39.703Z\", \"updated_at\": \"2026-05-26T13:55:59.996Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s42. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 96.5, \"successes\": 193, \"total_rollouts\": 200, \"trigger_rate\": 4.8, \"mean_unc\": 0.1056}}, \"pi05-crm-k2-spatial-s44-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:35.735Z\", \"updated_at\": \"2026-05-26T13:55:37.615Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s44. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97, \"successes\": 194, \"total_rollouts\": 200}}, \"pi05-crm-k2-spatial-s43-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:31.701Z\", \"updated_at\": \"2026-05-26T13:55:03.681Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s43. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97, \"successes\": 194, \"total_rollouts\": 200}}, \"pi05-crm-k2-spatial-s42-bjb2-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:55:27.403Z\", \"updated_at\": \"2026-05-26T13:54:23.389Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s42. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 96.5, \"successes\": 193, \"total_rollouts\": 200}}, \"pi05-crm-k2-goal-s44-bjb1-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:44:33.740Z\", \"updated_at\": \"2026-05-26T13:51:15.545Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Goal s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-goal-s44-bjb1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 85, \"successes\": 170, \"total_rollouts\": 200}}, \"pi05-crm-k2-goal-s43-bjb1-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:44:29.605Z\", \"updated_at\": \"2026-05-26T13:50:24.372Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Goal s43. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-goal-s43-bjb1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 83, \"successes\": 166, \"total_rollouts\": 200}}, \"pi05-crm-k2-goal-s42-bjb1-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:44:25.673Z\", \"updated_at\": \"2026-05-26T13:49:29.425Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Goal s42. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-goal-s42-bjb1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 82.5, \"successes\": 165, \"total_rollouts\": 200}}, \"westd-pi05-vla-only-long-s44-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:00:13.951Z\", \"updated_at\": \"2026-05-26T13:21:24.701Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Long s44. westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only gap.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.96, \"benchmark\": \"long\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"total_successes\": 192}}, \"westd-pi05-vla-only-long-s43-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:00:43.452Z\", \"updated_at\": \"2026-05-26T13:05:08.426Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Long s43. westd same-server paired comparison (Blackwell). Complete Long VLA-only 3-seed coverage.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.945, \"benchmark\": \"long\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"westd-pi05-vla-only-spatial-s43-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:58:45.293Z\", \"updated_at\": \"2026-05-26T12:58:43.742Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Spatial s43. westd same-server paired comparison (Blackwell). Fills Table 2 Spatial VLA-only gap.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.975, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"total_successes\": 195}}, \"westd-pi05-vla-only-spatial-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:56:11.874Z\", \"updated_at\": \"2026-05-26T12:58:32.823Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Spatial s42. westd same-server paired comparison (Blackwell). Fills Table 2 Spatial VLA-only gap.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.98, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"total_successes\": 196}}, \"westd-pi05-vla-only-spatial-s44-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:59:17.322Z\", \"updated_at\": \"2026-05-26T12:57:09.184Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Spatial s44. westd same-server paired comparison (Blackwell). Fills Table 2 Spatial VLA-only gap.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.985, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"total_successes\": 197}}, \"westd-pi05-vla-only-long-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:59:43.428Z\", \"updated_at\": \"2026-05-26T12:55:13.887Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Long s42. westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only gap.\", \"metrics\": {\"success_rate\": 0.98, \"successes\": 196, \"total\": 200}, \"conclusion\": \"success\"}, \"westd-pi05-vla-only-object-s44-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:02:45.036Z\", \"updated_at\": \"2026-05-26T12:46:06.812Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"westd-pi05-vla-only-object-s43-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:02:30.548Z\", \"updated_at\": \"2026-05-26T12:45:24.165Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 1, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"westd-pi05-vla-only-object-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:02:15.888Z\", \"updated_at\": \"2026-05-26T12:44:44.987Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"westd-pi05-vla-only-goal-s44-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:02:01.323Z\", \"updated_at\": \"2026-05-26T12:43:50.101Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s44 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.955, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"westd-pi05-vla-only-goal-s43-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:01:46.159Z\", \"updated_at\": \"2026-05-26T12:42:15.670Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.965, \"per_task_sr\": {\"open_the_middle_drawer_of_the_cabinet\": 1, \"put_the_bowl_on_the_stove\": 1, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.9, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.85, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 1, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.9}, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi0.5\", \"n_rollouts\": 20}}, \"westd-pi05-vla-only-goal-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:01:32.135Z\", \"updated_at\": \"2026-05-26T12:41:55.953Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.975, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"pi05-adaptive-object-s42-cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:53:47.761Z\", \"updated_at\": \"2026-05-26T12:37:53.890Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM on Object s42. 4090 cluster backup for westd result, controlling Blackwell architecture bias.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.855, \"trigger_rate\": 0.0368, \"mean_correction_norm\": 0.2, \"mean_uncertainty\": 0.0842, \"benchmark\": \"object\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"pi05-adaptive-long-s42-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T03:44:44.161Z\", \"updated_at\": \"2026-05-26T12:22:08.789Z\", \"hypothesis\": \"π0.5 Adaptive Conformal on Long s42 (re-run after cqa1 crash). Cross-suite validation for π0.5 Table 2.\", \"metrics\": {\"success_rate\": 0.805, \"successes\": 161, \"total\": 200, \"mode\": \"adaptive_conformal_crm\", \"K\": 2, \"max_correction_norm\": 0.2, \"conformal_threshold\": 0.25, \"trigger_rate\": 0.039, \"mean_uncertainty\": 0.087, \"benchmark\": \"long\", \"seed\": 42}, \"conclusion\": \"success\"}, \"pi05-adaptive-object-s43-bjb2-24035\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T10:51:28.267Z\", \"updated_at\": \"2026-05-26T12:18:01.914Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Object s43. Table 2 cross-architecture gating analysis. Tests adaptive gating on Object suite.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.83}}, \"pi05-adaptive-goal-s42-cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:53:55.121Z\", \"updated_at\": \"2026-05-26T11:28:57.790Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM on Goal s42. 4090 cluster backup for westd result, controlling Blackwell architecture bias.\", \"metrics\": {\"success_rate\": 0.895, \"success_count\": 179, \"total_rollouts\": 200, \"trigger_rate\": 0.081, \"mean_unc\": 0.1152, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"K\": 2, \"max_correction_norm\": 0.2, \"conformal_threshold\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.7, \"put_the_bowl_on_the_stove\": 0.95, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.85, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.7, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 0.9, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.85}}, \"conclusion\": \"success\"}, \"westd-pi05-crm-k2-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:26:05.028Z\", \"updated_at\": \"2026-05-26T10:52:23.271Z\", \"hypothesis\": \"π0.5 CRM obs_only K=2 (ε=0.05, always-on) on LIBERO-Goal s42. Tests whether unconditional CRM correction (no adaptive gating) helps π0.5 on goal suite. Comparison vs adaptive gating and K=2 mean baseline.\", \"metrics\": {\"success_rate\": 0.855, \"benchmark\": \"goal\", \"mode\": \"crm_obs_only\", \"seed\": 42, \"K\": 2, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-object-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:53.085Z\", \"updated_at\": \"2026-05-26T10:52:12.970Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Object s42. Cross-suite validation of adaptive conformal refinement on π0.5.\", \"metrics\": {\"success_rate\": 0.835, \"benchmark\": \"object\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-goal-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:43.389Z\", \"updated_at\": \"2026-05-26T10:51:54.441Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s43. Seed variation for 3-seed mean±std on Goal benchmark.\", \"metrics\": {\"success_rate\": 0.875, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:38.990Z\", \"updated_at\": \"2026-05-26T10:51:37.558Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s42. Tests whether adaptive conformal refinement improves π0.5 on goal-conditioned tasks.\", \"metrics\": {\"success_rate\": 0.88, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"pi05-adaptive-goal-s43-bjb1-18228\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:45:32.801Z\", \"updated_at\": \"2026-05-26T10:24:06.070Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on Goal s43. 4090 cluster cross-validation for westd Goal s43, controlling Blackwell architecture bias.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 89.5}}, \"eval-adaptive-spatial-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:22.983Z\", \"updated_at\": \"2026-05-26T08:53:46.783Z\", \"metrics\": {\"overall_success_rate\": 0.805, \"trigger_rate\": 0.195, \"successes\": 161, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed44_paired_r2.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed44. Paired with s42 (SR=0.795) and s43 for 3-seed mean±std of Adaptive method on Spatial.\", \"conclusion\": \"success\"}, \"eval-adaptive-spatial-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:18.913Z\", \"updated_at\": \"2026-05-26T08:53:39.086Z\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.203, \"successes\": 159, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed43_paired_r2.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed43. Paired with s42 (SR=0.795) and s44 for 3-seed mean±std of Adaptive method on Spatial.\", \"conclusion\": \"success\"}, \"eval-adaptive-goal-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:14.632Z\", \"updated_at\": \"2026-05-26T08:53:31.602Z\", \"metrics\": {\"overall_success_rate\": 0.865, \"trigger_rate\": 0.068, \"successes\": 173, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed44. Paired with s42 (SR=0.835) and s43 for 3-seed mean±std of Adaptive method on Goal.\", \"conclusion\": \"success\"}, \"eval-adaptive-goal-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:10.566Z\", \"updated_at\": \"2026-05-26T08:53:24.015Z\", \"metrics\": {\"overall_success_rate\": 0.845, \"trigger_rate\": 0.088, \"successes\": 169, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed43. Paired with s42 (SR=0.835) and s44 for 3-seed mean±std of Adaptive method on Goal.\", \"conclusion\": \"success\"}, \"eval-adaptive-object-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:06.313Z\", \"updated_at\": \"2026-05-26T08:53:16.512Z\", \"metrics\": {\"overall_success_rate\": 0.75, \"trigger_rate\": 0.036, \"successes\": 150, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed44. Paired with s42 (SR=0.81) and s43 for 3-seed mean±std of Adaptive method on Object.\", \"conclusion\": \"success\"}, \"eval-adaptive-object-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:02.246Z\", \"updated_at\": \"2026-05-26T08:53:07.449Z\", \"metrics\": {\"overall_success_rate\": 0.775, \"trigger_rate\": 0.037, \"successes\": 155, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed43. Paired with s42 (SR=0.81) and s44 for 3-seed mean±std of Adaptive method on Object.\", \"conclusion\": \"success\"}, \"eval-adaptive-spatial-k1-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:18:42.872Z\", \"updated_at\": \"2026-05-26T08:47:52.554Z\", \"hypothesis\": \"K=1 Adaptive Conformal on Spatial s42 at τ=0.20. Single-sample correction vs K=10 multi-sample centering — if K=1 SR is lower, it supports the claim that multi-sample centering improves correction quality by reducing noise in the correction vector.\", \"conclusion\": \"success\", \"notes\": \"K=1 Adaptive eval completed on bjb2-28827. Metrics need harvesting from log. K=1 single-sample correction baseline for K-sweep comparison.\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.198, \"successes\": 159, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed42_paired_r2.json\"}}, \"westd-pi05-vla-only-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:44:47.876Z\", \"updated_at\": \"2026-05-26T08:35:57.908Z\", \"hypothesis\": \"π0.5 VLA-only single-sample baseline (K=1) on LIBERO-Goal s42. D158: must run on westd for paired comparison with westd Adaptive Goal s42, controlling for hardware variation.\", \"metrics\": {\"overall_success_rate\": 0.975, \"successes\": 195, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.9, \"successes\": 18, \"total\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}}, \"delta_vs_4090_s42\": \"+2.0pp (97.5% vs 95.5%)\"}, \"conclusion\": \"success\"}, \"eval-supp-goal-vla-only-wrapper-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T11:34:09.581Z\", \"updated_at\": \"2026-05-26T07:27:17.856Z\", \"hypothesis\": \"Goal VLA-only wrapper fresh eval seed43. Confirms 83.5% baseline across seeds. r4 files (97.5-98%) confirmed as Pi0.5.\", \"metrics\": {\"success_rate\": 82.5, \"source\": \"JSON file eval_goal_vla_only_seed43.json on bjb1-32546, harvested 2026-05-26\"}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau090_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:49:10.797Z\", \"updated_at\": \"2026-05-26T07:00:51.716Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.90 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.89, \"mean_uncertainty\": 0.1148, \"trigger_rate\": 0.0035, \"crm_applied_steps\": 94, \"total_steps\": 26628, \"tau\": 0.9, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau070_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:49:02.809Z\", \"updated_at\": \"2026-05-26T07:00:47.412Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.70 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.87, \"mean_uncertainty\": 0.121, \"trigger_rate\": 0.0104, \"crm_applied_steps\": 283, \"total_steps\": 27265, \"tau\": 0.7, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau050_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:46:41.927Z\", \"updated_at\": \"2026-05-26T07:00:43.156Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.50 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.87, \"mean_uncertainty\": 0.1196, \"trigger_rate\": 0.0206, \"crm_applied_steps\": 565, \"total_steps\": 27431, \"tau\": 0.5, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"goal_vla_only_s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:08:05.449Z\", \"updated_at\": \"2026-05-26T06:52:16.465Z\", \"hypothesis\": \"SmolVLA VLA-only baseline on LIBERO-Goal s48. Provides baseline data point for paired comparison against adaptive conformal CRM at same seed.\", \"metrics\": {\"success_rate\": 0.795, \"n_rollouts\": 200}, \"conclusion\": \"success\"}, \"goal_adapt_s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:08:15.451Z\", \"updated_at\": \"2026-05-26T06:52:02.185Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s48. Tests if conformal-gated CRM correction improves SmolVLA goal performance at seed 48 vs VLA-only baseline.\", \"metrics\": {\"success_rate\": 0.85, \"n_rollouts\": 200, \"delta_vs_baseline_pp\": 5.5}, \"conclusion\": \"success\"}, \"westd-pi05-k2mean-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:26:00.379Z\", \"updated_at\": \"2026-05-26T06:45:41.247Z\", \"hypothesis\": \"π0.5 K=2 mean baseline (vla_only, no CRM) on LIBERO-Goal s42. Isolates sampling effect (K=2 averaging) from CRM correction for π0.5 mechanism analysis. Paired with adaptive_conformal_crm at same seed.\", \"metrics\": {\"success_rate\": 0.995}, \"conclusion\": \"success\"}, \"eval-goal-vla-only-s49-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:09:43.708Z\", \"updated_at\": \"2026-05-26T06:04:17.775Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Goal s49. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.835, \"n_rollouts\": 200, \"benchmark\": \"goal\", \"seed\": 49}, \"conclusion\": \"success\"}, \"eval-spatial-vla-only-s48-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:21.164Z\", \"updated_at\": \"2026-05-26T06:04:02.289Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Spatial s48. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.775, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 48}, \"conclusion\": \"success\"}, \"eval-spatial-vla-only-s46-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:02.079Z\", \"updated_at\": \"2026-05-26T06:03:54.343Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Spatial s46. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.8, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 46}, \"conclusion\": \"success\"}, \"eval-spatial-adapt-tau025-s48-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:29.000Z\", \"updated_at\": \"2026-05-26T06:03:45.555Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Spatial s48. Paired with vla_only s48 for SR uplift measurement.\", \"metrics\": {\"success_rate\": 0.81, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 48}, \"conclusion\": \"success\"}, \"pi05-crm-k2-long-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T23:33:23.785Z\", \"updated_at\": \"2026-05-26T03:41:20.154Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only on LIBERO-Long s44. Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"benchmark\": \"long\", \"model\": \"pi0.5\", \"mode\": \"crm_obs_only\", \"K\": 2, \"norm\": 0.05, \"seed\": 44, \"per_task\": {\"LIVING_ROOM_SCENE2_soup_sauce\": 1, \"LIVING_ROOM_SCENE2_cream_butter\": 0.95, \"KITCHEN_SCENE3_stove_moka\": 0.95, \"KITCHEN_SCENE4_bowl_drawer\": 0.85, \"LIVING_ROOM_SCENE5_mugs_plates\": 1, \"STUDY_SCENE1_book_caddy\": 0.6, \"LIVING_ROOM_SCENE6_mug_pudding\": 0.65, \"LIVING_ROOM_SCENE1_soup_cream\": 0.9, \"KITCHEN_SCENE8_moka_pots\": 0.2, \"KITCHEN_SCENE6_mug_microwave\": 0.9}}}, \"eval-k2-tau030-spatial-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:37:30.605Z\", \"updated_at\": \"2026-05-26T02:22:03.983Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.30 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"trigger_rate\": 0.168, \"benchmark\": \"spatial\", \"seed\": 42, \"tau\": 0.3, \"K\": 2, \"norm\": 0.2}}, \"eval-k2-tau020-spatial-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:37:23.017Z\", \"updated_at\": \"2026-05-26T02:21:56.906Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.20 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting. Key comparison point — τ=0.20 was peak SR under K=10 (81.0%).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.81, \"trigger_rate\": 0.267, \"benchmark\": \"spatial\", \"seed\": 42, \"tau\": 0.2, \"K\": 2, \"norm\": 0.2}, \"notes\": \"Cron 报告 EXIT_CODE=124，但日志分析显示 τ=0.20 eval 已完成 (SR=80.5%, 161/200)。超时发生在同 tmux session 继续跑 τ=0.25 时。数据完整，纠正为 success。\"}, \"precompute-pi05-long-2048-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T06:18:31.140Z\", \"updated_at\": \"2026-05-25T22:40:55.662Z\", \"hypothesis\": \"Precomputing π0.5 obs_features and K=2048 action samples on LIBERO-Long enables downstream CRM training for cross-model (SmolVLA→π0.5) generalization verification without re-running inference at train time.\", \"conclusion\": \"success\"}, \"eval-vla-only-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T18:04:32.173Z\", \"updated_at\": \"2026-05-25T18:07:31.799Z\", \"hypothesis\": \"SmolVLA VLA-only baseline 在 LIBERO-Long suite 上的 SR（seed=44，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.545}}, \"eval-adaptive-long-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T13:29:54.027Z\", \"updated_at\": \"2026-05-25T18:07:24.041Z\", \"hypothesis\": \"SmolVLA Adaptive CRM (K=2, norm=0.2, τ=0.25) 在 LIBERO-Long suite 上的 gated correction 效果（seed=43，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.58}}, \"eval-crm-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T13:29:36.645Z\", \"updated_at\": \"2026-05-25T18:07:16.146Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10) Long s44 — D149 缺失格，完成 CRM Long 3-seed 数据\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.555}}, \"eval-crm-long-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T18:04:09.941Z\", \"updated_at\": \"2026-05-25T18:07:06.638Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10, norm=0.05) 在 LIBERO-Long suite 上的 action correction 效果（seed=43，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.545}}, \"eval-smolvla-crm-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:30:10.261Z\", \"updated_at\": \"2026-05-25T17:51:36.375Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10) Goal s42。Table 1 CRM 列补充数据，seed 方案 Goal 用 s42/s43/s44。\", \"metrics\": {\"success_rate\": 0.83}, \"conclusion\": \"success\"}, \"eval-crm-long-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T11:20:45.404Z\", \"updated_at\": \"2026-05-25T17:51:24.699Z\", \"hypothesis\": \"SmolVLA CRM (K=10, norm=0.05) 在 Long benchmark 上的 action correction 效果（Table 1 D149 seed，CRM 用 3suite checkpoint 跨 suite 泛化）\", \"metrics\": {\"success_rate\": 0.565}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-object-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T18:17:27.320Z\", \"updated_at\": \"2026-05-25T17:51:17.181Z\", \"hypothesis\": \"π0.5 VLA-only baseline Object s43。跨模型验证 baseline。\", \"metrics\": {\"success_rate\": 0.985}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-goal-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:10:26.481Z\", \"updated_at\": \"2026-05-25T17:51:09.042Z\", \"hypothesis\": \"π0.5 VLA-only baseline Goal s44。跨模型验证 baseline。\", \"metrics\": {\"success_rate\": 0.975}, \"conclusion\": \"success\"}, \"eval-smolvla-crm-goal-seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:10:37.288Z\", \"updated_at\": \"2026-05-25T17:50:35.892Z\", \"hypothesis\": \"CRM obs_only (K=10, norm=0.05) on Goal s44. Completes Goal CRM seed coverage for Table 1.\", \"parent\": \"train-crm-smolvla-3suite-v1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.825, \"successes\": 165, \"total\": 200}}, \"eval-vla-only-spatial-bjb1-s49\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T01:32:07.247Z\", \"updated_at\": \"2026-05-25T17:50:28.137Z\", \"hypothesis\": \"VLA-only baseline on Spatial s49 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200}}, \"eval-vla-only-spatial-bjb1-s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T01:32:03.658Z\", \"updated_at\": \"2026-05-25T17:50:15.719Z\", \"hypothesis\": \"VLA-only baseline on Spatial s48 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.775, \"successes\": 155, \"total\": 200}}, \"eval-adaptive-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:31.160Z\", \"updated_at\": \"2026-05-25T17:50:07.726Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s44 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.54, \"trigger_rate\": 0.045, \"mean_uncertainty\": 0.126}}, \"eval-adaptive-long-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:27.324Z\", \"updated_at\": \"2026-05-25T17:49:59.707Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.58, \"trigger_rate\": 0.043, \"mean_uncertainty\": 0.125}}, \"eval-k2-spatial-vla-only-s44-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:39.553Z\", \"updated_at\": \"2026-05-25T17:49:20.052Z\", \"hypothesis\": \"VLA-only baseline on Spatial s44, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200}}, \"eval-k2-spatial-vla-only-s43-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:27.742Z\", \"updated_at\": \"2026-05-25T17:49:12.564Z\", \"hypothesis\": \"VLA-only baseline on Spatial s43, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200}}, \"eval-k2-spatial-vla-only-s42-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:14.262Z\", \"updated_at\": \"2026-05-25T17:49:04.857Z\", \"hypothesis\": \"VLA-only baseline on Spatial s42, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.785, \"successes\": 157, \"total\": 200}}, \"eval-k2-spatial-adapt-s44-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:33.724Z\", \"updated_at\": \"2026-05-25T17:48:57.202Z\", \"hypothesis\": \"K=2 Adaptive CRM (τ=0.25) on Spatial s44, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.805, \"successes\": 161, \"total\": 200, \"trigger_rate\": 0.195, \"paired_vla_only_sr\": 0.8}}, \"eval-k2-spatial-adapt-s43-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:21.430Z\", \"updated_at\": \"2026-05-25T17:48:49.637Z\", \"hypothesis\": \"K=2 Adaptive CRM (τ=0.25) on Spatial s43, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200, \"trigger_rate\": 0.203, \"paired_vla_only_sr\": 0.795}}, \"eval-k2-spatial-adapt-s42-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:08.065Z\", \"updated_at\": \"2026-05-25T17:48:40.986Z\", \"hypothesis\": \"K=2 Adaptive CRM (τ=0.25) on Spatial s42, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200, \"trigger_rate\": 0.198, \"paired_vla_only_sr\": 0.785}}, \"eval-vla-only-spatial-s47-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:38.756Z\", \"updated_at\": \"2026-05-25T17:44:42.858Z\", \"hypothesis\": \"SmolVLA VLA-only baseline 在 spatial s47 的 n=20 完整评估（Table 1 D149 spatial s47 补 n=20）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.785}}, \"eval-adaptive-object-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:23.470Z\", \"updated_at\": \"2026-05-25T17:44:38.401Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 object 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.81, \"trigger_rate\": 0.035}}, \"eval-pi05-adaptive-goal-s42-dryrun\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T12:08:38.644Z\", \"updated_at\": \"2026-05-25T13:25:25.080Z\", \"hypothesis\": \"π0.5 Adaptive (τ=0.25, K=2) Goal dry-run — 验证 OOM fix 后 VRAM 稳定性和 trigger_rate 合理性\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.65, \"vram_peak_mib\": 13920, \"vram_stable\": true}}, \"eval-adaptive-spatial-s47-bjb1-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:42.635Z\", \"updated_at\": \"2026-05-25T13:25:17.894Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 spatial 上的选择性 gating 效果（Table 1 D149 seed s47 补跑，bjb1 副本）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.81, \"trigger_rate\": 0.191}}, \"eval-adaptive-spatial-s47-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:34.917Z\", \"updated_at\": \"2026-05-25T13:25:02.181Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 spatial 上的选择性 gating 效果（Table 1 D149 seed s47 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.192}}, \"eval-adaptive-goal-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:19.669Z\", \"updated_at\": \"2026-05-25T13:24:47.316Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 goal 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.835, \"trigger_rate\": 0.083}}, \"eval-pi05-vla-only-spatial-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T11:45:42.796Z\", \"updated_at\": \"2026-05-25T11:50:28.806Z\", \"hypothesis\": \"π0.5 在 LIBERO-Spatial suite 上的 baseline SR——纯 VLA 推理（无 CRM 修正），用于消融基线对比（seed=44, 已完成 SR=99.0%）\", \"metrics\": {\"overall_success_rate\": 0.99, \"successes\": 198, \"total\": 200, \"n_tasks\": 10}, \"conclusion\": \"success\", \"notes\": \"π0.5 LIBERO-Spatial (seed=44) baseline SR=99.0% (198/200). 10 tasks 中 9 个 100%, 1 个 (black_bowl_on_the_ramekin) 90%. 作为 CRM 修正模式的 baseline 对照之一.\"}, \"eval-k2-tau010-spatial-s42-r3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T00:52:49.412Z\", \"updated_at\": \"2026-05-25T09:28:04.013Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.10 Adaptive Conformal on Spatial s42. Retry #3 on bjb2-28827 with 14400s timeout. Prior attempts timed out due to insufficient timeout and GPU contention on bjb2-40593.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.78, \"successes\": 156, \"total\": 200, \"trigger_rate\": 0.744, \"mean_uncertainty\": 0.1854}}, \"eval-k2-tau0075-spatial-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T04:09:13.381Z\", \"updated_at\": \"2026-05-25T09:28:00.083Z\", \"hypothesis\": \"K=2 τ-sweep 补点: τ=0.075 Adaptive Conformal on Spatial s42。τ-sweep 图中该点是 SR 峰值(81.0%)，supplementary figure 需要。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.78, \"successes\": 156, \"total\": 200, \"trigger_rate\": 0.92, \"mean_uncertainty\": 0.1811}}, \"eval-k2-tau015-spatial-s42-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T00:52:41.760Z\", \"updated_at\": \"2026-05-25T09:25:00.633Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.15 Adaptive Conformal on Spatial s42. Retry on bjb2-28827 with 14400s timeout after first attempt timed out on bjb2-40593 (7200s, completed only 4/10 tasks).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"trigger_rate\": 0.412, \"mean_uncertainty\": 0.1855}}, \"eval-k2-goal-vla-only-s46-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:23.483Z\", \"updated_at\": \"2026-05-25T09:24:31.458Z\", \"hypothesis\": \"VLA-only baseline on Goal s46, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test.\", \"metrics\": {\"success_rate\": 0.82, \"successes\": 164, \"total\": 200}, \"conclusion\": \"success\"}, \"eval-k2-goal-vla-only-s45-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:15.041Z\", \"updated_at\": \"2026-05-25T09:24:24.387Z\", \"hypothesis\": \"VLA-only baseline on Goal s45, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test.\", \"metrics\": {\"success_rate\": 0.835, \"successes\": 167, \"total\": 200}, \"conclusion\": \"success\"}, \"eval-k2-goal-adapt-s47-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:28.049Z\", \"updated_at\": \"2026-05-25T09:24:17.113Z\", \"hypothesis\": \"K=2 Adaptive CRM (tau=0.25) on Goal s47, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test and trigger rate correlation.\", \"metrics\": {\"success_rate\": 0.825, \"successes\": 165, \"total\": 200, \"trigger_rate\": 0.098, \"mean_uncertainty\": 0.1499}, \"conclusion\": \"success\"}, \"eval-k2-goal-adapt-s46-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:19.812Z\", \"updated_at\": \"2026-05-25T09:24:10.113Z\", \"hypothesis\": \"K=2 Adaptive CRM (tau=0.25) on Goal s46, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test and trigger rate correlation.\", \"metrics\": {\"success_rate\": 0.84, \"successes\": 168, \"total\": 200, \"trigger_rate\": 0.088, \"mean_uncertainty\": 0.1482}, \"conclusion\": \"success\"}, \"eval-k2-goal-vla-only-s47-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:33.713Z\", \"updated_at\": \"2026-05-25T09:23:31.276Z\", \"hypothesis\": \"VLA-only baseline on Goal s47, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test.\", \"metrics\": {\"success_rate\": 0.835, \"successes\": 167, \"total\": 200}, \"conclusion\": \"success\"}, \"eval-k2-goal-adapt-s45-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:08:05.643Z\", \"updated_at\": \"2026-05-25T09:23:24.109Z\", \"hypothesis\": \"K=2 Adaptive CRM (tau=0.25) on Goal s45, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test and trigger rate correlation.\", \"metrics\": {\"success_rate\": 0.82, \"successes\": 164, \"total\": 200, \"trigger_rate\": 0.094, \"mean_uncertainty\": 0.1495}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-spatial-s43-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T07:34:11.243Z\", \"updated_at\": \"2026-05-25T08:42:53.773Z\", \"hypothesis\": \"π0.5 VLA-only baseline rerun on LIBERO-Spatial s43 (bjb1-18228 cuda:2). Redundant replication on a different server to fill idle GPU; prior run (-s43) reached 0.96 success rate on bjb1-32546.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.975, \"successes\": 195, \"total\": 200}}, \"eval-pi05-vla-only-spatial-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T04:30:12.187Z\", \"updated_at\": \"2026-05-25T08:33:04.033Z\", \"hypothesis\": \"π0.5 VLA-only baseline Spatial s42 on bjb1-18228. 跨模型验证的 baseline，与后续 π0.5 Adaptive 同服务器配对。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.98, \"successes\": 196, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"spatial\", \"seed\": 42, \"model\": \"pi05\"}}, \"eval-pi05-vla-only-goal-s42-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T04:30:16.021Z\", \"updated_at\": \"2026-05-25T08:32:56.678Z\", \"hypothesis\": \"π0.5 VLA-only baseline Goal s42 on bjb1-18228. 跨模型验证的 baseline。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.98, \"successes\": 196, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"goal\", \"seed\": 42, \"model\": \"pi05\"}}, \"eval-pi05-vla-only-goal-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T18:17:20.358Z\", \"updated_at\": \"2026-05-25T08:05:42.148Z\", \"hypothesis\": \"π0.5 VLA-only baseline Goal s43 on bjb1-18228. Multi-seed π0.5 validation.\", \"metrics\": {\"overall_success_rate\": 0.97, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"model\": \"pi0.5\"}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-spatial-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T18:17:13.434Z\", \"updated_at\": \"2026-05-25T07:32:37.026Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Spatial s43 (bjb1-18228, cuda:2). Multi-seed replication for π0.5 VLA-only baseline; seed43 complements seed42/44 to bracket variance of frozen-VLA success rate for Spatial benchmark.\", \"metrics\": {\"overall_success_rate\": 0.96, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"benchmark\": \"spatial\", \"mode\": \"vla_only\", \"model\": \"pi0.5\"}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-object-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T18:17:23.924Z\", \"updated_at\": \"2026-05-25T07:32:33.237Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object s42 (bjb1-18228, cuda:1). Cross-model baseline replication: VLA-only success rate should match prior smolvla VLA-only baseline within seed variance, confirming π0.5 wrapper integration parity before evaluating CRM-augmented modes.\", \"metrics\": {\"overall_success_rate\": 0.965, \"n_rollouts\": 20, \"n_tasks\": 10, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"model\": \"pi0.5\"}, \"conclusion\": \"success\"}, \"eval-k2-spatial-vla-only-s47-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:59:11.109Z\", \"updated_at\": \"2026-05-25T05:59:47.447Z\", \"hypothesis\": \"VLA-only baseline on Spatial s47, same-server paired with Adaptive s47 on bjb2-28827 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.765, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"spatial\", \"seed\": 47}}, \"eval-k2-spatial-adapt-s47-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:59:07.111Z\", \"updated_at\": \"2026-05-25T05:59:40.158Z\", \"hypothesis\": \"K=2 Adaptive CRM (τ=0.25) on Spatial s47, same-server paired with VLA-only s47 on bjb2-28827 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"total\": 200, \"mode\": \"adaptive_conformal_crm\", \"benchmark\": \"spatial\", \"seed\": 47, \"K\": 2, \"tau\": 0.25, \"trigger_rate\": 0.208, \"mean_unc\": 0.188}}, \"eval-k2-spatial-vla-only-s45-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:59:03.315Z\", \"updated_at\": \"2026-05-25T05:59:32.762Z\", \"hypothesis\": \"VLA-only baseline on Spatial s45, same-server paired with Adaptive s45 on bjb2-28827 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.805, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"spatial\", \"seed\": 45}}, \"eval-k2-spatial-adapt-s45-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:58:59.555Z\", \"updated_at\": \"2026-05-25T05:59:25.317Z\", \"hypothesis\": \"K=2 Adaptive CRM (τ=0.25) on Spatial s45, same-server paired with VLA-only s45 on bjb2-28827 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"total\": 200, \"mode\": \"adaptive_conformal_crm\", \"benchmark\": \"spatial\", \"seed\": 45, \"K\": 2, \"tau\": 0.25, \"trigger_rate\": 0.201, \"mean_unc\": 0.186}}, \"eval-k2-spatial-vla-only-s49-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:34:12.915Z\", \"updated_at\": \"2026-05-25T05:35:31.859Z\", \"hypothesis\": \"VLA-only baseline on Spatial s49, same-server paired with Adaptive s49 on bjb1-32546 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"spatial\", \"seed\": 49}}, \"eval-k2-spatial-vla-only-s48-paired\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-25T05:34:08.427Z\", \"updated_at\": \"2026-05-25T05:35:28.262Z\", \"hypothesis\": \"VLA-only baseline on Spatial s48, same-server paired with Adaptive s48 on bjb1-32546 for paired t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.775, \"successes\": 155, \"total\": 200, \"mode\": \"vla_only\", \"benchmark\": \"spatial\", \"seed\": 48}}}, \"count\": 100, \"total\": 618, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.4515}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "2f049b18-458a-4976-9bee-87128a4c4a98",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016BrCBk8MyUSRsiM4m2pcn1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27472,
+      "cache_read_input_tokens": 39132,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 27472
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+Eval completed: SR=88.0% (176/200). Writing results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "8745dd5a-a4fc-412f-80db-05166280ff17",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016BrCBk8MyUSRsiM4m2pcn1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27472,
+      "cache_read_input_tokens": 39132,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 27472
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EJzE26p4swbQcKJQkJVJ2N`</summary>
+
+```json
+{
+  "exp_id": "pi05-crm-k2-object-s44-bjb1-r2",
+  "field": "metrics",
+  "value": {
+    "success_rate": 88,
+    "successes": 176,
+    "total_rollouts": 200,
+    "benchmark": "object",
+    "mode": "crm_obs_only",
+    "model": "pi05",
+    "K": 2,
+    "max_correction_norm": 0.05,
+    "seed": 44,
+    "n_rollouts": 20,
+    "n_tasks": 10,
+    "per_task": {
+      "pick_up_the_alphabet_soup_and_place_it_in_the_basket": 1,
+      "pick_up_the_cream_cheese_and_place_it_in_the_basket": 0.75,
+      "pick_up_the_salad_dressing_and_place_it_in_the_basket": 0.95,
+      "pick_up_the_bbq_sauce_and_place_it_in_the_basket": 0.95,
+      "pick_up_the_ketchup_and_place_it_in_the_basket": 0.6,
+      "pick_up_the_tomato_sauce_and_place_it_in_the_basket": 0.9,
+      "pick_up_the_butter_and_place_it_in_the_basket": 0.9,
+      "pick_up_the_milk_and_place_it_in_the_basket": 1,
+      "pick_up_the_chocolate_pudding_and_place_it_in_the_basket": 1,
+      "pick_up_the_orange_juice_and_place_it_in_the_basket": 0.75
+    },
+    "delta_vs_vla_only_pp": -11.5,
+    "vla_only_baseline_sr": 0.995,
+    "source": "logs/eval_object_crm_k2_pi05_seed44.json"
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "8ec2e7ac-bb3b-4257-afae-4a53046a276a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016BrCBk8MyUSRsiM4m2pcn1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27472,
+      "cache_read_input_tokens": 39132,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 27472
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-26T14:17:38.544Z_
+
+<details><summary>↩ Tool result · `toolu_01EJzE26p4swbQcKJQkJVJ2N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"pi05-crm-k2-object-s44-bjb1-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:44:46.771Z\", \"updated_at\": \"2026-05-26T14:17:34.190Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-object-s44-bjb1\", \"spec\": {\"command\": \"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"692570\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"submitted_at\": \"2026-05-26T09:46:37.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 20, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned\", \"eval_data\": \"libero_object\"}, \"reproduce\": {\"finished_at\": \"2026-05-26T14:10:56.229Z\"}, \"metrics\": {\"success_rate\": 88, \"successes\": 176, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"crm_obs_only\", \"model\": \"pi05\", \"K\": 2, \"max_correction_norm\": 0.05, \"seed\": 44, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.75, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.95, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.6, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.9, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.9, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.75}, \"delta_vs_vla_only_pp\": -11.5, \"vla_only_baseline_sr\": 0.995, \"source\": \"logs/eval_object_crm_k2_pi05_seed44.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 19.7609}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "6f820b0e-bcc0-4e74-85d1-88cf17b16620",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-crm-k2-object-s44-bjb1-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:44:46.771Z\\\", \\\"updated_at\\\": \\\"2026-05-26T14:17:34.190Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\\\", \\\"parent\\\": \\\"pi05-crm-k2-object-s44-bjb1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"692570\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T09:46:37.619Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T14:10:56.229Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 88, \\\"successes\\\": 176, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"crm_obs_only\\\", \\\"model\\\": \\\"pi05\\\", \\\"K\\\": 2, \\\"max_correction_norm\\\": 0.05, \\\"seed\\\": 44, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0.75, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0.6, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0.9, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0.9, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0.75}, \\\"delta_vs_vla_only_pp\\\": -11.5, \\\"vla_only_baseline_sr\\\": 0.995, \\\"source\\\": \\\"logs/eval_object_crm_k2_pi05_seed44.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 19.7609}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-crm-k2-object-s44-bjb1-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:44:46.771Z\", \"updated_at\": \"2026-05-26T14:17:34.190Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-object-s44-bjb1\", \"spec\": {\"command\": \"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"692570\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"submitted_at\": \"2026-05-26T09:46:37.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 20, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned\", \"eval_data\": \"libero_object\"}, \"reproduce\": {\"finished_at\": \"2026-05-26T14:10:56.229Z\"}, \"metrics\": {\"success_rate\": 88, \"successes\": 176, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"crm_obs_only\", \"model\": \"pi05\", \"K\": 2, \"max_correction_norm\": 0.05, \"seed\": 44, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.75, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.95, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.6, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.9, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.9, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.75}, \"delta_vs_vla_only_pp\": -11.5, \"vla_only_baseline_sr\": 0.995, \"source\": \"logs/eval_object_crm_k2_pi05_seed44.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 19.7609}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01LJ43SuQ2eWXZnCsdxDM5Zj`</summary>
+
+```json
+{
+  "exp_id": "pi05-crm-k2-object-s44-bjb1-r2",
+  "field": "checkpoint_path",
+  "value": "N/A",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "f1705e0b-034c-4491-aa50-983d9b020d85",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01QjjsK8JNcCWGUkBmGjRvL1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2600,
+      "cache_read_input_tokens": 66604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2600
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HTFwyUV2dSvRH52ojKKf8D`</summary>
+
+```json
+{
+  "exp_id": "pi05-crm-k2-object-s44-bjb1-r2",
+  "field": "log_path",
+  "value": "~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "d19fb099-4ddd-4fde-9cdf-80e650b4df9c",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01QjjsK8JNcCWGUkBmGjRvL1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2600,
+      "cache_read_input_tokens": 66604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2600
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-26T14:18:30.782Z_
+
+<details><summary>↩ Tool result · `toolu_01LJ43SuQ2eWXZnCsdxDM5Zj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"pi05-crm-k2-object-s44-bjb1-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:44:46.771Z\", \"updated_at\": \"2026-05-26T14:18:25.586Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-object-s44-bjb1\", \"spec\": {\"command\": \"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"692570\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"submitted_at\": \"2026-05-26T09:46:37.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 20, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned\", \"eval_data\": \"libero_object\"}, \"reproduce\": {\"finished_at\": \"2026-05-26T14:10:56.229Z\"}, \"metrics\": {\"success_rate\": 88, \"successes\": 176, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"crm_obs_only\", \"model\": \"pi05\", \"K\": 2, \"max_correction_norm\": 0.05, \"seed\": 44, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.75, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.95, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.6, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.9, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.9, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.75}, \"delta_vs_vla_only_pp\": -11.5, \"vla_only_baseline_sr\": 0.995, \"source\": \"logs/eval_object_crm_k2_pi05_seed44.json\"}, \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 49.0567}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "bc0790d3-ee1b-44a0-a4de-2de875c439f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-crm-k2-object-s44-bjb1-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:44:46.771Z\\\", \\\"updated_at\\\": \\\"2026-05-26T14:18:25.586Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\\\", \\\"parent\\\": \\\"pi05-crm-k2-object-s44-bjb1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"692570\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T09:46:37.619Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T14:10:56.229Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 88, \\\"successes\\\": 176, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"crm_obs_only\\\", \\\"model\\\": \\\"pi05\\\", \\\"K\\\": 2, \\\"max_correction_norm\\\": 0.05, \\\"seed\\\": 44, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0.75, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0.6, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0.9, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0.9, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0.75}, \\\"delta_vs_vla_only_pp\\\": -11.5, \\\"vla_only_baseline_sr\\\": 0.995, \\\"source\\\": \\\"logs/eval_object_crm_k2_pi05_seed44.json\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 49.0567}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-crm-k2-object-s44-bjb1-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:44:46.771Z\", \"updated_at\": \"2026-05-26T14:18:25.586Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-object-s44-bjb1\", \"spec\": {\"command\": \"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"692570\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"submitted_at\": \"2026-05-26T09:46:37.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 20, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned\", \"eval_data\": \"libero_object\"}, \"reproduce\": {\"finished_at\": \"2026-05-26T14:10:56.229Z\"}, \"metrics\": {\"success_rate\": 88, \"successes\": 176, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"crm_obs_only\", \"model\": \"pi05\", \"K\": 2, \"max_correction_norm\": 0.05, \"seed\": 44, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.75, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.95, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.6, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.9, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.9, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.75}, \"delta_vs_vla_only_pp\": -11.5, \"vla_only_baseline_sr\": 0.995, \"source\": \"logs/eval_object_crm_k2_pi05_seed44.json\"}, \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 49.0567}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-26T14:19:05.594Z_
+
+<details><summary>↩ Tool result · `toolu_01HTFwyUV2dSvRH52ojKKf8D`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"pi05-crm-k2-object-s44-bjb1-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:44:46.771Z\", \"updated_at\": \"2026-05-26T14:19:00.524Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-object-s44-bjb1\", \"spec\": {\"command\": \"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"692570\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"submitted_at\": \"2026-05-26T09:46:37.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 20, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned\", \"eval_data\": \"libero_object\"}, \"reproduce\": {\"finished_at\": \"2026-05-26T14:10:56.229Z\"}, \"metrics\": {\"success_rate\": 88, \"successes\": 176, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"crm_obs_only\", \"model\": \"pi05\", \"K\": 2, \"max_correction_norm\": 0.05, \"seed\": 44, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.75, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.95, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.6, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.9, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.9, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.75}, \"delta_vs_vla_only_pp\": -11.5, \"vla_only_baseline_sr\": 0.995, \"source\": \"logs/eval_object_crm_k2_pi05_seed44.json\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 34.7453}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "8d52f1cc-c3a0-4881-936d-e69c92f031f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-crm-k2-object-s44-bjb1-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:44:46.771Z\\\", \\\"updated_at\\\": \\\"2026-05-26T14:19:00.524Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\\\", \\\"parent\\\": \\\"pi05-crm-k2-object-s44-bjb1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"692570\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T09:46:37.619Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T14:10:56.229Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 88, \\\"successes\\\": 176, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"crm_obs_only\\\", \\\"model\\\": \\\"pi05\\\", \\\"K\\\": 2, \\\"max_correction_norm\\\": 0.05, \\\"seed\\\": 44, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0.75, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0.6, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0.9, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0.9, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0.75}, \\\"delta_vs_vla_only_pp\\\": -11.5, \\\"vla_only_baseline_sr\\\": 0.995, \\\"source\\\": \\\"logs/eval_object_crm_k2_pi05_seed44.json\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 34.7453}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-crm-k2-object-s44-bjb1-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:44:46.771Z\", \"updated_at\": \"2026-05-26T14:19:00.524Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-object-s44-bjb1\", \"spec\": {\"command\": \"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"692570\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"submitted_at\": \"2026-05-26T09:46:37.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 20, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned\", \"eval_data\": \"libero_object\"}, \"reproduce\": {\"finished_at\": \"2026-05-26T14:10:56.229Z\"}, \"metrics\": {\"success_rate\": 88, \"successes\": 176, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"crm_obs_only\", \"model\": \"pi05\", \"K\": 2, \"max_correction_norm\": 0.05, \"seed\": 44, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.75, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.95, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.6, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.9, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.9, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.75}, \"delta_vs_vla_only_pp\": -11.5, \"vla_only_baseline_sr\": 0.995, \"source\": \"logs/eval_object_crm_k2_pi05_seed44.json\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 34.7453}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MkCAUSYhizTVLNadhK9Kgg`</summary>
+
+```json
+{
+  "exp_id": "pi05-crm-k2-object-s44-bjb1-r2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "23dc6b6d-010d-4f85-a40b-462c65384a14",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01XCjv4SLgRdvox57NcCWdMS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3247,
+      "cache_read_input_tokens": 69204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3247
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-26T14:19:32.518Z_
+
+<details><summary>↩ Tool result · `toolu_01MkCAUSYhizTVLNadhK9Kgg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"pi05-crm-k2-object-s44-bjb1-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:44:46.771Z\", \"updated_at\": \"2026-05-26T14:19:27.309Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-object-s44-bjb1\", \"spec\": {\"command\": \"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"692570\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"submitted_at\": \"2026-05-26T09:46:37.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 20, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned\", \"eval_data\": \"libero_object\"}, \"reproduce\": {\"finished_at\": \"2026-05-26T14:10:56.229Z\"}, \"metrics\": {\"success_rate\": 88, \"successes\": 176, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"crm_obs_only\", \"model\": \"pi05\", \"K\": 2, \"max_correction_norm\": 0.05, \"seed\": 44, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.75, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.95, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.6, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.9, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.9, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.75}, \"delta_vs_vla_only_pp\": -11.5, \"vla_only_baseline_sr\": 0.995, \"source\": \"logs/eval_object_crm_k2_pi05_seed44.json\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 23.2585}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "a3fcc658-510f-4534-b26a-493639f52670",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-crm-k2-object-s44-bjb1-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:44:46.771Z\\\", \\\"updated_at\\\": \\\"2026-05-26T14:19:27.309Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\\\", \\\"parent\\\": \\\"pi05-crm-k2-object-s44-bjb1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"692570\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T09:46:37.619Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T14:10:56.229Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 88, \\\"successes\\\": 176, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"crm_obs_only\\\", \\\"model\\\": \\\"pi05\\\", \\\"K\\\": 2, \\\"max_correction_norm\\\": 0.05, \\\"seed\\\": 44, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0.75, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0.6, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0.9, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0.9, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0.75}, \\\"delta_vs_vla_only_pp\\\": -11.5, \\\"vla_only_baseline_sr\\\": 0.995, \\\"source\\\": \\\"logs/eval_object_crm_k2_pi05_seed44.json\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 23.2585}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-crm-k2-object-s44-bjb1-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:44:46.771Z\", \"updated_at\": \"2026-05-26T14:19:27.309Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-object-s44-bjb1\", \"spec\": {\"command\": \"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"692570\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"submitted_at\": \"2026-05-26T09:46:37.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 20, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned\", \"eval_data\": \"libero_object\"}, \"reproduce\": {\"finished_at\": \"2026-05-26T14:10:56.229Z\"}, \"metrics\": {\"success_rate\": 88, \"successes\": 176, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"crm_obs_only\", \"model\": \"pi05\", \"K\": 2, \"max_correction_norm\": 0.05, \"seed\": 44, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.75, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.95, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.6, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.9, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.9, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.75}, \"delta_vs_vla_only_pp\": -11.5, \"vla_only_baseline_sr\": 0.995, \"source\": \"logs/eval_object_crm_k2_pi05_seed44.json\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 23.2585}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UQT9D561pd6RB44baao4Tb`</summary>
+
+```json
+{
+  "exp_id": "pi05-crm-k2-object-s44-bjb1-r2",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "44fae437-bbfa-4539-bf72-ed1b81eee1c1",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_013DHGQ2vvosaKTzmFHgDTaQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1540,
+      "cache_read_input_tokens": 72451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1540
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T14:20:13.318Z_
+
+<details><summary>↩ Tool result · `toolu_01UQT9D561pd6RB44baao4Tb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"pi05-crm-k2-object-s44-bjb1-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:44:46.771Z\", \"updated_at\": \"2026-05-26T14:19:54.390Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-object-s44-bjb1\", \"spec\": {\"command\": \"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"692570\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"submitted_at\": \"2026-05-26T09:46:37.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 20, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned\", \"eval_data\": \"libero_object\", \"wall_clock_seconds\": 16396.8, \"gpu_hours\": 4.55}, \"reproduce\": {\"finished_at\": \"2026-05-26T14:10:56.229Z\"}, \"metrics\": {\"success_rate\": 88, \"successes\": 176, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"crm_obs_only\", \"model\": \"pi05\", \"K\": 2, \"max_correction_norm\": 0.05, \"seed\": 44, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.75, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.95, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.6, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.9, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.9, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.75}, \"delta_vs_vla_only_pp\": -11.5, \"vla_only_baseline_sr\": 0.995, \"source\": \"logs/eval_object_crm_k2_pi05_seed44.json\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-26T14:19:54.390Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 37.5824}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "adcac6f5-9a9d-4816-83eb-adcfb207ccc0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-crm-k2-object-s44-bjb1-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:44:46.771Z\\\", \\\"updated_at\\\": \\\"2026-05-26T14:19:54.390Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\\\", \\\"parent\\\": \\\"pi05-crm-k2-object-s44-bjb1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"692570\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T09:46:37.619Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_object\\\", \\\"wall_clock_seconds\\\": 16396.8, \\\"gpu_hours\\\": 4.55}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T14:10:56.229Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 88, \\\"successes\\\": 176, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"crm_obs_only\\\", \\\"model\\\": \\\"pi05\\\", \\\"K\\\": 2, \\\"max_correction_norm\\\": 0.05, \\\"seed\\\": 44, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0.75, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0.6, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0.9, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0.9, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0.75}, \\\"delta_vs_vla_only_pp\\\": -11.5, \\\"vla_only_baseline_sr\\\": 0.995, \\\"source\\\": \\\"logs/eval_object_crm_k2_pi05_seed44.json\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-26T14:19:54.390Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 37.5824}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-crm-k2-object-s44-bjb1-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:44:46.771Z\", \"updated_at\": \"2026-05-26T14:19:54.390Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.\", \"parent\": \"pi05-crm-k2-object-s44-bjb1\", \"spec\": {\"command\": \"python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 44\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"692570\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"submitted_at\": \"2026-05-26T09:46:37.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 20, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned\", \"eval_data\": \"libero_object\", \"wall_clock_seconds\": 16396.8, \"gpu_hours\": 4.55}, \"reproduce\": {\"finished_at\": \"2026-05-26T14:10:56.229Z\"}, \"metrics\": {\"success_rate\": 88, \"successes\": 176, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"crm_obs_only\", \"model\": \"pi05\", \"K\": 2, \"max_correction_norm\": 0.05, \"seed\": 44, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.75, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.95, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.6, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.9, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.9, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.75}, \"delta_vs_vla_only_pp\": -11.5, \"vla_only_baseline_sr\": 0.995, \"source\": \"logs/eval_object_crm_k2_pi05_seed44.json\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s44-bjb1-r2.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-26T14:19:54.390Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 37.5824}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+DONE. 
+
+**pi05-crm-k2-object-s44-bjb1-r2**: SR=88.0% (176/200), EXIT_CODE=0, no OOM/CUDA errors, all 10 tasks > 0%.
+
+- CRM K=2 always-on (ε=0.05) Object s44: **88.0%**
+- π0.5 VLA-only Object baseline: ~99.5% (westd s42/s43/s44 mean)
+- **Δ = -11.5pp**: CRM degrades strong π0.5 baseline on Object, consistent with sister Goal results (CRM 82.5–85% vs VLA-only ~97.5%) and Spatial (CRM 96.5–97% vs VLA-only ~98%). Marked `conclusion=success` (matching the convention used by all pi05-crm-k2-* siblings — experiment yields valid Table 2 data point even though CRM-always-on harms the near-expert VLA).
+- Per-task: 4× 100%, 2× 95%, 2× 90%, 2× 75%, 1× 60% (ketchup is weakest).
+- Note: `mean_correction_norm` not emitted in JSON for this mode.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "uuid": "b91fb839-1337-4a9d-b683-0bb01ef95607",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Br1xdd61BbUcWDSVSVHgoc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1636,
+      "cache_read_input_tokens": 73991,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1636
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+DONE. 
+
+**pi05-crm-k2-object-s44-bjb1-r2**: SR=88.0% (176/200), EXIT_CODE=0, no OOM/CUDA errors, all 10 tasks > 0%.
+
+- CRM K=2 always-on (ε=0.05) Object s44: **88.0%**
+- π0.5 VLA-only Object baseline: ~99.5% (westd s42/s43/s44 mean)
+- **Δ = -11.5pp**: CRM degrades strong π0.5 baseline on Object, consistent with sister Goal results (CRM 82.5–85% vs VLA-only ~97.5%) and Spatial (CRM 96.5–97% vs VLA-only ~98%). Marked `conclusion=success` (matching the convention used by all pi05-crm-k2-* siblings — experiment yields valid Table 2 data point even though CRM-always-on harms the near-expert VLA).
+- Per-task: 4× 100%, 2× 95%, 2× 90%, 2× 75%, 1× 60% (ketchup is weakest).
+- Note: `mean_correction_norm` not emitted in JSON for this mode.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 230700,
+  "duration_api_ms": 56926,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "7f1a653d-749c-42f4-b8ed-73abdf50d11c",
+  "total_cost_usd": 0.7668364999999999,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 74322,
+    "cache_read_input_tokens": 424434,
+    "output_tokens": 3530,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 74322,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 398,
+        "cache_read_input_tokens": 73991,
+        "cache_creation_input_tokens": 1636,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1636
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1582,
+      "outputTokens": 36,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017620000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-7[1m]": {
+      "inputTokens": 19,
+      "outputTokens": 3530,
+      "cacheReadInputTokens": 424434,
+      "cacheCreationInputTokens": 74322,
+      "webSearchRequests": 0,
+      "costUSD": 0.7650745,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e2a4db07-654b-4433-957d-40e923fe256e"
+}
+```
+
+</details>
+
+---

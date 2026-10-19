@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-object-norm005-seed43-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:32:27.742Z",
+    "updated_at": "2026-05-17T13:32:46.227Z",
+    "hypothesis": "obs_only CRM (ε=0.05) seed43 on LIBERO-Object. M006 补救：补充 magnitude curve 低 norm 段多 seed 数据。seed42 ε=0.05=13%。"
+  },
+  "timestamp": "2026-05-17T13:32:46.548890+00:00",
+  "trigger": "update_registry"
+}

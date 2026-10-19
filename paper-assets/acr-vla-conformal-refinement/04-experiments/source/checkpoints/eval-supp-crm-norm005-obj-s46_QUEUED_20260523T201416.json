@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-crm-norm005-obj-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T20:12:20.093Z",
+    "updated_at": "2026-05-23T20:14:15.496Z",
+    "hypothesis": "CRM always-on norm=0.05 on Object suite seed46. Fills the last Object s46 method gap."
+  },
+  "timestamp": "2026-05-23T20:14:16.909486+00:00",
+  "trigger": "update_registry"
+}

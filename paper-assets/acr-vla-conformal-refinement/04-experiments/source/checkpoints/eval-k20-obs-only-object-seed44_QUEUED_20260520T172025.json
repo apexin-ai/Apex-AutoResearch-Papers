@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-k20-obs-only-object-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:19:11.419Z",
+    "updated_at": "2026-05-20T17:20:24.355Z",
+    "hypothesis": "K=20 CRM obs_only (ε=0.2) on LIBERO-Object seed44. K sweep for plan_601."
+  },
+  "timestamp": "2026-05-20T17:20:25.793058+00:00",
+  "trigger": "update_registry"
+}

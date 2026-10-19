@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-pi05-vla-spatial-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:15:40.295Z",
+    "updated_at": "2026-05-25T18:20:34.063Z",
+    "hypothesis": "π0.5 VLA-only 在 LIBERO spatial 上的 eval（跨模型验证，填补 seed44 数据缺口）",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode single --benchmark spatial --seed 44 --n_rollouts 20",
+      "server": "cqa1-32758",
+      "gpu": 0,
+      "seed": 44,
+      "model_name": "pi05",
+      "data_path": "LIBERO spatial",
+      "data_count": 200,
+      "checkpoint_path": "N/A (killed)",
+      "log_path": "N/A (completed as eval-pi05-vla-only-spatial-s44-d149)"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-25T18:20:34.063Z"
+  },
+  "timestamp": "2026-05-25T18:20:35.601151+00:00",
+  "trigger": "update_registry"
+}

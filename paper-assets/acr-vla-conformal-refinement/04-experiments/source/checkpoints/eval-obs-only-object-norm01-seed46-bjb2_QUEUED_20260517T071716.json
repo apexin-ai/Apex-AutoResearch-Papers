@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-object-norm01-seed46-bjb2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:17:00.494Z",
+    "updated_at": "2026-05-17T07:17:15.500Z",
+    "hypothesis": "Duplicate of obs_only norm=0.1 seed46 on bjb2 (deployed by batch5 Worker). Extra data point for magnitude curve."
+  },
+  "timestamp": "2026-05-17T07:17:16.041003+00:00",
+  "trigger": "update_registry"
+}

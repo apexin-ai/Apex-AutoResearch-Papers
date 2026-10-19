@@ -1,0 +1,25 @@
+{
+  "exp_id": "eval-supp-adapt-tau025-goal-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:05:16.443Z",
+    "updated_at": "2026-05-23T09:05:35.683Z",
+    "hypothesis": "Adaptive conformal CRM with tau=0.25 on goal benchmark at seed 44 should show consistent improvement over VLA-only baseline, validating robustness across seeds",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.25 --benchmark goal --seed 44 --n_rollouts 20 --max_correction_norm 0.2 --K 2",
+      "server": "bjb1-32546",
+      "seed": 44,
+      "model_name": "smolvla+crm_adaptive_tau025",
+      "data_path": "goal_benchmark",
+      "data_count": 20,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "goal"
+    }
+  },
+  "timestamp": "2026-05-23T09:05:37.905327+00:00",
+  "trigger": "update_registry"
+}

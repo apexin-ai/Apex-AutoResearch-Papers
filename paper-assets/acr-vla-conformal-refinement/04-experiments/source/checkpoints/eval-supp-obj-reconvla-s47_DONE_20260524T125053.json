@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval-supp-obj-reconvla-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:52:06.114Z",
+    "updated_at": "2026-05-24T12:50:50.654Z",
+    "hypothesis": "Object s47 Reconvla baseline, only missing Object s47 method. Completes Object suite seed extension coverage.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --benchmark object --mode reconvla --seed 47 --n_rollouts 20 --K 2",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO-Object",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 47,
+      "checkpoint_source": "n/a-reconvla",
+      "eval_data": "LIBERO-Object 10 tasks x 20 rollouts",
+      "tmux_session": "obj-reconvla-s47",
+      "log_path": "/tmp/eval_obj_reconvla_s47.log",
+      "gpu": 4,
+      "pid": 200690
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T12:36:01.438Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-24T12:36:19.184Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-24T12:36:43.402922+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-24T12:50:53.461244+00:00",
+  "trigger": "update_registry"
+}

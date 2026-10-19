@@ -1,0 +1,38 @@
+{
+  "exp_id": "westd-pi05-adaptive-goal-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T04:19:38.990Z",
+    "updated_at": "2026-05-26T10:51:37.558Z",
+    "hypothesis": "π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s42. Tests whether adaptive conformal refinement improves π0.5 on goal-conditioned tasks.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_adaptive_pi05_seed42.json",
+      "server": "westd-49937",
+      "data_path": "LIBERO-Goal",
+      "data_count": 200,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "crm_pi05_unified_3suite/crm_best.pt",
+      "eval_data": "LIBERO-Goal 10 tasks x 20 rollouts"
+    },
+    "metrics": {
+      "success_rate": 0.88,
+      "benchmark": "goal",
+      "mode": "adaptive_conformal_crm",
+      "seed": 42,
+      "model": "pi05",
+      "n_rollouts": 20,
+      "n_tasks": 10
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (eval only)",
+    "log_path": "westd-49937:/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_pi05_seed42.json",
+    "completed_at": "2026-05-26T10:51:37.558Z"
+  },
+  "timestamp": "2026-05-26T10:51:42.638826+00:00",
+  "trigger": "update_registry"
+}

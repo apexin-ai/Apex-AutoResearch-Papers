@@ -1,0 +1,66 @@
+{
+  "exp_id": "smolvla-tau015-spatial-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:54:46.984Z",
+    "updated_at": "2026-05-27T02:43:52.976Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.15 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark spatial --seed 43 --n_rollouts 20 --output_file logs/eval_spatial_adaptive_tau015_s43.json\"",
+      "server": "westd-49937",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "780764",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_tau015_s43.json",
+      "submitted_at": "2026-05-27T00:54:42.868Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 20,
+      "model_name": "smolvla",
+      "seed": 43,
+      "hypothesis": "SmolVLA spatial τ=0.15 s43 cross-seed validation of high-intervention CRM regime on spatial tasks",
+      "checkpoint_path": "N/A (eval only)",
+      "metrics": {
+        "success_rate": 0.805,
+        "trigger_rate": 0.386,
+        "mean_correction_norm": 0.184,
+        "mean_uncertainty": 0.18,
+        "total_steps": 28231,
+        "crm_applied_steps": 10899
+      },
+      "wall_clock_seconds": 6550.1,
+      "gpu_hours": 1.82
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T02:22:20.239Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T02:22:51.217310+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.805,
+      "trigger_rate": 0.386,
+      "mean_correction_norm": 0.184,
+      "mean_uncertainty": 0.18,
+      "total_steps": 28231,
+      "crm_applied_steps": 10899
+    },
+    "hypothesis": "SmolVLA spatial τ=0.15 s43 cross-seed validation of high-intervention CRM regime on spatial tasks",
+    "completed_at": "2026-05-27T02:43:52.976Z"
+  },
+  "timestamp": "2026-05-27T02:43:56.399746+00:00",
+  "trigger": "update_registry"
+}

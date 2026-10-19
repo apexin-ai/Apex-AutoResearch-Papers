@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval-perdof-object-norm003-s44-westd",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T08:00:33.146Z",
+    "updated_at": "2026-05-27T12:23:39.560Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode crm_perdof --K 10 --max_correction_norm 0.03 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_perdof_norm003_s44_v3.json\"",
+      "server": "westd-49937",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "926890",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm003-s44-westd.log",
+      "submitted_at": "2026-05-27T08:00:27.872Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 200,
+      "data_path": "LIBERO-Object",
+      "model_name": "smolvla+crm_v3_perdof",
+      "seed": 44,
+      "checkpoint_source": "crm_v3_norm/perdof"
+    },
+    "hypothesis": "Per-DOF conformal scoring with norm=0.03 on Object s44 — expected to degrade due to K=10 rank-deficient covariance in 30D action space (plan_302 analysis)",
+    "reproduce": {
+      "finished_at": "2026-05-27T09:52:16.715Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T09:53:10.533303+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-27T12:23:41.630091+00:00",
+  "trigger": "update_registry"
+}

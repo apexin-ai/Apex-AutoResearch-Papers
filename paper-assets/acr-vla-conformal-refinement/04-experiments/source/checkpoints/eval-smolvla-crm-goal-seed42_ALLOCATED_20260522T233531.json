@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-smolvla-crm-goal-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:25:22.045Z",
+    "updated_at": "2026-05-22T23:35:30.591Z",
+    "hypothesis": "SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating conformal refinement across task suites",
+    "parent": "train-crm-smolvla-3suite-v1"
+  },
+  "timestamp": "2026-05-22T23:35:31.645106+00:00",
+  "trigger": "update_registry"
+}

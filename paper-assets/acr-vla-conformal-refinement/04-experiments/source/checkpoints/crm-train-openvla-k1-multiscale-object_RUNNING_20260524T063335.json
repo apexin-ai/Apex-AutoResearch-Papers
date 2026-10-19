@@ -1,0 +1,23 @@
+{
+  "exp_id": "crm-train-openvla-k1-multiscale-object",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:32:56.953Z",
+    "updated_at": "2026-05-24T06:33:34.726Z",
+    "hypothesis": "Training the K=1 MultiScaleCRM architecture on OpenVLA's multi-scale Llama-7B features (4 layers × 4096-d, action_dim=6 single-step) will provide a learned conformal correction module for OpenVLA on LIBERO-Object, with the goal of improving over the OpenVLA VLA-only baseline (SR=69%). This differs from the prior train-crm-openvla-obs-only (K=10 obs-only architecture, eval SR=0%) by using the multi-scale attention fusion + action-conditioned gating from plan_700.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/train_crm_k1.py --benchmark object --cache_dir /root/autodl-tmp/crm_cache_k1_openvla --obs_dim 4096 --epochs 50 --batch_size 512 --lr 1e-3 --seed 42 --output_dir /root/autodl-tmp/checkpoints/crm_openvla_k1_multiscale/object --wandb_run_name crm-openvla-k1-multiscale-object --loss_mode multi",
+      "server": "bjb2-28827",
+      "data_path": "/root/autodl-tmp/crm_cache_k1_openvla/object",
+      "data_count": 74507,
+      "model_name": "MultiScaleCRM-OpenVLA-K1",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-24T06:33:35.985176+00:00",
+  "trigger": "update_registry"
+}

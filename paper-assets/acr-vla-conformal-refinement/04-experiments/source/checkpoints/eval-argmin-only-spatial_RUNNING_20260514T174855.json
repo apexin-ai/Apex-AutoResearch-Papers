@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval-argmin-only-spatial",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:47:58.683Z",
+    "updated_at": "2026-05-14T17:48:54.942Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode reconvla --benchmark spatial --n_rollouts 10 --seed 42 --K 10",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "231421",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-argmin-only-spatial.log",
+      "submitted_at": "2026-05-14T17:47:58.583Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "data_path": "/root/autodl-tmp/libero_data/ (spatial)",
+      "data_count": 100,
+      "model_name": "SmolVLA K=10 argmin selection (no CRM correction)",
+      "seed": 42,
+      "hypothesis": "Isolate argmin base action selection from CRM correction. If argmin-only ≈ VLA mean (40%), CRM delta is the sole culprit. If argmin-only << VLA mean, argmin selection itself is problematic.",
+      "eval_data": "LIBERO spatial 10 tasks x 10 rollouts"
+    }
+  },
+  "timestamp": "2026-05-14T17:48:55.021294+00:00",
+  "trigger": "update_registry"
+}

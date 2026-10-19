@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-long-reconvla-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T00:55:40.981Z",
+    "updated_at": "2026-05-24T00:56:31.057Z",
+    "hypothesis": "Reconvla K=10 argmin on Long suite seed46. Fifth seed for Long Reconvla variance analysis. s42-s45 mean ~57.8%."
+  },
+  "timestamp": "2026-05-24T00:56:35.901828+00:00",
+  "trigger": "update_registry"
+}

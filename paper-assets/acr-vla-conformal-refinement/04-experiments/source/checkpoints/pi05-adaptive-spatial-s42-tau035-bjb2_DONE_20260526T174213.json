@@ -1,0 +1,45 @@
+{
+  "exp_id": "pi05-adaptive-spatial-s42-tau035-bjb2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T16:39:35.180Z",
+    "updated_at": "2026-05-26T17:42:09.938Z",
+    "hypothesis": "π0.5 Adaptive Conformal CRM (K=2, τ=0.35) on spatial s42. Cross-architecture tau sensitivity analysis for pi05 model.",
+    "server": "bjb2-28827",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.35 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark spatial --seed 42 --n_rollouts 20",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "444363",
+      "model_name": "pi05",
+      "seed": 42,
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+      "eval_data": "LIBERO-spatial 10 tasks x 20 rollouts"
+    },
+    "metrics": {
+      "success_rate": 0.965,
+      "trigger_rate": 0.0255,
+      "mean_correction_norm": 0.2,
+      "mean_uncertainty": 0.1055,
+      "total_steps": 22218,
+      "crm_applied_steps": 567,
+      "n_rollouts_per_task": 20,
+      "n_tasks": 10
+    },
+    "log_path": "/root/runs/acr-vla-conformal-refinement/tau-sweep-spatial-tau035-s42.log",
+    "checkpoint_path": "N/A (eval-only)",
+    "conclusion": "success",
+    "completed_at": "2026-05-26T17:42:09.938Z"
+  },
+  "timestamp": "2026-05-26T17:42:13.370373+00:00",
+  "trigger": "update_registry"
+}

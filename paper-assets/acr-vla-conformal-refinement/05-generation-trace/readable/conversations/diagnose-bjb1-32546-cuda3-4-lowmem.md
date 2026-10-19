@@ -1,0 +1,709 @@
+# diagnose bjb1 32546 cuda3 4 lowmem
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/chats/worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648.jsonl`
+- **Structured JSON:** [`477b7bd55eb5482bc5e4.json`](../../sessions/47/477b7bd55eb5482bc5e4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+23 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T13:58:14.155881+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T13:58:14.156206+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T13:58:14.156458+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-32546",
+    "command": "nvidia-smi",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T13:58:14.156604+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ps aux --sort=-rss --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-32546",
+    "command": "ps aux --sort=-rss --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-22T13:58:14.156785+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fri May 22 21:57:08 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:16:00.0 Off |                  Off |\\n| 30%   40C    P2            109W /  450W |   11336MiB /  24564MiB |     26%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090        On  |   00000000:27:00.0 Off |                  Off |\\n| 30%   38C    P2             82W /  450W |   11336MiB /  24564MiB |     27%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090        On  |   00000000:5A:00.0 Off |                  Off |\\n| 30%   41C    P2            112W /  450W |   11803MiB /  24564MiB |     25%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090        On  |   00000000:98:00.0 Off |                  Off |\\n| 30%   33C    P2             
+…[truncated 2145 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-22T13:58:14.156943+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-32546",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T13:58:14.157152+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     218144  136  1.2 75274884 13422720 pts/0 Rl 09:05 1052:09 python src/evaluate.py --model pi05 --pi05_path /root/autodl-tmp/models/pi05_libero_finetuned/ --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_full/object/crm_best.pt --benchmark object --seed 42 --obs_dim 2048\\nroot     218433  137  1.0 73219600 11600060 pts/1 Rl 09:05 1060:50 python src/evaluate.py --model pi05 --pi05_path /root/autodl-tmp/models/pi05_libero_finetuned/ --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_full/object/crm_best.pt --benchmark object --seed 43 --obs_dim 2048\\nroot     218713  136  1.0 74668088 11339108 pts/2 Rl 09:05 1051:26 python src/evaluate.py --model pi05 --pi05_path /root/autodl-tmp/models/pi05_libero_finetuned/ --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_full/object/crm_best.pt --benchmark object --seed 44 --obs_dim 2048\\nroot     326387  110  0.4 25409516 5081788 pts/4 Rl+ 20:20 106:32 python -u src/train_crm.py --benchmark object spatial goal long --obs_dim 960 --epochs 50 --batch_size 32 --lr 1e-3 --cache_dir /root/autodl-tmp/crm_cache_v5/ --output_dir /root/autodl-tmp/checkpoints/crm_unified_4suite/\\nroot     322367  122  0.4 25407800 5080808 pts/3 Rl+ 19:51 154:10 python -u src/train_crm.py --benchmark object spatial goal long --obs_dim 960 --epochs 50 --batch_size 32 --lr 1e-3 --input_mode obs_only --cache_dir /root/autodl-tmp/crm_cache_v5/ --output_dir /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/\\nroot        955  0.0  0.0 191548 105924 ?       S    May15   0:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        965  0.2  0.0 5342848 100196 ?      Sl   May15  27:42 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        961  0.0  0.0 4147608 81548 ?       Sl   May15   4:43 /root/miniconda3/bin/python /root/miniconda3/
+…[truncated 6305 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T13:58:14.157353+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T13:58:14.157541+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -50 /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-32546",
+    "command": "tail -50 /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T13:58:14.157703+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  epoch 5 batch 2550/6316 loss=0.014067\\n  epoch 5 batch 2600/6316 loss=0.015305\\n  epoch 5 batch 2650/6316 loss=0.009514\\n  epoch 5 batch 2700/6316 loss=0.019379\\n  epoch 5 batch 2750/6316 loss=0.014870\\n  epoch 5 batch 2800/6316 loss=0.015800\\n  epoch 5 batch 2850/6316 loss=0.018115\\n  epoch 5 batch 2900/6316 loss=0.015540\\n  epoch 5 batch 2950/6316 loss=0.015424\\n  epoch 5 batch 3000/6316 loss=0.017282\\n  epoch 5 batch 3050/6316 loss=0.019098\\n  epoch 5 batch 3100/6316 loss=0.015500\\n  epoch 5 batch 3150/6316 loss=0.012865\\n  epoch 5 batch 3200/6316 loss=0.014451\\n  epoch 5 batch 3250/6316 loss=0.023751\\n  epoch 5 batch 3300/6316 loss=0.016796\\n  epoch 5 batch 3350/6316 loss=0.011225\\n  epoch 5 batch 3400/6316 loss=0.018116\\n  epoch 5 batch 3450/6316 loss=0.016490\\n  epoch 5 batch 3500/6316 loss=0.017139\\n  epoch 5 batch 3550/6316 loss=0.018063\\n  epoch 5 batch 3600/6316 loss=0.015717\\n  epoch 5 batch 3650/6316 loss=0.019700\\n  epoch 5 batch 3700/6316 loss=0.013733\\n  epoch 5 batch 3750/6316 loss=0.017341\\n  epoch 5 batch 3800/6316 loss=0.015614\\n  epoch 5 batch 3850/6316 loss=0.015985\\n  epoch 5 batch 3900/6316 loss=0.012629\\n  epoch 5 batch 3950/6316 loss=0.016988\\n  epoch 5 batch 4000/6316 loss=0.019345\\n  epoch 5 batch 4050/6316 loss=0.014937\\n  epoch 5 batch 4100/6316 loss=0.018276\\n  epoch 5 batch 4150/6316 loss=0.018299\\n  epoch 5 batch 4200/6316 loss=0.012878\\n  epoch 5 batch 4250/6316 loss=0.014752\\n  epoch 5 batch 4300/6316 loss=0.013405\\n  epoch 5 batch 4350/6316 loss=0.011609\\n  epoch 5 batch 4400/6316 loss=0.016507\\n  epoch 5 batch 4450/6316 loss=0.019272\\n  epoch 5 batch 4500/6316 loss=0.017742\\n  epoch 5 batch 4550/6316 loss=0.014217\\n  epoch 5 batch 4600/6316 loss=0.017508\\n  epoch 5 batch 4650/6316 loss=0.014227\\n  epoch 5 batch 4700/6316 loss=0.014184\\n  epoch 5 batch 4750/6316 loss=0.012454\\n  epoch 5 batch 4800/6316 loss=0.012320\\n  epoch 5 ba
+…[truncated 260 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T13:58:14.157859+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -50 /root/autodl-tmp/checkpoints/crm_unified_4suite/train_r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-32546",
+    "command": "tail -50 /root/autodl-tmp/checkpoints/crm_unified_4suite/train_r2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T13:58:14.158011+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  epoch 4 batch 2250/6316 loss=0.018967\\n  epoch 4 batch 2300/6316 loss=0.017503\\n  epoch 4 batch 2350/6316 loss=0.017060\\n  epoch 4 batch 2400/6316 loss=0.018350\\n  epoch 4 batch 2450/6316 loss=0.012580\\n  epoch 4 batch 2500/6316 loss=0.015185\\n  epoch 4 batch 2550/6316 loss=0.018371\\n  epoch 4 batch 2600/6316 loss=0.015067\\n  epoch 4 batch 2650/6316 loss=0.017454\\n  epoch 4 batch 2700/6316 loss=0.016218\\n  epoch 4 batch 2750/6316 loss=0.017399\\n  epoch 4 batch 2800/6316 loss=0.017477\\n  epoch 4 batch 2850/6316 loss=0.012514\\n  epoch 4 batch 2900/6316 loss=0.014823\\n  epoch 4 batch 2950/6316 loss=0.018795\\n  epoch 4 batch 3000/6316 loss=0.014818\\n  epoch 4 batch 3050/6316 loss=0.016630\\n  epoch 4 batch 3100/6316 loss=0.015395\\n  epoch 4 batch 3150/6316 loss=0.014619\\n  epoch 4 batch 3200/6316 loss=0.018822\\n  epoch 4 batch 3250/6316 loss=0.014057\\n  epoch 4 batch 3300/6316 loss=0.019707\\n  epoch 4 batch 3350/6316 loss=0.015861\\n  epoch 4 batch 3400/6316 loss=0.017126\\n  epoch 4 batch 3450/6316 loss=0.015272\\n  epoch 4 batch 3500/6316 loss=0.012710\\n  epoch 4 batch 3550/6316 loss=0.017658\\n  epoch 4 batch 3600/6316 loss=0.014516\\n  epoch 4 batch 3650/6316 loss=0.014117\\n  epoch 4 batch 3700/6316 loss=0.021047\\n  epoch 4 batch 3750/6316 loss=0.023207\\n  epoch 4 batch 3800/6316 loss=0.021113\\n  epoch 4 batch 3850/6316 loss=0.014447\\n  epoch 4 batch 3900/6316 loss=0.016423\\n  epoch 4 batch 3950/6316 loss=0.021736\\n  epoch 4 batch 4000/6316 loss=0.018417\\n  epoch 4 batch 4050/6316 loss=0.016513\\n  epoch 4 batch 4100/6316 loss=0.016178\\n  epoch 4 batch 4150/6316 loss=0.014018\\n  epoch 4 batch 4200/6316 loss=0.014484\\n  epoch 4 batch 4250/6316 loss=0.021921\\n  epoch 4 batch 4300/6316 loss=0.013793\\n  epoch 4 batch 4350/6316 loss=0.015670\\n  epoch 4 batch 4400/6316 loss=0.016187\\n  epoch 4 batch 4450/6316 loss=0.009381\\n  epoch 4 batch 4500/6316 loss=0.019395\\n  epoch 4 ba
+…[truncated 260 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T13:58:14.158155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ls -la /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-32546",
+    "command": "ls -la /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T13:58:14.158316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16732\\ndrwxr-xr-x 2 root root    4096 May 22 21:40 .\\ndrwxr-xr-x 8 root root     168 May 22 19:51 ..\\n-rw-r--r-- 1 root root 3943477 May 22 20:26 checkpoint_epoch0001.pt\\n-rw-r--r-- 1 root root 3943477 May 22 20:49 checkpoint_epoch0002.pt\\n-rw-r--r-- 1 root root 3943477 May 22 21:16 checkpoint_epoch0003.pt\\n-rw-r--r-- 1 root root 3943477 May 22 21:40 checkpoint_epoch0004.pt\\n-rw-r--r-- 1 root root 1320219 May 22 21:40 crm_best.pt\\n-rw-r--r-- 1 root root   25733 May 22 21:57 train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T13:58:14.158454+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ls -la /root/autodl-tmp/checkpoints/crm_unified_4suite/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-32546",
+    "command": "ls -la /root/autodl-tmp/checkpoints/crm_unified_4suite/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T13:58:14.158584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 13276\\ndrwxr-xr-x 2 root root     183 May 22 21:40 .\\ndrwxr-xr-x 8 root root     168 May 22 19:51 ..\\n-rw-r--r-- 1 root root 4066613 May 22 20:49 checkpoint_epoch0001.pt\\n-rw-r--r-- 1 root root 4066613 May 22 21:15 checkpoint_epoch0002.pt\\n-rw-r--r-- 1 root root 4066613 May 22 21:40 checkpoint_epoch0003.pt\\n-rw-r--r-- 1 root root 1361563 May 22 21:40 crm_best.pt\\n-rw-r--r-- 1 root root    1169 May 22 19:34 train.log\\n-rw-r--r-- 1 root root   20566 May 22 21:57 train_r2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T13:58:14.158748+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "find /root/autodl-tmp/eval_results -type f -name \"*.json\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-32546",
+    "command": "find /root/autodl-tmp/eval_results -type f -name \"*.json\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T13:58:14.158873+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T13:58:14.158995+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "find /root -path \"*goal*\" -name \"*.log\" -o -path \"*long*\" -name \"*.log\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-32546",
+    "command": "find /root -path \"*goal*\" -name \"*.log\" -o -path \"*long*\" -name \"*.log\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T13:58:14.159117+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T13:58:14.159233+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ls -la /root/runs/acr-vla-conformal-refinement/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-32546",
+    "command": "ls -la /root/runs/acr-vla-conformal-refinement/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T13:58:14.159474+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1208\\ndrwxr-xr-x 2 root root   8192 May 22 19:13 .\\ndrwxr-xr-x 3 root root     50 May 15 10:53 ..\\n-rw-r--r-- 1 root root   4147 May 16 14:39 eval-acr-object-obs-only-default.log\\n-rw-r--r-- 1 root root   4163 May 16 01:35 eval-acr-object-obs-only-norm02.log\\n-rw-r--r-- 1 root root   2095 May 15 18:03 eval-acr-object-v4-default.log\\n-rw-r--r-- 1 root root   4078 May 15 23:57 eval-acr-object-v4-obs-only.log\\n-rw-r--r-- 1 root root   4072 May 16 00:06 eval-acr-object-v4-scalar.log\\n-rw-r--r-- 1 root root   4364 May 20 10:29 eval-adaptive-k-p25-seed42.log\\n-rw-r--r-- 1 root root   4365 May 20 10:23 eval-adaptive-k-p50-seed44.log\\n-rw-r--r-- 1 root root   4364 May 20 10:10 eval-adaptive-k-p75-seed44.log\\n-rw-r--r-- 1 root root   4363 May 20 10:16 eval-adaptive-k-p90-seed42.log\\n-rw-r--r-- 1 root root   4950 May 20 18:45 eval-adaptive-k-spatial-p25-seed43.log\\n-rw-r--r-- 1 root root   4950 May 20 17:12 eval-adaptive-k-spatial-p50-seed43-r2.log\\n-rw-r--r-- 1 root root    122 May 20 14:37 eval-adaptive-k-spatial-p50-seed43.log\\n-rw-r--r-- 1 root root   4947 May 20 18:16 eval-adaptive-k-spatial-p75-seed43.log\\n-rw-r--r-- 1 root root   4036 May 19 21:26 eval-argmin-object-k5-seed42.log\\n-rw-r--r-- 1 root root   4034 May 19 21:24 eval-argmin-object-k5-seed43.log\\n-rw-r--r-- 1 root root   4035 May 19 21:24 eval-argmin-object-k5-seed45.log\\n-rw-r--r-- 1 root root   3960 May 17 18:50 eval-argmin-object-seed47.log\\n-rw-r--r-- 1 root root   4088 May 20 20:37 eval-argmin-object-seed48.log\\n-rw-r--r-- 1 root root   4088 May 20 20:35 eval-argmin-object-seed49.log\\n-rw-r--r-- 1 root root   4029 May 20 23:00 eval-argmin-object-seed50.log\\n-rw-r--r-- 1 root root   5135 May 20 12:33 eval-crm-long-seed48.log\\n-rw-r--r-- 1 root root   5134 May 20 12:32 eval-crm-long-seed49.log\\n-rw-r--r-- 1 root root   5134 May 20 13:06 eval-crm-long-seed50.log\\n-rw-r--r-- 1 root root   5134 May 20 15:10 eval-crm-long-s
+…[truncated 6412 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-22T13:58:14.159697+00:00_
+
+## 诊断结果
+
+### cuda:3 — Unified CRM r4 训练（`--input_mode obs_only`）：**正常运行中**
+- PID 322367，启动于 19:51
+- 当前进度：**epoch 5/50, batch 5000/6316**
+- Loss ~0.011-0.019，正常收敛
+- 每 epoch checkpoint 正常保存（已保存 epoch 1-4）
+- 显存 542 MiB 是正常的——obs_dim=960, batch_size=32 的小 CRM 模型本身不需要多少显存，10% GPU util 也符合预期
+
+### cuda:4 — **不是** π0.5 Goal/Long baseline，而是另一个 CRM 训练：**正常运行中**
+- PID 326387，启动于 20:20
+- 命令：`train_crm.py --benchmark object spatial goal long --obs_dim 960 --epochs 50 --batch_size 32`（无 `--input_mode obs_only`）
+- 输出目录：`crm_unified_4suite/`（不是 r4）
+- 当前进度：**epoch 4/50, batch 4700/6316**
+- Loss 正常，checkpoint 已保存 epoch 1-3
+- 显存 556 MiB 同理正常
+
+### cuda:5 — **空闲**
+- 2 MiB 显存，0% GPU util，无进程
+
+### Goal/Long r4 baseline
+- **没有在运行。** cuda:4-5 上没有 π0.5 eval 进程
+- runs 目录下有历史 goal/long eval 日志（May 20），但没有 "r4" 相关的新 eval
+
+### GPU 0-2 补充
+- 正在跑 π0.5 ACR-VLA object eval（seed 42/43/44），每个 ~11.3GB 显存，从 09:05 开始运行约 13 小时，进程状态 `Rl`（活跃）
+
+### 结论
+**cuda:3-4 显存低不是异常**——CRM 模型很小，~500MB 显存是正常水平。两个训练都在稳步推进。问题是：cuda:4 上跑的是 CRM 训练而非预期的 π0.5 Goal/Long r4 baseline，cuda:5 完全空闲。Goal/Long r4 baseline 尚未启动。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_bjb1-32546-cuda3-4-lowmem_20260522T135648"
+}
+```
+
+</details>
+
+---

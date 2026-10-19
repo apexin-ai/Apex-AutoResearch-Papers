@@ -1,0 +1,51 @@
+{
+  "exp_id": "crm-loss-conformal",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:02:18.756Z",
+    "updated_at": "2026-05-22T06:31:57.503Z",
+    "hypothesis": "Conformal-guided auxiliary loss (lambda=0.1) will improve CRM by encouraging correction magnitude proportional to nonconformity, compared to uniform MSE",
+    "spec": {
+      "command": "python src/train_crm.py --benchmark object --loss_type conformal_guided --lambda_conf 0.1 --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 960",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "845499",
+      "log_path": "~/runs/acr-vla-conformal-refinement/crm-loss-conformal.log",
+      "submitted_at": "2026-05-22T05:02:54.937Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/crm_cache_v5/",
+      "data_count": 14570,
+      "model_name": "CRM_conformal_guided",
+      "seed": 42,
+      "wall_clock_seconds": 5342.6,
+      "gpu_hours": 1.48
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T06:26:09.967Z"
+    },
+    "metrics": {
+      "best_val_loss": 0.013343,
+      "final_train_loss": 0.016046,
+      "best_epoch": 50,
+      "total_epochs": 50,
+      "initial_val_loss": 0.037526,
+      "exit_code": 0,
+      "lambda_conf": 0.1
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_loss_variants/conformal_guided/crm_best.pt",
+    "log_path": "/root/runs/acr-vla-conformal-refinement/crm-loss-conformal.log",
+    "conclusion": "success",
+    "notes": "Training completed cleanly (50/50 epochs, EXIT_CODE=0). Val loss decreased monotonically 0.037526 (ep1) → 0.013343 (ep50). Final train_loss=0.016046, val_loss=0.013343. The ~6.4x higher val_loss vs MSE baseline (0.013343 vs 0.002080) is EXPECTED and NOT a regression: total loss = MSE + λ·conformal_aux with λ=0.1, so the reported loss is on a strictly larger objective than the MSE-only baseline — direct numeric comparison is invalid. Convergence shape is healthy (still improving at ep50, no divergence). Whether the conformal-guided regularizer actually helps the CRM produce more useful corrections must be judged on downstream robot eval (success rate on SmolVLA Object), not on training-objective loss. Best ckpt saved.",
+    "completed_at": "2026-05-22T06:31:57.503Z"
+  },
+  "timestamp": "2026-05-22T06:32:00.671324+00:00",
+  "trigger": "update_registry"
+}

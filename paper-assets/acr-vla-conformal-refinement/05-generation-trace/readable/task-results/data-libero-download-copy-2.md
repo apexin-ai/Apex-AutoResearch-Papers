@@ -1,0 +1,19 @@
+# data libero download
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_data_libero-download_20260513T030138_result.json`
+- **Structured JSON:** [`4309d1c57e1873d56ba1.json`](../../sessions/43/4309d1c57e1873d56ba1.json)
+
+## Browse this transcript
+
+This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+
+[Part 1](data-libero-download-copy-2/part-001.md) · [Part 2](data-libero-download-copy-2/part-002.md) · [Part 3](data-libero-download-copy-2/part-003.md) · [Part 4](data-libero-download-copy-2/part-004.md) · [Part 5](data-libero-download-copy-2/part-005.md)

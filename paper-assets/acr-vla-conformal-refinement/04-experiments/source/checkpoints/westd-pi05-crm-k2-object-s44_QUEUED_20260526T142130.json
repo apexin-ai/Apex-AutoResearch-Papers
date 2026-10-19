@@ -1,0 +1,22 @@
+{
+  "exp_id": "westd-pi05-crm-k2-object-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T13:59:27.061Z",
+    "updated_at": "2026-05-26T14:21:27.472Z",
+    "spec": {
+      "data_path": "libero_object",
+      "data_count": 200,
+      "model_name": "pi05",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt"
+    },
+    "hypothesis": "π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s44. westd same-server paired with VLA-only Object (s42=99.5%, s43=100%, s44=99.5%) for Table 2 capability dependency analysis."
+  },
+  "timestamp": "2026-05-26T14:21:30.593370+00:00",
+  "trigger": "update_registry"
+}

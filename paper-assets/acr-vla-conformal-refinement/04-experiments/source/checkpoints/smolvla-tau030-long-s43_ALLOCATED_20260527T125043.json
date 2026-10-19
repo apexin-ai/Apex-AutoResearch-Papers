@@ -1,0 +1,41 @@
+{
+  "exp_id": "smolvla-tau030-long-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T08:34:40.690Z",
+    "updated_at": "2026-05-27T12:50:40.791Z",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.30 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark long --seed 43 --n_rollouts 20 --output_file logs/eval_long_adaptive_tau030_s43.json\"",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/acr-vla-conformal-refinement/smolvla-tau030-long-s43.log",
+      "submitted_at": "2026-05-27T08:34:35.757Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T08:51:03.162Z"
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-27T08:52:25.874488+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-27T12:50:43.034262+00:00",
+  "trigger": "update_registry"
+}

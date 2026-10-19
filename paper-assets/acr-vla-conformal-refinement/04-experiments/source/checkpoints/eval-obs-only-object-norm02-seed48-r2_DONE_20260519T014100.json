@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval-obs-only-object-norm02-seed48-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:33:11.557Z",
+    "updated_at": "2026-05-19T01:40:59.658Z",
+    "hypothesis": "obs_only CRM (ε=0.2) seed48 on LIBERO-Object. Retry after killed previous attempt. Supplements primary result (seed42-47 done, this extends to seed48).",
+    "spec": {
+      "command": "crm_obs_only --seed 48 --K 10 --max_correction_norm 0.2",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "796900",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "SmolVLA+CRM_obs_only",
+      "seed": 48,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "LIBERO-Object"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (eval-only, no checkpoint)",
+    "log_path": "bjb1-18228:/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_seed48.json",
+    "metrics": {
+      "success_rate": 0.18,
+      "n_tasks": 10,
+      "n_rollouts": 10,
+      "total_rollouts": 100
+    },
+    "completed_at": "2026-05-19T01:40:59.658Z"
+  },
+  "timestamp": "2026-05-19T01:41:00.240548+00:00",
+  "trigger": "update_registry"
+}

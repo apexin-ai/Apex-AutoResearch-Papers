@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-long-crm-norm005-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:52:08.968Z",
+    "updated_at": "2026-05-24T06:52:41.430Z",
+    "hypothesis": "CRM obs-only norm=0.05 on Long suite seed47 (sixth seed extension). Pairs with running Long vla-only-s47 and adapt-s47 on cqa1-32758 to tighten Long suite CI which has highest variance."
+  },
+  "timestamp": "2026-05-24T06:52:42.831352+00:00",
+  "trigger": "update_registry"
+}

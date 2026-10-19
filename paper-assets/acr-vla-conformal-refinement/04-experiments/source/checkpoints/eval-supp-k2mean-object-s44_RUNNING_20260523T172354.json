@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval-supp-k2mean-object-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:27:45.450Z",
+    "updated_at": "2026-05-23T17:23:53.327Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode vla_only --baseline_mode mean --K 2 --benchmark object --seed 44 --n_rollouts 20",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "177864",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-k2mean-object-s44.log",
+      "submitted_at": "2026-05-23T11:27:59.483Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 44,
+      "data_path": "LIBERO-Object",
+      "data_count": 200,
+      "model_name": "SmolVLA-K2mean"
+    },
+    "hypothesis": "K=2 mean baseline on Object seed44. Third seed for 3-seed mean±std. s42=79.5%, s43 running. Isolates multi-sample averaging on Object tasks.",
+    "metrics": {
+      "overall_sr": 0.75,
+      "per_task": {
+        "alphabet_soup": 0.7,
+        "cream_cheese": 0.7,
+        "salad_dressing": 0.8,
+        "bbq_sauce": 0.8,
+        "ketchup": 0.85,
+        "tomato_sauce": 0.7,
+        "butter": 0.55,
+        "milk": 0.7,
+        "chocolate_pudding": 0.75,
+        "orange_juice": 0.95
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T17:23:54.814433+00:00",
+  "trigger": "update_registry"
+}

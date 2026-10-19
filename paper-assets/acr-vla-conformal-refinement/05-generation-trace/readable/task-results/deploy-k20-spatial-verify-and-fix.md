@@ -1,0 +1,46 @@
+# deploy k20 spatial verify and fix
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_deploy_k20-spatial-verify-and-fix_20260521T060827_result.json`
+- **Structured JSON:** [`e5356db88fb1e930a764.json`](../../sessions/e5/e5356db88fb1e930a764.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 验证结果
+
+### K=20 Spatial (3 seeds) — 全部运行中 ✓
+
+| 实验 | 服务器 | GPU | PID | 进度 |
+|---|---|---|---|---|
+| eval-k20-obs-only-spatial-seed42 | bjb1-32546 | cuda:2 | 873171 | 5/10 tasks |
+| eval-k20-obs-only-spatial-seed43 | bjb1-18228 | cuda:1 | 706941 | 7/10 tasks |
+| eval-k20-obs-only-spatial-seed44 | bjb1-18228 | cuda:2 | 707148 | 7/10 tasks |
+
+### K=20 Object seed45 — 运行中 ✓
+
+| 实验 | 服务器 | GPU | PID | 进度 |
+|---|---|---|---|---|
+| eval-k20-obs-only-object-seed45 | bjb2-28827 | cuda:5 | 23401 | 5/10 tasks |
+
+### 关键发现
+
+1. **Registry 已注册**：4 个实验全部在 registry 中，状态 RUNNING，spec 完整（含 server、gpu、pid、log_path 等）
+2. **进程活跃**：所有 PID 在运行，CPU 占用 350-600%（正常 eval 行为）
+3. **GPU 分配与原计划不同**：Director 要求部署到 bjb1-32546:cuda:0,1,3，实际只有 seed42 在 bjb1-32546:cuda:2，seed43/44 被部署到了 bjb1-18228:cuda:1,2。原因是 bjb1-32546 的 GPU 0,1,3,4,5 已被其他实验占据（norm003 seed62/63、norm01 seed76/77、random_selection seed42-44、vla_only spatial seed50）
+4. **无需干预**：实验正在正常推进，预计再 3-5 小时完成
+
+---

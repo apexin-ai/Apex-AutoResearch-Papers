@@ -1,0 +1,31 @@
+{
+  "exp_id": "smolvla-tau035-goal-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 2,
+    "created_at": "2026-05-26T22:06:47.755Z",
+    "updated_at": "2026-05-26T23:03:57.159Z",
+    "reproduce": {
+      "finished_at": "2026-05-26T22:36:26.789Z"
+    },
+    "failure_reason": "ImportError(",
+    "completed_at": "2026-05-26T22:36:41.345Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T22:37:03.125031+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    }
+  },
+  "timestamp": "2026-05-26T23:03:58.938334+00:00",
+  "trigger": "update_registry"
+}

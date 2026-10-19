@@ -1,0 +1,36 @@
+{
+  "exp_id": "pi05-vla-only-spatial-s42-4090-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T14:01:24.285Z",
+    "updated_at": "2026-05-27T13:13:58.873Z",
+    "spec": {
+      "command": "batch-closed",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "241740",
+      "log_path": "n/a",
+      "submitted_at": "2026-05-26T14:10:09.806Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "n/a",
+      "data_count": 0,
+      "model_name": "pi05",
+      "seed": 42,
+      "checkpoint_path": "n/a",
+      "wall_clock_seconds": 83029.1,
+      "gpu_hours": 23.06
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-27T13:13:58.873Z"
+  },
+  "timestamp": "2026-05-27T13:14:00.863102+00:00",
+  "trigger": "update_registry"
+}

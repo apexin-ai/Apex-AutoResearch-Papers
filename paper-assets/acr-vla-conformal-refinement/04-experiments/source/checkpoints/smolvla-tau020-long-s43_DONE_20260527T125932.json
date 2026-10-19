@@ -1,0 +1,50 @@
+{
+  "exp_id": "smolvla-tau020-long-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T08:16:08.129Z",
+    "updated_at": "2026-05-27T12:59:30.622Z",
+    "spec": {
+      "command": "batch-closed",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "n/a",
+      "submitted_at": "2026-05-27T08:34:06.165Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "n/a",
+      "data_count": 0,
+      "model_name": "smolvla",
+      "seed": 43,
+      "checkpoint_path": "n/a",
+      "wall_clock_seconds": 15924.5,
+      "gpu_hours": 4.42
+    },
+    "hypothesis": "D170 Long τ-sweep: τ=0.20 tests whether a lower threshold than τ=0.25 improves Long success rate, probing the non-monotonic τ-SR relationship observed in earlier Long τ-sweep (τ=0.15/0.25/0.35).",
+    "reproduce": {
+      "finished_at": "2026-05-27T08:47:42.625Z"
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-27T08:49:04.864756+00:00"
+        }
+      ]
+    },
+    "completed_at": "2026-05-27T12:59:30.622Z"
+  },
+  "timestamp": "2026-05-27T12:59:32.549665+00:00",
+  "trigger": "update_registry"
+}

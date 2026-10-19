@@ -1,0 +1,55 @@
+{
+  "exp_id": "eval-vla-only-spatial-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:24:47.682Z",
+    "updated_at": "2026-05-19T15:47:07.499Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Spatial seed45. Spatial benchmark 第四个 VLA-only seed，配合 obs_only spatial seeds 报告 CRM 改进幅度。",
+    "spec": {
+      "checkpoint_path": "N/A (vla_only baseline)",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed45.json"
+    },
+    "server": "bjb1-32546",
+    "gpu": "cuda:0",
+    "pid": "932535",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed45.log",
+    "reproduce": {
+      "command": "cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 45 --output_file logs/eval_spatial_vla_only_seed45.json",
+      "finished_at": "2026-05-19T15:17:27.081Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T15:17:34.738444+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0.27,
+      "per_task": {
+        "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate": 0.7,
+        "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate": 0.9,
+        "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate": 0,
+        "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate": 0.2,
+        "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate": 0,
+        "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate": 0,
+        "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate": 0.9,
+        "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate": 0,
+        "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate": 0,
+        "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate": 0
+      },
+      "n_tasks": 10,
+      "n_rollouts": 10,
+      "total_rollouts": 100
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T15:47:08.014583+00:00",
+  "trigger": "update_registry"
+}

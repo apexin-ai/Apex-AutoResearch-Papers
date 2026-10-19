@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval-supp-obj-vla-only-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:38:03.765Z",
+    "updated_at": "2026-05-24T11:14:01.626Z",
+    "hypothesis": "VLA-only (K=1) baseline on Object suite seed47. Sixth seed extending Object VLA-only coverage for variance analysis.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark object --mode vla_only --seed 47 --n_rollouts 20 --K 1",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:0"
+      ],
+      "tmux_session": "obj-vla-s47",
+      "log_path": "/tmp/eval_obj_vla_only_s47.log",
+      "data_path": "LIBERO-Object",
+      "data_count": 200,
+      "model_name": "SmolVLA",
+      "seed": 47,
+      "eval_data": "LIBERO-Object 10 tasks x 20 rollouts",
+      "checkpoint_source": "n/a-baseline"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-24T11:14:02.931116+00:00",
+  "trigger": "update_registry"
+}

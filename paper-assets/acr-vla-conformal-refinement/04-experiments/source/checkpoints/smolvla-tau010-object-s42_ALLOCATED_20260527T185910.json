@@ -1,0 +1,28 @@
+{
+  "exp_id": "smolvla-tau010-object-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T18:55:51.012Z",
+    "updated_at": "2026-05-27T18:59:08.615Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark object --K 2 --seed 42 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.10 --output_file logs/eval_object_adaptive_conformal_crm_smolvla_k2_norm0.2_tau0.1_seed42.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "340192",
+      "log_path": "~/runs/acr-vla-conformal-refinement/smolvla-tau010-object-s42.log",
+      "submitted_at": "2026-05-27T18:55:47.919Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "SmolVLA adaptive conformal CRM at τ=0.10 on Object s42. Fills tau-sweep curve for complete τ response characterization."
+  },
+  "timestamp": "2026-05-27T18:59:10.570955+00:00",
+  "trigger": "update_registry"
+}

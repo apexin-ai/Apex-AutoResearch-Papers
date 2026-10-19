@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_obs_only_norm01_seed48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:59:51.090Z",
+    "updated_at": "2026-05-19T12:43:31.624Z",
+    "spec": {
+      "command": "cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_obs_only_norm01_seed48.json",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "774337",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval_obs_only_norm01_seed48.log",
+      "submitted_at": "2026-05-17T22:59:50.463Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "hypothesis": "obs_only CRM (ε=0.1) seed48 on LIBERO-Object. 补 magnitude curve obs_only ε=0.1 至 n=7。"
+  },
+  "timestamp": "2026-05-19T12:43:32.138880+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,62 @@
+# ops check spatial progress
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_check-spatial-progress_20260515T032834_result.json`
+- **Structured JSON:** [`ff387af72a240183510d.json`](../../sessions/ff/ff387af72a240183510d.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+Registry 已更新。以下是 4 个实验的最新状态：
+
+---
+
+| 实验 | 进程 | 进度 | Running Avg | 变化 |
+|------|------|------|-------------|------|
+| **eval-argmin-only-spatial** (pid 231421) | ✅ 存活 | **8/10** tasks | **37.5%** (30/80) | 无变化，正在跑 T9 |
+| **eval-acr-spatial-v4-small** (pid 253085) | ✅ 存活 | **5/10** (T6 进行中 0/5) | **42.0%** (21/50) | 无变化，T6 on_ramekin 中 |
+| **eval-acr-spatial-v4-obs-only-r2** (pid 270097) | ✅ 存活 | **5/10** tasks | **48.0%** (24/50) | +1 task (T5 in_top_drawer 10%) |
+| **eval-acr-spatial-v4-scalar** (pid 288939) | ✅ 存活 | **2/10** tasks | **80.0%** (16/20) | 无变化 |
+
+### 逐 task 详情
+
+**argmin-only-spatial** (reconvla baseline, 无 CRM):
+| Task | Success |
+|------|---------|
+| T1 between_plate_and_ramekin | 60% (6/10) |
+| T2 next_to_ramekin | **100%** (10/10) |
+| T3 from_table_center | 0% (0/10) |
+| T4 on_cookie_box | 30% (3/10) |
+| T5 in_top_drawer | 10% (1/10) |
+| T6 on_ramekin | 10% (1/10) |
+| T7 next_to_cookie_box | **90%** (9/10) |
+| T8 on_stove | 0% (0/10) |
+
+**acr-spatial-v4-small** (perdof CRM, norm=0.1):
+T1 60%, T2 **100%**, T3 **10%**, T4 40%, T5 0% — T3 比 baseline 好（10% vs 0%），T5 比 baseline 差（0% vs 10%）
+
+**obs-only-r2** (obs_only CRM, norm=0.1):
+T1 **90%**, T2 **100%**, T3 0%, T4 40%, T5 10% — T1 领先全场（90% vs 60%）
+
+**scalar** (scalar_unc CRM, norm=0.1):
+T1 60%, T2 **100%** — 才 2 个 task，前两个与 baseline 持平
+
+### 备注
+- `eval-acr-spatial-v4-small` 的 log 实际路径是 `/root/autodl-tmp/logs/eval_acr_spatial_v4_small.log`（不在 `~/runs/` 下）
+- scalar 进度最慢（2/10），预计还需较长时间
+- argmin-only 接近完成（8/10），预计 1-2 小时内结束
+
+---

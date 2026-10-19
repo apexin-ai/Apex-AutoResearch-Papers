@@ -1,0 +1,29 @@
+{
+  "exp_id": "pi05-spatial-tau015-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:05:21.281Z",
+    "updated_at": "2026-05-26T22:17:37.119Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.15 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark spatial --seed 43 --n_rollouts 20 --output_file logs/eval_spatial_adaptive_pi05_tau015_seed43.json",
+      "server": "cqa1-32758",
+      "gpu": "cuda:0",
+      "pid": "582667",
+      "log_path": "~/runs/acr-vla-conformal-refinement/pi05-spatial-tau015-s43.log",
+      "submitted_at": "2026-05-26T22:05:16.249Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "model_name": "pi05",
+      "seed": 43
+    }
+  },
+  "timestamp": "2026-05-26T22:17:38.921088+00:00",
+  "trigger": "update_registry"
+}

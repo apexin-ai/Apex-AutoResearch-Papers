@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-perdof-object-norm003-s44-v3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:43:13.106Z",
+    "updated_at": "2026-05-28T04:00:48.323Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode crm_perdof --K 10 --max_correction_norm 0.03 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_perdof_norm003_s44_v3.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "515221",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm003-s44-v3.log",
+      "submitted_at": "2026-05-28T03:20:48.242Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-28T04:00:50.359314+00:00",
+  "trigger": "update_registry"
+}

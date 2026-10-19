@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval-supp-goal-crm-norm005-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:06:31.022Z",
+    "updated_at": "2026-05-24T03:17:52.778Z",
+    "hypothesis": "CRM always-on norm=0.05 on Goal suite seed46. Fifth seed extending Goal CRM. s42-s45 mean ~83%. Completes 5-seed coverage.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "server": "bjb2-28827",
+      "gpu": "cuda:3",
+      "seed": 46,
+      "model_name": "SmolVLA+CRM",
+      "data_path": "LIBERO-Goal",
+      "data_count": 200,
+      "eval_data": "LIBERO-Goal",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "log_path": "/tmp/eval_goal_crm_s46.log",
+      "tmux_session": "eval-goal-crm-s46",
+      "checkpoint_path": "n/a-eval-only"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T01:36:34.079Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-24T01:37:08.984Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-24T01:37:50.254490+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-24T03:17:54.121874+00:00",
+  "trigger": "update_registry"
+}

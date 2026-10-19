@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-perdof-object-default-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:21:54.338Z",
+    "updated_at": "2026-05-17T11:22:32.971Z",
+    "hypothesis": "perdof CRM (default norm, 无裁剪) seed46 on LIBERO-Object. 验证 perdof 在 uncapped norm 下的灾难性崩溃（seed42=0%）是否跨 seed 一致。支撑 obs_only > perdof claim。"
+  },
+  "timestamp": "2026-05-17T11:22:33.730185+00:00",
+  "trigger": "update_registry"
+}

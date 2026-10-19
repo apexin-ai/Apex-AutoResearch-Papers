@@ -1,0 +1,30 @@
+{
+  "exp_id": "smolvla-tau030-long-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T08:16:23.068Z",
+    "updated_at": "2026-05-27T08:25:56.780Z",
+    "spec": {
+      "model_name": "smolvla",
+      "seed": 42,
+      "data_path": "LIBERO-Long",
+      "data_count": 200,
+      "eval_data": "LIBERO-Long 10 tasks x 20 rollouts",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "checkpoint_path": "N/A-eval-only",
+      "log_path": "~/runs/acr-vla-conformal-refinement/smolvla-tau030-long-s42.log"
+    },
+    "hypothesis": "D170 Long τ-sweep: τ=0.30 tests whether a higher threshold than τ=0.25 improves Long success rate, probing the non-monotonic τ-SR relationship observed in earlier Long τ-sweep (τ=0.15/0.25/0.35).",
+    "reproduce": {
+      "finished_at": "2026-05-27T08:25:20.863Z"
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-27T08:26:08.531773+00:00",
+  "trigger": "update_registry"
+}

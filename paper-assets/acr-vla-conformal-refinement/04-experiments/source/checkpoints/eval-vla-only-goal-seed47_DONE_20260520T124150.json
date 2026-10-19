@@ -1,0 +1,62 @@
+{
+  "exp_id": "eval-vla-only-goal-seed47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-19T21:32:24.476Z",
+    "updated_at": "2026-05-20T12:41:49.447Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Goal seed47. 补齐 Goal VLA-only 样本量 (n→7)，与 CRM-Goal 配对统计检验。",
+    "completed_at": "2026-05-19T22:08:05.186Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      },
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T12:14:09.600871+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=4 ... python -u src/evaluate.py --mode vla_only --benchmark goal --seed 47 --n_rollouts 10",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "336621",
+      "log_path": "logs/eval-vla-only-goal-seed47.log",
+      "submitted_at": "2026-05-20T10:52:26.721Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Goal",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA (vla_only)",
+      "seed": 47,
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 6471.5,
+      "gpu_hours": 1.8
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T12:13:54.165Z"
+    },
+    "conclusion": "failed",
+    "metrics": {
+      "incomplete": true,
+      "tasks_completed": 2,
+      "tasks_total": 10,
+      "partial_results": {
+        "open_the_middle_drawer_of_the_cabinet": 0.8,
+        "put_the_bowl_on_the_stove": 0.9
+      },
+      "failure_reason": "Process exited after 2/10 tasks; no JSON output generated; likely OOM or early termination"
+    }
+  },
+  "timestamp": "2026-05-20T12:41:50.179890+00:00",
+  "trigger": "update_registry"
+}

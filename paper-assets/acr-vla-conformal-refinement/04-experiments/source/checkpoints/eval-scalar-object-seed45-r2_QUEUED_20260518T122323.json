@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-scalar-object-seed45-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:22:25.439Z",
+    "updated_at": "2026-05-18T12:23:22.786Z",
+    "hypothesis": "Scalar CRM seed45 rerun with n_rollouts=10 for consistency. Original seed45 used n_rollouts=20. Current scalar: [9,10,6,9] mean=8.5%",
+    "parent": "eval-scalar-object-seed45"
+  },
+  "timestamp": "2026-05-18T12:23:23.360284+00:00",
+  "trigger": "update_registry"
+}

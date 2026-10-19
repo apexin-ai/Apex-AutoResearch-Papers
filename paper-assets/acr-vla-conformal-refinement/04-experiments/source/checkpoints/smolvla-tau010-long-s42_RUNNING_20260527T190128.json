@@ -1,0 +1,34 @@
+{
+  "exp_id": "smolvla-tau010-long-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T18:56:41.954Z",
+    "updated_at": "2026-05-27T19:01:26.750Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark long --K 2 --seed 42 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.10 --output_file logs/eval_long_adaptive_conformal_crm_smolvla_k2_norm0.2_tau0.1_seed42.json\"",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "68353",
+      "log_path": "~/runs/acr-vla-conformal-refinement/smolvla-tau010-long-s42.log",
+      "submitted_at": "2026-05-27T18:56:39.162Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Long (built-in)",
+      "data_count": "200",
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Long"
+    },
+    "hypothesis": "SmolVLA adaptive conformal CRM at τ=0.10 on Long s42. Fills tau-sweep curve for complete τ response characterization."
+  },
+  "timestamp": "2026-05-27T19:01:28.733307+00:00",
+  "trigger": "update_registry"
+}

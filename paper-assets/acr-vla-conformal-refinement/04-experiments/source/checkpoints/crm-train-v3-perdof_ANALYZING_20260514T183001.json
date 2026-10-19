@@ -1,0 +1,54 @@
+{
+  "exp_id": "crm-train-v3-perdof",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:04:54.552Z",
+    "updated_at": "2026-05-14T18:30:01.525Z",
+    "spec": {
+      "command": "python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache/ --output_dir /root/autodl-tmp/checkpoints/crm_v3/perdof/ --K 10 --epochs 50 --batch_size 512 --lr 0.016 --input_mode full --seed 42 --norm_stats /root/autodl-tmp/checkpoints/crm_v3/norm_stats.pt",
+      "server": "bjb2-40593",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "181668",
+      "log_path": "~/runs/acr-vla-conformal-refinement/crm-train-v3-perdof.log",
+      "submitted_at": "2026-05-14T18:04:54.446Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/crm_cache/",
+      "data_count": 0,
+      "model_name": "CRM-MLP-337K",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T18:27:11.506Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T18:27:13.038696+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3/perdof/crm_best.pt",
+    "log_path": "~/runs/acr-vla-conformal-refinement/crm-train-v3-perdof.log",
+    "metrics": {
+      "val_loss": 1.191387,
+      "best_epoch": 50,
+      "final_train_loss": 1.874177,
+      "total_epochs": 50,
+      "num_params": 337438,
+      "num_samples": 2402
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T18:30:01.627040+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval-supp-vla-only-spatial-s48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T15:35:42.276Z",
+    "updated_at": "2026-05-24T23:32:56.117Z",
+    "hypothesis": "VLA-only baseline seed 48 on Spatial. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 48 --n_rollouts 20 2>&1 | tee logs/eval-supp-vla-only-spatial-s48.log\"",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "940684",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-vla-only-spatial-s48.log",
+      "submitted_at": "2026-05-24T15:38:24.960Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.795,
+      "per_task_sr": {
+        "between": 1,
+        "next_ramekin": 0.9,
+        "center": 0.95,
+        "cookie_box": 0.95,
+        "drawer": 0.8,
+        "on_ramekin": 0,
+        "next_cookie": 0.95,
+        "stove": 0.75,
+        "next_plate": 0.85,
+        "cabinet": 0.8
+      }
+    }
+  },
+  "timestamp": "2026-05-24T23:32:57.545403+00:00",
+  "trigger": "update_registry"
+}

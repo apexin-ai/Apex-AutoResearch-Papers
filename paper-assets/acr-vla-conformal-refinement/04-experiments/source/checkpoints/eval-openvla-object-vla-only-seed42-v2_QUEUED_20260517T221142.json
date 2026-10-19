@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-openvla-object-vla-only-seed42-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T20:06:55.243Z",
+    "updated_at": "2026-05-17T22:11:42.007Z",
+    "hypothesis": "OpenVLA 7B finetuned VLA-only baseline on LIBERO-Object using official eval code (transformers 4.40.1, isolated conda env). v1 failed due to transformers 5.8 DynamicCache bug. Dry-run on libero_spatial confirmed 80% SR. This run uses openvla-libero-object finetuned model with 10 trials/task."
+  },
+  "timestamp": "2026-05-17T22:11:42.427512+00:00",
+  "trigger": "update_registry"
+}

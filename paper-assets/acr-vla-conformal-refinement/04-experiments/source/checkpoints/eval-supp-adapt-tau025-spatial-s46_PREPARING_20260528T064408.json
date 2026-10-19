@@ -1,0 +1,22 @@
+{
+  "exp_id": "eval-supp-adapt-tau025-spatial-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-24T07:12:18.821Z",
+    "updated_at": "2026-05-28T06:44:06.700Z",
+    "hypothesis": "CRM/Adaptive on Spatial seed46, 5th seed extension",
+    "failure_reason": "Ghost entry — GPU 1 occupied by OpenVLA VLA-only eval (PID 114990). Never actually started despite RUNNING status. No pid, no log_path, no output.",
+    "completed_at": "2026-05-24T08:27:00.000Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    }
+  },
+  "timestamp": "2026-05-28T06:44:08.982123+00:00",
+  "trigger": "update_registry"
+}

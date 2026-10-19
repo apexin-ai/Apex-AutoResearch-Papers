@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-perdof-object-norm005-seed45-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:50:49.193Z",
+    "updated_at": "2026-05-19T15:29:57.923Z",
+    "hypothesis": "perdof CRM (ε=0.05) seed45 on LIBERO-Object. 补 magnitude curve perdof ε=0.05 (当前 n=2)。timeout=16h。",
+    "spec": {
+      "command": "cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=4 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_object_perdof_norm005_seed45.json",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "tmux_session": "eval-perdof-norm005-seed45-t16",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "SmolVLA+CRM_perdof",
+      "seed": 45,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "LIBERO-Object"
+    },
+    "conclusion": "success",
+    "log_path": "logs/eval_object_perdof_norm005_seed45.json",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+    "completed_at": "2026-05-19T15:29:57.924Z"
+  },
+  "timestamp": "2026-05-19T15:29:58.453213+00:00",
+  "trigger": "update_registry"
+}

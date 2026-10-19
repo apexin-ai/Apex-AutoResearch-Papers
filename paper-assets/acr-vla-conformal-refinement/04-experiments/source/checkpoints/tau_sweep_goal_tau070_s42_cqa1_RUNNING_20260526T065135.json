@@ -1,0 +1,38 @@
+{
+  "exp_id": "tau_sweep_goal_tau070_s42_cqa1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T06:49:02.809Z",
+    "updated_at": "2026-05-26T06:51:33.493Z",
+    "hypothesis": "π0.5 Adaptive Conformal CRM with τ=0.70 on Goal s42 (cqa1). Extended τ-sweep sensitivity analysis: intermediate trigger rate (~1%) bridging τ=0.50/0.90 endpoints; tests whether CRM gain saturates monotonically with τ. Note task brief mislabeled as SmolVLA; actual command used --model pi05.",
+    "spec": {
+      "command": "python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.70 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_adaptive_pi05_tau070_seed42.json",
+      "server": "cqa1-32758",
+      "model_name": "pi05",
+      "seed": 42,
+      "benchmark": "goal",
+      "data_path": "libero_goal",
+      "data_count": 200,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+      "eval_data": "libero_goal_10tasks_x20rollouts"
+    },
+    "log_path": "cqa1-32758:/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_pi05_tau070_seed42.json",
+    "checkpoint_path": "cqa1-32758:/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+    "metrics": {
+      "success_rate": 0.87,
+      "mean_uncertainty": 0.121,
+      "trigger_rate": 0.0104,
+      "crm_applied_steps": 283,
+      "total_steps": 27265,
+      "tau": 0.7,
+      "n_rollouts": 20
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-26T06:51:35.198222+00:00",
+  "trigger": "update_registry"
+}

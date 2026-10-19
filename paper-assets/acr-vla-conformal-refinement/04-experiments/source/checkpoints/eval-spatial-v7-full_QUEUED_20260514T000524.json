@@ -1,0 +1,19 @@
+{
+  "exp_id": "eval-spatial-v7-full",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:05:16.510Z",
+    "updated_at": "2026-05-14T00:05:24.337Z",
+    "spec": {
+      "hypothesis": "SmolVLA baseline on libero_spatial with K=1 fix (vla_only single inference)",
+      "checkpoint_source": "lerobot/smolvla_libero",
+      "eval_data": "LIBERO spatial 10 tasks x 10 rollouts"
+    }
+  },
+  "timestamp": "2026-05-14T00:05:24.430186+00:00",
+  "trigger": "update_registry"
+}

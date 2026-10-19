@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval-acr-spatial-v4-obs-only",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:08:53.421Z",
+    "updated_at": "2026-05-14T22:08:53.421Z"
+  },
+  "timestamp": "2026-05-14T22:08:53.511690+00:00",
+  "trigger": "update_registry"
+}

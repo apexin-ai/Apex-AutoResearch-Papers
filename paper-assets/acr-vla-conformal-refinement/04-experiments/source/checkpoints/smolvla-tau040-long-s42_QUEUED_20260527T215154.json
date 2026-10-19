@@ -1,0 +1,15 @@
+{
+  "exp_id": "smolvla-tau040-long-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T21:50:57.607Z",
+    "updated_at": "2026-05-27T21:51:52.215Z",
+    "hypothesis": "SmolVLA adaptive conformal CRM at τ=0.40 on Long s42. Critical missing tau-sweep data point at high threshold for complete Long suite characterization."
+  },
+  "timestamp": "2026-05-27T21:51:54.146536+00:00",
+  "trigger": "update_registry"
+}

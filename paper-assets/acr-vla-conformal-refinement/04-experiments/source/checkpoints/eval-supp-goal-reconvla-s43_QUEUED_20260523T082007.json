@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-goal-reconvla-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T08:19:47.656Z",
+    "updated_at": "2026-05-23T08:20:06.836Z",
+    "hypothesis": "Reconvla K=10 argmin on Goal seed43. Multi-seed validation for Goal reconvla (with s42 running on bjb2-28827). Goal CRM=85.5%, tests if reconvla also benefits Goal suite."
+  },
+  "timestamp": "2026-05-23T08:20:07.954998+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "precompute-smolvla-long-wrapper-bjb1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:34:57.808Z",
+    "updated_at": "2026-05-22T17:35:41.810Z",
+    "hypothesis": "SmolVLA wrapper precompute on LIBERO-Long (K=10) to enable 4-suite CRM training after 3-suite CRM completes"
+  },
+  "timestamp": "2026-05-22T17:35:42.930586+00:00",
+  "trigger": "update_registry"
+}

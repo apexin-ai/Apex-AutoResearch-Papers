@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval-supp-spatial-k2mean-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:41:52.628Z",
+    "updated_at": "2026-05-25T18:42:46.692Z",
+    "hypothesis": "K=2 mean baseline on Spatial suite seed46. Fifth seed extending Spatial K2mean coverage for variance analysis.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark spatial --mode vla_only --baseline_mode mean --K 2 --seed 46 --n_rollouts 20 --output_file logs/eval_spatial_k2mean_seed46.json",
+      "server": "bjb1-32546",
+      "gpu": "cuda:0",
+      "seed": 46,
+      "model_name": "SmolVLA-K2mean",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "eval_data": "LIBERO-Spatial",
+      "log_path": "/tmp/eval_spatial_k2mean_s46.log",
+      "checkpoint_source": "n/a",
+      "checkpoint_path": "n/a-eval-only"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T01:40:09.136Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "killed",
+    "completed_at": "2026-05-24T01:40:06.099Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-24T01:40:29.611202+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 80,
+      "successes": 160,
+      "total": 200
+    }
+  },
+  "timestamp": "2026-05-25T18:42:48.236514+00:00",
+  "trigger": "update_registry"
+}

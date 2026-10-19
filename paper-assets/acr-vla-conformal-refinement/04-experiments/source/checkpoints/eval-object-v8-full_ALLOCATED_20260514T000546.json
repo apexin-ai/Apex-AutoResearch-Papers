@@ -1,0 +1,19 @@
+{
+  "exp_id": "eval-object-v8-full",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:05:25.647Z",
+    "updated_at": "2026-05-14T00:05:46.161Z",
+    "spec": {
+      "hypothesis": "SmolVLA baseline on libero_object with K=1 fix (vla_only single inference)",
+      "checkpoint_source": "lerobot/smolvla_libero",
+      "eval_data": "LIBERO object 10 tasks x 10 rollouts"
+    }
+  },
+  "timestamp": "2026-05-14T00:05:46.233926+00:00",
+  "trigger": "update_registry"
+}

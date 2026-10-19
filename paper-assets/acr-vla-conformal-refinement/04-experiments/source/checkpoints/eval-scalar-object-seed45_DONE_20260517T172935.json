@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval-scalar-object-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:38:01.206Z",
+    "updated_at": "2026-05-17T17:29:34.723Z",
+    "spec": {
+      "command": "python src/evaluate.py --mode crm_scalar --max_correction_norm 0.1 --K 10 --seed 45 --benchmark object --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt --output_file logs/eval_object_scalar_seed45.json",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 224623,
+      "data_path": "LIBERO object benchmark",
+      "data_count": 100,
+      "model_name": "crm_v3_scalar_unc",
+      "seed": 45,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt",
+      "eval_data": "LIBERO object",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt",
+      "log_path": "logs/eval_object_scalar_seed45.log"
+    },
+    "hypothesis": "Scalar uncertainty CRM seed=45 on LIBERO Object. 测试 scalar conditioning（单一 std 而非 per-DOF）是否比 obs_only 或 perdof 更优。如果表现介于两者之间，说明 conditioning 信息量与性能正相关。",
+    "conclusion": "success",
+    "metrics": {
+      "overall_success_rate": 0.09,
+      "successes": 18,
+      "total": 200,
+      "best_task": "chocolate_pudding_0.25",
+      "worst_task": "alphabet_soup_0.0"
+    },
+    "completed_at": "2026-05-17T17:29:34.723Z"
+  },
+  "timestamp": "2026-05-17T17:29:35.062816+00:00",
+  "trigger": "update_registry"
+}

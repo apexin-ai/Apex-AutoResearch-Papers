@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-long-adapt-tau025-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:34:20.287Z",
+    "updated_at": "2026-05-24T06:36:57.418Z",
+    "hypothesis": "Adaptive CRM tau=0.25 on Long suite seed47 (sixth seed extension). Long is the highest-variance suite with smallest improvement margin (57.7 vs 58.0 VLA-only). Sixth seed tightens CI to determine if Adaptive is statistically equivalent to or below VLA-only on Long."
+  },
+  "timestamp": "2026-05-24T06:36:58.810498+00:00",
+  "trigger": "update_registry"
+}

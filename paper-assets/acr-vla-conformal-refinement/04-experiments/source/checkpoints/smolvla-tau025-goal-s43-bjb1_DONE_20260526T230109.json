@@ -1,0 +1,17 @@
+{
+  "exp_id": "smolvla-tau025-goal-s43-bjb1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:51:48.654Z",
+    "updated_at": "2026-05-26T23:01:08.202Z",
+    "hypothesis": "SmolVLA adaptive_conformal_crm (K=2, τ=0.25) on Goal s43. Central τ value provides baseline trigger rate. τ-sweep data point for Appendix tau sensitivity analysis. Migrated from westd-49937 to bjb1-18228.",
+    "conclusion": "killed",
+    "completed_at": "2026-05-26T23:01:08.202Z"
+  },
+  "timestamp": "2026-05-26T23:01:09.953395+00:00",
+  "trigger": "update_registry"
+}

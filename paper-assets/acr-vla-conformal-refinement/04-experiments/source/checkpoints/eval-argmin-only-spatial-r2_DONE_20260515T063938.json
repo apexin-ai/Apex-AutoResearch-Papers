@@ -1,0 +1,71 @@
+{
+  "exp_id": "eval-argmin-only-spatial-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:14:03.322Z",
+    "updated_at": "2026-05-15T06:39:37.926Z",
+    "hypothesis": "Restart from T9. ReconVLA baseline (scalar Euclidean argmin, K=10) on spatial. Isolate argmin base action selection from CRM correction.",
+    "parent": "eval-argmin-only-spatial",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode reconvla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --start_task 9",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 311609,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-argmin-only-spatial-r2.log",
+      "submitted_at": "2026-05-15T05:14:30.112Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO spatial",
+      "data_count": 10,
+      "model_name": "ReconVLA argmin K=10 (restart from T9)",
+      "seed": 42,
+      "eval_data": "LIBERO spatial task 9 only",
+      "checkpoint_source": "N/A (reconvla mode, no CRM)",
+      "wall_clock_seconds": 5107.8,
+      "gpu_hours": 1.42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T06:35:00.746Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T06:35:02.954210+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_success_rate": 0.34,
+      "total_successes": 34,
+      "total_trials": 100,
+      "per_task": {
+        "T0_between_plate_and_ramekin": 0.6,
+        "T1_next_to_ramekin": 1,
+        "T2_from_table_center": 0,
+        "T3_on_cookie_box": 0.3,
+        "T4_in_top_drawer": 0.1,
+        "T5_on_ramekin": 0.1,
+        "T6_next_to_cookie_box": 0.9,
+        "T7_on_stove": 0,
+        "T8_next_to_plate": 0.3,
+        "T9_on_wooden_cabinet": 0.1
+      },
+      "note": "T0-T8 from original run (eval-argmin-only-spatial), T9 from r2 restart. Combined 10-task result."
+    },
+    "conclusion": "success",
+    "notes": "10-task complete. T9 (wooden_cabinet) = 10%. Overall 34% (34/100). T0-T8 from original run, T9 from r2 restart. Clean exit. bjb1-18228 cuda:0 now FREE.",
+    "checkpoint_path": "N/A (eval-only, no checkpoint output)",
+    "completed_at": "2026-05-15T06:39:37.926Z"
+  },
+  "timestamp": "2026-05-15T06:39:38.092350+00:00",
+  "trigger": "update_registry"
+}

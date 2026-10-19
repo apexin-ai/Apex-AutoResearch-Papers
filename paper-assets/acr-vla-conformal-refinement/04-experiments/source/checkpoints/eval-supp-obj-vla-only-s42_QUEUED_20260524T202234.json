@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-obj-vla-only-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T20:18:57.232Z",
+    "updated_at": "2026-05-24T20:22:33.434Z",
+    "hypothesis": "SmolVLA vla_only baseline on LIBERO-Object seed42. Fills Table 1 data gap for multi-seed statistical analysis."
+  },
+  "timestamp": "2026-05-24T20:22:34.939062+00:00",
+  "trigger": "update_registry"
+}

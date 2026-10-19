@@ -1,0 +1,2195 @@
+# code verify ablation eval modes
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_code_verify-ablation-eval-modes_20260514T212546.log`
+- **Structured JSON:** [`dae78d5a29ab2e0355da.json`](../../sessions/da/dae78d5a29ab2e0355da.json)
+
+## Before a recorded user message
+
+46 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "cf92ec84-7f62-44a6-b84b-b64fec36bcc1",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778798400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "dd1039a8-ced4-45fc-aa9e-fc069af23f83",
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the evaluate.py and train_crm.py files from the server using ssh_read_only.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "99294820-0eba-4699-bc2f-d212b391c276",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JhNTbeR562rBDQauVSpkvL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11822,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11822
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+读取 evaluate.py 和 train_crm.py 源码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "e8b4d086-2b10-452e-8c3d-fd9eebbf1a3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JhNTbeR562rBDQauVSpkvL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11822,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11822
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FoY5WsijxvSEDxMqf2WQVC`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "ea5e00c4-ec93-4801-b965-6058d3f22c6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JhNTbeR562rBDQauVSpkvL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11822,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11822
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T21:25:57.046Z_
+
+<details><summary>↩ Tool result · `toolu_01FoY5WsijxvSEDxMqf2WQVC`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "741c18f8-7f10-42da-ac6a-1ca3c89cb3dc",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QveGYaVxY9GEqbm9u86NT8`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "d213e115-953c-4f1b-9297-8e9f765f104e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SZR5recDFrLSPVCXicxHKT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 23663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 751
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B6hbuygPhtkuZB56eoy8jo`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "b2e94b9a-ae24-4b37-9264-036a2984b26a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SZR5recDFrLSPVCXicxHKT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 23663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 751
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T21:26:01.474Z_
+
+<details><summary>↩ Tool result · `toolu_01QveGYaVxY9GEqbm9u86NT8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLIBERO evaluation script for ACR-VLA.\\n\\nRollout loop:\\n  1. Load LIBERO env + task suite\\n  2. Load SmolVLA (frozen) + CRM\\n  3. For each task, rollout N times:\\n     a. Reset env\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\n        → combine refined pose with gripper → execute 7D action\\n     c. Record success/failure\\n  4. Report per-task and overall success rate\\n\\nBaselines:\\n  - \\\"vla_only\\\": SmolVLA mean of K=10, no CRM refinement\\n  - \\\"crm_scalar\\\": CRM with scalar uncertainty (single std, not per-DOF)\\n  - \\\"crm_perdof\\\": CRM with full per-DOF uncertainty (ours)\\n  - \\\"acr_vla\\\": alias for crm_perdof — the full ACR-VLA pipeline\\n  - \\\"reconvla\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\n\\nUsage:\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\n\\\"\\\"\\\"\\nimport argparse\\nimport functools\\nbuiltins_print = print\\nprint = functools.partial(builtins_print, flush=True)\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport numpy as np\\nfrom robosuite.utils.transform_utils import quat2axisangle\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom aci import AdaptiveConformalInference\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\nfrom reconvla_baseline import reconvla_select\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Evaluate ACR-VLA on LIBERO\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n                   help=\\\"Path to CRM checkpoint (crm_best.pt)\\\")\\n    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n                   help=\\\"Alias for --checkpoint (used with --mode acr_vla)\\\")\\n    p.add_argument(\\\"--n_rollouts\\\", type=int, default=20)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=300,\\n                   help=\\\"Max steps per rollout\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--mode\\\", type=str, default=\\\"crm_perdof\\\",\\n                   choices=[\\\"vla_only\\\", \\\"crm_scalar\\\", \\\"crm_perdof\\\", \\\"acr_vla\\\", \\\"crm_obs_only\\\", \\\"reconvla\\\"])\\n    p.add_argument(\\\"--baseline_mode\\\", type=str, default=\\\"single\\\",\\n                   choices=[\\\"single\\\", \\\"mean\\\"],\\n                   help=\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--render\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--output_file\\\", type=str, default=None,\\n                   help=\\\"Save results JSON to this path\\\")\\n    p.add_argument('--max_correction_norm', type=float, default=None,\\n                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\n    return p.parse_args()\\n\\n\\ndef get_robot_state(obs):\\n    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n    eef_axisangle = quat2axisangle(obs[\\\"robot0_eef_quat\\\"])\\n    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\\n\\ndef load_libero_env(benchmark_name):\\n    \\\"\\\"\\\"Load LIBERO benchmark tasks and create environments.\\\"\\\"\\\"\\n    from libero.libero import benchmark as bm\\n    from libero.libero.e\\n\\n... [截断: 输出过长，省略 6467 字符] ...\\n\\n\\n            uncertainty_dim=unc_dim,\\n            obs_dim=args.obs_dim,\\n            hidden_dim=args.hidden_dim,\\n        ).to(device)\\n        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\n                                        weights_only=True))\\n        crm.eval()\\n        print(f\\\"[eval] CRM loaded from {args.checkpoint} \\\"\\n              f\\\"({crm.count_parameters():,} params)\\\")\\n\\n    # Override max_correction_norm if specified\\n    if args.max_correction_norm is not None and crm is not None:\\n        crm.max_correction_norm = args.max_correction_norm\\n        print(f\\\"[eval] Override max_correction_norm = {args.max_correction_norm}\\\")\\n\\n    # ACI for online alpha tracking\\n    aci = AdaptiveConformalInference()\\n\\n    # Load LIBERO envs\\n    print(f\\\"[eval] Loading LIBERO {args.benchmark} environments...\\\")\\n    task_envs = load_libero_env(args.benchmark)\\n    print(f\\\"[eval] {len(task_envs)} tasks loaded.\\\")\\n\\n    # Rollout\\n    results = {}\\n    overall_successes = 0\\n    overall_total = 0\\n\\n    for task_info in task_envs:\\n        task_name = task_info[\\\"task_name\\\"]\\n        task_desc = task_info[\\\"task_description\\\"]\\n        env = task_info[\\\"env\\\"]\\n        init_states = task_info[\\\"init_states\\\"]\\n\\n        aci.reset()\\n        task_successes = 0\\n\\n        for r in range(args.n_rollouts):\\n            init_state = init_states[r % len(init_states)]\\n\\n            if args.mode == \\\"vla_only\\\":\\n                action_fn = lambda obs: select_action_vla_only(\\n                    wrapper, obs, task_desc, args.K, cgs\\n                )\\n            elif args.mode == \\\"reconvla\\\":\\n                action_fn = lambda obs: select_action_reconvla(\\n                    wrapper, obs, task_desc, args.K\\n                )\\n            else:\\n                action_fn = lambda obs: select_action_crm(\\n                    wrapper, obs, task_desc, args.K, cgs, crm, device, args.mode\\n                )\\n\\n            success, steps = rollout_single(env, init_state, action_fn,\\n                                            max_steps=args.max_steps)\\n            task_successes += int(success)\\n            overall_successes += int(success)\\n            overall_total += 1\\n\\n            if (r + 1) % 5 == 0:\\n                print(f\\\"  {task_name}: rollout {r+1}/{args.n_rollouts}, \\\"\\n                      f\\\"success so far: {task_successes}/{r+1}\\\")\\n\\n        task_rate = task_successes / args.n_rollouts\\n        results[task_name] = {\\n            \\\"success_rate\\\": task_rate,\\n            \\\"successes\\\": task_successes,\\n            \\\"total\\\": args.n_rollouts,\\n        }\\n        print(f\\\"[{task_name}] success rate: {task_rate:.1%} \\\"\\n              f\\\"({task_successes}/{args.n_rollouts})\\\")\\n\\n        env.close()\\n\\n    overall_rate = overall_successes / max(overall_total, 1)\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Overall success rate ({args.mode}): {overall_rate:.1%} \\\"\\n          f\\\"({overall_successes}/{overall_total})\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    # Save results\\n    summary = {\\n        \\\"mode\\\": args.mode,\\n        \\\"baseline_mode\\\": getattr(args, \\\"baseline_mode\\\", \\\"single\\\"),\\n        \\\"benchmark\\\": args.benchmark,\\n        \\\"n_rollouts\\\": args.n_rollouts,\\n        \\\"overall_success_rate\\\": overall_rate,\\n        \\\"per_task\\\": results,\\n    }\\n\\n    if args.output_file:\\n        out_path = Path(args.output_file)\\n        out_path.parent.mkdir(parents=True, exist_ok=True)\\n        out_path.write_text(json.dumps(summary, indent=2))\\n        print(f\\\"[eval] Results saved to {args.output_file}\\\")\\n\\n    return summary\\n\\n\\ndef main():\\n    def _segfault_handler(signum, frame):\\n        print(f\\\"[evaluate] FATAL: caught signal {signum} (segfault)\\\", flush=True)\\n        sys.exit(139)\\n\\n    signal.signal(signal.SIGSEGV, _segfault_handler)\\n\\n    args = parse_args()\\n    if args.mode == \\\"vla_only\\\":\\n        if args.baseline_mode == \\\"single\\\":\\n            args.K = 1\\n        elif args.baseline_mode == \\\"mean\\\":\\n            args.K = 10\\n    print(f\\\"[evaluate] args: {vars(args)}\\\", flush=True)\\n    evaluate(args)\\n    sys.exit(0)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "a8eaf328-db49-4c98-b497-af8444a44a98",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO evaluation script for ACR-VLA.\\\\n\\\\nRollout loop:\\\\n  1. Load LIBERO env + task suite\\\\n  2. Load SmolVLA (frozen) + CRM\\\\n  3. For each task, rollout N times:\\\\n     a. Reset env\\\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\\\n        → combine refined pose with gripper → execute 7D action\\\\n     c. Record success/failure\\\\n  4. Report per-task and overall success rate\\\\n\\\\nBaselines:\\\\n  - \\\\\\\"vla_only\\\\\\\": SmolVLA mean of K=10, no CRM refinement\\\\n  - \\\\\\\"crm_scalar\\\\\\\": CRM with scalar uncertainty (single std, not per-DOF)\\\\n  - \\\\\\\"crm_perdof\\\\\\\": CRM with full per-DOF uncertainty (ours)\\\\n  - \\\\\\\"acr_vla\\\\\\\": alias for crm_perdof — the full ACR-VLA pipeline\\\\n  - \\\\\\\"reconvla\\\\\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\\\n\\\\nUsage:\\\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport functools\\\\nbuiltins_print = print\\\\nprint = functools.partial(builtins_print, flush=True)\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nimport traceback\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nfrom robosuite.utils.transform_utils import quat2axisangle\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom cgs import ConformilizedGaussianScoring\\\\nfrom crm import ConformalRefinementModule\\\\nfrom aci import AdaptiveConformalInference\\\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\\\nfrom reconvla_baseline import reconvla_select\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Evaluate ACR-VLA on LIBERO\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=\\\\\\\"object\\\\\\\",\\\\n                   choices=[\\\\\\\"object\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"90\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Path to CRM checkpoint (crm_best.pt)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Alias for --checkpoint (used with --mode acr_vla)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--n_rollouts\\\\\\\", type=int, default=20)\\\\n    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=300,\\\\n                   help=\\\\\\\"Max steps per rollout\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--K\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--mode\\\\\\\", type=str, default=\\\\\\\"crm_perdof\\\\\\\",\\\\n                   choices=[\\\\\\\"vla_only\\\\\\\", \\\\\\\"crm_scalar\\\\\\\", \\\\\\\"crm_perdof\\\\\\\", \\\\\\\"acr_vla\\\\\\\", \\\\\\\"crm_obs_only\\\\\\\", \\\\\\\"reconvla\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=\\\\\\\"single\\\\\\\",\\\\n                   choices=[\\\\\\\"single\\\\\\\", \\\\\\\"mean\\\\\\\"],\\\\n                   help=\\\\\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--smolvla_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--obs_dim\\\\\\\", type=int, default=OBS_DIM)\\\\n    p.add_argument(\\\\\\\"--hidden_dim\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--render\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_file\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Save results JSON to this path\\\\\\\")\\\\n    p.add_argument('--max_correction_norm', type=float, default=None,\\\\n                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef get_robot_state(obs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    eef_pos = obs[\\\\\\\"robot0_eef_pos\\\\\\\"]\\\\n    eef_axisangle = quat2axisangle(obs[\\\\\\\"robot0_eef_quat\\\\\\\"])\\\\n    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\\\n\\\\n\\\\ndef load_libero_env(benchmark_name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load LIBERO benchmark tasks and create environments.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from libero.libero import benchmark as bm\\\\n    from libero.libero.e\\\\n\\\\n... [截断: 输出过长，省略 6467 字符] ...\\\\n\\\\n\\\\n            uncertainty_dim=unc_dim,\\\\n            obs_dim=args.obs_dim,\\\\n            hidden_dim=args.hidden_dim,\\\\n        ).to(device)\\\\n        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\\\n                                        weights_only=True))\\\\n        crm.eval()\\\\n        print(f\\\\\\\"[eval] CRM loaded from {args.checkpoint} \\\\\\\"\\\\n              f\\\\\\\"({crm.count_parameters():,} params)\\\\\\\")\\\\n\\\\n    # Override max_correction_norm if specified\\\\n    if args.max_correction_norm is not None and crm is not None:\\\\n        crm.max_correction_norm = args.max_correction_norm\\\\n        print(f\\\\\\\"[eval] Override max_correction_norm = {args.max_correction_norm}\\\\\\\")\\\\n\\\\n    # ACI for online alpha tracking\\\\n    aci = AdaptiveConformalInference()\\\\n\\\\n    # Load LIBERO envs\\\\n    print(f\\\\\\\"[eval] Loading LIBERO {args.benchmark} environments...\\\\\\\")\\\\n    task_envs = load_libero_env(args.benchmark)\\\\n    print(f\\\\\\\"[eval] {len(task_envs)} tasks loaded.\\\\\\\")\\\\n\\\\n    # Rollout\\\\n    results = {}\\\\n    overall_successes = 0\\\\n    overall_total = 0\\\\n\\\\n    for task_info in task_envs:\\\\n        task_name = task_info[\\\\\\\"task_name\\\\\\\"]\\\\n        task_desc = task_info[\\\\\\\"task_description\\\\\\\"]\\\\n        env = task_info[\\\\\\\"env\\\\\\\"]\\\\n        init_states = task_info[\\\\\\\"init_states\\\\\\\"]\\\\n\\\\n        aci.reset()\\\\n        task_successes = 0\\\\n\\\\n        for r in range(args.n_rollouts):\\\\n            init_state = init_states[r % len(init_states)]\\\\n\\\\n            if args.mode == \\\\\\\"vla_only\\\\\\\":\\\\n                action_fn = lambda obs: select_action_vla_only(\\\\n                    wrapper, obs, task_desc, args.K, cgs\\\\n                )\\\\n            elif args.mode == \\\\\\\"reconvla\\\\\\\":\\\\n                action_fn = lambda obs: select_action_reconvla(\\\\n                    wrapper, obs, task_desc, args.K\\\\n                )\\\\n            else:\\\\n                action_fn = lambda obs: select_action_crm(\\\\n                    wrapper, obs, task_desc, args.K, cgs, crm, device, args.mode\\\\n                )\\\\n\\\\n            success, steps = rollout_single(env, init_state, action_fn,\\\\n                                            max_steps=args.max_steps)\\\\n            task_successes += int(success)\\\\n            overall_successes += int(success)\\\\n            overall_total += 1\\\\n\\\\n            if (r + 1) % 5 == 0:\\\\n                print(f\\\\\\\"  {task_name}: rollout {r+1}/{args.n_rollouts}, \\\\\\\"\\\\n                      f\\\\\\\"success so far: {task_successes}/{r+1}\\\\\\\")\\\\n\\\\n        task_rate = task_successes / args.n_rollouts\\\\n        results[task_name] = {\\\\n            \\\\\\\"success_rate\\\\\\\": task_rate,\\\\n            \\\\\\\"successes\\\\\\\": task_successes,\\\\n            \\\\\\\"total\\\\\\\": args.n_rollouts,\\\\n        }\\\\n        print(f\\\\\\\"[{task_name}] success rate: {task_rate:.1%} \\\\\\\"\\\\n              f\\\\\\\"({task_successes}/{args.n_rollouts})\\\\\\\")\\\\n\\\\n        env.close()\\\\n\\\\n    overall_rate = overall_successes / max(overall_total, 1)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Overall success rate ({args.mode}): {overall_rate:.1%} \\\\\\\"\\\\n          f\\\\\\\"({overall_successes}/{overall_total})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    # Save results\\\\n    summary = {\\\\n        \\\\\\\"mode\\\\\\\": args.mode,\\\\n        \\\\\\\"baseline_mode\\\\\\\": getattr(args, \\\\\\\"baseline_mode\\\\\\\", \\\\\\\"single\\\\\\\"),\\\\n        \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n        \\\\\\\"n_rollouts\\\\\\\": args.n_rollouts,\\\\n        \\\\\\\"overall_success_rate\\\\\\\": overall_rate,\\\\n        \\\\\\\"per_task\\\\\\\": results,\\\\n    }\\\\n\\\\n    if args.output_file:\\\\n        out_path = Path(args.output_file)\\\\n        out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n        out_path.write_text(json.dumps(summary, indent=2))\\\\n        print(f\\\\\\\"[eval] Results saved to {args.output_file}\\\\\\\")\\\\n\\\\n    return summary\\\\n\\\\n\\\\ndef main():\\\\n    def _segfault_handler(signum, frame):\\\\n        print(f\\\\\\\"[evaluate] FATAL: caught signal {signum} (segfault)\\\\\\\", flush=True)\\\\n        sys.exit(139)\\\\n\\\\n    signal.signal(signal.SIGSEGV, _segfault_handler)\\\\n\\\\n    args = parse_args()\\\\n    if args.mode == \\\\\\\"vla_only\\\\\\\":\\\\n        if args.baseline_mode == \\\\\\\"single\\\\\\\":\\\\n            args.K = 1\\\\n        elif args.baseline_mode == \\\\\\\"mean\\\\\\\":\\\\n            args.K = 10\\\\n    print(f\\\\\\\"[evaluate] args: {vars(args)}\\\\\\\", flush=True)\\\\n    evaluate(args)\\\\n    sys.exit(0)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLIBERO evaluation script for ACR-VLA.\\n\\nRollout loop:\\n  1. Load LIBERO env + task suite\\n  2. Load SmolVLA (frozen) + CRM\\n  3. For each task, rollout N times:\\n     a. Reset env\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\n        → combine refined pose with gripper → execute 7D action\\n     c. Record success/failure\\n  4. Report per-task and overall success rate\\n\\nBaselines:\\n  - \\\"vla_only\\\": SmolVLA mean of K=10, no CRM refinement\\n  - \\\"crm_scalar\\\": CRM with scalar uncertainty (single std, not per-DOF)\\n  - \\\"crm_perdof\\\": CRM with full per-DOF uncertainty (ours)\\n  - \\\"acr_vla\\\": alias for crm_perdof — the full ACR-VLA pipeline\\n  - \\\"reconvla\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\n\\nUsage:\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\n\\\"\\\"\\\"\\nimport argparse\\nimport functools\\nbuiltins_print = print\\nprint = functools.partial(builtins_print, flush=True)\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport numpy as np\\nfrom robosuite.utils.transform_utils import quat2axisangle\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom aci import AdaptiveConformalInference\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\nfrom reconvla_baseline import reconvla_select\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Evaluate ACR-VLA on LIBERO\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n                   help=\\\"Path to CRM checkpoint (crm_best.pt)\\\")\\n    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n                   help=\\\"Alias for --checkpoint (used with --mode acr_vla)\\\")\\n    p.add_argument(\\\"--n_rollouts\\\", type=int, default=20)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=300,\\n                   help=\\\"Max steps per rollout\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--mode\\\", type=str, default=\\\"crm_perdof\\\",\\n                   choices=[\\\"vla_only\\\", \\\"crm_scalar\\\", \\\"crm_perdof\\\", \\\"acr_vla\\\", \\\"crm_obs_only\\\", \\\"reconvla\\\"])\\n    p.add_argument(\\\"--baseline_mode\\\", type=str, default=\\\"single\\\",\\n                   choices=[\\\"single\\\", \\\"mean\\\"],\\n                   help=\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--render\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--output_file\\\", type=str, default=None,\\n                   help=\\\"Save results JSON to this path\\\")\\n    p.add_argument('--max_correction_norm', type=float, default=None,\\n                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\n    return p.parse_args()\\n\\n\\ndef get_robot_state(obs):\\n    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n    eef_axisangle = quat2axisangle(obs[\\\"robot0_eef_quat\\\"])\\n    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\\n\\ndef load_libero_env(benchmark_name):\\n    \\\"\\\"\\\"Load LIBERO benchmark tasks and create environments.\\\"\\\"\\\"\\n    from libero.libero import benchmark as bm\\n    from libero.libero.e\\n\\n... [截断: 输出过长，省略 6467 字符] ...\\n\\n\\n            uncertainty_dim=unc_dim,\\n            obs_dim=args.obs_dim,\\n            hidden_dim=args.hidden_dim,\\n        ).to(device)\\n        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\n                                        weights_only=True))\\n        crm.eval()\\n        print(f\\\"[eval] CRM loaded from {args.checkpoint} \\\"\\n              f\\\"({crm.count_parameters():,} params)\\\")\\n\\n    # Override max_correction_norm if specified\\n    if args.max_correction_norm is not None and crm is not None:\\n        crm.max_correction_norm = args.max_correction_norm\\n        print(f\\\"[eval] Override max_correction_norm = {args.max_correction_norm}\\\")\\n\\n    # ACI for online alpha tracking\\n    aci = AdaptiveConformalInference()\\n\\n    # Load LIBERO envs\\n    print(f\\\"[eval] Loading LIBERO {args.benchmark} environments...\\\")\\n    task_envs = load_libero_env(args.benchmark)\\n    print(f\\\"[eval] {len(task_envs)} tasks loaded.\\\")\\n\\n    # Rollout\\n    results = {}\\n    overall_successes = 0\\n    overall_total = 0\\n\\n    for task_info in task_envs:\\n        task_name = task_info[\\\"task_name\\\"]\\n        task_desc = task_info[\\\"task_description\\\"]\\n        env = task_info[\\\"env\\\"]\\n        init_states = task_info[\\\"init_states\\\"]\\n\\n        aci.reset()\\n        task_successes = 0\\n\\n        for r in range(args.n_rollouts):\\n            init_state = init_states[r % len(init_states)]\\n\\n            if args.mode == \\\"vla_only\\\":\\n                action_fn = lambda obs: select_action_vla_only(\\n                    wrapper, obs, task_desc, args.K, cgs\\n                )\\n            elif args.mode == \\\"reconvla\\\":\\n                action_fn = lambda obs: select_action_reconvla(\\n                    wrapper, obs, task_desc, args.K\\n                )\\n            else:\\n                action_fn = lambda obs: select_action_crm(\\n                    wrapper, obs, task_desc, args.K, cgs, crm, device, args.mode\\n                )\\n\\n            success, steps = rollout_single(env, init_state, action_fn,\\n                                            max_steps=args.max_steps)\\n            task_successes += int(success)\\n            overall_successes += int(success)\\n            overall_total += 1\\n\\n            if (r + 1) % 5 == 0:\\n                print(f\\\"  {task_name}: rollout {r+1}/{args.n_rollouts}, \\\"\\n                      f\\\"success so far: {task_successes}/{r+1}\\\")\\n\\n        task_rate = task_successes / args.n_rollouts\\n        results[task_name] = {\\n            \\\"success_rate\\\": task_rate,\\n            \\\"successes\\\": task_successes,\\n            \\\"total\\\": args.n_rollouts,\\n        }\\n        print(f\\\"[{task_name}] success rate: {task_rate:.1%} \\\"\\n              f\\\"({task_successes}/{args.n_rollouts})\\\")\\n\\n        env.close()\\n\\n    overall_rate = overall_successes / max(overall_total, 1)\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Overall success rate ({args.mode}): {overall_rate:.1%} \\\"\\n          f\\\"({overall_successes}/{overall_total})\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    # Save results\\n    summary = {\\n        \\\"mode\\\": args.mode,\\n        \\\"baseline_mode\\\": getattr(args, \\\"baseline_mode\\\", \\\"single\\\"),\\n        \\\"benchmark\\\": args.benchmark,\\n        \\\"n_rollouts\\\": args.n_rollouts,\\n        \\\"overall_success_rate\\\": overall_rate,\\n        \\\"per_task\\\": results,\\n    }\\n\\n    if args.output_file:\\n        out_path = Path(args.output_file)\\n        out_path.parent.mkdir(parents=True, exist_ok=True)\\n        out_path.write_text(json.dumps(summary, indent=2))\\n        print(f\\\"[eval] Results saved to {args.output_file}\\\")\\n\\n    return summary\\n\\n\\ndef main():\\n    def _segfault_handler(signum, frame):\\n        print(f\\\"[evaluate] FATAL: caught signal {signum} (segfault)\\\", flush=True)\\n        sys.exit(139)\\n\\n    signal.signal(signal.SIGSEGV, _segfault_handler)\\n\\n    args = parse_args()\\n    if args.mode == \\\"vla_only\\\":\\n        if args.baseline_mode == \\\"single\\\":\\n            args.K = 1\\n        elif args.baseline_mode == \\\"mean\\\":\\n            args.K = 10\\n    print(f\\\"[evaluate] args: {vars(args)}\\\", flush=True)\\n    evaluate(args)\\n    sys.exit(0)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T21:26:01.904Z_
+
+<details><summary>↩ Tool result · `toolu_01B6hbuygPhtkuZB56eoy8jo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCRM training script.\\n\\nTwo-phase approach:\\n  Phase 1 (--precompute): Run frozen SmolVLA on LIBERO demos, cache\\n      (obs_features, K_samples, expert_action) to disk.\\n  Phase 2 (default): Load cached features, train CRM with MSE loss +\\n      synthetic augmentation.\\n\\nUsage:\\n  # Phase 1: precompute features (slow, GPU-heavy)\\n  python train_crm.py --precompute --benchmark object\\n\\n  # Phase 2: train CRM (fast)\\n  python train_crm.py --benchmark object --epochs 50\\n\\n  # End-to-end (precompute if cache missing, then train)\\n  python train_crm.py --benchmark object --epochs 50 --auto\\n\\\"\\\"\\\"\\nimport argparse\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset, DataLoader\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom utils import (\\n    set_seed, load_libero_demos, build_training_samples,\\n    synthetic_augmentation, CheckpointManager,\\n    CORRECTION_DIM, H_EFF, OBS_DIM, CHUNK_SIZE,\\n)\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train CRM on LIBERO demos\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, nargs='+', default=[\\\"spatial\\\"],\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=32)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--output_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/checkpoints/crm/\\\")\\n    p.add_argument(\\\"--cache_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/crm_cache/\\\")\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--aug_noise_min\\\", type=float, default=0.02)\\n    p.add_argument(\\\"--aug_noise_max\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--aug_ratio\\\", type=float, default=0.5,\\n                   help=\\\"fraction of batch to augment\\\")\\n    p.add_argument(\\\"--precompute\\\", action=\\\"store_true\\\",\\n                   help=\\\"only precompute features, don't train\\\")\\n    p.add_argument(\\\"--auto\\\", action=\\\"store_true\\\",\\n                   help=\\\"precompute if cache missing, then train\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--max_demos_per_task\\\", type=int, default=50)\\n    p.add_argument(\\\"--val_split\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--log_every\\\", type=int, default=50)\\n    p.add_argument(\\\"--precompute_batch_size\\\", type=int, default=4,\\n                   help=\\\"batch size for SmolVLA forward during precompute\\\")\\n    p.add_argument(\\\"--save_every\\\", type=int, default=500,\\n                   help=\\\"save partial cache every N samples\\\")\\n    p.add_argument(\\\"--shard_id\\\", type=int, default=0,\\n                   help=\\\"shard ID for parallel precompute (0-based)\\\")\\n    p.add_argument(\\\"--num_shards\\\", type=int, default=1,\\n                   help=\\\"total number of shards for parallel precompute\\\")\\n    p.add_argument(\\\"--input_mode\\\", type=str, default=\\\"full\\\",\\n                   choices=[\\\"full\\\", \\\"obs_only\\\", \\\"scalar_unc\\\"],\\n                   help=\\\"full=all features, obs_only=no conformal, scalar_unc=scalar uncertainty\\\")\\n    return p.parse_args()\\n\\n\\n# ── Precomputation ──────────────────────────────────────────────────\\n\\ndef precompute_features(args):\\n    \\\"\\\"\\\"Run frozen SmolVLA on all demo timesteps, save features to disk.\\\"\\\"\\\"\\n    from smolvla_wrapper import SmolVLAWrapper\\n\\n    benchmarks_to_run = []\\n    for bm in args.benchmark:\\n        cache_dir = Path(args.cache_dir) / bm\\n        if (cache_dir / \\\"manifest.json\\\").exists():\\n            print(f\\\"[precompute] \\n\\n... [截断: 输出过长，省略 12797 字符] ...\\n\\n obs_feat = batch[\\\"obs_features\\\"].to(device)       # (B, 960)\\n            k_samp = batch[\\\"k_samples\\\"].to(device)             # (B, K, H, D)\\n            expert = batch[\\\"expert_action\\\"].to(device)         # (B, H, D)\\n            expert_flat = expert.reshape(expert.shape[0], -1)  # (B, 30)\\n\\n            # CGS (uncertainty features only — base action is argmin-selected, not mean)\\n            uf, _mean = cgs.compute_features_batch(k_samp)\\n            if scalar_unc:\\n                uf = _to_scalar_uf(uf)\\n            uf = uf.to(device)\\n            ba = _argmin_base_action(k_samp).to(device)  # (B, 30)\\n\\n            # CRM forward\\n            refined = crm(ba, None if obs_only else uf, obs_feat)\\n            loss = loss_fn(refined, expert_flat)\\n\\n            # Synthetic augmentation: perturb inputs, keep clean target\\n            n_aug = int(obs_feat.shape[0] * args.aug_ratio)\\n            if n_aug > 0:\\n                ba_noise = noise_scale.repeat(H_EFF)\\n                aug_ba = ba[:n_aug] + torch.randn_like(ba[:n_aug]) * ba_noise\\n                aug_uf = uf[:n_aug] + torch.randn_like(uf[:n_aug]) * noise_scale.mean() * 0.1\\n                aug_refined = crm(aug_ba, None if obs_only else aug_uf, obs_feat[:n_aug])\\n                aug_loss = loss_fn(aug_refined, expert_flat[:n_aug])\\n                loss = loss + 0.5 * aug_loss\\n\\n            optimizer.zero_grad()\\n            loss.backward()\\n            torch.nn.utils.clip_grad_norm_(crm.parameters(), 1.0)\\n            optimizer.step()\\n\\n            epoch_loss += loss.item()\\n            n_batches += 1\\n\\n            if (batch_idx + 1) % args.log_every == 0:\\n                print(f\\\"  epoch {epoch} batch {batch_idx+1}/{len(train_loader)} \\\"\\n                      f\\\"loss={loss.item():.6f}\\\")\\n\\n        scheduler.step()\\n        avg_train_loss = epoch_loss / max(n_batches, 1)\\n\\n        # ── Validate ──\\n        crm.eval()\\n        val_loss = 0.0\\n        n_val_batches = 0\\n        with torch.no_grad():\\n            for batch in val_loader:\\n                obs_feat = batch[\\\"obs_features\\\"].to(device)\\n                k_samp = batch[\\\"k_samples\\\"].to(device)\\n                expert = batch[\\\"expert_action\\\"].to(device)\\n                expert_flat = expert.reshape(expert.shape[0], -1)\\n\\n                uf, _mean = cgs.compute_features_batch(k_samp)\\n                if scalar_unc:\\n                    uf = _to_scalar_uf(uf)\\n                uf = uf.to(device)\\n                ba = _argmin_base_action(k_samp).to(device)\\n\\n                refined = crm(ba, None if obs_only else uf, obs_feat)\\n                val_loss += loss_fn(refined, expert_flat).item()\\n                n_val_batches += 1\\n\\n        avg_val_loss = val_loss / max(n_val_batches, 1)\\n\\n        print(f\\\"Epoch {epoch}/{args.epochs}  \\\"\\n              f\\\"train_loss={avg_train_loss:.6f}  \\\"\\n              f\\\"val_loss={avg_val_loss:.6f}  \\\"\\n              f\\\"lr={scheduler.get_last_lr()[0]:.2e}\\\")\\n\\n        metrics = {\\\"train_loss\\\": avg_train_loss, \\\"val_loss\\\": avg_val_loss}\\n        ckpt_mgr.save(crm, optimizer, epoch, metrics)\\n\\n        if avg_val_loss < best_val_loss:\\n            best_val_loss = avg_val_loss\\n            torch.save(crm.state_dict(),\\n                       Path(args.output_dir) / \\\"crm_best.pt\\\")\\n            print(f\\\"  → New best val_loss: {best_val_loss:.6f}\\\")\\n\\n    print(f\\\"\\\\n[train] Done. Best val_loss={best_val_loss:.6f}\\\")\\n    print(f\\\"[train] Checkpoints at {args.output_dir}\\\")\\n\\n\\ndef main():\\n    args = parse_args()\\n    print(f\\\"[train_crm] args: {vars(args)}\\\")\\n    print(f\\\"[train_crm] device: {'cuda' if torch.cuda.is_available() else 'cpu'}\\\")\\n\\n    if args.precompute:\\n        precompute_features(args)\\n        return\\n\\n    if args.auto:\\n        needs_precompute = any(\\n            not (Path(args.cache_dir) / bm / \\\"manifest.json\\\").exists()\\n            for bm in args.benchmark\\n        )\\n        if needs_precompute:\\n            print(\\\"[auto] Cache not found for some benchmarks, precomputing...\\\")\\n            precompute_features(args)\\n\\n    train(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "a481d6ef-531c-4fa2-96d2-03ff2ca2af9a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nCRM training script.\\\\n\\\\nTwo-phase approach:\\\\n  Phase 1 (--precompute): Run frozen SmolVLA on LIBERO demos, cache\\\\n      (obs_features, K_samples, expert_action) to disk.\\\\n  Phase 2 (default): Load cached features, train CRM with MSE loss +\\\\n      synthetic augmentation.\\\\n\\\\nUsage:\\\\n  # Phase 1: precompute features (slow, GPU-heavy)\\\\n  python train_crm.py --precompute --benchmark object\\\\n\\\\n  # Phase 2: train CRM (fast)\\\\n  python train_crm.py --benchmark object --epochs 50\\\\n\\\\n  # End-to-end (precompute if cache missing, then train)\\\\n  python train_crm.py --benchmark object --epochs 50 --auto\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nimport traceback\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom cgs import ConformilizedGaussianScoring\\\\nfrom crm import ConformalRefinementModule\\\\nfrom utils import (\\\\n    set_seed, load_libero_demos, build_training_samples,\\\\n    synthetic_augmentation, CheckpointManager,\\\\n    CORRECTION_DIM, H_EFF, OBS_DIM, CHUNK_SIZE,\\\\n)\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train CRM on LIBERO demos\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, nargs='+', default=[\\\\\\\"spatial\\\\\\\"],\\\\n                   choices=[\\\\\\\"object\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"90\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--epochs\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=32)\\\\n    p.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=1e-3)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str,\\\\n                   default=\\\\\\\"/root/autodl-tmp/checkpoints/crm/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--cache_dir\\\\\\\", type=str,\\\\n                   default=\\\\\\\"/root/autodl-tmp/crm_cache/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--K\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--obs_dim\\\\\\\", type=int, default=OBS_DIM)\\\\n    p.add_argument(\\\\\\\"--hidden_dim\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--aug_noise_min\\\\\\\", type=float, default=0.02)\\\\n    p.add_argument(\\\\\\\"--aug_noise_max\\\\\\\", type=float, default=0.1)\\\\n    p.add_argument(\\\\\\\"--aug_ratio\\\\\\\", type=float, default=0.5,\\\\n                   help=\\\\\\\"fraction of batch to augment\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--precompute\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"only precompute features, don't train\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--auto\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"precompute if cache missing, then train\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--smolvla_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_demos_per_task\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--val_split\\\\\\\", type=float, default=0.1)\\\\n    p.add_argument(\\\\\\\"--log_every\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--precompute_batch_size\\\\\\\", type=int, default=4,\\\\n                   help=\\\\\\\"batch size for SmolVLA forward during precompute\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--save_every\\\\\\\", type=int, default=500,\\\\n                   help=\\\\\\\"save partial cache every N samples\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--shard_id\\\\\\\", type=int, default=0,\\\\n                   help=\\\\\\\"shard ID for parallel precompute (0-based)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_shards\\\\\\\", type=int, default=1,\\\\n                   help=\\\\\\\"total number of shards for parallel precompute\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--input_mode\\\\\\\", type=str, default=\\\\\\\"full\\\\\\\",\\\\n                   choices=[\\\\\\\"full\\\\\\\", \\\\\\\"obs_only\\\\\\\", \\\\\\\"scalar_unc\\\\\\\"],\\\\n                   help=\\\\\\\"full=all features, obs_only=no conformal, scalar_unc=scalar uncertainty\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\n# ── Precomputation ──────────────────────────────────────────────────\\\\n\\\\ndef precompute_features(args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run frozen SmolVLA on all demo timesteps, save features to disk.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from smolvla_wrapper import SmolVLAWrapper\\\\n\\\\n    benchmarks_to_run = []\\\\n    for bm in args.benchmark:\\\\n        cache_dir = Path(args.cache_dir) / bm\\\\n        if (cache_dir / \\\\\\\"manifest.json\\\\\\\").exists():\\\\n            print(f\\\\\\\"[precompute] \\\\n\\\\n... [截断: 输出过长，省略 12797 字符] ...\\\\n\\\\n obs_feat = batch[\\\\\\\"obs_features\\\\\\\"].to(device)       # (B, 960)\\\\n            k_samp = batch[\\\\\\\"k_samples\\\\\\\"].to(device)             # (B, K, H, D)\\\\n            expert = batch[\\\\\\\"expert_action\\\\\\\"].to(device)         # (B, H, D)\\\\n            expert_flat = expert.reshape(expert.shape[0], -1)  # (B, 30)\\\\n\\\\n            # CGS (uncertainty features only — base action is argmin-selected, not mean)\\\\n            uf, _mean = cgs.compute_features_batch(k_samp)\\\\n            if scalar_unc:\\\\n                uf = _to_scalar_uf(uf)\\\\n            uf = uf.to(device)\\\\n            ba = _argmin_base_action(k_samp).to(device)  # (B, 30)\\\\n\\\\n            # CRM forward\\\\n            refined = crm(ba, None if obs_only else uf, obs_feat)\\\\n            loss = loss_fn(refined, expert_flat)\\\\n\\\\n            # Synthetic augmentation: perturb inputs, keep clean target\\\\n            n_aug = int(obs_feat.shape[0] * args.aug_ratio)\\\\n            if n_aug > 0:\\\\n                ba_noise = noise_scale.repeat(H_EFF)\\\\n                aug_ba = ba[:n_aug] + torch.randn_like(ba[:n_aug]) * ba_noise\\\\n                aug_uf = uf[:n_aug] + torch.randn_like(uf[:n_aug]) * noise_scale.mean() * 0.1\\\\n                aug_refined = crm(aug_ba, None if obs_only else aug_uf, obs_feat[:n_aug])\\\\n                aug_loss = loss_fn(aug_refined, expert_flat[:n_aug])\\\\n                loss = loss + 0.5 * aug_loss\\\\n\\\\n            optimizer.zero_grad()\\\\n            loss.backward()\\\\n            torch.nn.utils.clip_grad_norm_(crm.parameters(), 1.0)\\\\n            optimizer.step()\\\\n\\\\n            epoch_loss += loss.item()\\\\n            n_batches += 1\\\\n\\\\n            if (batch_idx + 1) % args.log_every == 0:\\\\n                print(f\\\\\\\"  epoch {epoch} batch {batch_idx+1}/{len(train_loader)} \\\\\\\"\\\\n                      f\\\\\\\"loss={loss.item():.6f}\\\\\\\")\\\\n\\\\n        scheduler.step()\\\\n        avg_train_loss = epoch_loss / max(n_batches, 1)\\\\n\\\\n        # ── Validate ──\\\\n        crm.eval()\\\\n        val_loss = 0.0\\\\n        n_val_batches = 0\\\\n        with torch.no_grad():\\\\n            for batch in val_loader:\\\\n                obs_feat = batch[\\\\\\\"obs_features\\\\\\\"].to(device)\\\\n                k_samp = batch[\\\\\\\"k_samples\\\\\\\"].to(device)\\\\n                expert = batch[\\\\\\\"expert_action\\\\\\\"].to(device)\\\\n                expert_flat = expert.reshape(expert.shape[0], -1)\\\\n\\\\n                uf, _mean = cgs.compute_features_batch(k_samp)\\\\n                if scalar_unc:\\\\n                    uf = _to_scalar_uf(uf)\\\\n                uf = uf.to(device)\\\\n                ba = _argmin_base_action(k_samp).to(device)\\\\n\\\\n                refined = crm(ba, None if obs_only else uf, obs_feat)\\\\n                val_loss += loss_fn(refined, expert_flat).item()\\\\n                n_val_batches += 1\\\\n\\\\n        avg_val_loss = val_loss / max(n_val_batches, 1)\\\\n\\\\n        print(f\\\\\\\"Epoch {epoch}/{args.epochs}  \\\\\\\"\\\\n              f\\\\\\\"train_loss={avg_train_loss:.6f}  \\\\\\\"\\\\n              f\\\\\\\"val_loss={avg_val_loss:.6f}  \\\\\\\"\\\\n              f\\\\\\\"lr={scheduler.get_last_lr()[0]:.2e}\\\\\\\")\\\\n\\\\n        metrics = {\\\\\\\"train_loss\\\\\\\": avg_train_loss, \\\\\\\"val_loss\\\\\\\": avg_val_loss}\\\\n        ckpt_mgr.save(crm, optimizer, epoch, metrics)\\\\n\\\\n        if avg_val_loss < best_val_loss:\\\\n            best_val_loss = avg_val_loss\\\\n            torch.save(crm.state_dict(),\\\\n                       Path(args.output_dir) / \\\\\\\"crm_best.pt\\\\\\\")\\\\n            print(f\\\\\\\"  → New best val_loss: {best_val_loss:.6f}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n[train] Done. Best val_loss={best_val_loss:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"[train] Checkpoints at {args.output_dir}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    print(f\\\\\\\"[train_crm] args: {vars(args)}\\\\\\\")\\\\n    print(f\\\\\\\"[train_crm] device: {'cuda' if torch.cuda.is_available() else 'cpu'}\\\\\\\")\\\\n\\\\n    if args.precompute:\\\\n        precompute_features(args)\\\\n        return\\\\n\\\\n    if args.auto:\\\\n        needs_precompute = any(\\\\n            not (Path(args.cache_dir) / bm / \\\\\\\"manifest.json\\\\\\\").exists()\\\\n            for bm in args.benchmark\\\\n        )\\\\n        if needs_precompute:\\\\n            print(\\\\\\\"[auto] Cache not found for some benchmarks, precomputing...\\\\\\\")\\\\n            precompute_features(args)\\\\n\\\\n    train(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCRM training script.\\n\\nTwo-phase approach:\\n  Phase 1 (--precompute): Run frozen SmolVLA on LIBERO demos, cache\\n      (obs_features, K_samples, expert_action) to disk.\\n  Phase 2 (default): Load cached features, train CRM with MSE loss +\\n      synthetic augmentation.\\n\\nUsage:\\n  # Phase 1: precompute features (slow, GPU-heavy)\\n  python train_crm.py --precompute --benchmark object\\n\\n  # Phase 2: train CRM (fast)\\n  python train_crm.py --benchmark object --epochs 50\\n\\n  # End-to-end (precompute if cache missing, then train)\\n  python train_crm.py --benchmark object --epochs 50 --auto\\n\\\"\\\"\\\"\\nimport argparse\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset, DataLoader\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom utils import (\\n    set_seed, load_libero_demos, build_training_samples,\\n    synthetic_augmentation, CheckpointManager,\\n    CORRECTION_DIM, H_EFF, OBS_DIM, CHUNK_SIZE,\\n)\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train CRM on LIBERO demos\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, nargs='+', default=[\\\"spatial\\\"],\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=32)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--output_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/checkpoints/crm/\\\")\\n    p.add_argument(\\\"--cache_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/crm_cache/\\\")\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--aug_noise_min\\\", type=float, default=0.02)\\n    p.add_argument(\\\"--aug_noise_max\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--aug_ratio\\\", type=float, default=0.5,\\n                   help=\\\"fraction of batch to augment\\\")\\n    p.add_argument(\\\"--precompute\\\", action=\\\"store_true\\\",\\n                   help=\\\"only precompute features, don't train\\\")\\n    p.add_argument(\\\"--auto\\\", action=\\\"store_true\\\",\\n                   help=\\\"precompute if cache missing, then train\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--max_demos_per_task\\\", type=int, default=50)\\n    p.add_argument(\\\"--val_split\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--log_every\\\", type=int, default=50)\\n    p.add_argument(\\\"--precompute_batch_size\\\", type=int, default=4,\\n                   help=\\\"batch size for SmolVLA forward during precompute\\\")\\n    p.add_argument(\\\"--save_every\\\", type=int, default=500,\\n                   help=\\\"save partial cache every N samples\\\")\\n    p.add_argument(\\\"--shard_id\\\", type=int, default=0,\\n                   help=\\\"shard ID for parallel precompute (0-based)\\\")\\n    p.add_argument(\\\"--num_shards\\\", type=int, default=1,\\n                   help=\\\"total number of shards for parallel precompute\\\")\\n    p.add_argument(\\\"--input_mode\\\", type=str, default=\\\"full\\\",\\n                   choices=[\\\"full\\\", \\\"obs_only\\\", \\\"scalar_unc\\\"],\\n                   help=\\\"full=all features, obs_only=no conformal, scalar_unc=scalar uncertainty\\\")\\n    return p.parse_args()\\n\\n\\n# ── Precomputation ──────────────────────────────────────────────────\\n\\ndef precompute_features(args):\\n    \\\"\\\"\\\"Run frozen SmolVLA on all demo timesteps, save features to disk.\\\"\\\"\\\"\\n    from smolvla_wrapper import SmolVLAWrapper\\n\\n    benchmarks_to_run = []\\n    for bm in args.benchmark:\\n        cache_dir = Path(args.cache_dir) / bm\\n        if (cache_dir / \\\"manifest.json\\\").exists():\\n            print(f\\\"[precompute] \\n\\n... [截断: 输出过长，省略 12797 字符] ...\\n\\n obs_feat = batch[\\\"obs_features\\\"].to(device)       # (B, 960)\\n            k_samp = batch[\\\"k_samples\\\"].to(device)             # (B, K, H, D)\\n            expert = batch[\\\"expert_action\\\"].to(device)         # (B, H, D)\\n            expert_flat = expert.reshape(expert.shape[0], -1)  # (B, 30)\\n\\n            # CGS (uncertainty features only — base action is argmin-selected, not mean)\\n            uf, _mean = cgs.compute_features_batch(k_samp)\\n            if scalar_unc:\\n                uf = _to_scalar_uf(uf)\\n            uf = uf.to(device)\\n            ba = _argmin_base_action(k_samp).to(device)  # (B, 30)\\n\\n            # CRM forward\\n            refined = crm(ba, None if obs_only else uf, obs_feat)\\n            loss = loss_fn(refined, expert_flat)\\n\\n            # Synthetic augmentation: perturb inputs, keep clean target\\n            n_aug = int(obs_feat.shape[0] * args.aug_ratio)\\n            if n_aug > 0:\\n                ba_noise = noise_scale.repeat(H_EFF)\\n                aug_ba = ba[:n_aug] + torch.randn_like(ba[:n_aug]) * ba_noise\\n                aug_uf = uf[:n_aug] + torch.randn_like(uf[:n_aug]) * noise_scale.mean() * 0.1\\n                aug_refined = crm(aug_ba, None if obs_only else aug_uf, obs_feat[:n_aug])\\n                aug_loss = loss_fn(aug_refined, expert_flat[:n_aug])\\n                loss = loss + 0.5 * aug_loss\\n\\n            optimizer.zero_grad()\\n            loss.backward()\\n            torch.nn.utils.clip_grad_norm_(crm.parameters(), 1.0)\\n            optimizer.step()\\n\\n            epoch_loss += loss.item()\\n            n_batches += 1\\n\\n            if (batch_idx + 1) % args.log_every == 0:\\n                print(f\\\"  epoch {epoch} batch {batch_idx+1}/{len(train_loader)} \\\"\\n                      f\\\"loss={loss.item():.6f}\\\")\\n\\n        scheduler.step()\\n        avg_train_loss = epoch_loss / max(n_batches, 1)\\n\\n        # ── Validate ──\\n        crm.eval()\\n        val_loss = 0.0\\n        n_val_batches = 0\\n        with torch.no_grad():\\n            for batch in val_loader:\\n                obs_feat = batch[\\\"obs_features\\\"].to(device)\\n                k_samp = batch[\\\"k_samples\\\"].to(device)\\n                expert = batch[\\\"expert_action\\\"].to(device)\\n                expert_flat = expert.reshape(expert.shape[0], -1)\\n\\n                uf, _mean = cgs.compute_features_batch(k_samp)\\n                if scalar_unc:\\n                    uf = _to_scalar_uf(uf)\\n                uf = uf.to(device)\\n                ba = _argmin_base_action(k_samp).to(device)\\n\\n                refined = crm(ba, None if obs_only else uf, obs_feat)\\n                val_loss += loss_fn(refined, expert_flat).item()\\n                n_val_batches += 1\\n\\n        avg_val_loss = val_loss / max(n_val_batches, 1)\\n\\n        print(f\\\"Epoch {epoch}/{args.epochs}  \\\"\\n              f\\\"train_loss={avg_train_loss:.6f}  \\\"\\n              f\\\"val_loss={avg_val_loss:.6f}  \\\"\\n              f\\\"lr={scheduler.get_last_lr()[0]:.2e}\\\")\\n\\n        metrics = {\\\"train_loss\\\": avg_train_loss, \\\"val_loss\\\": avg_val_loss}\\n        ckpt_mgr.save(crm, optimizer, epoch, metrics)\\n\\n        if avg_val_loss < best_val_loss:\\n            best_val_loss = avg_val_loss\\n            torch.save(crm.state_dict(),\\n                       Path(args.output_dir) / \\\"crm_best.pt\\\")\\n            print(f\\\"  → New best val_loss: {best_val_loss:.6f}\\\")\\n\\n    print(f\\\"\\\\n[train] Done. Best val_loss={best_val_loss:.6f}\\\")\\n    print(f\\\"[train] Checkpoints at {args.output_dir}\\\")\\n\\n\\ndef main():\\n    args = parse_args()\\n    print(f\\\"[train_crm] args: {vars(args)}\\\")\\n    print(f\\\"[train_crm] device: {'cuda' if torch.cuda.is_available() else 'cpu'}\\\")\\n\\n    if args.precompute:\\n        precompute_features(args)\\n        return\\n\\n    if args.auto:\\n        needs_precompute = any(\\n            not (Path(args.cache_dir) / bm / \\\"manifest.json\\\").exists()\\n            for bm in args.benchmark\\n        )\\n        if needs_precompute:\\n            print(\\\"[auto] Cache not found for some benchmarks, precomputing...\\\")\\n            precompute_features(args)\\n\\n    train(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me read the middle portion of evaluate.py that was cut off - specifically the CRM loading logic and the `select_action_crm` function.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "d86a4d72-c8eb-477f-8602-bb05e3dbf852",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VfX5ebbCH4RMRobybiA3V4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6897,
+      "cache_read_input_tokens": 24414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6897
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+输出被截断了，需要读取 evaluate.py 中间被截掉的部分——CRM 加载逻辑和 `select_action_crm` 函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "f3a5a66c-4937-4960-9d59-a924cbb7a82e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VfX5ebbCH4RMRobybiA3V4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6897,
+      "cache_read_input_tokens": 24414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6897
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HhABWjFmkDZPxQMA1rkPF9`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep -n \"def select_action_crm\\|def load_crm\\|crm_obs_only\\|crm_scalar\\|obs_only\\|scalar_unc\\|uncertainty_dim\\|input_mode\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "53fab688-5c00-4fce-9f48-dbc08bf07aea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VfX5ebbCH4RMRobybiA3V4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6897,
+      "cache_read_input_tokens": 24414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6897
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T21:26:10.856Z_
+
+<details><summary>↩ Tool result · `toolu_01HhABWjFmkDZPxQMA1rkPF9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "5acb6a70-02b3-44d0-aae7-56c8a1a2d416",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0112LYDp2rP9Ya5hPY2UBnsc`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "head -n 250 /root/acr-vla-conformal-refinement/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "f564fd14-d101-4623-affe-cb3434effc0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VfX5ebbCH4RMRobybiA3V4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6897,
+      "cache_read_input_tokens": 24414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6897
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T21:26:11.918Z_
+
+<details><summary>↩ Tool result · `toolu_0112LYDp2rP9Ya5hPY2UBnsc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLIBERO evaluation script for ACR-VLA.\\n\\nRollout loop:\\n  1. Load LIBERO env + task suite\\n  2. Load SmolVLA (frozen) + CRM\\n  3. For each task, rollout N times:\\n     a. Reset env\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\n        → combine refined pose with gripper → execute 7D action\\n     c. Record success/failure\\n  4. Report per-task and overall success rate\\n\\nBaselines:\\n  - \\\"vla_only\\\": SmolVLA mean of K=10, no CRM refinement\\n  - \\\"crm_scalar\\\": CRM with scalar uncertainty (single std, not per-DOF)\\n  - \\\"crm_perdof\\\": CRM with full per-DOF uncertainty (ours)\\n  - \\\"acr_vla\\\": alias for crm_perdof — the full ACR-VLA pipeline\\n  - \\\"reconvla\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\n\\nUsage:\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\n\\\"\\\"\\\"\\nimport argparse\\nimport functools\\nbuiltins_print = print\\nprint = functools.partial(builtins_print, flush=True)\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport numpy as np\\nfrom robosuite.utils.transform_utils import quat2axisangle\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom aci import AdaptiveConformalInference\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\nfrom reconvla_baseline import reconvla_select\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Evaluate ACR-VLA on LIBERO\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n                   help=\\\"Path to CRM checkpoint (crm_best.pt)\\\")\\n    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n                   help=\\\"Alias for --checkpoint (used with --mode acr_vla)\\\")\\n    p.add_argument(\\\"--n_rollouts\\\", type=int, default=20)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=300,\\n                   help=\\\"Max steps per rollout\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--mode\\\", type=str, default=\\\"crm_perdof\\\",\\n                   choices=[\\\"vla_only\\\", \\\"crm_scalar\\\", \\\"crm_perdof\\\", \\\"acr_vla\\\", \\\"crm_obs_only\\\", \\\"reconvla\\\"])\\n    p.add_argument(\\\"--baseline_mode\\\", type=str, default=\\\"single\\\",\\n                   choices=[\\\"single\\\", \\\"mean\\\"],\\n                   help=\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--render\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--output_file\\\", type=str, default=None,\\n                   help=\\\"Save results JSON to this path\\\")\\n    p.add_argument('--max_correction_norm', type=float, default=None,\\n                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\n    return p.parse_args()\\n\\n\\ndef get_robot_state(obs):\\n    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n    eef_axisangle = quat2axisangle(obs[\\\"robot0_eef_quat\\\"])\\n    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\\n\\ndef load_libero_env(benchmark_name):\\n    \\\"\\\"\\\"Load LIBERO benchmark tasks and create environments.\\\"\\\"\\\"\\n    from libero.libero import benchmark as bm\\n    from libero.libero.e\\n\\n... [截断: 输出过长，省略 1510 字符] ...\\n\\nget_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    # samples: (1, K, chunk_size, FULL_ACTION_DIM)\\n    k_trunc = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    mean_action = k_trunc.mean(dim=0)  # (H_eff, 7)\\n    return mean_action[0].cpu().numpy()\\n\\n\\ndef _to_scalar_uf(uf):\\n    return torch.stack([\\n        uf[:, :30].norm(dim=1),\\n        uf[:, 30:35].mean(dim=1),\\n        uf[:, 35:40].mean(dim=1),\\n    ], dim=1)\\n\\n\\ndef select_action_crm(wrapper, obs, task_name, K, cgs, crm, device, mode=\\\"crm_perdof\\\"):\\n    \\\"\\\"\\\"ACR-VLA: CGS on 6D pose → argmin base → CRM refinement → combine with mean gripper.\\\"\\\"\\\"\\n    agentview = obs[\\\"agentview_image\\\"]\\n    eye_in_hand = obs.get(\\\"robot0_eye_in_hand_image\\\", None)\\n    robot_state = get_robot_state(obs)\\n\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\n\\n    uf, _mean = cgs.compute_features(k_pose)\\n    uf = uf.unsqueeze(0).to(device)\\n    if mode == \\\"crm_scalar\\\":\\n        uf = _to_scalar_uf(uf)\\n\\n    # Argmin-selected base action instead of mean (avoids invalid inter-mode regions)\\n    k_pose_flat = k_pose.reshape(k_pose.shape[0], -1)  # (K, 30)\\n    mean_pose = k_pose_flat.mean(dim=0)  # (30,) reference for distance\\n    distances = ((k_pose_flat - mean_pose) ** 2).sum(dim=-1)  # (K,)\\n    best_idx = distances.argmin()\\n    base_action = k_pose_flat[best_idx].unsqueeze(0).to(device)  # (1, 30)\\n\\n    obs_feat = obs_feat.to(device)\\n\\n    uf_input = None if mode == \\\"crm_obs_only\\\" else uf\\n    with torch.no_grad():\\n        refined_pose = crm(base_action, uf_input, obs_feat)  # (1, 30)\\n\\n    refined_pose = refined_pose[0].reshape(H_EFF, CORRECTION_DIM)\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\n    refined_full = torch.cat([refined_pose, mean_gripper], dim=-1)  # (H_eff, 7)\\n\\n    return refined_full[0].cpu().numpy()\\n\\n\\ndef select_action_reconvla(wrapper, obs, task_name, K):\\n    \\\"\\\"\\\"ReconVLA baseline: scalar Euclidean argmin on 6D pose, pass-through gripper.\\\"\\\"\\\"\\n    agentview = obs[\\\"agentview_image\\\"]\\n    eye_in_hand = obs.get(\\\"robot0_eye_in_hand_image\\\", None)\\n    robot_state = get_robot_state(obs)\\n\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\n    selected_pose = reconvla_select(k_pose)  # (H_eff, 6)\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\n    selected_full = torch.cat([selected_pose, mean_gripper], dim=-1)\\n    return selected_full[0].cpu().numpy()\\n\\n\\ndef rollout_single(env, init_state, action_fn, max_steps=300):\\n    \\\"\\\"\\\"Run one rollout. action_fn returns 7D action directly.\\\"\\\"\\\"\\n    env.reset()\\n    obs = env.set_init_state(init_state)\\n    for _ in range(5):\\n        obs, _, _, _ = env.step(np.zeros(7))\\n\\n    for step in range(max_steps):\\n        try:\\n            action_7d = action_fn(obs)\\n            obs, reward, done, info = env.step(action_7d)\\n        except Exception as e:\\n            print(f\\\"[rollout] Exception at step {step}: {e}\\\", flush=True)\\n            traceback.print_exc()\\n            return False, step\\n\\n        if done or info.get(\\\"success\\\", False):\\n            return True, step + 1\\n\\n    return False, max_steps\\n\\n\\ndef evaluate(args):\\n    set_seed(args.seed)\\n    device = torch.device(\\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\n\\n    # --crm_checkpoint is an alias for --checkpoint\\n    if args.crm_checkpoint and not args.checkpoint:\\n        args.checkpoint = args.crm_checkpoint\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "29de6b47-9ec8-4ee1-9a5a-67449c9f3205",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO evaluation script for ACR-VLA.\\\\n\\\\nRollout loop:\\\\n  1. Load LIBERO env + task suite\\\\n  2. Load SmolVLA (frozen) + CRM\\\\n  3. For each task, rollout N times:\\\\n     a. Reset env\\\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\\\n        → combine refined pose with gripper → execute 7D action\\\\n     c. Record success/failure\\\\n  4. Report per-task and overall success rate\\\\n\\\\nBaselines:\\\\n  - \\\\\\\"vla_only\\\\\\\": SmolVLA mean of K=10, no CRM refinement\\\\n  - \\\\\\\"crm_scalar\\\\\\\": CRM with scalar uncertainty (single std, not per-DOF)\\\\n  - \\\\\\\"crm_perdof\\\\\\\": CRM with full per-DOF uncertainty (ours)\\\\n  - \\\\\\\"acr_vla\\\\\\\": alias for crm_perdof — the full ACR-VLA pipeline\\\\n  - \\\\\\\"reconvla\\\\\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\\\n\\\\nUsage:\\\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport functools\\\\nbuiltins_print = print\\\\nprint = functools.partial(builtins_print, flush=True)\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nimport traceback\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nfrom robosuite.utils.transform_utils import quat2axisangle\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom cgs import ConformilizedGaussianScoring\\\\nfrom crm import ConformalRefinementModule\\\\nfrom aci import AdaptiveConformalInference\\\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\\\nfrom reconvla_baseline import reconvla_select\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Evaluate ACR-VLA on LIBERO\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=\\\\\\\"object\\\\\\\",\\\\n                   choices=[\\\\\\\"object\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"90\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Path to CRM checkpoint (crm_best.pt)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Alias for --checkpoint (used with --mode acr_vla)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--n_rollouts\\\\\\\", type=int, default=20)\\\\n    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=300,\\\\n                   help=\\\\\\\"Max steps per rollout\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--K\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--mode\\\\\\\", type=str, default=\\\\\\\"crm_perdof\\\\\\\",\\\\n                   choices=[\\\\\\\"vla_only\\\\\\\", \\\\\\\"crm_scalar\\\\\\\", \\\\\\\"crm_perdof\\\\\\\", \\\\\\\"acr_vla\\\\\\\", \\\\\\\"crm_obs_only\\\\\\\", \\\\\\\"reconvla\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=\\\\\\\"single\\\\\\\",\\\\n                   choices=[\\\\\\\"single\\\\\\\", \\\\\\\"mean\\\\\\\"],\\\\n                   help=\\\\\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--smolvla_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--obs_dim\\\\\\\", type=int, default=OBS_DIM)\\\\n    p.add_argument(\\\\\\\"--hidden_dim\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--render\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_file\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Save results JSON to this path\\\\\\\")\\\\n    p.add_argument('--max_correction_norm', type=float, default=None,\\\\n                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef get_robot_state(obs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    eef_pos = obs[\\\\\\\"robot0_eef_pos\\\\\\\"]\\\\n    eef_axisangle = quat2axisangle(obs[\\\\\\\"robot0_eef_quat\\\\\\\"])\\\\n    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\\\n\\\\n\\\\ndef load_libero_env(benchmark_name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load LIBERO benchmark tasks and create environments.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from libero.libero import benchmark as bm\\\\n    from libero.libero.e\\\\n\\\\n... [截断: 输出过长，省略 1510 字符] ...\\\\n\\\\nget_obs_features_and_samples(\\\\n        agentview_rgb=agentview,\\\\n        task_name=task_name,\\\\n        robot_state=robot_state,\\\\n        eye_in_hand_rgb=eye_in_hand,\\\\n        K=K,\\\\n    )\\\\n    # samples: (1, K, chunk_size, FULL_ACTION_DIM)\\\\n    k_trunc = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\\\n    mean_action = k_trunc.mean(dim=0)  # (H_eff, 7)\\\\n    return mean_action[0].cpu().numpy()\\\\n\\\\n\\\\ndef _to_scalar_uf(uf):\\\\n    return torch.stack([\\\\n        uf[:, :30].norm(dim=1),\\\\n        uf[:, 30:35].mean(dim=1),\\\\n        uf[:, 35:40].mean(dim=1),\\\\n    ], dim=1)\\\\n\\\\n\\\\ndef select_action_crm(wrapper, obs, task_name, K, cgs, crm, device, mode=\\\\\\\"crm_perdof\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"ACR-VLA: CGS on 6D pose → argmin base → CRM refinement → combine with mean gripper.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    agentview = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n    eye_in_hand = obs.get(\\\\\\\"robot0_eye_in_hand_image\\\\\\\", None)\\\\n    robot_state = get_robot_state(obs)\\\\n\\\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\\\n        agentview_rgb=agentview,\\\\n        task_name=task_name,\\\\n        robot_state=robot_state,\\\\n        eye_in_hand_rgb=eye_in_hand,\\\\n        K=K,\\\\n    )\\\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\\\n\\\\n    uf, _mean = cgs.compute_features(k_pose)\\\\n    uf = uf.unsqueeze(0).to(device)\\\\n    if mode == \\\\\\\"crm_scalar\\\\\\\":\\\\n        uf = _to_scalar_uf(uf)\\\\n\\\\n    # Argmin-selected base action instead of mean (avoids invalid inter-mode regions)\\\\n    k_pose_flat = k_pose.reshape(k_pose.shape[0], -1)  # (K, 30)\\\\n    mean_pose = k_pose_flat.mean(dim=0)  # (30,) reference for distance\\\\n    distances = ((k_pose_flat - mean_pose) ** 2).sum(dim=-1)  # (K,)\\\\n    best_idx = distances.argmin()\\\\n    base_action = k_pose_flat[best_idx].unsqueeze(0).to(device)  # (1, 30)\\\\n\\\\n    obs_feat = obs_feat.to(device)\\\\n\\\\n    uf_input = None if mode == \\\\\\\"crm_obs_only\\\\\\\" else uf\\\\n    with torch.no_grad():\\\\n        refined_pose = crm(base_action, uf_input, obs_feat)  # (1, 30)\\\\n\\\\n    refined_pose = refined_pose[0].reshape(H_EFF, CORRECTION_DIM)\\\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\\\n    refined_full = torch.cat([refined_pose, mean_gripper], dim=-1)  # (H_eff, 7)\\\\n\\\\n    return refined_full[0].cpu().numpy()\\\\n\\\\n\\\\ndef select_action_reconvla(wrapper, obs, task_name, K):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"ReconVLA baseline: scalar Euclidean argmin on 6D pose, pass-through gripper.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    agentview = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n    eye_in_hand = obs.get(\\\\\\\"robot0_eye_in_hand_image\\\\\\\", None)\\\\n    robot_state = get_robot_state(obs)\\\\n\\\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\\\n        agentview_rgb=agentview,\\\\n        task_name=task_name,\\\\n        robot_state=robot_state,\\\\n        eye_in_hand_rgb=eye_in_hand,\\\\n        K=K,\\\\n    )\\\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\\\n    selected_pose = reconvla_select(k_pose)  # (H_eff, 6)\\\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\\\n    selected_full = torch.cat([selected_pose, mean_gripper], dim=-1)\\\\n    return selected_full[0].cpu().numpy()\\\\n\\\\n\\\\ndef rollout_single(env, init_state, action_fn, max_steps=300):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run one rollout. action_fn returns 7D action directly.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env.reset()\\\\n    obs = env.set_init_state(init_state)\\\\n    for _ in range(5):\\\\n        obs, _, _, _ = env.step(np.zeros(7))\\\\n\\\\n    for step in range(max_steps):\\\\n        try:\\\\n            action_7d = action_fn(obs)\\\\n            obs, reward, done, info = env.step(action_7d)\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"[rollout] Exception at step {step}: {e}\\\\\\\", flush=True)\\\\n            traceback.print_exc()\\\\n            return False, step\\\\n\\\\n        if done or info.get(\\\\\\\"success\\\\\\\", False):\\\\n            return True, step + 1\\\\n\\\\n    return False, max_steps\\\\n\\\\n\\\\ndef evaluate(args):\\\\n    set_seed(args.seed)\\\\n    device = torch.device(\\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\")\\\\n\\\\n    # --crm_checkpoint is an alias for --checkpoint\\\\n    if args.crm_checkpoint and not args.checkpoint:\\\\n        args.checkpoint = args.crm_checkpoint\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLIBERO evaluation script for ACR-VLA.\\n\\nRollout loop:\\n  1. Load LIBERO env + task suite\\n  2. Load SmolVLA (frozen) + CRM\\n  3. For each task, rollout N times:\\n     a. Reset env\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\n        → combine refined pose with gripper → execute 7D action\\n     c. Record success/failure\\n  4. Report per-task and overall success rate\\n\\nBaselines:\\n  - \\\"vla_only\\\": SmolVLA mean of K=10, no CRM refinement\\n  - \\\"crm_scalar\\\": CRM with scalar uncertainty (single std, not per-DOF)\\n  - \\\"crm_perdof\\\": CRM with full per-DOF uncertainty (ours)\\n  - \\\"acr_vla\\\": alias for crm_perdof — the full ACR-VLA pipeline\\n  - \\\"reconvla\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\n\\nUsage:\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\n\\\"\\\"\\\"\\nimport argparse\\nimport functools\\nbuiltins_print = print\\nprint = functools.partial(builtins_print, flush=True)\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport numpy as np\\nfrom robosuite.utils.transform_utils import quat2axisangle\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom aci import AdaptiveConformalInference\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\nfrom reconvla_baseline import reconvla_select\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Evaluate ACR-VLA on LIBERO\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n                   help=\\\"Path to CRM checkpoint (crm_best.pt)\\\")\\n    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n                   help=\\\"Alias for --checkpoint (used with --mode acr_vla)\\\")\\n    p.add_argument(\\\"--n_rollouts\\\", type=int, default=20)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=300,\\n                   help=\\\"Max steps per rollout\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--mode\\\", type=str, default=\\\"crm_perdof\\\",\\n                   choices=[\\\"vla_only\\\", \\\"crm_scalar\\\", \\\"crm_perdof\\\", \\\"acr_vla\\\", \\\"crm_obs_only\\\", \\\"reconvla\\\"])\\n    p.add_argument(\\\"--baseline_mode\\\", type=str, default=\\\"single\\\",\\n                   choices=[\\\"single\\\", \\\"mean\\\"],\\n                   help=\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--render\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--output_file\\\", type=str, default=None,\\n                   help=\\\"Save results JSON to this path\\\")\\n    p.add_argument('--max_correction_norm', type=float, default=None,\\n                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\n    return p.parse_args()\\n\\n\\ndef get_robot_state(obs):\\n    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n    eef_axisangle = quat2axisangle(obs[\\\"robot0_eef_quat\\\"])\\n    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\\n\\ndef load_libero_env(benchmark_name):\\n    \\\"\\\"\\\"Load LIBERO benchmark tasks and create environments.\\\"\\\"\\\"\\n    from libero.libero import benchmark as bm\\n    from libero.libero.e\\n\\n... [截断: 输出过长，省略 1510 字符] ...\\n\\nget_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    # samples: (1, K, chunk_size, FULL_ACTION_DIM)\\n    k_trunc = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    mean_action = k_trunc.mean(dim=0)  # (H_eff, 7)\\n    return mean_action[0].cpu().numpy()\\n\\n\\ndef _to_scalar_uf(uf):\\n    return torch.stack([\\n        uf[:, :30].norm(dim=1),\\n        uf[:, 30:35].mean(dim=1),\\n        uf[:, 35:40].mean(dim=1),\\n    ], dim=1)\\n\\n\\ndef select_action_crm(wrapper, obs, task_name, K, cgs, crm, device, mode=\\\"crm_perdof\\\"):\\n    \\\"\\\"\\\"ACR-VLA: CGS on 6D pose → argmin base → CRM refinement → combine with mean gripper.\\\"\\\"\\\"\\n    agentview = obs[\\\"agentview_image\\\"]\\n    eye_in_hand = obs.get(\\\"robot0_eye_in_hand_image\\\", None)\\n    robot_state = get_robot_state(obs)\\n\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\n\\n    uf, _mean = cgs.compute_features(k_pose)\\n    uf = uf.unsqueeze(0).to(device)\\n    if mode == \\\"crm_scalar\\\":\\n        uf = _to_scalar_uf(uf)\\n\\n    # Argmin-selected base action instead of mean (avoids invalid inter-mode regions)\\n    k_pose_flat = k_pose.reshape(k_pose.shape[0], -1)  # (K, 30)\\n    mean_pose = k_pose_flat.mean(dim=0)  # (30,) reference for distance\\n    distances = ((k_pose_flat - mean_pose) ** 2).sum(dim=-1)  # (K,)\\n    best_idx = distances.argmin()\\n    base_action = k_pose_flat[best_idx].unsqueeze(0).to(device)  # (1, 30)\\n\\n    obs_feat = obs_feat.to(device)\\n\\n    uf_input = None if mode == \\\"crm_obs_only\\\" else uf\\n    with torch.no_grad():\\n        refined_pose = crm(base_action, uf_input, obs_feat)  # (1, 30)\\n\\n    refined_pose = refined_pose[0].reshape(H_EFF, CORRECTION_DIM)\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\n    refined_full = torch.cat([refined_pose, mean_gripper], dim=-1)  # (H_eff, 7)\\n\\n    return refined_full[0].cpu().numpy()\\n\\n\\ndef select_action_reconvla(wrapper, obs, task_name, K):\\n    \\\"\\\"\\\"ReconVLA baseline: scalar Euclidean argmin on 6D pose, pass-through gripper.\\\"\\\"\\\"\\n    agentview = obs[\\\"agentview_image\\\"]\\n    eye_in_hand = obs.get(\\\"robot0_eye_in_hand_image\\\", None)\\n    robot_state = get_robot_state(obs)\\n\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\n    selected_pose = reconvla_select(k_pose)  # (H_eff, 6)\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\n    selected_full = torch.cat([selected_pose, mean_gripper], dim=-1)\\n    return selected_full[0].cpu().numpy()\\n\\n\\ndef rollout_single(env, init_state, action_fn, max_steps=300):\\n    \\\"\\\"\\\"Run one rollout. action_fn returns 7D action directly.\\\"\\\"\\\"\\n    env.reset()\\n    obs = env.set_init_state(init_state)\\n    for _ in range(5):\\n        obs, _, _, _ = env.step(np.zeros(7))\\n\\n    for step in range(max_steps):\\n        try:\\n            action_7d = action_fn(obs)\\n            obs, reward, done, info = env.step(action_7d)\\n        except Exception as e:\\n            print(f\\\"[rollout] Exception at step {step}: {e}\\\", flush=True)\\n            traceback.print_exc()\\n            return False, step\\n\\n        if done or info.get(\\\"success\\\", False):\\n            return True, step + 1\\n\\n    return False, max_steps\\n\\n\\ndef evaluate(args):\\n    set_seed(args.seed)\\n    device = torch.device(\\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\n\\n    # --crm_checkpoint is an alias for --checkpoint\\n    if args.crm_checkpoint and not args.checkpoint:\\n        args.checkpoint = args.crm_checkpoint\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to see the rest of the evaluate function, specifically how CRM is loaded for different modes. Let me get lines 250+.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "a45cbb34-3422-4416-bb3e-f205be93e085",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3p1JHLKUAW3eXVorv5D7F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4094,
+      "cache_read_input_tokens": 31311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4094
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+需要看 evaluate() 函数中 CRM 加载逻辑的部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "fd4d7df5-e9a3-45ef-a4bf-7d764210e36f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3p1JHLKUAW3eXVorv5D7F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4094,
+      "cache_read_input_tokens": 31311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4094
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NJTKEzfcMMscWrLZQiRmL4`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -n +250 /root/acr-vla-conformal-refinement/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "286c0ed0-2eb1-4caa-93ff-32025edd2ac4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3p1JHLKUAW3eXVorv5D7F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4094,
+      "cache_read_input_tokens": 31311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4094
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T21:26:18.662Z_
+
+<details><summary>↩ Tool result · `toolu_01NJTKEzfcMMscWrLZQiRmL4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        args.checkpoint = args.crm_checkpoint\\n\\n    print(f\\\"[eval] Mode: {args.mode}, benchmark: {args.benchmark}\\\")\\n\\n    # Load SmolVLA\\n    from smolvla_wrapper import SmolVLAWrapper\\n    print(f\\\"[eval] Loading SmolVLA from {args.smolvla_path}...\\\")\\n    wrapper = SmolVLAWrapper(args.smolvla_path, device=str(device))\\n\\n    # CGS — operates on 6D pose only (CORRECTION_DIM)\\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM)\\n\\n    # CRM (if needed)\\n    crm = None\\n    if args.mode in (\\\"crm_scalar\\\", \\\"crm_perdof\\\", \\\"acr_vla\\\", \\\"crm_obs_only\\\"):\\n        if args.checkpoint is None:\\n            raise ValueError(\\\"--checkpoint required for CRM modes\\\")\\n\\n        if args.mode == \\\"crm_obs_only\\\":\\n            unc_dim = 0\\n        elif args.mode == \\\"crm_scalar\\\":\\n            unc_dim = 3\\n        else:  # crm_perdof or acr_vla\\n            unc_dim = CORRECTION_DIM * H_EFF + H_EFF + H_EFF  # 40\\n\\n        crm = ConformalRefinementModule(\\n            action_dim=H_EFF * CORRECTION_DIM,\\n            uncertainty_dim=unc_dim,\\n            obs_dim=args.obs_dim,\\n            hidden_dim=args.hidden_dim,\\n        ).to(device)\\n        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\n                                        weights_only=True))\\n        crm.eval()\\n        print(f\\\"[eval] CRM loaded from {args.checkpoint} \\\"\\n              f\\\"({crm.count_parameters():,} params)\\\")\\n\\n    # Override max_correction_norm if specified\\n    if args.max_correction_norm is not None and crm is not None:\\n        crm.max_correction_norm = args.max_correction_norm\\n        print(f\\\"[eval] Override max_correction_norm = {args.max_correction_norm}\\\")\\n\\n    # ACI for online alpha tracking\\n    aci = AdaptiveConformalInference()\\n\\n    # Load LIBERO envs\\n    print(f\\\"[eval] Loading LIBERO {args.benchmark} environments...\\\")\\n    task_envs = load_libero_env(args.benchmark)\\n    print(f\\\"[eval] {len(task_envs)} tasks loaded.\\\")\\n\\n    # Rollout\\n    results = {}\\n    overall_successes = 0\\n    overall_total = 0\\n\\n    for task_info in task_envs:\\n        task_name = task_info[\\\"task_name\\\"]\\n        task_desc = task_info[\\\"task_description\\\"]\\n        env = task_info[\\\"env\\\"]\\n        init_states = task_info[\\\"init_states\\\"]\\n\\n        aci.reset()\\n        task_successes = 0\\n\\n        for r in range(args.n_rollouts):\\n            init_state = init_states[r % len(init_states)]\\n\\n            if args.mode == \\\"vla_only\\\":\\n                action_fn = lambda obs: select_action_vla_only(\\n                    wrapper, obs, task_desc, args.K, cgs\\n                )\\n            elif args.mode == \\\"reconvla\\\":\\n                action_fn = lambda obs: select_action_reconvla(\\n                    wrapper, obs, task_desc, args.K\\n                )\\n            else:\\n                action_fn = lambda obs: select_action_crm(\\n                    wrapper, obs, task_desc, args.K, cgs, crm, device, args.mode\\n                )\\n\\n            success, steps = rollout_single(env, init_state, action_fn,\\n                                            max_steps=args.max_steps)\\n            task_successes += int(success)\\n            overall_successes += int(success)\\n            overall_total += 1\\n\\n            if (r + 1) % 5 == 0:\\n                print(f\\\"  {task_name}: rollout {r+1}/{args.n_rollouts}, \\\"\\n                      f\\\"success so far: {task_successes}/{r+1}\\\")\\n\\n        task_rate = task_successes / args.n_rollouts\\n        results[task_name] = {\\n            \\\"success_rate\\\": task_rate,\\n            \\\"successes\\\": task_successes,\\n            \\\"total\\\": args.n_rollouts,\\n        }\\n        print(f\\\"[{task_name}] success rate: {task_rate:.1%} \\\"\\n              f\\\"({task_successes}/{args.n_rollouts})\\\")\\n\\n        env.close()\\n\\n    overall_rate = overall_successes / max(overall_total, 1)\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Overall success rate ({args.mode}): {overall_rate:.1%} \\\"\\n          f\\\"({overall_successes}/{overall_total})\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    # Save results\\n    summary = {\\n        \\\"mode\\\": args.mode,\\n        \\\"baseline_mode\\\": getattr(args, \\\"baseline_mode\\\", \\\"single\\\"),\\n        \\\"benchmark\\\": args.benchmark,\\n        \\\"n_rollouts\\\": args.n_rollouts,\\n        \\\"overall_success_rate\\\": overall_rate,\\n        \\\"per_task\\\": results,\\n    }\\n\\n    if args.output_file:\\n        out_path = Path(args.output_file)\\n        out_path.parent.mkdir(parents=True, exist_ok=True)\\n        out_path.write_text(json.dumps(summary, indent=2))\\n        print(f\\\"[eval] Results saved to {args.output_file}\\\")\\n\\n    return summary\\n\\n\\ndef main():\\n    def _segfault_handler(signum, frame):\\n        print(f\\\"[evaluate] FATAL: caught signal {signum} (segfault)\\\", flush=True)\\n        sys.exit(139)\\n\\n    signal.signal(signal.SIGSEGV, _segfault_handler)\\n\\n    args = parse_args()\\n    if args.mode == \\\"vla_only\\\":\\n        if args.baseline_mode == \\\"single\\\":\\n            args.K = 1\\n        elif args.baseline_mode == \\\"mean\\\":\\n            args.K = 10\\n    print(f\\\"[evaluate] args: {vars(args)}\\\", flush=True)\\n    evaluate(args)\\n    sys.exit(0)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "9a5a4b6f-a57c-4018-847f-b4e58733bfc0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        args.checkpoint = args.crm_checkpoint\\\\n\\\\n    print(f\\\\\\\"[eval] Mode: {args.mode}, benchmark: {args.benchmark}\\\\\\\")\\\\n\\\\n    # Load SmolVLA\\\\n    from smolvla_wrapper import SmolVLAWrapper\\\\n    print(f\\\\\\\"[eval] Loading SmolVLA from {args.smolvla_path}...\\\\\\\")\\\\n    wrapper = SmolVLAWrapper(args.smolvla_path, device=str(device))\\\\n\\\\n    # CGS — operates on 6D pose only (CORRECTION_DIM)\\\\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM)\\\\n\\\\n    # CRM (if needed)\\\\n    crm = None\\\\n    if args.mode in (\\\\\\\"crm_scalar\\\\\\\", \\\\\\\"crm_perdof\\\\\\\", \\\\\\\"acr_vla\\\\\\\", \\\\\\\"crm_obs_only\\\\\\\"):\\\\n        if args.checkpoint is None:\\\\n            raise ValueError(\\\\\\\"--checkpoint required for CRM modes\\\\\\\")\\\\n\\\\n        if args.mode == \\\\\\\"crm_obs_only\\\\\\\":\\\\n            unc_dim = 0\\\\n        elif args.mode == \\\\\\\"crm_scalar\\\\\\\":\\\\n            unc_dim = 3\\\\n        else:  # crm_perdof or acr_vla\\\\n            unc_dim = CORRECTION_DIM * H_EFF + H_EFF + H_EFF  # 40\\\\n\\\\n        crm = ConformalRefinementModule(\\\\n            action_dim=H_EFF * CORRECTION_DIM,\\\\n            uncertainty_dim=unc_dim,\\\\n            obs_dim=args.obs_dim,\\\\n            hidden_dim=args.hidden_dim,\\\\n        ).to(device)\\\\n        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\\\n                                        weights_only=True))\\\\n        crm.eval()\\\\n        print(f\\\\\\\"[eval] CRM loaded from {args.checkpoint} \\\\\\\"\\\\n              f\\\\\\\"({crm.count_parameters():,} params)\\\\\\\")\\\\n\\\\n    # Override max_correction_norm if specified\\\\n    if args.max_correction_norm is not None and crm is not None:\\\\n        crm.max_correction_norm = args.max_correction_norm\\\\n        print(f\\\\\\\"[eval] Override max_correction_norm = {args.max_correction_norm}\\\\\\\")\\\\n\\\\n    # ACI for online alpha tracking\\\\n    aci = AdaptiveConformalInference()\\\\n\\\\n    # Load LIBERO envs\\\\n    print(f\\\\\\\"[eval] Loading LIBERO {args.benchmark} environments...\\\\\\\")\\\\n    task_envs = load_libero_env(args.benchmark)\\\\n    print(f\\\\\\\"[eval] {len(task_envs)} tasks loaded.\\\\\\\")\\\\n\\\\n    # Rollout\\\\n    results = {}\\\\n    overall_successes = 0\\\\n    overall_total = 0\\\\n\\\\n    for task_info in task_envs:\\\\n        task_name = task_info[\\\\\\\"task_name\\\\\\\"]\\\\n        task_desc = task_info[\\\\\\\"task_description\\\\\\\"]\\\\n        env = task_info[\\\\\\\"env\\\\\\\"]\\\\n        init_states = task_info[\\\\\\\"init_states\\\\\\\"]\\\\n\\\\n        aci.reset()\\\\n        task_successes = 0\\\\n\\\\n        for r in range(args.n_rollouts):\\\\n            init_state = init_states[r % len(init_states)]\\\\n\\\\n            if args.mode == \\\\\\\"vla_only\\\\\\\":\\\\n                action_fn = lambda obs: select_action_vla_only(\\\\n                    wrapper, obs, task_desc, args.K, cgs\\\\n                )\\\\n            elif args.mode == \\\\\\\"reconvla\\\\\\\":\\\\n                action_fn = lambda obs: select_action_reconvla(\\\\n                    wrapper, obs, task_desc, args.K\\\\n                )\\\\n            else:\\\\n                action_fn = lambda obs: select_action_crm(\\\\n                    wrapper, obs, task_desc, args.K, cgs, crm, device, args.mode\\\\n                )\\\\n\\\\n            success, steps = rollout_single(env, init_state, action_fn,\\\\n                                            max_steps=args.max_steps)\\\\n            task_successes += int(success)\\\\n            overall_successes += int(success)\\\\n            overall_total += 1\\\\n\\\\n            if (r + 1) % 5 == 0:\\\\n                print(f\\\\\\\"  {task_name}: rollout {r+1}/{args.n_rollouts}, \\\\\\\"\\\\n                      f\\\\\\\"success so far: {task_successes}/{r+1}\\\\\\\")\\\\n\\\\n        task_rate = task_successes / args.n_rollouts\\\\n        results[task_name] = {\\\\n            \\\\\\\"success_rate\\\\\\\": task_rate,\\\\n            \\\\\\\"successes\\\\\\\": task_successes,\\\\n            \\\\\\\"total\\\\\\\": args.n_rollouts,\\\\n        }\\\\n        print(f\\\\\\\"[{task_name}] success rate: {task_rate:.1%} \\\\\\\"\\\\n              f\\\\\\\"({task_successes}/{args.n_rollouts})\\\\\\\")\\\\n\\\\n        env.close()\\\\n\\\\n    overall_rate = overall_successes / max(overall_total, 1)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Overall success rate ({args.mode}): {overall_rate:.1%} \\\\\\\"\\\\n          f\\\\\\\"({overall_successes}/{overall_total})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    # Save results\\\\n    summary = {\\\\n        \\\\\\\"mode\\\\\\\": args.mode,\\\\n        \\\\\\\"baseline_mode\\\\\\\": getattr(args, \\\\\\\"baseline_mode\\\\\\\", \\\\\\\"single\\\\\\\"),\\\\n        \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n        \\\\\\\"n_rollouts\\\\\\\": args.n_rollouts,\\\\n        \\\\\\\"overall_success_rate\\\\\\\": overall_rate,\\\\n        \\\\\\\"per_task\\\\\\\": results,\\\\n    }\\\\n\\\\n    if args.output_file:\\\\n        out_path = Path(args.output_file)\\\\n        out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n        out_path.write_text(json.dumps(summary, indent=2))\\\\n        print(f\\\\\\\"[eval] Results saved to {args.output_file}\\\\\\\")\\\\n\\\\n    return summary\\\\n\\\\n\\\\ndef main():\\\\n    def _segfault_handler(signum, frame):\\\\n        print(f\\\\\\\"[evaluate] FATAL: caught signal {signum} (segfault)\\\\\\\", flush=True)\\\\n        sys.exit(139)\\\\n\\\\n    signal.signal(signal.SIGSEGV, _segfault_handler)\\\\n\\\\n    args = parse_args()\\\\n    if args.mode == \\\\\\\"vla_only\\\\\\\":\\\\n        if args.baseline_mode == \\\\\\\"single\\\\\\\":\\\\n            args.K = 1\\\\n        elif args.baseline_mode == \\\\\\\"mean\\\\\\\":\\\\n            args.K = 10\\\\n    print(f\\\\\\\"[evaluate] args: {vars(args)}\\\\\\\", flush=True)\\\\n    evaluate(args)\\\\n    sys.exit(0)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        args.checkpoint = args.crm_checkpoint\\n\\n    print(f\\\"[eval] Mode: {args.mode}, benchmark: {args.benchmark}\\\")\\n\\n    # Load SmolVLA\\n    from smolvla_wrapper import SmolVLAWrapper\\n    print(f\\\"[eval] Loading SmolVLA from {args.smolvla_path}...\\\")\\n    wrapper = SmolVLAWrapper(args.smolvla_path, device=str(device))\\n\\n    # CGS — operates on 6D pose only (CORRECTION_DIM)\\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM)\\n\\n    # CRM (if needed)\\n    crm = None\\n    if args.mode in (\\\"crm_scalar\\\", \\\"crm_perdof\\\", \\\"acr_vla\\\", \\\"crm_obs_only\\\"):\\n        if args.checkpoint is None:\\n            raise ValueError(\\\"--checkpoint required for CRM modes\\\")\\n\\n        if args.mode == \\\"crm_obs_only\\\":\\n            unc_dim = 0\\n        elif args.mode == \\\"crm_scalar\\\":\\n            unc_dim = 3\\n        else:  # crm_perdof or acr_vla\\n            unc_dim = CORRECTION_DIM * H_EFF + H_EFF + H_EFF  # 40\\n\\n        crm = ConformalRefinementModule(\\n            action_dim=H_EFF * CORRECTION_DIM,\\n            uncertainty_dim=unc_dim,\\n            obs_dim=args.obs_dim,\\n            hidden_dim=args.hidden_dim,\\n        ).to(device)\\n        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\n                                        weights_only=True))\\n        crm.eval()\\n        print(f\\\"[eval] CRM loaded from {args.checkpoint} \\\"\\n              f\\\"({crm.count_parameters():,} params)\\\")\\n\\n    # Override max_correction_norm if specified\\n    if args.max_correction_norm is not None and crm is not None:\\n        crm.max_correction_norm = args.max_correction_norm\\n        print(f\\\"[eval] Override max_correction_norm = {args.max_correction_norm}\\\")\\n\\n    # ACI for online alpha tracking\\n    aci = AdaptiveConformalInference()\\n\\n    # Load LIBERO envs\\n    print(f\\\"[eval] Loading LIBERO {args.benchmark} environments...\\\")\\n    task_envs = load_libero_env(args.benchmark)\\n    print(f\\\"[eval] {len(task_envs)} tasks loaded.\\\")\\n\\n    # Rollout\\n    results = {}\\n    overall_successes = 0\\n    overall_total = 0\\n\\n    for task_info in task_envs:\\n        task_name = task_info[\\\"task_name\\\"]\\n        task_desc = task_info[\\\"task_description\\\"]\\n        env = task_info[\\\"env\\\"]\\n        init_states = task_info[\\\"init_states\\\"]\\n\\n        aci.reset()\\n        task_successes = 0\\n\\n        for r in range(args.n_rollouts):\\n            init_state = init_states[r % len(init_states)]\\n\\n            if args.mode == \\\"vla_only\\\":\\n                action_fn = lambda obs: select_action_vla_only(\\n                    wrapper, obs, task_desc, args.K, cgs\\n                )\\n            elif args.mode == \\\"reconvla\\\":\\n                action_fn = lambda obs: select_action_reconvla(\\n                    wrapper, obs, task_desc, args.K\\n                )\\n            else:\\n                action_fn = lambda obs: select_action_crm(\\n                    wrapper, obs, task_desc, args.K, cgs, crm, device, args.mode\\n                )\\n\\n            success, steps = rollout_single(env, init_state, action_fn,\\n                                            max_steps=args.max_steps)\\n            task_successes += int(success)\\n            overall_successes += int(success)\\n            overall_total += 1\\n\\n            if (r + 1) % 5 == 0:\\n                print(f\\\"  {task_name}: rollout {r+1}/{args.n_rollouts}, \\\"\\n                      f\\\"success so far: {task_successes}/{r+1}\\\")\\n\\n        task_rate = task_successes / args.n_rollouts\\n        results[task_name] = {\\n            \\\"success_rate\\\": task_rate,\\n            \\\"successes\\\": task_successes,\\n            \\\"total\\\": args.n_rollouts,\\n        }\\n        print(f\\\"[{task_name}] success rate: {task_rate:.1%} \\\"\\n              f\\\"({task_successes}/{args.n_rollouts})\\\")\\n\\n        env.close()\\n\\n    overall_rate = overall_successes / max(overall_total, 1)\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Overall success rate ({args.mode}): {overall_rate:.1%} \\\"\\n          f\\\"({overall_successes}/{overall_total})\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    # Save results\\n    summary = {\\n        \\\"mode\\\": args.mode,\\n        \\\"baseline_mode\\\": getattr(args, \\\"baseline_mode\\\", \\\"single\\\"),\\n        \\\"benchmark\\\": args.benchmark,\\n        \\\"n_rollouts\\\": args.n_rollouts,\\n        \\\"overall_success_rate\\\": overall_rate,\\n        \\\"per_task\\\": results,\\n    }\\n\\n    if args.output_file:\\n        out_path = Path(args.output_file)\\n        out_path.parent.mkdir(parents=True, exist_ok=True)\\n        out_path.write_text(json.dumps(summary, indent=2))\\n        print(f\\\"[eval] Results saved to {args.output_file}\\\")\\n\\n    return summary\\n\\n\\ndef main():\\n    def _segfault_handler(signum, frame):\\n        print(f\\\"[evaluate] FATAL: caught signal {signum} (segfault)\\\", flush=True)\\n        sys.exit(139)\\n\\n    signal.signal(signal.SIGSEGV, _segfault_handler)\\n\\n    args = parse_args()\\n    if args.mode == \\\"vla_only\\\":\\n        if args.baseline_mode == \\\"single\\\":\\n            args.K = 1\\n        elif args.baseline_mode == \\\"mean\\\":\\n            args.K = 10\\n    print(f\\\"[evaluate] args: {vars(args)}\\\", flush=True)\\n    evaluate(args)\\n    sys.exit(0)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check the CRM model class to understand how `uncertainty_dim=0` is handled.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "ed99b30d-721e-4292-922e-15be70d946fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2ZncCjry68ZAdwCGzHbnH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2216,
+      "cache_read_input_tokens": 35405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2216
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+再看一下 CRM 模型类中 uncertainty_dim=0 的处理方式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "2000383b-29dd-4cb3-8476-436ce804df67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2ZncCjry68ZAdwCGzHbnH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2216,
+      "cache_read_input_tokens": 35405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2216
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SfLVgBCZbxCUByETrcUN4n`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/src/crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "78da5a3f-6c5f-42ad-af88-7471d602cdbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2ZncCjry68ZAdwCGzHbnH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2216,
+      "cache_read_input_tokens": 35405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2216
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T21:26:28.754Z_
+
+<details><summary>↩ Tool result · `toolu_01SfLVgBCZbxCUByETrcUN4n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nConformal Refinement Module (CRM).\\n\\nInput: base_action (30D, argmin-selected) + uncertainty_features (40D) + obs_features (960D from VLM)\\nOutput: refined_action (30D) = base_action + clipped_delta\\n\\nArchitecture: 2 hidden layers, dim 256, ReLU, residual connection.\\n\\\"\\\"\\\"\\nimport torch\\nimport torch.nn as nn\\n\\n\\nclass ConformalRefinementModule(nn.Module):\\n    \\\"\\\"\\\"Learn to refine VLA action predictions using structured uncertainty.\\\"\\\"\\\"\\n\\n    def __init__(self, action_dim: int = 30, uncertainty_dim: int = 40,\\n                 obs_dim: int = 960, hidden_dim: int = 256,\\n                 max_correction_norm: float = 1.42):\\n        \\\"\\\"\\\"\\n        Args:\\n            action_dim: flattened action dim (H_eff * D = 5 * 6 = 30)\\n            uncertainty_dim: CGS output dim (30 + 5 + 5 = 40), 0 for obs_only\\n            obs_dim: VLM encoder frozen output dim (960)\\n            hidden_dim: hidden layer dim\\n        \\\"\\\"\\\"\\n        super().__init__()\\n\\n        self.max_correction_norm = max_correction_norm\\n        self.uncertainty_dim = uncertainty_dim\\n        input_dim = action_dim + uncertainty_dim + obs_dim\\n\\n        self.register_buffer('input_mean', torch.zeros(input_dim))\\n        self.register_buffer('input_std', torch.ones(input_dim))\\n\\n        self.net = nn.Sequential(\\n            nn.Linear(input_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, action_dim),\\n        )\\n\\n        # Residual: output = base_action + delta. Init last layer near zero.\\n        nn.init.zeros_(self.net[-1].weight)\\n        nn.init.zeros_(self.net[-1].bias)\\n\\n    def forward(self, base_action: torch.Tensor, uncertainty_features: torch.Tensor,\\n                obs_features: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"\\n        Args:\\n            base_action: (B, 30) argmin-selected sample, flattened\\n            uncertainty_features: (B, 40) CGS output, or None for obs_only\\n            obs_features: (B, 960) VLM frozen obs features\\n        Returns:\\n            refined_action: (B, 30) corrected action\\n        \\\"\\\"\\\"\\n        if uncertainty_features is not None:\\n            x = torch.cat([base_action, uncertainty_features, obs_features], dim=-1)\\n        else:\\n            x = torch.cat([base_action, obs_features], dim=-1)\\n        x = (x - self.input_mean) / (self.input_std + 1e-8)\\n        delta = self.net(x)\\n        # L2 norm clipping to prevent catastrophic over-correction\\n        delta_norm = delta.norm(dim=-1, keepdim=True)\\n        delta = delta * torch.clamp(self.max_correction_norm / (delta_norm + 1e-8), max=1.0)\\n        return base_action + delta\\n\\n    def set_normalization_stats(self, mean: \\\"torch.Tensor\\\", std: \\\"torch.Tensor\\\"):\\n        self.input_mean.copy_(mean)\\n        self.input_std.copy_(std)\\n\\n    def count_parameters(self) -> int:\\n        return sum(p.numel() for p in self.parameters() if p.requires_grad)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "4afe69a6-d115-4480-b9c0-bbfc4849bd1e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nConformal Refinement Module (CRM).\\\\n\\\\nInput: base_action (30D, argmin-selected) + uncertainty_features (40D) + obs_features (960D from VLM)\\\\nOutput: refined_action (30D) = base_action + clipped_delta\\\\n\\\\nArchitecture: 2 hidden layers, dim 256, ReLU, residual connection.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\n\\\\nclass ConformalRefinementModule(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Learn to refine VLA action predictions using structured uncertainty.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, action_dim: int = 30, uncertainty_dim: int = 40,\\\\n                 obs_dim: int = 960, hidden_dim: int = 256,\\\\n                 max_correction_norm: float = 1.42):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Args:\\\\n            action_dim: flattened action dim (H_eff * D = 5 * 6 = 30)\\\\n            uncertainty_dim: CGS output dim (30 + 5 + 5 = 40), 0 for obs_only\\\\n            obs_dim: VLM encoder frozen output dim (960)\\\\n            hidden_dim: hidden layer dim\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        super().__init__()\\\\n\\\\n        self.max_correction_norm = max_correction_norm\\\\n        self.uncertainty_dim = uncertainty_dim\\\\n        input_dim = action_dim + uncertainty_dim + obs_dim\\\\n\\\\n        self.register_buffer('input_mean', torch.zeros(input_dim))\\\\n        self.register_buffer('input_std', torch.ones(input_dim))\\\\n\\\\n        self.net = nn.Sequential(\\\\n            nn.Linear(input_dim, hidden_dim),\\\\n            nn.ReLU(),\\\\n            nn.Linear(hidden_dim, hidden_dim),\\\\n            nn.ReLU(),\\\\n            nn.Linear(hidden_dim, action_dim),\\\\n        )\\\\n\\\\n        # Residual: output = base_action + delta. Init last layer near zero.\\\\n        nn.init.zeros_(self.net[-1].weight)\\\\n        nn.init.zeros_(self.net[-1].bias)\\\\n\\\\n    def forward(self, base_action: torch.Tensor, uncertainty_features: torch.Tensor,\\\\n                obs_features: torch.Tensor) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Args:\\\\n            base_action: (B, 30) argmin-selected sample, flattened\\\\n            uncertainty_features: (B, 40) CGS output, or None for obs_only\\\\n            obs_features: (B, 960) VLM frozen obs features\\\\n        Returns:\\\\n            refined_action: (B, 30) corrected action\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        if uncertainty_features is not None:\\\\n            x = torch.cat([base_action, uncertainty_features, obs_features], dim=-1)\\\\n        else:\\\\n            x = torch.cat([base_action, obs_features], dim=-1)\\\\n        x = (x - self.input_mean) / (self.input_std + 1e-8)\\\\n        delta = self.net(x)\\\\n        # L2 norm clipping to prevent catastrophic over-correction\\\\n        delta_norm = delta.norm(dim=-1, keepdim=True)\\\\n        delta = delta * torch.clamp(self.max_correction_norm / (delta_norm + 1e-8), max=1.0)\\\\n        return base_action + delta\\\\n\\\\n    def set_normalization_stats(self, mean: \\\\\\\"torch.Tensor\\\\\\\", std: \\\\\\\"torch.Tensor\\\\\\\"):\\\\n        self.input_mean.copy_(mean)\\\\n        self.input_std.copy_(std)\\\\n\\\\n    def count_parameters(self) -> int:\\\\n        return sum(p.numel() for p in self.parameters() if p.requires_grad)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nConformal Refinement Module (CRM).\\n\\nInput: base_action (30D, argmin-selected) + uncertainty_features (40D) + obs_features (960D from VLM)\\nOutput: refined_action (30D) = base_action + clipped_delta\\n\\nArchitecture: 2 hidden layers, dim 256, ReLU, residual connection.\\n\\\"\\\"\\\"\\nimport torch\\nimport torch.nn as nn\\n\\n\\nclass ConformalRefinementModule(nn.Module):\\n    \\\"\\\"\\\"Learn to refine VLA action predictions using structured uncertainty.\\\"\\\"\\\"\\n\\n    def __init__(self, action_dim: int = 30, uncertainty_dim: int = 40,\\n                 obs_dim: int = 960, hidden_dim: int = 256,\\n                 max_correction_norm: float = 1.42):\\n        \\\"\\\"\\\"\\n        Args:\\n            action_dim: flattened action dim (H_eff * D = 5 * 6 = 30)\\n            uncertainty_dim: CGS output dim (30 + 5 + 5 = 40), 0 for obs_only\\n            obs_dim: VLM encoder frozen output dim (960)\\n            hidden_dim: hidden layer dim\\n        \\\"\\\"\\\"\\n        super().__init__()\\n\\n        self.max_correction_norm = max_correction_norm\\n        self.uncertainty_dim = uncertainty_dim\\n        input_dim = action_dim + uncertainty_dim + obs_dim\\n\\n        self.register_buffer('input_mean', torch.zeros(input_dim))\\n        self.register_buffer('input_std', torch.ones(input_dim))\\n\\n        self.net = nn.Sequential(\\n            nn.Linear(input_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, action_dim),\\n        )\\n\\n        # Residual: output = base_action + delta. Init last layer near zero.\\n        nn.init.zeros_(self.net[-1].weight)\\n        nn.init.zeros_(self.net[-1].bias)\\n\\n    def forward(self, base_action: torch.Tensor, uncertainty_features: torch.Tensor,\\n                obs_features: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"\\n        Args:\\n            base_action: (B, 30) argmin-selected sample, flattened\\n            uncertainty_features: (B, 40) CGS output, or None for obs_only\\n            obs_features: (B, 960) VLM frozen obs features\\n        Returns:\\n            refined_action: (B, 30) corrected action\\n        \\\"\\\"\\\"\\n        if uncertainty_features is not None:\\n            x = torch.cat([base_action, uncertainty_features, obs_features], dim=-1)\\n        else:\\n            x = torch.cat([base_action, obs_features], dim=-1)\\n        x = (x - self.input_mean) / (self.input_std + 1e-8)\\n        delta = self.net(x)\\n        # L2 norm clipping to prevent catastrophic over-correction\\n        delta_norm = delta.norm(dim=-1, keepdim=True)\\n        delta = delta * torch.clamp(self.max_correction_norm / (delta_norm + 1e-8), max=1.0)\\n        return base_action + delta\\n\\n    def set_normalization_stats(self, mean: \\\"torch.Tensor\\\", std: \\\"torch.Tensor\\\"):\\n        self.input_mean.copy_(mean)\\n        self.input_std.copy_(std)\\n\\n    def count_parameters(self) -> int:\\n        return sum(p.numel() for p in self.parameters() if p.requires_grad)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PbqAMQz3cPb3kNoasMhLxZ`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep -n \"uncertainty_dim\\|input_mode\\|obs_only\\|scalar_unc\\|_to_scalar_uf\\|unc_dim\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "6ffb0d74-dae5-4c60-8eea-ce6f1198a45c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2ZncCjry68ZAdwCGzHbnH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2216,
+      "cache_read_input_tokens": 35405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2216
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T21:26:30.191Z_
+
+<details><summary>↩ Tool result · `toolu_01PbqAMQz3cPb3kNoasMhLxZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "c9433398-f533-42ef-8522-161f8ce92968",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The pipe character is blocked for ssh_read_only. Let me use grep directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "25f1f14b-ce18-40d1-8e4d-343b9a0ed8a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FjigW6kwdsY1Y4FULpkLCS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1699,
+      "cache_read_input_tokens": 37621,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1699
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017RJq25BAkjsWhTLBP2eNfT`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep -n \"uncertainty_dim\\|input_mode\\|obs_only\\|scalar_unc\\|_to_scalar_uf\\|unc_dim\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "4c3cf6d5-8b88-4f00-af64-6f7ce1956eca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FjigW6kwdsY1Y4FULpkLCS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1699,
+      "cache_read_input_tokens": 37621,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1699
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T21:26:36.484Z_
+
+<details><summary>↩ Tool result · `toolu_017RJq25BAkjsWhTLBP2eNfT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "73be9b4f-9371-495a-8d69-9677a7f04c26",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017NhiHPZwQUxqscL6tXevsD`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep -n \"unc_dim\\|obs_only\\|scalar_unc\\|input_mode\\|uncertainty_dim\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "0287eabf-31cc-4818-a13b-46cd0cc2421b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XcQ5Lpj6SgGiu4ibvht5JF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 290,
+      "cache_read_input_tokens": 39320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 290
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T21:26:39.367Z_
+
+<details><summary>↩ Tool result · `toolu_017NhiHPZwQUxqscL6tXevsD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "5a9d36c2-5fa7-4a3d-b42e-167ccce76107",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `\|` is being treated as a shell metacharacter. Let me use `-e` flags instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "f5085202-3302-4936-9a75-f04749f63a5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AhmnC6Z5Zvs1Y7sjT9SCQW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 248,
+      "cache_read_input_tokens": 39610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 248
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B5L6LN1touRR1X1deC3MBx`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep -n -e \"unc_dim\" -e \"obs_only\" -e \"scalar_unc\" -e \"input_mode\" -e \"uncertainty_dim\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "510c726b-d351-4570-b763-b582c526ddb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AhmnC6Z5Zvs1Y7sjT9SCQW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 248,
+      "cache_read_input_tokens": 39610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 248
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T21:26:43.721Z_
+
+<details><summary>↩ Tool result · `toolu_01B5L6LN1touRR1X1deC3MBx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"81:    p.add_argument(\\\"--input_mode\\\", type=str, default=\\\"full\\\",\\n82:                   choices=[\\\"full\\\", \\\"obs_only\\\", \\\"scalar_unc\\\"],\\n83:                   help=\\\"full=all features, obs_only=no conformal, scalar_unc=scalar uncertainty\\\")\\n346:    # uncertainty_dim depends on input_mode\\n347:    unc_dim_map = {\\\"full\\\": CORRECTION_DIM * H_EFF + H_EFF + H_EFF,  # 40\\n348:                   \\\"obs_only\\\": 0,\\n349:                   \\\"scalar_unc\\\": 3}\\n350:    unc_dim = unc_dim_map[args.input_mode]\\n351:    obs_only = (args.input_mode == \\\"obs_only\\\")\\n352:    scalar_unc = (args.input_mode == \\\"scalar_unc\\\")\\n356:        uncertainty_dim=unc_dim,\\n394:            if scalar_unc:\\n397:            if obs_only:\\n427:            if scalar_unc:\\n433:            refined = crm(ba, None if obs_only else uf, obs_feat)\\n442:                aug_refined = crm(aug_ba, None if obs_only else aug_uf, obs_feat[:n_aug])\\n473:                if scalar_unc:\\n478:                refined = crm(ba, None if obs_only else uf, obs_feat)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "9cb710db-0109-4661-b208-ae37ddf13d00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"81:    p.add_argument(\\\\\\\"--input_mode\\\\\\\", type=str, default=\\\\\\\"full\\\\\\\",\\\\n82:                   choices=[\\\\\\\"full\\\\\\\", \\\\\\\"obs_only\\\\\\\", \\\\\\\"scalar_unc\\\\\\\"],\\\\n83:                   help=\\\\\\\"full=all features, obs_only=no conformal, scalar_unc=scalar uncertainty\\\\\\\")\\\\n346:    # uncertainty_dim depends on input_mode\\\\n347:    unc_dim_map = {\\\\\\\"full\\\\\\\": CORRECTION_DIM * H_EFF + H_EFF + H_EFF,  # 40\\\\n348:                   \\\\\\\"obs_only\\\\\\\": 0,\\\\n349:                   \\\\\\\"scalar_unc\\\\\\\": 3}\\\\n350:    unc_dim = unc_dim_map[args.input_mode]\\\\n351:    obs_only = (args.input_mode == \\\\\\\"obs_only\\\\\\\")\\\\n352:    scalar_unc = (args.input_mode == \\\\\\\"scalar_unc\\\\\\\")\\\\n356:        uncertainty_dim=unc_dim,\\\\n394:            if scalar_unc:\\\\n397:            if obs_only:\\\\n427:            if scalar_unc:\\\\n433:            refined = crm(ba, None if obs_only else uf, obs_feat)\\\\n442:                aug_refined = crm(aug_ba, None if obs_only else aug_uf, obs_feat[:n_aug])\\\\n473:                if scalar_unc:\\\\n478:                refined = crm(ba, None if obs_only else uf, obs_feat)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"81:    p.add_argument(\\\"--input_mode\\\", type=str, default=\\\"full\\\",\\n82:                   choices=[\\\"full\\\", \\\"obs_only\\\", \\\"scalar_unc\\\"],\\n83:                   help=\\\"full=all features, obs_only=no conformal, scalar_unc=scalar uncertainty\\\")\\n346:    # uncertainty_dim depends on input_mode\\n347:    unc_dim_map = {\\\"full\\\": CORRECTION_DIM * H_EFF + H_EFF + H_EFF,  # 40\\n348:                   \\\"obs_only\\\": 0,\\n349:                   \\\"scalar_unc\\\": 3}\\n350:    unc_dim = unc_dim_map[args.input_mode]\\n351:    obs_only = (args.input_mode == \\\"obs_only\\\")\\n352:    scalar_unc = (args.input_mode == \\\"scalar_unc\\\")\\n356:        uncertainty_dim=unc_dim,\\n394:            if scalar_unc:\\n397:            if obs_only:\\n427:            if scalar_unc:\\n433:            refined = crm(ba, None if obs_only else uf, obs_feat)\\n442:                aug_refined = crm(aug_ba, None if obs_only else aug_uf, obs_feat[:n_aug])\\n473:                if scalar_unc:\\n478:                refined = crm(ba, None if obs_only else uf, obs_feat)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+现在信息完整了。代码审查结论清晰，开始写 ablation_eval_commands.md。
+
+**关键发现：**
+
+1. `--mode` 参数已包含 `crm_obs_only` 和 `crm_scalar`，都在 choices 列表中。
+2. `evaluate()` 中 CRM 加载逻辑正确处理了三种 uncertainty_dim：
+   - `crm_obs_only` → `unc_dim=0`
+   - `crm_scalar` → `unc_dim=3`
+   - `crm_perdof`/`acr_vla` → `unc_dim=40`
+3. `select_action_crm()` 中 `mode=="crm_obs_only"` 时传 `uf_input=None`，`mode=="crm_scalar"` 时调用 `_to_scalar_uf()` 压缩 uncertainty。
+4. CRM forward 中 `uncertainty_features=None` 时只拼接 `base_action + obs_features`，与训练时 `obs_only` 模式一致。
+5. train_crm.py 中 `unc_dim_map` 与 evaluate.py 中的映射完全一致——无 bug 风险。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "af2b30e4-131d-40e2-8f93-687764758009",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TXxj6rwRjzAiXr4b43dKBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 39858,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01PgaWybvALFYvg2DaeFjMRA`</summary>
+
+````json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "ablation_eval_commands.md",
+  "content": "# Ablation Eval Commands\n\n## 代码审查结果\n\n### evaluate.py 中 ablation modes 状态：✅ 全部就绪\n\n`--mode` 接受 6 个值：`vla_only`, `crm_scalar`, `crm_perdof`, `acr_vla`, `crm_obs_only`, `reconvla`\n\n两个 ablation mode 的 CRM 加载逻辑：\n\n| mode | uncertainty_dim | uf_input 传入 CRM | 与 train_crm.py 一致性 |\n|------|----------------|-------------------|----------------------|\n| `crm_obs_only` | 0 | `None` | ✅ `input_mode=obs_only` → `unc_dim=0`, `crm(ba, None, obs_feat)` |\n| `crm_scalar` | 3 | `_to_scalar_uf(uf)` 压缩为 3D | ✅ `input_mode=scalar_unc` → `unc_dim=3`, `_to_scalar_uf()` 同函数 |\n\n`_to_scalar_uf()` 实现：将 40D uncertainty 压缩为 3D — `[per_dof_std.norm(), interval_width.mean(), coverage.mean()]`，evaluate.py 和 train_crm.py 中完全一致。\n\nCRM forward 中 `uncertainty_features=None` 时跳过拼接，只用 `base_action + obs_features`，与训练 obs_only 模式匹配。\n\n**无 bug 风险。** 训练与评估的 uncertainty_dim 映射、uf 处理、CRM 输入构造完全对齐。\n\n### max_correction_norm\n\n命令行 `--max_correction_norm` 可覆盖 checkpoint 中保存的值。不指定则用 checkpoint 默认值（训练时设为 1.42）。\n\n---\n\n## Eval 命令\n\n### 1. obs_only ablation\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -u src/evaluate.py \\\n  --mode crm_obs_only \\\n  --benchmark spatial \\\n  --n_rollouts 10 \\\n  --seed 42 \\\n  --K 10 \\\n  --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt \\\n  --output_file /root/autodl-tmp/eval_results/ablation_obs_only_spatial.json\n```\n\n### 2. scalar_unc ablation\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -u src/evaluate.py \\\n  --mode crm_scalar \\\n  --benchmark spatial \\\n  --n_rollouts 10 \\\n  --seed 42 \\\n  --K 10 \\\n  --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt \\\n  --output_file /root/autodl-tmp/eval_results/ablation_scalar_unc_spatial.json\n```\n\n### 3. 对比基准：full ACR-VLA (crm_perdof)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -u src/evaluate.py \\\n  --mode acr_vla \\\n  --benchmark spatial \\\n  --n_rollouts 10 \\\n  --seed 42 \\\n  --K 10 \\\n  --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/crm_best.pt \\\n  --output_file /root/autodl-tmp/eval_results/full_acr_vla_spatial.json\n```\n\n---\n\n## 注意事项\n\n- 执行前确保 `/root/autodl-tmp/eval_results/` 目录存在（evaluate.py 会自动创建）\n- `--crm_checkpoint` 和 `--checkpoint` 等价，内部会自动合并\n- 如需覆盖 correction 范围：加 `--max_correction_norm 1.0`（默认 1.42）\n- 三个 eval 可串行跑，每个约需 30-60 分钟（取决于 benchmark 任务数 × n_rollouts）\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "576e2dfc-c7a8-484a-b38c-ebc3fe4990dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TXxj6rwRjzAiXr4b43dKBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 39858,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T21:27:15.709Z_
+
+<details><summary>↩ Tool result · `toolu_01PgaWybvALFYvg2DaeFjMRA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'ablation_eval_commands.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "d994fdb1-49e7-4fe0-a3e4-4fa4ddee184a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'ablation_eval_commands.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'ablation_eval_commands.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The save_project_file tool only allows certain files. Let me write it to the artifacts directory instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "a4adbc3f-0f73-449a-ae12-b77fd6b3913a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BQnuWpKpY9pkByya6xhDzM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1818,
+      "cache_read_input_tokens": 40541,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1818
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+save_project_file 不允许写这个文件名。写到本地 artifacts 目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "6a69d9c5-dd07-434d-9a1c-1aa3229e5893",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BQnuWpKpY9pkByya6xhDzM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1818,
+      "cache_read_input_tokens": 40541,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1818
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Jxza7mciodvTPzR1n2Hvpq`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "f3ad8613-e202-4bf3-bd5e-cbe35dd8c29f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BQnuWpKpY9pkByya6xhDzM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1818,
+      "cache_read_input_tokens": 40541,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1818
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T21:27:20.790Z_
+
+<details><summary>↩ Tool result · `toolu_01Jxza7mciodvTPzR1n2Hvpq`</summary>
+
+```text
+_project
+competitor_analysis.md
+correction_degradation_literature.md
+crm-train-v2-k5
+crm_bug_audit.md
+diag-eval-v6-batch-failure.md
+dream_reports
+eval-reconvla-spatial-v1-diag.md
+fix_plan_code_sketch.md
+lerobot-pipeline-alignment.md
+libero-smolvla-env-report.md
+manifest.yaml
+method_section_draft.tex
+mvp-point-reaching
+object_eval_commands.md
+pipeline-dimension-verification.md
+precompute-k5
+precompute-k5-analysis.md
+reconvla-comparison-report.md
+report_eval_progress.md
+smolvla-libero-finetune-survey.md
+smolvla_wrapper_fixed.py
+spatial_comparison_template.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "3f5a734e-9249-4b0f-9617-f53b9d95350c",
+  "tool_use_result": {
+    "stdout": "_project\ncompetitor_analysis.md\ncorrection_degradation_literature.md\ncrm-train-v2-k5\ncrm_bug_audit.md\ndiag-eval-v6-batch-failure.md\ndream_reports\neval-reconvla-spatial-v1-diag.md\nfix_plan_code_sketch.md\nlerobot-pipeline-alignment.md\nlibero-smolvla-env-report.md\nmanifest.yaml\nmethod_section_draft.tex\nmvp-point-reaching\nobject_eval_commands.md\npipeline-dimension-verification.md\nprecompute-k5\nprecompute-k5-analysis.md\nreconvla-comparison-report.md\nreport_eval_progress.md\nsmolvla-libero-finetune-survey.md\nsmolvla_wrapper_fixed.py\nspatial_comparison_template.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — Write · `toolu_0166E7EY8mxgABwTNAJFt5pB`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/ablation_eval_commands.md",
+  "content": "# Ablation Eval Commands\n\n## 代码审查结果\n\n### evaluate.py 中 ablation modes 状态：✅ 全部就绪\n\n`--mode` 接受 6 个值：`vla_only`, `crm_scalar`, `crm_perdof`, `acr_vla`, `crm_obs_only`, `reconvla`\n\n两个 ablation mode 的 CRM 加载逻辑：\n\n| mode | uncertainty_dim | uf_input 传入 CRM | 与 train_crm.py 一致性 |\n|------|----------------|-------------------|----------------------|\n| `crm_obs_only` | 0 | `None` | ✅ `input_mode=obs_only` → `unc_dim=0`, `crm(ba, None, obs_feat)` |\n| `crm_scalar` | 3 | `_to_scalar_uf(uf)` 压缩为 3D | ✅ `input_mode=scalar_unc` → `unc_dim=3`, `_to_scalar_uf()` 同函数 |\n\n`_to_scalar_uf()` 实现：将 40D uncertainty 压缩为 3D — `[per_dof_std.norm(), interval_width.mean(), coverage.mean()]`，evaluate.py 和 train_crm.py 中完全一致。\n\nCRM forward 中 `uncertainty_features=None` 时跳过拼接，只用 `base_action + obs_features`，与训练 obs_only 模式匹配。\n\n**无 bug 风险。** 训练与评估的 uncertainty_dim 映射、uf 处理、CRM 输入构造完全对齐。\n\n### max_correction_norm\n\n命令行 `--max_correction_norm` 可覆盖 checkpoint 中保存的值。不指定则用 checkpoint 默认值（训练时设为 1.42）。\n\n---\n\n## Eval 命令\n\n### 1. obs_only ablation\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -u src/evaluate.py \\\n  --mode crm_obs_only \\\n  --benchmark spatial \\\n  --n_rollouts 10 \\\n  --seed 42 \\\n  --K 10 \\\n  --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt \\\n  --output_file /root/autodl-tmp/eval_results/ablation_obs_only_spatial.json\n```\n\n### 2. scalar_unc ablation\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -u src/evaluate.py \\\n  --mode crm_scalar \\\n  --benchmark spatial \\\n  --n_rollouts 10 \\\n  --seed 42 \\\n  --K 10 \\\n  --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt \\\n  --output_file /root/autodl-tmp/eval_results/ablation_scalar_unc_spatial.json\n```\n\n### 3. 对比基准：full ACR-VLA (crm_perdof)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -u src/evaluate.py \\\n  --mode acr_vla \\\n  --benchmark spatial \\\n  --n_rollouts 10 \\\n  --seed 42 \\\n  --K 10 \\\n  --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/crm_best.pt \\\n  --output_file /root/autodl-tmp/eval_results/full_acr_vla_spatial.json\n```\n\n---\n\n## 注意事项\n\n- 执行前确保 `/root/autodl-tmp/eval_results/` 目录存在（evaluate.py 会自动创建）\n- `--crm_checkpoint` 和 `--checkpoint` 等价，内部会自动合并\n- 如需覆盖 correction 范围：加 `--max_correction_norm 1.0`（默认 1.42）\n- 三个 eval 可串行跑，每个约需 30-60 分钟（取决于 benchmark 任务数 × n_rollouts）\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "1a103f4c-6429-4626-9e09-384522b3cb57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UsQaHDHp3rkJ6mkgcyJ9X1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 391,
+      "cache_read_input_tokens": 42359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 391
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T21:27:44.876Z_
+
+<details><summary>↩ Tool result · `toolu_0166E7EY8mxgABwTNAJFt5pB`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/ablation_eval_commands.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "3a5f022a-4a61-4d45-8a43-bada3ae287a7",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/ablation_eval_commands.md",
+    "content": "# Ablation Eval Commands\n\n## 代码审查结果\n\n### evaluate.py 中 ablation modes 状态：✅ 全部就绪\n\n`--mode` 接受 6 个值：`vla_only`, `crm_scalar`, `crm_perdof`, `acr_vla`, `crm_obs_only`, `reconvla`\n\n两个 ablation mode 的 CRM 加载逻辑：\n\n| mode | uncertainty_dim | uf_input 传入 CRM | 与 train_crm.py 一致性 |\n|------|----------------|-------------------|----------------------|\n| `crm_obs_only` | 0 | `None` | ✅ `input_mode=obs_only` → `unc_dim=0`, `crm(ba, None, obs_feat)` |\n| `crm_scalar` | 3 | `_to_scalar_uf(uf)` 压缩为 3D | ✅ `input_mode=scalar_unc` → `unc_dim=3`, `_to_scalar_uf()` 同函数 |\n\n`_to_scalar_uf()` 实现：将 40D uncertainty 压缩为 3D — `[per_dof_std.norm(), interval_width.mean(), coverage.mean()]`，evaluate.py 和 train_crm.py 中完全一致。\n\nCRM forward 中 `uncertainty_features=None` 时跳过拼接，只用 `base_action + obs_features`，与训练 obs_only 模式匹配。\n\n**无 bug 风险。** 训练与评估的 uncertainty_dim 映射、uf 处理、CRM 输入构造完全对齐。\n\n### max_correction_norm\n\n命令行 `--max_correction_norm` 可覆盖 checkpoint 中保存的值。不指定则用 checkpoint 默认值（训练时设为 1.42）。\n\n---\n\n## Eval 命令\n\n### 1. obs_only ablation\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -u src/evaluate.py \\\n  --mode crm_obs_only \\\n  --benchmark spatial \\\n  --n_rollouts 10 \\\n  --seed 42 \\\n  --K 10 \\\n  --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt \\\n  --output_file /root/autodl-tmp/eval_results/ablation_obs_only_spatial.json\n```\n\n### 2. scalar_unc ablation\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -u src/evaluate.py \\\n  --mode crm_scalar \\\n  --benchmark spatial \\\n  --n_rollouts 10 \\\n  --seed 42 \\\n  --K 10 \\\n  --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt \\\n  --output_file /root/autodl-tmp/eval_results/ablation_scalar_unc_spatial.json\n```\n\n### 3. 对比基准：full ACR-VLA (crm_perdof)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython -u src/evaluate.py \\\n  --mode acr_vla \\\n  --benchmark spatial \\\n  --n_rollouts 10 \\\n  --seed 42 \\\n  --K 10 \\\n  --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/crm_best.pt \\\n  --output_file /root/autodl-tmp/eval_results/full_acr_vla_spatial.json\n```\n\n---\n\n## 注意事项\n\n- 执行前确保 `/root/autodl-tmp/eval_results/` 目录存在（evaluate.py 会自动创建）\n- `--crm_checkpoint` 和 `--checkpoint` 等价，内部会自动合并\n- 如需覆盖 correction 范围：加 `--max_correction_norm 1.0`（默认 1.42）\n- 三个 eval 可串行跑，每个约需 30-60 分钟（取决于 benchmark 任务数 × n_rollouts）\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+审查完成。结论：
+
+**evaluate.py 中 `crm_obs_only` 和 `crm_scalar` 两个 mode 已完整实现，无需修改。** 具体验证：
+
+- `--mode` choices 已包含两者
+- CRM 加载时 `uncertainty_dim` 映射与 train_crm.py 完全一致（obs_only→0, scalar→3, full→40）
+- `select_action_crm()` 中根据 mode 正确处理 uf：obs_only 传 None，scalar 调 `_to_scalar_uf()` 压缩为 3D
+- CRM forward 的 None 分支（跳过 uncertainty 拼接）与训练时行为一致
+
+三个可直接执行的 eval 命令已写入 `artifacts/ablation_eval_commands.md`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "uuid": "5dfba0a9-c784-4f33-b882-036079ccfc95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VgnkVgeMDLKqq1ahBvcL6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1448,
+      "cache_read_input_tokens": 42750,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1448
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 46_
+
+审查完成。结论：
+
+**evaluate.py 中 `crm_obs_only` 和 `crm_scalar` 两个 mode 已完整实现，无需修改。** 具体验证：
+
+- `--mode` choices 已包含两者
+- CRM 加载时 `uncertainty_dim` 映射与 train_crm.py 完全一致（obs_only→0, scalar→3, full→40）
+- `select_action_crm()` 中根据 mode 正确处理 uf：obs_only 传 None，scalar 调 `_to_scalar_uf()` 压缩为 3D
+- CRM forward 的 None 分支（跳过 uncertainty 拼接）与训练时行为一致
+
+三个可直接执行的 eval 命令已写入 `artifacts/ablation_eval_commands.md`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 122441,
+  "duration_api_ms": 121537,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "0f9246a8-a28e-49db-8d35-6dd8a88a868b",
+  "total_cost_usd": 0.54333675,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 32357,
+    "cache_read_input_tokens": 408693,
+    "output_tokens": 5400,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32357,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 236,
+        "cache_read_input_tokens": 42750,
+        "cache_creation_input_tokens": 1448,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1448
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1599,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001684,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 5400,
+      "cacheReadInputTokens": 408693,
+      "cacheCreationInputTokens": 32357,
+      "webSearchRequests": 0,
+      "costUSD": 0.54165275,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c3aab891-e986-4047-bcb8-754d777ca2d9"
+}
+```
+
+</details>
+
+---

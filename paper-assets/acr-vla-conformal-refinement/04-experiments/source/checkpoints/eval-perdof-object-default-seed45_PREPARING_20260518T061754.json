@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval-perdof-object-default-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T20:21:08.043Z",
+    "updated_at": "2026-05-18T06:17:54.050Z",
+    "completed_at": "2026-05-17T02:54:38.157Z",
+    "hypothesis": "Per-DoF CRM with default norm on LIBERO-Object seed=45 validates cross-seed consistency of per-DoF correction — paired with seed42/43/44 to assess variance of correction-based methods vs baseline",
+    "parent": "crm-train-v2-perdof",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "metrics": {
+          "kill_reason": "Sacrificed for P0 direct-correction experiment (no free GPU). Was at task 5/10 after 6h. Expected result: 0% (confirmed by seed42=0%, seed44 running on autodl-4090).",
+          "partial_progress": "5/10 tasks, bbq_sauce 0% success"
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-18T06:17:54.426899+00:00",
+  "trigger": "update_registry"
+}

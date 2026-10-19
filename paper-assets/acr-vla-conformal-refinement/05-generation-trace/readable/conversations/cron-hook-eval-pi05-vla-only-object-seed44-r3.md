@@ -1,0 +1,714 @@
+# cron hook eval pi05 vla only object seed44 r3
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 2
+- **Tool calls:** 10
+- **Original source:** `logs/chats/cron_hook_eval-pi05-vla-only-object-seed44-r3.jsonl`
+- **Structured JSON:** [`43cf3733993a66d04f81.json`](../../sessions/43/43cf3733993a66d04f81.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+22 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T12:14:27.884615+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: eval-pi05-vla-only-object-seed44-r3
+- project: acr-vla-conformal-refinement
+- server: bjb1-32546
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T12:14:56.904420+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T12:14:57.006422+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "ToolSearch",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T12:15:04.874628+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T12:15:05.404457+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T12:15:05.885440+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T12:15:05.885846+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T12:15:11.638126+00:00_
+
+Error: result (300,792 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-7f14f596/23b5e1e1-2664-4a2f-869f-0466ea844fbd/tool-results/mcp-agent-ml-research-read_registry-1779365711516.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-7f14f596/23b5e1e1-2664-4a2f-869f-0466ea844fbd/tool-results/mcp-agent-ml-research-read_registry-1779365711516.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-7f14f596/23b5e1e1-2664-4a2f-869f-0466ea844fbd/tool-results/mcp-agent-ml-research-read_registry-1779365711516.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 6763
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T12:18:14.266768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"eval-pi05-vla-only-spatial-seed42-r3\", \"success\": true, \"actions\": [\"Sentinel EXIT_CODE=0 → Registry → ANALYZING\", \"Cron deleted\"]}, {\"exp_id\": \"eval-pi05-vla-only-spatial-seed43-r3\", \"success\": true, \"actions\": [\"Sentinel EXIT_CODE=0 → Registry → ANALYZING\", \"Cron deleted\"]}, {\"exp_id\": \"eval-pi05-vla-only-spatial-seed45\", \"success\": true, \"actions\": [\"Sentinel EXIT_CODE=0 → Registry → ANALYZING\", \"Cron deleted\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 188862
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T12:18:14.369366+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval-pi05-vla-only-spatial-seed45 | π0.5 VLA-only baseline on LIBERO-Spatial seed45 with patched lerobot (VT key remap), cross-VLA validation of CRM | — | — | — |\\n\\n## 待处理\\n- precompute-pi05-features-object: Precompute π0.5 2048D obs_features + K=10 action samples from LIBERO demos for CRM training. Required step for Plan A (CRM with π0.5 features).（准备中）\\n- precompute-pi05-shard5（准备中）\\n- …另有 50 项\\n\\n## 近期结论\\n- **eval-spatial-obs-only-seed45** (success): 补充 seed for Spatial crm_obs_only statistical robustness (low-priority, may be killed for π0.5)\\n\\n## 趋势\\n成功 327 / 负向 38 / 失败 61 / 共 517\\nn_tasks: 10 →（近 3 次 success）\\ntotal_rollouts: 100 →（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-18228: 无 GPU 信息\\nbjb1-32546: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\nbjb2-28827: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\nbjb2-40593: 无 GPU 信息\\n\\n## 告警\\n- plan_001-crm-smolvla: 训练失败 — unknown\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\n- eval-spatial-reeval-v2: 已被终止 — unknown\\n- precompute-v2-shard0: 已被终止 — unknown\\n- precompute-v2-shard1: 已被终止 — unknown\\n- precompute-v2-shard2: 已被终止 — unknown\\n- eval-spatial-v3-full: 已被终止 — unknown\\n- precompute-v3-shard0: 已被终止 — unknown\\n- precompute-v3-shard1: 已被终止 — unknown\\n- precompute-v3-shard2: 已被终止 — unknown\\n- eval-spatial-v4-full: 已被终止 — unknown\\n- eval-object-v4-full: 已被终止 — unknown\\n- eval-spatial-v5-full: 已被终止 — unknown\\n- crm-train-v1: 已被终止 — unknown\\n- eval-reconvla-spatial-v1: 已被终止 — unknown\\n- eval-reconvla-spatial-v2: 已被终止 — unknown\\n- eval-acr-spatial-v1: 已被终止 — unknown\\n- crm
+…[truncated 5139 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 188483
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T12:18:14.421146+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-21 11:55 UTC | 更新原因: D104 π0.5 lerobot rsync 完成，6 baseline eval 部署成功 (83.3% quick verify)\\n\\n> 详见 paper_framing.md（D077→D092→D097→D103→D104）\\n\\n## 核心方向\\n**Adaptive inference-time compute for frozen VLAs** — K=2 L2 distance + selective CRM correction。Plan A = Pareto 最优。\\n\\n## 投稿目标\\n**CoRL 2026** DDL **2026-05-29**。剩余 **≤7 天**。\\n\\n## 阶段\\n**π0.5 baseline eval 运行中 + CRM pipeline 启动中 + 论文收尾**。SmolVLA 全部 LOCKED。\\n\\n## Plan A 核心结果 (LOCKED)\\n| Benchmark | Plan A (K=2) | K=10 CRM | VLA-only | Δ vs VLA-only |\\n|-----------|-------------|----------|----------|---------------|\\n| Object    | 18.3%±2.1%  | 16.8%±1.8% | 10.8%±1.3% | +7.5pp |\\n| Spatial   | 35.0%±1.0%  | 34.5%±1.5% | 29.4%±1.5% | +5.6pp |\\n\\n## K=20 Sweep (LOCKED, D102) → 论文已写入 ✅\\n- Object: 18.8%±1.0% (n=4) ≈ K=2 → diminishing returns\\n- Spatial: 34.3%±0.6% (n=3) ≈ K=2 → K=2 足够\\n\\n## Latency (LOCKED, D097)\\nCRM forward: 0.28ms | Plan A speedup: 1.82× | CRM pipeline vs K=10: -1.66%\\n\\n## Norm Sweep (ALL LOCKED) → Figure 2 v4 完成 ✅\\n| ε | n | mean | std |\\n|------|-----|-------|------|\\n| 0.03 | 15 | ~10.5% | — |\\n| 0.05 | 16 | 13.9% | ~1.4% |\\n| 0.1 | 20 | 15.3% | ~2.3% |\\n| 0.2 | 12 | 17.2% | ~1.8% |\\n\\n## Spatial Adaptive K Sweep (ALL LOCKED, D100)\\nPlan A 35.0% > P90 33.0% > P75 32.7% > P50 32.0% > P25 31.7%\\n\\n## Random Selection (LOCKED)\\nObject 9.7% ≈ VLA-only 10.8% | Spatial 29.3% ≈ VLA-only 29.4%\\n\\n## OpenVLA Applicability Boundary (LOCKED, D093)\\nBaseline 69% → +CRM 0%。Near-deterministic。方法需要 stochastic VLA。\\n\\n## π0.5 实验线 (D095→D103→D104) 🔥\\n- ✅ D103: Quick verify 72% SR (bjb2-40593)\\n- ✅ D104: lerobot rsync 完成，bjb1-32546 quick verify **83.3% SR**\\n- 🔄 **RUNNING**: 6 baseline eval (3 Object + 3 Spatial seeds) on bjb1-32546
+…[truncated 2881 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 188535
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T12:18:31.855534+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-7f14f596/23b5e1e1-2664-4a2f-869f-0466ea844fbd/tool-results/mcp-agent-ml-research-read_registry-1779365711516.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\ntarget_ids = [\n    'eval-pi05-vla-only-object-seed42-r3',\n    'eval-pi05-vla-only-object-seed43-r3', \n    'eval-pi05-vla-only-object-seed44-r3',\n    'eval-pi05-vla-only-spatial-seed42-r3',\n    'eval-pi05-vla-only-spatial-seed43-r3',\n    'eval-pi05-vla-only-spatial-seed45'\n]\nfor exp in exps:\n    if exp['exp_id'] in target_ids:\n        print(f\\\"=== {exp['exp_id']} ===\\\")\n        print(f\\\"  status: {exp.get('status')}\\\")\n        print(f\\\"  conclusion: {exp.get('conclusion')}\\\")\n        print(f\\\"  metrics: {json.dumps(exp.get('metrics', {}), indent=2)}\\\")\n        print(f\\\"  hypothesis: {exp.get('hypothesis', 'N/A')}\\\")\n        print()\n\"\n",
+  "description": "Extract π0.5 baseline experiment details from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-7f14f596/23b5e1e1-2664-4a2f-869f-0466ea844fbd/tool-results/mcp-agent-ml-research-read_registry-1779365711516.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\ntarget_ids = [\n    'eval-pi05-vla-only-object-seed42-r3',\n    'eval-pi05-vla-only-object-seed43-r3', \n    'eval-pi05-vla-only-object-seed44-r3',\n    'eval-pi05-vla-only-spatial-seed42-r3',\n    'eval-pi05-vla-only-spatial-seed43-r3',\n    'eval-pi05-vla-only-spatial-seed45'\n]\nfor exp in exps:\n    if exp['exp_id'] in target_ids:\n        print(f\\\"=== {exp['exp_id']} ===\\\")\n        print(f\\\"  status: {exp.get('status')}\\\")\n        print(f\\\"  conclusion: {exp.get('conclusion')}\\\")\n        print(f\\\"  metrics: {json.dumps(exp.get('metrics', {}), indent=2)}\\\")\n        print(f\\\"  hypothesis: {exp.get('hypothesis', 'N/A')}\\\")\n        print()\n\"\n",
+    "description": "Extract π0.5 baseline experiment details from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T12:18:32.509352+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 15, in &lt;module>
+    if exp['exp_id'] in target_ids:
+       ~~~^^^^^^^^^^
+TypeError: string indices must be integers, not 'str'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "Bash",
+  "elapsed_ms": 653
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T12:18:42.211371+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-7f14f596/23b5e1e1-2664-4a2f-869f-0466ea844fbd/tool-results/mcp-agent-ml-research-read_registry-1779365711516.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nresult = json.loads(result_str)\n# Check structure\nif isinstance(result, dict) and 'data' in result:\n    d = result['data']\n    if isinstance(d, dict) and 'experiments' in d:\n        print('experiments is', type(d['experiments']))\n        if isinstance(d['experiments'], list):\n            print('first elem type:', type(d['experiments'][0]))\n            print('first elem:', str(d['experiments'][0])[:200])\n        elif isinstance(d['experiments'], str):\n            exps = json.loads(d['experiments'])\n            print('parsed, type:', type(exps))\n    elif isinstance(d, str):\n        dd = json.loads(d)\n        print('data parsed, type:', type(dd))\n        print('keys:', list(dd.keys())[:5] if isinstance(dd, dict) else 'not dict')\nelse:\n    print('result type:', type(result))\n    print('keys:', list(result.keys())[:5] if isinstance(result, dict) else str(result)[:200])\n\" 2>&1 | head -20\n",
+  "description": "Probe registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-7f14f596/23b5e1e1-2664-4a2f-869f-0466ea844fbd/tool-results/mcp-agent-ml-research-read_registry-1779365711516.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nresult = json.loads(result_str)\n# Check structure\nif isinstance(result, dict) and 'data' in result:\n    d = result['data']\n    if isinstance(d, dict) and 'experiments' in d:\n        print('experiments is', type(d['experiments']))\n        if isinstance(d['experiments'], list):\n            print('first elem type:', type(d['experiments'][0]))\n            print('first elem:', str(d['experiments'][0])[:200])\n        elif isinstance(d['experiments'], str):\n            exps = json.loads(d['experiments'])\n            print('parsed, type:', type(exps))\n    elif isinstance(d, str):\n        dd = json.loads(d)\n        print('data parsed, type:', type(dd))\n        print('keys:', list(dd.keys())[:5] if isinstance(dd, dict) else 'not dict')\nelse:\n    print('result type:', type(result))\n    print('keys:', list(result.keys())[:5] if isinstance(result, dict) else str(result)[:200])\n\" 2>&1 | head -20\n",
+    "description": "Probe registry JSON structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T12:18:42.312897+00:00_
+
+experiments is &lt;class 'dict'>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T12:18:47.905746+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-7f14f596/23b5e1e1-2664-4a2f-869f-0466ea844fbd/tool-results/mcp-agent-ml-research-read_registry-1779365711516.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\ntarget_ids = [\n    'eval-pi05-vla-only-object-seed42-r3',\n    'eval-pi05-vla-only-object-seed43-r3', \n    'eval-pi05-vla-only-object-seed44-r3',\n    'eval-pi05-vla-only-spatial-seed42-r3',\n    'eval-pi05-vla-only-spatial-seed43-r3',\n    'eval-pi05-vla-only-spatial-seed45'\n]\nfor eid in target_ids:\n    if eid in exps:\n        exp = exps[eid]\n        if isinstance(exp, str):\n            exp = json.loads(exp)\n        print(f'=== {eid} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n        print(f'  metrics: {json.dumps(exp.get(\\\"metrics\\\", {}), indent=2)}')\n        print(f'  hypothesis: {exp.get(\\\"hypothesis\\\", \\\"N/A\\\")}')\n        print()\n    else:\n        print(f'{eid}: NOT FOUND')\n\"\n",
+  "description": "Extract π0.5 baseline experiments from registry dict"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-7f14f596/23b5e1e1-2664-4a2f-869f-0466ea844fbd/tool-results/mcp-agent-ml-research-read_registry-1779365711516.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\ntarget_ids = [\n    'eval-pi05-vla-only-object-seed42-r3',\n    'eval-pi05-vla-only-object-seed43-r3', \n    'eval-pi05-vla-only-object-seed44-r3',\n    'eval-pi05-vla-only-spatial-seed42-r3',\n    'eval-pi05-vla-only-spatial-seed43-r3',\n    'eval-pi05-vla-only-spatial-seed45'\n]\nfor eid in target_ids:\n    if eid in exps:\n        exp = exps[eid]\n        if isinstance(exp, str):\n            exp = json.loads(exp)\n        print(f'=== {eid} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n        print(f'  metrics: {json.dumps(exp.get(\\\"metrics\\\", {}), indent=2)}')\n        print(f'  hypothesis: {exp.get(\\\"hypothesis\\\", \\\"N/A\\\")}')\n        print()\n    else:\n        print(f'{eid}: NOT FOUND')\n\"\n",
+    "description": "Extract π0.5 baseline experiments from registry dict"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T12:18:48.006651+00:00_
+
+=== eval-pi05-vla-only-object-seed42-r3 ===
+  status: ANALYZING
+  conclusion: None
+  metrics: {}
+  hypothesis: π0.5 VLA-only baseline on LIBERO-Object seed42 with patched lerobot (VT key remap), cross-VLA validation of CRM
+
+=== eval-pi05-vla-only-object-seed43-r3 ===
+  status: ANALYZING
+  conclusion: None
+  metrics: {}
+  hypothesis: π0.5 VLA-only baseline on LIBERO-Object seed43 with patched lerobot (VT key remap), cross-VLA validation of CRM
+
+=== eval-pi05-vla-only-object-seed44-r3 ===
+  status: ANALYZING
+  conclusion: None
+  metrics: {}
+  hypothesis: π0.5 VLA-only baseline on LIBERO-Object seed44 with patched lerobot (VT key remap), cross-VLA validation of CRM
+
+=== eval-pi05-vla-only-spatial-seed42-r3 ===
+  status: RUNNING
+  conclusion: None
+  metrics: {}
+  hypothesis: π0.5 VLA-only baseline on LIBERO-Spatial seed42 with patched lerobot (VT key remap), cross-VLA validation of CRM
+
+=== eval-pi05-vla-only-spatial-seed43-r3 ===
+  status: RUNNING
+  conclusion: None
+  metrics: {}
+  hypothesis: π0.5 VLA-only baseline on LIBERO-Spatial seed43 with patched lerobot (VT key remap), cross-VLA validation of CRM
+
+=== eval-pi05-vla-only-spatial-seed45 ===
+  status: RUNNING
+  conclusion: None
+  metrics: {}
+  hypothesis: π0.5 VLA-only baseline on LIBERO-Spatial seed45 with patched lerobot (VT key remap), cross-VLA validation of CRM
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T12:18:59.016885+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T12:18:59.119388+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "ToolSearch",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T12:19:26.023293+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "harvest:pi05-baseline-all6",
+  "project": "acr-vla-conformal-refinement",
+  "task_prompt": "## 任务：采集 π0.5 VLA-only baseline 全部 6 个实验的结果\n\n### 背景\nπ0.5 VLA-only baseline 在 bjb1-32546 上运行了 6 个 eval 实验（3 Object + 3 Spatial），现在全部已结束。需要采集所有结果。\n\n### 目标\nSSH 到 bjb1-32546，找到全部 6 个实验的 eval 结果，提取 overall success rate 和 per-task success rate。\n\n### 6 个实验 ID\n**Object:**\n1. eval-pi05-vla-only-object-seed42-r3\n2. eval-pi05-vla-only-object-seed43-r3\n3. eval-pi05-vla-only-object-seed44-r3\n\n**Spatial:**\n4. eval-pi05-vla-only-spatial-seed42-r3\n5. eval-pi05-vla-only-spatial-seed43-r3\n6. eval-pi05-vla-only-spatial-seed45\n\n### 步骤\n1. SSH 到 bjb1-32546（ssh_read_only）\n2. 查找实验的输出日志和结果文件。可能在以下位置：\n   - `/root/autodl-tmp/` 下的某个 eval 目录\n   - tmux session 的日志\n   - 查找包含实验 ID 的日志文件：`find /root/autodl-tmp -name \"*.log\" -o -name \"*.json\" | xargs grep -l \"pi05\" 2>/dev/null | head -20`\n   - 也可以查看 W&B runs\n3. 对每个实验提取：\n   - overall success rate (%)\n   - n_tasks\n   - total_rollouts\n   - per-task success rate（如果可用）\n4. 用 `update_registry` 为每个实验更新 metrics：\n   - metrics: {\"success_rate\": X, \"n_tasks\": N, \"total_rollouts\": R}\n   - conclusion: \"success\"（baseline eval 不存在 negative 的概念）\n   - status: \"DONE\"\n5. 汇总结果：\n   - Object 3 seeds 的 mean ± std\n   - Spatial 3 seeds 的 mean ± std\n\n### 关键信息\n- 服务器: bjb1-32546\n- D105 已经记录 Object 81.5%±0.5，验证一下是否一致\n- 之前 quick verify 显示 83.3% SR\n\n### 输出\n最终输出一个汇总表格，包含每个实验的 success rate 和汇总统计。",
+  "tool_groups": "['ssh', 'wandb', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "harvest:pi05-baseline-all6",
+    "project": "acr-vla-conformal-refinement",
+    "task_prompt": "## 任务：采集 π0.5 VLA-only baseline 全部 6 个实验的结果\n\n### 背景\nπ0.5 VLA-only baseline 在 bjb1-32546 上运行了 6 个 eval 实验（3 Object + 3 Spatial），现在全部已结束。需要采集所有结果。\n\n### 目标\nSSH 到 bjb1-32546，找到全部 6 个实验的 eval 结果，提取 overall success rate 和 per-task success rate。\n\n### 6 个实验 ID\n**Object:**\n1. eval-pi05-vla-only-object-seed42-r3\n2. eval-pi05-vla-only-object-seed43-r3\n3. eval-pi05-vla-only-object-seed44-r3\n\n**Spatial:**\n4. eval-pi05-vla-only-spatial-seed42-r3\n5. eval-pi05-vla-only-spatial-seed43-r3\n6. eval-pi05-vla-only-spatial-seed45\n\n### 步骤\n1. SSH 到 bjb1-32546（ssh_read_only）\n2. 查找实验的输出日志和结果文件。可能在以下位置：\n   - `/root/autodl-tmp/` 下的某个 eval 目录\n   - tmux session 的日志\n   - 查找包含实验 ID 的日志文件：`find /root/autodl-tmp -name \"*.log\" -o -name \"*.json\" | xargs grep -l \"pi05\" 2>/dev/null | head -20`\n   - 也可以查看 W&B runs\n3. 对每个实验提取：\n   - overall success rate (%)\n   - n_tasks\n   - total_rollouts\n   - per-task success rate（如果可用）\n4. 用 `update_registry` 为每个实验更新 metrics：\n   - metrics: {\"success_rate\": X, \"n_tasks\": N, \"total_rollouts\": R}\n   - conclusion: \"success\"（baseline eval 不存在 negative 的概念）\n   - status: \"DONE\"\n5. 汇总结果：\n   - Object 3 seeds 的 mean ± std\n   - Spatial 3 seeds 的 mean ± std\n\n### 关键信息\n- 服务器: bjb1-32546\n- D105 已经记录 Object 81.5%±0.5，验证一下是否一致\n- 之前 quick verify 显示 83.3% SR\n\n### 输出\n最终输出一个汇总表格，包含每个实验的 success rate 和汇总统计。",
+    "tool_groups": "['ssh', 'wandb', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T12:19:33.507920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_harvest_pi05-baseline-all6_20260521T121929\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_harvest_pi05-baseline-all6_20260521T121929.log\", \"setup_data\": {}, \"message\": \"Worker worker_harvest_pi05-baseline-all6_20260521T121929 started. Use get_worker_status('worker_harvest_pi05-baseline-all6_20260521T121929') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 7484
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-21T12:19:36.420279+00:00_
+
+Worker 已派出采集全部 6 个 π0.5 baseline 结果。等待 Worker 回调完成后处理结果并汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 23 · 2026-05-21T12:19:36.454111+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: eval-pi05-vla-only-object-seed44-r3
+- project: acr-vla-conformal-refinement
+- server: bjb1-32546
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-21T12:19:45.635623+00:00_
+
+已收到重复回调。`eval-pi05-vla-only-object-seed44-r3` 的结果采集已在进行中（Worker `worker_harvest_pi05-baseline-all6_20260521T121929`），无需重复处理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-pi05-vla-only-object-seed44-r3"
+}
+```
+
+</details>
+
+---

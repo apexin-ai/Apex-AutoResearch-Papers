@@ -1,0 +1,15 @@
+{
+  "exp_id": "westd-pi05-vla-only-object-s43-paired",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T11:02:30.548Z",
+    "updated_at": "2026-05-26T11:06:30.929Z",
+    "hypothesis": "π0.5 VLA-only baseline on Object s43. westd same-server paired comparison (Blackwell)."
+  },
+  "timestamp": "2026-05-26T11:06:33.998754+00:00",
+  "trigger": "update_registry"
+}

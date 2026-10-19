@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval-pi05-vla-only-object-seed43-r3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:52:22.502Z",
+    "updated_at": "2026-05-21T12:13:12.586Z",
+    "spec": {
+      "command": "bash -c \"...pi05 vla_only object seed43...\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "76780",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43-r3.log",
+      "submitted_at": "2026-05-21T11:52:19.812Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": "200 (10x20)",
+      "model_name": "pi0.5",
+      "seed": 43
+    },
+    "hypothesis": "π0.5 VLA-only baseline on LIBERO-Object seed43 with patched lerobot (VT key remap), cross-VLA validation of CRM",
+    "reproduce": {
+      "finished_at": "2026-05-21T12:13:08.935Z"
+    }
+  },
+  "timestamp": "2026-05-21T12:13:14.241109+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-acr-spatial-v4-small-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:14:05.220Z",
+    "updated_at": "2026-05-15T05:15:04.550Z",
+    "hypothesis": "Restart from T7. ACR-VLA perdof CRM v3-norm with max_correction_norm=0.1 on spatial. Full per-DOF uncertainty pipeline.",
+    "parent": "eval-acr-spatial-v4-small",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --start_task 7 --output_file /root/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-small-r2.log\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "312150",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-small-r2.log",
+      "submitted_at": "2026-05-15T05:14:36.298Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-15T05:15:04.698172+00:00",
+  "trigger": "update_registry"
+}

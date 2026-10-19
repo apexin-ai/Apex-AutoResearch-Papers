@@ -1,0 +1,87 @@
+# reviewer / loop_6.md
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_6.md`
+- **Structured JSON:** [`07f7ec919b0314f0e983.json`](../../sessions/07/07f7ec919b0314f0e983.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 6
+reason: max_wall_time
+updated: '2026-05-15T02:46:46+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- bjb1-18228 GPU 分配：cuda:0-3 全部在跑 spatial eval，不要 kill 任何进程除非 Director 明确指示
+- eval-tiny-correction-spatial PID 232820 仍占 bjb1 cuda:2（registry 标 killed 但进程未死），与 v4-scalar PID 288939 共享——已多次报告但未处理，不要自行 kill
+- bjb2-40593 cuda:0 跑了两个实验（v4-default-r3 + reconvla-object），都是 Director 批准的，不要干预
+- bjb2-28827 SSH 认证仍失败（截至我最后一次检查），连之前不要假设可达
+- 所有 CRM checkpoint 在 `/root/autodl-tmp/checkpoints/crm_v3_norm/` 下（perdof/scalar_unc/obs_only），旧的 crm_v2/crm_v3 是废弃版本
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-18228** (4× RTX 4090, 24GB each)：`/root/acr-vla-conformal-refinement`，conda base (`/root/miniconda3/bin/python`)
+  - cuda:0 PID 270097 — eval-acr-spatial-v4-obs-only-r2 (crm_obs_only, norm=0.1)，~6h remaining
+  - cuda:1 PID 231426 — eval-argmin-only-spatial (reconvla, 7/10 tasks)，~3h remaining
+  - cuda:2 PID 232820 (stale tiny-correction) + PID 288939 (v4-scalar, crm_scalar, norm=0.1)
+  - cuda:3 PID 253085 — eval-acr-spatial-v4-small (perdof, norm=0.1, 4.5/10)，~6h remaining
+- **bjb2-40593** (1× RTX 4090 D)：同路径，conda base
+  - cuda:0 PID 211962 — eval-reconvla-object (20 rollouts, ~10-12h)
+  - cuda:0 PID 212690 — eval-acr-spatial-v4-default-r3 (perdof, norm=1.42 对照)
+- **bjb1-32546** (6× RTX 4090)：SSH 已通，代码+checkpoint 已部署，全部空闲，可接实验
+- **bjb2-28827** (6× RTX 4090)：SSH 认证失败，未就绪
+- 数据：`/root/autodl-tmp/libero_data/`（spatial+object）
+- HF 模型：`/root/autodl-tmp/models/smolvla_libero/`
+- 无 W&B 配置
+
+### 3. 📊 当前状态
+**我刚完成的工作**：
+- 审查了 D022 后的 paper_framing.md（Claim 1 主/子拆分 + Claim 3 移除），提了 4 点修补建议
+- 审查了 ROADMAP 更新，标记 Claim 2 零实验进展为主要风险
+- 多轮审查修复了 registry-reality 脱节问题（幽灵进程 kill + registry 修正）
+
+**RUNNING 实验**：
+| 实验 | 服务器 | 进度 | 中期结果 |
+|------|--------|------|---------|
+| v4-obs-only-r2 | bjb1:0 | 3.5/10 | **63.3%**（obs-only，无 conformal） |
+| argmin-only | bjb1:1 | 7/10 | 42.9%（纯选择） |
+| v4-scalar | bjb1:2 | 0/10 | 刚启动 |
+| v4-small (perdof) | bjb1:3 | 4.5/10 | 52.5%（per-DOF conformal） |
+| v4-default-r3 | bjb2:0 | 0/10 | norm=1.42 对照 |
+| reconvla-object | bjb2:0 | 0/10 | object benchmark baseline |
+
+**等待中**：无 pending cron/worker 回调。等 spatial eval 完成后需组装对比表。
+
+### 4. 📋 待办（条件触发式）
+- argmin-only 完成（~3h）→ 立即核实最终成功率，与 VLA-mean (32%) 对比，确认 selection 增量
+- v4-small / obs-only-r2 完成 → **关键裁决**：head-to-head per-DOF vs obs_only 对比。obs_only >= perdof → 立即报告 Director 启动 Scenario B/C framing
+- v4-scalar 完成 → 三路消融表完整，核查 scalar_unc 位置（framing 未覆盖 scalar > perdof 的 scenario）
+- v4-default-r3 完成 → 确认 norm=1.42 全面退化（预期 <10%），补全 D019 对照数据
+- bjb1-32546 空闲 + spatial eval 完成 → 提醒 Director 部署 object benchmark 4-way eval / magnitude sweep
+- **Claim 2 实验仍为零** → 每次审查时持续提醒 Director 安排 COC-success Spearman ρ 实验
+
+### 5. 🎯 战略上下文
+**决策链**：D015(SFT Gate 30% pass) → D017(CRM correction 全面拖累) → D018(根因=未归一化) → D019(归一化+magnitude control 首次正向) → D020(三路消融 obs_only val_loss 悖论) → D021(重瞄 CoRL 2026) → D022(Claim 3 SRPO 移除，Claim 1 主/子拆分)
+
+**最容易判断错的事**：
+1. **obs_only 63.3% vs perdof 52.5% 不要急着下结论**——obs_only 只完成 3 个 tasks（含两个"easy" tasks T1=90% T2=100%），perdof 完成 4.5 个。必须等同任务 head-to-head 才能比较。目前 T1-T3 对比 obs_only 领先 6.6pp，但样本量太小。
+2. **Registry "killed" 不等于进程真死**——这个项目反复出现标 killed 但进程仍在跑的问题。审查任何 killed/failed 实验时必须 SSH 验证进程状态。
+3. **bjb1 GPU 2 有两个进程**——tiny-correction (stale) + v4-scalar 共享，v4-scalar 速度会慢 10-30%。不要基于其 ETA 估算做紧急判断。
+4. **Claim 2 是论文最大风险**——不是因为假设不对，而是因为零实验数据。CoRL abstract DDL May 26，只剩 11 天。如果 Claim 2 也 fail，论文只有 1 个 claim，不够 CoRL。
+
+
+---

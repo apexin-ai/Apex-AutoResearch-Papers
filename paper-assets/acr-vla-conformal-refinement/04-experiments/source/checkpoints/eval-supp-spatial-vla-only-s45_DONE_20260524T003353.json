@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-supp-spatial-vla-only-s45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T21:31:09.089Z",
+    "updated_at": "2026-05-24T00:33:49.980Z",
+    "hypothesis": "Spatial VLA-only baseline seed45. Fourth seed extending Spatial baseline. 3-seed: 78.7%±0.3%.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark spatial --mode vla_only --seed 45 --n_rollouts 20 --K 1",
+      "server": "cqa1-32758",
+      "gpu": "cuda:1",
+      "seed": 45,
+      "model_name": "SmolVLA",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "eval_data": "LIBERO-Spatial",
+      "log_path": "/tmp/eval_spatial_vla_s45.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-24T00:32:37.014Z",
+    "notes": "Process PID 456947 found dead. No log file at /tmp/eval_spatial_vla_s45.log, no JSON result, no exit file. Likely crashed at startup or never launched properly. Need to re-run."
+  },
+  "timestamp": "2026-05-24T00:33:53.443578+00:00",
+  "trigger": "update_registry"
+}

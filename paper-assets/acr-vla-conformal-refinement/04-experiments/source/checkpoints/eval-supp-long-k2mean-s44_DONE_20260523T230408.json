@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval-supp-long-k2mean-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T17:26:25.473Z",
+    "updated_at": "2026-05-23T23:04:07.248Z",
+    "hypothesis": "Long K=2 mean baseline seed44. Third seed for Long K=2 mean validation. Isolates multi-sample averaging on long-horizon tasks.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark long --mode vla_only --seed 44 --n_rollouts 20 --K 2 --baseline_mode mean",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": 850410,
+      "tmux_session": "eval-supp-long-k2mean-s44",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-long-k2mean-s44.log",
+      "seed": 44,
+      "data_path": "LIBERO-Long",
+      "data_count": 200,
+      "model_name": "SmolVLA-K2mean"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "SR": 0.545,
+      "successes": 109,
+      "total": 200
+    },
+    "checkpoint_path": "n/a-eval-only",
+    "completed_at": "2026-05-23T23:04:07.248Z"
+  },
+  "timestamp": "2026-05-23T23:04:08.520879+00:00",
+  "trigger": "update_registry"
+}

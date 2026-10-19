@@ -1,0 +1,36 @@
+{
+  "exp_id": "pi05-crm-always-on-long-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T21:56:13.252Z",
+    "updated_at": "2026-05-28T05:11:10.953Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.001 --benchmark long --seed 42 --n_rollouts 20",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "156008",
+      "log_path": "~/runs/acr-vla-conformal-refinement/pi05-crm-always-on-long-s42.log",
+      "submitted_at": "2026-05-27T21:56:10.320Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A (eval-only)",
+      "model_name": "pi05",
+      "seed": 42,
+      "data_path": "LIBERO long benchmark",
+      "data_count": 200
+    },
+    "hypothesis": "Pi05 CRM always-on (τ=0.001) on Long suite s42. Ablation: CRM correction applied every step (trigger_rate=100%) to measure CRM-only contribution without conformal gating. Table 1 data for Pi05 model.",
+    "reproduce": {
+      "finished_at": "2026-05-28T05:11:05.760Z"
+    }
+  },
+  "timestamp": "2026-05-28T05:11:13.015215+00:00",
+  "trigger": "update_registry"
+}

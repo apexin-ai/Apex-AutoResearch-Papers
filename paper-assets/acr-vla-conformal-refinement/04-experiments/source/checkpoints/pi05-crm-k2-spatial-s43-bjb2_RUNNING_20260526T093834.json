@@ -1,0 +1,29 @@
+{
+  "exp_id": "pi05-crm-k2-spatial-s43-bjb2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T05:53:01.779Z",
+    "updated_at": "2026-05-26T09:38:32.385Z",
+    "hypothesis": "π0.5 CRM K=2 obs_only on Spatial s43. Table 2 cross-architecture analysis.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark spatial --seed 43 --n_rollouts 20 --output_file logs/eval_spatial_crm_k2_pi05_seed43.json",
+      "server": "bjb2-28827",
+      "data_path": "libero-spatial",
+      "data_count": 200,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+      "eval_data": "libero-spatial",
+      "gpu": 1,
+      "tmux_session": "pi05-crm-s43",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/pi05-crm-k2-spatial-s43-bjb2.log"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-26T09:38:34.582709+00:00",
+  "trigger": "update_registry"
+}

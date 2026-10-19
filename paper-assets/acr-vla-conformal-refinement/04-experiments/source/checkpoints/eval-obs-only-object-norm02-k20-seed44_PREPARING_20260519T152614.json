@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-obs-only-object-norm02-k20-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:27:30.715Z",
+    "updated_at": "2026-05-19T15:26:13.965Z",
+    "hypothesis": "CRM obs_only (ε=0.2, K=20) on LIBERO-Object seed44. K=20 第三个 seed，n=3 可报告 error bars，确认 K-value diminishing returns。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T15:26:14.478687+00:00",
+  "trigger": "update_registry"
+}

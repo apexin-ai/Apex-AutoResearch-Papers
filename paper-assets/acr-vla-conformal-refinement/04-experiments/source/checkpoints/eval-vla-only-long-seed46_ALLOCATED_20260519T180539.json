@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-vla-only-long-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:05:07.011Z",
+    "updated_at": "2026-05-19T18:05:38.364Z",
+    "hypothesis": "VLA-only baseline on LIBERO-10 seed46. 补齐 Long suite n=5 数据，与 seed42/43/44/45 配套。"
+  },
+  "timestamp": "2026-05-19T18:05:39.333078+00:00",
+  "trigger": "update_registry"
+}

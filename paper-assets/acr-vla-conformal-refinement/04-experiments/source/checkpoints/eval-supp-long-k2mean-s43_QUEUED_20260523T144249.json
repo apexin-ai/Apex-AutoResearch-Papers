@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-long-k2mean-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:36:36.825Z",
+    "updated_at": "2026-05-23T14:42:48.541Z",
+    "hypothesis": "K=2 mean baseline on Long suite seed43. Isolates multi-sample averaging effect on Long tasks."
+  },
+  "timestamp": "2026-05-23T14:42:49.815434+00:00",
+  "trigger": "update_registry"
+}

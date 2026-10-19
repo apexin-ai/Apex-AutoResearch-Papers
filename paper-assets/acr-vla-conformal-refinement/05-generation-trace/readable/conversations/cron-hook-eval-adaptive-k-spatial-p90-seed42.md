@@ -1,0 +1,1700 @@
+# cron hook eval adaptive k spatial p90 seed42
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 1
+- **Tool calls:** 28
+- **Original source:** `logs/chats/cron_hook_eval-adaptive-k-spatial-p90-seed42.jsonl`
+- **Structured JSON:** [`5d165a974121bee28ebe.json`](../../sessions/5d/5d165a974121bee28ebe.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+53 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T21:25:12.324937+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #24。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- evaluate.py 在 `src/` 子目录下，提交命令必须是 `python src/evaluate.py`（非 `python evaluate.py`），否则 EXIT_CODE=2
+- GPU 编号脚本内始终从 0 开始（CUDA_VISIBLE_DEVICES 由框架映射）
+- Cron 对 eval 实验频繁 false positive（eval 不写 W&B/sentinel），收到失败回调必须先 tail 日志确认实际是否完成再改 registry
+- Table 1 只用 norm02 数据，不混 norm01（D080 教训）
+- provenance 必须引用具体 registry exp_id，不用抽象标签如 "obs_only_k10"
+- Long OOD MW-U p=0.061 n.s.，论文必须 cautious wording（D081）
+- bjb1-32546 conda 环境 python 不在默认 PATH，提交命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀
+- norm005-seed66 registry 有 conclusion=failed 但进程实际仍在跑（PID 642506），Worker 正在诊断——下一轮处理 Worker 回调时注意这个矛盾状态
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-18228**: /root/acr-vla-conformal-refinement, conda base (/root/miniconda3), RTX 4090。当前跑 3 实验 (cuda:0 norm003-seed66 PID 642428, cuda:2 norm005-seed66 PID 642506, cuda:3 norm01-seed66 PID 642775)
+- **bjb1-32546**: /root/acr-vla-conformal-refinement, conda base, RTX 4090。**全部空闲**（6 GPU）
+- **bjb2-28827**: /root/acr-vla-conformal-refinement, conda base, RTX 4090。当前跑 1 实验 (cuda:0 P90-seed44-bjb2 PID 975409)
+- **bjb2-40593**: /root/acr-vla-conformal-refinement, conda base, RTX 4090。磁盘 90% ⚠️
+- 模型: /root/autodl-tmp/models/smolvla_libero/, CRM: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt
+- HF_HOME=/root/autodl-tmp/.hf_cache, HF_HUB_OFFLINE=1, MUJOCO_GL=egl
+- **活跃 cron**: 4 个 (norm003-seed66, norm005-seed66, norm01-seed66, p90-seed44-bjb2)
+
+### 3. 📊 当前状态
+Loop #23 刚完成 session-start 初始化并向 Director 汇报。MCP 断连前状态：
+
+**RUNNING (4)**:
+- eval-adaptive-k-spatial-p90-seed44-bjb2 (bjb2-28827 cuda:0) — Spatial P90 第 3 seed，完成后 LOCK Spatial sweep
+- eval-obs-only-object-norm003-seed66 (bjb1-18228 cuda:0) — norm sweep 补充
+- eval-obs-only-object-norm005-seed66 (bjb1-18228 cuda:2) — ⚠️ conclusion=failed 但进程仍 alive
+- eval-obs-only-object-norm01-seed66 (bjb1-18228 cuda:3) — norm sweep 补充
+
+**Workers (3, 可能已完成)**:
+- `worker_analysis_eval-pi05-baseline-object-seed42-r2_20260521T045550` — π0.5 r2 分析
+- `worker_diagnose_seed66-norm005-verify_20260521T045625` — norm005-seed66 诊断
+- `worker_figure_norm-sweep-v3_20260521T050151` — Figure 2 norm sweep curve 生成
+
+**已完成（本轮确认）**:
+- 0 个 ANALYZING 实验剩余（batch worker 已清完）
+- eval-obs-only-object-norm02-seed{50,51,52,53} 全部 success
+- eval-obs-only-object-norm003-seed67 被 cron 标记 failed → DONE（大概率又是 false positive，已清理 cron）
+- bjb1-32546 全部空闲
+
+### 4. 📋 待办
+- Worker figure:norm-sweep-v3 回调 → 检查 Figure 2 输出质量，register_artifact，通知 Director
+- Worker diagnose:seed66-norm005-verify 回调 → 根据诊断结果决定：进程仍活则等完成后修正 conclusion；真死则标记 DONE/failed（ROADMAP 已标 norm sweep ALL LOCKED，不重跑）
+- Worker analysis:pi05-r2 回调 → 获取 π0.5 r2 结果。若仍 0% SR → 评估 fix2/Plan B；若 >0% → 立即铺 π0.5 baseline multi-seed + CRM pipeline（9 GPU 可用）
+- P90-seed44-bjb2 cron 完成回调 → tail 日志确认（防 false positive）→ 补录 metrics → LOCK Spatial Adaptive K sweep → 汇总最终 Spatial 表到 memory.md → 汇报 Director
+- 3 个 seed66 norm 实验 cron 回调 → 同上 tail 确认 → harvest metrics（但 norm sweep 已 LOCKED，数据仅补充统计）
+- norm003-seed67 可能需要 false positive 验证（tail 日志看是否实际完成了）
+- bjb1-32546 6 GPU 全空闲 — 若 π0.5 fix2 GO 则立即铺；否则向 Director 汇报空闲状态
+
+### 5. 🎯 战略上下文
+**核心方向**: Adaptive inference-time compute for frozen VLAs。K=2 L2 distance 做门控信号 (ρ=0.9979)，Plan A (K=2 conformal + selective CRM) 为 Pareto 最优。
+
+**关键决策链**: D078 P50 Pareto → D079 CRM magnitude NO-GO → D080 Table 1 只用 norm02 → D081 Long OOD cautious → D082 batched inference → D083 Spatial n=8 修正 → D085 跨 benchmark 阈值迁移 → D087 OpenVLA v2 baseline → D092 Plan A GO → D094 Plan A Spatial 完成 → D095/D096 π0.5 实验线 → D097 Spatial Adaptive K + Latency 完成
+
+**当前瓶颈已从 GPU 实验转向**: Figure 2 生成 + π0.5 调通 + 论文定稿。CoRL DDL 2026-05-29（剩 ~8 天）。
+
+**易错点**:
+- Cron eval false positive 是常态（已发生 8+ 次），不要看到 "failed" 就信，必须 tail 日志
+- norm005-seed66 registry 状态矛盾（conclusion=failed + RUNNING + PID alive），下一轮必须处理 Worker 诊断结果
+- bjb1-32546 全空闲但无正式 GPU 分配（allocated_gpus=[]），π0.5 是预留用途
+- Spatial P50 3-seed 均值 ~32%（30,33,33），不是单 seed 33%
+- bjb2-40593 磁盘 90%，提交实验前必须检查
+
+## 项目硬约束 (memory.md 节选)
+
+## 3. Eval 环境检查
+
+| 服务器 | PyTorch | CUDA | GPU 数量 | evaluate.py --help | pi05 模型 |
+|--------|---------|------|----------|-------------------|-----------|
+| bjb1-32546 | 2.10.0+cu128 ✅ | True ✅ | 6 | OK ✅ | 7.5GB model.safetensors ✅ |
+| bjb2-28827 | 2.10.0+cu128 ✅ | True ✅ | 6 | OK ✅ | 7.5GB model.safetensors ✅ |
+
+两台 eval 服务器环境就绪。
+
+## 可查的历史
+前 228 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T21:25:22.886310+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T21:25:22.936925+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T21:25:26.547556+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T21:25:27.001094+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T21:25:27.505352+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T21:25:27.557407+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T21:25:32.110475+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"crm-train-pi05-spatial-full\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-21T18:48:38.574Z\", \"updated_at\": \"2026-05-21T19:25:01.198Z\", \"hypothesis\": \"CRM projection trained on π0.5 full precomputed features (~60250 spatial samples, K=10) will learn conformal refinement corrections improving upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization\"}, \"crm-train-pi05-object-full\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-21T18:26:52.186Z\", \"updated_at\": \"2026-05-21T18:56:42.883Z\", \"hypothesis\": \"CRM projection trained on π0.5 full precomputed features (69303 object samples, K=10) will learn conformal refinement corrections improving upon π0.5 VLA-only baseline (81.5%) on LIBERO-Object, validating cross-VLA generalization\", \"notes\": \"Training with 69,303 samples (95.6%). Full data available: 72,159 samples (99.5%, shard0 missing ~351 due to kill). Per Director: ≥98% means current checkpoint acceptable. No retrain needed.\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.5399}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 5562
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T21:25:44.233979+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"crm-train-pi05-object-full\", \"success\": true, \"actions\": [\"Job still running (pid=800111)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 17232
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T21:25:44.284870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| crm-train-pi05-spatial-full | CRM projection trained on π0.5 full precomputed features (~60250 spatial samples, K=10) will learn conformal refinement corrections improving upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization | — | — | — |\\n\\n## 待处理\\n- crm-pipeline-auto（准备中）\\n- precompute-pi05-obj-s6-r2（准备中）\\n- …另有 82 项\\n\\n## 近期结论\\n- **crm-train-pi05-spatial** (killed): CRM projection trained on π0.5 precomputed features (38500 spatial samples, K=10) will learn to predict conformal refinement corrections that improve upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization of CRM beyond SmolVLA\\n\\n## 趋势\\n成功 333 / 负向 38 / 失败 61 / 共 525\\nn_tasks: 10 →（近 3 次 success）\\nsuccess_rate: 0.85 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-18228: 无 GPU 信息\\nbjb1-32546: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\nbjb2-28827: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\nbjb2-40593: 无 GPU 信息\\n\\n## 告警\\n- plan_001-crm-smolvla: 训练失败 — unknown\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\n- eval-spatial-reeval-v2: 已被终止 — unknown\\n- precompute-v2-shard0: 已被终止 — unknown\\n- precompute-v2-shard1: 已被终止 — unknown\\n- precompute-v2-shard2: 已被终止 — unknown\\n- eval-spatial-v3-full: 已被终止 — unknown\\n- precompute-v3-shard0: 已被终止 — unknown\\n- precompute-v3-shard1: 已被终止 — unknown\\n- precompute-v3-shard2: 已被终止 — unknown\\n- eval-spatial-v4-full: 已被终止 — unknown\\n- eval-object-v4-full: 已被终止 — unknown\\n- eval-spatial-v5-full: 已被终止 — unknown\\n- crm-train-v1: 已被终止 — unknown\\n- eval-reconvla-s
+…[truncated 5257 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 16779
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T21:25:44.390810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-21 17:54 UTC | 更新原因: CRM training 启动 (Object cuda:0 + Spatial cuda:1 on bjb1-18228)\\n\\n> 详见 paper_framing.md（D077→D092→D097→D103→D104→D105）\\n\\n## 核心方向\\n**Adaptive inference-time compute for frozen VLAs** — K=2 L2 distance + selective CRM correction。Plan A = Pareto 最优。\\n\\n## 投稿目标\\n**CoRL 2026** DDL **2026-05-29**。剩余 **≤6 天**。\\n\\n## 阶段\\n**π0.5 CRM training RUNNING**。Precompute + merge 完成。SmolVLA 全部 LOCKED。π0.5 baseline LOCKED (D105)。\\n\\n## Plan A 核心结果 — SmolVLA (LOCKED)\\n| Benchmark | Plan A (K=2) | K=10 CRM | VLA-only | Δ vs VLA-only |\\n|-----------|-------------|----------|----------|---------------|\\n| Object    | 18.3%±2.1%  | 16.8%±1.8% | 10.8%±1.3% | +7.5pp |\\n| Spatial   | 35.0%±1.0%  | 34.5%±1.5% | 29.4%±1.5% | +5.6pp |\\n\\n## π0.5 Baseline (LOCKED, D105)\\n| Benchmark | VLA-only | vs SmolVLA |\\n|-----------|----------|------------|\\n| Object | **81.5%±0.5%** | +70.7pp |\\n| Spatial | **84.2%±1.0%** | +54.8pp |\\n\\n## K=20 Sweep (LOCKED, D102) → Table 5 ✅\\nK=20 ≈ K=2。Diminishing returns 确认。\\n\\n## Latency (LOCKED, D097)\\nCRM forward: 0.28ms | Plan A speedup: 1.82×\\n\\n## π0.5 CRM Pipeline 🔥\\n- ✅ D104: lerobot rsync + baseline eval 部署\\n- ✅ D105: Baseline LOCKED (Object 81.5%, Spatial 84.2%)\\n- ✅ Precompute 完成 + merge (Object 49,700 samples, Spatial 38,500 samples)\\n- 🔄 **RUNNING**: CRM training (bjb1-18228, Object cuda:0 PID 795874, Spatial cuda:1 PID 795051), ~4-7h\\n- ⏳ CRM Plan A eval (6 GPU, ~8h) — 命令已准备 (pi05_eval_commands.md)\\n- Ceiling effect 预期：81-85% baseline 上 CRM 增益有限，framing 准备\\\"no-harm + selective improvement\\\"\\n\\n## 论文状态\\nFigure 2 v4 ✅ | K=20 Table 5 ✅ | Spatial sweep ✅ | Latency ✅ | Per-DOF §4.4 ✅ | Random Selection ✅ | 编译 OK 15页\\n待写入: π0.5 cross-VLA 结果\\n\\n## GPU 状态\\n2
+…[truncated 2647 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 16833
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T21:25:58.783008+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__update_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__update_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T21:25:58.884102+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T21:26:02.480595+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "status": "done",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "status": "done",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T21:26:02.772031+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T21:26:03.414725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ops_crm-training-progress-check_20260521T185311\", \"task_type\": \"ops:crm-training-progress-check\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-21T18:53:12.113140+00:00\", \"ended_at\": \"2026-05-21T18:54:34.064363+00:00\"}, {\"worker_id\": \"worker_ops_code-sync-bjb2-28827_20260521T185321\", \"task_type\": \"ops:code-sync-bjb2-28827\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-21T18:53:21.371146+00:00\", \"ended_at\": \"2026-05-21T18:54:49.593712+00:00\"}, {\"worker_id\": \"worker_diagnose_spatial-training-status_20260521T190953\", \"task_type\": \"diagnose:spatial-training-status\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-21T19:09:53.902128+00:00\", \"ended_at\": \"2026-05-21T19:12:27.368423+00:00\"}, {\"worker_id\": \"worker_diag_crm-object-training-progress-v2_20260521T191008\", \"task_type\": \"diag:crm-object-training-progress-v2\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-21T19:10:08.488536+00:00\", \"ended_at\": \"2026-05-21T19:10:50.244401+00:00\"}, {\"worker_id\": \"worker_ops_eval-server-prep_20260521T191017\", \"task_type\": \"ops:eval-server-prep\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-21T19:10:18.268875+00:00\", \"ended_at\": \"2026-05-21T19:11:59.733597+00:00\"}, {\"worker_id\": \"worker_ops_eval-prep-code-sync_20260521T191028\", \"task_type\": \"ops:eval-prep-code-sync\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-21T19:10:28.594445+00:00\", \"ended_at\": \"2026-05-21T19:16:27.288807+00:00\"}, {\"worker_id\": \"worker_ops_eval-readiness-and-training-progress_20260521T191058\", \"task_type\": \"ops:eval-readiness-and-training-progress\", \"project\": \
+…[truncated 1085 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 934
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T21:26:03.415158+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T21:26:03.651339+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 879
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T21:26:11.109206+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.4556}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 7694
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T21:26:26.874753+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_check-and-deploy-eval_20260521T191743"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_check-and-deploy-eval_20260521T191743"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T21:26:27.479011+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_check-ckpt-deploy-eval_20260521T191852"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_check-ckpt-deploy-eval_20260521T191852"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T21:26:27.529730+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check-and-deploy-eval_20260521T191743\", \"status\": \"done\", \"task_type\": \"ops:check-and-deploy-eval\", \"project\": \"acr-vla-conformal-refinement\", \"started_at\": \"2026-05-21T19:17:43.967659+00:00\", \"ended_at\": \"2026-05-21T19:28:36.874411+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"所有 6 个 Python 进程存活且活跃。bjb2-28827 两个进程正在将模型加载到 GPU（RSS 分别 11.7GB 和 18.3GB）。\\n\\n---\\n\\n## 汇总\\n\\n### 1. Checkpoint 信息\\n\\n| Checkpoint | 路径 | 大小 | 来源 |\\n|-----------|------|------|------|\\n| **Object** | `crm_pi05_full/object/crm_best.pt` | 2.4M (2,484,379 bytes) | 当前训练 epoch 7, val_loss=0.005363 (训练仍在继续 epoch 8/50) |\\n| **Spatial** | `crm_pi05_full/spatial/crm_best.pt` | 2.4M (2,484,379 bytes) | 从 `crm_pi05/spatial/` 复制（⚠️ crm_pi05_full spatial 训练失败：缺少 merged spatial cache） |\\n\\n### 2. 训练最终 loss\\n- **Object**: Epoch 7 best val_loss=**0.005363**, train_loss=0.009826（训练仍在继续）\\n- **Spatial (crm_pi05_full)**: 训练未启动（`FileNotFoundError: No precomputed cache at .../spatial`）\\n- **Spatial (crm_pi05 旧版)**: 训练到 epoch 6，checkpoint 已可用\\n\\n### 3. rsync 完成确认\\n4 个 scp-3 传输全部成功（exit code 0），两台 eval 服务器均已验证文件存在 (2.4M)。\\n\\n### 4. Eval PID 和服务器分配\\n\\n| # | Benchmark | Seed | Server | GPU | PID | 状态 |\\n|---|-----------|------|--------|-----|-----|------|\\n| 1 | object | 42 | bjb1-18228 | cuda:0 | 804191 | 14.7 GB, 74% util, rollout 中 |\\n| 2 | object | 43 | bjb1-18228 | cuda:1 | 804563 | 14.5 GB, 25% util |\\n| 3 | object | 44 | bjb1-32546 | cuda:0 | 196419 | 14.1 GB, 27% util |\\n| 4 | spatial | 42 | bjb1-32546 | cuda:1 | 196777 | 9.5 GB, 加载中 |\\n| 5 | spatial | 43 | bjb2-28827 | cuda:0 | 123807 | 加载中 (11.7GB RSS) |\\n| 6 | spatial | 44 | bjb2-28827 | cuda:1 | 124161 | 加载中 (18.3GB RSS) |\\n\\n### 5. GPU 占用确认\\n- **bjb1-18228**: GPU 0 = 14,677 MiB ✓, GPU 1 = 14,537 MiB ✓\\n- **bjb1-32546**: GPU 0 = 14,125 MiB ✓, GPU 1 = 9,546 MiB (加载中)\\n- **bjb2-28827**: GPU 0
+…[truncated 320 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 654
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T21:26:27.785699+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_diagnose_spatial-training-status_20260521T190953"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_diagnose_spatial-training-status_20260521T190953"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T21:26:28.040788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check-ckpt-deploy-eval_20260521T191852\", \"status\": \"done\", \"task_type\": \"ops:check-ckpt-deploy-eval\", \"project\": \"acr-vla-conformal-refinement\", \"started_at\": \"2026-05-21T19:18:52.860570+00:00\", \"ended_at\": \"2026-05-21T19:20:31.415217+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"**结果：spatial checkpoint 缺失，无法继续。**\\n\\n| Checkpoint | 状态 |\\n|---|---|\\n| `object/crm_best.pt` | 存在，2.4M |\\n| `spatial/crm_best.pt` | **不存在** |\\n\\n**训练状态：**\\n- **Object**: 仍在运行，epoch 8 batch 850/1950，loss ~0.01，占用 GPU 0（557 MiB）\\n- **Spatial**: **已失败** — `FileNotFoundError: No precomputed cache at /root/autodl-tmp/crm_cache_pi05/spatial. Run with --precompute first, or use --auto.`\\n\\nGPU 1/2/3 全部空闲。\\n\\n**结论**：Spatial CRM 训练因缺少 precomputed cache 而崩溃，需要先对 spatial benchmark 运行 `--precompute`（或 `--auto`）生成 cache，再重新训练 spatial CRM。Object 训练还在跑，尚未完成。两个 checkpoint 都还没准备好，暂时无法进入 Step 2。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 561
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T21:26:28.600460+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_spatial-training-status_20260521T190953\", \"status\": \"done\", \"task_type\": \"diagnose:spatial-training-status\", \"project\": \"acr-vla-conformal-refinement\", \"started_at\": \"2026-05-21T19:09:53.902128+00:00\", \"ended_at\": \"2026-05-21T19:12:27.368423+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"诊断报告已写到 `artifacts/spatial_training_diagnosis.md`（save_project_file 白名单不含此文件，改用 Write 直接写到 artifacts 目录）。\\n\\n## 核心结论\\n\\n**Spatial 训练未在跑，03:09:45 启动后 3 秒崩溃，原因是 cache 不完整。**\\n\\n- **进程**：cuda:1 空闲，无 spatial 进程；PID 795051 早已不存在\\n- **崩溃**：`FileNotFoundError: No precomputed cache at /root/autodl-tmp/crm_cache_pi05/spatial`（train_crm.py:329 找不到 `manifest.json`）\\n- **Checkpoint**：spatial 目录是 object 启动时 `mkdir -p` 顺手建的空目录\\n- **预计算**：spatial 只完成 7/10 shard（s0~s6），s6 最后一个 partial 完成于 02:17，**缺 s7/s8/s9 + 未 merge**\\n- **Object 训练**：正常运行中（epoch 7/50, val_loss=0.005511）\\n\\n## 修复路径\\n\\n1. 在 cuda:1 上补跑 spatial shard 7/8/9 预计算\\n2. 合并 10 个 shard 生成 `manifest.json` + 3 个 `.pt`\\n3. 重启 spatial 训练\\n4. 把 registry 里 spatial 的 PREPARING 状态改为 FAILED，PID 795051 清掉\\n5. submit_training_job 应在启动前校验 `manifest.json` 存在\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 814
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T21:26:46.898136+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'crm-train-pi05-spatial-full'}",
+  "project": "acr-vla-conformal-refinement",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'crm-train-pi05-spatial-full'}",
+    "project": "acr-vla-conformal-refinement",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T21:26:47.903100+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "memory.md",
+  "max_chars": "20000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "memory.md",
+    "max_chars": "20000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T21:26:48.861892+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "limit": "15",
+  "fields": "['status', 'conclusion', 'created_at', 'updated_at', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "limit": "15",
+    "fields": "['status', 'conclusion', 'created_at', 'updated_at', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T21:26:51.270987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.3042}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 4372
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T21:26:51.321789+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"content\": \"# π0.5 CRM Eval 前置准备报告\\n\\n**日期**: 2026-05-22\\n\\n## 1. Object CRM Training 进度 (bjb1-18228)\\n\\n| 指标 | 值 |\\n|------|-----|\\n| 当前进度 | Epoch 7/50, batch 1350/1950 |\\n| 已运行时间 | 52 min 33 sec |\\n| 最佳 val_loss | 0.005511 (epoch 6) |\\n| 当前 train_loss | 0.009881 (epoch 6) |\\n| 预估速度 | ~7.8 min/epoch |\\n| 预计剩余时间 | ~5.5 小时 |\\n| 进程 PID | 800111 |\\n| 输出目录 | `/root/autodl-tmp/checkpoints/crm_pi05_full/object/` |\\n\\n训练命令: `python -u src/train_crm.py --benchmark object --cache_dir /root/autodl-tmp/crm_cache_pi05/ --output_dir /root/autodl-tmp/checkpoints/crm_pi05_full/object/ --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 2048`\\n\\n## 2. 代码同步状态\\n\\n| 服务器 | evaluate.py 大小 | 版本状态 | Git 状态 |\\n|--------|------------------|----------|----------|\\n| bjb1-32546 | 33058 bytes ✅ | 最新 | 无 .git（直接拷贝） |\\n| bjb2-28827 | 33058 bytes ✅ | 最新 | 有 .git 但无 remote |\\n\\n⚠️ 三台服务器均无有效 git remote。代码此前通过 rsync/scp 同步。当前 evaluate.py 已是最新版本（33058 bytes），无需操作。\\n\\n## 3. Eval 环境检查\\n\\n| 服务器 | PyTorch | CUDA | GPU 数量 | evaluate.py --help | pi05 模型 |\\n|--------|---------|------|----------|-------------------|-----------|\\n| bjb1-32546 | 2.10.0+cu128 ✅ | True ✅ | 6 | OK ✅ | 7.5GB model.safetensors ✅ |\\n| bjb2-28827 | 2.10.0+cu128 ✅ | True ✅ | 6 | OK ✅ | 7.5GB model.safetensors ✅ |\\n\\n两台 eval 服务器环境就绪。\\n\\n## 4. CRM Checkpoint 状态 (bjb1-18228)\\n\\n| 目录 | 内容 | 状态 |\\n|------|------|------|\\n| `crm_pi05_full/object/` | epoch 2-6 checkpoints + crm_best.pt (2.4MB) | ✅ 当前训练输出目录 |\\n| `crm_pi05/object/` | epoch 1-3 checkpoints | ⚠️ 旧 run 残留 |\\n| `crm_pi05/spatial/` | epoch 2-6 checkpoints + crm_best.pt (2.4MB) | ✅ Spatial CRM 已有 best model |\\n\\n## 结论\\n\\n- **Object CRM**: 训练正常推进中，约 5.5h 后完成全部 50 epochs。当前 best checkpoint 可用于早期 eval 测试。\\n- **Eval 环境**: 两台服务器全部就绪（代码、PyTorch、模型均 OK）。\\n- **可立即执行**: 用 `crm_pi05_full/object/
+…[truncated 187 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 3418
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T21:26:58.362309+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"crm-train-pi05-spatial-full\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-21T18:48:38.574Z\", \"updated_at\": \"2026-05-21T19:25:01.198Z\", \"hypothesis\": \"CRM projection trained on π0.5 full precomputed features (~60250 spatial samples, K=10) will learn conformal refinement corrections improving upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization\"}, \"crm-train-pi05-object-full\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-21T18:26:52.186Z\", \"updated_at\": \"2026-05-21T18:56:42.883Z\", \"hypothesis\": \"CRM projection trained on π0.5 full precomputed features (69303 object samples, K=10) will learn conformal refinement corrections improving upon π0.5 VLA-only baseline (81.5%) on LIBERO-Object, validating cross-VLA generalization\"}, \"crm-train-pi05-spatial\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T17:52:42.182Z\", \"updated_at\": \"2026-05-21T18:10:31.701Z\", \"hypothesis\": \"CRM projection trained on π0.5 precomputed features (38500 spatial samples, K=10) will learn to predict conformal refinement corrections that improve upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization of CRM beyond SmolVLA\", \"conclusion\": \"killed\"}, \"crm-train-pi05-object\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T17:52:37.705Z\", \"updated_at\": \"2026-05-21T18:10:26.906Z\", \"hypothesis\": \"CRM projection trained on π0.5 precomputed features (49700 object samples, K=10) will learn to predict conformal refinement corrections that improve upon π0.5 VLA-only baseline (81.5%) on LIBERO-Object, validating cross-VLA generalization of CRM beyond SmolVLA\", \"conclusion\": \"killed\"}, \"crm-pipeline-auto\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:37:34.472Z\", \"updated_at\": \"2026-05-21T16:37:34.472Z\"}, \"precompute-pi05-obj-s6-r2\": {\"status\": \"PREPARING\", \"created_at\": \"20
+…[truncated 1557 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 9500
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-21T21:27:23.629727+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T21:27:25.398616+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "eval-.*pi05.*crm|eval-crm-pi05|crm-eval-pi05",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "glob": "registry.yaml",
+  "output_mode": "content",
+  "head_limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "eval-.*pi05.*crm|eval-crm-pi05|crm-eval-pi05",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+    "glob": "registry.yaml",
+    "output_mode": "content",
+    "head_limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T21:27:30.267461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"crm-train-pi05-spatial-full\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T18:48:38.574Z\", \"updated_at\": \"2026-05-21T19:25:01.198Z\", \"hypothesis\": \"CRM projection trained on π0.5 full precomputed features (~60250 spatial samples, K=10) will learn conformal refinement corrections improving upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization\", \"reproduce\": {\"finished_at\": \"2026-05-21T19:16:05.516Z\"}, \"failure_reason\": \"Traceback → n main train(args) File \\\"/root/acr-vla-conformal-refinement/src/train_crm.py\\\", line 329, in train raise FileNotFoundError( FileNotFoundError: No precomputed cache at /root/autodl-tmp/crm_cache_pi05/spatial. Run with --precompute first, or use --auto.\", \"completed_at\": \"2026-05-21T19:16:13.590Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T19:16:24.207448+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache_pi05/ --output_dir /root/autodl-tmp/checkpoints/crm_pi05_full/spatial/ --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 2048\", \"server\": \"bjb1-18228\", \"data_path\": \"/root/autodl-tmp/crm_cache_pi05/spatial/\", \"data_count\": 60250, \"model_name\": \"CRM-spatial\", \"seed\": 42, \"gpu\": \"cuda:1\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/crm-train-pi05-spatial-full.log\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_pi05_full/spatial/\"}}, \"crm-train-pi05-object-full\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T18:26:52.186Z\", \"updated_at\": \"2026-05-21T18:56:42.883Z\", \"hypothesis\": \"CRM projection trained on π0.5 full precomputed features (69303 object samples, K=10) will learn conformal refinement corrections improving upon π0.5 VL
+…[truncated 968 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 6637
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T21:27:30.368193+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "Grep",
+  "elapsed_ms": 4969
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-21T21:27:59.966416+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "crm-train-pi05-spatial-full",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "crm-train-pi05-spatial-full",
+    "field": "status",
+    "value": "DONE",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T21:28:46.122506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"crm-train-pi05-spatial-full\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-21T18:48:38.574Z\", \"updated_at\": \"2026-05-21T21:28:30.552Z\", \"hypothesis\": \"CRM projection trained on π0.5 full precomputed features (~60250 spatial samples, K=10) will learn conformal refinement corrections improving upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization\", \"reproduce\": {\"finished_at\": \"2026-05-21T19:16:05.516Z\"}, \"failure_reason\": \"Traceback → n main train(args) File \\\"/root/acr-vla-conformal-refinement/src/train_crm.py\\\", line 329, in train raise FileNotFoundError( FileNotFoundError: No precomputed cache at /root/autodl-tmp/crm_cache_pi05/spatial. Run with --precompute first, or use --auto.\", \"completed_at\": \"2026-05-21T19:16:13.590Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T19:16:24.207448+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache_pi05/ --output_dir /root/autodl-tmp/checkpoints/crm_pi05_full/spatial/ --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 2048\", \"server\": \"bjb1-18228\", \"data_path\": \"/root/autodl-tmp/crm_cache_pi05/spatial/\", \"data_count\": 60250, \"model_name\": \"CRM-spatial\", \"seed\": 42, \"gpu\": \"cuda:1\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/crm-train-pi05-spatial-full.log\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_pi05_full/spatial/\"}, \"conclusion\": \"failed\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 46.0669}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 46156
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-21T21:28:52.013598+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__save_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__save_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T21:28:52.064921+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-21T21:29:10.102797+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "pi05_eval_commands.md",
+  "max_chars": "8000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "pi05_eval_commands.md",
+    "max_chars": "8000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T21:29:10.204152+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'pi05_eval_commands.md'\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-21T21:29:14.650325+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/pi05_eval_commands*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/pi05_eval_commands*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T21:29:14.801891+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/_project/intermediate/pi05_eval_commands.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/pi05_eval_commands.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/_project/report/pi05_eval_commands.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-21T21:29:17.365034+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/pi05_eval_commands.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/pi05_eval_commands.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T21:29:17.467457+00:00_
+
+1	# π0.5 Plan A Eval Commands（6 runs）
+2	
+3	## 脚本验证结论
+4	
+5	- 脚本：`/root/acr-vla-conformal-refinement/src/evaluate.py`
+6	- `--mode acr_vla` 已支持（docstring 注释为 "alias for crm_perdof — the full ACR-VLA pipeline"）
+7	- `--model pi05` 已支持（choices=[smolvla, pi05]）
+8	- `--obs_dim` 默认 960 (`OBS_DIM` from utils.py)，π0.5 必须显式传 `--obs_dim 2048`
+9	- `--crm_checkpoint` 是 `--checkpoint` 的别名（acr_vla 模式专用）
+10	- **`--cache_dir` 不是 eval 参数**（只有 train_crm.py 用），原任务描述里的 `&lt;MERGED_CACHE_DIR>` 占位符忽略
+11	- CRM checkpoint 目录已建好：`/root/autodl-tmp/checkpoints/crm_pi05/{object,spatial}/`（按 benchmark 分目录，等训练完产出 `crm_best.pt`）
+12	
+13	## 占位符
+14	
+15	- `&lt;CRM_CHECKPOINT_OBJECT>`：CRM training 完成后填入，预期路径 `/root/autodl-tmp/checkpoints/crm_pi05/object/crm_best.pt`
+16	- `&lt;CRM_CHECKPOINT_SPATIAL>`：预期路径 `/root/autodl-tmp/checkpoints/crm_pi05/spatial/crm_best.pt`
+17	- 如果 CRM training 用单一共享 checkpoint，两个占位符填同一路径
+18	
+19	## 通用前缀（所有命令复用）
+20	
+21	```bash
+22	source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+23	cd /root/acr-vla-conformal-refinement
+24	```
+25	
+26	## GPU 分配（6 runs 分散到 3 台服务器，每台 2 GPU）
+27	
+28	| # | Benchmark | Seed | Server       | GPU    |
+29	|---|-----------|------|--------------|--------|
+30	| 1 | object    | 42   | bjb1-32546   | cuda:0 |
+31	| 2 | object    | 43   | bjb1-32546   | cuda:1 |
+32	| 3 | object    | 44   | bjb2-28827   | cuda:0 |
+33	| 4 | spatial   | 42   | bjb2-28827   | cuda:1 |
+34	| 5 | spatial   | 43   | bjb1-18228   | cuda:0 |
+35	| 6 | spatial   | 44   | bjb1-18228   | cuda:1 |
+36	
+37	Notes:
+38	- bjb1-18228 训练完 CRM 后再分配 eval（避免抢占 CRM training GPU）
+39	- bjb1-32546 和 bjb2-28827 各 6 GPU，未来扩展 ablation 时还有 4 GPU 余量
+40	
+41	## 6 个完整命令
+42	
+43	### Run 1: object / seed 42 / bjb1-32546 / cuda:0
+44	
+45	```bash
+46	source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+47	cd /root/acr-vla-conformal-refinement
+48	CUDA_VISIBLE_DEVICES=0 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py \
+49	  --model pi05 \
+50	  --mode acr_vla \
+51	  --benchmark object \
+52	  --seed 42 
+…[truncated 4288 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "Read",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-21T21:30:07.172427+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-pi05-crm-object-seed42",
+  "field": "hypothesis",
+  "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Object will improve upon π0.5 VLA-only baseline (81.5%), validating cross-VLA generalization of ACR-VLA pipeline",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-pi05-crm-object-seed42",
+    "field": "hypothesis",
+    "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Object will improve upon π0.5 VLA-only baseline (81.5%), validating cross-VLA generalization of ACR-VLA pipeline",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-21T21:30:08.711262+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-pi05-crm-object-seed43",
+  "field": "hypothesis",
+  "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Object will improve upon π0.5 VLA-only baseline (81.5%), validating cross-VLA generalization of ACR-VLA pipeline",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-pi05-crm-object-seed43",
+    "field": "hypothesis",
+    "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Object will improve upon π0.5 VLA-only baseline (81.5%), validating cross-VLA generalization of ACR-VLA pipeline",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-21T21:30:09.698577+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-pi05-crm-object-seed44",
+  "field": "hypothesis",
+  "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Object will improve upon π0.5 VLA-only baseline (81.5%), validating cross-VLA generalization of ACR-VLA pipeline",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-pi05-crm-object-seed44",
+    "field": "hypothesis",
+    "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Object will improve upon π0.5 VLA-only baseline (81.5%), validating cross-VLA generalization of ACR-VLA pipeline",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T21:30:11.178608+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-pi05-crm-spatial-seed42",
+  "field": "hypothesis",
+  "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Spatial will improve upon π0.5 VLA-only baseline (84.2%), validating cross-VLA generalization of ACR-VLA pipeline",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-pi05-crm-spatial-seed42",
+    "field": "hypothesis",
+    "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Spatial will improve upon π0.5 VLA-only baseline (84.2%), validating cross-VLA generalization of ACR-VLA pipeline",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-21T21:30:12.497503+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-pi05-crm-spatial-seed43",
+  "field": "hypothesis",
+  "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Spatial will improve upon π0.5 VLA-only baseline (84.2%), validating cross-VLA generalization of ACR-VLA pipeline",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-pi05-crm-spatial-seed43",
+    "field": "hypothesis",
+    "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Spatial will improve upon π0.5 VLA-only baseline (84.2%), validating cross-VLA generalization of ACR-VLA pipeline",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-21T21:30:13.507665+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-pi05-crm-spatial-seed44",
+  "field": "hypothesis",
+  "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Spatial will improve upon π0.5 VLA-only baseline (84.2%), validating cross-VLA generalization of ACR-VLA pipeline",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-pi05-crm-spatial-seed44",
+    "field": "hypothesis",
+    "value": "π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Spatial will improve upon π0.5 VLA-only baseline (84.2%), validating cross-VLA generalization of ACR-VLA pipeline",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T21:30:58.873508+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-pi05-crm-object-seed42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T21:30:44.869Z\", \"updated_at\": \"2026-05-21T21:30:44.870Z\", \"hypothesis\": \"π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Object will improve upon π0.5 VLA-only baseline (81.5%), validating cross-VLA generalization of ACR-VLA pipeline\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 51.5627}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 51701
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T21:31:53.853823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-pi05-crm-object-seed43\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T21:31:43.148Z\", \"updated_at\": \"2026-05-21T21:31:43.149Z\", \"hypothesis\": \"π0.5 + CRM (obs_only, K=10, norm=0.2) on LIBERO-Object will improve upon π0.5 VLA-only baseline (81.5%), validating cross-VLA generalization of ACR-VLA pipeline\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 54.8253}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-adaptive-k-spatial-p90-seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 105142
+}
+```
+
+</details>
+
+---

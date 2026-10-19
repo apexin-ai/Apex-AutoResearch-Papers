@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-supp-long-vla-only-s47-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:14:04.522Z",
+    "updated_at": "2026-05-24T07:16:32.114Z",
+    "hypothesis": "Long s47 VLA-only (K=1) baseline to complete the Long s47 seed extension set. The existing eval-supp-long-vla-only-s47 is actually k2mean (K=2 mean), so this fills the true VLA-only gap.",
+    "parent": "eval-supp-long-vla-only-s46"
+  },
+  "timestamp": "2026-05-24T07:16:34.470190+00:00",
+  "trigger": "update_registry"
+}

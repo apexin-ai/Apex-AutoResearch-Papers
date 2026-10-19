@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-vla-only-spatial-cqa1-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T02:53:33.714Z",
+    "updated_at": "2026-05-25T02:55:36.639Z",
+    "hypothesis": "VLA-only baseline Spatial s43 on cqa1-32758. 同服务器配对数据用于 K=2 Adaptive paired t-test。"
+  },
+  "timestamp": "2026-05-25T02:55:38.162951+00:00",
+  "trigger": "update_registry"
+}

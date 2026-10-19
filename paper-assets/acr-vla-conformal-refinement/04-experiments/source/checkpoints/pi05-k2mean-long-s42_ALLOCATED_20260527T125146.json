@@ -1,0 +1,30 @@
+{
+  "exp_id": "pi05-k2mean-long-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T13:21:14.928Z",
+    "updated_at": "2026-05-27T12:51:44.881Z",
+    "hypothesis": "π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on long s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark long --seed 42 --n_rollouts 20 --output_file logs/eval_long_k2mean_pi05_seed42.json\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "140884",
+      "log_path": "~/runs/acr-vla-conformal-refinement/pi05-k2mean-long-s42.log",
+      "submitted_at": "2026-05-26T13:23:05.974Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed",
+    "failure_reason": "GPU collision OOM on bjb1-18228 cuda:3 with pi05-vla-only-object-s42-4090 PID 153197. K2mean was first but OOM mid-eval: pick_up_alphabet_soup 15.0% (expected ~100%). Killed for clean re-run."
+  },
+  "timestamp": "2026-05-27T12:51:46.731042+00:00",
+  "trigger": "update_registry"
+}

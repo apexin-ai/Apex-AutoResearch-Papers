@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval-pi05-crm-object-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:31:43.148Z",
+    "updated_at": "2026-05-22T17:20:35.256Z",
+    "hypothesis": "π0.5 + CRM (Object, K=10, obs_dim=2048) eval with final 50-epoch checkpoint (val_loss=0.004018) will improve upon π0.5 VLA-only baseline (81.5%) on LIBERO-Object, validating cross-VLA generalization",
+    "parent": "crm-train-pi05-object-full",
+    "spec": {
+      "command": "TORCHDYNAMO_DISABLE=1 python src/evaluate.py --model pi05 --mode acr_vla --crm_checkpoint crm_best.pt --benchmark object --seed 43 --obs_dim 2048",
+      "server": "bjb1-32546",
+      "gpu": "cuda:1",
+      "pid": 218420,
+      "log_path": "/root/runs/acr-vla-conformal-refinement/eval-pi05-crm-object-seed43.log",
+      "submitted_at": "2026-05-22T01:05:44.257Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "crm-train-pi05-object-full",
+      "eval_data": "LIBERO-Object (10 tasks x 20 rollouts)",
+      "data_path": "LIBERO-Object",
+      "data_count": 200,
+      "model_name": "pi05+crm-object",
+      "seed": 43,
+      "wall_clock_seconds": 58491.0,
+      "gpu_hours": 16.25
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-22T17:20:35.256Z"
+  },
+  "timestamp": "2026-05-22T17:20:36.721540+00:00",
+  "trigger": "update_registry"
+}

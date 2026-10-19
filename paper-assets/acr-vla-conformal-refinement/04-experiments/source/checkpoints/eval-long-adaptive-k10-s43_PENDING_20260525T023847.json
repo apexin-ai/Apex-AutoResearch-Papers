@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-long-adaptive-k10-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T02:38:15.859Z",
+    "updated_at": "2026-05-25T02:38:46.114Z",
+    "hypothesis": "Long Adaptive K=10 (τ=0.25) 补跑，确保 Table 1 全 suite 统一使用 K=10。原 Long 实验使用 K=2 与其他 suite 不一致。Long Δ≈0 是预期内的。",
+    "parent": "eval-supp-long-adapt-tau025-s43"
+  },
+  "timestamp": "2026-05-25T02:38:47.518604+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval-supp-long-vla-only-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T00:32:53.028Z",
+    "updated_at": "2026-05-24T06:03:32.630Z",
+    "hypothesis": "Long VLA-only baseline seed46. Fifth seed for Long VLA-only variance analysis. 3-seed mean 58.0%±1.5%.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark long --mode vla_only --seed 46 --n_rollouts 20 --K 1",
+      "server": "cqa1-32758",
+      "gpu": "cuda:3",
+      "seed": 46,
+      "model_name": "SmolVLA",
+      "data_path": "LIBERO-Long",
+      "data_count": 200,
+      "eval_data": "LIBERO-Long",
+      "log_path": "/tmp/eval_long_vla_s46.log",
+      "pid": 601530,
+      "tmux_session": "eval-long-vla-s46",
+      "checkpoint_path": "n/a-eval-only"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T05:13:17.230Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-24T05:13:08.597Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-24T05:13:37.611636+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-24T06:03:33.891673+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1264 @@
+# cron hook eval obs only object norm02 k5 seed42
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 1
+- **Tool calls:** 20
+- **Original source:** `logs/chats/cron_hook_eval-obs-only-object-norm02-k5-seed42.jsonl`
+- **Structured JSON:** [`6159ca8ee98c2e20d571.json`](../../sessions/61/6159ca8ee98c2e20d571.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+42 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T22:38:02.103875+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #21。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- bjb1-18228 的 GPU 编号是 cuda:0-3（4卡），不是 6 卡
+- LIBERO 并发上限：每台服务器 ≤4 个评估进程（M005 教训）
+- bjb1-18228 刚发生批量 SIGHUP，重新提交前必须确认服务器恢复正常（诊断 Worker 结果）
+- K=10 结果已锁定为 supplementary，主线是 K=1 单采样纠正（D049 方向）
+- OpenVLA baseline 0% SR 问题未解决前，不要动 Claim 3 相关的 paper 内容
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-18228**（4×4090）：工作目录 `/root/acr-vla-conformal-refinement/`，checkpoint 在 `/root/autodl-tmp/checkpoints/crm_v3_norm/`（obs_only + perdof），日志在 `~/runs/acr-vla-conformal-refinement/`
+- **bjb1-32546**（6×4090）：同结构，当前跑 6 个评估（cuda:0-5 全占）
+- **bjb2-28827**（6×4090）：cuda:2 跑 perdof-norm02-seed47，cuda:4 跑 perdof-norm02-seed46；cuda:0 跑 plan_701 multi-scale K=1 CRM 训练
+- **bjb2-40593**（6×4090）：cuda:0 跑 random-selection baseline
+- Python: `/root/miniconda3/bin/python`（各服务器）
+- precompute cache: bjb2-28827 `/root/autodl-tmp/` 下 65K samples
+
+### 3. 📊 当前状态
+**刚做完**：收到 bjb1-18228 批量 SIGHUP 失败 CRON 回调，已向 Director 汇报。
+
+**RUNNING（9 个）**：
+| 实验 | 服务器 | GPU |
+|------|--------|-----|
+| eval-perdof-object-norm01-seed46-r2 | bjb1-32546 | cuda:4 |
+| eval-perdof-object-norm01-seed47-bjb1 | bjb1-32546 | cuda:1 |
+| eval-obs-only-object-norm03-seed46 | bjb1-32546 | cuda:2 |
+| eval-obs-only-object-default-seed46 | bjb1-32546 | cuda:3 |
+| eval-perdof-object-default-seed46 | bjb1-32546 | cuda:5 |
+| eval-obs-only-object-norm005-seed43-r2 | bjb1-32546 | cuda:0 |
+| eval-perdof-object-norm02-seed46 | bjb2-28827 | cuda:4 |
+| eval-perdof-object-norm02-seed47 | bjb2-28827 | cuda:2 |
+| eval-random-selection-object-seed42 | bjb2-40593 | cuda:0 |
+
+**等待中**：
+- 2 个诊断 Worker：`diagnose:eval-obs-only-object-norm005-seed43-r3` 和 `diag:bjb1-18228-sighup-batch`
+- Worker `diagnose:openvla-0pct-investigation` + `fix:openvla-0pct-diagnosis`（OpenVLA 0% SR 调查）
+- Worker `code:plan_702-multiscale-eval-deploy`（K=1 multi-scale eval 部署代码）
+- Worker `check:full-gpu-survey-deploy`（GPU 全面摸底）
+- Worker 池 6/6 满
+
+### 4. 📋 待办
+- `diag:bjb1-18228-sighup-batch` 回调 → 确认服务器正常 → 重新提交 4 个失败实验到 bjb1-18228（perdof-norm02-seed45, obs-only-norm005-seed43, K=5 sweep, K=20 sweep）
+- `code:plan_702-multiscale-eval-deploy` 回调 → plan_701 训练完成后立即部署 3-seed K=1 eval
+- OpenVLA 诊断 Worker 回调 → 若 bug 可修 → 修复后重跑 baseline；若真 0% → 向 Director 汇报需替换 backbone 或 drop Claim 3
+- `check:full-gpu-survey-deploy` 回调 → 填满 bjb2-40593 和 bjb2-28827 空闲 GPU
+- 9 个 RUNNING eval 完成 → 更新 magnitude curve 数据 + report.md
+- plan_701 multi-scale 训练完成 → 立即 3-seed eval → 结果决定 Scenario A/B 分叉
+
+### 5. 🎯 战略上下文
+- **核心方向 D049**：Narrative B+，obs_only CRM 单步纠正 frozen VLA。三个 claim：(1) K=1 单采样纠正，(2) conditioning-magnitude interaction，(3) 跨 VLA（OpenVLA）验证
+- **K=10 已锁定**：obs_only 17.5% vs argmin 12.3%，Fisher p=0.0074，放 supplementary
+- **关键分叉点**：plan_701 multi-scale K=1 结果（3-seed mean >13% → Scenario A 可 claim K=1 实用；≤11% → Scenario B 只做 mechanism insight）
+- **D050 确认**：K=1 ACCG fallback = VLA-only（10.0% vs 10.8%），single-scale 无增益，multi-scale 是唯一 rescue
+- **易错**：bjb1-18228 的 4 个失败不是代码问题，是服务器级 SIGHUP，重提交即可（但先等诊断确认）。不要把这些当 negative result 处理
+- **投稿 DDL**：CoRL 2026 abstract ~May 26（~9天），full paper ~Jun 2（~16天）。时间紧迫，每张 GPU 每小时都珍贵
+
+## 可查的历史
+前 142 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T22:38:16.177198+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T22:38:16.177655+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T22:38:22.825209+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T22:38:22.876075+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-17T22:38:22.980442+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T22:38:24.057822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-openvla-object-vla-only-seed42-v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T20:06:55.243Z\", \"updated_at\": \"2026-05-17T22:13:08.288Z\", \"hypothesis\": \"OpenVLA 7B finetuned VLA-only baseline on LIBERO-Object using official eval code (transformers 4.40.1, isolated conda env). v1 failed due to transformers 5.8 DynamicCache bug. Dry-run on libero_spatial confirmed 80% SR. This run uses openvla-libero-object finetuned model with 10 trials/task.\"}, \"eval-perdof-object-norm02-seed43-r3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T12:04:16.681Z\", \"updated_at\": \"2026-05-17T21:15:56.840Z\", \"hypothesis\": \"perdof CRM ε=0.2 seed43 on LIBERO-Object. 第 3 次尝试。补充 perdof magnitude curve ε=0.2 数据（seed42=11%）。\"}, \"mag_perdof_norm02_seed43_r3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T18:04:37.024Z\", \"updated_at\": \"2026-05-17T19:30:55.258Z\"}, \"mag_obs_only_norm01_seed47\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T18:04:31.864Z\", \"updated_at\": \"2026-05-17T19:30:53.550Z\"}, \"mag_obs_only_norm01_seed46\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T18:04:34.999Z\", \"updated_at\": \"2026-05-17T19:30:51.813Z\"}, \"eval-random-selection-object-seed42\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T13:32:30.506Z\", \"updated_at\": \"2026-05-17T13:33:58.460Z\", \"hypothesis\": \"Random selection baseline (K=10 随机选一个 action) on LIBERO-Object seed42. Ablation 验证 CRM uncertainty-guided selection 的价值。\"}, \"eval-perdof-object-norm02-seed47\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T13:32:28.585Z\", \"updated_at\": \"2026-05-17T13:33:55.983Z\", \"hypothesis\": \"perdof CRM (ε=0.2) seed47 on LIBERO-Object. 补充 Figure 2 perdof magnitude curve ε=0.2 数据。\"}, \"eval-obs-only-object-norm005-seed43-r2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T13:32:27.742Z\", \"updated_at\": \"2026-05-17T13:33:53.538Z\",
+…[truncated 1791 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1232
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T22:39:08.420720+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 12, \"results\": [{\"exp_id\": \"eval-perdof-object-norm02-seed46\", \"success\": true, \"actions\": [\"Job still running (pid=389051)\"]}, {\"exp_id\": \"eval-perdof-object-norm01-seed47-bjb1\", \"success\": true, \"actions\": [\"Job still running (pid=414817)\"]}, {\"exp_id\": \"eval-obs-only-object-norm03-seed46\", \"success\": true, \"actions\": [\"Job still running (pid=416568)\"]}, {\"exp_id\": \"eval-obs-only-object-default-seed46\", \"success\": true, \"actions\": [\"Job still running (pid=422357)\"]}, {\"exp_id\": \"eval-perdof-object-default-seed46\", \"success\": true, \"actions\": [\"Job still running (pid=423767)\"]}, {\"exp_id\": \"eval-obs-only-object-norm005-seed43-r2\", \"success\": true, \"actions\": [\"Job still running (pid=433500)\"]}, {\"exp_id\": \"eval-perdof-object-norm02-seed47\", \"success\": true, \"actions\": [\"Job still running (pid=404983)\"]}, {\"exp_id\": \"eval-random-selection-object-seed42\", \"success\": true, \"actions\": [\"Job still running (pid=395256)\"]}, {\"exp_id\": \"eval-obs-only-object-norm01-seed46\", \"success\": true, \"actions\": [\"Job still running (pid=449068)\"]}, {\"exp_id\": \"eval-perdof-object-norm02-seed43-r3\", \"success\": true, \"actions\": [\"Job still running (pid=449339)\"]}, {\"exp_id\": \"eval-perdof-object-norm02-seed45-r3\", \"success\": true, \"actions\": [\"Job still running (pid=749540)\"]}, {\"exp_id\": \"eval-obs-only-object-norm005-seed43\", \"success\": true, \"actions\": [\"Job still running (pid=476529)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 45544
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T22:39:08.477882+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval-openvla-object-vla-only-seed42-v2 | OpenVLA 7B finetuned VLA-only baseline on LIBERO-Object using official eval code (transformers 4.40.1, isolated conda env). v1 failed due to transformers 5.8 DynamicCache bug. Dry-run on libero_spatial confirmed 80% SR. This run uses openvla-libero-object finetuned model with 10 trials/task. | — | — | — |\\n| eval-perdof-object-norm02-seed43-r3 | perdof CRM ε=0.2 seed43 on LIBERO-Object. 第 3 次尝试。补充 perdof magnitude curve ε=0.2 数据（seed42=11%）。 | — | — | — |\\n| mag_perdof_norm02_seed43_r3 | — | — | — | — |\\n\\n## 待处理\\n- train-crm-k1-accg-object-seed42-full（准备中）\\n- plan_701-precompute-k1-spatial（准备中）\\n- plan_701-crm-k1-train: K=1 CRM 训练：使用多阶段 VLA 特征融合 + 组合损失函数（L2 + contrastive + uncertainty-weighted），训练专门用于 K=1 单采样纠正的 CRM 模型。目标是超越 K=1 VLA-only baseline (10.8%)。（准备中）\\n- eval-obs-only-object-norm005-seed43: obs_only CRM (ε=0.05) seed43 on LIBERO-Object. M006 补救：补充 magnitude curve 低 norm 段多 seed 数据。seed42 ε=0.05=13%。（准备中）\\n- eval-perdof-object-norm02-seed43: perdof CRM ε=0.2 seed43 on LIBERO-Object. 补充 perdof magnitude curve ε=0.2 数据（seed42=11%, seed43 之前仅 spatial 数据 9%）。与 obs_only ε=0.2 seed43=16% 配对对比。（准备中）\\n- eval-obs-only-object-norm01-seed46: obs_only CRM (ε=0.1) seed=46 on LIBERO Object. Extends magnitude curve low-norm segment to 3+ seeds. If consistent with seed42=19% and seed45 (running), strengthens robustness claim that obs_only maintains stable performance across all ε values.（准备中）\\n- eval-perdof-object-norm01-seed46: perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\"safe zone\\\" (tight bound masks noisy
+…[truncated 5754 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 45497
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T22:39:38.537665+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_roadmap",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_roadmap",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T22:39:38.588508+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T22:39:42.461432+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T22:39:42.461858+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T22:39:42.562632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ops_investigate-auto-restart-bjb1-18228_20260517T223720\", \"task_type\": \"ops:investigate-auto-restart-bjb1-18228\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"running\", \"started_at\": \"2026-05-17T22:37:20.680759+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T22:39:42.563207+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-17 22:12 UTC | 更新原因: Reviewer警告：OpenVLA实际68.5%非88-90%；决定kill K=20转GPU给plan_802；启动plan_802可行性分析不等D051\\n\\n## 核心方向\\n**待用户确认 framing（D051 选择已发出，等待回复）**：\\n- Option A: K=10 升 primary，K=1 作 honest ablation（Reviewer 推荐）\\n- Option B: 纯 analysis/insight paper，conditioning-magnitude interaction 为核心贡献\\n详见 paper_framing.md。\\n\\n## 投稿目标\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~9 天 / ~16 天。\\n\\n## 当前进展\\n- **阶段**: D051 Scenario B 确认（K=1 negative），等用户 framing 选择\\n- **K=10 已锁定**: obs_only 17.5% vs argmin 12.3%, Fisher p=0.0074 ✅\\n- **K=1 全部 negative**: fallback 10.0%, multi-scale 10.33%, VLA-only 10.8%（统计不可区分）\\n- **Magnitude sweep 已锁定**: obs_only 稳定 15-17.5%, perdof 崩塌 14%→0% ✅\\n- **Latency 已锁定**: CRM 0.3ms, CGS 6.2ms, ACR overhead 0.34% ✅\\n- **OpenVLA pipeline 修通**: 官方 repo + transformers 4.40.1, dry-run spatial 80% ✅\\n- **OpenVLA VLA-only eval**: 🔄 89/100 episodes, **61 成功 = 68.5%**（⚠️ 低于论文 88.4%，需调查 gap）\\n- **Random selection baseline**: 🔄 ~35% (bjb2-40593), 初步 CRM-guided > random ✅\\n- **K=5 sweep**: 🔄 ~32% (bjb1-18228 cuda:0), ~33h 剩余\\n- **K=20 sweep**: 🔄 (bjb1-18228 cuda:2) — **决定 kill，GPU 转 plan_802**\\n- **Magnitude 补 seed**: 🔄 多组在 bjb2-28827 + bjb1-32546 上跑\\n- **GPU**: 17/17 全满（低利用率 18-30% 是 LIBERO CPU-bound 正常模式）\\n\\n## D049 MUST-DO 进度\\n\\n| ID | 任务 | 状态 | 备注 |\\n|----|------|------|------|\\n| plan_700 | K=1 CRM 架构设计 | ✅ | ACCG, Reviewer PASS |\\n| plan_701 | K=1 CRM 训练 | ✅ | val_loss=0.007199 |\\n| plan_702 | K=1 CRM eval (3 seeds) | ✅ NEGATIVE | mean=10.33% ≈ VLA-only |\\n| plan_800 | OpenVLA 环境搭建 | ✅ | 官方 repo + 独立 env |\\n| plan_801 | OpenVLA VLA-only baseline | 🔄 89/100 | **68.5% SR（低于论文 88.4%，需调查）** |\\n| plan_802 | OpenVLA + CRM | ⏳ 启动可行性分析 | 不等 D051，两个 Option 都需要 |\\n| plan_803 | Open
+…[truncated 3137 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T22:39:54.861561+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "status": "done",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "status": "done",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T22:39:54.912658+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_deploy_fill-idle-gpus-and-collect_20260517T210101\", \"task_type\": \"deploy:fill-idle-gpus-and-collect\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-17T21:01:01.447882+00:00\", \"ended_at\": \"2026-05-17T21:06:29.092594+00:00\"}, {\"worker_id\": \"worker_deploy_magnitude-bjb1-32546-cuda4_20260517T211455\", \"task_type\": \"deploy:magnitude-bjb1-32546-cuda4\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-17T21:14:55.859125+00:00\", \"ended_at\": \"2026-05-17T21:17:01.582394+00:00\"}, {\"worker_id\": \"worker_survey_full-gpu-status-and-results_20260517T220756\", \"task_type\": \"survey:full-gpu-status-and-results\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-17T22:07:56.855894+00:00\", \"ended_at\": \"2026-05-17T22:10:40.183650+00:00\"}, {\"worker_id\": \"worker_ops_register-openvla-v2-cron_20260517T221045\", \"task_type\": \"ops:register-openvla-v2-cron\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-17T22:10:45.384688+00:00\", \"ended_at\": \"2026-05-17T22:11:57.678394+00:00\"}, {\"worker_id\": \"worker_eval_openvla-v2-deploy_20260517T221057\", \"task_type\": \"eval:openvla-v2-deploy\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-17T22:10:57.771289+00:00\", \"ended_at\": \"2026-05-17T22:13:18.587991+00:00\"}, {\"worker_id\": \"worker_survey_orphan-experiments-check_20260517T221108\", \"task_type\": \"survey:orphan-experiments-check\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-17T22:11:09.025786+00:00\", \"ended_at\": \"2026-05-17T22:13:35.344117+00:00\"}, {\"worker_id\": \"worker_eval_k-sweep-retry-r3_20260517T221500\", \"task_type\": \"eval:k-sweep-retry-r3\", \"project\": \"acr-vla
+…[truncated 1145 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T22:40:25.628404+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T22:40:25.679017+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T22:40:29.054455+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_plan802-feasibility_20260517T221717"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_analysis_plan802-feasibility_20260517T221717"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T22:40:29.506489+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_plan802-feasibility_20260517T221717\", \"status\": \"done\", \"task_type\": \"analysis:plan802-feasibility\", \"project\": \"acr-vla-conformal-refinement\", \"started_at\": \"2026-05-17T22:17:17.560386+00:00\", \"ended_at\": \"2026-05-17T22:20:12.129153+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"报告已完成。核心结论：**SmolVLA CRM 无法直接用于 OpenVLA**，存在 5 重不兼容（feature dim、action 生成机制、multi-sample 依赖、action chunk 结构、归一化方案）。如果要做，需要全新设计，最可行方案是退化为 obs_only residual corrector，但会失去 conformal 的理论保证。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T22:40:29.557229+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_check-crm-k1-train-session-bjb2-28827_20260517T223806"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_check-crm-k1-train-session-bjb2-28827_20260517T223806"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T22:40:30.112801+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check-crm-k1-train-session-bjb2-28827_20260517T223806\", \"status\": \"done\", \"task_type\": \"ops:check-crm-k1-train-session-bjb2-28827\", \"project\": \"acr-vla-conformal-refinement\", \"started_at\": \"2026-05-17T22:38:06.468339+00:00\", \"ended_at\": \"2026-05-17T22:38:48.543041+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"结果：\\n\\n- **`train-crm-k1-v2` session 已不存在** — tmux 报 \\\"can't find pane\\\"，当前只有 3 个其他 session（mag_obs_only_norm01_seed46/47, mag_perdof_norm02_seed43_r3）\\n- **GPU0 被其他进程占用** — PID 476536 (python) 占 5645 MiB，属于当前运行的其他实验，非 CRM K=1 训练残留\\n\\n### 产出\\n- 训练是否已完成：**是**（session 已不存在，训练早已结束）\\n- tmux session 已关闭：**是**（已被之前清理或自动退出）\\n- GPU0 显存释放量：**0 MiB**（当前 GPU0 的 5645 MiB 占用来自其他实验 PID 476536，不是 CRM K=1 残留）\\n\\n无需额外操作。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 555
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T22:40:30.163613+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_investigate-auto-restart-bjb1-18228_20260517T223720",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_investigate-auto-restart-bjb1-18228_20260517T223720",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T22:40:30.314564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_investigate-auto-restart-bjb1-18228_20260517T223720\", \"status\": \"running\", \"task_type\": \"ops:investigate-auto-restart-bjb1-18228\", \"project\": \"acr-vla-conformal-refinement\", \"started_at\": \"2026-05-17T22:37:20.680759+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"Grep\", \"Read\", \"Read\", \"Bash\", \"Bash\"], \"last_text\": \"\", \"turn_count\": 11}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T22:40:57.101177+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'DONE'}",
+  "limit": "15",
+  "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'DONE'}",
+    "limit": "15",
+    "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T22:40:57.757935+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-openvla-object-vla-only-seed42-v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T22:39:25.302Z\", \"hypothesis\": \"OpenVLA 7B finetuned VLA-only baseline on LIBERO-Object using official eval code (transformers 4.40.1, isolated conda env). v1 failed due to transformers 5.8 DynamicCache bug. Dry-run on libero_spatial confirmed 80% SR. This run uses openvla-libero-object finetuned model with 10 trials/task.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.69, \"n_tasks\": 10, \"n_trials_per_task\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm02-k20-seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T22:37:41.079Z\", \"hypothesis\": \"obs_only CRM (ε=0.2, K=20) seed42 on LIBERO-Object. K sweep 实验：K=20 vs K=10 (22%) 比较，验证增加 candidate 数量是否带来额外增益。若 K=20 ≈ K=10，说明 K=10 已接近饱和。\", \"conclusion\": \"killed\"}, \"eval-obs-only-object-norm02-k5-seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T22:12:44.531Z\", \"hypothesis\": \"obs_only CRM (ε=0.2, K=5) seed42 on LIBERO-Object. K sweep 实验：K=5 vs K=10 (22%) 比较，验证 sample count 对 selection quality 的影响。若 K=5 显著低于 K=10，说明足够的 candidate 多样性对 CRM selection 关键。\", \"conclusion\": \"failed\"}, \"eval-k1-crm-multiscale-object-seed44-r2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T21:14:35.625Z\", \"hypothesis\": \"K=1 CRM with ACCG (multi-scale 4×960D) on LIBERO-Object seed44. Parallel deployment on bjb1-18228. Parent: train-crm-k1-accg-object-seed42-v2\", \"conclusion\": \"negative\", \"metrics\": {\"overall_sr\": 0.1, \"successes\": 10, \"total\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}}}, \"eval-k1-crm-multiscale-object-seed44\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T21:02:09.738Z\", \"hypothesis\": \"K=1 
+…[truncated 6508 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 656
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T22:41:43.689463+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:openvla-pertask-gap",
+  "project": "acr-vla-conformal-refinement",
+  "task_prompt": "## 任务：分析 OpenVLA VLA-only 69% SR vs 论文 88.4% 的 gap\n\n### 背景\neval-openvla-object-vla-only-seed42-v2 已完成：overall_sr=69%, 10 tasks × 10 trials = 100 rollouts。\n论文报告 LIBERO-Object 88.4%。我们需要理解 gap 来源。\n\n### 你需要做的\n\n1. SSH 到 bjb1-18228，读取 eval 结果文件：\n   - 工作目录: `/root/acr-vla-conformal-refinement/`\n   - 查找 OpenVLA eval 的结果 JSON（可能在 `~/runs/` 或 eval 输出目录）\n   - Python: `/root/miniconda3/bin/python`\n\n2. 提取 per-task success rate breakdown（10 tasks × 10 trials）\n\n3. 分析可能的 gap 来源：\n   - 检查我们用的 eval 参数（n_trials, max_steps, seed 设置）\n   - 检查 OpenVLA 论文的 eval protocol（WebSearch \"OpenVLA LIBERO evaluation protocol\" 或查 paper）\n   - 比较差异：rollout 数量（我们 10 vs 论文可能 50+）、max_steps、任务版本\n\n4. 产出：写一份简短分析到本地 `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/openvla_gap_analysis.md`，包含：\n   - Per-task SR 表格\n   - 与论文 per-task 对比（如能找到）\n   - Gap 原因假说（哪些因素最可能导致 20pp 差距）\n   - 建议：是否需要重跑更多 trials，还是这个差距可以接受\n\n### 服务器连接\n- bjb1-18228 (4×RTX 4090)\n- Python: /root/miniconda3/bin/python",
+  "tool_groups": "['ssh', 'knowledge']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:openvla-pertask-gap",
+    "project": "acr-vla-conformal-refinement",
+    "task_prompt": "## 任务：分析 OpenVLA VLA-only 69% SR vs 论文 88.4% 的 gap\n\n### 背景\neval-openvla-object-vla-only-seed42-v2 已完成：overall_sr=69%, 10 tasks × 10 trials = 100 rollouts。\n论文报告 LIBERO-Object 88.4%。我们需要理解 gap 来源。\n\n### 你需要做的\n\n1. SSH 到 bjb1-18228，读取 eval 结果文件：\n   - 工作目录: `/root/acr-vla-conformal-refinement/`\n   - 查找 OpenVLA eval 的结果 JSON（可能在 `~/runs/` 或 eval 输出目录）\n   - Python: `/root/miniconda3/bin/python`\n\n2. 提取 per-task success rate breakdown（10 tasks × 10 trials）\n\n3. 分析可能的 gap 来源：\n   - 检查我们用的 eval 参数（n_trials, max_steps, seed 设置）\n   - 检查 OpenVLA 论文的 eval protocol（WebSearch \"OpenVLA LIBERO evaluation protocol\" 或查 paper）\n   - 比较差异：rollout 数量（我们 10 vs 论文可能 50+）、max_steps、任务版本\n\n4. 产出：写一份简短分析到本地 `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/openvla_gap_analysis.md`，包含：\n   - Per-task SR 表格\n   - 与论文 per-task 对比（如能找到）\n   - Gap 原因假说（哪些因素最可能导致 20pp 差距）\n   - 建议：是否需要重跑更多 trials，还是这个差距可以接受\n\n### 服务器连接\n- bjb1-18228 (4×RTX 4090)\n- Python: /root/miniconda3/bin/python",
+    "tool_groups": "['ssh', 'knowledge']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T22:41:55.352415+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_openvla-pertask-gap_20260517T224144\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analysis_openvla-pertask-gap_20260517T224144.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_openvla-pertask-gap_20260517T224144 started. Use get_worker_status('worker_analysis_openvla-pertask-gap_20260517T224144') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 11662
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T22:41:55.804353+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:magnitude-curve-consolidation",
+  "project": "acr-vla-conformal-refinement",
+  "task_prompt": "## 任务：汇总所有 magnitude curve 数据点（Figure 2）\n\n### 背景\n我们在做 conditioning-magnitude interaction 实验：obs_only CRM 和 perdof CRM 在不同 ε (norm cap) 下的 LIBERO-Object success rate。需要汇总所有已完成实验的数据点。\n\n### 你需要做的\n\n1. 用 `read_registry` 获取所有 DONE 的 magnitude 相关实验。关键命名模式：\n   - `eval-obs-only-object-norm*` — obs_only CRM 不同 norm\n   - `eval-perdof-object-norm*` — perdof CRM 不同 norm\n   - `eval-obs-only-object-default*` — obs_only 无 norm cap\n   - `eval-perdof-object-default*` — perdof 无 norm cap\n   \n2. 整理成表格，按 (model_type, epsilon, seed) 分组：\n   - obs_only: ε=0.05, 0.1, 0.2, 0.3, default(uncapped)\n   - perdof: ε=0.05, 0.1, 0.2, 0.3, default(uncapped)\n   - 每个组合列出所有 seed 的 SR + mean ± stderr\n\n3. 检查哪些 (model_type, epsilon) 组合还不够 3 seeds（Figure 2 质量要求）\n\n4. 产出：写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/magnitude_curve_data.md`：\n   - 完整数据表\n   - Coverage 统计（每组合有几个 seed）\n   - 缺口识别（哪些组合 < 3 seeds）\n   - 当前 RUNNING 实验中哪些会填补这些缺口\n\n### 注意\n- 只汇总 conclusion=success 的实验（failed/killed 不算）\n- metrics 中 overall_sr 就是我们要的数字\n- 也包括 VLA-only baseline (10.8%) 和 argmin baseline 作为参考线",
+  "tool_groups": "['registry', 'knowledge']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:magnitude-curve-consolidation",
+    "project": "acr-vla-conformal-refinement",
+    "task_prompt": "## 任务：汇总所有 magnitude curve 数据点（Figure 2）\n\n### 背景\n我们在做 conditioning-magnitude interaction 实验：obs_only CRM 和 perdof CRM 在不同 ε (norm cap) 下的 LIBERO-Object success rate。需要汇总所有已完成实验的数据点。\n\n### 你需要做的\n\n1. 用 `read_registry` 获取所有 DONE 的 magnitude 相关实验。关键命名模式：\n   - `eval-obs-only-object-norm*` — obs_only CRM 不同 norm\n   - `eval-perdof-object-norm*` — perdof CRM 不同 norm\n   - `eval-obs-only-object-default*` — obs_only 无 norm cap\n   - `eval-perdof-object-default*` — perdof 无 norm cap\n   \n2. 整理成表格，按 (model_type, epsilon, seed) 分组：\n   - obs_only: ε=0.05, 0.1, 0.2, 0.3, default(uncapped)\n   - perdof: ε=0.05, 0.1, 0.2, 0.3, default(uncapped)\n   - 每个组合列出所有 seed 的 SR + mean ± stderr\n\n3. 检查哪些 (model_type, epsilon) 组合还不够 3 seeds（Figure 2 质量要求）\n\n4. 产出：写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/magnitude_curve_data.md`：\n   - 完整数据表\n   - Coverage 统计（每组合有几个 seed）\n   - 缺口识别（哪些组合 < 3 seeds）\n   - 当前 RUNNING 实验中哪些会填补这些缺口\n\n### 注意\n- 只汇总 conclusion=success 的实验（failed/killed 不算）\n- metrics 中 overall_sr 就是我们要的数字\n- 也包括 VLA-only baseline (10.8%) 和 argmin baseline 作为参考线",
+    "tool_groups": "['registry', 'knowledge']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T22:42:14.327129+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_magnitude-curve-consolidation_20260517T224156\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analysis_magnitude-curve-consolidation_20260517T224156.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_magnitude-curve-consolidation_20260517T224156 started. Use get_worker_status('worker_analysis_magnitude-curve-consolidation_20260517T224156') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 18522
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T22:42:14.578366+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "design:plan802-openvla-corrector",
+  "project": "acr-vla-conformal-refinement",
+  "task_prompt": "## 任务：设计 OpenVLA + obs_only residual corrector 架构\n\n### 背景\nplan_802 可行性分析结论：SmolVLA 的 CRM 无法直接迁移到 OpenVLA，有 5 重不兼容：\n1. Feature dimension 不同（SmolVLA 960D vs OpenVLA 4096D）\n2. Action 生成机制不同（SmolVLA: MLP head → continuous; OpenVLA: autoregressive token decoding → discrete bins）\n3. Multi-sample 依赖不同（SmolVLA 可以 temperature sampling K 次; OpenVLA 用 beam search / top-k token sampling）\n4. Action chunk 结构不同\n5. 归一化方案不同\n\n最可行方向：退化为 obs_only residual corrector（仅用 visual observation 预测 action residual，不依赖 VLA internal features）。\n\n### 当前 obs_only CRM 架构（SmolVLA 版本）\n- 输入: SmolVLA encoder 的 observation embedding (960D)\n- 输出: 7D action residual (delta to VLA predicted action)\n- 训练: |residual - (expert - vla_action)|² loss\n\n### 你需要做的\n\n1. WebSearch 了解 OpenVLA 架构：\n   - Input: images → Prismatic vision encoder → LLM (Llama-2 7B)\n   - Output: tokenized actions (discretized into 256 bins per dimension)\n   - Key: 在哪能拿到 visual features? (vision encoder output before LLM)\n\n2. 设计 OpenVLA obs_only corrector：\n   - 输入选择：OpenVLA vision encoder output (SigLIP + DinoV2 features)\n   - Feature dim adaptation: 从 OpenVLA feature space 降维到 corrector 输入\n   - 输出: 7D continuous action residual\n   - 如何将 discrete token 解码后的 action + residual 合成最终 action\n   - 训练数据: 可以用 LIBERO-Object demonstrations (expert actions) + OpenVLA predicted actions\n\n3. 产出：写设计文档到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/plan802_architecture.md`：\n   - 架构图（text description）\n   - Feature extraction 方案\n   - Training pipeline 设计\n   - 预估训练时间和数据需求\n   - 与 SmolVLA CRM 的对比（哪些 conformal 保证会丢失）\n   - 实现难度评估和风险点\n\n### 约束\n- CoRL DDL ~16天，设计必须是可在 5-7 天内实现+训练+评估的方案\n- 4×4090 GPU 资源\n- 优先简洁可行，而非理论完美",
+  "tool_groups": "['knowledge']",
+  "tools": "['WebSearch', 'WebFetch']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "design:plan802-openvla-corrector",
+    "project": "acr-vla-conformal-refinement",
+    "task_prompt": "## 任务：设计 OpenVLA + obs_only residual corrector 架构\n\n### 背景\nplan_802 可行性分析结论：SmolVLA 的 CRM 无法直接迁移到 OpenVLA，有 5 重不兼容：\n1. Feature dimension 不同（SmolVLA 960D vs OpenVLA 4096D）\n2. Action 生成机制不同（SmolVLA: MLP head → continuous; OpenVLA: autoregressive token decoding → discrete bins）\n3. Multi-sample 依赖不同（SmolVLA 可以 temperature sampling K 次; OpenVLA 用 beam search / top-k token sampling）\n4. Action chunk 结构不同\n5. 归一化方案不同\n\n最可行方向：退化为 obs_only residual corrector（仅用 visual observation 预测 action residual，不依赖 VLA internal features）。\n\n### 当前 obs_only CRM 架构（SmolVLA 版本）\n- 输入: SmolVLA encoder 的 observation embedding (960D)\n- 输出: 7D action residual (delta to VLA predicted action)\n- 训练: |residual - (expert - vla_action)|² loss\n\n### 你需要做的\n\n1. WebSearch 了解 OpenVLA 架构：\n   - Input: images → Prismatic vision encoder → LLM (Llama-2 7B)\n   - Output: tokenized actions (discretized into 256 bins per dimension)\n   - Key: 在哪能拿到 visual features? (vision encoder output before LLM)\n\n2. 设计 OpenVLA obs_only corrector：\n   - 输入选择：OpenVLA vision encoder output (SigLIP + DinoV2 features)\n   - Feature dim adaptation: 从 OpenVLA feature space 降维到 corrector 输入\n   - 输出: 7D continuous action residual\n   - 如何将 discrete token 解码后的 action + residual 合成最终 action\n   - 训练数据: 可以用 LIBERO-Object demonstrations (expert actions) + OpenVLA predicted actions\n\n3. 产出：写设计文档到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/plan802_architecture.md`：\n   - 架构图（text description）\n   - Feature extraction 方案\n   - Training pipeline 设计\n   - 预估训练时间和数据需求\n   - 与 SmolVLA CRM 的对比（哪些 conformal 保证会丢失）\n   - 实现难度评估和风险点\n\n### 约束\n- CoRL DDL ~16天，设计必须是可在 5-7 天内实现+训练+评估的方案\n- 4×4090 GPU 资源\n- 优先简洁可行，而非理论完美",
+    "tool_groups": "['knowledge']",
+    "tools": "['WebSearch', 'WebFetch']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T22:42:17.324626+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_design_plan802-openvla-corrector_20260517T224214\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_design_plan802-openvla-corrector_20260517T224214.log\", \"setup_data\": {}, \"message\": \"Worker worker_design_plan802-openvla-corrector_20260517T224214 started. Use get_worker_status('worker_design_plan802-openvla-corrector_20260517T224214') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2746
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T22:42:29.302000+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md",
+  "limit": "40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md",
+    "limit": "40"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T22:42:29.304100+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_b06445e9.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "Read",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-17T22:42:32.840596+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T22:42:32.941493+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-17T22:42:36.304062+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/resource*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/resource*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T22:42:36.356353+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "Glob",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-17T22:43:15.405370+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU ~13/17 active | Worker 4 (GPU 0 / CPU 4) | bjb1-18228 状态待确认\n\n## Session #21 启动报告\n\n**已确认事实：**\n- OpenVLA VLA-only baseline **锁定 69.0%** (10 tasks × 10 trials, conclusion=success)\n- plan_802 可行性：CRM 无法直接迁移到 OpenVLA（5 重不兼容），最可行 fallback = obs_only residual corrector\n- 12 eval crons 全部进程存活（magnitude sweep 补 seed 持续推进）\n- K=20 已 kill，K=1 multi-scale 3-seed mean=10.33% 确认 negative\n- bjb1-18228 调查 Worker 进行中（11 turns，排查 SIGHUP 后自动恢复可能性）\n\n**当前 Worker 池（4/∞）：**\n1. ops:investigate-auto-restart-bjb1-18228 — 排查服务器恢复\n2. analysis:openvla-pertask-gap — 69% vs 论文 88.4% per-task 差异分析\n3. analysis:magnitude-curve-consolidation — Figure 2 所有数据点汇总+缺口识别\n4. design:plan802-openvla-corrector — OpenVLA obs_only corrector 架构设计\n\n**阻塞项：**\n- ⏳ D051 framing 选择（Option A: K=10 primary / Option B: pure analysis）— 锁定后启动 Paper Agent\n- ⏳ bjb1-18228 恢复确认 → 重提交 4 个失败实验（perdof-norm02-seed45, obs-only-norm005-seed43, K=5 sweep 数据恢复）\n\n无需 Director 决策，纯状态同步。",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU ~13/17 active | Worker 4 (GPU 0 / CPU 4) | bjb1-18228 状态待确认\n\n## Session #21 启动报告\n\n**已确认事实：**\n- OpenVLA VLA-only baseline **锁定 69.0%** (10 tasks × 10 trials, conclusion=success)\n- plan_802 可行性：CRM 无法直接迁移到 OpenVLA（5 重不兼容），最可行 fallback = obs_only residual corrector\n- 12 eval crons 全部进程存活（magnitude sweep 补 seed 持续推进）\n- K=20 已 kill，K=1 multi-scale 3-seed mean=10.33% 确认 negative\n- bjb1-18228 调查 Worker 进行中（11 turns，排查 SIGHUP 后自动恢复可能性）\n\n**当前 Worker 池（4/∞）：**\n1. ops:investigate-auto-restart-bjb1-18228 — 排查服务器恢复\n2. analysis:openvla-pertask-gap — 69% vs 论文 88.4% per-task 差异分析\n3. analysis:magnitude-curve-consolidation — Figure 2 所有数据点汇总+缺口识别\n4. design:plan802-openvla-corrector — OpenVLA obs_only corrector 架构设计\n\n**阻塞项：**\n- ⏳ D051 framing 选择（Option A: K=10 primary / Option B: pure analysis）— 锁定后启动 Paper Agent\n- ⏳ bjb1-18228 恢复确认 → 重提交 4 个失败实验（perdof-norm02-seed45, obs-only-norm005-seed43, K=5 sweep 数据恢复）\n\n无需 Director 决策，纯状态同步。",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T22:43:19.658591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4253
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-17T22:43:27.989071+00:00_
+
+Session #21 初始化完成。
+
+**状态总结：**
+- 13 实验 RUNNING，12 cron 监控存活
+- Worker 池恢复到 4（满足 L1）
+- OpenVLA 69% 已锁定，plan_802 架构设计中
+- 阻塞在 D051 framing 选择 + bjb1-18228 恢复确认
+
+等待 Worker 回调和 cron 完成通知。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-obs-only-object-norm02-k5-seed42"
+}
+```
+
+</details>
+
+---

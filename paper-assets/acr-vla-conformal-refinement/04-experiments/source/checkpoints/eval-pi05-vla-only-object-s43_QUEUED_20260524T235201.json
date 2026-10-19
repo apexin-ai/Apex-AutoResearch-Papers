@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-pi05-vla-only-object-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:17:27.320Z",
+    "updated_at": "2026-05-24T23:51:58.510Z",
+    "hypothesis": "π0.5 VLA-only baseline on LIBERO-Object (seed 43, 20 rollouts). Replicate seed for variance estimation.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 2>&1 | tee logs/eval-pi05-vla-only-object-s43.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "388306",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-s43.log",
+      "submitted_at": "2026-05-24T18:18:30.109Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-24T23:52:01.067877+00:00",
+  "trigger": "update_registry"
+}

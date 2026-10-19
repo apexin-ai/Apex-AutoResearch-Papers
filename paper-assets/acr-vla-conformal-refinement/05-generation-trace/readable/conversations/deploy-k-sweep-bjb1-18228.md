@@ -1,0 +1,2306 @@
+# deploy k sweep bjb1 18228
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 78
+- **Recorded user turns:** 0
+- **Tool calls:** 38
+- **Original source:** `logs/chats/worker_deploy_k-sweep-bjb1-18228_20260517T185131.jsonl`
+- **Structured JSON:** [`19db0340398fc07b9dd7.json`](../../sessions/19/19db0340398fc07b9dd7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+78 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T18:55:48.349493+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T18:55:48.349818+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T18:55:48.350013+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "nvidia-smi",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T18:55:48.350155+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval-obs-only-object-norm02-k5-seed42'}",
+  "project": "acr-vla-conformal-refinement",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval-obs-only-object-norm02-k5-seed42'}",
+    "project": "acr-vla-conformal-refinement",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T18:55:48.350356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 02:51:54 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:98:00.0 Off |                  Off |\\n| 73%   65C    P2            292W /  450W |   17462MiB /  24564MiB |     92%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090        On  |   00000000:A8:00.0 Off |                  Off |\\n| 30%   40C    P2             72W /  450W |    5632MiB /  24564MiB |     20%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090        On  |   00000000:B8:00.0 Off |                  Off |\\n| 57%   61C    P2            273W /  450W |   15604MiB /  24564MiB |     63%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090        On  |   00000000:D8:00.0 Off |                  Off |\\n| 30%   39C    P2             
+…[truncated 1299 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T18:55:48.350530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5551}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T18:55:48.350657+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval-obs-only-object-norm02-k20-seed42'}",
+  "project": "acr-vla-conformal-refinement",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval-obs-only-object-norm02-k20-seed42'}",
+    "project": "acr-vla-conformal-refinement",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T18:55:48.350792+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5626}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T18:55:48.350948+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ps aux | grep -E \"707887|709812\" | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "ps aux | grep -E \"707887|709812\" | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T18:55:48.351077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     707887  460  0.8 86302620 8920996 ?    Rl   02:44  37:04 python -u src/openvla_eval.py --mode vla_only --benchmark object --n_rollouts 10 --seed 42 --K 1 --gpu 0 --model_path /root/autodl-tmp/models/openvla-libero-object --start_task 0 --end_task 5 --output_file /tmp/broader_eval.json\\nroot     709812  447  0.7 66893820 7492524 ?    Rl   02:48  17:53 /root/miniconda3/bin/python -u src/openvla_eval.py --benchmark object --model_path /root/autodl-tmp/models/openvla-libero-object --n_rollouts 5 --end_task 1 --seed 42 --output_file logs/debug_openvla_gripper_fix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T18:55:48.351200+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "limit": "20",
+  "fields": "['exp_id', 'status', 'server', 'gpu_id']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "limit": "20",
+    "fields": "['exp_id', 'status', 'server', 'gpu_id']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T18:55:48.351383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-k1-crm-multiscale-object-seed44-r2\": {\"status\": \"RUNNING\"}, \"eval-k1-crm-multiscale-object-seed43-r2\": {\"status\": \"RUNNING\"}, \"eval-perdof-object-norm02-seed45-r2\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm005-seed43-r3\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-k5-seed42\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-k20-seed42\": {\"status\": \"DONE\"}, \"plan_602-latency-profile\": {\"status\": \"DONE\"}, \"eval-k1-crm-multiscale-object-seed44\": {\"status\": \"RUNNING\"}, \"eval-k1-crm-multiscale-object-seed43\": {\"status\": \"RUNNING\"}, \"eval-k1-crm-multiscale-object-seed42\": {\"status\": \"RUNNING\"}, \"train-crm-k1-accg-object-seed42-v2\": {\"status\": \"DONE\"}, \"eval-openvla-object-vla-only-seed42\": {\"status\": \"DONE\"}, \"eval-k1-crm-accg-object-seed44\": {\"status\": \"DONE\"}, \"eval-k1-crm-accg-object-seed43\": {\"status\": \"DONE\"}, \"eval-k1-crm-accg-object-seed42\": {\"status\": \"DONE\"}, \"mag_perdof_norm02_seed43_r3\": {\"status\": \"PREPARING\"}, \"mag_obs_only_norm01_seed46\": {\"status\": \"PREPARING\"}, \"mag_obs_only_norm01_seed47\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-default-seed45\": {\"status\": \"DONE\"}, \"eval-scalar-object-seed45\": {\"status\": \"DONE\"}}, \"count\": 20, \"total\": 214, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5269}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T18:55:48.351575+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "kill 707887 709812",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "kill 707887 709812",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T18:55:48.351706+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T18:55:48.351827+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "source /root/miniconda3/bin/activate && cd /root/acr-vla-conformal-refinement && python evaluate.py --help 2>&1 | head -80",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "source /root/miniconda3/bin/activate && cd /root/acr-vla-conformal-refinement && python evaluate.py --help 2>&1 | head -80",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T18:55:48.351958+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"python: can't open file '/root/acr-vla-conformal-refinement/evaluate.py': [Errno 2] No such file or directory\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T18:55:48.352106+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "nvidia-smi | grep -E \"MiB|PID\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "nvidia-smi | grep -E \"MiB|PID\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T18:55:48.352236+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"| 60%   47C    P8             39W /  450W |       1MiB /  24564MiB |      0%      Default |\\n| 30%   40C    P2             72W /  450W |    5632MiB /  24564MiB |     21%      Default |\\n| 46%   45C    P8             27W /  450W |       1MiB /  24564MiB |      0%      Default |\\n| 30%   40C    P2             72W /  450W |    5632MiB /  24564MiB |     20%      Default |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|    1   N/A  N/A          702904    C+G   python                                 5613MiB |\\n|    3   N/A  N/A          703107    C+G   python                                 5613MiB |\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T18:55:48.352418+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/acr-vla-conformal-refinement -name \"evaluate.py\" -o -name \"openvla_eval.py\" -o -name \"eval*.py\" | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/acr-vla-conformal-refinement -name \"evaluate.py\" -o -name \"openvla_eval.py\" -o -name \"eval*.py\" | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T18:55:48.352547+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T18:55:48.352672+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/acr-vla-conformal-refinement -name \"*.pt\" -path \"*obs*\" | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/acr-vla-conformal-refinement -name \"*.pt\" -path \"*obs*\" | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T18:55:48.352827+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T18:55:48.352978+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/acr-vla-conformal-refinement -name \"evaluate.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/acr-vla-conformal-refinement -name \"evaluate.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T18:55:48.353102+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/evaluate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T18:55:48.353219+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/acr-vla-conformal-refinement -name \"openvla_eval.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/acr-vla-conformal-refinement -name \"openvla_eval.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T18:55:48.353383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/openvla_eval.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T18:55:48.353509+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/acr-vla-conformal-refinement -name \"*.pt\" -path \"*obs_only*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/acr-vla-conformal-refinement -name \"*.pt\" -path \"*obs_only*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T18:55:48.353628+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T18:55:48.353770+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "source /root/miniconda3/bin/activate && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --help 2>&1 | head -80",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "source /root/miniconda3/bin/activate && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --help 2>&1 | head -80",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T18:55:48.353890+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/acr-vla-conformal-refinement -name \"*.pt\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/acr-vla-conformal-refinement -name \"*.pt\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T18:55:48.354010+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ps aux | grep evaluate.py | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "ps aux | grep evaluate.py | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T18:55:48.354173+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\nusage: evaluate.py [-h] [--benchmark {object,spatial,goal,long,90}]\\n                   [--checkpoint CHECKPOINT] [--crm_checkpoint CRM_CHECKPOINT]\\n                   [--n_rollouts N_ROLLOUTS] [--max_steps MAX_STEPS]\\n                   [--seed SEED] [--K K]\\n                   [--mode {vla_only,crm_scalar,crm_perdof,acr_vla,crm_obs_only,reconvla,direct_correction,crm_k1_accg}]\\n                   [--baseline_mode {single,mean}]\\n                   [--smolvla_path SMOLVLA_PATH] [--obs_dim OBS_DIM]\\n                   [--hidden_dim HIDDEN_DIM] [--render]\\n                   [--output_file OUTPUT_FILE]\\n                   [--max_correction_norm MAX_CORRECTION_NORM]\\n\\nEvaluate ACR-VLA on LIBERO\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --benchmark {object,spatial,goal,long,90}\\n  --checkpoint CHECKPOINT\\n                        Path to CRM checkpoint (crm_best.pt)\\n  --crm_checkpoint CRM_CHECKPOINT\\n                        Alias for --checkpoint (used with --mode acr_vla)\\n  --n_rollouts N_ROLLOUTS\\n  --max_steps MAX_STEPS\\n                        Max steps per rollout\\n  --seed SEED\\n  --K K\\n  --mode {vla_only,crm_scalar,crm_perdof,acr_vla,crm_obs_only,reconvla,direct_correction,crm_k1_accg}\\n  --baseline_mode {single,mean}\\n                        vla_only baseline: single (K=1) or mean (K=10 avg)\\n  --smolvla_path SMOLVLA_PATH\\n  --obs_dim OBS_DIM\\n  --hidden_dim HIDDEN_DIM\\n  --render\\n  --output_file OUTPUT_FILE\\n                        Save results JSON to this path\\n  --max_correction_norm MAX_CORRECTION_NORM\\n                        Override CRM max_corr
+…[truncated 176 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T18:55:48.354375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T18:55:48.354518+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     702897  0.0  0.0   6080  3740 ?        Ss   02:40   0:00 tmux new-session -d -s eval-k1-seed43 bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --mode crm_k1_accg --benchmark object --n_rollouts 10 --seed 43 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt --max_correction_norm 0.2 --output_file logs/eval_k1_crm_multiscale_object_seed43_bjb1-18228.json 2>&1 | tee logs/eval_k1_crm_multiscale_object_seed43_bjb1-18228.log\\\"\\nroot     702898  0.0  0.0   4364  3200 pts/0    Ss+  02:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --mode crm_k1_accg --benchmark object --n_rollouts 10 --seed 43 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt --max_correction_norm 0.2 --output_file logs/eval_k1_crm_multiscale_object_seed43_bjb1-18228.json 2>&1 | tee logs/eval_k1_crm_multiscale_object_seed43_bjb1-18228.log\\nroot     702904  369  1.0 74365336 11036624 pts/0 Rl+ 02:40  47:17 python -u src/evaluate.py --mode crm_k1_accg --benchmark object --n_rollouts 10 --seed 43 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt --max_correction_norm 0.2 --output_file logs/eval_k1_crm_multiscale_object_seed43_bjb1-18228.json\\nroot     702973  0.0  0.0   4364  3196 pts/1    Ss+  02:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --mode crm_k1_accg --benchmark object --n_rollouts 10 --seed 44 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt --max_correction_norm 0.2 --output_file logs/eval_k1_crm_multiscale_object_seed44_bjb1-18228.json 2>&1 | tee logs/eval_k1_crm_mult
+…[truncated 467 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T18:55:48.354696+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/checkpoints -name \"*.pt\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/autodl-tmp/checkpoints -name \"*.pt\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T18:55:48.354864+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/crm/crm_best.pt\\n/root/autodl-tmp/checkpoints/crm/checkpoint_epoch0046.pt\\n/root/autodl-tmp/checkpoints/crm/checkpoint_epoch0047.pt\\n/root/autodl-tmp/checkpoints/crm/checkpoint_epoch0048.pt\\n/root/autodl-tmp/checkpoints/crm/checkpoint_epoch0049.pt\\n/root/autodl-tmp/checkpoints/crm/checkpoint_epoch0050.pt\\n/root/autodl-tmp/checkpoints/crm/obs_only/crm_best.pt\\n/root/autodl-tmp/checkpoints/crm/obs_only/checkpoint_epoch0012.pt\\n/root/autodl-tmp/checkpoints/crm/obs_only/checkpoint_epoch0013.pt\\n/root/autodl-tmp/checkpoints/crm/obs_only/checkpoint_epoch0014.pt\\n/root/autodl-tmp/checkpoints/crm/obs_only/checkpoint_epoch0015.pt\\n/root/autodl-tmp/checkpoints/crm/obs_only/checkpoint_epoch0016.pt\\n/root/autodl-tmp/checkpoints/crm/scalar_unc/crm_best.pt\\n/root/autodl-tmp/checkpoints/crm/scalar_unc/checkpoint_epoch0046.pt\\n/root/autodl-tmp/checkpoints/crm/scalar_unc/checkpoint_epoch0047.pt\\n/root/autodl-tmp/checkpoints/crm/scalar_unc/checkpoint_epoch0048.pt\\n/root/autodl-tmp/checkpoints/crm/scalar_unc/checkpoint_epoch0049.pt\\n/root/autodl-tmp/checkpoints/crm/scalar_unc/checkpoint_epoch0050.pt\\n/root/autodl-tmp/checkpoints/crm/k5/crm_best.pt\\n/root/autodl-tmp/checkpoints/crm/k5/checkpoint_epoch0046.pt\\n/root/autodl-tmp/checkpoints/crm/k5/checkpoint_epoch0047.pt\\n/root/autodl-tmp/checkpoints/crm/k5/checkpoint_epoch0048.pt\\n/root/autodl-tmp/checkpoints/crm/k5/checkpoint_epoch0049.pt\\n/root/autodl-tmp/checkpoints/crm/k5/checkpoint_epoch0050.pt\\n/root/autodl-tmp/checkpoints/crm_v2/perdof/crm_best.pt\\n/root/autodl-tmp/checkpoints/crm_v2/perdof/checkpoint_epoch0046.pt\\n/root/autodl-tmp/checkpoints/crm_v2/perdof/checkpoint_epoch0047.pt\\n/root/autodl-tmp/checkpoints/crm_v2/perdof/checkpoint_epoch0048.pt\\n/root/autodl-tmp/checkpoints/crm_v2/perdof/checkpoint_epoch0049.pt\\n/root/autodl-tmp/checkpoints/crm_v2/perdof/checkpoint_epoch0050.pt\\n/root/autodl-tmp/checkpoints/crm_v2/
+…[truncated 2293 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T18:55:48.355002+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval-obs-only-object-norm02-k5-seed42'}",
+  "project": "acr-vla-conformal-refinement",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval-obs-only-object-norm02-k5-seed42'}",
+    "project": "acr-vla-conformal-refinement",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T18:55:48.355131+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9568}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T18:55:48.355304+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls /root/acr-vla-conformal-refinement/logs/ -la",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "ls /root/acr-vla-conformal-refinement/logs/ -la",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T18:55:48.355468+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 196\\ndrwxr-xr-x 3 root root 4096 May 18 02:48 .\\ndrwxr-xr-x 8 root root  172 May 16 04:47 ..\\n-rw-r--r-- 1 root root 3726 May 18 02:49 debug_openvla_gripper_fix.log\\n-rw-r--r-- 1 root root 1805 May 18 02:34 debug_openvla_object_fix_verify.log\\n-rw-r--r-- 1 root root 1931 May 17 21:38 eval-obs-only-object-norm005-seed43.log\\n-rw-r--r-- 1 root root 2123 May 18 01:41 eval-obs-only-object-norm02-k20-seed42.log\\n-rw-r--r-- 1 root root 1926 May 17 21:38 eval-perdof-object-norm02-seed45-r2.log\\n-rw-r--r-- 1 root root 2634 May 18 02:53 eval_k1_crm_multiscale_object_seed43_bjb1-18228.log\\n-rw-r--r-- 1 root root 2636 May 18 02:53 eval_k1_crm_multiscale_object_seed44_bjb1-18228.log\\n-rw-r--r-- 1 root root 1698 May 16 01:20 eval_mag_obsonly_norm03.json\\n-rw-r--r-- 1 root root 1873 May 17 21:25 eval_object_obs_only_norm003_seed43.log\\n-rw-r--r-- 1 root root 2734 May 18 02:30 eval_object_obs_only_norm005_seed43_r2.log\\n-rw-r--r-- 1 root root 1494 May 17 20:34 eval_object_obs_only_norm01_seed45.json\\n-rw-r--r-- 1 root root 6288 May 17 20:34 eval_object_obs_only_norm01_seed45.log\\n-rw-r--r-- 1 root root 2734 May 17 20:53 eval_object_obs_only_norm01_seed46.log\\n-rw-r--r-- 1 root root 2734 May 17 21:21 eval_object_obs_only_norm01_seed47.log\\n-rw-r--r-- 1 root root 2009 May 17 21:39 eval_object_obs_only_norm02_k20_seed42.log\\n-rw-r--r-- 1 root root 3553 May 18 02:30 eval_object_obs_only_norm02_k5_seed42.log\\n-rw-r--r-- 1 root root 1490 May 16 22:38 eval_object_obs_only_norm02_seed44.json\\n-rw-r--r-- 1 root root 1490 May 17 13:04 eval_object_obs_only_norm02_seed46.json\\n-rw-r--r-- 1 root root 4498 May 17 13:04 eval_object_obs_only_norm02_seed46.log\\n-rw-r--r-- 1 root root 1607 May 17 19:40 eval_object_obs_only_norm03_seed47.log\\n-rw-r--r-- 1 root root 1490 May 16 08:40 eval_object_obs_only_seed43.json\\n-rw-r--r-- 1 root root 1487 May 16 16:57 eval_object_perdof_default_norm_r2.json\\n-rw-r--r-- 1 root
+…[truncated 1622 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T18:55:48.355613+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/acr-vla-conformal-refinement/logs -name \"*obs_only*norm02*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/acr-vla-conformal-refinement/logs -name \"*obs_only*norm02*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T18:55:48.355739+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_seed46.log\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_k5_seed42.log\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_k20_seed42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T18:55:48.355898+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "head -20 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_k5_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "head -20 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_k5_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T18:55:48.356056+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 42, 'K': 5, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_obs_only_norm02_k5_seed42.json', 'max_correction_norm': 0.2, 'start_task': 0, 'end_task': None}\\n[eval] Mode: crm_obs_only, benchmark: object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  20%|██        | 99/489 [00:00<00:00, 966.49it/s]\\rLoading weights:  40%|████      | 196/489 [00:00<00:00, 572.85it/s]\\rLoading weights:  54%|█████▎    | 262/489 [00:00<00:00, 574.48it/s]\\rLoading weights:  69%|██████▉   | 337/489 [00:00<00:00, 624.70it/s]\\rLoading weights:  91%|█████████ | 445/489 [00:00<00:00, 763.73it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 692.40it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_bask
+…[truncated 412 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T18:55:48.356198+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "head -20 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_k20_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "head -20 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_k20_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T18:55:48.356368+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 42, 'K': 20, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_obs_only_norm02_k20_seed42.json', 'max_correction_norm': 0.2, 'start_task': 0, 'end_task': None}\\n[eval] Mode: crm_obs_only, benchmark: object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  25%|██▍       | 122/489 [00:00<00:00, 700.77it/s]\\rLoading weights:  39%|███▉      | 193/489 [00:00<00:00, 593.36it/s]\\rLoading weights:  52%|█████▏    | 252/489 [00:00<00:00, 453.73it/s]\\rLoading weights:  61%|██████    | 299/489 [00:00<00:00, 385.01it/s]\\rLoading weights:  74%|███████▍  | 362/489 [00:00<00:00, 445.98it/s]\\rLoading weights:  85%|████████▌ | 418/489 [00:00<00:00, 474.51it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 547.89it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval
+…[truncated 125 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T18:55:48.356569+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm02-k5-seed42",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-obs-only-object-norm02-k5-seed42",
+    "field": "status",
+    "value": "PREPARING",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-17T18:55:48.356711+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm02-k20-seed42",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-obs-only-object-norm02-k20-seed42",
+    "field": "status",
+    "value": "PREPARING",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T18:55:48.356875+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm02-k5-seed42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:34:40.971Z\", \"updated_at\": \"2026-05-17T18:54:21.417Z\", \"hypothesis\": \"obs_only CRM (ε=0.2, K=5) seed42 on LIBERO-Object. K sweep 实验：K=5 vs K=10 (22%) 比较，验证 sample count 对 selection quality 的影响。若 K=5 显著低于 K=10，说明足够的 candidate 多样性对 CRM selection 关键。\", \"reproduce\": {\"finished_at\": \"2026-05-17T18:32:21.424Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-17T18:32:28.770Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T18:32:40.928533+00:00\"}], \"previous_failure\": {\"conclusion\": \"killed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.826}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T18:55:48.357024+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm02-k20-seed42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:34:42.612Z\", \"updated_at\": \"2026-05-17T18:54:23.275Z\", \"hypothesis\": \"obs_only CRM (ε=0.2, K=20) seed42 on LIBERO-Object. K sweep 实验：K=20 vs K=10 (22%) 比较，验证增加 candidate 数量是否带来额外增益。若 K=20 ≈ K=10，说明 K=10 已接近饱和。\", \"reproduce\": {\"finished_at\": \"2026-05-17T18:33:08.015Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-17T18:33:10.102Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T18:33:36.294183+00:00\"}], \"previous_failure\": {\"conclusion\": \"killed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7093}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T18:55:48.357189+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tmux new-session -d -s eval-obs-k5 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json 2>&1 | tee logs/eval_object_obs_only_norm02_k5_seed42.log'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "tmux new-session -d -s eval-obs-k5 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json 2>&1 | tee logs/eval_object_obs_only_norm02_k5_seed42.log'",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T18:55:48.357341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T18:55:48.357466+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tmux new-session -d -s eval-obs-k20 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k20_seed42.json 2>&1 | tee logs/eval_object_obs_only_norm02_k20_seed42.log'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "tmux new-session -d -s eval-obs-k20 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k20_seed42.json 2>&1 | tee logs/eval_object_obs_only_norm02_k20_seed42.log'",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T18:55:48.357591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T18:55:48.357737+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm02-k5-seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 100, 'model_name': 'SmolVLA+CRM_obs_only_v3_norm', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Object (10 tasks x 10 rollouts)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-obs-only-object-norm02-k5-seed42",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "acr-vla-conformal-refinement",
+    "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 100, 'model_name': 'SmolVLA+CRM_obs_only_v3_norm', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Object (10 tasks x 10 rollouts)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T18:55:48.357884+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.5374}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T18:55:48.358011+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm02-k20-seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k20_seed42.json', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 100, 'model_name': 'SmolVLA+CRM_obs_only_v3_norm', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Object (10 tasks x 10 rollouts)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-obs-only-object-norm02-k20-seed42",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "acr-vla-conformal-refinement",
+    "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k20_seed42.json', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 100, 'model_name': 'SmolVLA+CRM_obs_only_v3_norm', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Object (10 tasks x 10 rollouts)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T18:55:48.358146+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.5191}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-17T18:55:48.358328+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm02-k5-seed42",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-obs-only-object-norm02-k5-seed42",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-17T18:55:48.358469+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm02-k20-seed42",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-obs-only-object-norm02-k20-seed42",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-17T18:55:48.358612+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm02-k5-seed42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:34:40.971Z\", \"updated_at\": \"2026-05-17T18:54:52.971Z\", \"hypothesis\": \"obs_only CRM (ε=0.2, K=5) seed42 on LIBERO-Object. K sweep 实验：K=5 vs K=10 (22%) 比较，验证 sample count 对 selection quality 的影响。若 K=5 显著低于 K=10，说明足够的 candidate 多样性对 CRM selection 关键。\", \"reproduce\": {\"finished_at\": \"2026-05-17T18:32:21.424Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-17T18:32:28.770Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T18:32:40.928533+00:00\"}], \"previous_failure\": {\"conclusion\": \"killed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7566}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T18:55:48.358768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm02-k20-seed42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:34:42.612Z\", \"updated_at\": \"2026-05-17T18:54:54.683Z\", \"hypothesis\": \"obs_only CRM (ε=0.2, K=20) seed42 on LIBERO-Object. K sweep 实验：K=20 vs K=10 (22%) 比较，验证增加 candidate 数量是否带来额外增益。若 K=20 ≈ K=10，说明 K=10 已接近饱和。\", \"reproduce\": {\"finished_at\": \"2026-05-17T18:33:08.015Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-17T18:33:10.102Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T18:33:36.294183+00:00\"}], \"previous_failure\": {\"conclusion\": \"killed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6386}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-17T18:55:48.358902+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm02-k5-seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 100, 'model_name': 'SmolVLA+CRM_obs_only_v3_norm', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Object (10 tasks x 10 rollouts)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-obs-only-object-norm02-k5-seed42",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "acr-vla-conformal-refinement",
+    "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 100, 'model_name': 'SmolVLA+CRM_obs_only_v3_norm', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Object (10 tasks x 10 rollouts)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-17T18:55:48.359061+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm02-k5-seed42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:34:40.971Z\", \"updated_at\": \"2026-05-17T18:55:05.653Z\", \"hypothesis\": \"obs_only CRM (ε=0.2, K=5) seed42 on LIBERO-Object. K sweep 实验：K=5 vs K=10 (22%) 比较，验证 sample count 对 selection quality 的影响。若 K=5 显著低于 K=10，说明足够的 candidate 多样性对 CRM selection 关键。\", \"reproduce\": {\"finished_at\": \"2026-05-17T18:32:21.424Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-17T18:32:28.770Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T18:32:40.928533+00:00\"}], \"previous_failure\": {\"conclusion\": \"killed\"}}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json\", \"server\": \"bjb1-18228\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_obs_only_v3_norm\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 10 rollouts)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6735}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-17T18:55:48.359205+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm02-k20-seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k20_seed42.json', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 100, 'model_name': 'SmolVLA+CRM_obs_only_v3_norm', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Object (10 tasks x 10 rollouts)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-obs-only-object-norm02-k20-seed42",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "acr-vla-conformal-refinement",
+    "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k20_seed42.json', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 100, 'model_name': 'SmolVLA+CRM_obs_only_v3_norm', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Object (10 tasks x 10 rollouts)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-17T18:55:48.359389+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm02-k20-seed42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:34:42.612Z\", \"updated_at\": \"2026-05-17T18:55:07.926Z\", \"hypothesis\": \"obs_only CRM (ε=0.2, K=20) seed42 on LIBERO-Object. K sweep 实验：K=20 vs K=10 (22%) 比较，验证增加 candidate 数量是否带来额外增益。若 K=20 ≈ K=10，说明 K=10 已接近饱和。\", \"reproduce\": {\"finished_at\": \"2026-05-17T18:33:08.015Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-17T18:33:10.102Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T18:33:36.294183+00:00\"}], \"previous_failure\": {\"conclusion\": \"killed\"}}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k20_seed42.json\", \"server\": \"bjb1-18228\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_obs_only_v3_norm\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 10 rollouts)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6772}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-17T18:55:48.359546+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sleep 30 && echo \"done\"",
+  "description": "Wait 30 seconds before GPU verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sleep 30 && echo \"done\"",
+    "description": "Wait 30 seconds before GPU verification"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-17T18:55:48.359667+00:00_
+
+&lt;tool_use_error>Blocked: sleep 30 followed by: echo "done". To wait for a condition, use Monitor with an until-loop (e.g. `until &lt;check>; do sleep 2; done`). To wait for a command you started, use run_in_background: true. Do not chain shorter sleeps to work around this block.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-17T18:55:48.359783+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sleep 30 && echo \"ready\"",
+  "description": "Wait 30s for GPU processes to start",
+  "run_in_background": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sleep 30 && echo \"ready\"",
+    "description": "Wait 30s for GPU processes to start",
+    "run_in_background": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-17T18:55:48.359911+00:00_
+
+Command running in background with ID: b38gwvyba. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/ff518f53-c60f-4464-83cf-24b3a26a92ef/tasks/b38gwvyba.output
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-17T18:55:48.360045+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "nvidia-smi",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-17T18:55:48.360197+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 02:55:17 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:98:00.0 Off |                  Off |\\n| 30%   37C    P2             77W /  450W |    5664MiB /  24564MiB |     22%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090        On  |   00000000:A8:00.0 Off |                  Off |\\n| 30%   38C    P2             72W /  450W |    5168MiB /  24564MiB |     21%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090        On  |   00000000:B8:00.0 Off |                  Off |\\n| 30%   34C    P2             73W /  450W |    5664MiB /  24564MiB |     17%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090        On  |   00000000:D8:00.0 Off |                  Off |\\n| 30%   39C    P2             
+…[truncated 1299 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-17T18:55:48.360438+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_k5_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_k5_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-17T18:55:48.360577+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-17T18:55:48.360729+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_k20_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_k20_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-17T18:55:48.360868+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-17T18:55:48.361029+00:00_
+
+部署完成。
+
+**结果汇总：**
+
+| exp_id | GPU | PID | 状态 |
+|--------|-----|-----|------|
+| eval-obs-only-object-norm02-k5-seed42 | cuda:0 | 713405 | RUNNING, 模型已加载, 10 tasks |
+| eval-obs-only-object-norm02-k20-seed42 | cuda:2 | 713480 | RUNNING, 模型已加载, 10 tasks |
+
+- 旧 debug 进程（707887, 709812）已终止
+- cuda:1/cuda:3 上的 crm_k1_accg seed43/44 实验未受影响
+- tmux sessions: `eval-obs-k5`, `eval-obs-k20`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-17T18:55:48.361213+00:00_
+
+已确认，后台等待任务完成。两个 K sweep 实验已正常运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_deploy_k-sweep-bjb1-18228_20260517T185131"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-supp-goal-vla-only-s47-r3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:31:15.967Z",
+    "updated_at": "2026-05-24T09:32:15.707Z",
+    "hypothesis": "Goal s47 VLA-only (K=1) baseline, second re-run after r2 was killed for CRM training priority. Fills Goal s47 seed extension for variance analysis.",
+    "parent": "eval-supp-goal-vla-only-s47-r2"
+  },
+  "timestamp": "2026-05-24T09:32:17.129881+00:00",
+  "trigger": "update_registry"
+}

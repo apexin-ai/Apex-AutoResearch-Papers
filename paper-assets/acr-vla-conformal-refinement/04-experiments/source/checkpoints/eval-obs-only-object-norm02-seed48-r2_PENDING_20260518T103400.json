@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-object-norm02-seed48-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:33:11.557Z",
+    "updated_at": "2026-05-18T10:33:59.620Z",
+    "hypothesis": "obs_only CRM (ε=0.2) seed48 on LIBERO-Object. Retry after killed previous attempt. Supplements primary result (seed42-47 done, this extends to seed48)."
+  },
+  "timestamp": "2026-05-18T10:34:00.073463+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,50 @@
+{
+  "exp_id": "eval-acr-spatial-v4-small",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:09:00.358Z",
+    "updated_at": "2026-05-15T05:04:16.712Z",
+    "hypothesis": "D018: Normalization + moderate correction scaling (max_correction_norm=0.1, 14x smaller than default). If v4-small > v4-default → magnitude control needed on top of normalization.",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1",
+      "server": "bjb1-18228",
+      "gpu_ids": [
+        "cuda:3"
+      ],
+      "pid": 253085,
+      "data_path": "/root/autodl-tmp/libero_data/",
+      "data_count": 100,
+      "model_name": "ACR-VLA (CRM v3-norm per-DOF, max_correction_norm=0.1)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "LIBERO spatial 10 tasks x 10 rollouts",
+      "log_path": "/root/autodl-tmp/logs/eval_acr_spatial_v4_small.log"
+    },
+    "metrics": {
+      "tasks_done": "7/10",
+      "partial_results": {
+        "between_plate_and_ramekin": "60.0% (6/10)",
+        "next_to_ramekin": "100.0% (10/10)",
+        "from_table_center": "10.0% (1/10)",
+        "on_cookie_box": "40.0% (4/10)",
+        "in_top_drawer": "0.0% (0/10)",
+        "on_ramekin": "0.0% (0/10)",
+        "next_to_cookie_box": "90.0% (9/10)"
+      },
+      "running_avg_7tasks": "42.9% (30/70)",
+      "snapshot_time": "2026-05-15T12:00:00Z",
+      "server": "bjb1-18228",
+      "gpu": "cuda:3",
+      "pid": 253085
+    },
+    "notes": "[2026-05-15] HUNG: 7/10 tasks done (42.9%, 30/70), stuck on task 8 env init for 8+ hours. Process alive (pid 253085, GPU 1450 MiB) but zero log progress. Needs kill+restart.",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T05:04:16.712Z"
+  },
+  "timestamp": "2026-05-15T05:04:16.835067+00:00",
+  "trigger": "update_registry"
+}

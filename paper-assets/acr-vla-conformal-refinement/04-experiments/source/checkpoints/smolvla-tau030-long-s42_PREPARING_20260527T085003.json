@@ -1,0 +1,42 @@
+{
+  "exp_id": "smolvla-tau030-long-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T08:16:23.068Z",
+    "updated_at": "2026-05-27T08:50:01.261Z",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.30 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --output_file logs/eval_long_adaptive_tau030_s42.json\"",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/acr-vla-conformal-refinement/smolvla-tau030-long-s42.log",
+      "submitted_at": "2026-05-27T08:34:20.933Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "D170 Long τ-sweep: τ=0.30 tests whether a higher threshold than τ=0.25 improves Long success rate, probing the non-monotonic τ-SR relationship observed in earlier Long τ-sweep (τ=0.15/0.25/0.35).",
+    "reproduce": {
+      "finished_at": "2026-05-27T08:49:56.320Z"
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-27T08:26:34.426606+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-27T08:50:03.278608+00:00",
+  "trigger": "update_registry"
+}

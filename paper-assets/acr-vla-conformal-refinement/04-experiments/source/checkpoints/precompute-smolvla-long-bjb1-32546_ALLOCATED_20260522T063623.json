@@ -1,0 +1,15 @@
+{
+  "exp_id": "precompute-smolvla-long-bjb1-32546",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:35:27.252Z",
+    "updated_at": "2026-05-22T06:36:21.934Z",
+    "hypothesis": "Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Long for unified 4-suite CRM training"
+  },
+  "timestamp": "2026-05-22T06:36:23.038533+00:00",
+  "trigger": "update_registry"
+}

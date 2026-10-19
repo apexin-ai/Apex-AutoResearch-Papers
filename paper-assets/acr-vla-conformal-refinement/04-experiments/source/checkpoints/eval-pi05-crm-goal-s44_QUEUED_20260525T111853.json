@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-pi05-crm-goal-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:17:54.833Z",
+    "updated_at": "2026-05-25T11:18:51.631Z",
+    "hypothesis": "π0.5 CRM (K=10, norm=0.05) 在 LIBERO goal 上的 eval（跨模型验证）"
+  },
+  "timestamp": "2026-05-25T11:18:53.266332+00:00",
+  "trigger": "update_registry"
+}

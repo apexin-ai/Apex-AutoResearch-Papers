@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval-vla-mean-object",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:31:09.989Z",
+    "updated_at": "2026-05-15T03:31:09.989Z"
+  },
+  "timestamp": "2026-05-15T03:31:10.113240+00:00",
+  "trigger": "update_registry"
+}

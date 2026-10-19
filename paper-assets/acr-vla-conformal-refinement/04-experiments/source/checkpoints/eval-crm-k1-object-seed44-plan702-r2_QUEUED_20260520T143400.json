@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-crm-k1-object-seed44-plan702-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:33:04.339Z",
+    "updated_at": "2026-05-20T14:33:59.376Z",
+    "hypothesis": "K=1 CRM (ACCG) on LIBERO-Object seed44 for plan_702. Single VLA forward + CRM correction. Compare to K=1 VLA-only baseline (10.8%). Retry after unc_dim bugfix.",
+    "parent": "eval-crm-k1-object-seed44-plan702"
+  },
+  "timestamp": "2026-05-20T14:34:00.183161+00:00",
+  "trigger": "update_registry"
+}

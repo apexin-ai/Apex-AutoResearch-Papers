@@ -1,0 +1,54 @@
+{
+  "exp_id": "smolvla-tau025-long-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:04:56.400Z",
+    "updated_at": "2026-05-27T03:03:42.946Z",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --output_file logs/eval_long_adaptive_tau025_s42.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "1984",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_tau025_s42.json",
+      "submitted_at": "2026-05-26T22:04:53.843Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Long",
+      "data_count": 20,
+      "model_name": "smolvla",
+      "seed": 42,
+      "hypothesis": "SmolVLA long τ=0.25 s42 provides moderate CRM intervention balancing trigger rate vs success rate on long tasks",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T02:47:45.746Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T02:48:07.707386+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0.56,
+      "trigger_rate": 0.042,
+      "mean_correction_norm": 0.157,
+      "mean_uncertainty": 0.124,
+      "total_steps": 73750,
+      "crm_applied_steps": 3073
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-27T03:03:44.781022+00:00",
+  "trigger": "update_registry"
+}

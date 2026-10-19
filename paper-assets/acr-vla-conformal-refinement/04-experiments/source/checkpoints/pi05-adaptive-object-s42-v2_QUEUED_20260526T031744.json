@@ -1,0 +1,15 @@
+{
+  "exp_id": "pi05-adaptive-object-s42-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T02:53:45.880Z",
+    "updated_at": "2026-05-26T03:17:42.928Z",
+    "hypothesis": "π0.5 Adaptive Conformal on Object s42. Cross-suite validation for π0.5 Table 2."
+  },
+  "timestamp": "2026-05-26T03:17:44.534355+00:00",
+  "trigger": "update_registry"
+}

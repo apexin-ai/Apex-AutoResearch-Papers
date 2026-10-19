@@ -1,0 +1,43 @@
+{
+  "exp_id": "crm-train-pi05-spatial-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:55:29.833Z",
+    "updated_at": "2026-05-22T01:31:28.300Z",
+    "hypothesis": "CRM projection trained on π0.5 full precomputed features (60250 spatial samples, K=10) will learn conformal refinement corrections improving upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization",
+    "parent": "",
+    "spec": {
+      "command": "python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache_pi05/spatial --output_dir /root/autodl-tmp/checkpoints/crm_pi05_full/spatial --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 2048",
+      "server": "bjb1-18228",
+      "gpu": "cuda:1",
+      "pid": 805017,
+      "data_path": "/root/autodl-tmp/crm_cache_pi05/spatial/",
+      "data_count": 60250,
+      "model_name": "crm-pi05-spatial-full",
+      "seed": 42,
+      "log_path": "/root/runs/acr-vla-conformal-refinement/crm-train-pi05-spatial-v2.log"
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_pi05_full/spatial/crm_best.pt",
+    "reproduce": {
+      "finished_at": "2026-05-22T01:20:31.365Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T01:20:38.681Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T01:20:51.074410+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-22T01:31:29.289437+00:00",
+  "trigger": "update_registry"
+}

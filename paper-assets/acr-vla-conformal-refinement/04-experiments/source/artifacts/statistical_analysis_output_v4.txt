@@ -1,0 +1,201 @@
+================================================================================
+STATISTICAL ANALYSIS: ACR-VLA Conformal Refinement Experiments
+All success rates are fractions (0.0 to 1.0)
+Object benchmark primary CRM config: norm02 (ε=0.2), K=10
+================================================================================
+
+1. LIBERO-SPATIAL
+--------------------------------------------------------------------------------
+  CRM obs_only (n=8): n=8, mean=0.3438, std=0.0141, min=0.3200, max=0.3600
+    values: [0.35, 0.34, 0.36, 0.34, 0.33, 0.32, 0.35, 0.36]
+  VLA-only (n=9): n=9, mean=0.2956, std=0.0113, min=0.2700, max=0.3100
+    values: [0.3, 0.29, 0.31, 0.27, 0.3, 0.3, 0.3, 0.29, 0.3]
+
+  CRM vs VLA-only:
+    Difference: +0.0482 (+4.82 pp)
+    Welch's t-test: t=7.7198, p=0.000003 ***
+    Mann-Whitney U: U=72.0, p=0.000526 ***
+    Cohen's d: 3.8024 (large)
+
+
+2. LIBERO-LONG
+--------------------------------------------------------------------------------
+  CRM obs_only (n=7): n=7, mean=0.1700, std=0.0200, min=0.1400, max=0.2000
+    values: [0.17, 0.15, 0.2, 0.18, 0.18, 0.17, 0.14]
+  VLA-only (n=10): n=10, mean=0.1470, std=0.0231, min=0.1100, max=0.1800
+    values: [0.11, 0.13, 0.12, 0.17, 0.18, 0.14, 0.14, 0.16, 0.15, 0.17]
+
+  CRM vs VLA-only:
+    Difference: +0.0230 (+2.30 pp)
+    Welch's t-test: t=2.1871, p=0.045951 *
+    Mann-Whitney U: U=54.5, p=0.060630 n.s.
+    Cohen's d: 1.0491 (large)
+
+
+3. LIBERO-GOAL
+--------------------------------------------------------------------------------
+  CRM obs_only (n=6): n=6, mean=0.6817, std=0.0343, min=0.6400, max=0.7200
+    values: [0.67, 0.72, 0.64, 0.65, 0.72, 0.69]
+  VLA-only (n=6): n=6, mean=0.6867, std=0.0388, min=0.6300, max=0.7300
+    values: [0.71, 0.69, 0.73, 0.63, 0.71, 0.65]
+
+  CRM vs VLA-only:
+    Difference: -0.0050 (-0.50 pp)
+    Welch's t-test: t=-0.2364, p=0.817940 n.s.
+    Mann-Whitney U: U=17.0, p=0.935736 n.s.
+    Cohen's d: -0.1365 (negligible)
+
+
+4. LIBERO-OBJECT
+--------------------------------------------------------------------------------
+
+  [PRIMARY: CRM norm02 K=10]
+  CRM obs_only norm02 K=10 (n=6): n=6, mean=0.1683, std=0.0183, min=0.1500, max=0.2000
+    values: [0.16, 0.16, 0.16, 0.15, 0.2, 0.18]
+  VLA-only (n=8): n=8, mean=0.1088, std=0.0136, min=0.0900, max=0.1300
+    values: [0.12, 0.12, 0.1, 0.11, 0.13, 0.1, 0.1, 0.09]
+
+  CRM norm02 K=10 vs VLA-only:
+    Difference: +0.0596 (+5.96 pp)
+    Welch's t-test: t=6.6993, p=0.000095 ***
+    Mann-Whitney U: U=48.0, p=0.002182 **
+    Cohen's d: 3.7868 (large)
+
+  [Supplementary: CRM norm01]
+  CRM obs_only norm01 (n=6): n=6, mean=0.1750, std=0.0105, min=0.1600, max=0.1900
+    values: [0.19, 0.16, 0.17, 0.18, 0.17, 0.18]
+
+  CRM norm01 vs VLA-only:
+    Difference: +0.0663 (+6.62 pp)
+    Welch's t-test: t=10.3058, p=0.000000 ***
+    Mann-Whitney U: U=48.0, p=0.002232 **
+    Cohen's d: 5.3538 (large)
+
+  [Supplementary: CRM norm02 K=5]
+  CRM obs_only norm02 K=5 (n=7): n=7, mean=0.1600, std=0.0216, min=0.1300, max=0.1900
+    values: [0.14, 0.19, 0.17, 0.15, 0.16, 0.13, 0.18]
+
+  CRM norm02 K=5 vs VLA-only:
+    Difference: +0.0512 (+5.12 pp)
+    Welch's t-test: t=5.4125, p=0.000312 ***
+    Mann-Whitney U: U=55.5, p=0.001681 **
+    Cohen's d: 2.8903 (large)
+
+
+5. ARGMIN BASELINES (Object)
+--------------------------------------------------------------------------------
+  Argmin K=10 (n=5): n=5, mean=0.1240, std=0.0288, min=0.1000, max=0.1700
+    values: [0.17, 0.13, 0.12, 0.1, 0.1]
+  Argmin K=5 (n=4): n=4, mean=0.1300, std=0.0163, min=0.1100, max=0.1500
+    values: [0.15, 0.13, 0.11, 0.13]
+  VLA-only (n=8): n=8, mean=0.1088, std=0.0136, min=0.0900, max=0.1300
+    values: [0.12, 0.12, 0.1, 0.11, 0.13, 0.1, 0.1, 0.09]
+  CRM norm02 K=10 (n=6): n=6, mean=0.1683, std=0.0183, min=0.1500, max=0.2000
+    values: [0.16, 0.16, 0.16, 0.15, 0.2, 0.18]
+
+  Argmin K=10 vs VLA-only:
+
+  Argmin K=10 vs VLA-only:
+    Difference: +0.0152 (+1.52 pp)
+    Welch's t-test: t=1.1093, p=0.316589 n.s.
+    Mann-Whitney U: U=26.5, p=0.362759 n.s.
+    Cohen's d: 0.7451 (medium)
+
+  Argmin K=10 vs CRM norm02 K=10:
+
+  Argmin K=10 vs CRM norm02:
+    Difference: -0.0443 (-4.43 pp)
+    Welch's t-test: t=-2.9747, p=0.022297 *
+    Mann-Whitney U: U=4.0, p=0.052478 n.s.
+    Cohen's d: -1.8803 (large)
+
+
+6. ADAPTIVE-K BASELINES (Object)
+--------------------------------------------------------------------------------
+  Adaptive-K p25 (n=3): n=3, mean=0.1433, std=0.0115, min=0.1300, max=0.1500
+    values: [0.15, 0.13, 0.15]
+  Adaptive-K p50 (n=3): n=3, mean=0.1533, std=0.0115, min=0.1400, max=0.1600
+    values: [0.16, 0.16, 0.14]
+  Adaptive-K p75 (n=3): n=3, mean=0.1367, std=0.0208, min=0.1200, max=0.1600
+    values: [0.12, 0.13, 0.16]
+  Adaptive-K p90 (n=3): n=3, mean=0.1333, std=0.0115, min=0.1200, max=0.1400
+    values: [0.12, 0.14, 0.14]
+  Adaptive-K all (n=12): n=12, mean=0.1417, std=0.0147, min=0.1200, max=0.1600
+    values: [0.15, 0.13, 0.15, 0.16, 0.16, 0.14, 0.12, 0.13, 0.16, 0.12, 0.14, 0.14]
+  VLA-only (n=8): n=8, mean=0.1088, std=0.0136, min=0.0900, max=0.1300
+    values: [0.12, 0.12, 0.1, 0.11, 0.13, 0.1, 0.1, 0.09]
+  CRM norm02 K=10 (n=6): n=6, mean=0.1683, std=0.0183, min=0.1500, max=0.2000
+    values: [0.16, 0.16, 0.16, 0.15, 0.2, 0.18]
+
+  Adaptive-K (all) vs VLA-only:
+
+  Adaptive-K all vs VLA-only:
+    Difference: +0.0329 (+3.29 pp)
+    Welch's t-test: t=5.1457, p=0.000098 ***
+    Mann-Whitney U: U=91.0, p=0.000924 ***
+    Cohen's d: 2.3102 (large)
+
+  Adaptive-K (all) vs CRM norm02 K=10:
+
+  Adaptive-K all vs CRM norm02:
+    Difference: -0.0267 (-2.67 pp)
+    Welch's t-test: t=-3.0991, p=0.014001 *
+    Mann-Whitney U: U=8.5, p=0.009608 **
+    Cohen's d: -1.6761 (large)
+
+
+================================================================================
+SUMMARY TABLE
+================================================================================
+Benchmark          Method                   n    Mean     Std  Δ vs VLA    p-value   Sig
+--------------------------------------------------------------------------------
+LIBERO-Spatial     CRM obs_only             8  0.3438  0.0141   +0.0482   0.000003   ***
+LIBERO-Spatial     VLA-only                 9  0.2956  0.0113         —          —     —
+
+LIBERO-Long        CRM obs_only             7  0.1700  0.0200   +0.0230   0.045951     *
+LIBERO-Long        VLA-only                10  0.1470  0.0231         —          —     —
+
+LIBERO-Goal        CRM obs_only             6  0.6817  0.0343   -0.0050   0.817940  n.s.
+LIBERO-Goal        VLA-only                 6  0.6867  0.0388         —          —     —
+
+LIBERO-Object      CRM norm02 K=10          6  0.1683  0.0183   +0.0596   0.000095   ***
+LIBERO-Object      CRM norm01 (supp)        6  0.1750  0.0105   +0.0663   0.000000   ***
+LIBERO-Object      CRM norm02 K=5 (supp)    7  0.1600  0.0216   +0.0512   0.000312   ***
+LIBERO-Object      VLA-only                 8  0.1088  0.0136         —          —     —
+LIBERO-Object      Argmin K=10              5  0.1240  0.0288   +0.0152   0.316589  n.s.
+LIBERO-Object      Argmin K=5               4  0.1300  0.0163   +0.0212   0.073136  n.s.
+LIBERO-Object      Adaptive-K (all)        12  0.1417  0.0147   +0.0329   0.000098   ***
+
+
+================================================================================
+KEY SIGNIFICANCE RESULTS
+================================================================================
+
+Comparison                                  Diff   t-test p     MW-U p   Sig   Cohen d
+-------------------------------------------------------------------------------------
+Spatial: CRM vs VLA                      +0.0482   0.000003   0.000526   ***   +3.8024
+Long: CRM vs VLA                         +0.0230   0.045951   0.060630     *   +1.0491
+Goal: CRM vs VLA                         -0.0050   0.817940   0.935736  n.s.   -0.1365
+Object(norm02): CRM vs VLA               +0.0596   0.000095   0.002182   ***   +3.7868
+Object(norm01-supp): CRM vs VLA          +0.0663   0.000000   0.002232   ***   +5.3538
+Object: Argmin-K10 vs VLA                +0.0152   0.316589   0.362759  n.s.   +0.7451
+Object: CRM-norm02 vs Argmin-K10         +0.0443   0.022297   0.052478     *   +1.8803
+Object: Adaptive-K vs VLA                +0.0329   0.000098   0.000924   ***   +2.3102
+Object: CRM-norm02 vs Adaptive-K         +0.0267   0.014001   0.009608     *   +1.6761
+
+
+================================================================================
+VERIFICATION NOTES
+================================================================================
+- Argmin K=10 seed43 = 0.17: severe outlier (other seeds 0.10-0.13).
+  Original JSON not found on any server (bjb2-40593, bjb2-28827, bjb1-18228, bjb1-32546).
+  Registry value retained but unverified.
+- VLA-only Long seed48 = 0.14: confirmed by registry (eval-vla-only-long-seed48).
+- CRM-Goal seed47 = 0.69: included per Director directive (not yet in registry).
+- VLA-Spatial seed48=0.30, seed49=0.29: included per Director directive.
+
+Significance levels: *** p<0.001, ** p<0.01, * p<0.05, n.s. not significant
+
+================================================================================
+END OF ANALYSIS
+================================================================================

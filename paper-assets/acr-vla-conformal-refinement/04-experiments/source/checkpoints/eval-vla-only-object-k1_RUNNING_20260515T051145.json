@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval-vla-only-object-k1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:11:14.165Z",
+    "updated_at": "2026-05-15T05:11:44.834Z",
+    "hypothesis": "VLA-only baseline (K=1, single sample, no CRM) on LIBERO object benchmark. Lowest-bar baseline for object domain.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode vla_only --baseline_mode single --benchmark object --n_rollouts 10 --seed 42 --K 1 --output_file logs/eval_object_vla_only_k1.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "39397",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-vla-only-object-k1.log",
+      "submitted_at": "2026-05-15T05:11:22.634Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO object benchmark",
+      "data_count": "10 tasks x 10 rollouts",
+      "model_name": "SmolVLA (VLA-only K=1 single sample)",
+      "seed": 42,
+      "eval_data": "LIBERO object",
+      "checkpoint_source": "N/A (no CRM, single VLA sample)"
+    }
+  },
+  "timestamp": "2026-05-15T05:11:45.028634+00:00",
+  "trigger": "update_registry"
+}

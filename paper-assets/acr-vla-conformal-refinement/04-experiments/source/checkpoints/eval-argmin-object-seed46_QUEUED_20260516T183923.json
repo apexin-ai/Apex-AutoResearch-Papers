@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval-argmin-object-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T18:39:23.017Z",
+    "updated_at": "2026-05-16T18:39:23.017Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode reconvla --benchmark object --n_rollouts 10 --seed 46 --K 10 --output_file logs/eval_object_reconvla_seed46.json",
+      "server": "bjb1-32546",
+      "gpu": "cuda:1",
+      "seed": 46,
+      "model_name": "reconvla-argmin-K10",
+      "hypothesis": "argmin baseline K=10 seed=46 on LIBERO object. 5th seed for Fisher test. Pairs with eval-obs-only-object-norm02-seed46 (bjb1-18228:cuda:3).",
+      "data_path": "LIBERO-object",
+      "data_count": 10,
+      "checkpoint_source": "reconvla-argmin",
+      "eval_data": "LIBERO-object"
+    }
+  },
+  "timestamp": "2026-05-16T18:39:23.280197+00:00",
+  "trigger": "update_registry"
+}

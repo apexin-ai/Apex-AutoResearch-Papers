@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval-mag-obsonly-norm-0.3-r3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:10:44.647Z",
+    "updated_at": "2026-05-15T07:19:12.632Z",
+    "hypothesis": "Magnitude sweep: obs_only CRM v3-norm at max_correction_norm=0.3 on spatial. perdof norm=0.3 shows T1 drop to 50% — if obs_only doesn't degrade at same norm, strong evidence for obs_only robustness over perdof.",
+    "parent": "eval-mag-obsonly-norm02",
+    "spec": {
+      "command": "N/A (stale duplicate entry)",
+      "server": "bjb1-18228",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "N/A",
+      "seed": 0,
+      "checkpoint_source": "N/A",
+      "eval_data": "N/A"
+    },
+    "conclusion": "killed",
+    "checkpoint_path": "N/A (stale duplicate entry, never ran)",
+    "log_path": "N/A",
+    "notes": "Stale duplicate entry with dots in name. Actual experiment is eval-mag-obsonly-norm-0p3-r3 (also killed). Real running experiment is eval-mag-obsonly-norm03-r2.",
+    "completed_at": "2026-05-15T07:19:12.632Z"
+  },
+  "timestamp": "2026-05-15T07:19:12.769714+00:00",
+  "trigger": "update_registry"
+}

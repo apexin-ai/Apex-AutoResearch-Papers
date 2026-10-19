@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval-smolvla-acr-long-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:37:34.598Z",
+    "updated_at": "2026-05-22T05:54:31.341Z",
+    "hypothesis": "SmolVLA + ACR-VLA Plan A (K=2 L2-probe + selective CRM obs_only correction, max_norm=0.2) on LIBERO-Long OOD suite will improve upon SmolVLA VLA-only baseline, validating selective-correction efficiency on Long-horizon benchmark",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode acr_vla --benchmark long --n_rollouts 20 --seed 42 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_acr_seed42.json",
+      "server": "bjb1-32546",
+      "gpu": "cuda:4",
+      "pid": 243677,
+      "data_path": "LIBERO-Long (libero pkg)",
+      "data_count": "10 tasks x 20 rollouts",
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "libero_10 (Long)",
+      "log_path": "/root/runs/acr-vla-conformal-refinement/eval-smolvla-acr-long-seed42.log",
+      "output_file": "/root/acr-vla-conformal-refinement/logs/eval_long_acr_seed42.json"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T05:54:31.341Z"
+  },
+  "timestamp": "2026-05-22T05:54:33.487050+00:00",
+  "trigger": "update_registry"
+}

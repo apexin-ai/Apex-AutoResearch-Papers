@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval-perdof-object-norm01-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:21:04.937Z",
+    "updated_at": "2026-05-17T10:59:09.645Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed44.json",
+      "server": "bjb1-18228",
+      "gpu_id": 1,
+      "model_name": "crm_perdof_norm01",
+      "seed": 44,
+      "data_path": "LIBERO object benchmark",
+      "data_count": 100,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "LIBERO object benchmark",
+      "hypothesis": "perdof CRM norm=0.1 seed=44 on LIBERO object. Multi-seed magnitude curve: seed42=11%, expecting similar. Fills the biggest gap in perdof magnitude data (norm=0.1 only has 1 seed).",
+      "pid": 531963
+    },
+    "hypothesis": "perdof CRM (ε=0.1) seed=44 on LIBERO Object. 验证 perdof 在低 norm 的安全区域（seed42=11%，seed45 running）。多 seed 支撑 magnitude curve 低 norm 段。",
+    "reproduce": {
+      "finished_at": "2026-05-17T10:48:36.650Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "negative",
+    "completed_at": "2026-05-17T10:48:39.951Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T10:48:45.826946+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: process dead 5× with no sentinel/W&B — auto-resolved as failed | 诊断中: Worker worker_diagnose_eval-perdof-object-norm01-seed44_20260517T105221 已派发到 bjb1-18228 检查是否为 cron 误判（同配置 seed45 成功，SR=11%）"
+  },
+  "timestamp": "2026-05-17T10:59:09.970077+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "westd-pi05-crm-k2-object-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T13:57:46.950Z",
+    "updated_at": "2026-05-26T13:57:46.950Z"
+  },
+  "timestamp": "2026-05-26T13:57:48.695448+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval-obs-only-goal-norm02-seed51",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:48:04.411Z",
+    "updated_at": "2026-05-20T10:48:04.411Z"
+  },
+  "timestamp": "2026-05-20T10:48:05.160899+00:00",
+  "trigger": "update_registry"
+}

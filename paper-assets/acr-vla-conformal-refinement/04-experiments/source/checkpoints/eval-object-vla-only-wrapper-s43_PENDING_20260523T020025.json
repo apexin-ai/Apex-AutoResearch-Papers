@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-object-vla-only-wrapper-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:00:08.251Z",
+    "updated_at": "2026-05-23T02:00:24.501Z",
+    "hypothesis": "SmolVLA wrapper VLA-only baseline on LIBERO-Object establishes fair comparison point for CRM method evaluation"
+  },
+  "timestamp": "2026-05-23T02:00:25.693900+00:00",
+  "trigger": "update_registry"
+}

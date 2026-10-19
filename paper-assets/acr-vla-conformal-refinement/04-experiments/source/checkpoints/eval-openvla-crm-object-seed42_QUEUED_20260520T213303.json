@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-openvla-crm-object-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:32:47.109Z",
+    "updated_at": "2026-05-20T21:33:02.784Z",
+    "hypothesis": "OpenVLA CRM obs_only eval: 测试 CRM correction 在 OpenVLA (7B, near-deterministic T=0.5) 上的效果。OpenVLA v2 baseline=69%，但 T=0.5 产生近乎相同的 actions (8/10 identical)。关键问题：CRM correction 在低 action diversity 条件下是否仍有效？解决 3 个 review criticals: M1 narrow scope, R2-W1-new low absolute perf, R1-W3-new single VLA。"
+  },
+  "timestamp": "2026-05-20T21:33:03.656364+00:00",
+  "trigger": "update_registry"
+}

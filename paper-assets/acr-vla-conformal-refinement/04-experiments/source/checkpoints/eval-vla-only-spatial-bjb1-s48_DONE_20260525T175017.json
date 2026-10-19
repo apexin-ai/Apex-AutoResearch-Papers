@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-vla-only-spatial-bjb1-s48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T01:32:03.658Z",
+    "updated_at": "2026-05-25T17:50:15.719Z",
+    "hypothesis": "VLA-only baseline on Spatial s48 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 48 --n_rollouts 20",
+      "server": "bjb1-32546",
+      "gpu": "cuda:1",
+      "model_name": "SmolVLA",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "seed": 48,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.775,
+      "successes": 155,
+      "total": 200
+    },
+    "completed_at": "2026-05-25T17:50:15.719Z"
+  },
+  "timestamp": "2026-05-25T17:50:17.299773+00:00",
+  "trigger": "update_registry"
+}

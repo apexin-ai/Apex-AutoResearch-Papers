@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-perdof-object-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:56:22.235Z",
+    "updated_at": "2026-05-16T04:56:29.649Z",
+    "hypothesis": "perdof CRM v3-norm seed=44 on LIBERO object benchmark. Completes seed=44 four-way comparison. seed42=11%, seed43=12%. Expected to confirm perdof < argmin."
+  },
+  "timestamp": "2026-05-16T04:56:29.949199+00:00",
+  "trigger": "update_registry"
+}

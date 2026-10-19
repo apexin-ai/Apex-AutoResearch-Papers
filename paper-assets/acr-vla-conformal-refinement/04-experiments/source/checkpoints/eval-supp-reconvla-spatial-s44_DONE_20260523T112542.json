@@ -1,0 +1,63 @@
+{
+  "exp_id": "eval-supp-reconvla-spatial-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:03:44.347Z",
+    "updated_at": "2026-05-23T11:25:39.981Z",
+    "hypothesis": "Reconvla K=10 argmin on Spatial seed44. Multi-seed validation (with s42=79%, s43). Third seed for 3-seed mean±std statistical claim on reconvla.",
+    "parent": "eval-supp-reconvla-k2-spatial-s42",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 python src/evaluate.py --mode reconvla --K 10 --suite spatial --n_rollouts 20 --seed 44",
+      "server": "cqa1-32758",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 44,
+      "checkpoint_source": "n/a",
+      "eval_data": "LIBERO-Spatial",
+      "gpu": "cuda:3",
+      "pid": 34383
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_success_rate": 0.795,
+      "n_tasks": 10,
+      "n_rollouts_per_task": 20,
+      "per_task": {
+        "between_plate_and_ramekin": 1,
+        "table_center": 1,
+        "next_to_ramekin": 0.95,
+        "next_to_cookie_box": 0.95,
+        "on_cookie_box": 0.9,
+        "on_wooden_cabinet": 0.85,
+        "on_stove": 0.8,
+        "next_to_plate": 0.8,
+        "top_drawer_wooden_cabinet": 0.7,
+        "on_ramekin": 0
+      },
+      "three_seed_summary": {
+        "seeds": [
+          42,
+          43,
+          44
+        ],
+        "srs": [
+          0.8,
+          0.815,
+          0.795
+        ],
+        "mean": 0.803,
+        "std": 0.01
+      }
+    },
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval_spatial_reconvla_seed44.json",
+    "checkpoint_path": "n/a (eval-only)",
+    "completed_at": "2026-05-23T11:25:39.981Z"
+  },
+  "timestamp": "2026-05-23T11:25:42.210656+00:00",
+  "trigger": "update_registry"
+}

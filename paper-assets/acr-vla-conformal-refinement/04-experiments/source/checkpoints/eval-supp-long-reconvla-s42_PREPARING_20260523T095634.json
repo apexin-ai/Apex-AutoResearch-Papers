@@ -1,0 +1,22 @@
+{
+  "exp_id": "eval-supp-long-reconvla-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:56:33.117Z",
+    "updated_at": "2026-05-23T09:56:33.117Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode reconvla --K 10 --benchmark long --seed 42 --n_rollouts 20",
+      "server": "bjb2-28827",
+      "model_name": "smolvla",
+      "data_path": "LIBERO-Long",
+      "data_count": 200,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-23T09:56:34.251915+00:00",
+  "trigger": "update_registry"
+}

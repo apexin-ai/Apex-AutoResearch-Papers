@@ -1,0 +1,4262 @@
+# deploy bjb2 28827 tau sweep d132
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 89
+- **Recorded user turns:** 0
+- **Tool calls:** 33
+- **Original source:** `logs/workers/worker_deploy_bjb2-28827-tau-sweep-d132_20260523T130545.log`
+- **Structured JSON:** [`470ed9ec267171827dbc.json`](../../sessions/47/470ed9ec267171827dbc.json)
+
+## Before a recorded user message
+
+89 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3b9c4534-0b8a-49ea-91f0-f8fca8ee4a85",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779556200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e8944301-1b16-4716-8ae1-e4ab42f1f808",
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break down the task:
+
+1. Deploy 3 τ-sweep ablation experiments on bjb2-28827 (not bjb2-40593 which is the default server)
+2. Each experiment runs on a different GPU (cuda:0, cuda:1, cuda:2)
+3. Need to: check GPU availability, create registry entries, submit jobs, report status
+
+Let me start by:
+1. Checking GPU availability on bjb2-28827
+2. Loading the necessary tool schemas (ssh_execute, ssh_read_only, register_artifact, read_registry, etc.)
+
+
+3. Setting up the tool calls to deploy the experiments
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "afceca6d-0928-452e-88ad-4f7c7ac63a6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A2rjrLv2FTiHJQjvaWigkG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12287,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12287
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先加载工具 schema 并检查 bjb2-28827 GPU 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "4e9a5543-34c3-4ed8-9914-0a07a0f15e5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A2rjrLv2FTiHJQjvaWigkG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12287,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12287
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XUefdSbV2de4bikC7224Go`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "f2b0cc6e-502e-448b-a702-3bddfb31d64d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A2rjrLv2FTiHJQjvaWigkG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12287,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12287
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T13:06:03.212Z_
+
+<details><summary>↩ Tool result · `toolu_01XUefdSbV2de4bikC7224Go`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "6d71c2ed-a4a6-42e3-897e-a2877ac1efaf",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check GPU availability on bjb2-28827 and also look for the submit_training_job tool.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "74e06591-e48f-4133-a722-07c90e74c928",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tYZDbCErQHBDEgRnGGNLt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2511,
+      "cache_read_input_tokens": 23734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2511
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018CPuKUMDTAfs8EukH3rgDj`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "3a9698be-81b1-4fe7-bb42-cb583b9e0190",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tYZDbCErQHBDEgRnGGNLt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2511,
+      "cache_read_input_tokens": 23734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2511
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BdjTQK86ma7KT9JGZmsD9F`</summary>
+
+```json
+{
+  "query": "submit training job",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "c5170ca8-12f6-4d25-9f0c-94e087256ad8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tYZDbCErQHBDEgRnGGNLt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2511,
+      "cache_read_input_tokens": 23734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2511
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T13:06:08.589Z_
+
+<details><summary>↩ Tool result · `toolu_018CPuKUMDTAfs8EukH3rgDj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 4090, 1 MiB, 24564 MiB, 0 %\\n1, NVIDIA GeForce RTX 4090, 1 MiB, 24564 MiB, 0 %\\n2, NVIDIA GeForce RTX 4090, 1 MiB, 24564 MiB, 0 %\\n3, NVIDIA GeForce RTX 4090, 3082 MiB, 24564 MiB, 25 %\\n4, NVIDIA GeForce RTX 4090, 3026 MiB, 24564 MiB, 23 %\\n5, NVIDIA GeForce RTX 4090, 3120 MiB, 24564 MiB, 30 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "6930e693-08e5-4a16-9608-47ff0d228587",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 4090, 1 MiB, 24564 MiB, 0 %\\\\n1, NVIDIA GeForce RTX 4090, 1 MiB, 24564 MiB, 0 %\\\\n2, NVIDIA GeForce RTX 4090, 1 MiB, 24564 MiB, 0 %\\\\n3, NVIDIA GeForce RTX 4090, 3082 MiB, 24564 MiB, 25 %\\\\n4, NVIDIA GeForce RTX 4090, 3026 MiB, 24564 MiB, 23 %\\\\n5, NVIDIA GeForce RTX 4090, 3120 MiB, 24564 MiB, 30 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 4090, 1 MiB, 24564 MiB, 0 %\\n1, NVIDIA GeForce RTX 4090, 1 MiB, 24564 MiB, 0 %\\n2, NVIDIA GeForce RTX 4090, 1 MiB, 24564 MiB, 0 %\\n3, NVIDIA GeForce RTX 4090, 3082 MiB, 24564 MiB, 25 %\\n4, NVIDIA GeForce RTX 4090, 3026 MiB, 24564 MiB, 23 %\\n5, NVIDIA GeForce RTX 4090, 3120 MiB, 24564 MiB, 30 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T13:06:08.607Z_
+
+<details><summary>↩ Tool result · `toolu_01BdjTQK86ma7KT9JGZmsD9F`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronCreate"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "a71fa7c9-ed13-4df7-b8bf-ee728b3afb16",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__kill_job",
+      "CronDelete",
+      "CronCreate"
+    ],
+    "query": "submit training job",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+GPU 0, 1, 2 are all idle (1 MiB used, 0% utilization). Good to go.
+
+I don't see a `submit_training_job` tool. Let me check if there's one available. The task says to use `submit_training_job` but I only found `kill_job`. Let me search more specifically.
+
+Actually, looking at the tools available, there's no `submit_training_job`. I'll need to use `ssh_execute` to submit the jobs manually with tmux sessions. Let me proceed with:
+
+
+I need to create registry entries for all three experiments first, then submit each job via SSH using tmux or nohup. But wait, the task specifically mentions using `submit_training_job` with automatic tmux and cron monitoring—let me double-check if I'm missing this tool somewhere.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "be40d408-5d4a-4d2c-8ff8-df418053a908",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbpUQwStNKoVbMAc1n3KtF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1995,
+      "cache_read_input_tokens": 26245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1995
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01L32baWgn89TV8VMvm4a9Jx`</summary>
+
+```json
+{
+  "query": "submit job training experiment",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "8126bc2d-3470-4018-aaed-457125280c51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbpUQwStNKoVbMAc1n3KtF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1995,
+      "cache_read_input_tokens": 26245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1995
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T13:06:17.554Z_
+
+<details><summary>↩ Tool result · `toolu_01L32baWgn89TV8VMvm4a9Jx`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronCreate"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "Monitor"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "36ed620e-d7c1-4735-804b-3537474de85a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__kill_job",
+      "CronDelete",
+      "CronCreate",
+      "Monitor",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "submit job training experiment",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's no `submit_training_job` tool available. I'll use `ssh_execute` with tmux sessions to deploy the jobs, which is the manual equivalent. 
+
+GPU 0, 1, 2 are all idle (1 MiB, 0% utilization). Good.
+
+Let me now:
+1. Create registry entries for all 3 experiments
+2. Submit each job via ssh_execute with tmux
+3. Verify PIDs
+
+Let me first create all 3 registry entries in parallel, then submit the jobs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "4dbefd57-8ccd-4bab-9a70-d2124dbf58f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hs6wrfrTdqLr4XqqerHjgj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4072,
+      "cache_read_input_tokens": 28240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4072
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+GPU 0/1/2 均空闲（1 MiB, 0%）。无 `submit_training_job` 工具，用 tmux + ssh_execute 部署。
+
+先创建 3 个 registry entry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "e11963ea-35f7-488c-aaf1-4359b2e8a863",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hs6wrfrTdqLr4XqqerHjgj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4072,
+      "cache_read_input_tokens": 28240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4072
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01NZku5yxqxgo89hn9F4Ugiw`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau010-goal-s42",
+  "field": "hypothesis",
+  "value": "τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "1e33dccf-fff6-477b-8aaf-a2498a70250e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hs6wrfrTdqLr4XqqerHjgj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4072,
+      "cache_read_input_tokens": 28240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4072
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017gGznVsj6feLU1xqbQD97J`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau015-goal-s42",
+  "field": "hypothesis",
+  "value": "τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating.",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "352a0cb4-0e19-4bec-8f15-5c49a578a2f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hs6wrfrTdqLr4XqqerHjgj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4072,
+      "cache_read_input_tokens": 28240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4072
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01VcDE33vrbAedhFrW4PknmG`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau040-goal-s42",
+  "field": "hypothesis",
+  "value": "τ-sweep ablation: τ=0.40 on Goal s42. Higher threshold → lower trigger rate → fewer corrections. Part of 5-point τ-sensitivity curve. Tests whether very conservative gating still maintains benefit.",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "68a36359-ffac-4b21-9793-c4b6ce34ff1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hs6wrfrTdqLr4XqqerHjgj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4072,
+      "cache_read_input_tokens": 28240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4072
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T13:06:34.041Z_
+
+<details><summary>↩ Tool result · `toolu_01NZku5yxqxgo89hn9F4Ugiw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau010-goal-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:32.832Z\", \"updated_at\": \"2026-05-23T13:06:32.832Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.0197}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "6ac9a16d-e530-42d3-b5a0-721bfb1282cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-ablation-tau010-goal-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T13:06:32.832Z\\\", \\\"updated_at\\\": \\\"2026-05-23T13:06:32.832Z\\\", \\\"hypothesis\\\": \\\"τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0197}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau010-goal-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:32.832Z\", \"updated_at\": \"2026-05-23T13:06:32.832Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.0197}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T13:06:38.064Z_
+
+<details><summary>↩ Tool result · `toolu_017gGznVsj6feLU1xqbQD97J`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau015-goal-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:36.431Z\", \"updated_at\": \"2026-05-23T13:06:36.431Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.0069}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "77afaacf-fc1f-4a5c-9210-d7f068c797ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-ablation-tau015-goal-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T13:06:36.431Z\\\", \\\"updated_at\\\": \\\"2026-05-23T13:06:36.431Z\\\", \\\"hypothesis\\\": \\\"τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.0069}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau015-goal-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:36.431Z\", \"updated_at\": \"2026-05-23T13:06:36.431Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.0069}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T13:06:40.993Z_
+
+<details><summary>↩ Tool result · `toolu_01VcDE33vrbAedhFrW4PknmG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau040-goal-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:39.811Z\", \"updated_at\": \"2026-05-23T13:06:39.811Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.40 on Goal s42. Higher threshold → lower trigger rate → fewer corrections. Part of 5-point τ-sensitivity curve. Tests whether very conservative gating still maintains benefit.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.9154}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "b3e440c4-8d80-46c4-b1f6-113565ba8e50",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-ablation-tau040-goal-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T13:06:39.811Z\\\", \\\"updated_at\\\": \\\"2026-05-23T13:06:39.811Z\\\", \\\"hypothesis\\\": \\\"τ-sweep ablation: τ=0.40 on Goal s42. Higher threshold → lower trigger rate → fewer corrections. Part of 5-point τ-sensitivity curve. Tests whether very conservative gating still maintains benefit.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9154}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau040-goal-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:39.811Z\", \"updated_at\": \"2026-05-23T13:06:39.811Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.40 on Goal s42. Higher threshold → lower trigger rate → fewer corrections. Part of 5-point τ-sensitivity curve. Tests whether very conservative gating still maintains benefit.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.9154}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+3 个 registry entry 已创建。现在用 tmux 在各 GPU 上启动实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "53c44a0f-1744-4d1e-a068-28561f28ed05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LoeRADXvKnnxfWTsXqRUvf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1450,
+      "cache_read_input_tokens": 32312,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1450
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LzoHLZyxUP4dkr2rWn4QCt`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && tmux new-session -d -s eval-ablation-tau010-goal-s42 \"CUDA_VISIBLE_DEVICES=0 python /root/acr-vla-conformal-refinement/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.10 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /root/acr-vla-conformal-refinement/logs/eval-ablation-tau010-goal-s42.log\" && echo \"LAUNCHED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "d4b12ed9-4678-4156-b0d7-f724852dc705",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LoeRADXvKnnxfWTsXqRUvf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1450,
+      "cache_read_input_tokens": 32312,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1450
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T13:06:49.206Z_
+
+<details><summary>↩ Tool result · `toolu_01LzoHLZyxUP4dkr2rWn4QCt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "b8c33d37-f1f8-48e2-936a-457037cd5a95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LAUNCHED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01L4UN5UqfNkFdztUCTSgims`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && tmux new-session -d -s eval-ablation-tau015-goal-s42 \"CUDA_VISIBLE_DEVICES=1 python /root/acr-vla-conformal-refinement/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.15 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /root/acr-vla-conformal-refinement/logs/eval-ablation-tau015-goal-s42.log\" && echo \"LAUNCHED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "c48b40a1-3449-44fa-a04e-5a6985db9164",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LoeRADXvKnnxfWTsXqRUvf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1450,
+      "cache_read_input_tokens": 32312,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1450
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T13:06:51.568Z_
+
+<details><summary>↩ Tool result · `toolu_01L4UN5UqfNkFdztUCTSgims`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "d1ca4b00-4077-42e7-9fde-8c4f11614bb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LAUNCHED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MKmvNWegTug2Hxr3arHNPV`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && tmux new-session -d -s eval-ablation-tau040-goal-s42 \"CUDA_VISIBLE_DEVICES=2 python /root/acr-vla-conformal-refinement/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.40 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /root/acr-vla-conformal-refinement/logs/eval-ablation-tau040-goal-s42.log\" && echo \"LAUNCHED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "6146dfff-3a8d-4587-bc06-72680a743dbe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LoeRADXvKnnxfWTsXqRUvf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1450,
+      "cache_read_input_tokens": 32312,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1450
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T13:06:53.392Z_
+
+<details><summary>↩ Tool result · `toolu_01MKmvNWegTug2Hxr3arHNPV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "e2fe1d20-c701-4911-887e-990bc906fdee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LAUNCHED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+3 个 tmux session 均已启动。验证进程和 GPU 占用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "7b3ddb4b-ef06-4b4c-88cc-ce65550e9d88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQLZLGGkTEZGemDp5yUUd9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 33762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AcuyBfxgss1FGTRTYAKsuM`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "0ffca069-af59-46de-be39-952993376fc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQLZLGGkTEZGemDp5yUUd9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 33762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012xbaA4MbdU8PjgQBUv7j6V`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ps aux --no-headers -w -w",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "c14132c5-9c0e-4b85-b25e-35146ab06ff5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQLZLGGkTEZGemDp5yUUd9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 33762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T13:06:57.796Z_
+
+<details><summary>↩ Tool result · `toolu_01AcuyBfxgss1FGTRTYAKsuM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 1 MiB, 0 %\\n1, 1 MiB, 0 %\\n2, 1 MiB, 0 %\\n3, 3082 MiB, 25 %\\n4, 3026 MiB, 18 %\\n5, 3120 MiB, 26 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "79a9eb9c-1a43-4fa8-90c0-bdcde8bf23bd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 1 MiB, 0 %\\\\n1, 1 MiB, 0 %\\\\n2, 1 MiB, 0 %\\\\n3, 3082 MiB, 25 %\\\\n4, 3026 MiB, 18 %\\\\n5, 3120 MiB, 26 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 1 MiB, 0 %\\n1, 1 MiB, 0 %\\n2, 1 MiB, 0 %\\n3, 3082 MiB, 25 %\\n4, 3026 MiB, 18 %\\n5, 3120 MiB, 26 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T13:06:58.179Z_
+
+<details><summary>↩ Tool result · `toolu_012xbaA4MbdU8PjgQBUv7j6V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476   316 ?        Ss   May15   0:01 bash /init/boot/boot.sh\\nroot        941  1.6  0.0 723872 22752 ?        Sl   May15 204:09 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        960  0.0  0.0 4147492 60264 ?       Sl   May15   4:58 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        963  0.0  0.0  15444  4252 ?        S    May15   0:40 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        964  0.0  0.0 190528 88376 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        965  0.3  0.0 5270396 100168 ?      Sl   May15  40:20 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        966  0.2  0.0 3536104 18368 ?       Sl   May15  27:07 proxy -c /init/proxy/proxy.ini\\nroot        967  0.0  0.0 3461156 18612 ?       Sl   May15   4:02 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1082  0.0  0.0 17524960 4608 ?       Sl   May15   4:31 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_edewh761/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_edewh761/startup_error\\nroot     502991  0.0  0.0  16776 10632 ?        Ss   11:40   0:06 sshd: root@notty\\nroot     519748  0.0  0.0   6292  3940 ?        Ss   12:11   0:00 tmux new-session -d -s eval-object-vla-only-wrapper-s42-r2 rm -f /tmp/agent-ml-exit/eval-object-vla-only-wrapper-s42-r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-object-vla-only-wrapper-s42-r2.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-object-vla-only-wrapper-s42-r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-object-vla-only-wrapper-s42-r2.log\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-object-vla-only-wrapper-s42-r2.log 2>&1\\nroot     711470  0.0  0.0   4496  3640 pts/2    Ss+  17:57   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-long-reconvla-s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-long-reconvla-s42.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-supp-long-reconvla-s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode reconvla --K 10 --benchmark long --seed 42 --n_rollouts 20\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-long-reconvla-s42.log 2>&1\\nroot     711478  0.0  0.0   2800  1008 pts/2    S    17:57   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode reconvla --K 10 --benchmark long --seed 42 --n_rollouts 20\\\"\\nroot     711479  575  1.0 65344872 10821812 pts/2 Rl 17:57 1091:47 python -u src/evaluate.py --mode reconvla --K 10 --benchmark long --seed 42 --n_rollouts 20\\nroot     711761  0.0  0.0   4496  3640 pts/1    Ss+  17:57   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-long-adapt-tau025-s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-long-adapt-tau025-s42.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-supp-long-adapt-tau025-s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=4 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --conformal_threshold 0.25 --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-long-adapt-tau025-s42.log 2>&1\\nroot     711769  0.0  0.0   2800  1040 pts/1    S    17:57   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --conformal_threshold 0.25 --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2\\\"\\nroot     711770  594  1.0 65532024 11076612 pts/1 Rl 17:57 1126:07 python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --conformal_threshold 0.25 --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2\\nroot     712369  0.0  0.0   4496  3704 pts/3    Ss+  17:57   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-long-crm-norm005-s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-long-crm-norm005-s42.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-supp-long-crm-norm005-s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=5 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.05\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-long-crm-norm005-s42.log 2>&1\\nroot     712377  0.0  0.0   2800  1076 pts/3    S    17:57   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.05\\\"\\nroot     712378  567  1.0 65797856 10915924 pts/3 Rl 17:57 1074:28 python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.05\\nroot     783796  0.1  0.0  16692 10540 ?        Ss   21:06   0:00 sshd: root@notty\\nroot     784008  0.0  0.0   7064  1536 ?        Rs   21:06   0:00 ps aux --no-headers -w -w\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "2281e727-1c6d-47df-911b-86664a88e7ee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476   316 ?        Ss   May15   0:01 bash /init/boot/boot.sh\\\\nroot        941  1.6  0.0 723872 22752 ?        Sl   May15 204:09 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        960  0.0  0.0 4147492 60264 ?       Sl   May15   4:58 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        963  0.0  0.0  15444  4252 ?        S    May15   0:40 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        964  0.0  0.0 190528 88376 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        965  0.3  0.0 5270396 100168 ?      Sl   May15  40:20 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        966  0.2  0.0 3536104 18368 ?       Sl   May15  27:07 proxy -c /init/proxy/proxy.ini\\\\nroot        967  0.0  0.0 3461156 18612 ?       Sl   May15   4:02 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1082  0.0  0.0 17524960 4608 ?       Sl   May15   4:31 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_edewh761/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_edewh761/startup_error\\\\nroot     502991  0.0  0.0  16776 10632 ?        Ss   11:40   0:06 sshd: root@notty\\\\nroot     519748  0.0  0.0   6292  3940 ?        Ss   12:11   0:00 tmux new-session -d -s eval-object-vla-only-wrapper-s42-r2 rm -f /tmp/agent-ml-exit/eval-object-vla-only-wrapper-s42-r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-object-vla-only-wrapper-s42-r2.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-object-vla-only-wrapper-s42-r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-object-vla-only-wrapper-s42-r2.log\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-object-vla-only-wrapper-s42-r2.log 2>&1\\\\nroot     711470  0.0  0.0   4496  3640 pts/2    Ss+  17:57   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-long-reconvla-s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-long-reconvla-s42.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-supp-long-reconvla-s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode reconvla --K 10 --benchmark long --seed 42 --n_rollouts 20\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-long-reconvla-s42.log 2>&1\\\\nroot     711478  0.0  0.0   2800  1008 pts/2    S    17:57   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode reconvla --K 10 --benchmark long --seed 42 --n_rollouts 20\\\\\\\"\\\\nroot     711479  575  1.0 65344872 10821812 pts/2 Rl 17:57 1091:47 python -u src/evaluate.py --mode reconvla --K 10 --benchmark long --seed 42 --n_rollouts 20\\\\nroot     711761  0.0  0.0   4496  3640 pts/1    Ss+  17:57   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-long-adapt-tau025-s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-long-adapt-tau025-s42.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-supp-long-adapt-tau025-s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=4 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --conformal_threshold 0.25 --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-long-adapt-tau025-s42.log 2>&1\\\\nroot     711769  0.0  0.0   2800  1040 pts/1    S    17:57   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --conformal_threshold 0.25 --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2\\\\\\\"\\\\nroot     711770  594  1.0 65532024 11076612 pts/1 Rl 17:57 1126:07 python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --conformal_threshold 0.25 --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2\\\\nroot     712369  0.0  0.0   4496  3704 pts/3    Ss+  17:57   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-long-crm-norm005-s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-long-crm-norm005-s42.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-supp-long-crm-norm005-s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=5 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.05\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-long-crm-norm005-s42.log 2>&1\\\\nroot     712377  0.0  0.0   2800  1076 pts/3    S    17:57   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.05\\\\\\\"\\\\nroot     712378  567  1.0 65797856 10915924 pts/3 Rl 17:57 1074:28 python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.05\\\\nroot     783796  0.1  0.0  16692 10540 ?        Ss   21:06   0:00 sshd: root@notty\\\\nroot     784008  0.0  0.0   7064  1536 ?        Rs   21:06   0:00 ps aux --no-headers -w -w\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476   316 ?        Ss   May15   0:01 bash /init/boot/boot.sh\\nroot        941  1.6  0.0 723872 22752 ?        Sl   May15 204:09 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        960  0.0  0.0 4147492 60264 ?       Sl   May15   4:58 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        963  0.0  0.0  15444  4252 ?        S    May15   0:40 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        964  0.0  0.0 190528 88376 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        965  0.3  0.0 5270396 100168 ?      Sl   May15  40:20 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        966  0.2  0.0 3536104 18368 ?       Sl   May15  27:07 proxy -c /init/proxy/proxy.ini\\nroot        967  0.0  0.0 3461156 18612 ?       Sl   May15   4:02 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1082  0.0  0.0 17524960 4608 ?       Sl   May15   4:31 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_edewh761/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_edewh761/startup_error\\nroot     502991  0.0  0.0  16776 10632 ?        Ss   11:40   0:06 sshd: root@notty\\nroot     519748  0.0  0.0   6292  3940 ?        Ss   12:11   0:00 tmux new-session -d -s eval-object-vla-only-wrapper-s42-r2 rm -f /tmp/agent-ml-exit/eval-object-vla-only-wrapper-s42-r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-object-vla-only-wrapper-s42-r2.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-object-vla-only-wrapper-s42-r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-object-vla-only-wrapper-s42-r2.log\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-object-vla-only-wrapper-s42-r2.log 2>&1\\nroot     711470  0.0  0.0   4496  3640 pts/2    Ss+  17:57   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-long-reconvla-s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-long-reconvla-s42.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-supp-long-reconvla-s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode reconvla --K 10 --benchmark long --seed 42 --n_rollouts 20\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-long-reconvla-s42.log 2>&1\\nroot     711478  0.0  0.0   2800  1008 pts/2    S    17:57   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode reconvla --K 10 --benchmark long --seed 42 --n_rollouts 20\\\"\\nroot     711479  575  1.0 65344872 10821812 pts/2 Rl 17:57 1091:47 python -u src/evaluate.py --mode reconvla --K 10 --benchmark long --seed 42 --n_rollouts 20\\nroot     711761  0.0  0.0   4496  3640 pts/1    Ss+  17:57   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-long-adapt-tau025-s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-long-adapt-tau025-s42.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-supp-long-adapt-tau025-s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=4 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --conformal_threshold 0.25 --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-long-adapt-tau025-s42.log 2>&1\\nroot     711769  0.0  0.0   2800  1040 pts/1    S    17:57   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --conformal_threshold 0.25 --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2\\\"\\nroot     711770  594  1.0 65532024 11076612 pts/1 Rl 17:57 1126:07 python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --conformal_threshold 0.25 --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2\\nroot     712369  0.0  0.0   4496  3704 pts/3    Ss+  17:57   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-long-crm-norm005-s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-long-crm-norm005-s42.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-supp-long-crm-norm005-s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=5 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.05\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-long-crm-norm005-s42.log 2>&1\\nroot     712377  0.0  0.0   2800  1076 pts/3    S    17:57   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.05\\\"\\nroot     712378  567  1.0 65797856 10915924 pts/3 Rl 17:57 1074:28 python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.05\\nroot     783796  0.1  0.0  16692 10540 ?        Ss   21:06   0:00 sshd: root@notty\\nroot     784008  0.0  0.0   7064  1536 ?        Rs   21:06   0:00 ps aux --no-headers -w -w\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+GPU 0, 1, 2 still show 1 MiB and 0% utilization. The tmux sessions I created don't seem to have started the python processes yet. Let me check if the tmux sessions exist and if the evaluate.py path is correct. Looking at the existing experiments on the server, they use `src/evaluate.py` not `evaluate.py` directly. The task says `python evaluate.py` but the existing jobs use `python -u src/evaluate.py`. Let me check.
+
+Also, the existing jobs use `--crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt` (4suite_r4) while the task specifies `crm_smolvla_3suite_v1/crm_best.pt`. 
+
+I'll stick with what the task specifies and check if the tmux sessions I created are actually running by looking at their logs to see if there's an error.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "b78f4155-9e23-4cad-869f-ba5b604bcc38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JAroQnrfwhwP1gpc48tKZq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3860,
+      "cache_read_input_tokens": 35095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+GPU 0/1/2 仍显示 0%，进程可能还没启动或脚本路径有误。检查 tmux sessions 和日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "bbb498e9-6c1e-4847-ba22-729ac7772766",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JAroQnrfwhwP1gpc48tKZq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3860,
+      "cache_read_input_tokens": 35095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UoDQ54H7HyEeprM7uDNYPp`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "59fa6df0-1006-4ac7-9f7c-64baaf1503eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JAroQnrfwhwP1gpc48tKZq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3860,
+      "cache_read_input_tokens": 35095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T13:07:15.183Z_
+
+<details><summary>↩ Tool result · `toolu_01UoDQ54H7HyEeprM7uDNYPp`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "83737d4d-0695-4e80-bfc6-be357dcce614",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hrx8chcXBCWZwYrFqM7SQP`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ls /root/acr-vla-conformal-refinement/evaluate.py /root/acr-vla-conformal-refinement/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "6c549dc8-add3-4deb-b229-079aa2636694",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JAroQnrfwhwP1gpc48tKZq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3860,
+      "cache_read_input_tokens": 35095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T13:07:16.137Z_
+
+<details><summary>↩ Tool result · `toolu_01Hrx8chcXBCWZwYrFqM7SQP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/evaluate.py\\n\", \"stderr\": \"ls: cannot access '/root/acr-vla-conformal-refinement/evaluate.py': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "b7ff0967-8fcd-48d1-a1e0-c6c8836a06ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/acr-vla-conformal-refinement/evaluate.py': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/evaluate.py\\n\", \"stderr\": \"ls: cannot access '/root/acr-vla-conformal-refinement/evaluate.py': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The evaluate.py is at `src/evaluate.py`, not at the project root. Also, the logs directory may not exist. Let me check and fix. I need to:
+
+1. Kill the existing (broken) tmux sessions
+2. Create the logs directory
+3. Re-launch with the correct path `src/evaluate.py`
+
+Also, looking at existing jobs, they use `python -u` for unbuffered output, which is good practice with `tee`.
+
+Let me also check if the logs directory exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "715978f7-f17c-438a-88fc-219e1786385e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L76xtE4kx6EJp7vRaetoWq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+`evaluate.py` 在 `src/` 下，我启动的命令路径错误。需要杀掉旧 session 重新部署。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "6f395a0e-9b56-4acc-aa65-c9eddb33bd24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L76xtE4kx6EJp7vRaetoWq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017dfCkLfmVWfUY4HGsNrUhd`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tmux kill-session -t eval-ablation-tau010-goal-s42 2>/dev/null; tmux kill-session -t eval-ablation-tau015-goal-s42 2>/dev/null; tmux kill-session -t eval-ablation-tau040-goal-s42 2>/dev/null; echo \"KILLED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "c77026b8-213f-44b9-b626-a55f95f74a9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L76xtE4kx6EJp7vRaetoWq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-23T13:07:25.911Z_
+
+<details><summary>↩ Tool result · `toolu_017dfCkLfmVWfUY4HGsNrUhd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"KILLED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "6897b98f-fa55-4ae0-a089-e9a60464ba13",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"KILLED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"KILLED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pf7a1WZdWjWetdLVnd1YkS`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ls -d /root/acr-vla-conformal-refinement/logs",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "a58026cc-916b-4a42-99f0-e79eca667e7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L76xtE4kx6EJp7vRaetoWq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-23T13:07:26.354Z_
+
+<details><summary>↩ Tool result · `toolu_01Pf7a1WZdWjWetdLVnd1YkS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "783cb056-7333-4ebd-9966-100624c7103b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+logs 目录存在。用正确路径 `src/evaluate.py` 重新启动 3 个实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "05035f55-69ab-4ea5-9749-9b6770ffc7e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WpLjuhTbPC9XXeqxuUxiFH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 39751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 687
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011XVivrp6w4op5pQzH3na8v`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && tmux new-session -d -s eval-ablation-tau010-goal-s42 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.10 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee logs/eval-ablation-tau010-goal-s42.log\" && echo \"LAUNCHED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "603a1eb0-878d-4998-b197-6b04e78a495d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WpLjuhTbPC9XXeqxuUxiFH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 39751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 687
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T13:07:36.276Z_
+
+<details><summary>↩ Tool result · `toolu_011XVivrp6w4op5pQzH3na8v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "48f813f8-27aa-485e-ac56-e02cc597ea3d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LAUNCHED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016XeApXcdrudwoB319zQcLw`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && tmux new-session -d -s eval-ablation-tau015-goal-s42 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.15 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee logs/eval-ablation-tau015-goal-s42.log\" && echo \"LAUNCHED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "530f9add-4be4-4f0d-b4de-4624665d2ae1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WpLjuhTbPC9XXeqxuUxiFH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 39751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 687
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T13:07:38.731Z_
+
+<details><summary>↩ Tool result · `toolu_016XeApXcdrudwoB319zQcLw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "ccb03c49-3e61-4e43-b360-ed01b9f7fad7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LAUNCHED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015uA7cWJkkQjkSmnwESR8MW`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && tmux new-session -d -s eval-ablation-tau040-goal-s42 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.40 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee logs/eval-ablation-tau040-goal-s42.log\" && echo \"LAUNCHED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "dd4aa763-8d74-4533-84f1-9bbf619ae89a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WpLjuhTbPC9XXeqxuUxiFH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 39751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 687
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T13:07:40.527Z_
+
+<details><summary>↩ Tool result · `toolu_015uA7cWJkkQjkSmnwESR8MW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "21127afa-74bb-40bb-a703-d330322ac8e3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LAUNCHED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+等待几秒让进程启动，然后验证 GPU 占用和 PID。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "8a4057e6-28ec-4acc-93e3-465edbb60eac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RbHYvr2keG3fqUoB3WkJDw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1375,
+      "cache_read_input_tokens": 40438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1375
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UpdycTJRUY8CG1GasGfrXz`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "b001bba7-68bc-4e51-a3d8-49573defe417",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RbHYvr2keG3fqUoB3WkJDw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1375,
+      "cache_read_input_tokens": 40438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1375
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-23T13:07:45.338Z_
+
+<details><summary>↩ Tool result · `toolu_01UpdycTJRUY8CG1GasGfrXz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 4 MiB, 0 %\\n1, 4 MiB, 0 %\\n2, 4 MiB, 0 %\\n3, 3081 MiB, 29 %\\n4, 3025 MiB, 22 %\\n5, 3119 MiB, 19 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "017eb243-4cbf-40bc-9cd4-b2c7cadfa863",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 4 MiB, 0 %\\\\n1, 4 MiB, 0 %\\\\n2, 4 MiB, 0 %\\\\n3, 3081 MiB, 29 %\\\\n4, 3025 MiB, 22 %\\\\n5, 3119 MiB, 19 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 4 MiB, 0 %\\n1, 4 MiB, 0 %\\n2, 4 MiB, 0 %\\n3, 3081 MiB, 29 %\\n4, 3025 MiB, 22 %\\n5, 3119 MiB, 19 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Gtv191pQCP4bjNmP7CeTP6`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "fc5cff59-d209-4039-87f2-15069e60f114",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RbHYvr2keG3fqUoB3WkJDw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1375,
+      "cache_read_input_tokens": 40438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1375
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-23T13:07:46.127Z_
+
+<details><summary>↩ Tool result · `toolu_01Gtv191pQCP4bjNmP7CeTP6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"711479, GPU-a0d22891-1964-0f75-4962-81994416abaf, 3063 MiB\\n711770, GPU-54175474-0aa4-3553-ee7c-968cb4b0f9ad, 3007 MiB\\n712378, GPU-e78bc8c3-4047-7933-7882-9f404fae347f, 3101 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "013d42c0-d4b2-41ac-8449-54690995bd25",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"711479, GPU-a0d22891-1964-0f75-4962-81994416abaf, 3063 MiB\\\\n711770, GPU-54175474-0aa4-3553-ee7c-968cb4b0f9ad, 3007 MiB\\\\n712378, GPU-e78bc8c3-4047-7933-7882-9f404fae347f, 3101 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"711479, GPU-a0d22891-1964-0f75-4962-81994416abaf, 3063 MiB\\n711770, GPU-54175474-0aa4-3553-ee7c-968cb4b0f9ad, 3007 MiB\\n712378, GPU-e78bc8c3-4047-7933-7882-9f404fae347f, 3101 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+GPU 0/1/2 only show 4 MiB, still basically idle. The compute apps only show the existing processes on GPU 3/4/5. The new processes haven't loaded the model yet or may have failed. Let me check the logs for errors.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "53bf3433-dbe0-4c44-95da-32b1947ab8c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bh6zj3XvLJAJTgH7yvHMfX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 680,
+      "cache_read_input_tokens": 41813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 680
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+GPU 0/1/2 仅 4 MiB，模型还没加载。检查日志看是否有错误。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "6975c32d-3488-4b92-8289-cfc4a07da061",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bh6zj3XvLJAJTgH7yvHMfX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 680,
+      "cache_read_input_tokens": 41813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 680
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C4KAk8m5fEFj7DsFCEH2id`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tail -20 /root/acr-vla-conformal-refinement/logs/eval-ablation-tau010-goal-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "77cb0ebf-9768-4f4d-b9d6-65b3dab802a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bh6zj3XvLJAJTgH7yvHMfX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 680,
+      "cache_read_input_tokens": 41813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 680
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-23T13:07:53.605Z_
+
+<details><summary>↩ Tool result · `toolu_01C4KAk8m5fEFj7DsFCEH2id`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.1_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.1, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  32%|███▏      | 156/489 [00:00<00:00, 1521.92it/s]\\rLoading weights:  80%|████████  | 392/489 [00:00<00:00, 2009.16it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 2008.12it/s]\\nReducing the number of VLM layers to 16 ...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "4e8013e9-75ad-42f1-b216-d0b8e6a7d128",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.1_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.1, 'n_action_steps': 10}\\\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\\\n[eval] max_steps set to 300 for benchmark goal\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  32%|███▏      | 156/489 [00:00<00:00, 1521.92it/s]\\\\rLoading weights:  80%|████████  | 392/489 [00:00<00:00, 2009.16it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 2008.12it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.1_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.1, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  32%|███▏      | 156/489 [00:00<00:00, 1521.92it/s]\\rLoading weights:  80%|████████  | 392/489 [00:00<00:00, 2009.16it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 2008.12it/s]\\nReducing the number of VLM layers to 16 ...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011MsgTkcZA9vXmPU1AnynxG`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tail -20 /root/acr-vla-conformal-refinement/logs/eval-ablation-tau015-goal-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "6a81b6b9-5da2-46dd-a402-0fdc908372c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bh6zj3XvLJAJTgH7yvHMfX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 680,
+      "cache_read_input_tokens": 41813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 680
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-23T13:07:54.549Z_
+
+<details><summary>↩ Tool result · `toolu_011MsgTkcZA9vXmPU1AnynxG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.15_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.15, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  59%|█████▉    | 288/489 [00:00<00:00, 2773.34it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3123.06it/s]\\nReducing the number of VLM layers to 16 ...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "b7c3ab3f-f8a1-4c02-b958-d810bf556db5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.15_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.15, 'n_action_steps': 10}\\\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\\\n[eval] max_steps set to 300 for benchmark goal\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  59%|█████▉    | 288/489 [00:00<00:00, 2773.34it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3123.06it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.15_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.15, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  59%|█████▉    | 288/489 [00:00<00:00, 2773.34it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3123.06it/s]\\nReducing the number of VLM layers to 16 ...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RnGZKCMa3qb2gewgVeWy1C`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tail -20 /root/acr-vla-conformal-refinement/logs/eval-ablation-tau040-goal-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "be1e5303-a0cc-4cf0-bbb9-360eab2a6f68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bh6zj3XvLJAJTgH7yvHMfX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 680,
+      "cache_read_input_tokens": 41813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 680
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-23T13:07:55.120Z_
+
+<details><summary>↩ Tool result · `toolu_01RnGZKCMa3qb2gewgVeWy1C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.4_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.4, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  63%|██████▎   | 309/489 [00:00<00:00, 3081.32it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3233.91it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "45486f0f-891e-40e3-ba34-34d17afa945a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.4_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.4, 'n_action_steps': 10}\\\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\\\n[eval] max_steps set to 300 for benchmark goal\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  63%|██████▎   | 309/489 [00:00<00:00, 3081.32it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3233.91it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.4_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.4, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  63%|██████▎   | 309/489 [00:00<00:00, 3081.32it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3233.91it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+3 个实验均在正常加载模型（SmolVLA weights loading）。现在更新 registry 状态为 RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "f952e7ce-948f-416d-8ab4-baa20e7996e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cm9ye8ttEyAyGuiYVPTarg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2582,
+      "cache_read_input_tokens": 42493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2582
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012VrcMLerayoD1iQvrEP94g`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau010-goal-s42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.10 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "server": "bjb2-28827",
+    "data_path": "LIBERO goal suite",
+    "data_count": 20,
+    "model_name": "smolvla + CRM 3suite v1",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "eval_data": "LIBERO goal benchmark"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "f7bfd52b-99fb-4ca3-91b3-64f5e8ee1858",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cm9ye8ttEyAyGuiYVPTarg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2582,
+      "cache_read_input_tokens": 42493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2582
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-23T13:08:07.049Z_
+
+<details><summary>↩ Tool result · `toolu_012VrcMLerayoD1iQvrEP94g`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.8242}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "73d97529-d56e-4c8d-8ce6-f58aaf7e96e3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8242}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.8242}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PKPBBoQE91AEPbnxtnkimT`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau015-goal-s42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.15 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "server": "bjb2-28827",
+    "data_path": "LIBERO goal suite",
+    "data_count": 20,
+    "model_name": "smolvla + CRM 3suite v1",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "eval_data": "LIBERO goal benchmark"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "b64cd96d-6cdf-46dd-a650-a428f3bf421b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cm9ye8ttEyAyGuiYVPTarg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2582,
+      "cache_read_input_tokens": 42493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2582
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Q9S92PZJ1pe45Fc1PMP7KC`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau040-goal-s42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.40 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "server": "bjb2-28827",
+    "data_path": "LIBERO goal suite",
+    "data_count": 20,
+    "model_name": "smolvla + CRM 3suite v1",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "eval_data": "LIBERO goal benchmark"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "f19b5b08-6d6d-4426-a17c-d52ce47fa944",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cm9ye8ttEyAyGuiYVPTarg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2582,
+      "cache_read_input_tokens": 42493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2582
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-23T13:08:11.109Z_
+
+<details><summary>↩ Tool result · `toolu_01PKPBBoQE91AEPbnxtnkimT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 3.089}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "92ef9fec-a094-48d8-8cbe-684be01f6242",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.089}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 3.089}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-23T13:08:14.192Z_
+
+<details><summary>↩ Tool result · `toolu_01Q9S92PZJ1pe45Fc1PMP7KC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 3.0678}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "6b3cb1f3-fc40-437c-ad9d-e00bcd2c7ee7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0678}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 3.0678}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+需要先过渡到 QUEUED 再到 RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "42aa15d7-55af-4d05-9dfa-80b0a5c2bb10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLUvFFG9fVtzZKTiLMEEwg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 45075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1507
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TV461tJ7s1skd6gwVsEMXL`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau010-goal-s42",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "49d5a312-4b2c-4930-980d-baa751fa7283",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLUvFFG9fVtzZKTiLMEEwg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 45075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1507
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TEyBsV7jpHE2XaNCzG7U7R`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau015-goal-s42",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "7ee4e631-8e27-4b07-9a84-e789cb44e90d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLUvFFG9fVtzZKTiLMEEwg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 45075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1507
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KsJrCfmF9dSSn1wSZfBYXP`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau040-goal-s42",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "408007fb-e76e-4484-b619-adc101c9187c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLUvFFG9fVtzZKTiLMEEwg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 45075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1507
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-23T13:08:23.132Z_
+
+<details><summary>↩ Tool result · `toolu_01TV461tJ7s1skd6gwVsEMXL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau010-goal-s42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:32.832Z\", \"updated_at\": \"2026-05-23T13:08:19.105Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.7231}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "4209eff8-3b55-4ef9-aaa8-25216b0ae26c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-ablation-tau010-goal-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T13:06:32.832Z\\\", \\\"updated_at\\\": \\\"2026-05-23T13:08:19.105Z\\\", \\\"hypothesis\\\": \\\"τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.7231}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau010-goal-s42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:32.832Z\", \"updated_at\": \"2026-05-23T13:08:19.105Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.7231}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-23T13:08:28.992Z_
+
+<details><summary>↩ Tool result · `toolu_01TEyBsV7jpHE2XaNCzG7U7R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau015-goal-s42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:36.431Z\", \"updated_at\": \"2026-05-23T13:08:24.890Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.8287}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "dd107206-4c83-42cd-9ef0-38e6267c3211",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-ablation-tau015-goal-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T13:06:36.431Z\\\", \\\"updated_at\\\": \\\"2026-05-23T13:08:24.890Z\\\", \\\"hypothesis\\\": \\\"τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.8287}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau015-goal-s42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:36.431Z\", \"updated_at\": \"2026-05-23T13:08:24.890Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.8287}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-23T13:08:34.800Z_
+
+<details><summary>↩ Tool result · `toolu_01KsJrCfmF9dSSn1wSZfBYXP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau040-goal-s42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:39.811Z\", \"updated_at\": \"2026-05-23T13:08:30.769Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.40 on Goal s42. Higher threshold → lower trigger rate → fewer corrections. Part of 5-point τ-sensitivity curve. Tests whether very conservative gating still maintains benefit.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.7939}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "1c6ff4a4-0c17-42c6-a1d5-01de7b3bca83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-ablation-tau040-goal-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T13:06:39.811Z\\\", \\\"updated_at\\\": \\\"2026-05-23T13:08:30.769Z\\\", \\\"hypothesis\\\": \\\"τ-sweep ablation: τ=0.40 on Goal s42. Higher threshold → lower trigger rate → fewer corrections. Part of 5-point τ-sensitivity curve. Tests whether very conservative gating still maintains benefit.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.7939}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau040-goal-s42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:39.811Z\", \"updated_at\": \"2026-05-23T13:08:30.769Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.40 on Goal s42. Higher threshold → lower trigger rate → fewer corrections. Part of 5-point τ-sensitivity curve. Tests whether very conservative gating still maintains benefit.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.7939}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KbXr4Jkfdeu4QH4C2oGMLB`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau010-goal-s42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.10 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "server": "bjb2-28827",
+    "data_path": "LIBERO goal suite",
+    "data_count": 20,
+    "model_name": "smolvla + CRM 3suite v1",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "eval_data": "LIBERO goal benchmark"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "11d94818-ebee-4a93-988d-46bc9c9731ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTGjmjHptFRAuvKGi6j54x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1107,
+      "cache_read_input_tokens": 46582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1107
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SEiCUtp1xmcynrq1VAEJ74`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau015-goal-s42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.15 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "server": "bjb2-28827",
+    "data_path": "LIBERO goal suite",
+    "data_count": 20,
+    "model_name": "smolvla + CRM 3suite v1",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "eval_data": "LIBERO goal benchmark"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "961b8a22-62ef-4548-bf78-3b9bdb4f40c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTGjmjHptFRAuvKGi6j54x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1107,
+      "cache_read_input_tokens": 46582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1107
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01ECqFb1mH5hWeA1E7y18wXz`</summary>
+
+```json
+{
+  "exp_id": "eval-ablation-tau040-goal-s42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.40 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "server": "bjb2-28827",
+    "data_path": "LIBERO goal suite",
+    "data_count": 20,
+    "model_name": "smolvla + CRM 3suite v1",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "eval_data": "LIBERO goal benchmark"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "15c2dd4b-e715-42fe-b00e-d09d1a9af12a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTGjmjHptFRAuvKGi6j54x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1107,
+      "cache_read_input_tokens": 46582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1107
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-23T13:09:00.222Z_
+
+<details><summary>↩ Tool result · `toolu_01KbXr4Jkfdeu4QH4C2oGMLB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau010-goal-s42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:32.832Z\", \"updated_at\": \"2026-05-23T13:08:52.499Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.10 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-28827\", \"data_path\": \"LIBERO goal suite\", \"data_count\": 20, \"model_name\": \"smolvla + CRM 3suite v1\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"eval_data\": \"LIBERO goal benchmark\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.1767}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "29725a94-e21a-41c1-8948-678651c24ed2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-ablation-tau010-goal-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T13:06:32.832Z\\\", \\\"updated_at\\\": \\\"2026-05-23T13:08:52.499Z\\\", \\\"hypothesis\\\": \\\"τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.10 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"LIBERO goal suite\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"smolvla + CRM 3suite v1\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO goal benchmark\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.1767}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau010-goal-s42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:32.832Z\", \"updated_at\": \"2026-05-23T13:08:52.499Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.10 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-28827\", \"data_path\": \"LIBERO goal suite\", \"data_count\": 20, \"model_name\": \"smolvla + CRM 3suite v1\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"eval_data\": \"LIBERO goal benchmark\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.1767}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-23T13:09:11.555Z_
+
+<details><summary>↩ Tool result · `toolu_01SEiCUtp1xmcynrq1VAEJ74`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau015-goal-s42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:36.431Z\", \"updated_at\": \"2026-05-23T13:09:03.521Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.15 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-28827\", \"data_path\": \"LIBERO goal suite\", \"data_count\": 20, \"model_name\": \"smolvla + CRM 3suite v1\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"eval_data\": \"LIBERO goal benchmark\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.316}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "b9261763-0499-4bcc-bd45-7c3ed98b7e64",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-ablation-tau015-goal-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T13:06:36.431Z\\\", \\\"updated_at\\\": \\\"2026-05-23T13:09:03.521Z\\\", \\\"hypothesis\\\": \\\"τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.15 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"LIBERO goal suite\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"smolvla + CRM 3suite v1\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO goal benchmark\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.316}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau015-goal-s42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:36.431Z\", \"updated_at\": \"2026-05-23T13:09:03.521Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.15 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-28827\", \"data_path\": \"LIBERO goal suite\", \"data_count\": 20, \"model_name\": \"smolvla + CRM 3suite v1\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"eval_data\": \"LIBERO goal benchmark\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.316}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-23T13:09:22.462Z_
+
+<details><summary>↩ Tool result · `toolu_01ECqFb1mH5hWeA1E7y18wXz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau040-goal-s42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:39.811Z\", \"updated_at\": \"2026-05-23T13:09:14.866Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.40 on Goal s42. Higher threshold → lower trigger rate → fewer corrections. Part of 5-point τ-sensitivity curve. Tests whether very conservative gating still maintains benefit.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.40 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-28827\", \"data_path\": \"LIBERO goal suite\", \"data_count\": 20, \"model_name\": \"smolvla + CRM 3suite v1\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"eval_data\": \"LIBERO goal benchmark\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.8884}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "fd2af55b-81c7-4902-97b1-a676d5382bb0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-ablation-tau040-goal-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T13:06:39.811Z\\\", \\\"updated_at\\\": \\\"2026-05-23T13:09:14.866Z\\\", \\\"hypothesis\\\": \\\"τ-sweep ablation: τ=0.40 on Goal s42. Higher threshold → lower trigger rate → fewer corrections. Part of 5-point τ-sensitivity curve. Tests whether very conservative gating still maintains benefit.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.40 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"LIBERO goal suite\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"smolvla + CRM 3suite v1\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO goal benchmark\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.8884}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-ablation-tau040-goal-s42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T13:06:39.811Z\", \"updated_at\": \"2026-05-23T13:09:14.866Z\", \"hypothesis\": \"τ-sweep ablation: τ=0.40 on Goal s42. Higher threshold → lower trigger rate → fewer corrections. Part of 5-point τ-sensitivity curve. Tests whether very conservative gating still maintains benefit.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.40 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-28827\", \"data_path\": \"LIBERO goal suite\", \"data_count\": 20, \"model_name\": \"smolvla + CRM 3suite v1\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"eval_data\": \"LIBERO goal benchmark\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.8884}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+3 个实验全部部署成功。汇总：
+
+| exp_id | GPU | τ | tmux session | 状态 |
+|--------|-----|-----|--------------|------|
+| `eval-ablation-tau010-goal-s42` | cuda:0 | 0.10 | `eval-ablation-tau010-goal-s42` | RUNNING |
+| `eval-ablation-tau015-goal-s42` | cuda:1 | 0.15 | `eval-ablation-tau015-goal-s42` | RUNNING |
+| `eval-ablation-tau040-goal-s42` | cuda:2 | 0.40 | `eval-ablation-tau040-goal-s42` | RUNNING |
+
+- 服务器：bjb2-28827
+- 日志：`logs/eval-ablation-tau{010,015,040}-goal-s42.log`
+- 3 个进程均已开始加载 SmolVLA 模型，正常运行中
+- CRM checkpoint: `crm_smolvla_3suite_v1/crm_best.pt`
+- 配置与 `eval-supp-goal-adapt-tau025-s42` 一致，仅 `--conformal_threshold` 不同
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "uuid": "505a6818-0d0e-410f-9569-7b3d46dd242b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U8RD8c2gvdAxD4Ve5E8XNH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2467,
+      "cache_read_input_tokens": 47689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2467
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 89_
+
+3 个实验全部部署成功。汇总：
+
+| exp_id | GPU | τ | tmux session | 状态 |
+|--------|-----|-----|--------------|------|
+| `eval-ablation-tau010-goal-s42` | cuda:0 | 0.10 | `eval-ablation-tau010-goal-s42` | RUNNING |
+| `eval-ablation-tau015-goal-s42` | cuda:1 | 0.15 | `eval-ablation-tau015-goal-s42` | RUNNING |
+| `eval-ablation-tau040-goal-s42` | cuda:2 | 0.40 | `eval-ablation-tau040-goal-s42` | RUNNING |
+
+- 服务器：bjb2-28827
+- 日志：`logs/eval-ablation-tau{010,015,040}-goal-s42.log`
+- 3 个进程均已开始加载 SmolVLA 模型，正常运行中
+- CRM checkpoint: `crm_smolvla_3suite_v1/crm_best.pt`
+- 配置与 `eval-supp-goal-adapt-tau025-s42` 一致，仅 `--conformal_threshold` 不同
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 215980,
+  "duration_api_ms": 158325,
+  "num_turns": 34,
+  "stop_reason": "end_turn",
+  "session_id": "6e0da151-8144-403e-b59a-3f0e51248892",
+  "total_cost_usd": 0.7200587500000002,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 38709,
+    "cache_read_input_tokens": 533631,
+    "output_tokens": 8381,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 38709,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 326,
+        "cache_read_input_tokens": 47689,
+        "cache_creation_input_tokens": 2467,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2467
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1562,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001672,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 8381,
+      "cacheReadInputTokens": 533631,
+      "cacheCreationInputTokens": 38709,
+      "webSearchRequests": 0,
+      "costUSD": 0.7183867500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "342931bf-7b7b-4420-b4d1-2da8c681b20c"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-object-default-seed47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:32:37.333Z",
+    "updated_at": "2026-05-18T16:33:23.165Z",
+    "hypothesis": "Obs-only CRM (ε=default) seed47 on LIBERO-Object. GPU 双跑补 seed。"
+  },
+  "timestamp": "2026-05-18T16:33:23.582361+00:00",
+  "trigger": "update_registry"
+}

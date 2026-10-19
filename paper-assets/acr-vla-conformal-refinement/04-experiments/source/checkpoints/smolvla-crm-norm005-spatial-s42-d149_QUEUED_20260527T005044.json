@@ -1,0 +1,14 @@
+{
+  "exp_id": "smolvla-crm-norm005-spatial-s42-d149",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:50:42.172Z",
+    "updated_at": "2026-05-27T00:50:42.172Z"
+  },
+  "timestamp": "2026-05-27T00:50:44.737590+00:00",
+  "trigger": "update_registry"
+}

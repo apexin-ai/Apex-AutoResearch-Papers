@@ -1,0 +1,66 @@
+{
+  "exp_id": "eval-k2-tau035-spatial-s42-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:40:18.112Z",
+    "updated_at": "2026-05-27T10:01:14.007Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.35 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark spatial --seed 42 --n_rollouts 20 --output_file logs/eval_spatial_adaptive_k2_tau035_s42.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "89495",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-k2-tau035-spatial-s42-v2.log",
+      "submitted_at": "2026-05-27T06:40:15.427Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 200,
+      "data_path": "LIBERO-Spatial",
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "wall_clock_seconds": 12058.6,
+      "gpu_hours": 3.35
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T08:39:41.398Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T08:38:59.050404+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T08:40:32.602947+00:00"
+        }
+      ]
+    },
+    "hypothesis": "ACR-VLA adaptive (K=2, tau=0.35) on Spatial with higher threshold triggers corrections less frequently, testing selectivity-performance tradeoff",
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 80.5,
+      "successes": 161,
+      "trials": 200,
+      "benchmark": "spatial",
+      "mode": "adaptive_conformal_crm",
+      "K": 2,
+      "conformal_threshold": 0.35,
+      "max_correction_norm": 0.2,
+      "mean_uncertainty": 0.1866,
+      "trigger_rate": 0.118
+    },
+    "completed_at": "2026-05-27T10:01:14.007Z"
+  },
+  "timestamp": "2026-05-27T10:01:17.557679+00:00",
+  "trigger": "update_registry"
+}

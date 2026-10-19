@@ -1,0 +1,15 @@
+{
+  "exp_id": "precompute-smolvla-goal-bjb2-28827",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:56:22.224Z",
+    "updated_at": "2026-05-22T07:56:56.056Z",
+    "hypothesis": "Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Goal for unified 4-suite CRM training (parallel path on bjb2-28827)"
+  },
+  "timestamp": "2026-05-22T07:56:57.076140+00:00",
+  "trigger": "update_registry"
+}

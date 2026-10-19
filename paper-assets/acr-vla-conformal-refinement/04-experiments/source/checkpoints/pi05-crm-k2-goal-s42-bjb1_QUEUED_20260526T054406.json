@@ -1,0 +1,15 @@
+{
+  "exp_id": "pi05-crm-k2-goal-s42-bjb1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T05:43:02.189Z",
+    "updated_at": "2026-05-26T05:44:04.521Z",
+    "hypothesis": "π0.5 CRM K=2 obs_only on goal s42. Table 2 cross-architecture CRM impact analysis."
+  },
+  "timestamp": "2026-05-26T05:44:06.305746+00:00",
+  "trigger": "update_registry"
+}

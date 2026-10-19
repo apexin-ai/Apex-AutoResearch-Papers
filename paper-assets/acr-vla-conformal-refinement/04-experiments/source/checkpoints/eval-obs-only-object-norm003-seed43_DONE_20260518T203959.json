@@ -1,0 +1,53 @@
+{
+  "exp_id": "eval-obs-only-object-norm003-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-17T13:33:23.925Z",
+    "updated_at": "2026-05-18T20:39:58.647Z",
+    "hypothesis": "obs_only CRM (ε=0.03) seed43 on LIBERO-Object. plan_500 低 norm 补数据：seed42 ε=0.03=16%。多 seed 确认 obs_only 在极低 correction norm 下仍稳定。",
+    "notes": "PID 621127 on bjb1-18228 cuda:1 died. Process not found, GPU idle. Ghost experiment discovered during registration attempt.",
+    "completed_at": "2026-05-17T13:33:52.018Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "PID 621127 on bjb1-18228 cuda:1 died. Process not found, GPU idle. Ghost experiment discovered during registration attempt."
+      }
+    },
+    "server": "bjb1-18228",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-18228",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-18T14:37:56.416Z",
+      "command": "cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 43 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed43.json",
+      "finished_at": "2026-05-18T20:39:52.321Z",
+      "training_hours": 6.03
+    },
+    "spec": {
+      "command": "cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 43 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed43.json",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "861030",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed43.log",
+      "submitted_at": "2026-05-18T14:37:59.471Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 21718.1,
+      "gpu_hours": 6.03
+    },
+    "pid": "861030",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed43.log",
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-18T20:39:59.563459+00:00",
+  "trigger": "update_registry"
+}

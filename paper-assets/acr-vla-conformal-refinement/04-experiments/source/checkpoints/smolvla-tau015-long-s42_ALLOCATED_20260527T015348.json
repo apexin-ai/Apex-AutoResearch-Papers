@@ -1,0 +1,27 @@
+{
+  "exp_id": "smolvla-tau015-long-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:04:48.552Z",
+    "updated_at": "2026-05-27T01:53:46.610Z",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.15 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --output_file logs/eval_long_adaptive_tau015_s42.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "915",
+      "log_path": "~/runs/acr-vla-conformal-refinement/smolvla-tau015-long-s42.log",
+      "submitted_at": "2026-05-26T22:04:46.039Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-27T01:53:48.536146+00:00",
+  "trigger": "update_registry"
+}

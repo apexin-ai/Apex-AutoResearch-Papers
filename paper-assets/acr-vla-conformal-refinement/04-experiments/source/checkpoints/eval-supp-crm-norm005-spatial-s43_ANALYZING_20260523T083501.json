@@ -1,0 +1,107 @@
+{
+  "exp_id": "eval-supp-crm-norm005-spatial-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:30:33.726Z",
+    "updated_at": "2026-05-23T08:34:59.924Z",
+    "hypothesis": "CRM obs_only norm=0.05 multi-seed validation on Spatial (seed43). norm=0.05 always-on achieved 80% SR on seed42 (best always-on config). Testing reproducibility for cross-seed consistency claim.",
+    "parent": "eval-supp-crm-norm02-spatial-s42-r2",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark spatial --seed 43 --n_rollouts 20 --max_correction_norm 0.05 2>&1 | tee logs/eval-supp-crm-norm005-spatial-s43.log\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "743110",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-crm-norm005-spatial-s43.log",
+      "submitted_at": "2026-05-23T06:33:20.234Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 200,
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "model_name": "smolvla",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T08:29:37.380Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T08:30:13.860672+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 81,
+      "total_rollouts": 200,
+      "total_successes": 162,
+      "per_task": {
+        "between_plate_and_ramekin": {
+          "sr": 100,
+          "success": 20,
+          "total": 20
+        },
+        "next_to_ramekin": {
+          "sr": 95,
+          "success": 19,
+          "total": 20
+        },
+        "from_table_center": {
+          "sr": 95,
+          "success": 19,
+          "total": 20
+        },
+        "on_cookie_box": {
+          "sr": 100,
+          "success": 20,
+          "total": 20
+        },
+        "in_top_drawer_wooden_cabinet": {
+          "sr": 75,
+          "success": 15,
+          "total": 20
+        },
+        "on_ramekin": {
+          "sr": 0,
+          "success": 0,
+          "total": 20
+        },
+        "next_to_cookie_box": {
+          "sr": 95,
+          "success": 19,
+          "total": 20
+        },
+        "on_stove": {
+          "sr": 85,
+          "success": 17,
+          "total": 20
+        },
+        "next_to_plate": {
+          "sr": 70,
+          "success": 14,
+          "total": 20
+        },
+        "on_wooden_cabinet": {
+          "sr": 95,
+          "success": 19,
+          "total": 20
+        }
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval-supp-crm-norm005-spatial-s43.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T08:35:01.267311+00:00",
+  "trigger": "update_registry"
+}

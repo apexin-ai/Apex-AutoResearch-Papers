@@ -1,0 +1,31 @@
+{
+  "exp_id": "smolvla-tau025-goal-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 2,
+    "created_at": "2026-05-26T22:06:30.962Z",
+    "updated_at": "2026-05-26T23:02:27.843Z",
+    "reproduce": {
+      "finished_at": "2026-05-26T22:31:51.760Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-26T22:32:05.982Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T22:32:37.967958+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    }
+  },
+  "timestamp": "2026-05-26T23:02:31.105088+00:00",
+  "trigger": "update_registry"
+}

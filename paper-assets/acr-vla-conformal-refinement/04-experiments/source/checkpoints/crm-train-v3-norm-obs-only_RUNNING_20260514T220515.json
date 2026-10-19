@@ -1,0 +1,35 @@
+{
+  "exp_id": "crm-train-v3-norm-obs-only",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:09:00.829Z",
+    "updated_at": "2026-05-14T22:05:14.997Z",
+    "hypothesis": "Ablation: obs_only input mode (no uncertainty features) with normalization. Isolates contribution of obs features vs conformal features.",
+    "spec": {
+      "command": "python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache_v5 --output_dir /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/ --K 10 --epochs 50 --batch_size 512 --lr 0.016 --input_mode obs_only --seed 42",
+      "server": "bjb1-18228",
+      "data_path": "/root/autodl-tmp/crm_cache_v5/spatial/",
+      "data_count": 12167,
+      "model_name": "CRM-MLP-Normalized (obs_only)",
+      "seed": 42
+    },
+    "metrics": {
+      "current_epoch": "26/50",
+      "best_val_loss": 0.016689,
+      "best_epoch": 23,
+      "latest_val_loss": 0.016738,
+      "latest_train_loss": 0.026442,
+      "params": 327198,
+      "runtime": "36m",
+      "eta": "~35m",
+      "snapshot_time": "2026-05-15T05:26Z"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T22:05:15.141462+00:00",
+  "trigger": "update_registry"
+}

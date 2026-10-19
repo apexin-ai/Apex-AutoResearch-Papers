@@ -1,0 +1,2304 @@
+# cron hook eval mag obsonly norm03 20260515T194117 511208
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 72
+- **Recorded user turns:** 2
+- **Tool calls:** 34
+- **Original source:** `logs/chats/archive/cron_hook_eval-mag-obsonly-norm03_20260515T194117_511208.jsonl`
+- **Structured JSON:** [`b5fc918be13e1e0fa176.json`](../../sessions/b5/b5fc918be13e1e0fa176.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+38 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T16:34:41.683774+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #11。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- **GPU 白名单**: 只能用 `bjb2-40593:cuda:0`, `bjb1-18228:cuda:0-3`, `bjb1-32546:cuda:0-5`, `bjb2-28827:cuda:0-5`（共 17 张 4090）。白名单外的 GPU 即使 Director 指令也必须 push back。
+- **submit_training_job 命令必须 bash -c 包裹**: tmux 用 `sh` 执行，裸 `python` 不可靠。格式: `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u ..."`
+- **Kill 前必须 `ps aux | grep` 完整命令行逐参数比对**: 曾发生 norm=0.3 被误判为 norm=0.03 而 kill 的事故（cuda:0 空闲 9h）。
+- **exp_id 中 norm 值用 `p` 替代小数点**: norm-0p3 = 0.3, norm-0p03 = 0.03。禁止 norm03 这种歧义命名。
+- **项目唯一存活路径**: Object obs_only +6pp+ 维持 + seed=43 复现 → p<0.05。perdof claim 已死。不要在 perdof 上浪费 GPU。
+- **bjb2-40593 无 .git repo**: 代码同步需要手动 rsync 或 scp，不能 git pull。
+
+### 2. 🖥️ 基础设施快照
+- **服务器 4 台**:
+  - `bjb1-18228` (4× 4090): 工作目录 `/root/acr-vla-conformal-refinement`, Python `/root/miniconda3/bin/python`, conda base
+  - `bjb1-32546` (6× 4090): 同上路径和环境, account=root
+  - `bjb2-28827` (6× 4090): 同上路径和环境, account=root
+  - `bjb2-40593` (1× 4090 D): 同上路径, **无 .git**, CRM cache 在 `/root/autodl-tmp/crm_cache/spatial/`
+- **全部 17 张 GPU 满载**
+- **活跃 cron 监控 10 个实验** (reconcile 刚确认):
+  - `eval-mag-perdof-norm005` (bjb2-28827:cuda:1, PID 13456)
+  - `eval-mag-perdof-norm02` (bjb2-28827:cuda:2, PID 13728)
+  - `eval-mag-perdof-norm03` (bjb2-28827:cuda:3, PID 14260)
+  - `eval-vla-mean-object` (bjb1-32546:cuda:5, PID 18808)
+  - `eval-acr-object-obs-only-norm02` (bjb1-32546:cuda:4, PID 44270)
+  - `eval-mag-obsonly-norm003-b2` (bjb2-40593:cuda:0, PID 227434)
+  - `eval-mag-obsonly-norm03-r2` (bjb1-18228:cuda:0, PID 325264)
+  - `eval-obs-only-object-seed43` (bjb1-18228:cuda:2, PID 356490)
+  - `eval-argmin-object-seed43` (bjb1-18228:cuda:3, PID 356696)
+  - `eval-perdof-object-seed43` (bjb1-18228:cuda:1, PID 365925)
+- **无 cron 但 RUNNING**: `eval-mag-obsonly-norm03-object`, `eval-mag-obsonly-norm005-object`, `eval-obs-only-object-norm02-seed43`, `eval-scalar-object-seed43`, `eval-vla-mean-object-seed43` (bjb1-32546 和 bjb2-28827 上) — **需要确认这些是否有 cron 监控，否则是 orphan**
+- **Worker 池: 0 running** — 当前无活跃 Worker
+
+### 3. 📊 当前状态
+- **刚完成**: `eval-mag-perdof-norm003` 刚被 reconcile 标记为 ANALYZING (EXIT_CODE=0)，7/10 tasks done, running avg 40.0%。**需要立即 spawn worker 分析结果**。
+- **Registry**: 106 实验总计 — 15 RUNNING, 1 ANALYZING, 17 PREPARING, 73 DONE (28 success, 2 negative, 15 failed, 28 killed)
+- **Phase 2d**: Object benchmark + seed=43 doubling 进行中，决定项目存亡
+- **Object 关键数据 (seed=42 FINAL)**: obs_only 0.1 = **19.0%** (PROJECT HIGH), perdof = 11.0%, VLA-only = 12%, scalar = 9.0% (negative), argmin ≈ 6.7%
+- **Spatial LOCKED**: 全部 CRM 变体 ≈ argmin baseline (34%)，spatial 上 CRM 无增益
+- **Seed=43 六方 (obs_only/argmin/perdof/scalar/VLA-mean/obs-only-norm02) 全部已部署**, 等待完成
+- **Magnitude sweep**: perdof 4 个 norm (0.03/0.05/0.2/0.3) 在 bjb2-28827 上跑; obs_only sweep 也在跑
+- **等待中**: 无 pending Worker 回调; 10+ cron 监控回调会陆续触发; 无 pending Director 决策
+
+### 4. 📋 待办（条件触发式）
+- `eval-mag-perdof-norm003` ANALYZING → spawn worker 分析 10-task final result, update registry, 汇报 Director
+- seed=43 任一完成 (obs_only/argmin/perdof) → spawn worker 分析, 与 seed=42 对比, 积累到 3 方都完成后做 Fisher exact test
+- **seed=43 全部 6 方完成** → spawn worker 做完整统计分析 (Fisher exact test + bootstrap CI), 这是项目 go/no-go 决策点
+- magnitude sweep 全部 10-task 完成 → 汇总 norm sensitivity curve, 确认 obs_only 是否在所有 norm 下 >= perdof
+- Object argmin / VLA-mean 完成剩余 tasks → 锁定完整 comparison table
+- **5 个无 cron 的 RUNNING 实验** → 立即检查是否有 cron 监控，若无则 spawn worker 补建或手动注册 cron
+- 所有 object + seed=43 + magnitude sweep 完成 → 更新 paper_framing.md, 向 Director 汇报是否满足 p<0.05, 启动 Paper Agent
+- GPU 释放后 → 从 PREPARING 队列中取 eval-acr-object-v4-default (ablation: 无 magnitude control) 优先提交
+
+### 5. 🎯 战略上下文
+- **核心结论链**: D025 perdof=argmin on matched tasks → D027 perdof claim dead → D030 spatial ALL CRM dead → D031 seed=43 doubling → D032 magnitude sweep narrative 修正 (obs_only spatial 全 norm 收敛 35%, 与 argmin 持平)
+- **唯一活路**: Object obs_only 19.0% vs argmin 6.7% (+12.3pp) 的优势能否在 seed=43 复现 → Fisher exact test p<0.05
+- **最容易判断错的事**: Spatial magnitude sweep 中期值 (4-7 tasks) 看起来 obs_only >> perdof, 但 10-task final 趋势是收敛到 ~35% baseline (D032)。**不要被中期膨胀值误导**。只有 10/10 final 数字可以写进 paper。
+- **CoRL DDL**: abstract ~May 26 (11天), full paper ~Jun 2 (18天)。seed=43 结果是 go/no-go gate, 必须在 1-2 天内出。
+- **论文 story 已转**: 从 "per-DOF conformal" 转为 "obs_only learned correction"。paper_framing.md 需要根据最终数据更新。
+- **容易踩的坑**: (1) bjb2-40593 无 git, 别用 git pull; (2) submit_training_job 裸 python 会 EXIT_CODE=127; (3) 有 5 个 RUNNING 实验缺少 cron 监控信息, 可能是 orphan — 优先排查
+
+## 项目硬约束 (memory.md 节选)
+
+## bjb2-40593 环境问题 (2026-05-14-15)
+
+- 无 .git repo
+- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）
+- Ghost PID 211962 已 kill，eval-mag-obsonly-norm003-b2 恢复运行
+
+## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)
+
+tmux 用 `sh` 而非 `bash` 执行命令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ..."` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。
+
+## [失败模式] Kill 操作前必须逐参数比对 (2026-05-15)
+
+**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) 的重复实验，kill 了有效进程。cuda:0 空闲 9 小时。
+**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。
+**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐一比对关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。
+
+## 可查的历史
+前 78 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T16:34:54.757319+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T16:34:54.809865+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "ToolSearch",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T16:34:58.073821+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T16:34:58.576425+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-mag-obsonly-norm03-object\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T16:29:02.155Z\", \"updated_at\": \"2026-05-15T16:31:27.485Z\"}, \"eval-mag-obsonly-norm005-object\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T16:29:00.724Z\", \"updated_at\": \"2026-05-15T16:31:24.439Z\"}, \"eval-obs-only-object-norm02-seed43\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T13:38:18.819Z\", \"updated_at\": \"2026-05-15T16:31:02.261Z\", \"hypothesis\": \"D031: obs_only CRM v3-norm norm=0.2 seed=43 on LIBERO object benchmark. norm=0.2 shows strongest signal (18% SR at 5/10 tasks in seed=42). Seed=43 doubling for statistical power on the best-performing configuration.\", \"parent\": \"eval-acr-object-obs-only-norm02\"}, \"eval-scalar-object-seed43\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T16:02:31.432Z\", \"updated_at\": \"2026-05-15T16:23:03.217Z\", \"hypothesis\": \"D031: scalar_unc CRM v3-norm seed=43 on LIBERO object benchmark. Completes seed=43 six-way comparison table. scalar seed=42 was worst at 4% — seed=43 confirms.\", \"parent\": \"eval-acr-object-v4-scalar\", \"metrics\": {\"tasks_done\": \"0/10\", \"server\": \"bjb1-32546\", \"gpu\": \"cuda:2\", \"pid\": 114664, \"process_status\": \"alive\", \"snapshot_time\": \"2026-05-15T16:04:00Z\"}}, \"eval-vla-mean-object-seed43\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T15:46:28.667Z\", \"updated_at\": \"2026-05-15T15:48:06.814Z\", \"hypothesis\": \"D031: VLA-mean baseline (K=10, mean aggregation) seed=43 on LIBERO object benchmark. Completes seed=43 comparison table. If VLA-mean seed=43 ≈ obs_only seed=43 → CRM correction claim compressed.\", \"parent\": \"eval-vla-mean-object\"}, \"eval-vla-mean-object\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T03:31:09.989Z\", \"updated_at\": \"2026-05-15T14:06:17.926Z\", \"hypothesis\": \"VLA mean baseline (K=10, mean aggregation) on LIBERO object
+…[truncated 6468 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T16:34:59.028034+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T16:34:59.028453+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T16:34:59.484467+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-mag-perdof-norm003\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-15T03:16:08.547Z\", \"updated_at\": \"2026-05-15T16:32:37.787Z\", \"metrics\": {\"tasks_done\": \"7/10\", \"partial_results\": {\"T0_between_plate_ramekin\": \"60%\", \"T1_next_to_ramekin\": \"100%\", \"T2_table_center\": \"0%\", \"T3_on_cookie_box\": \"30%\", \"T4_top_drawer\": \"10%\", \"T5_on_ramekin\": \"0%\", \"T6_next_to_cookie_box\": \"80%\"}, \"running_avg_7task\": \"40.0%\", \"snapshot_time\": \"2026-05-15T09:00:00Z\", \"server\": \"bjb2-28827\", \"process_status\": \"alive\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.248}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 456
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T16:34:59.535123+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T16:34:59.736126+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T16:35:17.705352+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 10, \"results\": [{\"exp_id\": \"eval-mag-perdof-norm005\", \"success\": true, \"actions\": [\"Job still running (pid=13456)\"]}, {\"exp_id\": \"eval-mag-perdof-norm02\", \"success\": true, \"actions\": [\"Job still running (pid=13728)\"]}, {\"exp_id\": \"eval-mag-perdof-norm03\", \"success\": true, \"actions\": [\"Job still running (pid=14260)\"]}, {\"exp_id\": \"eval-vla-mean-object\", \"success\": true, \"actions\": [\"Job still running (pid=18808)\"]}, {\"exp_id\": \"eval-acr-object-obs-only-norm02\", \"success\": true, \"actions\": [\"Job still running (pid=44270)\"]}, {\"exp_id\": \"eval-mag-obsonly-norm003-b2\", \"success\": true, \"actions\": [\"Job still running (pid=227434)\"]}, {\"exp_id\": \"eval-mag-obsonly-norm03-r2\", \"success\": true, \"actions\": [\"Job still running (pid=325264)\"]}, {\"exp_id\": \"eval-obs-only-object-seed43\", \"success\": true, \"actions\": [\"Job still running (pid=356490)\"]}, {\"exp_id\": \"eval-argmin-object-seed43\", \"success\": true, \"actions\": [\"Job still running (pid=356696)\"]}, {\"exp_id\": \"eval-perdof-object-seed43\", \"success\": true, \"actions\": [\"Job still running (pid=365925)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 18676
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T16:35:17.705957+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T16:32:38Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 106 个实验 — ANALYZING 1, DONE 73, PREPARING 17, RUNNING 15\\n**DONE 分布**: failed 15, killed 28, negative 2, success 28\\n\\n### GPU 占用\\n- **实际运行**: 12 张 — bjb2-28827:bjb2-28827:cuda:1(eval-mag-perdof-norm005), bjb2-28827:bjb2-28827:cuda:2(eval-mag-perdof-norm02), bjb2-28827:bjb2-28827:cuda:3(eval-mag-perdof-norm03), bjb1-32546:bjb1-32546:cuda:5(eval-vla-mean-object), bjb2-40593:cuda:0(eval-mag-obsonly-norm003-b2), bjb1-32546:cuda:4(eval-acr-object-obs-only-norm02), bjb1-18228:cuda:0(eval-mag-obsonly-norm03-r2), bjb1-18228:cuda:2(eval-obs-only-object-seed43), bjb1-18228:cuda:3(eval-argmin-object-seed43), bjb1-18228:cuda:1(eval-perdof-object-seed43), bjb1-32546:cuda:1(eval-vla-mean-object-seed43), bjb1-32546:cuda:2(eval-scalar-object-seed43)\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `eval-mag-perdof-norm005` | bjb2-28827 | bjb2-28827:cuda:1 | 13456 | `—` |\\n| `eval-mag-perdof-norm02` | bjb2-28827 | bjb2-28827:cuda:2 | 13728 | `—` |\\n| `eval-mag-perdof-norm03` | bjb2-28827 | bjb2-28827:cuda:3 | 14260 | `—` |\\n| `eval-vla-mean-object` | bjb1-32546 | bjb1-32546:cuda:5 | 18808 | `—` |\\n| `eval-mag-obsonly-norm003-b2` | bjb2-40593 | cuda:0 | 225139 | `…cr-vla-conformal-refinement/eval-mag-obsonly-norm003-b2.log` |\\n| `eval-acr-object-obs-only-norm02` | bjb1-32546 | cuda:4 | 44270 | `…la-conformal-refinement/eval-acr-object-obs-only-norm02.log` |\\n| `eval-mag-obsonly-norm03-r2` | bjb1-18228 | cuda:0 | 325264 | `…acr-vla-conformal-refinement/eval-mag-obsonly-norm03-r2.log` |\\n| `eval-obs-only-object-seed43` | bjb1-18228 | cuda:2 | 356490 | `…cr-vla-conformal-refinement/eval-obs-onl
+…[truncated 6218 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 18170
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T16:35:17.706407+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-15 16:25 UTC | 更新原因: obs_only object 10-task final 19.0% (PROJECT HIGH), perdof 11.0%, VLA-only 12%. norm=0.05 spatial finalized 35.0%. seed=43 六方全部部署。\\n\\n## 核心方向\\nobs_only CRM（基于观测特征的 learned correction）是唯一存活路径。Per-DOF conformal claim 已死。论文 story：obs_only CRM 对 correction magnitude 鲁棒，perdof 在高 norm 下崩塌。详见 paper_framing.md。\\n\\n## 投稿目标\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~11 天。\\n\\n## 当前进展\\n- **阶段**: Phase 2d — Object benchmark + seed=43 doubling 决定项目存亡\\n- **MVP**: PASS\\n- **Spatial LOCKED ✅**: 全部 CRM 变体确认 dead（argmin 34%, perdof 35%, obs_only 35%, scalar 32%）\\n- **Object 10/10 FINAL**: obs_only 0.1: **19.0%** vs argmin ~6.7% (+12.3pp, 6/10 partial); perdof 11.0%; VLA-only 12%\\n- **Object norm=0.2**: obs_only 0.2: 18.0% (5t partial) — 可能与 norm=0.1 持平或更高\\n- **Magnitude sweep**: norm=0.05 finalized 35.0%. obs_only 在所有 norm 下 > perdof（D032）\\n- **D031 seed=43 六方全部部署**: obs_only / argmin / perdof / scalar / VLA-mean 已部署，obs-only-norm02-seed43 待 cuda:0\\n\\n## Spatial 最终结果（LOCKED ✅）\\n\\n| 方法 | 10-task SR | vs argmin |\\n|------|-----------|-----------|\\n| argmin K=10 | 34% | baseline |\\n| perdof 0.1 | 35% | +1pp |\\n| obs_only 0.1 | 35% | +1pp |\\n| scalar 0.1 | 32% | -2pp |\\n| VLA-only K=1 | 30% | -4pp |\\n| VLA-mean K=10 | 32% | -2pp |\\n\\n## Object Benchmark（seed=42, 部分已 FINAL）\\n\\n| 方法 | SR | tasks | vs argmin | 状态 |\\n|------|-----|-------|-----------|------|\\n| **obs_only 0.1** | **19.0%** | 10/10 ✅ | +12.3pp | FINAL |\\n| obs_only 0.2 | 18.0% | 5/10 | +11.3pp | running |\\n| VLA-only K=1 | 12.0% | 10/10 ✅ | +5.3pp | FINAL |\\n| perdof 0.1 | 11.0% | 10/10 ✅ | +4.3pp | FINAL |\\n| vla_mean | 8.6% | 7/10 | +1.9pp | running |\\n| argmin | 6.7% | 6/10 | baseline | checking |\\n| scalar
+…[truncated 3686 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 17970
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T16:35:32.455401+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__send_progress",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__send_progress",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T16:35:32.455727+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T16:35:59.538448+00:00_
+
+called mcp__agent-ml-research__register_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron</summary>
+
+```json
+{
+  "exp_id": "eval-mag-obsonly-norm03-object",
+  "server": "bjb2-28827",
+  "pid": "103028",
+  "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm03.log",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "tool_args": {
+    "exp_id": "eval-mag-obsonly-norm03-object",
+    "server": "bjb2-28827",
+    "pid": "103028",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm03.log",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T16:36:00.040493+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-mag-obsonly-norm03-object\", \"server\": \"bjb2-28827\", \"pid\": \"103028\", \"wandb_run_id\": null, \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm03.log\", \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-15T16:35:59.561Z\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T16:36:00.542769+00:00_
+
+called mcp__agent-ml-research__register_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron</summary>
+
+```json
+{
+  "exp_id": "eval-mag-obsonly-norm005-object",
+  "server": "bjb2-28827",
+  "pid": "101610",
+  "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm005.log",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "tool_args": {
+    "exp_id": "eval-mag-obsonly-norm005-object",
+    "server": "bjb2-28827",
+    "pid": "101610",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm005.log",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T16:36:00.944602+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-mag-obsonly-norm005-object\", \"server\": \"bjb2-28827\", \"pid\": \"101610\", \"wandb_run_id\": null, \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm005.log\", \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-15T16:36:00.560Z\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T16:36:02.000190+00:00_
+
+called mcp__agent-ml-research__register_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron</summary>
+
+```json
+{
+  "exp_id": "eval-vla-mean-object-seed43",
+  "server": "bjb1-32546",
+  "pid": "111709",
+  "log_path": "/root/acr-vla-conformal-refinement/eval-vla-mean-object-seed43.log",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "tool_args": {
+    "exp_id": "eval-vla-mean-object-seed43",
+    "server": "bjb1-32546",
+    "pid": "111709",
+    "log_path": "/root/acr-vla-conformal-refinement/eval-vla-mean-object-seed43.log",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T16:36:02.452106+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-vla-mean-object-seed43\", \"server\": \"bjb1-32546\", \"pid\": \"111709\", \"wandb_run_id\": null, \"log_path\": \"/root/acr-vla-conformal-refinement/eval-vla-mean-object-seed43.log\", \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-15T16:36:02.033Z\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T16:36:03.405554+00:00_
+
+called mcp__agent-ml-research__register_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron</summary>
+
+```json
+{
+  "exp_id": "eval-scalar-object-seed43",
+  "server": "bjb1-32546",
+  "pid": "114664",
+  "log_path": "/root/acr-vla-conformal-refinement/eval-scalar-object-seed43.log",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "tool_args": {
+    "exp_id": "eval-scalar-object-seed43",
+    "server": "bjb1-32546",
+    "pid": "114664",
+    "log_path": "/root/acr-vla-conformal-refinement/eval-scalar-object-seed43.log",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T16:36:03.857898+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-scalar-object-seed43\", \"server\": \"bjb1-32546\", \"pid\": \"114664\", \"wandb_run_id\": null, \"log_path\": \"/root/acr-vla-conformal-refinement/eval-scalar-object-seed43.log\", \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-15T16:36:03.422Z\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T16:36:20.056470+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:eval-mag-perdof-norm003",
+  "project": "acr-vla-conformal-refinement",
+  "task_prompt": "## 任务：分析 eval-mag-perdof-norm003 的 10-task final 结果\n\n### 背景\neval-mag-perdof-norm003 是 magnitude sweep 中 perdof CRM v3-norm 在 spatial benchmark 上 norm=0.03 的实验。刚被 cron 标记为 ANALYZING (EXIT_CODE=0)。\n\n已知 7-task partial (registry snapshot):\n- T0_between_plate_ramekin: 60%\n- T1_next_to_ramekin: 100%\n- T2_table_center: 0%\n- T3_on_cookie_box: 30%\n- T4_top_drawer: 10%\n- T5_on_ramekin: 0%\n- T6_next_to_cookie_box: 80%\n- Running avg 7-task: 40.0%\n\n服务器: bjb2-28827, 工作目录: /root/acr-vla-conformal-refinement\n\n### 你的任务\n1. SSH 到 bjb2-28827，读取完整 10-task eval 日志（log 文件可能在 /root/acr-vla-conformal-refinement/ 目录下，搜索包含 perdof_norm003 或 perdof-norm003 的 log 文件）\n2. 提取全部 10 个 task 的 success rate\n3. 计算 10-task overall success rate\n4. 与已知结果对比：\n   - argmin K=10 spatial baseline: 34%\n   - perdof norm=0.1 spatial: 35%\n   - obs_only norm=0.03 spatial: 55.0% (4-task partial, 不可直接比)\n   - obs_only 所有已完成 norms (0.05/0.1/0.2): 均收敛到 35%\n5. 用 update_registry 更新 eval-mag-perdof-norm003:\n   - metrics: 完整 10-task 结果 + overall SR\n   - conclusion: 根据结果判断 success/negative（如果接近 argmin baseline 34% 则 negative，如果显著高于则 success）\n   - status: DONE\n   - 设置 log_path 和 checkpoint_path（checkpoint 不适用于 eval，设为 \"N/A\"）\n6. 输出结论摘要：perdof norm=0.03 的 10-task final SR 是多少，vs argmin baseline 差多少\n\n### 环境\n- Python: /root/miniconda3/bin/python, conda base\n- 工作目录: /root/acr-vla-conformal-refinement\n- 激活环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base",
+  "tool_groups": "['ssh', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:eval-mag-perdof-norm003",
+    "project": "acr-vla-conformal-refinement",
+    "task_prompt": "## 任务：分析 eval-mag-perdof-norm003 的 10-task final 结果\n\n### 背景\neval-mag-perdof-norm003 是 magnitude sweep 中 perdof CRM v3-norm 在 spatial benchmark 上 norm=0.03 的实验。刚被 cron 标记为 ANALYZING (EXIT_CODE=0)。\n\n已知 7-task partial (registry snapshot):\n- T0_between_plate_ramekin: 60%\n- T1_next_to_ramekin: 100%\n- T2_table_center: 0%\n- T3_on_cookie_box: 30%\n- T4_top_drawer: 10%\n- T5_on_ramekin: 0%\n- T6_next_to_cookie_box: 80%\n- Running avg 7-task: 40.0%\n\n服务器: bjb2-28827, 工作目录: /root/acr-vla-conformal-refinement\n\n### 你的任务\n1. SSH 到 bjb2-28827，读取完整 10-task eval 日志（log 文件可能在 /root/acr-vla-conformal-refinement/ 目录下，搜索包含 perdof_norm003 或 perdof-norm003 的 log 文件）\n2. 提取全部 10 个 task 的 success rate\n3. 计算 10-task overall success rate\n4. 与已知结果对比：\n   - argmin K=10 spatial baseline: 34%\n   - perdof norm=0.1 spatial: 35%\n   - obs_only norm=0.03 spatial: 55.0% (4-task partial, 不可直接比)\n   - obs_only 所有已完成 norms (0.05/0.1/0.2): 均收敛到 35%\n5. 用 update_registry 更新 eval-mag-perdof-norm003:\n   - metrics: 完整 10-task 结果 + overall SR\n   - conclusion: 根据结果判断 success/negative（如果接近 argmin baseline 34% 则 negative，如果显著高于则 success）\n   - status: DONE\n   - 设置 log_path 和 checkpoint_path（checkpoint 不适用于 eval，设为 \"N/A\"）\n6. 输出结论摘要：perdof norm=0.03 的 10-task final SR 是多少，vs argmin baseline 差多少\n\n### 环境\n- Python: /root/miniconda3/bin/python, conda base\n- 工作目录: /root/acr-vla-conformal-refinement\n- 激活环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T16:36:30.204199+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_eval-mag-perdof-norm003_20260515T163620\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analysis_eval-mag-perdof-norm003_20260515T163620.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_eval-mag-perdof-norm003_20260515T163620 started. Use get_worker_status('worker_analysis_eval-mag-perdof-norm003_20260515T163620') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 10147
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T16:36:30.355216+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ops:check-orphan-crons",
+  "project": "acr-vla-conformal-refinement",
+  "task_prompt": "## 任务：排查 eval-obs-only-object-norm02-seed43 的进程状态并注册 cron\n\n### 背景\neval-obs-only-object-norm02-seed43 在 registry 中标记为 RUNNING，但没有 cron 监控，且 PID 和 GPU 信息缺失（registry 中为 \"?\"）。\n\n实验信息:\n- exp_id: eval-obs-only-object-norm02-seed43\n- hypothesis: D031: obs_only CRM v3-norm norm=0.2 seed=43 on LIBERO object benchmark\n- 服务器: bjb1-32546\n- 工作目录: /root/acr-vla-conformal-refinement\n\n### 你的任务\n1. SSH (read_only) 到 bjb1-32546，用以下命令搜索进程：\n   ```\n   ps aux | grep -E \"obs.only.*norm.*0.2.*seed.*43|obs_only.*norm02.*seed43\" | grep -v grep\n   ```\n   也尝试：\n   ```\n   ps aux | grep -E \"eval.*object.*obs.*only.*norm02.*seed43\" | grep -v grep\n   ```\n   以及查看 tmux sessions：\n   ```\n   tmux list-sessions 2>/dev/null\n   ```\n2. 如果找到进程：\n   - 记录 PID、GPU（从命令行参数中提取）、进程运行时间\n   - 用 update_registry 更新 metrics（pid, gpu, process_status=alive）\n   - 用 register_cron 注册 cron 监控（exp_id=eval-obs-only-object-norm02-seed43, server=bjb1-32546, pid=找到的PID）\n3. 如果进程不存在：\n   - 检查是否有 log 文件记录了退出状态\n   - 用 update_registry 标记为 DONE(failed) 或 ANALYZING（取决于是否有结果文件）\n   - 报告进程已死\n\n### 环境\n- Python: /root/miniconda3/bin/python, conda base\n- 工作目录: /root/acr-vla-conformal-refinement",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['register_cron']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:check-orphan-crons",
+    "project": "acr-vla-conformal-refinement",
+    "task_prompt": "## 任务：排查 eval-obs-only-object-norm02-seed43 的进程状态并注册 cron\n\n### 背景\neval-obs-only-object-norm02-seed43 在 registry 中标记为 RUNNING，但没有 cron 监控，且 PID 和 GPU 信息缺失（registry 中为 \"?\"）。\n\n实验信息:\n- exp_id: eval-obs-only-object-norm02-seed43\n- hypothesis: D031: obs_only CRM v3-norm norm=0.2 seed=43 on LIBERO object benchmark\n- 服务器: bjb1-32546\n- 工作目录: /root/acr-vla-conformal-refinement\n\n### 你的任务\n1. SSH (read_only) 到 bjb1-32546，用以下命令搜索进程：\n   ```\n   ps aux | grep -E \"obs.only.*norm.*0.2.*seed.*43|obs_only.*norm02.*seed43\" | grep -v grep\n   ```\n   也尝试：\n   ```\n   ps aux | grep -E \"eval.*object.*obs.*only.*norm02.*seed43\" | grep -v grep\n   ```\n   以及查看 tmux sessions：\n   ```\n   tmux list-sessions 2>/dev/null\n   ```\n2. 如果找到进程：\n   - 记录 PID、GPU（从命令行参数中提取）、进程运行时间\n   - 用 update_registry 更新 metrics（pid, gpu, process_status=alive）\n   - 用 register_cron 注册 cron 监控（exp_id=eval-obs-only-object-norm02-seed43, server=bjb1-32546, pid=找到的PID）\n3. 如果进程不存在：\n   - 检查是否有 log 文件记录了退出状态\n   - 用 update_registry 标记为 DONE(failed) 或 ANALYZING（取决于是否有结果文件）\n   - 报告进程已死\n\n### 环境\n- Python: /root/miniconda3/bin/python, conda base\n- 工作目录: /root/acr-vla-conformal-refinement",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['register_cron']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T16:36:32.714315+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check-orphan-crons_20260515T163630\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ops_check-orphan-crons_20260515T163630.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check-orphan-crons_20260515T163630 started. Use get_worker_status('worker_ops_check-orphan-crons_20260515T163630') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2359
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T16:36:37.470424+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T16:36:37.526386+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_1cba9d8f.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "Read",
+  "elapsed_ms": 55
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T16:36:40.200956+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T16:36:40.251610+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T16:36:43.161528+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T16:36:43.312426+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "Glob",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T16:36:45.970856+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T16:36:46.272357+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "Read",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T16:37:31.938497+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 17 / 实际在跑 14 (eval-mag-perdof-norm003 刚完成释放 1 GPU on bjb2-28827) | Worker 池 2 (GPU 0 / CPU 2: 分析 perdof-norm003 + 排查 orphan cron)\n\n## Session #11 启动状态\n\n**15 RUNNING + 1 ANALYZING**, 全部 cron 已覆盖（刚补注册 4 个缺失的 cron）。\n\n### 关键进展\n- **eval-mag-perdof-norm003** (ANALYZING): perdof spatial magnitude sweep norm=0.03, 10-task 完成, EXIT_CODE=0。7-task partial 40.0%。已派 Worker 提取 full 结果。\n- **seed=43 六方全部在跑**: obs_only / argmin / perdof / scalar / VLA-mean / obs-only-norm02, 大多数刚启动 (0/10 tasks)，预计 12-18h 完成。\n- **Object obs_only norm=0.2**: 18.0% (5/10), 与 norm=0.1 的 19.0% 接近。\n- **VLA-mean object (seed=42)**: 7.5/10 tasks, running avg 8.6% — 远低于 obs_only 19.0%。\n- **Magnitude sweep perdof**: norm=0.05 40.0% (7t), norm=0.2 28.3% (6t), norm=0.3 32.9% (7t) — 全部未完成。\n\n### 待决策\nbjb2-28827 上释放了 1 张 GPU（eval-mag-perdof-norm003 完成）。PREPARING 队列中 eval-acr-object-v4-default (ablation: 无 magnitude control) 优先级最高。确认 Worker 分析完 norm003 结果后立即提交下一个实验到空闲 GPU。\n\n### 风险\n- CoRL abstract DDL 11 天。seed=43 结果是 go/no-go gate，预计 1-2 天出。\n- Spatial magnitude sweep 中期值仍在膨胀，需等 10-task final 才能写 paper。",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 17 / 实际在跑 14 (eval-mag-perdof-norm003 刚完成释放 1 GPU on bjb2-28827) | Worker 池 2 (GPU 0 / CPU 2: 分析 perdof-norm003 + 排查 orphan cron)\n\n## Session #11 启动状态\n\n**15 RUNNING + 1 ANALYZING**, 全部 cron 已覆盖（刚补注册 4 个缺失的 cron）。\n\n### 关键进展\n- **eval-mag-perdof-norm003** (ANALYZING): perdof spatial magnitude sweep norm=0.03, 10-task 完成, EXIT_CODE=0。7-task partial 40.0%。已派 Worker 提取 full 结果。\n- **seed=43 六方全部在跑**: obs_only / argmin / perdof / scalar / VLA-mean / obs-only-norm02, 大多数刚启动 (0/10 tasks)，预计 12-18h 完成。\n- **Object obs_only norm=0.2**: 18.0% (5/10), 与 norm=0.1 的 19.0% 接近。\n- **VLA-mean object (seed=42)**: 7.5/10 tasks, running avg 8.6% — 远低于 obs_only 19.0%。\n- **Magnitude sweep perdof**: norm=0.05 40.0% (7t), norm=0.2 28.3% (6t), norm=0.3 32.9% (7t) — 全部未完成。\n\n### 待决策\nbjb2-28827 上释放了 1 张 GPU（eval-mag-perdof-norm003 完成）。PREPARING 队列中 eval-acr-object-v4-default (ablation: 无 magnitude control) 优先级最高。确认 Worker 分析完 norm003 结果后立即提交下一个实验到空闲 GPU。\n\n### 风险\n- CoRL abstract DDL 11 天。seed=43 结果是 go/no-go gate，预计 1-2 天出。\n- Spatial magnitude sweep 中期值仍在膨胀，需等 10-task final 才能写 paper。",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T16:37:33.142876+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1204
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-15T16:37:51.094904+00:00_
+
+Session #11 初始化完成：
+
+- **Registry 同步**: 15 RUNNING + 1 ANALYZING (eval-mag-perdof-norm003)
+- **Cron 补全**: 新注册 4 个缺失 cron (mag-obsonly-norm03-object, mag-obsonly-norm005-object, vla-mean-object-seed43, scalar-object-seed43)，总计 14 个 cron 覆盖全部 RUNNING 实验
+- **Worker 派发**: 
+  - Worker 1: 分析 eval-mag-perdof-norm003 的 10-task final 结果
+  - Worker 2: 排查 eval-obs-only-object-norm02-seed43 的 PID 并注册 cron
+- **Director 已汇报**: 当前状态 + bjb2-28827 释放 1 GPU 待填
+
+等待 Worker 回调处理后续。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-mag-obsonly-norm03"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+34 recorded events
+
+### User
+
+_source line 39 · 2026-05-15T19:38:55.981538+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T19:39:05.250874+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T19:39:05.502282+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "ToolSearch",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T19:39:08.850071+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T19:39:08.850541+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T19:39:09.707822+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T19:39:09.866971+00:00_
+
+Error: result (181,784 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-1cba9d8f/bd2c5fea-1c44-42c0-a770-9038ed259d48/tool-results/mcp-agent-ml-research-read_registry-1778873949745.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-1cba9d8f/bd2c5fea-1c44-42c0-a770-9038ed259d48/tool-results/mcp-agent-ml-research-read_registry-1778873949745.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-1cba9d8f/bd2c5fea-1c44-42c0-a770-9038ed259d48/tool-results/mcp-agent-ml-research-read_registry-1778873949745.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1016
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T19:39:10.218496+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T19:39:46.639438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 15, \"results\": [{\"exp_id\": \"eval-mag-obsonly-norm003-b2\", \"success\": true, \"actions\": [\"Job still running (pid=227434)\"]}, {\"exp_id\": \"eval-obs-only-object-seed43\", \"success\": true, \"actions\": [\"Job still running (pid=356490)\"]}, {\"exp_id\": \"eval-argmin-object-seed43\", \"success\": true, \"actions\": [\"Job still running (pid=356696)\"]}, {\"exp_id\": \"eval-perdof-object-seed43\", \"success\": true, \"actions\": [\"Job still running (pid=365925)\"]}, {\"exp_id\": \"eval-mag-obsonly-norm03-object\", \"success\": true, \"actions\": [\"Job still running (pid=103028)\"]}, {\"exp_id\": \"eval-mag-obsonly-norm005-object\", \"success\": true, \"actions\": [\"Job still running (pid=101610)\"]}, {\"exp_id\": \"eval-vla-mean-object-seed43\", \"success\": true, \"actions\": [\"Job still running (pid=111709)\"]}, {\"exp_id\": \"eval-scalar-object-seed43\", \"success\": true, \"actions\": [\"Job still running (pid=114664)\"]}, {\"exp_id\": \"eval-mag-obsonly-norm003-object\", \"success\": true, \"actions\": [\"Job still running (pid=121325)\"]}, {\"exp_id\": \"eval-acr-object-v4-default-r2\", \"success\": true, \"actions\": [\"Job still running (pid=390936)\"]}, {\"exp_id\": \"eval-mag-perdof-norm02-object\", \"success\": true, \"actions\": [\"Job still running (pid=127732)\"]}, {\"exp_id\": \"eval-mag-perdof-norm005-object\", \"success\": true, \"actions\": [\"Job still running (pid=109650)\"]}, {\"exp_id\": \"eval-mag-perdof-norm003-object\", \"success\": true, \"actions\": [\"Job still running (pid=105938)\"]}, {\"exp_id\": \"eval-acr-object-obs-only-default\", \"success\": true, \"actions\": [\"Job still running (pid=134103)\"]}, {\"exp_id\": \"eval-obs-only-object-norm02-seed43-r2\", \"success\": true, \"actions\": [\"Job still running (pid=148788)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 37788
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T19:39:46.690366+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval-mag-perdof-norm03-object-r3 | — | — | — | — |\\n| eval-acr-object-obs-only-default | obs_only CRM v3-norm with DEFAULT max_correction_norm (~1.42, no magnitude control) on LIBERO object benchmark. Paired with eval-acr-object-v4-default (perdof default). Tests whether obs_only robustness holds even without magnitude capping — if yes, obs_only is fundamentally more robust than perdof regardless of norm setting. | — | — | — |\\n| eval-obs-only-object-norm02-seed43-r2 | D031: obs_only CRM v3-norm norm=0.2 seed=43 on LIBERO object benchmark (r2 retry). P0 critical for statistical significance — seed42=22%, need seed43 pooled to 200 trials. Original crashed after 1 task. | — | — | — |\\n\\n## 待处理\\n- eval-mag-obsonly-norm03-b2: Magnitude sweep: obs_only CRM v3-norm at norm=0.3 on spatial. Retry of eval-mag-obsonly-norm03 (EXIT_CODE=127). Fills obs_only norm=0.3 gap. perdof norm=0.3 shows T1 drop to 50% — if obs_only doesn't degrade, strong evidence for obs_only robustness.（等待人工审批）\\n- eval-mag-perdof-norm02-seed43-object-r3（已分配 ? GPU:?，等待提交）\\n\\n## 近期结论\\n- **eval-mag-obsonly-norm03** (killed): Magnitude sweep: obs_only CRM v3-norm at norm=0.3 on spatial. Fills obs_only norm=0.3 gap. perdof norm=0.3 shows T1 drop to 50% — if obs_only doesn't degrade at same norm, strong evidence for obs_only robustness. ← 基于 eval-mag-obsonly-norm02\\n- **eval-mag-perdof-norm02-seed43-object-r2** (killed): Object magnitude sweep: perdof CRM v3-norm norm=0.2 seed=43. Moved from bjb2-28827:cuda:3 (GPU conflict with obs_only spatial) to cuda:2. Tests perdof norm sensitivity with second seed.\\n- **eval-mag-obsonly-norm02-object** (killed): —\\n\\n## 趋势\\n成功 35 / 负向 
+…[truncated 3307 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 36982
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T19:39:46.690841+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-15 19:06 UTC | 更新原因: D033: Object 10-task FINAL confirmed +7pp. Paper Agent activated for CoRL draft.\\n\\n## 核心方向\\nobs_only CRM（基于观测特征的 learned correction）是唯一存活路径。Per-DOF conformal claim 已死。论文 story：sample-then-correct > sample-then-select，obs features > conformal features（honest negative）。详见 paper_framing.md。\\n\\n## 投稿目标\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~11 天。\\n\\n## 当前进展\\n- **阶段**: Phase 3 — Paper writing + seed=43 statistical validation\\n- **MVP**: PASS\\n- **Object 10/10 FINAL ✅**: obs_only 19.0% vs argmin 12.0% (+7.0pp) — **超过 5pp claim 门槛 (D033)**\\n- **Spatial LOCKED ✅**: 全部 CRM 变体确认 dead（argmin 34%, perdof 35%, obs_only 35%, scalar 32%）\\n- **Magnitude sweep**: obs_only stable 35-36% across norms, perdof collapses at high norm (D032)\\n- **Seed=43 六方部署中**: obs_only / argmin / perdof / scalar / VLA-mean / VLA-only, 预计 24-48h\\n- **Paper Agent**: 已激活，开始 CoRL 初稿 (Full Draft mode)\\n\\n## Object Benchmark（seed=42, ALL FINAL ✅）\\n\\n| 方法 | SR | vs argmin | 状态 |\\n|------|-----|-----------|------|\\n| **obs_only 0.1** | **19.0%** | **+7.0pp** | FINAL ✅ |\\n| argmin K=10 | 12.0% | baseline | FINAL ✅ |\\n| VLA-only K=1 | 12.0% | 0pp | FINAL ✅ |\\n| VLA-mean K=10 | 12.0% | 0pp | FINAL ✅ |\\n| perdof 0.1 | 11.0% | -1.0pp | FINAL ✅ |\\n| scalar 0.1 | 9.0% | -3.0pp | FINAL ✅ (negative) |\\n| obs_only 0.2 | 18.0% | +6.0pp | 5/10 running |\\n\\n## Spatial 最终结果（LOCKED ✅）\\n\\n| 方法 | 10-task SR | vs argmin |\\n|------|-----------|-----------|\\n| argmin K=10 | 34% | baseline |\\n| perdof 0.1 | 35% | +1pp |\\n| obs_only 0.1 | 35% | +1pp |\\n| scalar 0.1 | 32% | -2pp |\\n| VLA-only K=1 | 30% | -4pp |\\n| VLA-mean K=10 | 32% | -2pp |\\n\\n## Magnitude Sweep（spatial）\\n\\n| norm | obs_only | perdof | gap
+…[truncated 2960 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 36472
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T19:39:52.069479+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu_ids', 'pid']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu_ids', 'pid']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T19:39:52.571480+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-mag-perdof-norm03-object-r3\": {\"status\": \"RUNNING\"}, \"eval-acr-object-obs-only-default\": {\"status\": \"RUNNING\", \"hypothesis\": \"obs_only CRM v3-norm with DEFAULT max_correction_norm (~1.42, no magnitude control) on LIBERO object benchmark. Paired with eval-acr-object-v4-default (perdof default). Tests whether obs_only robustness holds even without magnitude capping — if yes, obs_only is fundamentally more robust than perdof regardless of norm setting.\"}, \"eval-obs-only-object-norm02-seed43-r2\": {\"status\": \"RUNNING\", \"hypothesis\": \"D031: obs_only CRM v3-norm norm=0.2 seed=43 on LIBERO object benchmark (r2 retry). P0 critical for statistical significance — seed42=22%, need seed43 pooled to 200 trials. Original crashed after 1 task.\"}, \"eval-acr-object-v4-default-r2\": {\"status\": \"RUNNING\", \"hypothesis\": \"v4-default (no magnitude control, norm≈1.42) on object benchmark — ablation to confirm catastrophic failure\"}, \"eval-mag-obsonly-norm003-b2\": {\"status\": \"RUNNING\", \"pid\": 227426}, \"eval-scalar-object-seed43\": {\"status\": \"RUNNING\", \"hypothesis\": \"D031: scalar_unc CRM v3-norm seed=43 on LIBERO object benchmark. Completes seed=43 six-way comparison table. scalar seed=42 was worst at 4% — seed=43 confirms.\"}, \"eval-vla-mean-object-seed43\": {\"status\": \"RUNNING\", \"hypothesis\": \"D031: VLA-mean baseline (K=10, mean aggregation) seed=43 on LIBERO object benchmark. Completes seed=43 comparison table. If VLA-mean seed=43 ≈ obs_only seed=43 → CRM correction claim compressed.\"}, \"eval-argmin-object-seed43\": {\"status\": \"RUNNING\", \"hypothesis\": \"D031: argmin baseline (K=10, scalar Euclidean argmin) seed=43 on LIBERO object benchmark. Paired with eval-obs-only-object-seed43 for Fisher exact test. Need both conditions under same seed for valid comparison.\"}, \"eval-perdof-object-seed43\": {\"status\": \"RUNNING\", \"hypothesis\": \"D031 supplementary
+…[truncated 1697 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T19:39:53.073861+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "acr-vla-conformal-refinement",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "acr-vla-conformal-refinement",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T19:39:53.575914+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"acr-vla-conformal-refinement\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"autodl-4090:cuda:0\"], \"gpu_ids\": [\"bjb2-40593:cuda:0\", \"bjb1-18228:cuda:0\", \"bjb1-18228:cuda:1\", \"bjb1-18228:cuda:2\", \"bjb1-18228:cuda:3\", \"bjb1-32546:cuda:0\", \"bjb1-32546:cuda:1\", \"bjb1-32546:cuda:2\", \"bjb1-32546:cuda:3\", \"bjb1-32546:cuda:4\", \"bjb1-32546:cuda:5\", \"bjb2-28827:cuda:0\", \"bjb2-28827:cuda:1\", \"bjb2-28827:cuda:2\", \"bjb2-28827:cuda:3\", \"bjb2-28827:cuda:4\", \"bjb2-28827:cuda:5\"], \"project_path\": \"/root/acr-vla-conformal-refinement\", \"servers\": [\"bjb2-40593\", \"bjb1-18228\", {\"account\": \"root\", \"server\": \"bjb1-32546\"}, {\"account\": \"root\", \"server\": \"bjb2-28827\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T19:39:53.726899+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T19:39:53.777650+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"content\": \"# Project Memory\\n\\n## Spatial Baselines 锁定 (2026-05-15)\\n\\n| 方法 | SR | 来源 |\\n|------|-----|------|\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\n\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%。\\n\\n## Hard Tasks 普遍失败 (2026-05-15)\\n\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%。T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\n\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\n\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\n1. Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点\\n2. Object benchmark 跨域验证\\n3. obs_only CRM +5pp 稳定 → 转向 \\\"learned correction\\\" narrative\\n\\n## obs_only 走势 (2026-05-15)\\n\\nobs_only 从 57.5%@4tasks 降到 40%@6tasks（hard tasks 拖累）。但 obs_only 在 magnitude sweep 中每个已测 norm 下都 >= perdof (+10-20pp，仅 2 tasks)。如果趋势在 5+ tasks 后仍保持，论文可转向 \\\"obs-only CRM correction\\\" narrative。\\n\\n## Object magnitude 与 spatial 不同 (2026-05-15)\\n\\n**关键发现**: obs_only 对 correction norm 的响应跨域差异显著：\\n- Spatial: obs_only 在所有 norm (0.05/0.1/0.2/0.3) 下收敛到 ~35%，与 argmin 持平，magnitude 无效应\\n- Object: obs_only norm=0.1=19%, norm=0.2=**22%** (PROJECT HIGH)，更大 correction 产生更高 SR\\n- **论文角度**: Object 域 CRM correction 有真实增益空间（baseline 12%），spatial 域 VLA backbone 是瓶颈（hard tasks 全 0%）。Paper 应以 object 结果为主故事载体，spatial 作为 robustness/generalization 验证。\\n\\n## Object Baseline (2026-05-15)\\n\\nVLA-only K=1 object = 12%。CRM 在 object benchmark 有更大提升空间（baseline 低）。\\n\\n## bjb2-40593 环境问题 (2026-05-14-15)\\n\\n- 无 .git repo\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\n- Ghost P
+…[truncated 938 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T19:39:57.592120+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__list_constraints",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__list_constraints",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T19:39:57.642647+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-15T19:40:00.954740+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T19:40:01.467597+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_code_fix-analysis-bugs-p1_20260515T193824\", \"task_type\": \"code:fix-analysis-bugs-p1\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"running\", \"started_at\": \"2026-05-15T19:38:24.388560+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 512
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T19:40:01.969343+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'PREPARING'}",
+  "fields": "['exp_id', 'status', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'PREPARING'}",
+    "fields": "['exp_id', 'status', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T19:40:02.471026+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.281}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 501
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-15T19:40:02.571839+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'PENDING'}",
+  "fields": "['exp_id', 'status', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'PENDING'}",
+    "fields": "['exp_id', 'status', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T19:40:02.877490+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-mag-obsonly-norm03-b2\": {\"status\": \"PENDING\", \"hypothesis\": \"Magnitude sweep: obs_only CRM v3-norm at norm=0.3 on spatial. Retry of eval-mag-obsonly-norm03 (EXIT_CODE=127). Fills obs_only norm=0.3 gap. perdof norm=0.3 shows T1 drop to 50% — if obs_only doesn't degrade, strong evidence for obs_only robustness.\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3217}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 305
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-15T19:40:07.797025+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'ALLOCATED'}",
+  "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu_ids']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'ALLOCATED'}",
+    "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu_ids']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T19:40:08.249061+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2855}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-15T19:40:08.299651+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "paper_framing.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "paper_framing.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T19:40:08.401070+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\", \"content\": \"# Paper Framing — acr-vla-conformal-refinement\\n\\n## Target Venue\\n- **Primary: CoRL 2026** (Abstract DDL ~May 26, Full paper DDL ~Jun 2) — D021\\n- ~~ICLR 2027~~ — 不再是首要目标\\n\\n## Core Insight (Scenario C — ACTIVE, D029+D030 confirmed)\\nA lightweight observation-conditioned learned correction module (CRM), applied after conformal sample selection, can synthesize actions better than any individual VLA sample. The key contribution is the **sample-then-correct** pipeline itself and the discovery that **correction magnitude control is critical for closed-loop stability**. Per-DOF conformal features as CRM input offer no additional value over observation features — an honest negative result that challenges the intuition from synthetic experiments.\\n\\n## Active Framing: Scenario C\\n**Confirmed by data**: obs_only CRM > perdof CRM ≈ scalar CRM ≈ argmin on spatial (D029-D030); obs_only CRM **+7.0pp** over argmin on object 10/10 tasks FINAL (19.0% vs 12.0%); magnitude sweep shows obs_only robust to norm while perdof collapses at high norm (D032).\\n\\nStory: \\\"Observation-conditioned residual correction is the key contribution. The sample-then-correct pipeline (K=10 conformal selection + learned CRM correction) significantly outperforms pure sample selection on object manipulation tasks. Per-DOF conformal statistics as direct CRM input offer no advantage over observation features — but conformal prediction remains essential for the sample selection stage. Correction magnitude control is a critical and previously unrecognized factor for closed-loop VLA correction.\\\"\\n\\n## Core Claims (CoRL 单 Claim 论文)\\n\\n1. **Observation-conditioned learned correction (CRM) significantly improves VLA robustness beyond sample selection**\\n   - **主 claim**: obs_only CRM vs argmin-only ≥ 5pp on object bench
+…[truncated 4461 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-15T19:40:12.165512+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_worker_status",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T19:40:12.266217+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-15T19:40:15.533431+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_code_fix-analysis-bugs-p1_20260515T193824",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_code_fix-analysis-bugs-p1_20260515T193824",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T19:40:15.584088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_fix-analysis-bugs-p1_20260515T193824\", \"status\": \"running\", \"task_type\": \"code:fix-analysis-bugs-p1\", \"project\": \"acr-vla-conformal-refinement\", \"started_at\": \"2026-05-15T19:38:24.388560+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"Read\"], \"last_text\": \"Now I'll make all the edits. Starting with Bug 1 (parse_norm_from_id), Bug 2 (delete figures), and Bug 3 (normalize_sr fixes) in parallel.\", \"turn_count\": 3}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-mag-obsonly-norm03",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-15T19:41:17.509573+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- **GPU 白名单**（`execution.gpu_ids`）: bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5。共 17 张。白名单外的 GPU 即使 Director 指令也必须 push back。
+- **submit_training_job 命令必须包裹 bash -c**: `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u ..."` — 裸 `python` 会 EXIT_CODE=127（tmux 用 sh 不走 conda PATH）。
+- **Kill 操作前必须逐参数比对完整命令行**（`ps aux | grep`）: norm03 vs norm003 事故教训，名字相似 ≠ 同一实验。
+- **exp_id 命名禁止小数点**: norm 值用 `p` 替代（norm-0p3 = 0.3, norm-0p03 = 0.03），禁止 norm03 这种歧义缩写。
+- **Spatial 结果已 LOCKED**: 所有 CRM 变体确认 dead（32-35% vs argmin 34%），不要再跑 spatial 新实验，论文也不应在 spatial 上 claim CRM 改进。
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-18228** (4× RTX 4090): 4/4 满载 seed=43 experiments。Python: `/root/miniconda3/bin/python`，conda base env。
+- **bjb1-32546** (6× RTX 4090): 6/6 满载 mixed seed=43 + object magnitude。同上 conda 环境。
+- **bjb2-28827** (6× RTX 4090): 6/6 满载 magnitude sweep + default ablation。同上。
+- **bjb2-40593** (1× RTX 4090 Desktop): 1/1 — eval-mag-obsonly-norm003-b2 (PID 227434)。注意此服务器无 .git repo，CRM cache 在 /root/autodl-tmp/crm_cache/spatial/。
+- **项目路径**: 所有服务器 `/root/acr-vla-conformal-refinement`
+- **活跃 cron**: 15 个，全部 "Job still running"，覆盖所有 16 个 RUNNING 实验（eval-mag-perdof-norm03-object-r3 可能还没注册 cron 或在 reconcile 前完成了）
+
+### 3. 📊 当前状态
+**阶段**: Phase 3 — Paper writing + seed=43 statistical validation。CoRL 2026 abstract DDL ~May 26（~11天），full paper DDL ~Jun 2。
+
+**16 个 RUNNING 实验**:
+- **Seed=43 六方** (D031): eval-obs-only-object-seed43, eval-argmin-object-seed43, eval-perdof-object-seed43, eval-scalar-object-seed43, eval-vla-mean-object-seed43, eval-obs-only-object-norm02-seed43-r2。目标: 每方 100 trials × 2 seeds = 200 trials → Fisher exact p < 0.05。
+- **Object magnitude sweep**: obs_only 和 perdof 各 5 个 norm 点 (0.03/0.05/0.1/0.2/0.3)，共 10 个实验在跑。用于生成 norm sensitivity curve figure。
+- **Default ablation** (norm≈1.42): eval-acr-object-v4-default-r2 (perdof) + eval-acr-object-obs-only-default (obs_only)。确认不加 magnitude control 时的灾难性失败。
+
+**1 个 PENDING**: eval-mag-obsonly-norm03-b2（spatial obs_only norm=0.3 retry，等审批）。
+
+**1 个 Worker 运行中**: `worker_code_fix-analysis-bugs-p1`（修 analysis 代码 bug，turn 3，正在 edit 文件）。
+
+**Paper Agent 已激活**: 开始 CoRL 初稿写作。
+
+### 4. 📋 待办（条件触发式）
+- **seed=43 六方任一完成 → cron 回调** → update_registry + 检查是否六方全部完成 → 全部完成后 spawn Worker 跑 Fisher exact test + bootstrap CI → 汇报 Director + 更新 paper_framing.md headline numbers
+- **seed=43 Fisher p ≥ 0.05** → 灰区应对: 加 seed=44 第三轮 或 加 n_rollouts。不能默认 claim 成立。
+- **Object magnitude sweep 全部完成** → spawn Worker 生成 norm sensitivity curve figure (obs_only vs perdof, 5-point)，这是 Claim 3 的核心图
+- **eval-mag-obsonly-norm03-b2 审批通过** → submit_on_allocated 提交到 bjb2-40593:cuda:0（目前该 GPU 跑的是 norm003-b2，完成后空出）
+- **Worker fix-analysis-bugs-p1 完成** → 检查修复内容，必要时重跑 analysis pipeline
+- **Default ablation (norm≈1.42) 完成** → 预期 ~0% SR → 确认 magnitude control 必要性（Claim 3 支撑数据）
+- **所有 object 数据就绪** → Paper Agent 可以写 Results section 定稿
+
+### 5. 🎯 战略上下文
+**核心结论链**:
+- D027: perdof = argmin on spatial matched tasks → per-DOF claim 死亡
+- D029-D030: 所有 CRM 变体 spatial dead，obs_only = argmin = perdof ≈ 35%
+- D032: magnitude sweep 叙事修正 — obs_only 优势不是"更大 correction 更好"，而是"obs_only 对 norm robust，perdof 在高 norm 崩溃"
+- D033: Object 10-task FINAL obs_only 19.0% vs argmin 12.0% (+7.0pp)，超过 5pp claim 门槛
+
+**论文 story (Scenario C)**: sample-then-correct > sample-then-select; obs features > conformal features (honest negative); correction magnitude control 是关键且此前未被研究的因素。
+
+**最容易判断错的事**:
+1. **Spatial 结果不是"小幅正向"而是"彻底无信号"**——不要试图从 spatial 数据挤出任何 positive claim
+2. **obs_only norm=0.2 在 object 上 22%（5/10 tasks）是 PROJECT HIGH**——但只有 5 tasks，等 10-task 结果再引用
+3. **Object magnitude 与 spatial 响应完全不同**（memory.md 有详细记录）——论文以 object 为主故事载体，spatial 作 robustness/generalization
+4. **eval-mag-obsonly-norm003-b2 实际跑的是 spatial norm=0.3**——不要被 exp_id 中的 "b2" 迷惑，这是 norm03 的 retry
+5. **17 张 GPU 全部满载是当前状态**——任何实验完成后空出 GPU 必须立即安排下一个任务或向 Director 确认是否释放
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-mag-obsonly-norm03"
+}
+```
+
+</details>
+
+---

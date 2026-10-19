@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-object-norm01-seed48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:02:39.518Z",
+    "updated_at": "2026-05-17T23:02:46.436Z",
+    "hypothesis": "obs_only CRM (ε=0.1) seed48 on LIBERO-Object. 补充 magnitude curve low-norm 段 seed48 数据。扩展 error bars。"
+  },
+  "timestamp": "2026-05-17T23:02:46.811592+00:00",
+  "trigger": "update_registry"
+}

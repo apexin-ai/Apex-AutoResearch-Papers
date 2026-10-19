@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval-supp-goal-vla-only-wrapper-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:34:09.581Z",
+    "updated_at": "2026-05-23T11:34:09.581Z"
+  },
+  "timestamp": "2026-05-23T11:34:10.911700+00:00",
+  "trigger": "update_registry"
+}

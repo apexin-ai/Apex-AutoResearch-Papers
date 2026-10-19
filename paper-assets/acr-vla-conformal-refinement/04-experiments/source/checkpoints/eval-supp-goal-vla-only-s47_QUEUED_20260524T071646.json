@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-supp-goal-vla-only-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:14:14.567Z",
+    "updated_at": "2026-05-24T07:16:44.441Z",
+    "hypothesis": "Goal s47 VLA-only (K=1) baseline to extend Goal seed coverage beyond s42-s46 for supplementary variance analysis.",
+    "parent": "eval-supp-goal-vla-only-s46"
+  },
+  "timestamp": "2026-05-24T07:16:46.692862+00:00",
+  "trigger": "update_registry"
+}

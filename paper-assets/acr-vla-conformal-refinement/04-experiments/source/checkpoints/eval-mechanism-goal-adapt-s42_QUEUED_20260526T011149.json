@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval-mechanism-goal-adapt-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T01:11:48.015Z",
+    "updated_at": "2026-05-26T01:11:48.015Z"
+  },
+  "timestamp": "2026-05-26T01:11:49.613570+00:00",
+  "trigger": "update_registry"
+}

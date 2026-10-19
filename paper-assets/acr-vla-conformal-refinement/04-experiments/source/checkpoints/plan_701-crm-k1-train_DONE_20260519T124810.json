@@ -1,0 +1,33 @@
+{
+  "exp_id": "plan_701-crm-k1-train",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:04:14.203Z",
+    "updated_at": "2026-05-19T12:48:10.176Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && mkdir -p /root/autodl-tmp/checkpoints/crm_k1 && CUDA_VISIBLE_DEVICES=1 python -u src/train_crm_k1.py --auto --benchmark spatial --epochs 50 --batch_size 512 --lr 1e-3 --wandb_project acr-vla-conformal-refinement --wandb_run_name crm-k1-train-spatial --precompute_batch_size 4 --output_dir /root/autodl-tmp/checkpoints/crm_k1/ 2>&1 | tee logs/train_crm_k1.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "422526",
+      "log_path": "~/runs/acr-vla-conformal-refinement/plan_701-crm-k1-train.log",
+      "submitted_at": "2026-05-17T14:04:13.752Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 168236.4,
+      "gpu_hours": 46.73
+    },
+    "hypothesis": "K=1 CRM 训练：使用多阶段 VLA 特征融合 + 组合损失函数（L2 + contrastive + uncertainty-weighted），训练专门用于 K=1 单采样纠正的 CRM 模型。目标是超越 K=1 VLA-only baseline (10.8%)。",
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_k1/crm_best.pt",
+    "completed_at": "2026-05-19T12:48:10.176Z"
+  },
+  "timestamp": "2026-05-19T12:48:10.661779+00:00",
+  "trigger": "update_registry"
+}

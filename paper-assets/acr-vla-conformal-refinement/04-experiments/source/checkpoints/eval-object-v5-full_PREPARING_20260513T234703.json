@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval-object-v5-full",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-13T23:17:35.776Z",
+    "updated_at": "2026-05-13T23:47:03.323Z",
+    "reproduce": {
+      "finished_at": "2026-05-13T23:43:52.899Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-13T23:43:53.809Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-13T23:43:56.187212+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-13T23:47:03.469623+00:00",
+  "trigger": "update_registry"
+}

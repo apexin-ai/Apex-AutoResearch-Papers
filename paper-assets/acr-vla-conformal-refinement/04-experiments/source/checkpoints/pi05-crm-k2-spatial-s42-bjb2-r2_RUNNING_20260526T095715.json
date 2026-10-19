@@ -1,0 +1,40 @@
+{
+  "exp_id": "pi05-crm-k2-spatial-s42-bjb2-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:55:27.403Z",
+    "updated_at": "2026-05-26T09:57:13.362Z",
+    "hypothesis": "π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s42. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.",
+    "server": "bjb2-28827",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb2-28827",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-26T09:56:55.831Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark spatial --seed 42 --n_rollouts 20 --output_file logs/eval_spatial_crm_k2_pi05_seed42.json\"",
+      "code_commit": "446587cac5747e7984fa7b08bbc5f07456c7d059"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark spatial --seed 42 --n_rollouts 20 --output_file logs/eval_spatial_crm_k2_pi05_seed42.json\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "334539",
+      "log_path": "~/runs/acr-vla-conformal-refinement/pi05-crm-k2-spatial-s42-bjb2-r2.log",
+      "submitted_at": "2026-05-26T09:57:03.430Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "334539",
+    "log_path": "~/runs/acr-vla-conformal-refinement/pi05-crm-k2-spatial-s42-bjb2-r2.log"
+  },
+  "timestamp": "2026-05-26T09:57:15.341092+00:00",
+  "trigger": "update_registry"
+}

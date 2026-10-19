@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval-scalar-unc-spatial",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:54:30.549Z",
+    "updated_at": "2026-05-14T07:51:08.597Z",
+    "spec": {
+      "hypothesis": "Scalar CRM (3D unc) vs per-DOF CRM (40D unc) on spatial task success rate. Val_loss favored scalar (0.008 vs 0.009) but per-DOF expected to win on task success via dimension-selective correction.",
+      "data_path": "/root/autodl-tmp/libero_data/ (spatial)",
+      "data_count": 100,
+      "model_name": "CRM-scalar_unc (3D scalar uncertainty, 327K params)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm/scalar_unc/crm_best.pt",
+      "eval_data": "LIBERO spatial 10 tasks x 10 rollouts",
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --mode crm_scalar --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm/scalar_unc/crm_best.pt",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "143206",
+      "log_path": "/root/autodl-tmp/eval_results/eval-scalar-unc-spatial.log",
+      "failure_reason": "D016: C1 (state 6D→8D mismatch). Scalar CRM trained on wrong features. Replaced by eval-scalar-unc-spatial-v2."
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T07:51:08.657415+00:00",
+  "trigger": "update_registry"
+}

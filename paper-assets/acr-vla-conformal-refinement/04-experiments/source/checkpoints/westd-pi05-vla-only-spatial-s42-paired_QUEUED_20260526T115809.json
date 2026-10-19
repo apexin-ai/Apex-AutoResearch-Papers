@@ -1,0 +1,15 @@
+{
+  "exp_id": "westd-pi05-vla-only-spatial-s42-paired",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T11:56:11.874Z",
+    "updated_at": "2026-05-26T11:58:06.007Z",
+    "hypothesis": "π0.5 VLA-only baseline on Spatial s42. westd same-server paired comparison (Blackwell). Fills Table 2 Spatial VLA-only gap."
+  },
+  "timestamp": "2026-05-26T11:58:09.546621+00:00",
+  "trigger": "update_registry"
+}

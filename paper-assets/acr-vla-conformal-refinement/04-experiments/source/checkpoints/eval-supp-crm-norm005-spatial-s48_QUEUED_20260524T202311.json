@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-crm-norm005-spatial-s48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T20:19:31.569Z",
+    "updated_at": "2026-05-24T20:23:09.236Z",
+    "hypothesis": "SmolVLA crm_obs_only baseline on LIBERO-Spatial seed48 with K=10, max_norm=0.05. Fills Table 1 data gap for multi-seed statistical analysis."
+  },
+  "timestamp": "2026-05-24T20:23:11.390127+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval-argmin-only-spatial-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:14:03.322Z",
+    "updated_at": "2026-05-15T06:35:01.052Z",
+    "hypothesis": "Restart from T9. ReconVLA baseline (scalar Euclidean argmin, K=10) on spatial. Isolate argmin base action selection from CRM correction.",
+    "parent": "eval-argmin-only-spatial",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode reconvla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --start_task 9",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 311609,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-argmin-only-spatial-r2.log",
+      "submitted_at": "2026-05-15T05:14:30.112Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO spatial",
+      "data_count": 10,
+      "model_name": "ReconVLA argmin K=10 (restart from T9)",
+      "seed": 42,
+      "eval_data": "LIBERO spatial task 9 only",
+      "checkpoint_source": "N/A (reconvla mode, no CRM)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T06:35:00.746Z"
+    }
+  },
+  "timestamp": "2026-05-15T06:35:01.183352+00:00",
+  "trigger": "update_registry"
+}

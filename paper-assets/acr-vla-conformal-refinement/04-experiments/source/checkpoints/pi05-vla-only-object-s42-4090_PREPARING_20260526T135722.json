@@ -1,0 +1,17 @@
+{
+  "exp_id": "pi05-vla-only-object-s42-4090",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T13:25:56.583Z",
+    "updated_at": "2026-05-26T13:57:19.701Z",
+    "hypothesis": "π0.5 VLA-only baseline on Object s42 (4090 architecture). Cross-architecture validation paired with 4090-based CRM/Adaptive for Table 2.",
+    "spec": "spec",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-26T13:57:22.602745+00:00",
+  "trigger": "update_registry"
+}

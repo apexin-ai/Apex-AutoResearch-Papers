@@ -1,0 +1,75 @@
+{
+  "exp_id": "eval-supp-obj-reconvla-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:12:22.236Z",
+    "updated_at": "2026-05-23T07:00:54.546Z",
+    "spec": {
+      "command": "evaluate.py --mode reconvla --benchmark object",
+      "server": "bjb2-28827",
+      "gpu": "cuda:1",
+      "pid": 523238,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-obj-reconvla-s42.log",
+      "submitted_at": "2026-05-23T04:12:20.187Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Object",
+      "wall_clock_seconds": 10114.4,
+      "gpu_hours": 2.81
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T06:57:38.730Z"
+    },
+    "failure_reason": "N/A - experiment still running, cron false alarm",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T04:27:02.717771+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T06:57:57.821353+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Reconvla K=10 (argmin baseline) on Object suite establishes cross-suite comparison with Spatial (79%); validates CRM-based methods generalize",
+    "metrics": {
+      "success_rate": 0.79,
+      "n_tasks": 10,
+      "n_rollouts": 20,
+      "total_successes": 158,
+      "total_episodes": 200,
+      "per_task_sr": {
+        "alphabet_soup": 0.75,
+        "cream_cheese": 0.7,
+        "salad_dressing": 0.85,
+        "bbq_sauce": 0.95,
+        "ketchup": 0.9,
+        "tomato_sauce": 0.8,
+        "butter": 0.65,
+        "milk": 0.65,
+        "chocolate_pudding": 0.75,
+        "orange_juice": 0.9
+      }
+    },
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval-supp-obj-reconvla-s42.log",
+    "checkpoint_path": "n/a (eval-only experiment)",
+    "completed_at": "2026-05-23T07:00:54.546Z"
+  },
+  "timestamp": "2026-05-23T07:01:00.836965+00:00",
+  "trigger": "update_registry"
+}

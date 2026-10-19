@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval-acr-object-v4-default",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:18:17.209Z",
+    "updated_at": "2026-05-15T17:38:19.160Z",
+    "hypothesis": "Ablation: perdof CRM v3-norm with DEFAULT max_correction_norm (~1.42, no magnitude control) on LIBERO object benchmark. Tests whether magnitude control is essential on object domain too. If v4-default << v4-perdof (norm=0.1) → magnitude control is universally needed. If v4-default ≈ v4-perdof → spatial failure was anomalous.",
+    "parent": "eval-acr-object-v4-perdof",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --output_file logs/eval_object_perdof_default_norm.json",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "107658",
+      "log_path": "logs/eval_object_perdof_default_norm.log",
+      "submitted_at": "2026-05-16T00:51:00Z",
+      "backend": "nohup",
+      "account": "root",
+      "data_path": "libero_object",
+      "data_count": 10,
+      "model_name": "crm_perdof_default_norm",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "object"
+    },
+    "metrics": {
+      "tasks_done": 3,
+      "tasks_total": 10,
+      "status": "DEAD",
+      "partial_sr": {
+        "alphabet_soup": 0,
+        "cream_cheese": 0,
+        "salad_dressing": 0
+      },
+      "pid_42311": "not_found",
+      "needs_restart": true,
+      "checked_at": "2026-05-16T01:00Z"
+    },
+    "notes": "PID 42311 dead, restarted as PID 107658 on GPU 3 at 00:51. Sharing GPU 3 with eval-mag-perdof-norm03-object (PID 113552). Running from scratch (no --start_task).",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T17:38:19.366548+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "westd-pi05-crm-k2-goal-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T04:26:05.028Z",
+    "updated_at": "2026-05-26T04:48:02.580Z",
+    "hypothesis": "π0.5 CRM K=2 obs_only (ε=0.05) on LIBERO-Goal s42. Tests CRM correction without conformal gating on π0.5 goal tasks."
+  },
+  "timestamp": "2026-05-26T04:48:04.435073+00:00",
+  "trigger": "update_registry"
+}

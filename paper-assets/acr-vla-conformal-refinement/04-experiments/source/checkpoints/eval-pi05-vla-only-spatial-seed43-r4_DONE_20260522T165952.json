@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-pi05-vla-only-spatial-seed43-r4",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:52:35.446Z",
+    "updated_at": "2026-05-22T16:59:51.541Z",
+    "hypothesis": "π0.5 VLA-only baseline on LIBERO-Spatial with official settings: n_action_steps=10, 10 dummy steps gripper-open, max_steps=280",
+    "parent": "eval-pi05-vla-only-spatial-seed43-r3",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark spatial --seed 43 --n_rollouts 20 --K 10 --n_action_steps 10",
+      "server": "bjb1-18228",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "model_name": "pi0.5",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/models/pi05_libero_finetuned/",
+      "eval_data": "LIBERO-Spatial"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-22T16:59:51.541Z"
+  },
+  "timestamp": "2026-05-22T16:59:52.744815+00:00",
+  "trigger": "update_registry"
+}

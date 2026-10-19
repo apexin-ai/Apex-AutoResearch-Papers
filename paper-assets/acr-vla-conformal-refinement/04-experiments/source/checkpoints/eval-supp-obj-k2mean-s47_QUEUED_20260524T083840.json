@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-obj-k2mean-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:38:07.452Z",
+    "updated_at": "2026-05-24T08:38:39.480Z",
+    "hypothesis": "K=2 mean baseline on Object suite seed47. Sixth seed extending Object K2mean coverage for variance analysis."
+  },
+  "timestamp": "2026-05-24T08:38:40.830765+00:00",
+  "trigger": "update_registry"
+}

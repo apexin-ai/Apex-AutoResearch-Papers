@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval-openvla-object-baseline-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:53:24.027Z",
+    "updated_at": "2026-05-20T04:09:41.899Z",
+    "hypothesis": "OpenVLA-7B fine-tuned on LIBERO-Object baseline eval (seed42). 复现官方 88.4% SR，获取 per-task breakdown 与 SmolVLA 对比。如果 SR 符合预期，验证 CRM 路线的 base policy 基线可用性。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/openvla-repo && CUDA_VISIBLE_DEVICES=4 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 python experiments/robot/libero/run_libero_eval.py --model_family openvla --pretrained_checkpoint /root/autodl-tmp/models/openvla-libero-object --task_suite_name libero_object --center_crop True --seed 42 --num_trials_per_task 50 --use_wandb False\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "900134",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-openvla-object-baseline-seed42.log",
+      "submitted_at": "2026-05-19T17:03:26.372Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": 500,
+      "model_name": "OpenVLA-7B-finetuned-libero-object",
+      "seed": 42,
+      "note": "conclusion=killed is STALE from M023 incident. Process alive (PID 900134, 22967 MiB). Cron will overwrite conclusion on completion.",
+      "wall_clock_seconds": 21610.5,
+      "gpu_hours": 6.0
+    },
+    "conclusion": "killed",
+    "reproduce": {
+      "finished_at": "2026-05-19T23:03:35.338Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "completed_at": "2026-05-19T23:03:36.901Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T23:03:50.026732+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: EXIT_CODE=124 timeout。完成 400/500 episodes (8/10 tasks)，SR=68.0% (272/400)。第9个task (pick_up_milk) 4/50时被kill。每episode ~60s，500 episodes需~8.3h但timeout仅~6h。已有成果: 前8个task数据完整。建议: 加大timeout_hours至12h重跑。"
+  },
+  "timestamp": "2026-05-20T04:09:42.557750+00:00",
+  "trigger": "update_registry"
+}

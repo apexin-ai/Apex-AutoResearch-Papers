@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-object-norm003-seed45-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:44:44.161Z",
+    "updated_at": "2026-05-19T01:44:48.685Z",
+    "hypothesis": "obs_only CRM (ε=0.03) seed45 on LIBERO-Object. Retry with timeout=16h after r1 timed out. 补 magnitude curve 最薄点 ε=0.03。"
+  },
+  "timestamp": "2026-05-19T01:44:49.150602+00:00",
+  "trigger": "update_registry"
+}

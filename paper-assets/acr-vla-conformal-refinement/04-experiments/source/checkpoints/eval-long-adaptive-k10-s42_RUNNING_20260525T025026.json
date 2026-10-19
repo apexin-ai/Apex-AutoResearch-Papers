@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval-long-adaptive-k10-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T02:38:11.212Z",
+    "updated_at": "2026-05-25T02:50:25.359Z",
+    "hypothesis": "Long Adaptive K=10 (τ=0.25) 补跑。原 Long 实验使用 K=2 与 Spatial/Goal/Object (K=10) 不一致。补跑确保 Table 1 全 suite 统一 K=10 方法。Long Δ≈0 是预期的。",
+    "parent": "eval-supp-long-adapt-tau025-s42",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.25 --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 10",
+      "server": "cqa1-32758",
+      "data_path": "libero_long",
+      "data_count": 20,
+      "model_name": "smolvla+crm_smolvla_3suite_v1",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "libero_long",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval-long-adaptive-k10-s42.log",
+      "gpu": "cuda:3",
+      "tmux_session": "eval-long-adaptive-k10-s42"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-25T02:50:26.966449+00:00",
+  "trigger": "update_registry"
+}

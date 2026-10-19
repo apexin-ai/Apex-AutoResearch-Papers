@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-pi05-vla-only-spatial-s43-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T07:34:11.243Z",
+    "updated_at": "2026-05-25T07:34:27.467Z",
+    "hypothesis": "π0.5 VLA-only baseline rerun on LIBERO-Spatial s43 (bjb1-18228 cuda:2). Redundant replication on a different server to fill idle GPU; prior run (-s43) reached 0.96 success rate on bjb1-32546."
+  },
+  "timestamp": "2026-05-25T07:34:29.069830+00:00",
+  "trigger": "update_registry"
+}

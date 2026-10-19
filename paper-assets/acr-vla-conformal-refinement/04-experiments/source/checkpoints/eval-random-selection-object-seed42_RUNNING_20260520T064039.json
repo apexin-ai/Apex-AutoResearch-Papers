@@ -1,0 +1,50 @@
+{
+  "exp_id": "eval-random-selection-object-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-17T13:32:30.506Z",
+    "updated_at": "2026-05-20T06:40:37.866Z",
+    "hypothesis": "Random selection baseline (K=10 随机选一个 action) on LIBERO-Object seed42. Ablation 验证 CRM uncertainty-guided selection 的价值。",
+    "completed_at": "2026-05-18T12:20:08.756Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "success_rate": 0.13,
+          "n_tasks": 10,
+          "n_rollouts": 10,
+          "total_rollouts": 100,
+          "per_task_sr": [
+            0,
+            0.1,
+            0.1,
+            0.4,
+            0,
+            0.2,
+            0,
+            0.1,
+            0.2,
+            0.2
+          ]
+        }
+      }
+    },
+    "spec": {
+      "command": "python -u src/evaluate.py --mode random_selection --benchmark object --seed 42 --K 10 --n_rollouts 10 --output_file logs/eval_object_random_selection_seed42.json",
+      "server": "bjb2-28827",
+      "gpu_id": 0,
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 0,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "N/A",
+      "eval_data": "LIBERO object benchmark"
+    }
+  },
+  "timestamp": "2026-05-20T06:40:39.107856+00:00",
+  "trigger": "update_registry"
+}

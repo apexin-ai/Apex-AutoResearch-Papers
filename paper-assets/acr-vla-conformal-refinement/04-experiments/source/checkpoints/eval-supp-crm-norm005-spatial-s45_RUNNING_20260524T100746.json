@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval-supp-crm-norm005-spatial-s45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:48:50.955Z",
+    "updated_at": "2026-05-24T10:07:45.315Z",
+    "hypothesis": "CRM always-on norm=0.05 on Spatial suite seed45. Extending from 3-seed (s42/s43/s44) to 5-seed for variance analysis. 3-seed mean 79.8%±1.3%.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark spatial --mode crm_obs_only --seed 45 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "model_name": "smolvla+crm",
+      "seed": 45,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial 10 tasks x 20 rollouts",
+      "benchmark": "spatial",
+      "mode": "crm_obs_only",
+      "max_correction_norm": 0.05,
+      "K": 10,
+      "tmux_session": "eval-supp-crm-norm005-spatial-s45",
+      "gpu": 3
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T10:07:46.653694+00:00",
+  "trigger": "update_registry"
+}

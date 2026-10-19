@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-supp-k2mean-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:03:14.824Z",
+    "updated_at": "2026-05-23T07:16:57.907Z",
+    "hypothesis": "K=2 mean baseline (vla_only, 2-sample average) on Spatial seed42. Isolates multi-sample averaging effect from CRM correction. If ≈ VLA-only 78.5%, confirms CRM is the source of improvement, not sampling diversity.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --baseline_mode mean --K 2 --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-k2mean-spatial-s42.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "621415",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-k2mean-spatial-s42.log",
+      "submitted_at": "2026-05-23T07:16:30.364Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-23T07:16:59.098668+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval-vla-only-spatial-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:51:37.036Z",
+    "updated_at": "2026-05-19T21:15:20.345Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Spatial seed46. 补齐 Spatial VLA-only n=5，与 seed42/43/44/45 配套。",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 46 --K 1 --output_file logs/eval_spatial_vla_only_seed46.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "47637",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed46.log",
+      "submitted_at": "2026-05-19T18:50:42Z",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 100,
+      "model_name": "SmolVLA",
+      "seed": 46,
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 8678.3,
+      "gpu_hours": 2.41
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_success_rate": 0.3,
+      "n_tasks": 10,
+      "n_rollouts": 10,
+      "total_episodes": 100,
+      "successful_rollouts": 30
+    },
+    "completed_at": "2026-05-19T21:15:20.345Z"
+  },
+  "timestamp": "2026-05-19T21:15:20.939431+00:00",
+  "trigger": "update_registry"
+}

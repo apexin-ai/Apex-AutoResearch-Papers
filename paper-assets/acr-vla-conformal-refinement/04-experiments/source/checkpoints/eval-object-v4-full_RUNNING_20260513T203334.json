@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval-object-v4-full",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:13:26.341Z",
+    "updated_at": "2026-05-13T20:33:34.145Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 42",
+      "server": "bjb2-40593",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "103768",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-object-v4-full.log",
+      "data_path": "/root/autodl-tmp/libero_data/ (object)",
+      "data_count": 100,
+      "model_name": "lerobot/smolvla_libero",
+      "seed": 42,
+      "hypothesis": "SmolVLA with verified-deployed wrapper achieves meaningful success rate on libero_object",
+      "checkpoint_source": "lerobot/smolvla_libero",
+      "eval_data": "libero_object 10 tasks"
+    }
+  },
+  "timestamp": "2026-05-13T20:33:34.178113+00:00",
+  "trigger": "update_registry"
+}

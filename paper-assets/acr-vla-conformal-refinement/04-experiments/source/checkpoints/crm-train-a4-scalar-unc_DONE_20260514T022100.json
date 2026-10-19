@@ -1,0 +1,39 @@
+{
+  "exp_id": "crm-train-a4-scalar-unc",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:48:40.837Z",
+    "updated_at": "2026-05-14T02:21:00.891Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/train_crm.py --benchmark spatial object --epochs 50 --batch_size 32 --lr 0.001 --K 10 --seed 42 --input_mode scalar_unc --output_dir /root/autodl-tmp/checkpoints/crm/scalar_unc/",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "121984",
+      "data_path": "/root/autodl-tmp/crm_cache/",
+      "data_count": 26737,
+      "model_name": "CRM-scalar_unc (3D scalar uncertainty)",
+      "seed": 42,
+      "hypothesis": "CRM with scalar Euclidean uncertainty (3D) performs worse than per-DOF (40D), validating per-DOF advantage. Ablation A4, hyperparams matched to plan_001 (bs=32/lr=1e-3).",
+      "log_path": "/root/autodl-tmp/checkpoints/crm/scalar_unc/train.log"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm/scalar_unc/crm_best.pt",
+    "log_path": "/root/autodl-tmp/checkpoints/crm/scalar_unc/train.log",
+    "metrics": {
+      "best_val_loss": 0.008379,
+      "best_epoch": 48,
+      "total_epochs": 50,
+      "final_val_loss": 0.008384,
+      "final_train_loss": 0.012959
+    },
+    "completed_at": "2026-05-14T02:21:00.891Z"
+  },
+  "timestamp": "2026-05-14T02:21:00.949150+00:00",
+  "trigger": "update_registry"
+}

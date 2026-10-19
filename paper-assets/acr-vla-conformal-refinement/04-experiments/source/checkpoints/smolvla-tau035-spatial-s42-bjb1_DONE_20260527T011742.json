@@ -1,0 +1,36 @@
+{
+  "exp_id": "smolvla-tau035-spatial-s42-bjb1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T01:14:17.077Z",
+    "updated_at": "2026-05-27T01:17:40.764Z",
+    "spec": {
+      "command": "python lerobot/scripts/eval_adaptive.py --task spatial --tau 0.35 --k 2 --seed 42 --model smolvla",
+      "server": "bjb1-18228",
+      "data_path": "spatial eval suite",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "hypothesis": "SmolVLA spatial suite τ=0.35 sweep to map trigger_rate vs success_rate tradeoff curve",
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/root/lerobot/eval_spatial_adaptive_tau035_k2_s42.json",
+      "metrics": {
+        "success_rate": 0.78,
+        "trigger_rate": 0.123,
+        "mean_correction_norm": 0.196,
+        "mean_uncertainty": 0.189,
+        "total_steps": 29051,
+        "crm_applied_steps": 3587
+      }
+    },
+    "conclusion": "success",
+    "hypothesis": "Higher τ threshold (0.35) reduces CRM trigger frequency on spatial tasks while preserving most success_rate gains from selective correction",
+    "completed_at": "2026-05-27T01:17:40.764Z"
+  },
+  "timestamp": "2026-05-27T01:17:42.617397+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-k2-goal-adapt-s45-paired",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T06:08:05.643Z",
+    "updated_at": "2026-05-25T06:08:43.822Z",
+    "hypothesis": "K=2 Adaptive CRM (tau=0.25) on Goal s45, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test and trigger rate correlation."
+  },
+  "timestamp": "2026-05-25T06:08:45.352409+00:00",
+  "trigger": "update_registry"
+}

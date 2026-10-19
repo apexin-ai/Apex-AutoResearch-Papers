@@ -1,0 +1,44 @@
+{
+  "exp_id": "precompute-v4-shard1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T18:58:12.183Z",
+    "updated_at": "2026-05-15T19:17:33.288Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 && python -u src/train_crm.py --precompute --benchmark spatial object --max_demos_per_task 10 --shard_id 1 --num_shards 3 --seed 42 --K 10 --cache_dir /root/autodl-tmp/crm_cache/ 2>&1\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "69793",
+      "log_path": "~/runs/acr-vla-conformal-refinement/precompute-v4-shard1.log",
+      "submitted_at": "2026-05-13T18:58:12.154Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/crm_cache/",
+      "wall_clock_seconds": 173961.1,
+      "gpu_hours": 48.32
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T20:04:22.574Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T20:04:23.366356+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T19:17:33.288Z"
+  },
+  "timestamp": "2026-05-15T19:17:33.693707+00:00",
+  "trigger": "update_registry"
+}

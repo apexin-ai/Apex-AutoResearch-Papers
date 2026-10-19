@@ -1,0 +1,990 @@
+# cron hook eval argmin object seed49 20260521T212927 136020
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 2
+- **Tool calls:** 12
+- **Original source:** `logs/chats/archive/cron_hook_eval-argmin-object-seed49_20260521T212927_136020.jsonl`
+- **Structured JSON:** [`e5594d36f4ddb9474b8b.json`](../../sessions/e5/e5594d36f4ddb9474b8b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+2 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T05:25:10.567645+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #23。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）。白名单外的 GPU 绝不可用，即使 Director 指示也要 push back
+- π0.5 实验仅在 bjb2-40593:cuda:0 上跑（单卡 A100，其他服务器无 π0.5 权重）
+- bjb1-32546 / bjb2-28827 上 python 不在默认 PATH，提交命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，否则 `No such file` 批量失败（M037 教训）
+- eval 脚本不写 sentinel/W&B，cron 会误判 failed。**收到 cron failed 回调时必须先 SSH 查日志确认**，不要直接标 failed
+- evaluate.py 在 `src/` 子目录下，命令必须 `python src/evaluate.py`
+- CoRL 2026 DDL = 2026-05-29，**≤8 天**
+
+### 2. 🖥️ 基础设施快照
+- **4 台服务器**，项目目录均为 `/root/acr-vla-conformal-refinement`
+  - bjb2-40593: 1×GPU, 磁盘紧张（根分区 89%）— 仅用于 π0.5
+  - bjb1-18228: 4×GPU, 磁盘 /autodl-pub 93% ⚠️
+  - bjb1-32546: 6×GPU, 磁盘 86%
+  - bjb2-28827: 6×GPU, 磁盘 69%（最宽裕）
+- Python 路径：`/root/miniconda3/bin/python`（conda base 环境，非 venv）
+- CRM checkpoint：`/root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof}/crm_best.pt`
+- 代码仓库在各服务器 `/root/acr-vla-conformal-refinement/`（git 同步）
+- **活跃进程**：
+  - π0.5 fix3 quicktest: PID 831620, bjb2-40593:cuda:0（~8h 预估，启动于 ~05:00 UTC）
+  - seed66 三进程可能仍在 bjb1-18228 上运行（PID 642428/642506/642775，norm003/005/01）
+  - **无活跃 cron**（reconcile 返回 0）
+
+### 3. 📊 当前状态
+- **555 个实验**：DONE 506（success 322, negative 38, failed 55, killed 91），PREPARING 44，DEPLOYED 5，RUNNING 0
+- **所有核心实验数据已 LOCKED**：Plan A (K=2) Object 18.3%/Spatial 35.0%、Norm Sweep（4 个 ε）、Adaptive K Sweep（双 benchmark）、Random Selection、Latency Profile
+- 正在做的事：
+  1. **π0.5 fix3 quicktest** 在 bjb2-40593 上运行中（D099: action chunk 只取 step[0]）——这是决定 π0.5 实验线 GO/NO-GO 的关键
+  2. Worker `worker_diagnose_pi05-quicktest-results_20260521T050912` 已 hit rate limit（"resets May 22 5pm UTC"），无法继续
+  3. seed66 三个进程（如果还活着）应已完成或接近完成，需要 harvest
+  4. eval-adaptive-k-spatial-p90-seed44-bjb2 刚标记 failed——大概率又是 cron false positive，需确认
+- **阶段**：实验收尾 → 论文写作。瓶颈从 GPU 实验转向 Figure 生成 + π0.5 调通 + 论文定稿
+
+### 4. 📋 待办（条件触发式）
+- π0.5 fix3 quicktest 完成 → 如 SR>0%: 立即铺 π0.5 baseline multi-seed (9 GPU) + CRM pipeline；如仍 0%: 评估 Plan B (lerobot native API，但已知 torch.compile assertion error)，向 Director 汇报
+- seed66 (norm003/005/01) 进程完成 → SSH harvest metrics → 修正 conclusion=success → 更新 norm sweep 统计
+- eval-adaptive-k-spatial-p90-seed44-bjb2 → SSH 检查日志确认是否 cron false positive → 如完成则 LOCK Spatial Adaptive K Sweep 全部数据
+- Norm sweep ALL LOCKED + seed66 harvested → 派 Worker 生成 Figure 2 (norm sweep curve)
+- 论文 Figure 2 完成 + π0.5 决策完成 → 进入 final review + submission prep
+
+### 5. 🎯 战略上下文
+- **核心结论**：Adaptive inference-time compute for frozen VLAs。Plan A (K=2 L2 distance + selective CRM correction) = Pareto 最优——双 benchmark 最高 SR + 最低 compute。K=2 L2 divergence (ρ=0.9979) 是唯一可用的 adaptive K 门控信号（FMVD/CRM magnitude 均失败）
+- **Decision chain**: D092 Plan A GO → D094 Spatial 完成 → D095/D096 π0.5 实验线开启 → D097 Latency LOCK → D098 π0.5 fix3 task1=0% 不终止等全 10 task → D099 π0.5 根因=action chunk step[0]
+- **最易判断错的事**：
+  1. cron 报 failed ≠ 真的 failed——本项目 eval 脚本不写 sentinel，已有 10+ 次 false positive
+  2. π0.5 是用户要求的实验线（D095），即使 fix3 失败也不能擅自放弃，需向 Director 汇报决策
+  3. PREPARING 状态的 44 个实验大部分是历史遗留（已 killed/completed 但状态未清理），不要尝试全部提交
+  4. bjb2-40593 磁盘只剩 48GB，不要在上面跑除 π0.5 以外的实验
+  5. Worker rate limit 已触发（resets May 22 5pm UTC），短期内 spawn worker 可能受限
+
+## 项目硬约束 (memory.md 节选)
+
+## 失败模式记录
+
+- [失败模式] Cron false positive：eval 脚本不写 W&B 也不写 sentinel file，进程正常退出后 cron 5 次检测找不到标记 → 自动标记为 failed。受影响：eval-vla-only-long-seed46, eval-vla-only-goal-seed46。修复方案：tail 日志确认实际完成 → 手动修正 conclusion=success + 补录 metrics。预防：eval 实验应检查 output JSON 是否存在作为 sentinel。
+
+- [失败模式] Cron false positive（2026-05-20）：**eval-adaptive-k-spatial-p50-seed42** 被 cron 误判为 failed（"process dead 5× with no sentinel/W&B"）。实际情况：原 PID 675831 被 deploy worker kill 后，重启为 PID 681823。重启后进程正常运行，但 cron 监控未追踪到新 PID，5 次检测均未发现 sentinel → 自动标记 failed。诊断时（2026-05-20）PID 681823 仍在运行（状态 Rl+，已运行 17h36m），已完成 3/10 tasks（SR: 70%/100%/0%），第 4 个 task 进行中（rollout 5, 1/5 success）。GPU 使用 5972/24564 MiB，日志无错误。**无需重新提交，等待自然完成后手动修正 conclusion。**
+
+- [失败模式] SIGHUP false failure（2026-05-20）：bjb2-28827 上多个实验 EXIT_CODE=129 (SIGHUP) 被标记 failed，实际全部完成。**已确认受影响：P75-seed44, P90-seed42, P25-seed44**。SIGHUP 发生在进程写完结果 JSON 之后（tmux session 断开或 SSH 连接清理）。**诊断方法：tail 日志看 "Results saved to" + "Overall success rate" 行 → 手动修正 conclusion=success 并补录 metrics。**
+
+- [失败模式] Cron 日志路径不匹配（2026-05-20）：**eval-obs-only-goal-norm02-seed51** (bjb1-32546) 被 cron 误判 dead。根因：实验日志写入 `/root/acr-vla-conformal-refinement/logs/`（项目目录下），但 cron 监控在 `~/runs/acr-vla-conformal-refinement/` 下找日志 → 找不到 → 5 次检测均无 sentinel → auto-resolved failed。**教训：submit_training_job 的 log_path 必须与实际 tee 输出路径一致。部分实验用 `tee logs/xxx.log`（相对于 cd 后的项目目录），另一部分用 `~/runs/` 绝对路径，两套路径并存导致 cron 误判。**
+
+- [失败模式] Cron false positive 批量（2026-05-20 诊断）：bjb1-32546 上 **eval-perdof-object-norm02-seed50** (PID 542405) 和 **eval-obs-only-object-norm02-seed51** (PID 542894) 被 cron 报告 "process gone, no sentinel, no W&B"。实际两者均已**正常完成**，output JSON 已写入。bjb1-18228 上 **eval-obs-only-object-norm005-seed44** 同样正常完成但被标记 failed。根因同上：eval 脚本不写 sentinel/W&B，进程正常退出后 cron 无法确认完成状态。结果：perdof-norm02-seed50 SR=10.0%, obs_only-norm02-seed51 SR=17.0%, obs_only-norm005-seed44 SR=12.0%。**均无需重跑，需手动修正 conclusion=success 并补录 metrics。**
+
+- [失败模式] python PATH 不存在（2026-05-21, bjb1-32546）：`nohup: failed to run command 'python': No such file or directory`。bjb1-32546 使用 conda 环境，`python` 不在默认 PATH 中（仅 `/root/miniconda3/bin/python` 可用）。受影响：seed51-r2, seed52-r2, seed62, seed63（4 个实验同时失败）。**修复方案：提交命令前加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀。** 教训：submit_training_job 的 command 不能假设 `python` 在 PATH 中，必须自带环境激活。对照其他服务器（bjb1-18228、bjb2-28827）成功实验的命令格式，它们通过 `bash -c "source ... && python ..."` 包裹。
+
+- [失败模式] FMVD 信号无效：ρ=0.0825 NO-GO。根因：denoising 空间统计量不映射到 action uncertainty。
+
+- [失败模式] CRM correction magnitude 信号无效（2026-05-20）：ρ(K1_corr_mag, K10_var) = 0.1523 NO-GO。**根因：CRM correction magnitude 是常数 (~0.1205)，P25=P50=P75=P90 几乎相同。** CRM 对所有输入产出相同大小的修正向量——修正方向变化但幅度不变。推测因 max_correction_norm=0.2 的 clipping 使得大部分 correction 被截断到相同 norm。K=2 argmin 版本同样无效 (ρ=0.1340)。**教训：clipped norm 的信号没有方差，自然无法做 gate。**
+
+- [失败模式] OpenVLA-7B eval timeout：timeout_hours 至少设 12h。
+
+- [失败模式] Table 1 数据混淆（2026-05-20）：Table 1 原报 CRM Object K=10 = 17.6% (n=7)，实际来自 **norm01+norm02 混合数据**。seed42 只有 norm01 (0.19)，seed43 只有 norm02 (0.16)，两个 config 各自只有 n=6，合并后变 n=7。paper_provenance.yaml C029 引用的 exp_id 是抽象 "obs_only_k10" 而非具体实验 ID，导致问题没被及时发现。**教训：provenance 必须引用具体 registry_id，不用抽象标签。**
+
+- [失败模式] evaluate.py 路径缺 src/ 前缀（2026-05-20）：adaptive_k spatial 实验命令用 `python evaluate.py` 而非 `python src/evaluate.py`，导致 EXIT_CODE=2 (No such file)。受影响：eval-adaptive-k-spatial-p50-seed43, eval-adaptive-k-spatial-p50-seed44（两台服务器 bjb1-32546, bjb2-28827 同时中招）。**教训：提交命令时对照历史成功实验的 command 格式，evaluate.py 在 src/ 子目录下。**
+
+## 可查的历史
+前 171 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-21T05:25:13.452010+00:00_
+
+You've hit your limit · resets May 22, 5pm (UTC)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-argmin-object-seed49"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+26 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T21:26:22.104198+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T21:26:47.665630+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__list_workers",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__list_workers",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-21T21:26:47.819485+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "ToolSearch",
+  "elapsed_ms": 153
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T21:26:50.733426+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "acr-vla-conformal-refinement",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "acr-vla-conformal-refinement",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T21:26:51.284993+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'PREPARING'}",
+  "project": "acr-vla-conformal-refinement",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'PREPARING'}",
+    "project": "acr-vla-conformal-refinement",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T21:26:52.238922+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DEPLOYED'}",
+  "project": "acr-vla-conformal-refinement",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DEPLOYED'}",
+    "project": "acr-vla-conformal-refinement",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T21:26:52.744797+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-21T21:26:53.198169+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T21:26:53.603684+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T21:26:57.891953+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"crm-train-pi05-spatial-full\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T18:48:38.574Z\", \"updated_at\": \"2026-05-21T19:25:01.198Z\", \"hypothesis\": \"CRM projection trained on π0.5 full precomputed features (~60250 spatial samples, K=10) will learn conformal refinement corrections improving upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization\", \"reproduce\": {\"finished_at\": \"2026-05-21T19:16:05.516Z\"}, \"failure_reason\": \"Traceback → n main train(args) File \\\"/root/acr-vla-conformal-refinement/src/train_crm.py\\\", line 329, in train raise FileNotFoundError( FileNotFoundError: No precomputed cache at /root/autodl-tmp/crm_cache_pi05/spatial. Run with --precompute first, or use --auto.\", \"completed_at\": \"2026-05-21T19:16:13.590Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T19:16:24.207448+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache_pi05/ --output_dir /root/autodl-tmp/checkpoints/crm_pi05_full/spatial/ --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 2048\", \"server\": \"bjb1-18228\", \"data_path\": \"/root/autodl-tmp/crm_cache_pi05/spatial/\", \"data_count\": 60250, \"model_name\": \"CRM-spatial\", \"seed\": 42, \"gpu\": \"cuda:1\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/crm-train-pi05-spatial-full.log\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_pi05_full/spatial/\"}}, \"crm-train-pi05-object-full\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T18:26:52.186Z\", \"updated_at\": \"2026-05-21T18:56:42.883Z\", \"hypothesis\": \"CRM projection trained on π0.5 full precomputed features (69303 object samples, K=10) will learn conformal refinement corrections improving upon π0.5 VL
+…[truncated 968 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 7158
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T21:27:03.458000+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"crm-pipeline-auto\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:37:34.472Z\", \"updated_at\": \"2026-05-21T16:37:34.472Z\"}, \"precompute-pi05-obj-s6-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T15:04:33.582Z\", \"updated_at\": \"2026-05-21T15:04:33.582Z\"}, \"precompute-pi05-obj-s9-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:39.622Z\", \"updated_at\": \"2026-05-21T14:19:39.622Z\"}, \"precompute-pi05-obj-s8-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:35.288Z\", \"updated_at\": \"2026-05-21T14:19:35.288Z\"}, \"precompute-pi05-obj-s7-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:30.950Z\", \"updated_at\": \"2026-05-21T14:19:30.950Z\"}, \"precompute-pi05-obj-s0-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:26.580Z\", \"updated_at\": \"2026-05-21T14:19:26.580Z\"}, \"precompute-pi05-obj-s5-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:22.348Z\", \"updated_at\": \"2026-05-21T14:19:22.348Z\"}, \"precompute-pi05-obj-s4-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:17.949Z\", \"updated_at\": \"2026-05-21T14:19:17.949Z\"}, \"precompute-pi05-obj-s3-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:13.168Z\", \"updated_at\": \"2026-05-21T14:19:13.169Z\"}, \"precompute-pi05-obj-s2-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:08.830Z\", \"updated_at\": \"2026-05-21T14:19:08.830Z\"}}, \"count\": 10, \"total\": 84, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.5493}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 12173
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T21:27:12.761143+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-obs-only-object-norm005-seed45\": {\"status\": \"DEPLOYED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:33:08.510Z\", \"updated_at\": \"2026-05-20T19:45:39.649Z\", \"hypothesis\": \"obs_only CRM (ε=0.05) seed45 on LIBERO-Object. Supplements magnitude curve low-norm data. seed42=13%, seed43=14%.\", \"spec\": {\"command\": \"crm_obs_only --seed 45 --K 10 --max_correction_norm 0.05\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:0\"], \"pid\": \"565173\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_obs_only\", \"seed\": 45, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\", \"eval_data\": \"LIBERO-Object\"}, \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T16:26:11.822Z\", \"metrics\": {\"success_rate\": 0.14, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-perdof-object-norm01-seed42\": {\"status\": \"DEPLOYED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T23:53:01.705Z\", \"updated_at\": \"2026-05-18T18:53:10.563Z\", \"hypothesis\": \"perdof CRM with ε=0.1 on LIBERO-Object seed42. Magnitude curve comparison point for perdof variant.\", \"spec\": {\"command\": \"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed42.json\", \"server\": \"bjb2-28827\", \"data_path\": \"/root/acr-vla-conformal-refinement/src/evaluate.py\", \"data_count\": \"10 rollouts x 10 tasks\", \"model_name\": \"crm_perdof\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"eval_data\": \"LIBERO-Obj
+…[truncated 4568 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 20522
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T21:27:27.954830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"crm-train-pi05-object-full\", \"success\": true, \"actions\": [\"Job still running (pid=800111)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 35210
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T21:27:28.522181+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 35324
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T21:27:28.578289+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| crm-train-pi05-spatial-full | CRM projection trained on π0.5 full precomputed features (~60250 spatial samples, K=10) will learn conformal refinement corrections improving upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization | — | — | — |\\n\\n## 待处理\\n- crm-pipeline-auto（准备中）\\n- precompute-pi05-obj-s6-r2（准备中）\\n- …另有 82 项\\n\\n## 近期结论\\n- **crm-train-pi05-spatial** (killed): CRM projection trained on π0.5 precomputed features (38500 spatial samples, K=10) will learn to predict conformal refinement corrections that improve upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization of CRM beyond SmolVLA\\n\\n## 趋势\\n成功 333 / 负向 38 / 失败 61 / 共 525\\nn_tasks: 10 →（近 3 次 success）\\nsuccess_rate: 0.85 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-18228: 无 GPU 信息\\nbjb1-32546: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\nbjb2-28827: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\nbjb2-40593: 无 GPU 信息\\n\\n## 告警\\n- plan_001-crm-smolvla: 训练失败 — unknown\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\n- eval-spatial-reeval-v2: 已被终止 — unknown\\n- precompute-v2-shard0: 已被终止 — unknown\\n- precompute-v2-shard1: 已被终止 — unknown\\n- precompute-v2-shard2: 已被终止 — unknown\\n- eval-spatial-v3-full: 已被终止 — unknown\\n- precompute-v3-shard0: 已被终止 — unknown\\n- precompute-v3-shard1: 已被终止 — unknown\\n- precompute-v3-shard2: 已被终止 — unknown\\n- eval-spatial-v4-full: 已被终止 — unknown\\n- eval-object-v4-full: 已被终止 — unknown\\n- eval-spatial-v5-full: 已被终止 — unknown\\n- crm-train-v1: 已被终止 — unknown\\n- eval-reconvla-s
+…[truncated 5257 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 34974
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T21:27:35.295232+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'crm-train-pi05-spatial-full'}",
+  "project": "acr-vla-conformal-refinement",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'crm-train-pi05-spatial-full'}",
+    "project": "acr-vla-conformal-refinement",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T21:27:36.249279+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'pi05-fix3-quicktest'}",
+  "project": "acr-vla-conformal-refinement",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'pi05-fix3-quicktest'}",
+    "project": "acr-vla-conformal-refinement",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T21:27:37.162438+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "memory.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "memory.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T21:27:44.708055+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.2543}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 9412
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T21:27:53.885519+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.1223}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 17636
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T21:27:53.936217+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"content\": \"# π0.5 CRM Eval 前置准备报告\\n\\n**日期**: 2026-05-22\\n\\n## 1. Object CRM Training 进度 (bjb1-18228)\\n\\n| 指标 | 值 |\\n|------|-----|\\n| 当前进度 | Epoch 7/50, batch 1350/1950 |\\n| 已运行时间 | 52 min 33 sec |\\n| 最佳 val_loss | 0.005511 (epoch 6) |\\n| 当前 train_loss | 0.009881 (epoch 6) |\\n| 预估速度 | ~7.8 min/epoch |\\n| 预计剩余时间 | ~5.5 小时 |\\n| 进程 PID | 800111 |\\n| 输出目录 | `/root/autodl-tmp/checkpoints/crm_pi05_full/object/` |\\n\\n训练命令: `python -u src/train_crm.py --benchmark object --cache_dir /root/autodl-tmp/crm_cache_pi05/ --output_dir /root/autodl-tmp/checkpoints/crm_pi05_full/object/ --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 2048`\\n\\n## 2. 代码同步状态\\n\\n| 服务器 | evaluate.py 大小 | 版本状态 | Git 状态 |\\n|--------|------------------|----------|----------|\\n| bjb1-32546 | 33058 bytes ✅ | 最新 | 无 .git（直接拷贝） |\\n| bjb2-28827 | 33058 bytes ✅ | 最新 | 有 .git 但无 remote |\\n\\n⚠️ 三台服务器均无有效 git remote。代码此前通过 rsync/scp 同步。当前 evaluate.py 已是最新版本（33058 bytes），无需操作。\\n\\n## 3. Eval 环境检查\\n\\n| 服务器 | PyTorch | CUDA | GPU 数量 | evaluate.py --help | pi05 模型 |\\n|--------|---------|------|----------|-------------------|-----------|\\n| bjb1-32546 | 2.10.0+cu128 ✅ | True ✅ | 6 | OK ✅ | 7.5GB model.safetensors ✅ |\\n| bjb2-28827 | 2.10.0+cu128 ✅ | True ✅ | 6 | OK ✅ | 7.5GB model.safetensors ✅ |\\n\\n两台 eval 服务器环境就绪。\\n\\n## 4. CRM Checkpoint 状态 (bjb1-18228)\\n\\n| 目录 | 内容 | 状态 |\\n|------|------|------|\\n| `crm_pi05_full/object/` | epoch 2-6 checkpoints + crm_best.pt (2.4MB) | ✅ 当前训练输出目录 |\\n| `crm_pi05/object/` | epoch 1-3 checkpoints | ⚠️ 旧 run 残留 |\\n| `crm_pi05/spatial/` | epoch 2-6 checkpoints + crm_best.pt (2.4MB) | ✅ Spatial CRM 已有 best model |\\n\\n## 结论\\n\\n- **Object CRM**: 训练正常推进中，约 5.5h 后完成全部 50 epochs。当前 best checkpoint 可用于早期 eval 测试。\\n- **Eval 环境**: 两台服务器全部就绪（代码、PyTorch、模型均 OK）。\\n- **可立即执行**: 用 `crm_pi05_full/object/
+…[truncated 187 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 16773
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T21:27:59.666929+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "limit": "20",
+  "fields": "['status', 'conclusion', 'metrics', 'hypothesis', 'spec', 'updated_at']",
+  "filters": "{'status': 'DONE'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "limit": "20",
+    "fields": "['status', 'conclusion', 'metrics', 'hypothesis', 'spec', 'updated_at']",
+    "filters": "{'status': 'DONE'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T21:28:00.128739+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "ROADMAP.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "ROADMAP.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T21:28:11.831827+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"crm-train-pi05-spatial\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T18:10:31.701Z\", \"hypothesis\": \"CRM projection trained on π0.5 precomputed features (38500 spatial samples, K=10) will learn to predict conformal refinement corrections that improve upon π0.5 VLA-only baseline (84.2%) on LIBERO-Spatial, validating cross-VLA generalization of CRM beyond SmolVLA\", \"spec\": {\"command\": \"nohup python src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache_pi05/ --output_dir /root/autodl-tmp/checkpoints/crm_pi05/spatial/ --epochs 50 --batch_size 32 --obs_dim 2048\", \"server\": \"bjb1-18228\", \"gpu\": \"cuda:1\", \"pid\": 795051, \"data_path\": \"/root/autodl-tmp/crm_cache_pi05/spatial/\", \"data_count\": 38500, \"model_name\": \"crm-pi05-spatial\", \"seed\": 42, \"checkpoint_path\": \"N/A - incomplete data, pipeline validation only\", \"log_path\": \"N/A\"}, \"conclusion\": \"killed\"}, \"crm-train-pi05-object\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T18:10:26.906Z\", \"hypothesis\": \"CRM projection trained on π0.5 precomputed features (49700 object samples, K=10) will learn to predict conformal refinement corrections that improve upon π0.5 VLA-only baseline (81.5%) on LIBERO-Object, validating cross-VLA generalization of CRM beyond SmolVLA\", \"spec\": {\"command\": \"nohup python src/train_crm.py --benchmark object --cache_dir /root/autodl-tmp/crm_cache_pi05/ --output_dir /root/autodl-tmp/checkpoints/crm_pi05/object/ --epochs 50 --batch_size 32 --obs_dim 2048\", \"server\": \"bjb1-18228\", \"gpu\": \"cuda:0\", \"pid\": 795874, \"data_path\": \"/root/autodl-tmp/crm_cache_pi05/object/\", \"data_count\": 49700, \"model_name\": \"crm-pi05-object\", \"seed\": 42, \"checkpoint_path\": \"N/A - incomplete data, pipeline validation only\", \"log_path\": \"N/A\"}, \"conclusion\": \"killed\"}, \"eval-pi05-vla-only-spatial-seed45\": {\"status\": \"DONE\", \"updated_a
+…[truncated 20439 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 12164
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T21:28:11.991392+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-21 17:54 UTC | 更新原因: CRM training 启动 (Object cuda:0 + Spatial cuda:1 on bjb1-18228)\\n\\n> 详见 paper_framing.md（D077→D092→D097→D103→D104→D105）\\n\\n## 核心方向\\n**Adaptive inference-time compute for frozen VLAs** — K=2 L2 distance + selective CRM correction。Plan A = Pareto 最优。\\n\\n## 投稿目标\\n**CoRL 2026** DDL **2026-05-29**。剩余 **≤6 天**。\\n\\n## 阶段\\n**π0.5 CRM training RUNNING**。Precompute + merge 完成。SmolVLA 全部 LOCKED。π0.5 baseline LOCKED (D105)。\\n\\n## Plan A 核心结果 — SmolVLA (LOCKED)\\n| Benchmark | Plan A (K=2) | K=10 CRM | VLA-only | Δ vs VLA-only |\\n|-----------|-------------|----------|----------|---------------|\\n| Object    | 18.3%±2.1%  | 16.8%±1.8% | 10.8%±1.3% | +7.5pp |\\n| Spatial   | 35.0%±1.0%  | 34.5%±1.5% | 29.4%±1.5% | +5.6pp |\\n\\n## π0.5 Baseline (LOCKED, D105)\\n| Benchmark | VLA-only | vs SmolVLA |\\n|-----------|----------|------------|\\n| Object | **81.5%±0.5%** | +70.7pp |\\n| Spatial | **84.2%±1.0%** | +54.8pp |\\n\\n## K=20 Sweep (LOCKED, D102) → Table 5 ✅\\nK=20 ≈ K=2。Diminishing returns 确认。\\n\\n## Latency (LOCKED, D097)\\nCRM forward: 0.28ms | Plan A speedup: 1.82×\\n\\n## π0.5 CRM Pipeline 🔥\\n- ✅ D104: lerobot rsync + baseline eval 部署\\n- ✅ D105: Baseline LOCKED (Object 81.5%, Spatial 84.2%)\\n- ✅ Precompute 完成 + merge (Object 49,700 samples, Spatial 38,500 samples)\\n- 🔄 **RUNNING**: CRM training (bjb1-18228, Object cuda:0 PID 795874, Spatial cuda:1 PID 795051), ~4-7h\\n- ⏳ CRM Plan A eval (6 GPU, ~8h) — 命令已准备 (pi05_eval_commands.md)\\n- Ceiling effect 预期：81-85% baseline 上 CRM 增益有限，framing 准备\\\"no-harm + selective improvement\\\"\\n\\n## 论文状态\\nFigure 2 v4 ✅ | K=20 Table 5 ✅ | Spatial sweep ✅ | Latency ✅ | Per-DOF §4.4 ✅ | Random Selection ✅ | 编译 OK 15页\\n待写入: π0.5 cross-VLA 结果\\n\\n## GPU 状态\\n2
+…[truncated 2677 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-argmin-object-seed49",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 11862
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-21T21:29:27.119076+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）。白名单外绝不可用
+- π0.5 模型仅在 bjb2-40593（单卡 A100）和 bjb1-32546/bjb2-28827（已 rsync）可用。bjb1-18228 用于 CRM training，不跑 π0.5 eval
+- bjb1-32546 / bjb2-28827 提交命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀
+- evaluate.py 在 `src/` 子目录：`python src/evaluate.py`（不是 `python evaluate.py`）
+- eval 脚本不写 sentinel/W&B，cron 报 failed **必须先 SSH 查日志确认**
+- CoRL 2026 DDL = **2026-05-29**，≤8 天
+- bjb2-40593 磁盘仅剩 ~48GB，不跑除 π0.5 以外的实验
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-18228** (4×GPU): `/root/acr-vla-conformal-refinement`，conda base，`/root/miniconda3/bin/python`
+  - CRM checkpoints: `/root/autodl-tmp/checkpoints/crm_pi05_full/object/` (训练中)，`/root/autodl-tmp/checkpoints/crm_pi05/spatial/crm_best.pt` (旧 run)
+  - Precompute cache: `/root/autodl-tmp/crm_cache_pi05/object/` (存在)，**`/root/autodl-tmp/crm_cache_pi05/spatial/` 可能不存在（见下方）**
+  - 活跃：**crm-train-pi05-object-full** PID 800111, cuda:0, epoch 7/50 (~5.5h 剩余), cron 活跃
+- **bjb1-32546** (6×GPU): `/root/acr-vla-conformal-refinement`，conda base，π0.5 模型 `/root/autodl-tmp/models/pi05_libero_finetuned/`。全部空闲
+- **bjb2-28827** (6×GPU): 同上，磁盘最宽裕 (69%)。全部空闲
+- **bjb2-40593** (1×GPU A100): π0.5 权重所在。空闲
+- SmolVLA CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof}/crm_best.pt`
+
+### 3. 📊 当前状态
+**刚完成 session-start 初始化。** 上一轮交接但未执行任何操作。
+
+Registry:
+- **RUNNING**: `crm-train-pi05-object-full` (bjb1-18228:cuda:0, PID 800111 confirmed alive, epoch ~7/50)
+- **RUNNING 但实际 FAILED**: `crm-train-pi05-spatial-full` — FileNotFoundError: `/root/autodl-tmp/crm_cache_pi05/spatial` 不存在。status 仍显示 RUNNING 但 `finished_at` 已写入。**需要修正 registry 状态 + 解决 spatial cache 问题**
+- **PREPARING**: 84 项（含 crm-pipeline-auto + 大量旧 precompute retries，大部分是历史遗留）
+- **0 Workers 运行中**，**1 cron 活跃**（监控 object training）
+
+关键已 LOCKED 数据：
+- SmolVLA Plan A: Object 18.3%±2.1%, Spatial 35.0%±1.0%
+- π0.5 VLA-only baseline: Object 81.5%±0.5%, Spatial 84.2%±1.0% (D105)
+- K=20 Sweep, Latency, Norm Sweep, Adaptive K, Random Selection — 全部 LOCKED
+
+### 4. 📋 待办（条件触发式）
+- **立即**：`crm-train-pi05-spatial-full` 实际已失败 → 修正 registry 状态为 DONE/failed → SSH 查 bjb1-18228 确认 spatial cache 路径 → 修复后重新提交 spatial CRM training (cuda:1)
+- crm-train-pi05-object-full cron 回调（~5-6h 后）→ 确认 best checkpoint → 部署 π0.5 CRM Object eval (3 seeds × 2 modes on bjb1-32546/bjb2-28827)
+- Spatial CRM training 完成 → 部署 π0.5 CRM Spatial eval (同上)
+- π0.5 CRM eval 全部完成 → 写入论文 cross-VLA section + 更新 Table
+- eval-adaptive-k-spatial-p90-seed44-bjb2 标记 failed → SSH 查日志确认是否 cron false positive → 如完成则修正
+- 论文 Figure 2 + π0.5 结果写入 → final review → submission prep
+
+### 5. 🎯 战略上下文
+- **核心结论**：Adaptive inference-time compute for frozen VLAs。Plan A (K=2 L2 distance + selective CRM) = Pareto 最优
+- **Decision chain**: D092 Plan A GO → D094-D097 SmolVLA LOCKED → D099 π0.5 action chunk fix → D101-D105 π0.5 baseline LOCKED → 当前: CRM training for π0.5
+- **最紧迫**：`crm-train-pi05-spatial-full` 已经失败但 status 未更新。spatial precompute cache 路径可能在旧 run 被 kill 时丢失或位于不同路径。必须 SSH 确认 `/root/autodl-tmp/crm_cache_pi05/spatial/` 是否存在，以及数据是否在别处（如 `crm_cache_pi05_full/spatial/`）
+- **易判断错的事**：
+  1. crm-train-pi05-spatial-full 看似 RUNNING 实际已 FAILED——不要等 cron 回调
+  2. cron 报 failed ≠ 真的 failed（本项目 10+ 次 false positive 历史）
+  3. π0.5 baseline 上 CRM 增益预期有限（81-85% ceiling），framing 准备 "no-harm + selective improvement"
+  4. PREPARING 的 84 个实验大部分是历史遗留，不要批量提交
+  5. 12 GPU 空闲（bjb1-32546 6 + bjb2-28827 6）等待 CRM training 完成后部署 eval
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-argmin-object-seed49"
+}
+```
+
+</details>
+
+---

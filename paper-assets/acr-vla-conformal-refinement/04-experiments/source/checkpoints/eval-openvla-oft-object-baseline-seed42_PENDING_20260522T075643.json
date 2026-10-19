@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-openvla-oft-object-baseline-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:56:24.604Z",
+    "updated_at": "2026-05-22T07:56:41.989Z",
+    "hypothesis": "OpenVLA-OFT (7B deterministic VLA) baseline eval on LIBERO-Object to establish cross-model comparison point; D107 gate CLOSED means no CRM pipeline but VLA-only baseline is needed for paper Table"
+  },
+  "timestamp": "2026-05-22T07:56:43.002107+00:00",
+  "trigger": "update_registry"
+}

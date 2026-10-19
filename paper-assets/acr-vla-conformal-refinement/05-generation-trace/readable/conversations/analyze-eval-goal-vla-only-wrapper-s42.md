@@ -1,0 +1,172 @@
+# analyze eval goal vla only wrapper s42
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 5
+- **Recorded user turns:** 0
+- **Tool calls:** 2
+- **Original source:** `logs/chats/worker_analyze_eval-goal-vla-only-wrapper-s42_20260523T100549.jsonl`
+- **Structured JSON:** [`700d5f30bca607784210.json`](../../sessions/70/700d5f30bca607784210.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+5 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T10:06:13.095774+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_eval-goal-vla-only-wrapper-s42_20260523T100549",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T10:06:13.096298+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_eval-goal-vla-only-wrapper-s42_20260523T100549",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T10:06:13.096549+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tail -100 /root/acr-vla-conformal-refinement/logs/eval-goal-vla-only-wrapper-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_eval-goal-vla-only-wrapper-s42_20260523T100549",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "tail -100 /root/acr-vla-conformal-refinement/logs/eval-goal-vla-only-wrapper-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T10:06:13.096878+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_vla_only_seed42.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: vla_only, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  34%|███▍      | 168/489 [00:00<00:00, 1650.36it/s]\\rLoading weights:  70%|███████   | 343/489 [00:00<00:00, 1702.66it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 1916.97it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] Loading LIBERO goal environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  open_the_middle_drawer_of_the_cabinet: rollout 5/20, success so far: 4/5\\n  open_the_middle_drawer_of_the_cabinet: rollout 10/20, success so far: 9/10\\n  open_the_middle_drawer_of_the_cabinet: rollout 15/20, success so far: 12/15\\n  open_the_middle_drawer_of_the_cabinet: rollout 20/20, success so far: 17/20\\n[open_the_middle_drawer_of_the_cabinet] success rate: 85.0% (17/20)\\n  put_the_bowl_on_the_stove: rollout 5/20, success so far: 5/5\\n  put_t
+…[truncated 3606 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_eval-goal-vla-only-wrapper-s42_20260523T100549",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5 · 2026-05-23T10:06:13.097193+00:00_
+
+实验已完成。结果：
+
+**Overall: 83.5% (167/200)**
+
+| Task | Success Rate | Successes/Rollouts |
+|------|-------------|-------------------|
+| open_the_middle_drawer_of_the_cabinet | 85.0% | 17/20 |
+| put_the_bowl_on_the_stove | 100.0% | 20/20 |
+| put_the_wine_bottle_on_top_of_the_cabinet | 90.0% | 18/20 |
+| open_the_top_drawer_and_put_the_bowl_inside | 75.0% | 15/20 |
+| put_the_bowl_on_top_of_the_cabinet | 80.0% | 16/20 |
+| push_the_plate_to_the_front_of_the_stove | 85.0% | 17/20 |
+| put_the_cream_cheese_in_the_bowl | 40.0% | 8/20 |
+| turn_on_the_stove | 100.0% | 20/20 |
+| put_the_bowl_on_the_plate | 95.0% | 19/20 |
+| put_the_wine_bottle_on_the_rack | 85.0% | 17/20 |
+
+与之前确认的 Goal VLA-only 结果一致：**83.5%**。Wrapper pipeline 没有引入偏差。`put_the_cream_cheese_in_the_bowl` 仍然是最弱任务（40%）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analyze_eval-goal-vla-only-wrapper-s42_20260523T100549"
+}
+```
+
+</details>
+
+---

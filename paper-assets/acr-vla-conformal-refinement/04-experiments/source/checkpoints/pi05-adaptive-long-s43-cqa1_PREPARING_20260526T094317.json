@@ -1,0 +1,27 @@
+{
+  "exp_id": "pi05-adaptive-long-s43-cqa1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-26T05:53:07.701Z",
+    "updated_at": "2026-05-26T09:43:15.452Z",
+    "hypothesis": "π0.5 Adaptive Conformal on Long s43. Table 2 long-horizon cross-architecture analysis.",
+    "reproduce": {
+      "finished_at": "2026-05-26T09:20:42.548Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-26T09:20:46.899Z",
+    "notes": "失败原因(初步): cqa1 上 6 个 π0.5 并发导致 OOM (已知模式)。reconcile 自动标记 failed。Worker 深查中。",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因(初步): cqa1 上 6 个 π0.5 并发导致 OOM (已知模式)。reconcile 自动标记 failed。Worker 深查中。"
+      }
+    }
+  },
+  "timestamp": "2026-05-26T09:43:17.292443+00:00",
+  "trigger": "update_registry"
+}

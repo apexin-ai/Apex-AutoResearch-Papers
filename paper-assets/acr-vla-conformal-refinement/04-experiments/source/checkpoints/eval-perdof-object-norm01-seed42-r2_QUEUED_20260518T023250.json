@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-perdof-object-norm01-seed42-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:32:26.297Z",
+    "updated_at": "2026-05-18T02:32:49.799Z",
+    "hypothesis": "perdof CRM with max_correction_norm=0.1 on LIBERO-Object seed42. Rerun of failed eval-perdof-object-norm01-seed42. PID 497642 on cuda:3, started 07:52 UTC.",
+    "parent": "eval-perdof-object-norm01-seed42"
+  },
+  "timestamp": "2026-05-18T02:32:50.172558+00:00",
+  "trigger": "update_registry"
+}

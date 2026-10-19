@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval-adaptive-k-p90-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:53:13.788Z",
+    "updated_at": "2026-05-20T06:38:47.294Z",
+    "hypothesis": "Adaptive K with P90 threshold (τ=0.127) on Object seed44. Part of the 4-threshold sweep validating P50 as Pareto optimal.",
+    "spec": {
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "86035",
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.126512 --k_full 10 --benchmark object --seed 44 --n_rollouts 10 --output_file logs/eval_adaptive_k_p90_seed44.json\"",
+      "data_path": "LIBERO-Object",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA + CRM obs_only (adaptive_k)",
+      "seed": 44,
+      "adaptive_threshold": 0.126512,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "LIBERO-Object (10 tasks x 10 rollouts)",
+      "mode": "adaptive_k"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.14,
+      "avg_actual_k": 2.58,
+      "fast_path_ratio": 0.928
+    }
+  },
+  "timestamp": "2026-05-20T06:38:48.456543+00:00",
+  "trigger": "update_registry"
+}

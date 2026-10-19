@@ -1,0 +1,65 @@
+{
+  "exp_id": "eval-obs-only-object-default-seed45-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:05:53.834Z",
+    "updated_at": "2026-05-19T13:35:10.171Z",
+    "hypothesis": "obs_only CRM uncapped (default norm ~1.42) seed45 重跑 n_rollouts=10。原始 seed45 用 n_rollouts=20 (SR=12%)，需标准化。obs_only default 当前 n=3 (seed42/43/44)。",
+    "parent": "eval-obs-only-object-default-seed45",
+    "spec": {
+      "command": "cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --output_file logs/eval_object_obs_only_default_seed45_r2.json",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "579212",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-default-seed45-r2.log",
+      "submitted_at": "2026-05-18T13:24:59.115Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "bjb2-28827",
+    "gpu": "cuda:3",
+    "pid": "579212",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-default-seed45-r2.log",
+    "reproduce": {
+      "command": "cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --output_file logs/eval_object_obs_only_default_seed45_r2.json",
+      "finished_at": "2026-05-19T04:22:06.623Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T04:22:13.278219+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "sr": 0.18,
+      "sr_pct": "18%",
+      "n_tasks": 10,
+      "n_rollouts": 10,
+      "per_task": {
+        "alphabet_soup": 0,
+        "cream_cheese": 0,
+        "salad_dressing": 0.3,
+        "bbq_sauce": 0.3,
+        "ketchup": 0.1,
+        "tomato_sauce": 0.1,
+        "butter": 0.1,
+        "milk": 0.2,
+        "chocolate_pudding": 0.4,
+        "orange_juice": 0.3
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T13:35:10.818993+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval-perdof-object-norm005-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:31:56.813Z",
+    "updated_at": "2026-05-18T12:38:39.486Z",
+    "spec": {
+      "command": "crm_perdof --seed 44 --K 10 --max_correction_norm 0.05",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "553052",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm005-seed44.log",
+      "submitted_at": "2026-05-17T23:31:56.266Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "SmolVLA+CRM_perdof",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "LIBERO-Object"
+    },
+    "hypothesis": "perdof CRM (ε=0.05) seed44 on LIBERO-Object. 补充 Figure 2 低 norm 段 perdof 数据。与 obs_only norm005 seed44 配对对比。",
+    "reproduce": {
+      "finished_at": "2026-05-18T12:34:49.939Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T12:34:56.300941+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T12:38:39.934155+00:00",
+  "trigger": "update_registry"
+}

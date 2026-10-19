@@ -1,0 +1,81 @@
+# director / loop_12.md
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_12.md`
+- **Structured JSON:** [`b800a3b141765b6f6934.json`](../../sessions/b8/b800a3b141765b6f6934.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 12
+reason: max_messages
+updated: '2026-05-19T11:18:59+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 4 台服务器：bjb1-18228, bjb1-32546, bjb2-28827, bjb2-40593。GPU 分配由 `director_allocate_gpus` 管理，不抢其他项目的卡
+- K=5 为当前 primary configuration（D066），但用户尚未回复是否改回 K=10（batched 下延迟相同）。**不要自行切换 primary，等用户确认**
+- Adaptive K 定位为 0.5 页 practical note（D068），**不升为 C4，不调 contribution list**。如实验结果无趣则完全删除
+- 论文是 analysis paper，不是 methods paper。所有叙事围绕 dissection/mechanism insight
+- CoRL 2026 DDL **2026-05-29**，剩余 ~10 天
+
+### 2. 🖥️ 基础设施快照
+- 4 台服务器 × RTX 4090，共 17 GPU（bjb1-18228:4, bjb1-32546:6, bjb2-28827:6, bjb2-40593:1）
+- 远程工作目录：各服务器 `/root/` 下项目路径（Agent 知道具体路径）
+- 本地 workspace: `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/`
+- 关键文件已同步到全部 4 台服务器：`smolvla_wrapper.py`(MD5:f06be4d8), `evaluate.py`(MD5:ac964a3d), `calibrate_threshold.py`(MD5:28ecc061)
+- 28 个 eval 实验 RUNNING（registry），分布在 4 台服务器的 tmux sessions 中
+- Paper .tex 文件在本地 workspace，Paper Agent 管理
+
+### 3. 📊 当前状态
+**刚做完**：D067 Phase 1（batched inference）部署完成，Phase 2（Adaptive K）代码+threshold 校准完成，Reviewer 评估完成并记录 D068 决策。给用户发了进展更新+K=5 vs K=10 确认请求。
+
+**运行中实验（关键）**：
+- K=5 Object seed46/47/48 → 补到 n≥7 增强统计
+- K=5 argmin-only seed42/43/44 → K=5 decomposition 缺口
+- K=5 Spatial seed42/43 → 多 benchmark 证据
+- LTO eval v2: CRM + VLA-only baseline → 泛化 claim
+- Spatial K=10 seed43/44/45 → Spatial 多 seed
+- Magnitude sweep seeds（ε=0.03 obs/perdof, ε=0.05 perdof, default obs）
+
+**等待中**：
+- 用户回复 K=5 vs K=10 primary 决策
+- 实验完成回调 → 收割结果
+- GPU 释放后部署 9 个 Adaptive K 实验（3 seeds × 3 thresholds: 0.040/0.046/0.070）
+
+### 4. 📋 待办（条件触发式）
+- 用户回复 K=5 → 维持现状，继续补种；用户回复 K=10 → 切回 K=10 primary，更新 paper_framing.md + 通知 Paper Agent
+- K=5 seed46/47/48 完成 → 立即计算 n≥7 Mann-Whitney U，更新 paper_framing.md 统计数据
+- LTO eval 完成 → 分析 held-out 5 tasks 的 SR，判断泛化 claim 是否成立
+- K=5 argmin-only 完成 → 验证 K=5 decomposition（selection ≈ 0, correction = active mechanism）
+- K=5 Spatial 完成 → 多 benchmark 证据，更新论文
+- GPU 空出 → 部署 Adaptive K 实验（低优先级）
+- Adaptive K 实验完成 → 如 threshold sensitivity 有趣，保留 0.5 页 practical note；无趣则删
+- 所有关键实验完成 → 通知 Paper Agent 做最终 patch + 提交 Round 3 内部审稿
+
+### 5. 🎯 战略上下文
+**核心决策链**：D058(CRM=correction not selection) → D061(继续冲CoRL) → D063(K-scaling curve) → D064(component decomposition) → D065(reframe to analysis paper) → D066(K=5 primary) → D067(batched inference + adaptive K) → D068(adaptive K 降级为 0.5 页 note)
+
+**最容易判断错的事**：
+1. **不要把 Adaptive K 当成核心贡献**——Reviewer 已明确评估：batched 下无延迟优势，方法 trivial，升 C4 只会增加攻击面
+2. **Batched inference 是真正的 practical contribution**（~1s→~314ms ~3Hz），不是 Adaptive K
+3. **K=5 vs K=10 primary 是用户决策**——batched 下延迟相同，K=10 统计更强（n=7, p=0.0025），但用户之前明确要求 K=5。不要自作主张
+4. **Paper 是 8 页严格限制**——之前 9 页超限已修复（合并 Discussion+Limitations+Conclusion，K-scaling 移到 Appendix）
+5. **mistakes.yaml 有 M016-M018**——LTO task name matching bug（underscore vs space）已修复，但 LTO eval 是重跑版本（v2/r2/r3），确认结果时注意版本号
+
+
+---

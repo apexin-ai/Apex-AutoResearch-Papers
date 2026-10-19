@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-long-adapt-tau025-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T00:55:46.960Z",
+    "updated_at": "2026-05-24T00:56:57.821Z",
+    "hypothesis": "Adaptive CRM tau=0.25 on Long suite seed46. Fifth seed for Long Adaptive variance analysis. s42-s45 mean ~59.5%."
+  },
+  "timestamp": "2026-05-24T00:57:03.789539+00:00",
+  "trigger": "update_registry"
+}

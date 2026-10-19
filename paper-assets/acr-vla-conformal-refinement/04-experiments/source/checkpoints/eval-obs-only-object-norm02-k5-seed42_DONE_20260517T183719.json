@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval-obs-only-object-norm02-k5-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:34:40.971Z",
+    "updated_at": "2026-05-17T18:37:18.364Z",
+    "hypothesis": "obs_only CRM (ε=0.2, K=5) seed42 on LIBERO-Object. K sweep 实验：K=5 vs K=10 (22%) 比较，验证 sample count 对 selection quality 的影响。若 K=5 显著低于 K=10，说明足够的 candidate 多样性对 CRM selection 关键。",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "633662",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm02-k5-seed42.log",
+      "submitted_at": "2026-05-17T13:35:17.714Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": 10,
+      "model_name": "crm_obs_only",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "LIBERO-Object",
+      "wall_clock_seconds": 17831.1,
+      "gpu_hours": 4.95
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T18:32:21.424Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "killed",
+    "completed_at": "2026-05-17T18:32:28.770Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T18:32:40.928533+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-17T18:37:19.135096+00:00",
+  "trigger": "update_registry"
+}

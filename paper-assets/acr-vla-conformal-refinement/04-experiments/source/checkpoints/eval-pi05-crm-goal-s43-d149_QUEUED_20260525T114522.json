@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-pi05-crm-goal-s43-d149",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:44:55.068Z",
+    "updated_at": "2026-05-25T11:45:20.556Z",
+    "hypothesis": "π0.5 + CRM (K=10, max_correction_norm=0.05) 在 LIBERO-Goal suite 上的 action correction 效果（seed=43 重复，用于均值/std 估计）"
+  },
+  "timestamp": "2026-05-25T11:45:22.088175+00:00",
+  "trigger": "update_registry"
+}

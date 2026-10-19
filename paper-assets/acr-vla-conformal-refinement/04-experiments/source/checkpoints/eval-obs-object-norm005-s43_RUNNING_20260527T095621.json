@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval-obs-object-norm005-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:39:53.936Z",
+    "updated_at": "2026-05-27T09:56:18.812Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode crm_obs_only --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_obs_only_norm005_s43.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "86300",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-object-norm005-s43.log",
+      "submitted_at": "2026-05-27T06:39:50.912Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 200,
+      "data_path": "LIBERO-Object",
+      "model_name": "smolvla",
+      "seed": 43
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T09:20:59.207Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T09:22:24.291477+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-27T09:56:21.723318+00:00",
+  "trigger": "update_registry"
+}

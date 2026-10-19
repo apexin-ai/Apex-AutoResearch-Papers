@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-k2-adaptive-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T02:52:57.415Z",
+    "updated_at": "2026-05-25T02:54:48.720Z",
+    "hypothesis": "K=2 Adaptive Spatial (τ=0.25) 同服务器配对。K=2 是正确采样数（两次前向推理算 L2 距离做 gating）。配对 cqa1-32758 VLA-only baseline 用于 paired t-test。"
+  },
+  "timestamp": "2026-05-25T02:54:50.290346+00:00",
+  "trigger": "update_registry"
+}

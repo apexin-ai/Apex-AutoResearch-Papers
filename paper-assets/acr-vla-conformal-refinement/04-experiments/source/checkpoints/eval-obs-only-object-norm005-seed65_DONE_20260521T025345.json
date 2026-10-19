@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval-obs-only-object-norm005-seed65",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:30:00.000Z",
+    "updated_at": "2026-05-21T02:53:38.060Z",
+    "hypothesis": "CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed65. Norm sweep seed balance for ε=0.05.",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 65 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_obs_only_object_norm005_seed65.json",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "622479",
+      "seed": 65,
+      "model_name": "CRM_obs_only",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "log_path": "/root/autodl-tmp/logs/obs_only_object_norm005_seed65.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T02:36:11.385Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T02:36:13.448Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T02:36:29.634206+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: process dead 5× with no sentinel/W&B。服务器 bjb1-18228, cuda:1。已派 Worker 诊断根因（OOM/SIGHUP/PATH/磁盘？）。同服务器 seed66 系列仍在运行中。"
+  },
+  "timestamp": "2026-05-21T02:53:45.189097+00:00",
+  "trigger": "update_registry"
+}

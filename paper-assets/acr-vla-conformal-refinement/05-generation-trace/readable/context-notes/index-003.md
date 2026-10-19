@@ -1,0 +1,77 @@
+# Context and loop notes
+
+Open a Markdown transcript for a human-readable view, or the JSON file for the structured export.
+
+| Record | Events | User turns | Markdown | JSON |
+|---|---:|---:|---|---|
+| agent / loop_6_1778821895.md | 1 | 0 | [Read transcript](loop-6-1778821895.md) | [JSON](../../sessions/32/328c2b1b733c7cbbccba.json) |
+| agent / loop_6_1778821928.md | 1 | 0 | [Read transcript](loop-6-1778821928.md) | [JSON](../../sessions/03/03bcb45b397a735dd455.json) |
+| agent / loop_7.md | 1 | 0 | [Read transcript](loop-7-copy-2.md) | [JSON](../../sessions/87/879d3da1884f35f01a90.json) |
+| agent / loop_7_1778821933.md | 1 | 0 | [Read transcript](loop-7-1778821933.md) | [JSON](../../sessions/61/61282a52d1136cb9d3d8.json) |
+| agent / loop_7_1778821968.md | 1 | 0 | [Read transcript](loop-7-1778821968.md) | [JSON](../../sessions/d7/d72c594738db81b771d5.json) |
+| agent / loop_7_1778837963.md | 1 | 0 | [Read transcript](loop-7-1778837963.md) | [JSON](../../sessions/05/053f79dff6bdcb0185d6.json) |
+| agent / loop_8.md | 1 | 0 | [Read transcript](loop-8-copy-2.md) | [JSON](../../sessions/4d/4dbc44209bd39b0ecb5f.json) |
+| agent / loop_8_1778840104.md | 1 | 0 | [Read transcript](loop-8-1778840104.md) | [JSON](../../sessions/eb/eb319d8d489b9d316559.json) |
+| agent / loop_8_1778844940.md | 1 | 0 | [Read transcript](loop-8-1778844940.md) | [JSON](../../sessions/1a/1a1b8606698403a96d02.json) |
+| agent / loop_8_1778846949.md | 1 | 0 | [Read transcript](loop-8-1778846949.md) | [JSON](../../sessions/a3/a3077f3d8db2a9d214d2.json) |
+| agent / loop_8_1778851270.md | 1 | 0 | [Read transcript](loop-8-1778851270.md) | [JSON](../../sessions/77/7792e7761f326ab2209b.json) |
+| agent / loop_9.md | 1 | 0 | [Read transcript](loop-9-copy-2.md) | [JSON](../../sessions/c0/c097a8213f4184461b37.json) |
+| agent / loop_9_1778852491.md | 1 | 0 | [Read transcript](loop-9-1778852491.md) | [JSON](../../sessions/8f/8fb6b76644ae20758813.json) |
+| agent / loop_9_1778860209.md | 1 | 0 | [Read transcript](loop-9-1778860209.md) | [JSON](../../sessions/21/218ab7543d97943a6b9e.json) |
+| agent / loop_9_1778862881.md | 1 | 0 | [Read transcript](loop-9-1778862881.md) | [JSON](../../sessions/02/029c1e3f640893201446.json) |
+| agent / loop_9_1778863555.md | 1 | 0 | [Read transcript](loop-9-1778863555.md) | [JSON](../../sessions/fb/fbe621e7f4882f8cbf67.json) |
+| agent / loop_9_1778871769.md | 1 | 0 | [Read transcript](loop-9-1778871769.md) | [JSON](../../sessions/74/74557ebe269ccd6f6ef3.json) |
+| director / loop_1.md | 1 | 0 | [Read transcript](loop-1.md) | [JSON](../../sessions/4f/4fac22edcc20ea7f3909.json) |
+| director / loop_10.md | 1 | 0 | [Read transcript](loop-10.md) | [JSON](../../sessions/94/94aa0d64d5ab37b21073.json) |
+| director / loop_11.md | 1 | 0 | [Read transcript](loop-11.md) | [JSON](../../sessions/45/45f311ad126ace6e5098.json) |
+| director / loop_12.md | 1 | 0 | [Read transcript](loop-12.md) | [JSON](../../sessions/b8/b800a3b141765b6f6934.json) |
+| director / loop_13.md | 1 | 0 | [Read transcript](loop-13.md) | [JSON](../../sessions/5d/5d6da47b5438c8482a48.json) |
+| director / loop_14.md | 1 | 0 | [Read transcript](loop-14.md) | [JSON](../../sessions/e7/e7e1ab49432105a828d9.json) |
+| director / loop_15.md | 1 | 0 | [Read transcript](loop-15.md) | [JSON](../../sessions/f7/f7ea620f388bde79c366.json) |
+| director / loop_16.md | 1 | 0 | [Read transcript](loop-16.md) | [JSON](../../sessions/23/230f12fd656168aee265.json) |
+| director / loop_17.md | 1 | 0 | [Read transcript](loop-17.md) | [JSON](../../sessions/78/789fe5f9cc41a01770de.json) |
+| director / loop_18.md | 1 | 0 | [Read transcript](loop-18.md) | [JSON](../../sessions/9e/9ed45cd4a6f867888d44.json) |
+| director / loop_19.md | 1 | 0 | [Read transcript](loop-19.md) | [JSON](../../sessions/dc/dcd2d9dceb139a4bced7.json) |
+| director / loop_2.md | 1 | 0 | [Read transcript](loop-2.md) | [JSON](../../sessions/1a/1ad83d432ec206700479.json) |
+| director / loop_20.md | 1 | 0 | [Read transcript](loop-20.md) | [JSON](../../sessions/df/df601c7bd22b1fd0890a.json) |
+| director / loop_21.md | 1 | 0 | [Read transcript](loop-21.md) | [JSON](../../sessions/cd/cd1ec3676e6248d45869.json) |
+| director / loop_22.md | 1 | 0 | [Read transcript](loop-22.md) | [JSON](../../sessions/03/0349ac1a2c86b0e5cd21.json) |
+| director / loop_23.md | 1 | 0 | [Read transcript](loop-23.md) | [JSON](../../sessions/54/54013ea07cfb223ffc21.json) |
+| director / loop_24.md | 1 | 0 | [Read transcript](loop-24.md) | [JSON](../../sessions/66/6669ea65b773749e1295.json) |
+| director / loop_25.md | 1 | 0 | [Read transcript](loop-25.md) | [JSON](../../sessions/aa/aaa52d14ded24317225a.json) |
+| director / loop_26.md | 1 | 0 | [Read transcript](loop-26.md) | [JSON](../../sessions/da/dae6e0b1bba989f86c98.json) |
+| director / loop_27.md | 1 | 0 | [Read transcript](loop-27.md) | [JSON](../../sessions/f4/f44cfdfa74d68b5136dd.json) |
+| director / loop_28.md | 1 | 0 | [Read transcript](loop-28.md) | [JSON](../../sessions/75/753ed94d967bee5ad0b3.json) |
+| director / loop_29.md | 1 | 0 | [Read transcript](loop-29.md) | [JSON](../../sessions/88/8813af1fa8e8d367aa99.json) |
+| director / loop_3.md | 1 | 0 | [Read transcript](loop-3.md) | [JSON](../../sessions/ff/ff8af6475c301b9ef91d.json) |
+| director / loop_4.md | 1 | 0 | [Read transcript](loop-4.md) | [JSON](../../sessions/7d/7d7a8c039cbff1b6bea4.json) |
+| director / loop_5.md | 1 | 0 | [Read transcript](loop-5.md) | [JSON](../../sessions/2e/2eebcdf985d38cb5e3f2.json) |
+| director / loop_6.md | 1 | 0 | [Read transcript](loop-6.md) | [JSON](../../sessions/8a/8a06595268bade96516f.json) |
+| director / loop_7.md | 1 | 0 | [Read transcript](loop-7.md) | [JSON](../../sessions/09/09bf90735cc462d2c1f9.json) |
+| director / loop_8.md | 1 | 0 | [Read transcript](loop-8.md) | [JSON](../../sessions/ec/ec9391c392a55810bcb8.json) |
+| director / loop_9.md | 1 | 0 | [Read transcript](loop-9.md) | [JSON](../../sessions/82/8283bd42911e3c0dc84d.json) |
+| reviewer / loop_1.md | 1 | 0 | [Read transcript](loop-1-copy-3.md) | [JSON](../../sessions/53/531ad2ff8de76fd755bf.json) |
+| reviewer / loop_10.md | 1 | 0 | [Read transcript](loop-10-copy-3.md) | [JSON](../../sessions/a8/a8963ea8c71f65cc788d.json) |
+| reviewer / loop_11.md | 1 | 0 | [Read transcript](loop-11-copy-3.md) | [JSON](../../sessions/20/20b7d1097413f58d0a6a.json) |
+| reviewer / loop_12.md | 1 | 0 | [Read transcript](loop-12-copy-3.md) | [JSON](../../sessions/fc/fc8826b59cd7ee23c234.json) |
+| reviewer / loop_13.md | 1 | 0 | [Read transcript](loop-13-copy-3.md) | [JSON](../../sessions/31/31eaca17d0e9f68a0c8e.json) |
+| reviewer / loop_14.md | 1 | 0 | [Read transcript](loop-14-copy-3.md) | [JSON](../../sessions/a0/a0169fc1bc0209e6d6b0.json) |
+| reviewer / loop_15.md | 1 | 0 | [Read transcript](loop-15-copy-3.md) | [JSON](../../sessions/e1/e10c6ab6a454151d3166.json) |
+| reviewer / loop_16.md | 1 | 0 | [Read transcript](loop-16-copy-3.md) | [JSON](../../sessions/cf/cf20b66433cafeb7f7d3.json) |
+| reviewer / loop_17.md | 1 | 0 | [Read transcript](loop-17-copy-3.md) | [JSON](../../sessions/d0/d05f25fc504e1b659491.json) |
+| reviewer / loop_18.md | 1 | 0 | [Read transcript](loop-18-copy-3.md) | [JSON](../../sessions/02/02f941d17081246b25f8.json) |
+| reviewer / loop_19.md | 1 | 0 | [Read transcript](loop-19-copy-3.md) | [JSON](../../sessions/6b/6b836b5b1d2ab1c8bb60.json) |
+| reviewer / loop_2.md | 1 | 0 | [Read transcript](loop-2-copy-3.md) | [JSON](../../sessions/a0/a0a7984993b13fb379bb.json) |
+| reviewer / loop_20.md | 1 | 0 | [Read transcript](loop-20-copy-3.md) | [JSON](../../sessions/de/de4bf09dcd0e689617df.json) |
+| reviewer / loop_21.md | 1 | 0 | [Read transcript](loop-21-copy-3.md) | [JSON](../../sessions/26/2687995cdb8d6f464eb7.json) |
+| reviewer / loop_22.md | 1 | 0 | [Read transcript](loop-22-copy-3.md) | [JSON](../../sessions/0e/0eb9e1134e03c1341fb8.json) |
+| reviewer / loop_23.md | 1 | 0 | [Read transcript](loop-23-copy-3.md) | [JSON](../../sessions/d1/d1bfe248a0e05117ea6c.json) |
+| reviewer / loop_24.md | 1 | 0 | [Read transcript](loop-24-copy-3.md) | [JSON](../../sessions/7a/7a1e5eb9cc48974b5edf.json) |
+| reviewer / loop_25.md | 1 | 0 | [Read transcript](loop-25-copy-3.md) | [JSON](../../sessions/88/88263cae001a3a5c9f40.json) |
+| reviewer / loop_3.md | 1 | 0 | [Read transcript](loop-3-copy-3.md) | [JSON](../../sessions/bf/bfee9d53e6233224a791.json) |
+| reviewer / loop_4.md | 1 | 0 | [Read transcript](loop-4-copy-3.md) | [JSON](../../sessions/8c/8c32a7619b928c2eb658.json) |
+| reviewer / loop_5.md | 1 | 0 | [Read transcript](loop-5-copy-3.md) | [JSON](../../sessions/39/394acd028ae63c536384.json) |
+| reviewer / loop_6.md | 1 | 0 | [Read transcript](loop-6-copy-3.md) | [JSON](../../sessions/07/07f7ec919b0314f0e983.json) |
+| reviewer / loop_7.md | 1 | 0 | [Read transcript](loop-7-copy-3.md) | [JSON](../../sessions/e0/e0f5e58541cd515c4f44.json) |
+| reviewer / loop_8.md | 1 | 0 | [Read transcript](loop-8-copy-3.md) | [JSON](../../sessions/a9/a9ec59cb702a041b3c14.json) |
+| reviewer / loop_9.md | 1 | 0 | [Read transcript](loop-9-copy-3.md) | [JSON](../../sessions/c4/c411fd2420997258f055.json) |

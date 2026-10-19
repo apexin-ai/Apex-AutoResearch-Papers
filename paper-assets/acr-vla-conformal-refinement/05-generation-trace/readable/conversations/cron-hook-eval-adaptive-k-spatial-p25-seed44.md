@@ -1,0 +1,142 @@
+# cron hook eval adaptive k spatial p25 seed44
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 2
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/cron_hook_eval-adaptive-k-spatial-p25-seed44.jsonl`
+- **Structured JSON:** [`c8987ef98caea7392ef6.json`](../../sessions/c8/c8987ef98caea7392ef6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+2 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T05:46:01.948949+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #23。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）。白名单外禁止使用，即使 Director 指令也要 push back。
+- 所有服务器用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，**不要创建 venv**。
+- evaluate.py 在 `src/` 子目录下：命令必须是 `python -u src/evaluate.py`，不是 `python evaluate.py`（已多次踩坑）。
+- bjb2-28827 上实验频繁出现 EXIT_CODE=129 (SIGHUP) false failure——收到 failed 回调时**先 tail 日志确认是否实际完成**再判定。
+- 日志路径有两套并存：部分实验 tee 到 `/root/acr-vla-conformal-refinement/logs/`，部分到 `~/runs/acr-vla-conformal-refinement/`。tail 时两个都查。
+- CoRL 2026 DDL = **2026-05-29**，剩余 ~8 天。
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-18228** (4×4090): 工作目录 `/root/acr-vla-conformal-refinement`，磁盘 4% 用
+- **bjb1-32546** (6×4090): 同上，磁盘 4% 用
+- **bjb2-28827** (6×4090): 同上，磁盘 5% 用
+- **bjb2-40593** (1×4090): 同上，磁盘 90% ⚠️ 根分区快满
+- Python: `/root/miniconda3/bin/python`，conda base 环境
+- 模型: `/root/autodl-tmp/models/smolvla_libero/`（SmolVLA）
+- CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`
+- HF cache: `/root/autodl-tmp/.hf_cache`
+- 活跃进程: eval-obs-only-object-norm02-seed43-r3 (bjb1-32546:cuda:2, PID 401735)
+- 活跃 Worker: worker_pipeline_openvla-crm-bjb2-28827（OpenVLA pipeline）
+
+### 3. 📊 当前状态
+**刚完成**: 修正了 3 个 cron false failure（eval-adaptive-k-spatial-p25-seed44, eval-adaptive-k-spatial-p75-seed44, eval-obs-only-goal-norm02-seed51），补录 metrics，更新 memory.md，已向 Director 汇报。
+
+**RUNNING**: eval-obs-only-object-norm02-seed43-r3 (bjb1-32546:cuda:2) — CRM Object K=10 norm02 补 seed，之前多次 retry。
+
+**PREPARING** (~39 项): 包括 eval-obs-only-spatial-norm02-seed49, eval-obs-only-goal-norm02-seed53 等多 seed 补充实验。eval-adaptive-k-spatial-p90-seed44 也在 PREPARING（完成后 Spatial sweep 12/12）。
+
+**等待**: Worker pipeline:openvla-crm-bjb2-28827 回调（OpenVLA 相关）。GPU 利用率极低（1/17），等 Director 指令或上述 Worker 完成后部署新实验。
+
+### 4. 📋 待办（条件触发式）
+- eval-obs-only-object-norm02-seed43-r3 cron 回调 → 补录 metrics，更新 Table 1 统计（当前 n=6，成功则 n=7）
+- Worker pipeline:openvla-crm-bjb2-28827 完成 → 处理 OpenVLA baseline 结果
+- Director 指令部署新实验 → 优先 Spatial Adaptive K P90 seed44（最后一格）+ Random Selection baseline (plan_600)
+- bjb2-40593 磁盘 90% → 部署前先清理或避开此服务器
+
+### 5. 🎯 战略上下文
+**核心方向**: Adaptive inference-time compute for frozen VLAs。K=2 L2 distance 做门控信号（ρ=0.9979），自适应决定每步 K。P50 Object Pareto 最优（SR 15.3%, avg_K 3.8）。CRM correction>selection 分析为 supporting evidence。
+
+**关键决策链**: D078(P50最优) → D079(CRM magnitude NO-GO) → D080(Table1 norm02 n=6) → D081(Long OOD cautious) → D082(batched inference确认) → D083(Spatial n=8溯源) → D085(跨benchmark阈值迁移) → D087(撤回D086恢复OpenVLA线)
+
+**易错点**:
+1. Spatial 上 P75（不是 P50）才是 Pareto 最优——Object 和 Spatial 最优阈值不同，这恰好支持"方法自动适配"narrative，**不要当 bug 处理**。
+2. Goal OOD 是 neutral（-1.0pp n.s.），Long OOD 是 borderline（+2.2pp, MW-U p=0.061 n.s.）——论文 cautious wording，不要 overclaim。
+3. seed42 P25 conclusion=negative 但 seed43/44 是 success——这是标注不一致，不影响数据（SR 33/30/32 都是有效数据点）。
+4. 多个实验 conclusion=failed 实际是 false failure，诊断前先查 memory.md 已知模式。
+
+## 项目硬约束 (memory.md 节选)
+
+## 失败模式记录
+
+- [失败模式] Cron false positive：eval 脚本不写 W&B 也不写 sentinel file，进程正常退出后 cron 5 次检测找不到标记 → 自动标记为 failed。受影响：eval-vla-only-long-seed46, eval-vla-only-goal-seed46。修复方案：tail 日志确认实际完成 → 手动修正 conclusion=success + 补录 metrics。预防：eval 实验应检查 output JSON 是否存在作为 sentinel。
+
+- [失败模式] Cron false positive（2026-05-20）：**eval-adaptive-k-spatial-p50-seed42** 被 cron 误判为 failed（"process dead 5× with no sentinel/W&B"）。实际情况：原 PID 675831 被 deploy worker kill 后，重启为 PID 681823。重启后进程正常运行，但 cron 监控未追踪到新 PID，5 次检测均未发现 sentinel → 自动标记 failed。诊断时（2026-05-20）PID 681823 仍在运行（状态 Rl+，已运行 17h36m），已完成 3/10 tasks（SR: 70%/100%/0%），第 4 个 task 进行中（rollout 5, 1/5 success）。GPU 使用 5972/24564 MiB，日志无错误。**无需重新提交，等待自然完成后手动修正 conclusion。**
+
+- [失败模式] SIGHUP false failure（2026-05-20）：bjb2-28827 上多个实验 EXIT_CODE=129 (SIGHUP) 被标记 failed，实际全部完成。**已确认受影响：P75-seed44, P90-seed42, P25-seed44**。SIGHUP 发生在进程写完结果 JSON 之后（tmux session 断开或 SSH 连接清理）。**诊断方法：tail 日志看 "Results saved to" + "Overall success rate" 行 → 手动修正 conclusion=success 并补录 metrics。**
+
+- [失败模式] Cron 日志路径不匹配（2026-05-20）：**eval-obs-only-goal-norm02-seed51** (bjb1-32546) 被 cron 误判 dead。根因：实验日志写入 `/root/acr-vla-conformal-refinement/logs/`（项目目录下），但 cron 监控在 `~/runs/acr-vla-conformal-refinement/` 下找日志 → 找不到 → 5 次检测均无 sentinel → auto-resolved failed。**教训：submit_training_job 的 log_path 必须与实际 tee 输出路径一致。部分实验用 `tee logs/xxx.log`（相对于 cd 后的项目目录），另一部分用 `~/runs/` 绝对路径，两套路径并存导致 cron 误判。**
+
+- [失败模式] Cron false positive 批量（2026-05-20 诊断）：bjb1-32546 上 **eval-perdof-object-norm02-seed50** (PID 542405) 和 **eval-obs-only-object-norm02-seed51** (PID 542894) 被 cron 报告 "process gone, no sentinel, no W&B"。实际两者均已**正常完成**，output JSON 已写入。bjb1-18228 上 **eval-obs-only-object-norm005-seed44** 同样正常完成但被标记 failed。根因同上：eval 脚本不写 sentinel/W&B，进程正常退出后 cron 无法确认完成状态。结果：perdof-norm02-seed50 SR=10.0%, obs_only-norm02-seed51 SR=17.0%, obs_only-norm005-seed44 SR=12.0%。**均无需重跑，需手动修正 conclusion=success 并补录 metrics。**
+
+- [失败模式] python PATH 不存在（2026-05-21, bjb1-32546）：`nohup: failed to run command 'python': No such file or directory`。bjb1-32546 使用 conda 环境，`python` 不在默认 PATH 中（仅 `/root/miniconda3/bin/python` 可用）。受影响：seed51-r2, seed52-r2, seed62, seed63（4 个实验同时失败）。**修复方案：提交命令前加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀。** 教训：submit_training_job 的 command 不能假设 `python` 在 PATH 中，必须自带环境激活。对照其他服务器（bjb1-18228、bjb2-28827）成功实验的命令格式，它们通过 `bash -c "source ... && python ..."` 包裹。
+
+- [失败模式] FMVD 信号无效：ρ=0.0825 NO-GO。根因：denoising 空间统计量不映射到 action uncertainty。
+
+- [失败模式] CRM correction magnitude 信号无效（2026-05-20）：ρ(K1_corr_mag, K10_var) = 0.1523 NO-GO。**根因：CRM correction magnitude 是常数 (~0.1205)，P25=P50=P75=P90 几乎相同。** CRM 对所有输入产出相同大小的修正向量——修正方向变化但幅度不变。推测因 max_correction_norm=0.2 的 clipping 使得大部分 correction 被截断到相同 norm。K=2 argmin 版本同样无效 (ρ=0.1340)。**教训：clipped norm 的信号没有方差，自然无法做 gate。**
+
+- [失败模式] OpenVLA-7B eval timeout：timeout_hours 至少设 12h。
+
+- [失败模式] Table 1 数据混淆（2026-05-20）：Table 1 原报 CRM Object K=10 = 17.6% (n=7)，实际来自 **norm01+norm02 混合数据**。seed42 只有 norm01 (0.19)，seed43 只有 norm02 (0.16)，两个 config 各自只有 n=6，合并后变 n=7。paper_provenance.yaml C029 引用的 exp_id 是抽象 "obs_only_k10" 而非具体实验 ID，导致问题没被及时发现。**教训：provenance 必须引用具体 registry_id，不用抽象标签。**
+
+- [失败模式] evaluate.py 路径缺 src/ 前缀（2026-05-20）：adaptive_k spatial 实验命令用 `python evaluate.py` 而非 `python src/evaluate.py`，导致 EXIT_CODE=2 (No such file)。受影响：eval-adaptive-k-spatial-p50-seed43, eval-adaptive-k-spatial-p50-seed44（两台服务器 bjb1-32546, bjb2-28827 同时中招）。**教训：提交命令时对照历史成功实验的 command 格式，evaluate.py 在 src/ 子目录下。**
+
+## 可查的历史
+前 173 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-adaptive-k-spatial-p25-seed44",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-21T05:46:07.453610+00:00_
+
+You've hit your limit · resets May 22, 5pm (UTC)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-adaptive-k-spatial-p25-seed44"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,36 @@
+{
+  "exp_id": "pi05-object-adaptive-s44-cqa1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:55:59.906Z",
+    "updated_at": "2026-05-27T06:59:22.042Z",
+    "hypothesis": "Pi0.5 Object adaptive conformal CRM s44 on cqa1: third seed for pi05 Object CRM evaluation",
+    "spec": {
+      "command": "python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --benchmark object --seed 44 --n_rollouts 20",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:2"
+      ],
+      "data_path": "LIBERO-Object",
+      "data_count": 20,
+      "model_name": "pi05",
+      "seed": 44,
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_pi05_seed44.json"
+    },
+    "metrics": {
+      "success_rate": 0.88,
+      "trigger_rate": 0.0348,
+      "mean_uncertainty": 0.082,
+      "total_steps": 33220,
+      "crm_applied_steps": 1155
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-27T06:59:23.927090+00:00",
+  "trigger": "update_registry"
+}

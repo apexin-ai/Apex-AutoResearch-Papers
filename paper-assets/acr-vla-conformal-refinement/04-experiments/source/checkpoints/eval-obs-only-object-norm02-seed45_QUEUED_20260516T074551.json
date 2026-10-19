@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-obs-only-object-norm02-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:44:19.258Z",
+    "updated_at": "2026-05-16T07:45:51.399Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_seed45.json",
+      "server": "bjb1-32546",
+      "gpu": "cuda:3",
+      "pid": "233544",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm02-seed45.log",
+      "submitted_at": "2026-05-16T07:44:18.928Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 45,
+      "model_name": "crm_v3_norm_obs_only",
+      "hypothesis": "obs_only CRM v3-norm norm=0.2 seed=45 on LIBERO object. 4th seed pre-deployed for statistical power."
+    }
+  },
+  "timestamp": "2026-05-16T07:45:51.993693+00:00",
+  "trigger": "update_registry"
+}

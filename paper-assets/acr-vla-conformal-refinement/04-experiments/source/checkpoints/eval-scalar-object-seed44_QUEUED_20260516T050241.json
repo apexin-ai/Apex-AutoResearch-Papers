@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-scalar-object-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:02:34.914Z",
+    "updated_at": "2026-05-16T05:02:41.163Z",
+    "hypothesis": "scalar_unc CRM v3-norm seed=44 on LIBERO object benchmark. Completes seed=44 six-way comparison. scalar seed42=9%, seed43 running (0% at 3/10). Expected worst CRM variant."
+  },
+  "timestamp": "2026-05-16T05:02:41.405880+00:00",
+  "trigger": "update_registry"
+}

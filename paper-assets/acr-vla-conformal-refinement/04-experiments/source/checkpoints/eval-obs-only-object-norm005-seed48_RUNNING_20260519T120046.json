@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval-obs-only-object-norm005-seed48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:56:19.347Z",
+    "updated_at": "2026-05-19T12:00:46.347Z",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_object_obs_only_norm005_seed48.json\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "989965",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm005-seed48.log",
+      "submitted_at": "2026-05-19T05:56:18.699Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "SmolVLA+CRM_obs_only",
+      "seed": 48
+    },
+    "hypothesis": "obs_only CRM (ε=0.05) seed48 on LIBERO-Object. 补 magnitude curve obs_only ε=0.05 (当前 n=5)。timeout=16h。"
+  },
+  "timestamp": "2026-05-19T12:00:46.884260+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-k1-crm-multiscale-object-seed43-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:40:31.417Z",
+    "updated_at": "2026-05-17T18:40:56.481Z",
+    "hypothesis": "K=1 CRM with ACCG (multi-scale 4×960D) on LIBERO-Object seed43. Parallel deployment on bjb1-18228. Parent: train-crm-k1-accg-object-seed42-v2",
+    "parent": "train-crm-k1-accg-object-seed42-v2"
+  },
+  "timestamp": "2026-05-17T18:40:56.896220+00:00",
+  "trigger": "update_registry"
+}

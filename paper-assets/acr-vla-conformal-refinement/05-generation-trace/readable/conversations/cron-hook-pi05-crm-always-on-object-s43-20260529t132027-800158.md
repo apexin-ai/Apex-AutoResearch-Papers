@@ -1,0 +1,725 @@
+# cron hook pi05 crm always on object s43 20260529T132027 800158
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 2
+- **Tool calls:** 8
+- **Original source:** `logs/chats/archive/cron_hook_pi05-crm-always-on-object-s43_20260529T132027_800158.jsonl`
+- **Structured JSON:** [`253930583b2947b5c4eb.json`](../../sessions/25/253930583b2947b5c4eb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+18 recorded events
+
+### User
+
+_source line 1 · 2026-05-28T21:15:34.543089+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #30。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目 GPU 白名单由 4 台服务器各 6 卡组成（bjb1-18228, bjb1-32546, bjb2-28827, cqa1-32758），但实际分配给项目的 gpu_ids 需查 `get_project_status`，不可自行假设全部可用
+- cqa1-32758 磁盘 `/autodl-pub` 已用 94% ⚠️，提交新实验前必须先清理或确认空间
+- Pi05 模型的 CRM checkpoint 路径：`/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`（cqa1-32758 上）
+- westd 服务器数据系统性偏低 4-5pp（D174/D175 确认，LIBERO assets 版本差异），westd 数据不可与其他服务器混用
+- CoRL 2026 DDL 是 **2026-05-28 20:00 北京时间**（今天），DDL 前不再部署新实验，让运行中的自然完成
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-32546**: crm-always-on-long-s45 运行中 (PID 423632, cuda:5)
+- **cqa1-32758**: pi05-crm-always-on-long-s42 运行中 (PID 156008, cuda:5)；pi05-crm-always-on-object-s43 刚完成（本次回调）
+- **bjb2-28827**: SmolVLA tau-sweep 4 个实验运行中 (tau015/020/030/035, cuda 上各一个)；smolvla-tau015-spatial-s42-fix (PID 20271, cuda:4)
+- 所有服务器 Python 环境：`/root/miniconda3/bin/python`，conda base 环境
+- 工作目录：`/root/acr-vla-conformal-refinement`
+- W&B 项目：需查 project config 确认 entity/project
+- 活跃 cron：6 个（reconcile 确认），对应上述 RUNNING 实验
+
+### 3. 📊 当前状态
+**刚做完**：Session 初始化（read_registry + reconcile_crons + report.md + ROADMAP.md），处理 `pi05-crm-always-on-object-s43` 完成回调。
+
+**已派 Worker**：`worker_analyze_pi05-crm-always-on-object-s43_20260528T030206` 正在 SSH 提取结果并更新 registry，**尚未回调**。
+
+**RUNNING 实验**：
+| exp_id | server | 摘要 |
+|--------|--------|------|
+| pi05-crm-always-on-long-s42 | cqa1-32758:cuda:5 | Pi05 Table 2 Long suite，最后一个 CRM always-on suite |
+| crm-always-on-long-s45 | bjb1-32546:cuda:5 | SmolVLA Long bonus seed |
+| smolvla-tau015/020/030/035-long-s42 | bjb2-28827 | SmolVLA tau-sweep 补充数据点 |
+
+**QUEUED**：4 个 eval-k2-tau 实验等 GPU
+
+**等待中**：
+- Worker 回调（pi05-crm-always-on-object-s43 结果提取）
+- Paper Agent 完成 Table 1 重构 + 叙事 4/4 升级（之前已派）
+- 用户确认 title 方案 + CoRL 提交/撤回决定
+
+### 4. 📋 待办（条件触发式）
+- Worker `analyze:pi05-crm-always-on-object-s43` 回调 → 读 metrics，与 s42 (90.5%) 对比，update report.md，汇报 Director（含 Table 2 Object 列 2-seed 均值）
+- pi05-crm-always-on-long-s42 cron 完成 → 提取结果，Table 2 全 4 suite CRM always-on 数据到齐，汇报 Director 确认 Table 2 最终数据
+- crm-always-on-long-s45 完成 → SmolVLA Long 第 4 seed，更新 Table 1 Long 行均值
+- smolvla-tau-sweep (015/020/030/035) 完成 → 补充 tau-sweep sensitivity 数据
+- Paper Agent 回调 → 审查 Table 1 重构质量，确认叙事与 4/4 harmful 一致
+- 所有 Pi05 CRM always-on 到齐 → 组装 Table 2 最终版，D181 确认的 degradation-only 两列格式
+
+### 5. 🎯 战略上下文
+**核心叙事**（D170/D177/D178）：CRM 修正是双刃剑——always-on 在 4/4 suites 有害（SmolVLA: Long -14.8pp 最有力），Adaptive gating 正确决定何时不干预，全面恢复性能。
+
+**Table 1**（SmolVLA, K-matched 3 列）：VLA-only K=1 / K=2 CRM always-on / K=2 Adaptive。数据完整，4 suites × 3 seeds。
+
+**Table 2**（Pi0.5, degradation-only 2 列, D181）：VLA-only + CRM always-on。Object s42 done (90.5%)，s43 正在提取；Spatial/Goal s42 done；Long s42 still RUNNING。Table 2 只需证明跨模型一致有害，不需要 Adaptive 列。
+
+**Pi05 VLA-only baselines**（Table 2 参考）：Object 93.5 (westd paired)、Spatial 97、Goal 97.8、Long 97（k2mean 系列）。
+
+**易错点**：
+- Pi05 CRM always-on 用的是 `--conformal_threshold 0.001`（近似 always-on），不是真正关掉 gating
+- Table 2 格式已锁定为 2 列 degradation-only（D181），不要再加 Adaptive 列
+- DDL 今天 20:00 北京时间，时间极紧，不要启动新实验
+
+## 可查的历史
+前 300 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-28T21:15:47.280418+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-28T21:15:47.332108+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-28T21:15:50.802298+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "limit": "0",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "limit": "0",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-28T21:15:50.802681+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-28T21:15:51.305891+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-28T21:15:51.608912+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-28T21:15:55.326739+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.4583}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 4524
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-28T21:15:55.428544+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4625
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T21:15:55.429249+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"# Handover — 2026-05-28\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无运行中实验 — 2026-05-28 全部实验已 kill/cancel）\\n\\n## 待处理\\n（全部 179 项已取消 — 2026-05-28 用户指令全面停机）\\n\\n## 近期结论\\n- **eval-supp-long-adapt-tau025-s44** (negative): Long Adaptive τ=0.25 s44, SR=56%, trigger=4.9%. Below VLA-only baseline (58%). Supplementary seed variance data — 数据已充足。\\n- **pi05-adaptive-goal-s44-backfill** (success): Pi05 Adaptive Conformal on Goal s44. Fills Table 2 gap (only s42/s43 exist). Cross-seed validation for Pi05 Goal adaptive.\\n\\n## 趋势\\n成功 768 / 负向 97 / 失败 130 / 共 1230\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-18228: 1× RTX 4090 空闲（配置说 4 卡但实测仅 1 卡）\\nbjb1-32546: ❌ 连接失败（port 32546 不可达，AutoDL 实例可能已关机/端口变更）\\nbjb2-28827: ❌ 连接失败（port 28827 不可达）\\ncqa1-32758: ❌ 连接失败（port 32758 不可达）\\n\\n## 告警\\n- plan_001-crm-smolvla: 训练失败 — unknown\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\n- eval-spatial-reeval-v2: 已被终止 — unknown\\n- precompute-v2-shard0: 已被终止 — unknown\\n- precompute-v2-shard1: 已被终止 — unknown\\n- precompute-v2-shard2: 已被终止 — unknown\\n- eval-spatial-v3-full: 已被终止 — unknown\\n- precompute-v3-shard0: 已被终止 — unknown\\n- precompute-v3-shard1: 已被终止 — unknown\\n- precompute-v3-shard2: 已被终止 — unknown\\n- eval-spatial-v4-full: 已被终止 — unknown\\n- eval-object-v4-full: 已被终止 — unknown\\n- eval-spatial-v5-full: 已被终止 — unknown\\n- crm-train-v1: 已被终止 — unknown\\n- eval-reconvla-spatial-v1: 已被终止 — unknown\\n- eval-reconvla-spatial-v2: 已被终止 — unknown\\n- eval-acr-spatial-v1: 已被终止 — unknown\\n- crm-train-a3-obs-only: 已被终止 — unknown\\n- eval-acr-vla-spatial-v1: 已被终止 — unknown\\n- eval-spatial-v6-full: 已被终止 — unknown\\n- eval-acr-spatial-v2: 已被终止 — unknown\\n- eval-object-v5-full: 已被终止 — unknown\\n- eval-object-v6-full: 已被终止 — unknown\\n- crm-train-a4-s
+…[truncated 5000 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4123
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T21:15:55.480012+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-28 09:39 UTC | 更新原因: Paper Agent 确认 Table 1 重构+叙事升级完成，论文就绪待提交，ROADMAP 更新任务完成状态\\n\\n> 详见 paper_framing.md（D170/D177/D178: K=2 CRM always-on 4/4 harmful + K-matched Table 1）\\n\\n## 核心方向\\n**ACR-VLA: Adaptive Conformal Refinement for Frozen Flow-Matching VLAs**。CoRL 2026 DDL **2026-05-28 20:00 北京时间**。\\n\\n## 当前进展\\n- **论文就绪**：编译通过，8 页正文 + 6 页（refs 2 + appendix 4），零 critical warning\\n- **Table 1 重构完成**：K-matched 3 列（VLA-only K=1 / K=2 CRM always-on / K=2 Adaptive），4/4 suites harmful 叙事升级 ✅\\n- **Table 3 (Pi05) 完成**：4/4 suites degradation-only（含 Long 94.0→77.0, Δ=-17.0pp），seed-matched ✅\\n- **叙事一致性**：4/4 harmful + gating recovery，全文对齐（Abstract/Intro/Experiments/Conclusion）✅\\n- **贡献**：3 条（OpenVLA 从贡献列表移除，保留 §4.5 + Appendix）✅\\n- **Backfill 修复**：M115 根因定位（手动 update_registry 不创建 cron），已全部改用 submit_training_job\\n- **GPU**：22/22 满载，补充实验持续产出\\n\\n## CRM always-on 最终数据（SmolVLA, K=2, n=3）\\n| Suite | VLA-only (K=1) | CRM always-on (K=2) | Adaptive (K=2) | Δ CRM vs VLA | Δ Adaptive vs VLA |\\n|-------|---------------|--------------------|-----------|----|---|\\n| Spatial | 79.3±0.8 | 78.0±1.7 | 80.8±1.1 | -1.3pp | +1.5pp |\\n| Goal | 83.7±1.3 | 80.0±0.5 | 85.0±1.3 | -3.7pp | +1.3pp |\\n| Object | 77.7±1.3 | 73.0±1.8 | 77.8±2.1 | -4.7pp | +0.1pp |\\n| Long | 58.0±1.5 | 43.2±2.3 | 57.7±1.5 | -14.8pp | -0.3pp |\\n\\n## 近期任务\\n- [x] **P0** 收集 Long CRM always-on 3 seeds → 43.2%\\n- [x] **P0** Paper Agent Table 1 K-matched 重构 + 叙事 4/4 升级 ✅\\n- [ ] **P0** 等待用户确认 title + CoRL 提交决定（contingency: 18:00 BJ 默认提交）\\n- [ ] **P1** Pi05 CRM always-on long s43/s44（bjb1-18228 运行中）→ supplementary\\n- [ ] **P1** Bonus seeds + tau-sweep 补充点（22 GPU 持续跑）→ supplementary / camera-ready\\n- [ ] **P2** 最终论文提交 submit_paper_to_review\\n- [ ] **Reviewer** 最终 claim 强度
+…[truncated 2374 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 3871
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-28T21:16:10.856244+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-28T21:16:10.856741+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T21:16:13.509497+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T21:16:13.743250+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 233
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-28T21:16:24.896439+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 0/22 | Worker 0 | 磁盘: 3/4 服务器不可达，bjb1-18228 空闲\n\n**Session 30 启动状态汇报**\n\n全面停机确认：\n- Registry 0 个 RUNNING 实验，0 个活跃 cron\n- 0 个运行中 Worker\n- bjb1-32546 / bjb2-28827 / cqa1-32758 连接失败（AutoDL 实例已关机/端口变更）\n- bjb1-18228 存活但空闲\n\n论文状态：\n- 编译通过，8 页正文 + 6 页（refs 2 + appendix 4）\n- Table 1 K-matched 3 列重构 ✅，4/4 suites harmful 叙事 ✅\n- Table 3 Pi05 degradation-only ✅\n- 全文叙事一致性 ✅\n\n**待决**：用户确认 title + CoRL 提交决定。DDL 今天 20:00 北京时间，contingency 18:00 BJ 默认提交。\n\n无待处理回调，无阻塞项。等待 Director/用户指令。",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 0/22 | Worker 0 | 磁盘: 3/4 服务器不可达，bjb1-18228 空闲\n\n**Session 30 启动状态汇报**\n\n全面停机确认：\n- Registry 0 个 RUNNING 实验，0 个活跃 cron\n- 0 个运行中 Worker\n- bjb1-32546 / bjb2-28827 / cqa1-32758 连接失败（AutoDL 实例已关机/端口变更）\n- bjb1-18228 存活但空闲\n\n论文状态：\n- 编译通过，8 页正文 + 6 页（refs 2 + appendix 4）\n- Table 1 K-matched 3 列重构 ✅，4/4 suites harmful 叙事 ✅\n- Table 3 Pi05 degradation-only ✅\n- 全文叙事一致性 ✅\n\n**待决**：用户确认 title + CoRL 提交决定。DDL 今天 20:00 北京时间，contingency 18:00 BJ 默认提交。\n\n无待处理回调，无阻塞项。等待 Director/用户指令。",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T21:16:29.870341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4973
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-28T21:16:34.135051+00:00_
+
+Session 30 初始化完成。
+
+当前状态总结：
+- **全面停机**：0 实验、0 Worker、0 cron，3/4 服务器不可达
+- **论文就绪**：Table 1/3 完成，叙事一致，编译通过
+- **DDL 今天 20:00 北京时间**，等待用户/Director 确认 title 和提交决定
+
+已向 Director 汇报。等待指令。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:pi05-crm-always-on-object-s43"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 19 · 2026-05-29T13:19:48.111223+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:pi05-crm-always-on-object-s43",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-29T13:20:27.797784+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- CoRL 2026 DDL 已过（2026-05-28 20:00 北京时间），论文是否已提交需向 Director/用户确认
+- westd 服务器数据系统性偏低 4-5pp（LIBERO assets 版本差异），westd 数据不可与其他服务器混用
+- Table 2 格式锁定为 degradation-only 两列（D181），不加 Adaptive 列
+- Pi05 CRM always-on 用 `--conformal_threshold 0.001`（近似 always-on），不是真正关掉 gating
+- 2026-05-28 用户指令全面停机，所有实验已 kill/cancel，不要尝试恢复或启动新实验除非 Director 明确指示
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-18228**: 存活但空闲，1× RTX 4090（配置说 4 卡实测仅 1 卡）
+- **bjb1-32546 / bjb2-28827 / cqa1-32758**: 全部连接失败（AutoDL 实例已关机/端口变更）
+- 工作目录（各服务器统一）: `/root/acr-vla-conformal-refinement`
+- Python: `/root/miniconda3/bin/python`，conda base 环境
+- Pi05 CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`（cqa1-32758 上，当前不可达）
+- 活跃进程: 0。活跃 cron: 0。运行中 Worker: 0
+
+### 3. 📊 当前状态
+Session 30 启动，执行 session-start 初始化：read_registry（0 RUNNING）、reconcile_crons（0 活跃）、读 report.md 和 ROADMAP.md。已向 Director 汇报全面停机状态。
+
+Registry: 0 个 RUNNING/PREPARING 实验。总计 1230 实验（success 768 / negative 97 / failed 130）。
+
+论文状态：编译通过，8 页正文 + 6 页（refs 2 + appendix 4），Table 1 K-matched 3 列 + Table 3 Pi05 degradation-only 完成，叙事一致。
+
+等待中：无 Worker 回调、无 Cron、等 Director/用户关于 CoRL 提交结果的反馈。
+
+### 4. 📋 待办
+- Director/用户确认 CoRL 已提交 → 切换到 camera-ready 模式，规划补充实验（tau-sweep 更多数据点、额外 seeds）
+- Director/用户说未提交或撤回 → 确认下一步（转投其他会议 or 暂停）
+- 如需恢复 AutoDL 实例 → 用户去控制台查新端口并更新 SSH config（端口重启后会变）
+- 如需继续跑补充实验 → 等 Director 分配 GPU + 确认服务器可达后再启动
+
+### 5. 🎯 战略上下文
+**核心叙事（D170/D177/D178）**：CRM 修正是双刃剑——always-on 在 4/4 suites 有害（SmolVLA Long -14.8pp 最有力），Adaptive gating 正确决定何时不干预，全面恢复性能。
+
+**Table 1 最终数据（SmolVLA K-matched 3 列，n=3）**：Spatial -1.3pp / Goal -3.7pp / Object -4.7pp / Long -14.8pp（CRM vs VLA-only）。Adaptive 全面恢复。
+
+**Table 3（Pi05 degradation-only）**：4/4 suites 一致有害，Long -17.0pp 最强。跨模型泛化 MC3 成立。
+
+**易错点**：
+- handoff 中提到的"RUNNING 实验"全部已在上一轮被 kill，不要尝试去 SSH 检查它们
+- 3/4 服务器不可达，不要反复 SSH 重试，应提示用户查新端口
+- 论文 DDL 已过，当前处于等待用户/Director 指示的空闲状态
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:pi05-crm-always-on-object-s43"
+}
+```
+
+</details>
+
+---

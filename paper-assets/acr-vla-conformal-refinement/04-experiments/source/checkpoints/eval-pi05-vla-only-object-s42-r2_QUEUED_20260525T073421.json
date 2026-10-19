@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-pi05-vla-only-object-s42-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T07:34:04.734Z",
+    "updated_at": "2026-05-25T07:34:19.976Z",
+    "hypothesis": "π0.5 VLA-only baseline rerun on LIBERO-Object s42 (bjb1-18228 cuda:1). Redundant replication on a different server to fill idle GPU; prior run (-s42) reached 0.965 success rate on bjb1-32546."
+  },
+  "timestamp": "2026-05-25T07:34:21.712188+00:00",
+  "trigger": "update_registry"
+}

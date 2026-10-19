@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval-reconvla-spatial-v3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:04:34.297Z",
+    "updated_at": "2026-05-13T23:13:03.256Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl && python -u src/evaluate.py --mode reconvla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 2>&1\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "110280",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-reconvla-spatial-v3.log",
+      "submitted_at": "2026-05-13T23:04:34.240Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-13T23:13:03.300867+00:00",
+  "trigger": "update_registry"
+}

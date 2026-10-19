@@ -1,0 +1,16 @@
+{
+  "exp_id": "pi05-crm-k2-long-s43-cqa1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T12:56:11.884Z",
+    "updated_at": "2026-05-26T12:57:45.452Z",
+    "hypothesis": "π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Long s43. Table 2 long-horizon CRM impact. Re-run on cqa1 after bjb1-18228 r2 failed (process dead 5×).",
+    "parent": "pi05-crm-k2-long-s43-r2"
+  },
+  "timestamp": "2026-05-26T12:57:50.456148+00:00",
+  "trigger": "update_registry"
+}

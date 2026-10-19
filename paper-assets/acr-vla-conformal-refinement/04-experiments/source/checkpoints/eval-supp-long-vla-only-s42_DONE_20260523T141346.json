@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval-supp-long-vla-only-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:25:38.707Z",
+    "updated_at": "2026-05-23T14:13:45.028Z",
+    "hypothesis": "SmolVLA VLA-only baseline on LIBERO-Long seed42. First Long suite experiment. Establishes baseline for CRM comparison using 4-suite CRM checkpoint.",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode vla_only --benchmark long --seed 42 --n_rollouts 20",
+      "server": "bjb1-32546",
+      "gpu_ids": [
+        "cuda:3"
+      ],
+      "seed": 42,
+      "model_name": "SmolVLA",
+      "tmux_session": "eval-supp-long-vla-only-s42",
+      "data_path": "LIBERO-Long",
+      "data_count": 200,
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval-supp-long-vla-only-s42.log"
+    },
+    "metrics": {
+      "overall_sr": 0.58,
+      "per_task": {
+        "LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce": 0.25,
+        "LIVING_ROOM_SCENE2_cream_cheese_butter": 0.65,
+        "KITCHEN_SCENE3_stove_moka_pot": 1,
+        "KITCHEN_SCENE4_black_bowl_drawer": 1,
+        "LIVING_ROOM_SCENE5_mugs_plates": 0.4,
+        "STUDY_SCENE1_book_caddy": 0.9,
+        "LIVING_ROOM_SCENE6_mug_pudding": 0.3,
+        "LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese": 0.55,
+        "KITCHEN_SCENE8_moka_pots_stove": 0,
+        "KITCHEN_SCENE6_mug_microwave": 0.75
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T14:13:45.028Z"
+  },
+  "timestamp": "2026-05-23T14:13:46.223855+00:00",
+  "trigger": "update_registry"
+}

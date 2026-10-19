@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval-reconvla-spatial-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:29:41.730Z",
+    "updated_at": "2026-05-13T22:57:25.238Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode reconvla --benchmark spatial --n_rollouts 10 --seed 42 --K 10",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "87787",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-reconvla-spatial-v1.log",
+      "data_path": "/root/autodl-tmp/libero_data/ (spatial)",
+      "data_count": 100,
+      "model_name": "smolvla_libero + ReconVLA argmin",
+      "seed": 42,
+      "hypothesis": "ReconVLA (scalar Euclidean nonconformity + argmin) as baseline for ACR-VLA comparison",
+      "checkpoint_source": "lerobot/smolvla_libero",
+      "eval_data": "libero_spatial 10 tasks",
+      "failure_reason": "P0 bug: evaluate.py env.reset() 覆盖 set_init_state 的 demo 初始状态，结果不可信"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-13T22:57:25.279346+00:00",
+  "trigger": "update_registry"
+}

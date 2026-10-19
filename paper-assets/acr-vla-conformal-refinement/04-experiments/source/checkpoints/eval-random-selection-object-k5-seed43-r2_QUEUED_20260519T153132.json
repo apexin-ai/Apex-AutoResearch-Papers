@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-random-selection-object-k5-seed43-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:30:27.994Z",
+    "updated_at": "2026-05-19T15:31:32.191Z",
+    "hypothesis": "Random selection baseline with K=5 on LIBERO-Object seed43. 第二个 seed 的 K=5 random selection，与 argmin K=5 seed43 (13%) 配对，增强 selection effect 统计可靠性。",
+    "parent": "eval-random-selection-object-k5-seed43"
+  },
+  "timestamp": "2026-05-19T15:31:32.725608+00:00",
+  "trigger": "update_registry"
+}

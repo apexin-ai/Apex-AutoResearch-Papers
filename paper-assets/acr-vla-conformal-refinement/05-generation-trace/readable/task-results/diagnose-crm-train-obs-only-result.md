@@ -1,0 +1,31 @@
+# diagnose crm train obs only result
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diagnose_crm-train-obs-only-result_20260514T220444_result.json`
+- **Structured JSON:** [`a056db571d0229720e50.json`](../../sessions/a0/a056db571d0229720e50.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+**crm-train-v3-norm-obs-only 训练成功完成。** Registry 已更新为 DONE。
+
+关键指标：
+- 50/50 epochs 全部完成
+- best_val_loss = **0.01645**（epoch 48）
+- final_train_loss = 0.025576
+- checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`
+
+---

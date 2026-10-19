@@ -1,0 +1,72 @@
+{
+  "exp_id": "eval-supp-obj-crm005-s42-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:12:14.170Z",
+    "updated_at": "2026-05-23T06:39:49.423Z",
+    "spec": {
+      "command": "evaluate.py --mode crm_obs_only --max_correction_norm 0.05 --benchmark object",
+      "server": "bjb1-32546",
+      "gpu": "cuda:5",
+      "pid": 669419,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-obj-crm005-s42-r2.log",
+      "submitted_at": "2026-05-23T04:12:10.537Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Object"
+    },
+    "hypothesis": "CRM norm=0.05 generalizes from Spatial (+1.5pp over VLA-only 78.5%→80%) to Object suite, validating cross-suite benefit of minimal CRM correction",
+    "parent": "eval-3dir-norm005-spatial-s42",
+    "reproduce": {
+      "finished_at": "2026-05-23T06:34:57.264Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T06:35:23.554307+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval-supp-obj-crm005-s42-r2.log",
+    "metrics": {
+      "overall_success_rate": 0.77,
+      "n_success": 154,
+      "n_total": 200,
+      "n_tasks": 10,
+      "n_rollouts": 20,
+      "mode": "crm_obs_only",
+      "max_correction_norm": 0.05,
+      "conformal_threshold": 0.074855,
+      "K": 10,
+      "seed": 42,
+      "per_task_sr": {
+        "alphabet_soup": 0.7,
+        "cream_cheese": 0.7,
+        "salad_dressing": 0.75,
+        "bbq_sauce": 0.9,
+        "ketchup": 0.8,
+        "tomato_sauce": 0.7,
+        "butter": 0.7,
+        "milk": 0.75,
+        "chocolate_pudding": 0.85,
+        "orange_juice": 0.85
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T06:39:51.315124+00:00",
+  "trigger": "update_registry"
+}

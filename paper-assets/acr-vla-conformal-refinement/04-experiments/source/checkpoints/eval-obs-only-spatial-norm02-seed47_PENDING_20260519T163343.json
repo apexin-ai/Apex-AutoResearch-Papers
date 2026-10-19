@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-obs-only-spatial-norm02-seed47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:27:35.615Z",
+    "updated_at": "2026-05-19T16:33:42.454Z",
+    "hypothesis": "obs_only CRM (ε=0.2, K=10) on LIBERO-Spatial seed47. Spatial K=10 第五个 seed，n=5 完成 cross-benchmark 证据收集。",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_spatial_obs_only_norm02_seed47.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "972439",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-spatial-norm02-seed47.log",
+      "submitted_at": "2026-05-19T15:27:46.376Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T16:33:43.121017+00:00",
+  "trigger": "update_registry"
+}

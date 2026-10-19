@@ -1,0 +1,68 @@
+{
+  "exp_id": "eval-crm-object-k20-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:47:49.745Z",
+    "updated_at": "2026-05-20T10:51:11.900Z",
+    "hypothesis": "CRM obs_only K=20 on Object seed44. K-value sweep third seed (plan_601): tests K=20 vs K=10 compute tradeoff.",
+    "spec": {
+      "command": "bash -c \"... python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 44 --n_rollouts 10 --K 20 --max_correction_norm 0.2 ...\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "278078",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-crm-object-k20-seed44.log",
+      "submitted_at": "2026-05-20T08:49:02.579Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA + CRM obs_only K=20",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "LIBERO-Object (10 tasks x 10 rollouts)",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 7329.3,
+      "gpu_hours": 2.04
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T10:48:17.230Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T10:48:41.082598+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "sr": 18,
+      "total_rollouts": 100,
+      "total_successes": 18,
+      "per_task_sr": {
+        "alphabet_soup": 0,
+        "cream_cheese": 0,
+        "salad_dressing": 30,
+        "bbq_sauce": 30,
+        "ketchup": 0,
+        "tomato_sauce": 10,
+        "butter": 10,
+        "milk": 30,
+        "chocolate_pudding": 40,
+        "orange_juice": 30
+      }
+    },
+    "completed_at": "2026-05-20T10:51:11.900Z"
+  },
+  "timestamp": "2026-05-20T10:51:13.430311+00:00",
+  "trigger": "update_registry"
+}

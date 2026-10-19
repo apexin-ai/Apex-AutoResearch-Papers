@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-openvla-object-vla-only-seed42-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T20:06:55.243Z",
+    "updated_at": "2026-05-17T22:13:08.288Z",
+    "hypothesis": "OpenVLA 7B finetuned VLA-only baseline on LIBERO-Object using official eval code (transformers 4.40.1, isolated conda env). v1 failed due to transformers 5.8 DynamicCache bug. Dry-run on libero_spatial confirmed 80% SR. This run uses openvla-libero-object finetuned model with 10 trials/task.",
+    "spec": {
+      "command": "bash -c \"source /root/autodl-tmp/conda_envs/openvla/bin/activate && cd /root/autodl-tmp/openvla && MUJOCO_GL=egl python experiments/robot/libero/run_libero_eval.py --model_family openvla --pretrained_checkpoint /root/autodl-tmp/models/openvla-libero-object --task_suite_name libero_object --center_crop True --num_trials_per_task 10 --seed 42 --local_log_dir /root/acr-vla-conformal-refinement/results/eval-openvla-object-vla-only-seed42-v2\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": 747644,
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "openvla-7b-libero-object",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/openvla-libero-object",
+      "eval_data": "libero_object (10 tasks x 10 trials = 100 rollouts)"
+    }
+  },
+  "timestamp": "2026-05-17T22:13:08.663661+00:00",
+  "trigger": "update_registry"
+}

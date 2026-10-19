@@ -1,0 +1,35 @@
+{
+  "exp_id": "goal_adapt_s48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T02:08:15.451Z",
+    "updated_at": "2026-05-26T06:52:02.185Z",
+    "spec": {
+      "command": "python src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark goal --seed 48 --n_rollouts 20",
+      "server": "bjb1-32546",
+      "data_path": "libero_goal",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 48,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "libero_goal",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/goal_adapt_s48.log"
+    },
+    "hypothesis": "SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s48. Tests if conformal-gated CRM correction improves SmolVLA goal performance at seed 48 vs VLA-only baseline.",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/goal_adapt_s48.log",
+    "checkpoint_path": "/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed48.json",
+    "metrics": {
+      "success_rate": 0.85,
+      "n_rollouts": 200,
+      "delta_vs_baseline_pp": 5.5
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-26T06:52:02.185Z"
+  },
+  "timestamp": "2026-05-26T06:52:04.619215+00:00",
+  "trigger": "update_registry"
+}

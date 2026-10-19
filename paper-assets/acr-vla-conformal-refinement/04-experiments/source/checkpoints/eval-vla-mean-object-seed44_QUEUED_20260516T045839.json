@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-vla-mean-object-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:58:30.713Z",
+    "updated_at": "2026-05-16T04:58:39.226Z",
+    "hypothesis": "VLA-mean baseline (K=10, mean aggregation) seed=44 on LIBERO object benchmark. Completes seed=44 six-way comparison. seed42=12%, seed43=15%."
+  },
+  "timestamp": "2026-05-16T04:58:39.470670+00:00",
+  "trigger": "update_registry"
+}

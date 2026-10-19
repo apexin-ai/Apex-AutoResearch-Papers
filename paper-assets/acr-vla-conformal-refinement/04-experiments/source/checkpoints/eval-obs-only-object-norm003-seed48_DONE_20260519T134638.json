@@ -1,0 +1,73 @@
+{
+  "exp_id": "eval-obs-only-object-norm003-seed48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:56:04.999Z",
+    "updated_at": "2026-05-19T13:46:38.276Z",
+    "hypothesis": "obs_only CRM (ε=0.03) seed48 on LIBERO-Object. 新 seed, 16h timeout。C2 magnitude curve ε=0.03 端当前 n=1 (seed42=16%), 需 n≥3 才有 error bars。",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "67819",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log",
+      "submitted_at": "2026-05-19T11:59:23.808Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": "10 tasks x 10 rollouts",
+      "model_name": "crm_obs_only (max_correction_norm=0.03)",
+      "seed": 48,
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 6434.5,
+      "gpu_hours": 1.79
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T13:45:46.466Z"
+    },
+    "failure_reason": "FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T12:52:32.889342+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T13:45:55.262627+00:00"
+        }
+      ]
+    },
+    "notes": "2026-05-19 12:58 UTC: FALSE ALARM 确认 — PID 67825 在 bjb1-18228 GPU 1 正常运行中。已完成 5/10 tasks + T6 进行中 (T1=0%, T2=0%, T3=20%, T4=40%, T5=0%, T6 doing 5/10=1/5)。conclusion=failed 为误标(cron 误报)，无法设 null。",
+    "metrics": {
+      "success_rate": 0.15,
+      "successes": 15,
+      "total": 100,
+      "per_task": {
+        "alphabet_soup": 0,
+        "cream_cheese": 0,
+        "salad_dressing": 2,
+        "bbq_sauce": 4,
+        "ketchup": 0,
+        "tomato_sauce": 1,
+        "butter": 0,
+        "milk": 2,
+        "chocolate_pudding": 4,
+        "orange_juice": 2
+      }
+    },
+    "completed_at": "2026-05-19T13:46:38.276Z"
+  },
+  "timestamp": "2026-05-19T13:46:38.796195+00:00",
+  "trigger": "update_registry"
+}

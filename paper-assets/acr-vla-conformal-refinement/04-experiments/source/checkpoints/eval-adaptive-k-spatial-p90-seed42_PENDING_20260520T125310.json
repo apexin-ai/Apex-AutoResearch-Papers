@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p90-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:44:45.262Z",
+    "updated_at": "2026-05-20T12:53:09.278Z",
+    "hypothesis": "Adaptive K with τ=P90 (0.125870, Object-calibrated) on LIBERO-Spatial seed42. Most aggressive threshold — on Object P90 gives 93% fast_path but SR drops to 13.3%. Tests whether Spatial follows same pattern: high fast_path with SR penalty.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.125870 --k_full 10 --benchmark spatial --seed 42 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p90_seed42.json 2>&1 | tee logs/eval-adaptive-k-spatial-p90-seed42.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "308030",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed42.log",
+      "submitted_at": "2026-05-20T10:45:11.659Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T12:51:00.370Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T12:51:16.751396+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-20T12:53:10.025334+00:00",
+  "trigger": "update_registry"
+}

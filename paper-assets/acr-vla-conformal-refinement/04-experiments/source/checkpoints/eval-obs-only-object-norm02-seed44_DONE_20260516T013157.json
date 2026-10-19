@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval-obs-only-object-norm02-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:28:59.304Z",
+    "updated_at": "2026-05-16T01:31:56.945Z",
+    "hypothesis": "D035 follow-up: obs_only CRM v3-norm norm=0.2 seed=44 on LIBERO object benchmark. Third seed for Fisher exact test. ε=0.2 is PROJECT HIGH config (seed42=22%). Paired with eval-argmin-object-seed44.",
+    "server": "bjb1-18228",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-18228",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-16T01:29:31.218Z",
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_seed44.json\"",
+      "finished_at": "2026-05-16T01:30:14.217Z",
+      "training_hours": 0.01
+    },
+    "spec": {
+      "data_path": "LIBERO object benchmark",
+      "data_count": 100,
+      "model_name": "crm_obs_only (327198 params)",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "LIBERO object 10 tasks x 10 rollouts"
+    },
+    "pid": "unknown",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm02-seed44.log",
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T01:30:20.761Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T01:30:23.773246+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-16T01:31:57.155350+00:00",
+  "trigger": "update_registry"
+}

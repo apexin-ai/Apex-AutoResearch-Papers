@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval-adaptive-unc-head-object-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:18:59.700Z",
+    "updated_at": "2026-05-20T19:35:21.496Z",
+    "hypothesis": "D088 方案 B 验证：Learned Uncertainty Head (τ=0.42) + K=1 VLA + Selective CRM correction on LIBERO-Object seed42. 测试 uncertainty-gated CRM 是否能在 K=1 延迟下保持接近 K=10 的 SR。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode adaptive_unc_head --benchmark object --seed 42 --n_rollouts 10 --K 1 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --unc_head_checkpoint /root/autodl-tmp/checkpoints/uncertainty_head_v1/uncertainty_head_best.pt --unc_threshold 0.42 --max_correction_norm 0.2 --output_file logs/eval_adaptive_unc_head_object_seed42.json",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "UncHead_tau0.42_K1_CRM",
+      "checkpoint_source": "crm_v3_norm/obs_only/crm_best.pt + uncertainty_head_v1/uncertainty_head_best.pt",
+      "seed": 42,
+      "backend": "tmux",
+      "account": "root",
+      "log_path": "logs/eval-adaptive-unc-head-object-seed42.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T19:35:12.914Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T19:35:22.389148+00:00",
+  "trigger": "update_registry"
+}

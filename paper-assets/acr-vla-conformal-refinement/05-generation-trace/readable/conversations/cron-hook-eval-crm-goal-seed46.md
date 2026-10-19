@@ -1,0 +1,835 @@
+# cron hook eval crm goal seed46
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/cron_hook_eval-crm-goal-seed46.jsonl`
+- **Structured JSON:** [`961d4b496ba6cb76e50c.json`](../../sessions/96/961d4b496ba6cb76e50c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+26 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T23:55:37.894482+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: eval-crm-goal-seed46
+- project: acr-vla-conformal-refinement
+- server: bjb2-28827
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-19T23:55:49.181024+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:read_registry,reconcile_crons,read_project_file,read_roadmap,update_registry,main_agent_post_to_director,spawn_worker,save_project_file,send_progress,load_project_config",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:read_registry,reconcile_crons,read_project_file,read_roadmap,update_registry,main_agent_post_to_director,spawn_worker,save_project_file,send_progress,load_project_config",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-19T23:55:49.181402+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T23:55:52.442454+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T23:55:52.493089+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T23:55:56.659294+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T23:55:56.659707+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T23:55:57.511701+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T23:55:57.512165+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T23:55:58.033288+00:00_
+
+Error: result (576,131 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-2486bf37/73c49288-fcc6-4b2c-8a06-587fb4e7020a/tool-results/mcp-agent-ml-research-read_registry-1779234957943.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-2486bf37/73c49288-fcc6-4b2c-8a06-587fb4e7020a/tool-results/mcp-agent-ml-research-read_registry-1779234957943.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-2486bf37/73c49288-fcc6-4b2c-8a06-587fb4e7020a/tool-results/mcp-agent-ml-research-read_registry-1779234957943.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1373
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T23:56:01.390170+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"eval-crm-long-seed47\", \"success\": true, \"actions\": [\"Job still running (pid=25274)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4730
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T23:56:01.391097+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T23:55:35Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 379 个实验 — ALLOCATED 3, ANALYZING 2, DEPLOYED 4, DONE 353, PREPARING 9, QUEUED 5, RUNNING 3\\n**DONE 分布**: failed 46, killed 85, negative 31, success 191\\n\\n### GPU 占用\\n- **实际运行**: 3 张 — bjb2-28827:cuda:3(eval-crm-long-seed47), bjb1-32546:cuda:1(eval-vla-only-goal-seed47-r2), bjb1-32546:cuda:3(eval-vla-only-goal-seed48-r2)\\n\\n### 💾 磁盘余量\\n- **bjb2-40593**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 47G/437G 可用（已用 89%）\\n- **bjb1-18228**:\\n  - `/autodl-pub`: 1.1T/7.0T 可用（已用 86%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 400G/438G 可用（已用 4%）\\n- **bjb1-32546**:\\n  - `/autodl-pub`: 530G/7.0T 可用（已用 93%） ⚠️\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 400G/438G 可用（已用 4%）\\n- **bjb2-28827**:\\n  - `/autodl-pub`: 4.4T/14T 可用（已用 70%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 399G/439G 可用（已用 5%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `eval-crm-long-seed47` | bjb2-28827 | cuda:3 | 25274 | `—` |\\n| `eval-vla-only-goal-seed47-r2` | bjb1-32546 | cuda:1 | 128361 | `…r-vla-conformal-refinement/eval-vla-only-goal-seed47-r2.log` |\\n| `eval-vla-only-goal-seed48-r2` | bjb1-32546 | cuda:3 | 128633 | `…r-vla-conformal-refinement/eval-vla-only-goal-seed48-r2.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `eval-crm-goal-seed44-r2` [success] — 2026-05-19T23:48:49 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `eval-vla-only-object-seed48` [failed] — 2026-05-19T23:44:13 — process dead 5× with no sentinel/W&B — auto-resolved
+…[truncated 7758 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 3879
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T23:56:01.391753+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-19 22:40 UTC | 更新原因: K=2 L2 GO (D076), FMVD NO-GO confirmed, OOD cross-suite results, full experiment data refresh\\n\\n> 详见 paper_framing.md（D072: Adaptive K 核心方法变更）\\n\\n## 核心方向\\n**Adaptive inference-time correction for frozen VLAs** — K=2 L2 probe 信号驱动的自适应推理 + CRM 校正\\n\\n## 投稿目标\\n**CoRL 2026** DDL **2026-05-29**。剩余 ~10 天。\\n\\n## 方法核心 (D076)\\n- 默认 K=2（batched，延迟=K=1 ~170ms）\\n- K=2 L2 距离作为不确定性信号（ρ=0.9979 vs K=10 variance）\\n- L2 > τ → 扩展到 K=10 + CRM obs_only 校正（\\\"困难步\\\"）\\n- L2 ≤ τ → K=2 argmin，不用 CRM（\\\"简单步\\\"）\\n- FMVD 废弃（ρ=0.08，NO-GO D075）\\n\\n## 关键进展\\n\\n### 信号验证 ✅ LOCKED\\n| Signal | ρ vs K10_var | 结论 |\\n|--------|-------------|------|\\n| K=2 L2 distance | **0.9979** | ✅ GO — 近乎完美替代 |\\n| FMVD (flow turbulence) | 0.0825 | ❌ NO-GO — 测量不同维度 |\\n\\n### 实验证据\\n| Evidence | 结果 | Status |\\n|----------|------|--------|\\n| K=10 obs_only Object (n=7) | 17.6%±2.6% vs VLA 11.0%, p=0.0025 | ✅ LOCKED |\\n| K=5 obs_only Object (n=6) | 16.3% vs VLA 11.0% | ✅ |\\n| K=10 decomposition | selection≈0, correction +5.3pp | ✅ LOCKED |\\n| K=5 decomposition | random 10.5%<VLA, sel +3.2pp, corr +2.3pp | ✅ |\\n| K=1 CRM (NEGATIVE) | 10.3%±1.5% < VLA 11.0% | ✅ |\\n| Magnitude obs_only | stable 14-18% all ε | ✅ |\\n| Magnitude perdof | collapse → 0% | ✅ |\\n| Latency (batched) | ~170ms all K, CRM 0.25ms | ✅ |\\n| Spatial K=10 (n=4) | 34.25%±1.7% vs VLA 29.5% (+4.75pp) | ✅ |\\n| Spatial VLA-only (n=6) | 29.5%±1.4% | ✅ |\\n| Goal VLA-only (n=5) | 69.4%±3.7% | ✅ |\\n| Long VLA-only (n=6) | 14.2%±2.8% | ✅ |\\n| CRM Goal OOD (n=2) | 69.5% ≈ VLA — 中性 | 🔄 补到 n=4 |\\n| CRM Long OOD (n=3) | 17.3% vs VLA 12.0%(paired) +5.3pp | ⚠️ 集中于单task |\\n| LTO within-suite OOD | CRM 2% vs VLA 14% — 灾难性 | ✅ D069 |\\n| OpenVLA baseline | 🔄 运行中 | 🔄 |\\n| **
+…[truncated 2722 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 3879
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T23:56:06.721156+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'exp_id': 'eval-crm-goal-seed46'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'exp_id': 'eval-crm-goal-seed46'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T23:56:07.625102+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9035}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 903
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T23:56:19.586461+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-2486bf37/73c49288-fcc6-4b2c-8a06-587fb4e7020a/tool-results/mcp-agent-ml-research-read_registry-1779234957943.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\ntarget = 'eval-crm-goal-seed46'\nif target in exps:\n    print(json.dumps(exps[target], indent=2))\nelse:\n    # search for partial match\n    matches = [k for k in exps if 'goal-seed46' in k]\n    print(f'No exact match. Partial matches: {matches}')\n    for m in matches:\n        print(json.dumps({m: exps[m]}, indent=2))\n\"",
+  "description": "Extract eval-crm-goal-seed46 from cached registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-2486bf37/73c49288-fcc6-4b2c-8a06-587fb4e7020a/tool-results/mcp-agent-ml-research-read_registry-1779234957943.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\ntarget = 'eval-crm-goal-seed46'\nif target in exps:\n    print(json.dumps(exps[target], indent=2))\nelse:\n    # search for partial match\n    matches = [k for k in exps if 'goal-seed46' in k]\n    print(f'No exact match. Partial matches: {matches}')\n    for m in matches:\n        print(json.dumps({m: exps[m]}, indent=2))\n\"",
+    "description": "Extract eval-crm-goal-seed46 from cached registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T23:56:19.838332+00:00_
+
+{
+  "status": "PREPARING",
+  "retry_count": 0,
+  "created_at": "2026-05-19T22:43:05.230Z",
+  "updated_at": "2026-05-19T23:55:30.641Z",
+  "hypothesis": "CRM obs_only (\u03b5=0.2, K=10) on LIBERO-Goal seed46. OOD \u6cdb\u5316\u6d4b\u8bd5\uff1aCRM \u4ec5\u5728 Object+Spatial \u8bad\u7ec3\uff0cGoal \u662f\u672a\u89c1\u8fc7\u7684 suite\u3002\u8865 Goal OOD \u5230 n=5\u3002",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --benchmark goal --seed 46 --K 10 --max_correction_norm 0.2 --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --n_rollouts 10 --output_file logs/eval_crm_goal_seed46.json\"",
+    "server": "bjb2-28827",
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": "50120",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-crm-goal-seed46.log",
+    "submitted_at": "2026-05-19T22:43:10.857Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root"
+  },
+  "reproduce": {
+    "finished_at": "2026-05-19T23:55:30.641Z"
+  },
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_complete",
+        "action": "agent",
+        "ts": "2026-05-19T23:55:36.998064+00:00"
+      }
+    ]
+  }
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "Bash",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T23:56:31.877473+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-2486bf37/73c49288-fcc6-4b2c-8a06-587fb4e7020a/tool-results/mcp-agent-ml-research-read_registry-1779234957943.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find all CRM Goal experiments\ngoal_exps = {k: v for k, v in exps.items() if 'crm-goal' in k or 'crm_goal' in k}\nfor k, v in sorted(goal_exps.items()):\n    status = v.get('status', '?')\n    conclusion = v.get('conclusion', '')\n    metrics = v.get('metrics', {})\n    print(f'{k}: status={status}, conclusion={conclusion}, metrics={json.dumps(metrics) if metrics else \\\"none\\\"}')\n\"",
+  "description": "List all CRM Goal experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-2486bf37/73c49288-fcc6-4b2c-8a06-587fb4e7020a/tool-results/mcp-agent-ml-research-read_registry-1779234957943.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find all CRM Goal experiments\ngoal_exps = {k: v for k, v in exps.items() if 'crm-goal' in k or 'crm_goal' in k}\nfor k, v in sorted(goal_exps.items()):\n    status = v.get('status', '?')\n    conclusion = v.get('conclusion', '')\n    metrics = v.get('metrics', {})\n    print(f'{k}: status={status}, conclusion={conclusion}, metrics={json.dumps(metrics) if metrics else \\\"none\\\"}')\n\"",
+    "description": "List all CRM Goal experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T23:56:31.978379+00:00_
+
+eval-crm-goal-seed42: status=DONE, conclusion=success, metrics={"overall_success_rate": 0.67, "n_tasks": 10, "n_rollouts": 10, "total_episodes": 100, "per_task": {"open_the_middle_drawer_of_the_cabinet": 0.8, "put_the_bowl_on_the_stove": 0.9, "put_the_wine_bottle_on_top_of_the_cabinet": 0.4, "open_the_top_drawer_and_put_the_bowl_inside": 0.2, "put_the_bowl_on_top_of_the_cabinet": 1, "push_the_plate_to_the_front_of_the_stove": 0.9, "put_the_cream_cheese_in_the_bowl": 0.2, "turn_on_the_stove": 1, "put_the_bowl_on_the_plate": 0.9, "put_the_wine_bottle_on_the_rack": 0.4}}
+eval-crm-goal-seed43: status=DONE, conclusion=success, metrics={"overall_success_rate": 0.72, "n_tasks": 10, "n_rollouts": 10, "total_episodes": 100, "per_task": {"open_the_middle_drawer_of_the_cabinet": 0.8, "put_the_bowl_on_the_stove": 0.9, "put_the_wine_bottle_on_top_of_the_cabinet": 0.6, "open_the_top_drawer_and_put_the_bowl_inside": 0.5, "put_the_bowl_on_top_of_the_cabinet": 0.9, "push_the_plate_to_the_front_of_the_stove": 0.8, "put_the_cream_cheese_in_the_bowl": 0.3, "turn_on_the_stove": 1, "put_the_bowl_on_the_plate": 1, "put_the_wine_bottle_on_the_rack": 0.4}}
+eval-crm-goal-seed44: status=DONE, conclusion=failed, metrics=none
+eval-crm-goal-seed44-r2: status=DONE, conclusion=success, metrics=none
+eval-crm-goal-seed45: status=DONE, conclusion=failed, metrics=none
+eval-crm-goal-seed45-r2: status=DONE, conclusion=failed, metrics=none
+eval-crm-goal-seed46: status=PREPARING, conclusion=, metrics=none
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T23:56:42.825044+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-2486bf37/73c49288-fcc6-4b2c-8a06-587fb4e7020a/tool-results/mcp-agent-ml-research-read_registry-1779234957943.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Check eval-crm-goal-seed44-r2 details\nexp = exps.get('eval-crm-goal-seed44-r2', {})\nprint('=== eval-crm-goal-seed44-r2 ===')\nprint(json.dumps(exp, indent=2))\n\n# Check VLA-only Goal baselines\nprint()\nprint('=== VLA-only Goal experiments ===')\nfor k, v in sorted(exps.items()):\n    if 'vla-only-goal' in k or 'vla_only_goal' in k:\n        status = v.get('status', '?')\n        conclusion = v.get('conclusion', '')\n        metrics = v.get('metrics', {})\n        sr = metrics.get('overall_success_rate', 'N/A') if metrics else 'N/A'\n        print(f'{k}: status={status}, conclusion={conclusion}, SR={sr}')\n\"",
+  "description": "Check CRM Goal seed44-r2 details and VLA-only Goal baselines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-2486bf37/73c49288-fcc6-4b2c-8a06-587fb4e7020a/tool-results/mcp-agent-ml-research-read_registry-1779234957943.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Check eval-crm-goal-seed44-r2 details\nexp = exps.get('eval-crm-goal-seed44-r2', {})\nprint('=== eval-crm-goal-seed44-r2 ===')\nprint(json.dumps(exp, indent=2))\n\n# Check VLA-only Goal baselines\nprint()\nprint('=== VLA-only Goal experiments ===')\nfor k, v in sorted(exps.items()):\n    if 'vla-only-goal' in k or 'vla_only_goal' in k:\n        status = v.get('status', '?')\n        conclusion = v.get('conclusion', '')\n        metrics = v.get('metrics', {})\n        sr = metrics.get('overall_success_rate', 'N/A') if metrics else 'N/A'\n        print(f'{k}: status={status}, conclusion={conclusion}, SR={sr}')\n\"",
+    "description": "Check CRM Goal seed44-r2 details and VLA-only Goal baselines"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T23:56:42.926637+00:00_
+
+=== eval-crm-goal-seed44-r2 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-19T21:49:31.838Z",
+  "updated_at": "2026-05-19T23:48:49.369Z",
+  "hypothesis": "CRM obs_only (\u03b5=0.2, K=10) on LIBERO-Goal seed44. OOD \u6cdb\u5316\u6d4b\u8bd5\uff1aCRM \u4ec5\u5728 Object+Spatial \u8bad\u7ec3\uff0cGoal \u662f\u672a\u89c1\u8fc7\u7684 suite\u3002\u91cd\u8dd1\uff08\u524d\u6b21 crash\uff09\u3002",
+  "parent": "eval-crm-goal-seed44",
+  "spec": {
+    "command": "python -u src/evaluate.py --mode crm_obs_only --benchmark goal --seed 44 --K 10 --max_correction_norm 0.2 --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --n_rollouts 10",
+    "server": "bjb2-28827",
+    "gpu": "cuda:0",
+    "pid": "24694",
+    "data_path": "LIBERO-Goal",
+    "data_count": "100 (10 tasks x 10 rollouts)",
+    "model_name": "SmolVLA + CRM obs_only",
+    "seed": 44,
+    "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+    "eval_data": "LIBERO-Goal (10 tasks x 10 rollouts)"
+  },
+  "reproduce": {
+    "finished_at": "2026-05-19T23:17:53.707Z"
+  },
+  "failure_reason": "process dead 5\u00d7 with no sentinel/W&B \u2014 auto-resolved as failed",
+  "conclusion": "success",
+  "completed_at": "2026-05-19T23:18:01.172Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-19T23:18:12.623102+00:00"
+      }
+    ]
+  }
+}
+
+=== VLA-only Goal experiments ===
+eval-vla-only-goal-seed42: status=DONE, conclusion=success, SR=0.71
+eval-vla-only-goal-seed43: status=DONE, conclusion=success, SR=0.69
+eval-vla-only-goal-seed44: status=DONE, conclusion=killed, SR=N/A
+eval-vla-only-goal-seed44-r2: status=DONE, conclusion=success, SR=0.73
+eval-vla-only-goal-seed45: status=DONE, conclusion=success, SR=0.63
+eval-vla-only-goal-seed46: status=DONE, conclusion=success, SR=0.71
+eval-vla-only-goal-seed47: status=DONE, conclusion=killed, SR=N/A
+eval-vla-only-goal-seed47-r2: status=RUNNING
+…[truncated 153 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T23:56:54.941498+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T23:56:54.992038+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T23:57:24.053391+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analyze:eval-crm-goal-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "task_prompt": "你需要分析两个已完成实验的结果，都在服务器 bjb2-28827 上。\n\n## 任务 1: eval-crm-goal-seed46（主要）\n\n实验刚完成，进程已退出。需要提取结果。\n\n- 日志文件: `~/runs/acr-vla-conformal-refinement/eval-crm-goal-seed46.log`\n- 输出 JSON: `/root/acr-vla-conformal-refinement/logs/eval_crm_goal_seed46.json`\n- 命令: `python -u src/evaluate.py --mode crm_obs_only --benchmark goal --seed 46 --K 10 --max_correction_norm 0.2 --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --n_rollouts 10 --output_file logs/eval_crm_goal_seed46.json`\n\n**提取以下信息**:\n1. overall_success_rate\n2. 每个 task 的 success rate（per_task breakdown）\n3. 总 episodes 数\n4. 是否有错误或异常\n5. 检查 W&B 是否有 run 数据（搜索 wandb runs 包含 \"goal\" \"seed46\" 关键词）\n\n## 任务 2: eval-crm-goal-seed44-r2（补充）\n\n这个实验被标记为 success 但 registry 里没有 metrics。需要补提取。\n\n- 输出 JSON 可能在: `/root/acr-vla-conformal-refinement/logs/eval_crm_goal_seed44*.json` 或类似路径\n- 日志: `~/runs/acr-vla-conformal-refinement/eval-crm-goal-seed44-r2.log`\n\n同样提取 overall_success_rate 和 per_task breakdown。\n\n## 上下文\n\n这是 CRM obs_only 在 LIBERO-Goal 上的 OOD 泛化测试。CRM 仅在 Object+Spatial 训练，Goal 是未见过的 suite。\n\n已有结果:\n- seed42: 67%, seed43: 72% → 平均 69.5%\n- VLA-only Goal baseline (n=5): 69.4%±3.7%\n\n我们需要判断 CRM 在 Goal OOD 上是中性还是正面。\n\n## 产出要求\n\n用 `update_registry` 更新两个实验:\n1. eval-crm-goal-seed46: 设置 status=DONE, conclusion (根据结果判断 success/negative), metrics (包含 overall_success_rate 和 per_task)\n2. eval-crm-goal-seed44-r2: 如果能找到 metrics，补充 metrics 字段\n\n最后输出一个简洁的分析摘要，包含:\n- 两个实验的 success rate\n- 与 VLA-only baseline 的对比\n- CRM Goal OOD 的综合结论（n=? 后的平均值和标准差）\n",
+  "tool_groups": "['ssh', 'wandb', 'registry']",
+  "context": "项目: acr-vla-conformal-refinement\n服务器: bjb2-28827\nCRM Goal OOD 系列实验，测试 CRM 在未见过的 LIBERO-Goal suite 上的泛化能力。\nVLA-only Goal baseline (n=5): seed42=71%, seed43=69%, seed44-r2=73%, seed45=63%, seed46=71%, 平均 69.4%±3.7%"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analyze:eval-crm-goal-seed46",
+    "project": "acr-vla-conformal-refinement",
+    "task_prompt": "你需要分析两个已完成实验的结果，都在服务器 bjb2-28827 上。\n\n## 任务 1: eval-crm-goal-seed46（主要）\n\n实验刚完成，进程已退出。需要提取结果。\n\n- 日志文件: `~/runs/acr-vla-conformal-refinement/eval-crm-goal-seed46.log`\n- 输出 JSON: `/root/acr-vla-conformal-refinement/logs/eval_crm_goal_seed46.json`\n- 命令: `python -u src/evaluate.py --mode crm_obs_only --benchmark goal --seed 46 --K 10 --max_correction_norm 0.2 --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --n_rollouts 10 --output_file logs/eval_crm_goal_seed46.json`\n\n**提取以下信息**:\n1. overall_success_rate\n2. 每个 task 的 success rate（per_task breakdown）\n3. 总 episodes 数\n4. 是否有错误或异常\n5. 检查 W&B 是否有 run 数据（搜索 wandb runs 包含 \"goal\" \"seed46\" 关键词）\n\n## 任务 2: eval-crm-goal-seed44-r2（补充）\n\n这个实验被标记为 success 但 registry 里没有 metrics。需要补提取。\n\n- 输出 JSON 可能在: `/root/acr-vla-conformal-refinement/logs/eval_crm_goal_seed44*.json` 或类似路径\n- 日志: `~/runs/acr-vla-conformal-refinement/eval-crm-goal-seed44-r2.log`\n\n同样提取 overall_success_rate 和 per_task breakdown。\n\n## 上下文\n\n这是 CRM obs_only 在 LIBERO-Goal 上的 OOD 泛化测试。CRM 仅在 Object+Spatial 训练，Goal 是未见过的 suite。\n\n已有结果:\n- seed42: 67%, seed43: 72% → 平均 69.5%\n- VLA-only Goal baseline (n=5): 69.4%±3.7%\n\n我们需要判断 CRM 在 Goal OOD 上是中性还是正面。\n\n## 产出要求\n\n用 `update_registry` 更新两个实验:\n1. eval-crm-goal-seed46: 设置 status=DONE, conclusion (根据结果判断 success/negative), metrics (包含 overall_success_rate 和 per_task)\n2. eval-crm-goal-seed44-r2: 如果能找到 metrics，补充 metrics 字段\n\n最后输出一个简洁的分析摘要，包含:\n- 两个实验的 success rate\n- 与 VLA-only baseline 的对比\n- CRM Goal OOD 的综合结论（n=? 后的平均值和标准差）\n",
+    "tool_groups": "['ssh', 'wandb', 'registry']",
+    "context": "项目: acr-vla-conformal-refinement\n服务器: bjb2-28827\nCRM Goal OOD 系列实验，测试 CRM 在未见过的 LIBERO-Goal suite 上的泛化能力。\nVLA-only Goal baseline (n=5): seed42=71%, seed43=69%, seed44-r2=73%, seed45=63%, seed46=71%, 平均 69.4%±3.7%"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T23:57:27.015573+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analyze_eval-crm-goal-seed46_20260519T235724\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analyze_eval-crm-goal-seed46_20260519T235724.log\", \"setup_data\": {}, \"message\": \"Worker worker_analyze_eval-crm-goal-seed46_20260519T235724 started. Use get_worker_status('worker_analyze_eval-crm-goal-seed46_20260519T235724') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-crm-goal-seed46",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2962
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-19T23:57:37.251242+00:00_
+
+Worker 已派出分析 eval-crm-goal-seed46 和 eval-crm-goal-seed44-r2 的结果。Worker 完成后系统会回调通知我。
+
+当前状态总结：
+- **eval-crm-goal-seed46**: 进程正常退出，Worker 正在提取 metrics 和更新 registry
+- **RUNNING 中**: eval-crm-long-seed47 (bjb2-28827:cuda:3), eval-vla-only-goal-seed47-r2 (bjb1-32546:cuda:1), eval-vla-only-goal-seed48-r2 (bjb1-32546:cuda:3)
+- **CRM Goal OOD 进度**: 已有 seed42(67%), seed43(72%), seed44-r2 和 seed46 待 Worker 提取 → 目标 n=4+
+
+等待 Worker 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-crm-goal-seed46"
+}
+```
+
+</details>
+
+---

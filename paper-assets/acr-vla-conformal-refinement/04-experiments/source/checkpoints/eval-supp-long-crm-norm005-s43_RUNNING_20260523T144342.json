@@ -1,0 +1,25 @@
+{
+  "exp_id": "eval-supp-long-crm-norm005-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:36:26.229Z",
+    "updated_at": "2026-05-23T14:43:41.280Z",
+    "hypothesis": "CRM norm=0.05 always-on on Long suite seed43. Second seed for Long CRM validation.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python src/evaluate.py --benchmark long --mode crm_obs_only --seed 43 --n_rollouts 20 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --K 10",
+      "server": "bjb1-32546",
+      "seed": 43,
+      "pid": 993249,
+      "log_path": "/tmp/eval_long_crm_norm005_s43.log",
+      "model_name": "SmolVLA+CRM",
+      "data_path": "long_suite",
+      "data_count": 20
+    }
+  },
+  "timestamp": "2026-05-23T14:43:42.536625+00:00",
+  "trigger": "update_registry"
+}

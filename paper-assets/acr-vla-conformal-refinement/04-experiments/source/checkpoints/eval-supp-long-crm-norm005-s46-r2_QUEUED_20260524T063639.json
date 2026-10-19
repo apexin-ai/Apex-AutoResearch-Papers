@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-long-crm-norm005-s46-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:34:10.482Z",
+    "updated_at": "2026-05-24T06:36:38.585Z",
+    "hypothesis": "CRM always-on norm=0.05 on Long suite seed46 (re-deploy after r1 failed on bjb1-32546). Fifth seed completing Long CRM 5-seed coverage. 3-seed mean 55.8%±1.2%."
+  },
+  "timestamp": "2026-05-24T06:36:39.893453+00:00",
+  "trigger": "update_registry"
+}

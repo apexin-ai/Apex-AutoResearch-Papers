@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-object-norm03-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:05:51.470Z",
+    "updated_at": "2026-05-16T06:06:00.715Z",
+    "hypothesis": "obs_only CRM v3-norm at norm=0.3 seed=44 on LIBERO object benchmark. Multi-seed magnitude curve coverage. seed42 norm=0.3 object still running on bjb2-28827. Pairs with seed44 norm=0.2 for norm sensitivity across seeds."
+  },
+  "timestamp": "2026-05-16T06:06:00.965937+00:00",
+  "trigger": "update_registry"
+}

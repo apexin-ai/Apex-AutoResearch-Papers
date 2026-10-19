@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval-supp-crm-norm005-spatial-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:12:15.210Z",
+    "updated_at": "2026-05-24T10:08:34.857Z",
+    "hypothesis": "CRM/Adaptive on Spatial seed46, 5th seed extension",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark spatial --mode crm_obs_only --seed 46 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO spatial",
+      "data_count": 200,
+      "model_name": "smolvla+crm_smolvla_3suite_v1",
+      "seed": 46,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO spatial 10 tasks x 20 rollouts",
+      "checkpoint_path": "n/a-eval-only",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval-supp-crm-norm005-spatial-s46.log",
+      "result_json": "/root/acr-vla-conformal-refinement/logs/eval_spatial_crm_obs_only_norm0.05_seed46.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.785,
+      "successes": 157,
+      "total": 200
+    },
+    "completed_at": "2026-05-24T10:08:34.857Z"
+  },
+  "timestamp": "2026-05-24T10:08:36.923474+00:00",
+  "trigger": "update_registry"
+}

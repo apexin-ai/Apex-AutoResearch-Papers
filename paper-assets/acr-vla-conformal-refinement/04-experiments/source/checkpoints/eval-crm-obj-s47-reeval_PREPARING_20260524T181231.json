@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-crm-obj-s47-reeval",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T15:11:13.035Z",
+    "updated_at": "2026-05-24T18:12:29.772Z",
+    "hypothesis": "CRM Object s47 re-eval to verify anomalous 82.5% SR (+2.6σ above 3-seed mean). If reproducible, it's a genuine high-variance seed; if not, original was a lucky run and should be excluded or noted.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 47 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee logs/eval-crm-obj-s47-reeval.log\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "487954",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-crm-obj-s47-reeval.log",
+      "submitted_at": "2026-05-24T15:12:09.757Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T18:12:31.171677+00:00",
+  "trigger": "update_registry"
+}

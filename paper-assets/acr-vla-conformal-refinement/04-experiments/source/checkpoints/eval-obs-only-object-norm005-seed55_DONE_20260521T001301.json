@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval-obs-only-object-norm005-seed55",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:23:01.005Z",
+    "updated_at": "2026-05-21T00:13:00.070Z",
+    "hypothesis": "CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed55. Norm sweep seed balance for ε=0.05.",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 55 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_obs_only_object_norm005_seed55.json",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "578254",
+      "seed": 55,
+      "model_name": "CRM_obs_only",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "log_path": "/root/autodl-tmp/logs/obs_only_object_norm005_seed55.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T00:12:49.221Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T00:13:00.070Z"
+  },
+  "timestamp": "2026-05-21T00:13:01.014805+00:00",
+  "trigger": "update_registry"
+}

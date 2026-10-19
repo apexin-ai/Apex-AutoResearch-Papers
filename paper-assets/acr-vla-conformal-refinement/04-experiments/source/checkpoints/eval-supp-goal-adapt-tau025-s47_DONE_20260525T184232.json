@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval-supp-goal-adapt-tau025-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:51:52.528Z",
+    "updated_at": "2026-05-25T18:42:31.165Z",
+    "hypothesis": "Goal s47 Adaptive gating (tau=0.25) eval for seed extension. Sixth seed to tighten CI for Goal suite Adaptive method.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 47 --n_rollouts 20 --K 2 --adaptive_threshold 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO-Goal",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 47,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt",
+      "eval_data": "LIBERO-Goal 10 tasks x 20 rollouts",
+      "tmux_session": "goal-adapt-s47",
+      "log_path": "/tmp/eval_goal_adapt_s47.log",
+      "gpu": 0,
+      "pid": 205107
+    },
+    "metrics": {
+      "overall_success_rate": 0.82,
+      "successes": 164,
+      "total": 200,
+      "benchmark": "goal",
+      "mode": "adaptive_conformal_crm",
+      "tau": 0.25,
+      "trigger_rate": 0.0887,
+      "mean_uncertainty": 0.1476,
+      "total_steps": 29241,
+      "crm_applied_steps": 2594,
+      "n_rollouts": 20
+    },
+    "checkpoint_path": "n/a-eval-only",
+    "conclusion": "killed",
+    "completed_at": "2026-05-24T12:06:00.775Z"
+  },
+  "timestamp": "2026-05-25T18:42:32.871253+00:00",
+  "trigger": "update_registry"
+}

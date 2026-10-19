@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-vla-only-spatial-bjb1-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T01:36:53.772Z",
+    "updated_at": "2026-05-25T01:37:10.198Z",
+    "hypothesis": "VLA-only baseline on Spatial s46 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test."
+  },
+  "timestamp": "2026-05-25T01:37:11.669121+00:00",
+  "trigger": "update_registry"
+}

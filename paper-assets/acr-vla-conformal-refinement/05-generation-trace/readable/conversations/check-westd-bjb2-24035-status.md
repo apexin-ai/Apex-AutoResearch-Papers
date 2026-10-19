@@ -1,0 +1,1299 @@
+# check westd bjb2 24035 status
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_check_westd-bjb2-24035-status_20260526T075118.jsonl`
+- **Structured JSON:** [`75a7b9d39d16a5ff24ff.json`](../../sessions/75/75a7b9d39d16a5ff24ff.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+44 recorded events
+
+### Assistant
+
+_source line 1 · 2026-05-26T07:51:25.800163+00:00_
+
+Not logged in · Please run /login
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-26T07:53:03.217512+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-26T07:53:03.217888+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-26T07:53:03.218167+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-49937",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-49937",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-26T07:53:03.218395+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T07:53:03.218554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 MiB\\n1, 0 %, 0 MiB\\n2, 0 %, 0 MiB\\n3, 0 %, 0 MiB\\n4, 0 %, 0 MiB\\n5, 0 %, 0 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-26T07:53:03.218696+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 12 %, 11722 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-26T07:53:03.218885+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-49937",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-49937",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-26T07:53:03.219015+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-26T07:53:03.219134+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-49937",
+  "command": "ls -lt /root/acr-vla-conformal-refinement/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-49937",
+    "command": "ls -lt /root/acr-vla-conformal-refinement/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T07:53:03.219397+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 24988\\n-rw-r--r-- 1 root root 7125848 May 26 15:35 eval_object_adaptive_pi05_seed42.json\\n-rw-r--r-- 1 root root    1331 May 26 15:05 eval_goal_crm_k2_pi05_seed42.json\\n-rw-r--r-- 1 root root 5343888 May 26 15:05 eval_goal_adaptive_pi05_seed43.json\\n-rw-r--r-- 1 root root 5188263 May 26 15:01 eval_goal_adaptive_pi05_seed42.json\\n-rw-r--r-- 1 root root    1327 May 26 15:01 eval_goal_vla_only_pi05_seed42.json\\n-rw-r--r-- 1 root root 5228636 May 26 15:00 eval_goal_adaptive_pi05_seed44.json\\n-rw-r--r-- 1 root root    1323 May 26 13:07 eval_goal_k2mean_pi05_seed42.json\\ndrwxr-xr-x 2 root root    4096 May 26 12:44 sentinels\\n-rw-r--r-- 1 root root    2233 May 26 12:44 westd-pi05-adaptive-object-s42.log\\n-rw-r--r-- 1 root root    2233 May 26 12:44 westd-pi05-adaptive-goal-s44.log\\n-rw-r--r-- 1 root root    2233 May 26 12:44 westd-pi05-adaptive-goal-s43.log\\n-rw-r--r-- 1 root root    2233 May 26 12:44 westd-pi05-adaptive-goal-s42.log\\n-rw-r--r-- 1 root root    5302 May 26 12:15 eval_goal_k2mean_pi05_seed42.log\\n-rw-r--r-- 1 root root    3013 May 26 12:13 eval_long_crm_obs_only_norm0.05_seed43_pi05_K2.log\\n-rw-r--r-- 1 root root    3014 May 26 12:11 eval_long_crm_obs_only_norm0.05_seed42_pi05_K2.log\\n-rw-r--r-- 1 root root    2891 May 26 12:02 eval_long_adaptive_pi05_seed42.log\\n-rw-r--r-- 1 root root    1795 May 26 10:47 eval_long_crm_obs_only_norm0.05_seed44_pi05_K2.json\\n-rw-r--r-- 1 root root    1527 May 26 09:28 eval_goal_adaptive_k2_tau025_seed45.json\\n-rw-r--r-- 1 root root    2947 May 26 09:11 mechanism_goal_adapt_s42.log\\n-rw-r--r-- 1 root root    1495 May 26 07:10 eval_object_vla_only_seed42_pi05_v2.json\\n-rw-r--r-- 1 root root    1793 May 26 00:11 eval_long_crm_seed42.json\\n-rw-r--r-- 1 root root    1905 May 25 20:29 eval_spatial_adaptive_seed47_bjb1.json\\n-rw-r--r-- 1 root root    1707 May 25 20:27 eval_spatial_vla_only_seed47_n20.json\\n-rw-r--r-- 1 root root  488330 May 25 19:1
+…[truncated 6401 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-26T07:53:03.219587+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-26T07:53:03.219721+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-26T07:53:03.219844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "ls -lt /root/acr-vla-conformal-refinement/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "ls -lt /root/acr-vla-conformal-refinement/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-26T07:53:03.220012+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 656\\n-rw-r--r-- 1 root root   2824 May 26 10:42 goal_vla_only_s49.log\\n-rw-r--r-- 1 root root   4987 May 25 22:28 eval_goal_crm_seed42.log\\n-rw-r--r-- 1 root root   1908 May 25 16:12 eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.075_seed42.json\\n-rw-r--r-- 1 root root   4403 May 25 09:28 eval-k2-tau010-spatial-s42-r2.log\\n-rw-r--r-- 1 root root   4273 May 25 08:41 eval-k2-tau015-spatial-s42.log\\n-rw-r--r-- 1 root root   4400 May 25 07:56 eval-k2-tau010-spatial-s42.log\\n-rw-r--r-- 1 root root   7682 May 25 05:04 eval-adaptive-k5-spatial-s42.log\\n-rw-r--r-- 1 root root   1904 May 25 05:04 eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json\\n-rw-r--r-- 1 root root   1703 May 24 23:02 eval_spatial_reconvla_seed47.json\\n-rw-r--r-- 1 root root   1709 May 24 18:15 eval_spatial_crm_obs_only_norm0.05_seed47.json\\n-rw-r--r-- 1 root root   1702 May 24 10:14 eval_spatial_k2mean_seed45.json\\n-rw-r--r-- 1 root root   1504 May 24 06:16 eval_object_crm_obs_only_norm0.05_seed45.json\\n-rw-r--r-- 1 root root   1705 May 23 23:14 eval_spatial_vla_only_seed44.json\\n-rw-r--r-- 1 root root   1325 May 23 19:46 eval_goal_vla_only_seed42.json\\n-rw-r--r-- 1 root root     40 May 23 14:56 eval-supp-k2mean-goal-s42.log\\n-rw-r--r-- 1 root root   1778 May 23 00:03 eval_long_vla_only_seed42_r4.json\\n-rw-r--r-- 1 root root   1485 May 22 16:42 eval_object_vla_only_openvla_oft_seed42.json\\n-rw-r--r-- 1 root root    370 May 22 15:33 diversity_openvla_oft_K2.json\\n-rw-r--r-- 1 root root    283 May 21 16:04 eval_object_vla_only_pi05_seed42.json\\n-rw-r--r-- 1 root root   1475 May 21 15:26 pi05_vision_fix_quicktest.json\\n-rw-r--r-- 1 root root    279 May 21 13:36 pi05_action_queue_quicktest.json\\n-rw-r--r-- 1 root root   1485 May 21 11:40 eval_pi05_baseline_object_seed42_r2.json\\n-rw-r--r-- 1 root root   4254 May 21 08:58 obs_only_object_norm02_seed55.log\\n-rw-r--r-- 1 root root   1490 May 21 08:58 eval_o
+…[truncated 2659 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-26T07:53:03.220200+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-49937",
+  "command": "python3 -c \"import json; \nfor f in ['eval_object_adaptive_pi05_seed42','eval_goal_crm_k2_pi05_seed42','eval_goal_adaptive_pi05_seed43','eval_goal_adaptive_pi05_seed42']:\n    d=json.load(open(f'/root/acr-vla-conformal-refinement/logs/{f}.json'))\n    sr=d.get('success_rate', d.get('avg_success_rate'))\n    n=d.get('num_episodes', d.get('num_rollouts', d.get('total_episodes', '?')))\n    print(f'{f}: SR={sr}, N={n}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-49937",
+    "command": "python3 -c \"import json; \nfor f in ['eval_object_adaptive_pi05_seed42','eval_goal_crm_k2_pi05_seed42','eval_goal_adaptive_pi05_seed43','eval_goal_adaptive_pi05_seed42']:\n    d=json.load(open(f'/root/acr-vla-conformal-refinement/logs/{f}.json'))\n    sr=d.get('success_rate', d.get('avg_success_rate'))\n    n=d.get('num_episodes', d.get('num_rollouts', d.get('total_episodes', '?')))\n    print(f'{f}: SR={sr}, N={n}')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-26T07:53:03.220405+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-26T07:53:03.220536+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "find /root/acr-vla-conformal-refinement/logs -name \"*adaptive*object*s43*\" -o -name \"*adaptive*object*seed43*\" -newer /tmp/.dummy_nope 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "find /root/acr-vla-conformal-refinement/logs -name \"*adaptive*object*s43*\" -o -name \"*adaptive*object*seed43*\" -newer /tmp/.dummy_nope 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-26T07:53:03.220657+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-26T07:53:03.220770+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "ls -lt /root/acr-vla-conformal-refinement/logs/ | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "ls -lt /root/acr-vla-conformal-refinement/logs/ | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-26T07:53:03.220886+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-26T07:53:03.221016+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-49937",
+  "command": "cd /root/acr-vla-conformal-refinement && python3 -c \"\nimport json\nfor f in ['eval_object_adaptive_pi05_seed42','eval_goal_crm_k2_pi05_seed42','eval_goal_adaptive_pi05_seed43','eval_goal_adaptive_pi05_seed42']:\n    try:\n        d=json.load(open(f'logs/{f}.json'))\n        sr=d.get('success_rate', d.get('avg_success_rate'))\n        keys=[k for k in d if 'success' in k.lower() or 'episode' in k.lower() or 'rollout' in k.lower() or 'total' in k.lower()]\n        print(f'{f}: SR={sr}, keys={keys}')\n    except Exception as e:\n        print(f'{f}: ERROR {e}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-49937",
+    "command": "cd /root/acr-vla-conformal-refinement && python3 -c \"\nimport json\nfor f in ['eval_object_adaptive_pi05_seed42','eval_goal_crm_k2_pi05_seed42','eval_goal_adaptive_pi05_seed43','eval_goal_adaptive_pi05_seed42']:\n    try:\n        d=json.load(open(f'logs/{f}.json'))\n        sr=d.get('success_rate', d.get('avg_success_rate'))\n        keys=[k for k in d if 'success' in k.lower() or 'episode' in k.lower() or 'rollout' in k.lower() or 'total' in k.lower()]\n        print(f'{f}: SR={sr}, keys={keys}')\n    except Exception as e:\n        print(f'{f}: ERROR {e}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-26T07:53:03.221167+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/acr-vla-conformal-refinement && python3 -c \\\"\\\\nimport json\\\\nfor f in [\\\\'eval_object_adaptive_pi05_seed42\\\\',\\\\'eval_goal_crm_k2_pi05_seed42\\\\',\\\\'eval_goal_adaptive_pi05_seed43\\\\',\\\\'eval_goal_adaptive_pi05_seed42\\\\']:\\\\n    try:\\\\n        d=json.load(open(f\\\\'logs/{f}.json\\\\'))\\\\n        sr=d.get(\\\\'success_rate\\\\', d.get(\\\\'avg_success_rate\\\\'))\\\\n        keys=[k for k in d if \\\\'success\\\\' in k.lower() or \\\\'episode\\\\' in k.lower() or \\\\'rollout\\\\' in k.lower() or \\\\'total\\\\' in k.lower()]\\\\n        print(f\\\\'{f}: SR={sr}, keys={keys}\\\\')\\\\n    except Exception as e:\\\\n        print(f\\\\'{f}: ERROR {e}\\\\')\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-26T07:53:03.221326+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "find /root/acr-vla-conformal-refinement/logs -newer /root/acr-vla-conformal-refinement/logs/goal_vla_only_s49.log -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "find /root/acr-vla-conformal-refinement/logs -newer /root/acr-vla-conformal-refinement/logs/goal_vla_only_s49.log -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-26T07:53:03.221468+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-26T07:53:03.221600+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-49937",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -c \"\nimport json\nfor f in ['eval_object_adaptive_pi05_seed42','eval_goal_crm_k2_pi05_seed42','eval_goal_adaptive_pi05_seed43','eval_goal_adaptive_pi05_seed42']:\n    try:\n        d=json.load(open(f'logs/{f}.json'))\n        sr=d.get('success_rate', d.get('avg_success_rate'))\n        keys=[k for k in d.keys() if 'success' in k.lower() or 'episode' in k.lower() or 'rollout' in k.lower() or 'total' in k.lower() or 'num' in k.lower()]\n        info={k:d[k] for k in keys}\n        print(f'{f}: SR={sr}, {info}')\n    except Exception as e:\n        print(f'{f}: ERROR {e}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-49937",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -c \"\nimport json\nfor f in ['eval_object_adaptive_pi05_seed42','eval_goal_crm_k2_pi05_seed42','eval_goal_adaptive_pi05_seed43','eval_goal_adaptive_pi05_seed42']:\n    try:\n        d=json.load(open(f'logs/{f}.json'))\n        sr=d.get('success_rate', d.get('avg_success_rate'))\n        keys=[k for k in d.keys() if 'success' in k.lower() or 'episode' in k.lower() or 'rollout' in k.lower() or 'total' in k.lower() or 'num' in k.lower()]\n        info={k:d[k] for k in keys}\n        print(f'{f}: SR={sr}, {info}')\n    except Exception as e:\n        print(f'{f}: ERROR {e}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-26T07:53:03.221734+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_object_adaptive_pi05_seed42: SR=None, {'n_rollouts': 20, 'overall_success_rate': 0.835}\\neval_goal_crm_k2_pi05_seed42: SR=None, {'n_rollouts': 20, 'overall_success_rate': 0.855}\\neval_goal_adaptive_pi05_seed43: SR=None, {'n_rollouts': 20, 'overall_success_rate': 0.875}\\neval_goal_adaptive_pi05_seed42: SR=None, {'n_rollouts': 20, 'overall_success_rate': 0.88}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-26T07:53:03.221857+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "find /root/acr-vla-conformal-refinement -name \"*s43*\" -mmin -300 -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "find /root/acr-vla-conformal-refinement -name \"*s43*\" -mmin -300 -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-26T07:53:03.221976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-26T07:53:03.222086+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "find /root/acr-vla-conformal-refinement -name \"*.log\" -mmin -300 -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "find /root/acr-vla-conformal-refinement -name \"*.log\" -mmin -300 -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-26T07:53:03.222200+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-26T07:53:03.222391+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-26T07:53:03.222533+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3035, python, 11703 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-26T07:53:03.222649+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "find /root/acr-vla-conformal-refinement -name \"*.log\" -mmin -180 -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "find /root/acr-vla-conformal-refinement -name \"*.log\" -mmin -180 -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-26T07:53:03.222766+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-26T07:53:03.222876+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "find /tmp -name \"*.log\" -mmin -180 -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "find /tmp -name \"*.log\" -mmin -180 -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-26T07:53:03.223010+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/westd-pi05-adaptive-object-s43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-26T07:53:03.223124+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "tail -40 /tmp/westd-pi05-adaptive-object-s43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "tail -40 /tmp/westd-pi05-adaptive-object-s43.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-26T07:53:03.223308+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"This implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 19/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 95.0% (19/20)\\n  pick_up_the_cream_cheese_and_pl
+…[truncated 1866 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-26T07:53:03.223459+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "ps -p 3035 -o pid=,etime=,cmd=",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "ps -p 3035 -o pid=,etime=,cmd=",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-26T07:53:03.223581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  3035    03:34:52 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_adaptive_pi05_seed43.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-26T07:53:03.223704+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-24035",
+  "command": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-24035",
+    "command": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-26T07:53:03.223821+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"28 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-26T07:53:03.223991+00:00_
+
+```
+=== SERVER: westd-49937 ===
+[DONE] westd-pi05-adaptive-goal-s42:   SR=88.0% (20×10=200)  logs/eval_goal_adaptive_pi05_seed42.json
+[DONE] westd-pi05-adaptive-goal-s43:   SR=87.5% (20×10=200)  logs/eval_goal_adaptive_pi05_seed43.json
+[DONE] westd-pi05-crm-k2-goal-s42:     SR=85.5% (20×10=200)  logs/eval_goal_crm_k2_pi05_seed42.json
+[DONE] westd-pi05-adaptive-object-s42: SR=83.5% (20×10=200)  logs/eval_object_adaptive_pi05_seed42.json
+（全部 GPU 空闲，4 个实验均已收割就绪）
+
+=== SERVER: bjb2-24035 ===
+[RUNNING] westd-pi05-adaptive-object-s43:
+  PID 3035, etime=3h34m52s, GPU util 28%, mem 11.7GB
+  进度：5/10 任务完成（100/200 rollouts）
+  分任务 SR（已完成）：alphabet_soup 95% | cream_cheese 75% | salad_dressing 95% | bbq_sauce 75% | ketchup 55%
+  partial mean SR ≈ 79.0%
+  log: /tmp/westd-pi05-adaptive-object-s43.log
+  ETA：每任务约 40min，剩 5 任务 → 还需 ~3h（约 18:30-19:00 完成）
+```
+
+**关键发现**：
+- westd 4 个全部完成，可立即收割（结果都很合理：adaptive goal 87-88%，crm_k2 85.5%，adaptive object 83.5%）
+- bjb2 上的 object-s43 还需 ~3h；对照 object-s42=83.5%，当前 5 任务均值 79% 略偏低但属正常波动
+- bjb2 上没有 cron 监控，完成后需手动检查输出 JSON 位置（`logs/eval_object_adaptive_pi05_seed43.json`）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_check_westd-bjb2-24035-status_20260526T075118"
+}
+```
+
+</details>
+
+---

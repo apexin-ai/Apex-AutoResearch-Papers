@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-obj-adapt-tau025-s47-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:33:00.893Z",
+    "updated_at": "2026-05-24T11:33:11.689Z",
+    "hypothesis": "Adaptive CRM tau=0.25 on Object suite seed47 retry. Previous attempt failed. Extends Object Adaptive coverage."
+  },
+  "timestamp": "2026-05-24T11:33:14.689211+00:00",
+  "trigger": "update_registry"
+}

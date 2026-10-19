@@ -1,0 +1,1096 @@
+# cron hook eval obs only object norm02 seed44 r2
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/cron_hook_eval-obs-only-object-norm02-seed44-r2.jsonl`
+- **Structured JSON:** [`d970221064bb0472f0c6.json`](../../sessions/d9/d970221064bb0472f0c6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+33 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T20:15:37.335934+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #16。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单（17张）：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5。其他 GPU 一律不碰，即使 Director 指令也 push back
+- submit_training_job 命令必须 `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ..."` 包裹，裸 python 不可靠（EXIT_CODE=127 事故）
+- EXIT_CODE=129 不等于失败——先查日志 "Results saved" 再判定
+- kill 实验前必须 `ps aux | grep` 逐参数比对，禁止按名称推断（norm03 vs norm003 误杀事故）
+- 一张 GPU 只跑一个 eval 实验，部署前必须 `nvidia-smi -i N` 确认空闲
+- pooled Fisher test 必须从 raw JSON 读 counts，禁止硬编码（翻倍 bug p=0.035→实际 0.110）
+- 3-seed p=0.110 不显著——**当前是 Narrative B**（mechanism insight 为主，SR 为辅），除非 seed45/46 翻盘
+
+### 2. 🖥️ 基础设施快照
+- **服务器4台**: bjb1-18228 (4 GPU), bjb1-32546 (6 GPU), bjb2-28827 (6 GPU), bjb2-40593 (1 GPU)
+- **工作目录**: `/root/acr-vla-conformal-refinement`（所有服务器一致）
+- **Python**: `/root/miniconda3/bin/python`，conda base 环境
+- **代码 repo**: 同目录下 `src/evaluate.py` 是核心评估脚本
+- **模型**: CRM checkpoints 在各服务器 `/root/autodl-tmp/crm_cache/` 下
+- **活跃进程（14个 eval，全 RUNNING）**:
+  - bjb1-18228: pid 505419(cuda:2), 510896(cuda:3), 474319(未知GPU)
+  - bjb1-32546: pid 295478(cuda:1), 233544(cuda:3), 229751(cuda:5), 226878(cuda:0)
+  - bjb2-28827: pid 248652(cuda:2), 242264(cuda:3), 224623(cuda:0), 222824(?), 215932(cuda:5), 272762(cuda:4)
+  - bjb2-40593: pid 316382(cuda:0)
+- **Cron 监控**: 13 个 active cron 对应上述 RUNNING 实验
+- **Worker**: 1 个 running (`worker_ssh_seed45-final-harvest_20260516T201251`)
+
+### 3. 📊 当前状态
+**刚做完**: reconcile_crons 确认 13/14 实验仍在跑（seed46 两个实验刚部署不久）。1 个 Worker 正在做 seed45 harvest（可能是收割已完成的 seed45 部分结果）。
+
+**14 个 RUNNING 实验**（全部是 LIBERO object benchmark eval）:
+- **关键对** (Narrative A 翻盘窗口): eval-obs-only-object-norm02-seed45 + eval-argmin-object-seed45（4th seed pair）
+- **关键对** (5th seed): eval-obs-only-object-norm02-seed46 + eval-argmin-object-seed46
+- **Magnitude curve 补充**: norm01-seed45, norm03-seed45-r2, perdof-norm03-seed44, perdof-norm02-seed45
+- **其他 baselines**: vla-mean-seed45, scalar-seed45, scalar-seed44-r2, obs-only-default-seed44/seed45, perdof-default-seed44
+
+**等待中**:
+- Worker `seed45-final-harvest` 回调
+- 14 个 cron 回调（各实验完成时触发）
+- Director 对最终 Narrative 决策（取决于 seed45/46 pooled Fisher 结果）
+
+### 4. 📋 待办（条件触发式）
+- seed45 关键对完成（obs-only-norm02-seed45 + argmin-seed45）→ 4-seed pooled Fisher test → 如 p<0.05 转 Narrative A，否则继续 B
+- seed46 关键对完成 → 5-seed pooled Fisher test → 最终 narrative 锁定
+- 所有 seed45 eval 完成 → 完整 seed45 六方比较表，更新 ROADMAP
+- 任一 magnitude curve 实验完成 → 更新 multi-seed magnitude table（验证倒U型 across seeds）
+- 5-seed 统计结论出来 → 向 Director 汇报最终 narrative 决策 + 论文写作计划
+- Narrative 锁定后 → 派 Worker 写 abstract + magnitude figure（CoRL DDL ~May 26 abstract, Jun 2 full）
+
+### 5. 🎯 战略上下文
+- **核心结论链**: perdof 全死(D027) → obs_only 唯一存活(D033) → ε=0.2 最优(D038) → 3-seed p=0.110 不显著(D041) → Narrative B 默认，等翻盘
+- **Narrative B** = "obs_only CRM 作为 robustness mechanism（magnitude curve 双曲线分叉）是核心贡献，+4pp SR 是 supplementary"
+- **Narrative A** = "obs_only CRM 显著提升 SR（统计显著），robustness 是 bonus"。需要 pooled p<0.05
+- **翻盘条件**: 4-seed 需 seed45 gap ≥ +8pp；5-seed 累积 +4pp/seed 可能推到 p≈0.05
+- **易错点**: 不要把不同 norm 的 obs_only 结果混入 pooled test（只有 norm=0.2 参与 Fisher）
+- **易错点**: bjb2-40593 环境脏（无 .git，旧 cache 路径），该服务器只跑了 1 个 eval 且不涉及代码更新
+- **时间压力**: CoRL abstract DDL ~May 26（10天），full paper ~Jun 2（17天）。Narrative 必须本周内锁定
+- **GPU 17/17 满载**，无空闲可加速——只能等实验自然完成（每个 eval ~6-10h for 100 rollouts）
+
+## 项目硬约束 (memory.md 节选)
+
+## bjb2-40593 环境问题 (2026-05-14-15)
+
+- 无 .git repo
+- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）
+- Ghost PID 211962 已 kill
+- scalar seed44 OOM SIGKILL（系统 RAM，非 GPU OOM）— 已在 bjb1-32546 重试
+
+## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)
+
+tmux 用 `sh` 而非 `bash` 执行���令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ..."` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。
+
+## [失败模式] EXIT_CODE=129 (SIGHUP) ≠ 真正失败 (2026-05-16)
+
+**案例**: eval-argmin-object-seed44-r2 和 crm-train-v1 都报 EXIT_CODE=129，但实验已完成并保存了完整结果。
+**根因**: tmux session 在主进程正常退出后收到 SIGHUP（终端断开或 session 被清理）。
+**规则**: EXIT_CODE=129 时不要直接判定失败。先查日志末尾确认是否已打印 "Results saved" / 完成信息，再检查输出文件完整性。如果都正常，标记 conclusion=success。
+
+## [失败模式] Kill 操作前必���逐���数比对 (2026-05-15)
+
+**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) ���重复实验，kill 了有��进程。cuda:0 空闲 9 小时。
+**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。
+**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐��比���关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。
+
+## [失败模式] pooled_fisher_test.py 翻倍 bug (2026-05-16)
+
+**事故**: 脚本 KNOWN_DATA 将所有 counts ×2（假设 n_rollouts=20），输出 p=0.035（实际 p=0.110）。差点导致错误切换到 Narrative A。
+**规则**: 统计检验必须从 raw JSON 读取实际 trial counts，不能硬编码假设。任何 p<0.05 结果必须交叉验证（检查 N 是否与 registry 一致）。
+
+## [部署规范] GPU 冲��防范 (2026-05-16)
+
+**事故**: bjb2-28827 cuda:2/cuda:3 上多次出现双进程共存，互相竞争 compute，效率降低 ~50%。同一 output file 被两进程写入��致数据损坏。
+**根因**: 部署命令未显式指定 CUDA_VISIBLE_DEVICES，或未确认目标 GPU 无已有进程。
+**规则**:
+1. 所有部署命令必须显式设 `CUDA_VISIBLE_DEVICES=N`
+2. 部署前先 `nvidia-smi -i N` 确认目标 GPU 无进程
+3. 部署后 20s 内验证进程在目标 GPU 上启动
+4. 一张 GPU 只跑一个评估实验（除非 Director ���式批准共享）
+
+## 可查的历史
+前 126 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T20:15:51.992493+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T20:15:52.043281+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T20:15:56.193816+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu', 'pid', 'conclusion']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu', 'pid', 'conclusion']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T20:15:56.194241+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T20:15:56.696130+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-argmin-object-seed46\": {\"status\": \"RUNNING\"}, \"eval-obs-only-object-norm02-seed46\": {\"status\": \"RUNNING\"}, \"eval-perdof-object-norm03-seed44\": {\"status\": \"RUNNING\"}, \"eval-obs-only-object-norm03-seed45-r2\": {\"status\": \"RUNNING\"}, \"eval-obs-only-object-norm01-seed45\": {\"status\": \"RUNNING\", \"pid\": 474319}, \"eval-vla-mean-object-seed45\": {\"status\": \"RUNNING\", \"hypothesis\": \"VLA-mean baseline (K=10, mean aggregation) seed=45 on LIBERO object benchmark. Completes seed=45 six-way comparison. seed42=12%, seed43=15%, seed44=running.\"}, \"eval-obs-only-object-default-seed45\": {\"status\": \"RUNNING\"}, \"eval-scalar-object-seed45\": {\"status\": \"RUNNING\"}, \"eval-perdof-object-norm02-seed45\": {\"status\": \"RUNNING\"}, \"eval-argmin-object-seed45\": {\"status\": \"RUNNING\"}, \"eval-obs-only-object-norm02-seed45\": {\"status\": \"RUNNING\"}, \"eval-obs-only-object-default-seed44\": {\"status\": \"RUNNING\"}, \"eval-scalar-object-seed44-r2\": {\"status\": \"RUNNING\"}, \"eval-perdof-object-default-seed44\": {\"status\": \"RUNNING\"}}, \"count\": 14, \"total\": 14, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4496}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T20:15:57.148423+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T20:15:57.200212+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T20:16:26.489177+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 14, \"results\": [{\"exp_id\": \"eval-vla-mean-object-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=248652)\"]}, {\"exp_id\": \"eval-obs-only-object-default-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=242264)\"]}, {\"exp_id\": \"eval-scalar-object-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=224623)\"]}, {\"exp_id\": \"eval-perdof-object-norm02-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=222824)\"]}, {\"exp_id\": \"eval-argmin-object-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=215932)\"]}, {\"exp_id\": \"eval-obs-only-object-norm02-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=233544)\"]}, {\"exp_id\": \"eval-obs-only-object-default-seed44\", \"success\": true, \"actions\": [\"Job still running (pid=229751)\"]}, {\"exp_id\": \"eval-scalar-object-seed44-r2\", \"success\": true, \"actions\": [\"Job still running (pid=226878)\"]}, {\"exp_id\": \"eval-perdof-object-default-seed44\", \"success\": true, \"actions\": [\"Job still running (pid=316382)\"]}, {\"exp_id\": \"eval-obs-only-object-norm01-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=474319)\"]}, {\"exp_id\": \"eval-obs-only-object-norm02-seed46\", \"success\": true, \"actions\": [\"Job still running (pid=510896)\"]}, {\"exp_id\": \"eval-perdof-object-norm03-seed44\", \"success\": true, \"actions\": [\"Job still running (pid=505419)\"]}, {\"exp_id\": \"eval-obs-only-object-norm03-seed45-r2\", \"success\": true, \"actions\": [\"Job still running (pid=272762)\"]}, {\"exp_id\": \"eval-argmin-object-seed46\", \"success\": true, \"actions\": [\"Skipped (created 10s ago < interval 120s)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 30294
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T20:16:26.540043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval-argmin-object-seed46 | — | — | — | — |\\n| eval-obs-only-object-norm02-seed46 | — | — | — | — |\\n| eval-perdof-object-norm03-seed44 | — | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **eval-perdof-object-seed44** (negative): perdof CRM v3-norm seed=44 on LIBERO object benchmark. Completes seed=44 four-way comparison. seed42=11%, seed43=12%. Expected to confirm perdof < argmin.\\n- **eval-obs-only-object-norm01-seed44** (success): —\\n- **eval-obs-only-object-norm03-seed44** (success): obs_only CRM v3-norm at norm=0.3 seed=44 on LIBERO object benchmark. Multi-seed magnitude curve coverage. seed42 norm=0.3 object still running on bjb2-28827. Pairs with seed44 norm=0.2 for norm sensitivity across seeds.\\n  [eval_object_obs_only_norm03_seed44](/api/workspace-files/projects/acr-vla-conformal-refinement/artifacts/eval-obs-only-object-norm03-seed44/data/eval_object_obs_only_norm03_seed44.txt)\\n\\n## 趋势\\n成功 57 / 负向 8 / 失败 23 / 共 140\\noverall_sr: 0.16 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-18228: 无 GPU 信息\\nbjb1-32546: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\nbjb2-28827: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\nbjb2-40593: 无 GPU 信息\\n\\n## 告警\\n- plan_001-crm-smolvla: 训练失败 — unknown\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\n- eval-spatial-reeval-v2: 已被终止 — unknown\\n- precompute-v2-shard0: 已被终止 — unknown\\n- precompute-v2-shard1: 已被终止 — unknown\\n- precompute-v2-shard2: 已被终止 — unknown\\n- eval-spatial-v3-full: 已被终止 — unknown\\n- precompute-v3-shard0: 已被终止 — unknown\\n- precompute-v3-shard1: 已被终止 — unknown\\n- precompute-v3-shard
+…[truncated 3064 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 29391
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T20:16:26.692693+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 29492
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T20:16:42.636461+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T20:16:42.837936+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-16 16:02 UTC | 更新原因: D041: Fisher exact p=0.110 (corrected from 0.091), Narrative B 默认路径, 等 seed45/46 翻盘\\n\\n## 核心方向\\nobs_only CRM 是唯一存活路径。**ε=0.2 是最优配置**（D038）。**默认 Narrative B**：mechanism insight（obs_only robustness vs perdof collapse）为核心贡献，SR improvement (+4pp) 为 supplementary evidence。seed45/46 结果回收后如 pooled p<0.05 可切回 Narrative A。详见 paper_framing.md + narrative_b_draft.md。\\n\\n## 投稿目标\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~10 天。\\n\\n## 当前进展\\n- **阶段**: Phase 3 — Narrative B 默认，等 seed45/46 翻盘窗口\\n- **Pooled 3-seed ε=0.2**: obs_only 18% vs argmin 14% (+4pp, **Fisher exact p=0.110**)\\n- **Magnitude curves 双曲线完整 ✅**: obs_only 倒 U 型全程安全 / perdof 单调崩溃\\n- **GPU**: 17/17 满载\\n\\n## Object Benchmark — obs_only ε=0.2（关键配置）\\n\\n| Seed | obs_only ε=0.2 | argmin | vla_only | obs vs argmin | 状态 |\\n|------|----------------|--------|----------|---------------|------|\\n| 42 | **22%** | 12% | 12% | **+10pp** | FINAL ✅ |\\n| 43 | **16%** | 17% | 12% | **-1pp** | FINAL ✅ |\\n| 44 | **16%** | 13% | 10% | **+3pp** | FINAL ✅ |\\n| 45 | running (~55%) | running (~45%) | 9% ✅ | — | ⏳ ETA 6-10h |\\n| 46 | deployed | pending GPU | — | — | ⏳ |\\n| **Pooled 3-seed** | **18%** (54/300) | **14%** (42/300) | — | **+4.0pp** | **p=0.110** |\\n\\n## 翻盘条件（Narrative A 需要 pooled p<0.05）\\n- 4-seed：seed45 需 gap ≥ +8pp（如 obs≥20%, argmin≤12%）\\n- 5-seed：累积效应，即使 seed45/46 各 +4pp 也可能推到 p≈0.05 附近\\n\\n## Object Magnitude Sweep — 双曲线完整 ✅（seed42, 论文核心 figure）\\n\\n| norm | obs_only | perdof | gap | 论文叙事 |\\n|------|----------|--------|-----|----------|\\n| 0.03 | 16% | 14% | +2pp | 低 norm: 两者接近 |\\n| 0.05 | ~13% | 14% | -1pp | 低 norm: 两者接近 |\\n| 0.10 | 19% | 11% | +8pp | obs_only 起飞，perdof 开始退化 |\\n| 0.20 | **22%** | 11% | **+11pp** |
+…[truncated 2835 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T20:16:42.939466+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "status": "done",
+  "limit": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "status": "done",
+    "limit": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T20:16:43.041908+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_eval-obs-only-object-norm03-seed44_20260516T193637\", \"task_type\": \"analysis:eval-obs-only-object-norm03-seed44\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-16T19:36:37.674732+00:00\", \"ended_at\": \"2026-05-16T19:38:09.590023+00:00\"}, {\"worker_id\": \"worker_analyze_eval-obs-only-object-norm01-seed44_20260516T194412\", \"task_type\": \"analyze:eval-obs-only-object-norm01-seed44\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-16T19:44:12.706222+00:00\", \"ended_at\": \"2026-05-16T19:45:40.713650+00:00\"}, {\"worker_id\": \"worker_ssh_seed45-final-harvest_20260516T201251\", \"task_type\": \"ssh:seed45-final-harvest\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"done\", \"started_at\": \"2026-05-16T20:12:52.444355+00:00\", \"ended_at\": \"2026-05-16T20:15:51.280904+00:00\"}], \"count\": 3}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T20:17:08.829001+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T20:17:08.902872+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_66846529.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "Read",
+  "elapsed_ms": 73
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T20:17:11.461690+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T20:17:11.512182+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T20:17:15.529474+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T20:17:15.680493+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "Glob",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T20:17:17.893748+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T20:17:17.945749+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T20:17:38.305724+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T20:17:38.306130+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T20:17:43.305887+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ssh_seed45-final-harvest_20260516T201251",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ssh_seed45-final-harvest_20260516T201251",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T20:17:43.356623+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_seed45-final-harvest_20260516T201251\", \"status\": \"done\", \"task_type\": \"ssh:seed45-final-harvest\", \"project\": \"acr-vla-conformal-refinement\", \"started_at\": \"2026-05-16T20:12:52.444355+00:00\", \"ended_at\": \"2026-05-16T20:15:51.280904+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"两个 seed45 实验都**尚未完成**，仍在运行中。\\n\\n**当前进度:**\\n\\n### obs_only seed45 (bjb1-32546, GPU 3)\\n9/10 任务已完成，最后一个任务 (orange_juice) 正在跑：\\n\\n| Task | Successes/10 |\\n|------|-------------|\\n| alphabet_soup | 0 |\\n| cream_cheese | 0 |\\n| salad_dressing | 1 |\\n| bbq_sauce | 4 |\\n| ketchup | 1 |\\n| tomato_sauce | 1 |\\n| butter | 1 |\\n| milk | 2 |\\n| chocolate_pudding | 4 |\\n| orange_juice | **running...** |\\n\\n已完成部分: **14/90**\\n\\n### argmin seed45 (bjb2-28827, GPU 5)\\n7/10 任务已完成，还有 3 个任务待跑 (milk, chocolate_pudding, orange_juice)：\\n\\n| Task | Successes/10 |\\n|------|-------------|\\n| alphabet_soup | 0 |\\n| cream_cheese | 0 |\\n| salad_dressing | 1 |\\n| bbq_sauce | 4 |\\n| ketchup | 0 |\\n| tomato_sauce | 0 |\\n| butter | 1 |\\n| milk~orange_juice | **pending** |\\n\\n已完成部分: **6/70**\\n\\n### 预估\\n\\nobs_only seed45 还差 1 个任务的 10 rollouts，预计 1-2 小时内完成。argmin seed45 还差 3 个任务，预计 3-5 小时。\\n\\nJSON 文件要等实验全部跑完才会写出。目前无法计算 4-seed Fisher test。需要等两个实验都结束后再读取。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T20:18:22.026436+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "text": "[资源] GPU 分配 17 / 实际在跑 17 | Worker 池 0 → 2 (GPU 0 / CPU 2)\n\n**Session-start 状态汇报 (Loop #16)**\n\n**实验状态**: 14 个 eval 全部 RUNNING，0 完成。reconcile_crons 确认 14/14 进程存活。\n\n**关键进度** (seed45-final-harvest Worker 结果，截至 20:15 UTC):\n- obs_only ε=0.2 seed45 (bjb1-32546:cuda:3): 9/10 tasks 完成，最后一个 running。部分 SR = 14/90 ≈ 15.6%。预计 ~1-2h 完成\n- argmin seed45 (bjb2-28827:cuda:5): 7/10 tasks 完成，3 个 pending。部分 SR = 6/70 ≈ 8.6%。预计 ~3-5h 完成\n- **部分差值 ~+7pp**，接近 4-seed 翻盘阈值 (+8pp)。最终结果待三个未跑 task 出来后确认\n\n**seed46**: obs_only-norm02-seed46 + argmin-seed46 均已部署，刚启动\n\n**行动**:\n1. 正在 spawn 2 个 CPU Worker：(a) 论文 magnitude curve 核心 figure 脚本准备 (b) 4/5-seed Fisher test 自动分析脚本准备（从 raw JSON 读 counts，杜绝硬编码）\n2. 等 cron 回调自动触发 seed45 分析 → 4-seed pooled Fisher → narrative 决策\n3. 10 天到 CoRL abstract DDL，narrative 锁定后立即铺写作"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "text": "[资源] GPU 分配 17 / 实际在跑 17 | Worker 池 0 → 2 (GPU 0 / CPU 2)\n\n**Session-start 状态汇报 (Loop #16)**\n\n**实验状态**: 14 个 eval 全部 RUNNING，0 完成。reconcile_crons 确认 14/14 进程存活。\n\n**关键进度** (seed45-final-harvest Worker 结果，截至 20:15 UTC):\n- obs_only ε=0.2 seed45 (bjb1-32546:cuda:3): 9/10 tasks 完成，最后一个 running。部分 SR = 14/90 ≈ 15.6%。预计 ~1-2h 完成\n- argmin seed45 (bjb2-28827:cuda:5): 7/10 tasks 完成，3 个 pending。部分 SR = 6/70 ≈ 8.6%。预计 ~3-5h 完成\n- **部分差值 ~+7pp**，接近 4-seed 翻盘阈值 (+8pp)。最终结果待三个未跑 task 出来后确认\n\n**seed46**: obs_only-norm02-seed46 + argmin-seed46 均已部署，刚启动\n\n**行动**:\n1. 正在 spawn 2 个 CPU Worker：(a) 论文 magnitude curve 核心 figure 脚本准备 (b) 4/5-seed Fisher test 自动分析脚本准备（从 raw JSON 读 counts，杜绝硬编码）\n2. 等 cron 回调自动触发 seed45 分析 → 4-seed pooled Fisher → narrative 决策\n3. 10 天到 CoRL abstract DDL，narrative 锁定后立即铺写作"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T20:18:42.250842+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 20224
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T20:18:42.763029+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:magnitude-figure-prep",
+  "project": "acr-vla-conformal-refinement",
+  "task_prompt": "## 任务：准备论文核心 Figure —— Magnitude Curve 双曲线图\n\n### 背景\n我们的论文核心 figure 是 obs_only vs perdof 的 magnitude curve（不同 ε 下的 success rate）。数据来自 LIBERO object benchmark seed42 的结果。\n\n### 数据（seed42, object benchmark, 100 rollouts each）\n\n| norm (ε) | obs_only SR | perdof SR |\n|-----------|-------------|-----------|\n| 0.03      | 16%         | 14%       |\n| 0.05      | ~13%        | 14%       |\n| 0.10      | 19%         | 11%       |\n| 0.20      | 22%         | 11%       |\n| 0.30      | 19%         | 4%        |\n| default (~1.42) | 17%   | 0%        |\n\n还需要 argmin baseline = 12%（水平虚线）和 vla_only baseline = 12%（水平虚线）。\n\n### 另外需要的 multi-seed 数据\nobs_only ε=0.2 各 seed 的 SR（用于 error bar 或附图）:\n- seed42: 22%, seed43: 16%, seed44: 16%\n- seed45/46: TBD (实验在跑)\n\n### 要求\n1. 在本地项目 artifacts 目录创建 matplotlib 脚本: `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/magnitude_curve.py`\n2. 图表规范：\n   - 学术论文级别 (单栏, ~3.5 inch width)\n   - 两条主线: obs_only (蓝色实线, 圆圈 marker) + perdof (红色虚线, 三角 marker)\n   - 两条水平基线: argmin (灰色点线) + vla_only (灰色虚线)\n   - X 轴: ε (correction norm), log scale, 标注 0.03, 0.05, 0.1, 0.2, 0.3, default\n   - Y 轴: Success Rate (%)\n   - 标注 ε=0.2 为最优点 (竖直虚线或星号)\n   - 注释关键 gap: \"+11pp\" at ε=0.2, \"+15pp\" at ε=0.3\n   - Font: serif, 适合 LaTeX 嵌入\n   - 输出 PDF + PNG (300 dpi)\n3. 脚本需要独立可运行 (只依赖 matplotlib + numpy)\n4. 脚本顶部写文件注释说明用途\n5. 生成后在 artifacts 目录输出图片\n\n### 验证\n- 本地跑一次确认图片生成成功\n- 用 register_artifact 注册产出\n\n### 产出\n- `artifacts/figures/magnitude_curve.py` (脚本)\n- `artifacts/figures/magnitude_curve.pdf` (矢量图)\n- `artifacts/figures/magnitude_curve.png` (位图)",
+  "tool_groups": "['knowledge']",
+  "tools": "['register_artifact']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:magnitude-figure-prep",
+    "project": "acr-vla-conformal-refinement",
+    "task_prompt": "## 任务：准备论文核心 Figure —— Magnitude Curve 双曲线图\n\n### 背景\n我们的论文核心 figure 是 obs_only vs perdof 的 magnitude curve（不同 ε 下的 success rate）。数据来自 LIBERO object benchmark seed42 的结果。\n\n### 数据（seed42, object benchmark, 100 rollouts each）\n\n| norm (ε) | obs_only SR | perdof SR |\n|-----------|-------------|-----------|\n| 0.03      | 16%         | 14%       |\n| 0.05      | ~13%        | 14%       |\n| 0.10      | 19%         | 11%       |\n| 0.20      | 22%         | 11%       |\n| 0.30      | 19%         | 4%        |\n| default (~1.42) | 17%   | 0%        |\n\n还需要 argmin baseline = 12%（水平虚线）和 vla_only baseline = 12%（水平虚线）。\n\n### 另外需要的 multi-seed 数据\nobs_only ε=0.2 各 seed 的 SR（用于 error bar 或附图）:\n- seed42: 22%, seed43: 16%, seed44: 16%\n- seed45/46: TBD (实验在跑)\n\n### 要求\n1. 在本地项目 artifacts 目录创建 matplotlib 脚本: `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/magnitude_curve.py`\n2. 图表规范：\n   - 学术论文级别 (单栏, ~3.5 inch width)\n   - 两条主线: obs_only (蓝色实线, 圆圈 marker) + perdof (红色虚线, 三角 marker)\n   - 两条水平基线: argmin (灰色点线) + vla_only (灰色虚线)\n   - X 轴: ε (correction norm), log scale, 标注 0.03, 0.05, 0.1, 0.2, 0.3, default\n   - Y 轴: Success Rate (%)\n   - 标注 ε=0.2 为最优点 (竖直虚线或星号)\n   - 注释关键 gap: \"+11pp\" at ε=0.2, \"+15pp\" at ε=0.3\n   - Font: serif, 适合 LaTeX 嵌入\n   - 输出 PDF + PNG (300 dpi)\n3. 脚本需要独立可运行 (只依赖 matplotlib + numpy)\n4. 脚本顶部写文件注释说明用途\n5. 生成后在 artifacts 目录输出图片\n\n### 验证\n- 本地跑一次确认图片生成成功\n- 用 register_artifact 注册产出\n\n### 产出\n- `artifacts/figures/magnitude_curve.py` (脚本)\n- `artifacts/figures/magnitude_curve.pdf` (矢量图)\n- `artifacts/figures/magnitude_curve.png` (位图)",
+    "tool_groups": "['knowledge']",
+    "tools": "['register_artifact']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T20:19:03.303484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_magnitude-figure-prep_20260516T201843\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_code_magnitude-figure-prep_20260516T201843.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_magnitude-figure-prep_20260516T201843 started. Use get_worker_status('worker_code_magnitude-figure-prep_20260516T201843') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 20540
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T20:19:03.454641+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:fisher-analysis-script",
+  "project": "acr-vla-conformal-refinement",
+  "task_prompt": "## 任务：创建 4/5-seed Pooled Fisher Exact Test 自动分析脚本\n\n### 背景\n我们需要对 obs_only ε=0.2 vs argmin 在 LIBERO object benchmark 上做 pooled Fisher exact test。之前有个 bug：脚本硬编码了 counts（假设 n_rollouts=20 导致翻倍），输出了错误的 p=0.035（实际 p=0.110）。\n\n**关键规则**: 统计检验必须从 raw JSON 结果文件读取实际 trial counts，禁止硬编码。\n\n### 已知数据 (3-seed, 已验证)\n| Seed | obs_only ε=0.2 | argmin | n_rollouts |\n|------|----------------|--------|------------|\n| 42   | 22/100 (22%)   | 12/100 (12%) | 100 |\n| 43   | 16/100 (16%)   | 17/100 (17%) | 100 |\n| 44   | 16/100 (16%)   | 13/100 (13%) | 100 |\n| **Pooled** | **54/300 (18%)** | **42/300 (14%)** | — |\n| **Fisher p** | — | — | **0.110** |\n\n### seed45/46 结果文件路径模式\n结果 JSON 在各服务器上:\n- obs_only: `/root/acr-vla-conformal-refinement/results/eval_object_obs_only_norm02_seed{N}.json` 或 `.txt`\n- argmin: `/root/acr-vla-conformal-refinement/results/eval_object_argmin_seed{N}.json` 或 `.txt`\n\nJSON 格式通常是: `{\"overall_success_rate\": 0.XX, \"total_successes\": N, \"total_trials\": M, \"per_task\": {...}}`\n\n### 要求\n1. 创建脚本: `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis/pooled_fisher_test_v2.py`\n2. 功能:\n   - 接受命令行参数指定哪些 seed 的结果文件路径\n   - 也可以用 `--known-data` 传入已验证的 3-seed 数据（JSON 格式）\n   - 从文件读取 successes 和 trials counts\n   - 计算 per-seed Fisher exact test (2×2 table)\n   - 计算 pooled Fisher exact test (合并所有 seed)\n   - 计算 Cochran-Mantel-Haenszel test（分层分析，seed 为 strata）\n   - 输出格式化表格 + p-values\n   - 额外计算: effect size (odds ratio + 95% CI)\n3. 安全检查:\n   - 验证每个 seed 的 total_trials 一致（obs_only vs argmin 必须相同）\n   - 如果检测到 counts 可能被翻倍（如 total_trials 不是 100 的倍数），打印 WARNING\n   - 交叉验证: 从 successes/trials 反算 SR，与文件中 overall_success_rate 比对\n4. 脚本顶部写注释说明用途和上次 bug 历史\n5. 只依赖 scipy + numpy (标准库)\n\n### 验证\n- 用 3-seed 已知数据跑一次，确认输出 p=0.110（±0.001）\n- 用 register_artifact 注册产出\n\n### 产出\n- `artifacts/analysis/pooled_fisher_test_v2.py`",
+  "tool_groups": "['knowledge']",
+  "tools": "['register_artifact']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:fisher-analysis-script",
+    "project": "acr-vla-conformal-refinement",
+    "task_prompt": "## 任务：创建 4/5-seed Pooled Fisher Exact Test 自动分析脚本\n\n### 背景\n我们需要对 obs_only ε=0.2 vs argmin 在 LIBERO object benchmark 上做 pooled Fisher exact test。之前有个 bug：脚本硬编码了 counts（假设 n_rollouts=20 导致翻倍），输出了错误的 p=0.035（实际 p=0.110）。\n\n**关键规则**: 统计检验必须从 raw JSON 结果文件读取实际 trial counts，禁止硬编码。\n\n### 已知数据 (3-seed, 已验证)\n| Seed | obs_only ε=0.2 | argmin | n_rollouts |\n|------|----------------|--------|------------|\n| 42   | 22/100 (22%)   | 12/100 (12%) | 100 |\n| 43   | 16/100 (16%)   | 17/100 (17%) | 100 |\n| 44   | 16/100 (16%)   | 13/100 (13%) | 100 |\n| **Pooled** | **54/300 (18%)** | **42/300 (14%)** | — |\n| **Fisher p** | — | — | **0.110** |\n\n### seed45/46 结果文件路径模式\n结果 JSON 在各服务器上:\n- obs_only: `/root/acr-vla-conformal-refinement/results/eval_object_obs_only_norm02_seed{N}.json` 或 `.txt`\n- argmin: `/root/acr-vla-conformal-refinement/results/eval_object_argmin_seed{N}.json` 或 `.txt`\n\nJSON 格式通常是: `{\"overall_success_rate\": 0.XX, \"total_successes\": N, \"total_trials\": M, \"per_task\": {...}}`\n\n### 要求\n1. 创建脚本: `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis/pooled_fisher_test_v2.py`\n2. 功能:\n   - 接受命令行参数指定哪些 seed 的结果文件路径\n   - 也可以用 `--known-data` 传入已验证的 3-seed 数据（JSON 格式）\n   - 从文件读取 successes 和 trials counts\n   - 计算 per-seed Fisher exact test (2×2 table)\n   - 计算 pooled Fisher exact test (合并所有 seed)\n   - 计算 Cochran-Mantel-Haenszel test（分层分析，seed 为 strata）\n   - 输出格式化表格 + p-values\n   - 额外计算: effect size (odds ratio + 95% CI)\n3. 安全检查:\n   - 验证每个 seed 的 total_trials 一致（obs_only vs argmin 必须相同）\n   - 如果检测到 counts 可能被翻倍（如 total_trials 不是 100 的倍数），打印 WARNING\n   - 交叉验证: 从 successes/trials 反算 SR，与文件中 overall_success_rate 比对\n4. 脚本顶部写注释说明用途和上次 bug 历史\n5. 只依赖 scipy + numpy (标准库)\n\n### 验证\n- 用 3-seed 已知数据跑一次，确认输出 p=0.110（±0.001）\n- 用 register_artifact 注册产出\n\n### 产出\n- `artifacts/analysis/pooled_fisher_test_v2.py`",
+    "tool_groups": "['knowledge']",
+    "tools": "['register_artifact']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-16T20:35:37.588193+00:00_
+
+seed45-final-harvest worker 结果已读取：obs_only seed45 部分完成 14/90 (15.6%)，argmin seed45 部分完成 6/70 (8.6%)，差值 ~+7pp——接近翻盘阈值。obs_only 距完成 ~1-2h，argmin ~3-5h（截至 20:15 UTC）。
+
+Worker 池 = 0，违反 ≥ 2 硬约束。GPU 全满载无新实验可铺，但论文准备等 CPU 任务可并行。现在向 Director 汇报并 spawn 2 个 CPU Worker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-obs-only-object-norm02-seed44-r2"
+}
+```
+
+</details>
+
+---

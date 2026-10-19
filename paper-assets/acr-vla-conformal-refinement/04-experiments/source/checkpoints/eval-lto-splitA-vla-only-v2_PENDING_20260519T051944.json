@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-lto-splitA-vla-only-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:19:21.005Z",
+    "updated_at": "2026-05-19T05:19:43.742Z",
+    "hypothesis": "VLA-only baseline on LTO held-out 5 tasks (ketchup, milk, orange_juice, salad_dressing, tomato_sauce). Control group for Leave-Task-Out Split A eval. Retry after .replace task matching bug fix."
+  },
+  "timestamp": "2026-05-19T05:19:44.201751+00:00",
+  "trigger": "update_registry"
+}

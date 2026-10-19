@@ -1,0 +1,67 @@
+{
+  "exp_id": "eval-vla-only-spatial-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:01:28.636Z",
+    "updated_at": "2026-05-19T14:43:19.646Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Spatial seed43. P1 缺口：与 Spatial K=5 CRM seed43=32% 配对，计算 per-seed improvement。没有此 baseline 无法报告 Spatial 改进幅度。",
+    "spec": {
+      "command": "cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 43 --output_file logs/eval_spatial_vla_only_seed43.json",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "80076",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed43.log",
+      "submitted_at": "2026-05-19T13:01:37.336Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 100,
+      "model_name": "SmolVLA_vla_only",
+      "seed": 43,
+      "eval_data": "LIBERO-Spatial (10 tasks x 10 rollouts)",
+      "wall_clock_seconds": 6102.3,
+      "gpu_hours": 1.7
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T14:40:35.939Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T14:40:44.096497+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.29,
+      "successes": 29,
+      "total": 100,
+      "per_task": {
+        "between_plate_and_ramekin": 0.7,
+        "next_to_ramekin": 0.8,
+        "from_table_center": 0.1,
+        "on_cookie_box": 0.3,
+        "in_top_drawer": 0,
+        "on_ramekin": 0,
+        "next_to_cookie_box": 0.9,
+        "on_stove": 0,
+        "next_to_plate": 0.1,
+        "on_wooden_cabinet": 0
+      }
+    },
+    "checkpoint_path": "/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed43.json",
+    "completed_at": "2026-05-19T14:43:19.646Z"
+  },
+  "timestamp": "2026-05-19T14:43:20.178420+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval-vla-only-spatial-seed48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-19T20:32:48.207Z",
+    "updated_at": "2026-05-20T12:11:55.648Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Spatial with seed48 establishes additional statistical sample (n→6) for baseline success rate estimation.",
+    "reproduce": {
+      "finished_at": "2026-05-19T20:58:37.605Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-19T20:58:30.818Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T20:59:16.811621+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=5 ... python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 48 --n_rollouts 10",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "336826",
+      "log_path": "logs/eval-vla-only-spatial-seed48.log",
+      "submitted_at": "2026-05-20T10:52:32.818Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA (vla_only)",
+      "seed": 48
+    }
+  },
+  "timestamp": "2026-05-20T12:11:56.391912+00:00",
+  "trigger": "update_registry"
+}

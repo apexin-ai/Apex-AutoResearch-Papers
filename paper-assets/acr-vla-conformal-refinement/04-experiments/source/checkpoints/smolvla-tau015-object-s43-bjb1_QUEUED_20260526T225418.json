@@ -1,0 +1,15 @@
+{
+  "exp_id": "smolvla-tau015-object-s43-bjb1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:52:13.044Z",
+    "updated_at": "2026-05-26T22:54:16.832Z",
+    "hypothesis": "SmolVLA adaptive_conformal_crm (K=2, τ=0.15) on Object s43. Lower threshold increases trigger rate on Object suite. τ-sweep data point for Appendix. Migrated from westd-49937 to bjb1."
+  },
+  "timestamp": "2026-05-26T22:54:18.660180+00:00",
+  "trigger": "update_registry"
+}

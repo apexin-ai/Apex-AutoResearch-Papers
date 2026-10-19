@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p75-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:19:53.159Z",
+    "updated_at": "2026-05-20T08:20:35.939Z",
+    "hypothesis": "Adaptive K with τ=P75 (0.098735, Object-calibrated) on LIBERO-Spatial seed43. Second seed for cross-benchmark P75 threshold sweep."
+  },
+  "timestamp": "2026-05-20T08:20:36.677867+00:00",
+  "trigger": "update_registry"
+}

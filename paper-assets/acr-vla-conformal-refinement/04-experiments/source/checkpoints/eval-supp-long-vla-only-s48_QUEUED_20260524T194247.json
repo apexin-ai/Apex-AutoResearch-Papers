@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-long-vla-only-s48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T19:42:16.585Z",
+    "updated_at": "2026-05-24T19:42:46.000Z",
+    "hypothesis": "SmolVLA VLA-only baseline on LIBERO-Long seed 48. Long baseline sweep is complete for s42-s47; s48 extends to high seed for additional statistical power on the hardest benchmark."
+  },
+  "timestamp": "2026-05-24T19:42:47.647969+00:00",
+  "trigger": "update_registry"
+}

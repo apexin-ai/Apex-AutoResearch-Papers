@@ -1,0 +1,64 @@
+{
+  "exp_id": "eval-perdof-object-norm005-s44-westd",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T08:00:47.930Z",
+    "updated_at": "2026-05-27T12:26:31.141Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode crm_perdof --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_perdof_norm005_s44_v3.json\"",
+      "server": "westd-49937",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "927456",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm005_s44_v3.json",
+      "submitted_at": "2026-05-27T08:00:42.811Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 200,
+      "data_path": "LIBERO-Object",
+      "model_name": "smolvla+crm_v3_perdof",
+      "seed": 44,
+      "checkpoint_source": "crm_v3_norm/perdof",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "wall_clock_seconds": 15948.3,
+      "gpu_hours": 4.43
+    },
+    "hypothesis": "Per-DOF conformal scoring with norm=0.05 on Object s44 — expected to degrade due to K=10 rank-deficient covariance in 30D action space (plan_302 analysis)",
+    "reproduce": {
+      "finished_at": "2026-05-27T09:45:39.896Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T09:45:20.856992+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T09:46:26.564710+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.79,
+      "benchmark": "object",
+      "method": "perdof",
+      "norm": 0.05,
+      "seed": 44,
+      "server": "westd-49937",
+      "note": "westd server - LIBERO assets version bias caveat"
+    },
+    "completed_at": "2026-05-27T12:26:31.141Z"
+  },
+  "timestamp": "2026-05-27T12:26:33.051346+00:00",
+  "trigger": "update_registry"
+}

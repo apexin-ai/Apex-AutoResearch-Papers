@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-crm-k1-object-seed44-plan702",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "conclusion": "",
+    "failure_reason": "",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:50:04.763Z",
+    "updated_at": "2026-05-20T14:29:16.043Z",
+    "hypothesis": "K=1 CRM (ACCG) on LIBERO-Object seed44 for plan_702. Single VLA forward + CRM correction.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode crm_k1_accg --benchmark object --n_rollouts 10 --seed 44 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt --max_correction_norm 0.2 --output_file logs/eval_crm_k1_object_seed44_plan702.json 2>&1 | tee logs/eval-crm-k1-object-seed44-plan702.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "381573",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-crm-k1-object-seed44-plan702.log",
+      "submitted_at": "2026-05-20T13:50:39.297Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T14:29:12.945Z"
+    }
+  },
+  "timestamp": "2026-05-20T14:29:17.737813+00:00",
+  "trigger": "update_registry"
+}

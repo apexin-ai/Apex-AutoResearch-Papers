@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval-crm-spatial-s48-d149",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T10:17:30.491Z",
+    "updated_at": "2026-05-26T16:31:20.642Z",
+    "hypothesis": "SmolVLA CRM (K=10, norm=0.05) 在 spatial 上提供 action correction 提升 SR（Table 1 D149 seed 补跑）",
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 80.5
+    },
+    "spec": {
+      "command": "python -u src/evaluate.py --model smolvla --mode crm_obs_only --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark spatial --seed 48 --n_rollouts 20",
+      "server": "bjb1-32546",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 48,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial 10 tasks x 20 rollouts"
+    },
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval-crm-spatial-s48-d149.log",
+    "checkpoint_path": "N/A (eval-only)",
+    "completed_at": "2026-05-26T16:31:12.441Z"
+  },
+  "timestamp": "2026-05-26T16:31:22.369934+00:00",
+  "trigger": "update_registry"
+}

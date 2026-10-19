@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-supp-long-crm-norm005-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:56:44.431Z",
+    "updated_at": "2026-05-23T12:16:31.852Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt --benchmark long --seed 42 --n_rollouts 20 --max_correction_norm 0.05\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "712369",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-long-crm-norm005-s42.log",
+      "submitted_at": "2026-05-23T09:57:35.905Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "CRM always-on norm=0.05 on LIBERO-Long seed42 using 4-suite CRM checkpoint. CRM improved Spatial (79.8% vs 78.5% VLA-only) but hurt Goal (-12pp). Tests CRM effect on challenging long-horizon tasks."
+  },
+  "timestamp": "2026-05-23T12:16:33.100174+00:00",
+  "trigger": "update_registry"
+}

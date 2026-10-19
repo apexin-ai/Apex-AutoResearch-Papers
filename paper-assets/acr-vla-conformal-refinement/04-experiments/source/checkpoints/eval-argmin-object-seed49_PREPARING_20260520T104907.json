@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval-argmin-object-seed49",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:49:04.530Z",
+    "updated_at": "2026-05-20T10:49:04.530Z"
+  },
+  "timestamp": "2026-05-20T10:49:07.716841+00:00",
+  "trigger": "update_registry"
+}

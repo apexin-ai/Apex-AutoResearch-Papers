@@ -1,0 +1,50 @@
+{
+  "exp_id": "eval-obs-only-spatial-norm02-seed48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:14:26.858Z",
+    "updated_at": "2026-05-20T07:02:24.551Z",
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.35,
+      "per_task": {
+        "between_plate_and_ramekin": 0.8,
+        "next_to_ramekin": 1,
+        "from_table_center": 0,
+        "on_cookie_box": 0.3,
+        "in_top_drawer": 0.1,
+        "on_ramekin": 0,
+        "next_to_cookie_box": 0.9,
+        "on_stove": 0,
+        "next_to_plate": 0.4,
+        "on_wooden_cabinet": 0
+      }
+    },
+    "hypothesis": "CRM obs_only norm02 (ε=0.2) K=10 on LIBERO-Spatial seed48. Complement Spatial cross-seed consistency data.",
+    "spec": {
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:1"
+      ],
+      "command": "evaluate.py --mode crm_obs_only --benchmark spatial --seed 48 --K 10 --max_correction_norm 0.2",
+      "data_path": "LIBERO-Spatial",
+      "data_count": "100",
+      "model_name": "SmolVLA+CRM_obs_only",
+      "seed": 48,
+      "conclusion": "success",
+      "metrics": {
+        "success_rate": 0.35
+      },
+      "checkpoint_path": "N/A-eval-only",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval-obs-only-spatial-norm02-seed48"
+    },
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-crm-spatial-seed48.log",
+    "completed_at": "2026-05-20T07:02:24.551Z"
+  },
+  "timestamp": "2026-05-20T07:02:25.236796+00:00",
+  "trigger": "update_registry"
+}

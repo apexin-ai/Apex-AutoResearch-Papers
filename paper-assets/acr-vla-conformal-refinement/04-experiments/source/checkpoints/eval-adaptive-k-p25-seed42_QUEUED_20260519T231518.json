@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-adaptive-k-p25-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:53:05.392Z",
+    "updated_at": "2026-05-19T23:15:18.319Z",
+    "hypothesis": "Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed42. ~75% steps trigger K=10+CRM. 低阈值极端——接近 fixed K=10，验证 SR 上限。"
+  },
+  "timestamp": "2026-05-19T23:15:18.919054+00:00",
+  "trigger": "update_registry"
+}

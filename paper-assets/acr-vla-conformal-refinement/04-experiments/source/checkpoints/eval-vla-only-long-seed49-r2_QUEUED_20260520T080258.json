@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-vla-only-long-seed49-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:02:40.709Z",
+    "updated_at": "2026-05-20T08:02:57.855Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Long seed49 (re-run). Original seed49 data (SR=0.16) removed from analysis due to unverifiable provenance. Clean re-run for data integrity.",
+    "parent": "eval-vla-only-long-seed49"
+  },
+  "timestamp": "2026-05-20T08:02:58.556472+00:00",
+  "trigger": "update_registry"
+}

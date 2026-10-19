@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-smolvla-libero-spatial",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T11:35:16.236Z",
+    "updated_at": "2026-05-13T15:45:51.082Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 3 --seed 42",
+      "server": "autodl-4090x4",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "43809",
+      "data_path": "/root/autodl-tmp/libero_data/ (spatial)",
+      "data_count": "10 tasks x 3 rollouts x 300 steps",
+      "model_name": "lerobot/smolvla_libero (450M, full fine-tuned on libero_spatial)",
+      "seed": 42,
+      "hypothesis": "Validate smolvla_libero checkpoint with fixed wrapper (correct state repr, 256x256 images, 7D action) achieves >50% success on libero_spatial",
+      "log_path": "/tmp/eval_spatial_full.log",
+      "checkpoint_source": "lerobot/smolvla_libero (HuggingFace community checkpoint)",
+      "failure_reason": "smolvla_libero 0% on spatial - 6 wrapper bugs: image flip/size/normalization, state 6D→8D, state normalization, action denormalization all missing",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T15:45:51.082Z"
+  },
+  "timestamp": "2026-05-13T15:45:51.120331+00:00",
+  "trigger": "update_registry"
+}

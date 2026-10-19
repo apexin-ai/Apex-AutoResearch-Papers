@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-spatial-crm-norm005-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T00:22:31.743Z",
+    "updated_at": "2026-05-24T00:22:57.156Z",
+    "hypothesis": "CRM always-on norm=0.05 on Spatial suite seed46. Fifth seed for Spatial CRM variance analysis. 3-seed mean ~79.8%."
+  },
+  "timestamp": "2026-05-24T00:23:00.145317+00:00",
+  "trigger": "update_registry"
+}

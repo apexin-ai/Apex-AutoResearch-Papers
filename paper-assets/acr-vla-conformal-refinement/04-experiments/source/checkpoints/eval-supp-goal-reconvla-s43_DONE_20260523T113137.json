@@ -1,0 +1,50 @@
+{
+  "exp_id": "eval-supp-goal-reconvla-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T08:19:47.656Z",
+    "updated_at": "2026-05-23T11:31:34.130Z",
+    "hypothesis": "Reconvla K=10 argmin on Goal seed43. Goal VLA-only baseline = 83.5%. s42=81.0% (-2.5pp negative). Second seed for Goal reconvla multi-seed validation.",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=5 python src/evaluate.py --mode reconvla --K 10 --suite goal --n_rollouts 20 --seed 43",
+      "server": "cqa1-32758",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 43,
+      "checkpoint_source": "n/a",
+      "eval_data": "LIBERO-Goal",
+      "gpu": "cuda:5",
+      "pid": 34385
+    },
+    "metrics": {
+      "overall_success_rate": 0.81,
+      "n_rollouts": 20,
+      "n_tasks": 10,
+      "total_episodes": 200,
+      "per_task": {
+        "open_the_middle_drawer_of_the_cabinet": 0.65,
+        "put_the_bowl_on_the_stove": 0.95,
+        "put_the_wine_bottle_on_top_of_the_cabinet": 0.85,
+        "open_the_top_drawer_and_put_the_bowl_inside": 0.5,
+        "put_the_bowl_on_top_of_the_cabinet": 0.95,
+        "push_the_plate_to_the_front_of_the_stove": 0.9,
+        "put_the_cream_cheese_in_the_bowl": 0.55,
+        "turn_on_the_stove": 0.95,
+        "put_the_bowl_on_the_plate": 0.95,
+        "put_the_wine_bottle_on_the_rack": 0.85
+      }
+    },
+    "conclusion": "negative",
+    "notes": "Reconvla Goal seed43: SR=81.0% (162/200). s42=81.0%, s43=81.0% 完全一致。两 seed 平均 81.0%。VLA-only baseline 83.5%。Reconvla 在 Goal 上仍低于 VLA-only -2.5pp。",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval-supp-goal-reconvla-s43.log",
+    "checkpoint_path": "n/a (eval-only)",
+    "completed_at": "2026-05-23T11:31:03.297Z"
+  },
+  "timestamp": "2026-05-23T11:31:37.322316+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-ablation-tau015-goal-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T13:06:36.431Z",
+    "updated_at": "2026-05-23T13:08:24.890Z",
+    "hypothesis": "τ-sweep ablation: τ=0.15 on Goal s42. Mid-low threshold. Part of 5-point τ-sensitivity curve. Tests transition zone between aggressive and conservative gating."
+  },
+  "timestamp": "2026-05-23T13:08:26.119960+00:00",
+  "trigger": "update_registry"
+}

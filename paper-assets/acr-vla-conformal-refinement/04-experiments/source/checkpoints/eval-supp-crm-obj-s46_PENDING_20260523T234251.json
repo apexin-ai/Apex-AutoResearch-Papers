@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-supp-crm-obj-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:41:43.001Z",
+    "updated_at": "2026-05-23T23:42:49.642Z",
+    "hypothesis": "CRM always-on norm=0.05 on Object suite seed46. Fifth seed extending Object CRM. Previous seeds show ~79-81% range.",
+    "metrics": {
+      "overall_sr": 0.795,
+      "per_task": {
+        "alphabet_soup": 0.8,
+        "cream_cheese": 0.7,
+        "salad_dressing": 0.75,
+        "bbq_sauce": 0.8,
+        "ketchup": 0.7,
+        "tomato_sauce": 0.75,
+        "butter": 0.75,
+        "milk": 0.85,
+        "chocolate_pudding": 0.95,
+        "orange_juice": 0.9
+      }
+    },
+    "checkpoint_path": "n/a-eval-only",
+    "log_path": "/tmp/eval_crm_obj_s46.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T23:42:51.940605+00:00",
+  "trigger": "update_registry"
+}

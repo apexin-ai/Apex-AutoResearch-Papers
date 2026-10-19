@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-perdof-object-norm02-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:54:38.275Z",
+    "updated_at": "2026-05-18T02:24:14.354Z",
+    "hypothesis": "perdof CRM ε=0.2 seed46 on LIBERO-Object. 补充 perdof magnitude curve ε=0.2 数据（目前仅 seed43=9%）。与 obs_only ε=0.2 seed46 配对对比。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_perdof_norm02_seed46.json",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": 389051,
+      "seed": 46,
+      "model_name": "SmolVLA+CRM_perdof",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "LIBERO-Object",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm02_seed46.json",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T02:24:14.354Z"
+  },
+  "timestamp": "2026-05-18T02:24:14.760328+00:00",
+  "trigger": "update_registry"
+}

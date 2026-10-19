@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-crm-norm005-goal-s48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T20:19:39.365Z",
+    "updated_at": "2026-05-24T20:22:22.070Z",
+    "hypothesis": "SmolVLA crm_obs_only baseline on LIBERO-Goal seed48 with K=10, max_norm=0.05. Fills Table 1 data gap for multi-seed statistical analysis."
+  },
+  "timestamp": "2026-05-24T20:22:23.485975+00:00",
+  "trigger": "update_registry"
+}

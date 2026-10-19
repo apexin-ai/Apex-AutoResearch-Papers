@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval-supp-obj-crm-norm005-s47-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:32:02.181Z",
+    "updated_at": "2026-05-24T13:46:55.789Z",
+    "hypothesis": "CRM obs-only norm=0.05 on Object suite seed47 retry. Previous attempt failed. Extends Object CRM coverage.",
+    "spec": {
+      "model_name": "SmolVLA",
+      "command": "python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 47 --n_rollouts 20 --K 10 --max_correction_norm 0.05",
+      "server": "bjb1-32546",
+      "seed": 47,
+      "data_path": "LIBERO-Object",
+      "data_count": 200,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt",
+      "eval_data": "LIBERO object",
+      "checkpoint_path": "n/a-eval-only",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed47.json"
+    },
+    "notes": "model_name correction: SmolVLA (not OpenVLA).",
+    "conclusion": "success",
+    "completed_at": "2026-05-24T13:44:57.482Z"
+  },
+  "timestamp": "2026-05-24T13:46:57.150680+00:00",
+  "trigger": "update_registry"
+}

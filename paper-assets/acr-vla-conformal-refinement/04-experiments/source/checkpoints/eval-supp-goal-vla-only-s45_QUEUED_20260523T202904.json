@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-goal-vla-only-s45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T20:28:29.087Z",
+    "updated_at": "2026-05-23T20:29:03.542Z",
+    "hypothesis": "Goal VLA-only baseline seed45. Fourth seed extending Goal baseline. Matched-seed companion for Goal Adaptive s45."
+  },
+  "timestamp": "2026-05-23T20:29:04.802288+00:00",
+  "trigger": "update_registry"
+}

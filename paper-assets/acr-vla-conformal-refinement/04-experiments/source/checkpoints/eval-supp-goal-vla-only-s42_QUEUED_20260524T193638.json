@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-goal-vla-only-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T19:35:31.683Z",
+    "updated_at": "2026-05-24T19:36:35.846Z",
+    "hypothesis": "SmolVLA VLA-only baseline on LIBERO-Goal seed 42. Goal benchmark has only s48/s49 completed; s42 baseline needed for paired comparison against Adaptive/CRM Goal experiments at seed 42 and to populate baseline seed sweep."
+  },
+  "timestamp": "2026-05-24T19:36:38.128053+00:00",
+  "trigger": "update_registry"
+}

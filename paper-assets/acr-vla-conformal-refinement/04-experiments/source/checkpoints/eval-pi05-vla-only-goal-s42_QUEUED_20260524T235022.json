@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-pi05-vla-only-goal-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:17:16.938Z",
+    "updated_at": "2026-05-24T23:50:19.959Z",
+    "hypothesis": "π0.5 VLA-only baseline on LIBERO-Goal (seed 42, 20 rollouts). Establishes pi0.5 goal-conditioned baseline for ablation against conformal refinement.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark goal --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-pi05-vla-only-goal-s42.log\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "574188",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-goal-s42.log",
+      "submitted_at": "2026-05-24T18:18:09.640Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-24T23:50:22.621633+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval-pi05-vla-only-goal-seed44-r4-std",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:27:52.232Z",
+    "updated_at": "2026-05-22T17:14:00.902Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "killed",
+    "reproduce": {
+      "finished_at": "2026-05-22T16:28:25.924Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T16:29:17.283484+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Phantom duplicate entry — real experiment is eval-pi05-vla-only-goal-seed44-r4 (DONE/success/97.5%)",
+    "spec": {
+      "command": "N/A - phantom entry",
+      "server": "N/A",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "N/A",
+      "seed": 44,
+      "checkpoint_path": "N/A",
+      "log_path": "N/A"
+    }
+  },
+  "timestamp": "2026-05-22T17:14:02.946963+00:00",
+  "trigger": "update_registry"
+}

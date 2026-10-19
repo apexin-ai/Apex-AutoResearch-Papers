@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-supp-long-adapt-tau025-s46-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:34:07.178Z",
+    "updated_at": "2026-05-24T07:06:09.666Z",
+    "hypothesis": "Adaptive CRM tau=0.25 on Long suite seed46 (re-deploy after r1 failed on bjb1-32546 with python: command not found). Fifth seed completing Long Adaptive 5-seed coverage. 3-seed mean 57.7%±1.5%.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark long --mode adaptive_conformal_crm --seed 46 --n_rollouts 20 --K 2 --conformal_threshold 0.25 --max_correction_norm 0.2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:0"
+      ],
+      "tmux_session": "long-adapt-s46-r2",
+      "log_path": "logs/eval-supp-long-adapt-tau025-s46-r2.log",
+      "data_path": "LIBERO-Long",
+      "data_count": 200,
+      "model_name": "SmolVLA",
+      "seed": 46,
+      "eval_data": "LIBERO-Long",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt",
+      "parent": "eval-supp-long-adapt-tau025-s46"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-24T07:06:09.666Z"
+  },
+  "timestamp": "2026-05-24T07:06:11.062940+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,68 @@
+{
+  "exp_id": "eval-supp-goal-crm005-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:12:29.401Z",
+    "updated_at": "2026-05-23T06:34:49.276Z",
+    "spec": {
+      "command": "evaluate.py --mode crm_obs_only --max_correction_norm 0.05 --benchmark goal",
+      "server": "bjb2-28827",
+      "gpu": "cuda:2",
+      "pid": 524322,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-goal-crm005-s42.log",
+      "submitted_at": "2026-05-23T04:12:27.091Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Goal"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T06:25:03.372Z"
+    },
+    "failure_reason": "N/A — process still running, cron misjudged exit. ~35% complete as of 2026-05-23.",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T04:28:40.701334+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T06:25:17.505645+00:00"
+        }
+      ]
+    },
+    "hypothesis": "CRM norm=0.05 on Goal suite extends cross-suite validation (tested on Spatial and Object) to a third benchmark",
+    "metrics": {
+      "success_rate": 0.855,
+      "n_tasks": 10,
+      "n_rollouts": 200,
+      "per_task_sr": {
+        "put_the_bowl_on_the_stove": 1,
+        "put_the_wine_bottle_on_top_of_the_cabinet": 0.95,
+        "put_the_bowl_on_top_of_the_cabinet": 0.95,
+        "push_the_plate_to_the_front_of_the_stove": 0.95,
+        "turn_on_the_stove": 0.95,
+        "put_the_bowl_on_the_plate": 0.95,
+        "open_the_middle_drawer_of_the_cabinet": 0.85,
+        "put_the_wine_bottle_on_the_rack": 0.75,
+        "open_the_top_drawer_and_put_the_bowl_inside": 0.7,
+        "put_the_cream_cheese_in_the_bowl": 0.5
+      }
+    }
+  },
+  "timestamp": "2026-05-23T06:34:50.397488+00:00",
+  "trigger": "update_registry"
+}

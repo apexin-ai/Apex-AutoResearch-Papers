@@ -1,0 +1,23 @@
+{
+  "exp_id": "eval-supp-long-k2mean-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:22:32.322Z",
+    "updated_at": "2026-05-23T11:22:32.322Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode vla_only --baseline_mode mean --K 2 --suite long --n_rollouts 20 --seed 42",
+      "server": "cqa1-32758",
+      "data_path": "LIBERO-Long",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "hypothesis": "K=2 mean baseline on LIBERO-Long seed42. Isolates multi-sample averaging effect on long-horizon tasks. Long VLA-only s42 running on bjb1-32546 provides baseline comparison."
+    }
+  },
+  "timestamp": "2026-05-23T11:22:33.501845+00:00",
+  "trigger": "update_registry"
+}

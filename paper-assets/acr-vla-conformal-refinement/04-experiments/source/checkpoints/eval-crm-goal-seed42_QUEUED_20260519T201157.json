@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-crm-goal-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:10:24.873Z",
+    "updated_at": "2026-05-19T20:11:56.918Z",
+    "hypothesis": "CRM obs_only (ε=0.2, K=10) on LIBERO-Goal seed42. OOD 泛化测试：CRM 仅在 Object+Spatial 训练，Goal 是未见过的 suite。若 CRM 提升 Goal SR，证明跨 suite 泛化；若无效则定位 CRM 边界。"
+  },
+  "timestamp": "2026-05-19T20:11:57.873940+00:00",
+  "trigger": "update_registry"
+}

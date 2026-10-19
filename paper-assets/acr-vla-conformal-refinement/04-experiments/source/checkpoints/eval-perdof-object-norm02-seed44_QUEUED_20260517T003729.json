@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-perdof-object-norm02-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T00:37:24.278Z",
+    "updated_at": "2026-05-17T00:37:28.741Z",
+    "hypothesis": "perdof CRM (ε=0.2) seed=44 on LIBERO Object benchmark. Adds second seed to perdof norm=0.2 (seed42=11%). Enables error bar on magnitude curve figure at this norm point."
+  },
+  "timestamp": "2026-05-17T00:37:29.022325+00:00",
+  "trigger": "update_registry"
+}

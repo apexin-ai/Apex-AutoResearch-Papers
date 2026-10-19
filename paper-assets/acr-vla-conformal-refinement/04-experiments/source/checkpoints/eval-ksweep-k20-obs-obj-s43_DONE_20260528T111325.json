@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval-ksweep-k20-obs-obj-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T05:00:53.917Z",
+    "updated_at": "2026-05-28T11:13:23.434Z",
+    "hypothesis": "plan_601 P0: K-sweep K=20 obs-only Object s43. Tests effect of sample budget on CRM refinement quality with larger candidate set.",
+    "spec": {
+      "command": "python -u src/evaluate.py --model smolvla --mode crm_obs_only --K 20 --max_correction_norm 0.05 --benchmark object --seed 43 --n_rollouts 20",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "558360",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-ksweep-k20-obs-obj-s43.log",
+      "submitted_at": "2026-05-28T05:01:35.230Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "smolvla",
+      "seed": 43,
+      "data_path": "LIBERO-Object",
+      "data_count": 200,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Object",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 22308.2,
+      "gpu_hours": 6.2
+    },
+    "metrics": {
+      "overall_sr": 77
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-28T11:13:23.434Z"
+  },
+  "timestamp": "2026-05-28T11:13:25.603298+00:00",
+  "trigger": "update_registry"
+}

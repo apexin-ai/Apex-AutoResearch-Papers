@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval-perdof-object-default-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-16T20:21:08.043Z",
+    "updated_at": "2026-05-18T10:56:37.578Z",
+    "completed_at": "2026-05-17T02:54:38.157Z",
+    "hypothesis": "Perdof CRM without norm clipping (uncapped, actual norm ~1.42) causes catastrophic collapse on LIBERO-Object. seed42=0%, seed46=0%, seed44=0% (partial). seed45 confirms cross-seed consistency of collapse.",
+    "parent": "crm-train-v2-perdof",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "metrics": {
+          "kill_reason": "Sacrificed for P0 direct-correction experiment (no free GPU). Was at task 5/10 after 6h. Expected result: 0% (confirmed by seed42=0%, seed44 running on autodl-4090).",
+          "partial_progress": "5/10 tasks, bbq_sauce 0% success"
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-18T10:56:37.954261+00:00",
+  "trigger": "update_registry"
+}

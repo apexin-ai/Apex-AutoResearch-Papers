@@ -1,0 +1,24 @@
+{
+  "exp_id": "plan_602-latency-profile",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:34:20.097Z",
+    "updated_at": "2026-05-17T18:35:14.253Z",
+    "hypothesis": "Measure wall-clock latency of ACR-VLA pipeline components: VLA encode, VLA K-sampling (K=1/5/10/20), CGS scoring, CRM forward pass, and full pipeline. Quantify overhead of conformal refinement relative to VLA sampling cost.",
+    "spec": {
+      "command": "python -u src/latency_profile.py",
+      "server": "bjb2-28827",
+      "seed": 42,
+      "data_path": "/root/acr-vla-conformal-refinement/logs/latency_profile.json",
+      "data_count": 20,
+      "model_name": "SmolVLA+CRM"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T18:35:14.731904+00:00",
+  "trigger": "update_registry"
+}

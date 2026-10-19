@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval-supp-crm-norm02-spatial-s42-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:11:13.449Z",
+    "updated_at": "2026-05-23T06:07:52.617Z",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark spatial --seed 42 --n_rollouts 20 --max_correction_norm 0.2 2>&1 | tee logs/eval-supp-crm-norm02-spatial-s42-r2.log\"",
+      "server": "bjb1-32546",
+      "gpu": "cuda:0",
+      "pid": 664402,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-crm-norm02-spatial-s42-r2.log",
+      "submitted_at": "2026-05-23T04:11:09.306Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial"
+    },
+    "hypothesis": "CRM norm=0.2 always-on isolates whether adaptive gating (81% SR) outperforms same-norm always-on correction on LIBERO-Spatial",
+    "parent": "eval-3dir-adaptive-spatial-s42",
+    "reproduce": {
+      "finished_at": "2026-05-23T06:07:49.950Z"
+    }
+  },
+  "timestamp": "2026-05-23T06:07:53.829439+00:00",
+  "trigger": "update_registry"
+}

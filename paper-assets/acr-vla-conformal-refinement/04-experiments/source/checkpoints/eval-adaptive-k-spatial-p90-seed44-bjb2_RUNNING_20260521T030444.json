@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p90-seed44-bjb2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:50:21.016Z",
+    "updated_at": "2026-05-21T03:04:42.663Z",
+    "hypothesis": "Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.125870 --k_full 10 --benchmark spatial --seed 44 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p90_seed44.json",
+      "server": "bjb2-28827",
+      "gpu": "cuda:0",
+      "pid": 975409,
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval-adaptive-k-spatial-p90-seed44-bjb2.log",
+      "submitted_at": "2026-05-20T13:50:48.545Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 44,
+      "model_name": "CRM_obs_only_adaptive_k",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 100,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt"
+    }
+  },
+  "timestamp": "2026-05-21T03:04:44.409762+00:00",
+  "trigger": "update_registry"
+}

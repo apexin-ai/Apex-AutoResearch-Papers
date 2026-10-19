@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p90-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:44:47.376Z",
+    "updated_at": "2026-05-20T12:42:45.190Z",
+    "hypothesis": "Adaptive K with τ=P90 (0.125870, Object-calibrated) on LIBERO-Spatial seed43. Second seed for Spatial P90 threshold. Cross-benchmark validation of aggressive compute saving regime.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.125870 --k_full 10 --benchmark spatial --seed 43 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p90_seed43.json 2>&1 | tee logs/eval-adaptive-k-spatial-p90-seed43.log\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "344852",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed43.log",
+      "submitted_at": "2026-05-20T10:45:15.637Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T12:36:37.049Z"
+    }
+  },
+  "timestamp": "2026-05-20T12:42:45.969349+00:00",
+  "trigger": "update_registry"
+}

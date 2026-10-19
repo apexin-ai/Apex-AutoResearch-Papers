@@ -1,0 +1,27 @@
+{
+  "exp_id": "crm-always-on-object-s45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T21:52:43.183Z",
+    "updated_at": "2026-05-28T00:18:29.799Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark object --K 2 --seed 45 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001 --output_file logs/eval_object_crm_always_on_k2_norm0.2_seed45.json\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "893384",
+      "log_path": "~/runs/acr-vla-conformal-refinement/crm-always-on-object-s45.log",
+      "submitted_at": "2026-05-27T21:52:40.300Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-28T00:18:32.623983+00:00",
+  "trigger": "update_registry"
+}

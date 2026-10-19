@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval-k10-tau025-spatial-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T00:24:29.423Z",
+    "updated_at": "2026-05-25T00:24:29.423Z"
+  },
+  "timestamp": "2026-05-25T00:24:32.087461+00:00",
+  "trigger": "update_registry"
+}

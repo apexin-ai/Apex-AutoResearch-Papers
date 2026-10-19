@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-smolvla-long-seed1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:08:55.328Z",
+    "updated_at": "2026-05-22T16:17:57.259Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T15:09:10.198277+00:00"
+        }
+      ]
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T16:17:45.845Z"
+    },
+    "notes": "Phantom entry — never submitted (PREPARING, no spec). Cron false alarm."
+  },
+  "timestamp": "2026-05-22T16:17:58.381748+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,54 @@
+{
+  "exp_id": "eval-argmin-object-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:44:23.744Z",
+    "updated_at": "2026-05-17T00:33:57.260Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode reconvla --benchmark object --n_rollouts 10 --seed 45 --K 10 --output_file logs/eval_object_argmin_seed45.json",
+      "server": "bjb2-28827",
+      "gpu": "cuda:5",
+      "pid": "215932",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-argmin-object-seed45.log",
+      "submitted_at": "2026-05-16T07:45:06.846Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 45,
+      "model_name": "reconvla_argmin_baseline",
+      "hypothesis": "argmin baseline K=10 seed=45 on LIBERO object. 4th seed baseline for Fisher test. Paired with eval-obs-only-object-norm02-seed45.",
+      "data_path": "LIBERO object benchmark (10 tasks)",
+      "data_count": 100,
+      "wall_clock_seconds": 60530.4,
+      "gpu_hours": 16.81
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T00:31:27.579Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T00:31:32.330885+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.12,
+      "successes": 12,
+      "total_rollouts": 100,
+      "tasks_completed": "10/10"
+    },
+    "checkpoint_path": "N/A (eval-only)",
+    "hypothesis": "Argmin baseline (conformal selection K=10, no learned correction) seed=45 on LIBERO Object benchmark. Fourth seed for pooled Fisher test against obs_only CRM. Expected SR 12-17% consistent with seeds 42/43/44.",
+    "completed_at": "2026-05-17T00:33:57.260Z"
+  },
+  "timestamp": "2026-05-17T00:33:57.516109+00:00",
+  "trigger": "update_registry"
+}

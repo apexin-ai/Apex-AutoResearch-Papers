@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval-supp-long-k2mean-s47-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:52:10.417Z",
+    "updated_at": "2026-05-24T15:53:51.344Z",
+    "hypothesis": "Long s47 K=2 mean baseline for seed extension (r2 on bjb2-28827). Sixth seed to tighten CI for Long suite K2mean method.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark long --mode vla_only --baseline_mode mean --seed 47 --n_rollouts 20 --K 2",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO-Long",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 47,
+      "checkpoint_source": "n/a-baseline",
+      "eval_data": "LIBERO-Long 10 tasks x 20 rollouts",
+      "tmux_session": "long-k2mean-s47",
+      "log_path": "/tmp/eval_long_k2mean_s47.log",
+      "gpu": 5,
+      "pid": 205647
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T15:41:19.188Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-24T15:41:29.226Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-24T15:41:48.365905+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-24T15:53:52.709345+00:00",
+  "trigger": "update_registry"
+}

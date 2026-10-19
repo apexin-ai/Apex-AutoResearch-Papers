@@ -1,0 +1,15 @@
+{
+  "exp_id": "westd-pi05-adaptive-goal-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T04:19:48.386Z",
+    "updated_at": "2026-05-26T04:27:41.928Z",
+    "hypothesis": "π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s44. Third seed for robust 3-seed mean±std on Goal benchmark."
+  },
+  "timestamp": "2026-05-26T04:27:43.776504+00:00",
+  "trigger": "update_registry"
+}

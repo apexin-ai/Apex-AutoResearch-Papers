@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval-pi05-vla-only-object-s42-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:20:54.180Z",
+    "updated_at": "2026-05-27T06:35:13.651Z",
+    "hypothesis": "π0.5 VLA-only baseline on Object s42. Cross-architecture validation without CRM.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-pi05-vla-only-object-s42-v2.log\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "583769",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-s42-v2.log",
+      "submitted_at": "2026-05-24T18:22:06.993Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": 20,
+      "model_name": "pi05",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 216786.7,
+      "gpu_hours": 60.22
+    },
+    "metrics": {
+      "success_rate": 0.965,
+      "n_rollouts": 20,
+      "benchmark": "object"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-27T06:35:13.651Z"
+  },
+  "timestamp": "2026-05-27T06:35:15.421615+00:00",
+  "trigger": "update_registry"
+}

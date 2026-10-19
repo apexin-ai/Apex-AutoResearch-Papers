@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-smolvla-lerobot-goal-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:52:11.876Z",
+    "updated_at": "2026-05-22T19:02:22.376Z",
+    "hypothesis": "SmolVLA lerobot-eval baseline on LIBERO-Goal with seed=44 establishes reference SR for 3-seed mean±std paper comparison"
+  },
+  "timestamp": "2026-05-22T19:02:23.462889+00:00",
+  "trigger": "update_registry"
+}

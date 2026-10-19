@@ -1,0 +1,1887 @@
+# code d088 model training
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_code_d088-model-training_20260520T162150.log`
+- **Structured JSON:** [`5d996516ac7ede102722.json`](../../sessions/5d/5d996516ac7ede102722.json)
+
+## Before a recorded user message
+
+40 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0fae4ffc-4f79-4c6b-a65d-e74858efa1c7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779307800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "91c60db2-4e8b-40ab-94fb-c110f6593359",
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to create 3 Python files on a remote server via SSH. Let me first check the existing code to understand the project structure, then create the files.
+
+Let me start by:
+1. Reading the SmolVLA wrapper to understand the interface
+2. Checking what exists in the src directory
+3. Creating the 3 files
+
+Let me first load the SSH tools and check the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "c80d9428-b6c7-475d-b33d-6d13ed45e759",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E34qJegPrjhpGLsj3Vyia5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12876,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12876
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先查看服务器上现有代码结构和 SmolVLA wrapper 接口。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "a4117081-febf-429d-81cf-bce69ba2505d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E34qJegPrjhpGLsj3Vyia5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12876,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12876
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WChi7B19979E9iUDUvQFw7`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "521c4f1f-3161-4211-af00-72e9e80fe611",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E34qJegPrjhpGLsj3Vyia5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12876,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12876
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T16:22:06.104Z_
+
+<details><summary>↩ Tool result · `toolu_01WChi7B19979E9iUDUvQFw7`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "2fcebad3-b3bb-498d-8aa5-20fa1ee7ad36",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017fPRaxoBMKUr1ZbKziAy8r`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ls /root/acr-vla-conformal-refinement/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "7a334a6f-3dc9-493b-984d-56eb2eccd648",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYtM1697Qb1hjFQKLsvmDi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1000,
+      "cache_read_input_tokens": 24717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1000
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MxybxZy9fDcvHc7oH2Yv8L`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/src/smolvla_wrapper.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "1bedec25-794d-4fe0-8622-1641d38f67b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYtM1697Qb1hjFQKLsvmDi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1000,
+      "cache_read_input_tokens": 24717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1000
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T16:22:10.743Z_
+
+<details><summary>↩ Tool result · `toolu_017fPRaxoBMKUr1ZbKziAy8r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\naci.py\\ncalibrate_crm_signal.py\\ncalibrate_fmvd.py\\ncalibrate_threshold.py\\ncgs.py\\ncompute_norm_stats.py\\ncrm.py\\ncrm_k1_model.py\\ncrm_k1_model.py.bak_film\\nevaluate.py\\nevaluate.py.bak\\ngated_crm.py\\nlatency_profile.py\\nopenvla_compat.py\\nopenvla_wrapper.py\\nprecompute_openvla.py\\nprofile_latency.py\\nreconvla_baseline.py\\nsmolvla_wrapper.py\\ntest_openvla_load.py\\ntrain_crm.py\\ntrain_crm_k1.py\\ntrain_crm_k1.py.bak\\nutils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "400debff-4a4b-4029-bd4b-3d982b86340f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\naci.py\\\\ncalibrate_crm_signal.py\\\\ncalibrate_fmvd.py\\\\ncalibrate_threshold.py\\\\ncgs.py\\\\ncompute_norm_stats.py\\\\ncrm.py\\\\ncrm_k1_model.py\\\\ncrm_k1_model.py.bak_film\\\\nevaluate.py\\\\nevaluate.py.bak\\\\ngated_crm.py\\\\nlatency_profile.py\\\\nopenvla_compat.py\\\\nopenvla_wrapper.py\\\\nprecompute_openvla.py\\\\nprofile_latency.py\\\\nreconvla_baseline.py\\\\nsmolvla_wrapper.py\\\\ntest_openvla_load.py\\\\ntrain_crm.py\\\\ntrain_crm_k1.py\\\\ntrain_crm_k1.py.bak\\\\nutils.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\naci.py\\ncalibrate_crm_signal.py\\ncalibrate_fmvd.py\\ncalibrate_threshold.py\\ncgs.py\\ncompute_norm_stats.py\\ncrm.py\\ncrm_k1_model.py\\ncrm_k1_model.py.bak_film\\nevaluate.py\\nevaluate.py.bak\\ngated_crm.py\\nlatency_profile.py\\nopenvla_compat.py\\nopenvla_wrapper.py\\nprecompute_openvla.py\\nprofile_latency.py\\nreconvla_baseline.py\\nsmolvla_wrapper.py\\ntest_openvla_load.py\\ntrain_crm.py\\ntrain_crm_k1.py\\ntrain_crm_k1.py.bak\\nutils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BPAuAfs4cGJx4V311t56Hm`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ls /root/autodl-tmp/crm_cache/spatial/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "3de55de6-d980-43ce-9c18-f792bb0b8089",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYtM1697Qb1hjFQKLsvmDi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1000,
+      "cache_read_input_tokens": 24717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1000
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T16:22:11.465Z_
+
+<details><summary>↩ Tool result · `toolu_01MxybxZy9fDcvHc7oH2Yv8L`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSmolVLA wrapper for ACR-VLA.\\n\\nProvides:\\n  1. obs_features extraction (mean-pooled VLM hidden states, 960D)\\n  2. K-sample flow-matching generation with shared KV cache\\n  3. LIBERO data preprocessing (image, language, state → SmolVLA inputs)\\n\\nPreprocessing follows the official lerobot pipeline:\\n  - Images: flip H+W → resize_with_pad 512×512 → normalize [-1,1]\\n  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\n  - Action output: unnormalize with MEAN_STD stats\\n\\\"\\\"\\\"\\nimport math\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn.functional as F\\nimport numpy as np\\nfrom PIL import Image\\nfrom torchvision import transforms as T\\nfrom safetensors.torch import load_file\\n\\nfrom lerobot.policies.smolvla.modeling_smolvla import (\\n    SmolVLAPolicy,\\n    VLAFlowMatching,\\n    make_att_2d_masks,\\n    resize_with_pad,\\n)\\n\\ntry:\\n    from utils import FULL_ACTION_DIM, CORRECTION_DIM\\nexcept ImportError:\\n    from .utils import FULL_ACTION_DIM, CORRECTION_DIM\\n\\nNORM_EPS = 1e-8\\n\\n\\ndef split_action(action_7d):\\n    \\\"\\\"\\\"Split LIBERO 7D action into 6D pose and 1D gripper.\\n\\n    Works with numpy arrays and torch tensors, including batched inputs.\\n    \\\"\\\"\\\"\\n    return action_7d[..., :CORRECTION_DIM], action_7d[..., CORRECTION_DIM:FULL_ACTION_DIM]\\n\\n\\nclass SmolVLAWrapper:\\n    \\\"\\\"\\\"Frozen SmolVLA for obs_features and K-sample generation.\\\"\\\"\\\"\\n\\n    def __init__(self, pretrained_path: str = \\\"/root/autodl-tmp/models/smolvla_libero/\\\",\\n                 device: str = \\\"cuda\\\"):\\n        self.device = torch.device(device)\\n        self.policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\n        self.policy.to(self.device)\\n        self.policy.eval()\\n        for p in self.policy.parameters():\\n            p.requires_grad = False\\n\\n        self.flow: VLAFlowMatching = self.policy.model\\n        self.processor = self.flow.vlm_with_expert.processor\\n        self.tokenizer = self.processor.tokenizer\\n        self.config = self.policy.config\\n\\n        self.vlm_hidden_size = self.flow.vlm_with_expert.config.text_config.hidden_size  # 960\\n        self._to_tensor = T.ToTensor()  # HWC uint8 → CHW float [0,1]\\n\\n        # Load normalizer stats\\n        model_dir = Path(pretrained_path)\\n        pre_stats = load_file(str(model_dir / \\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\"))\\n        post_stats = load_file(str(model_dir / \\\"policy_postprocessor_step_0_unnormalizer_processor.safetensors\\\"))\\n\\n        self.state_mean = pre_stats[\\\"observation.state.mean\\\"].to(self.device)  # (8,)\\n        self.state_std = pre_stats[\\\"observation.state.std\\\"].to(self.device)    # (8,)\\n        self.action_mean = post_stats[\\\"action.mean\\\"].to(self.device)           # (7,)\\n        self.action_std = post_stats[\\\"action.std\\\"].to(self.device)             # (7,)\\n\\n        # Image resize target from config\\n        self.resize_wh = self.config.resize_imgs_with_padding  # [512, 512]\\n\\n    def _preprocess_image(self, img_np: np.ndarray) -> torch.Tensor:\\n        \\\"\\\"\\\"HWC uint8 numpy → (1, C, H, W) float tensor ready for SmolVLA.\\\"\\\"\\\"\\n        img = self._to_tensor(img_np)       # (C, H, W) float [0,1]\\n        img = img.flip(dims=[-2, -1])       # flip H and W (LIBERO convention)\\n        img = img.unsqueeze(0).to(self.device)\\n        if self.resize_wh is not None:\\n            img = resize_with_pad(img, *self.resize_wh, pad_value=0)\\n        img = img * 2.0 - 1.0               # [0,1] → [-1,1] for SigLIP\\n        return img\\n\\n    def _normalize_state(self, state_raw: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD normalize state. state_raw: (..., D) where D <= len(state_mean).\\\"\\\"\\\"\\n        D = state_raw.shape[-1]\\n        mean = self.state_mean[:D]\\n        std = self.state_std[:D]\\n        return (state_raw - mean) / (std + NORM_EPS)\\n\\n    def _unnormalize_action(self, action_norm: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD unnormalize action. action_norm: (..., 7).\\\"\\\"\\\"\\n        return action_norm * self.action_std + self.action_mean\\n\\n    @torch.no_grad()\\n    def preprocess_obs(self, agentview_\\n\\n... [截断: 输出过长，省略 7626 字符] ...\\n\\n_val, dtype=torch.float32,\\n                                     device=self.device)\\n            v_t = self.flow.denoise_step(\\n                x_t=x_t,\\n                prefix_pad_masks=expanded_masks,\\n                past_key_values=expanded_kv,\\n                timestep=time_tensor,\\n            )\\n            x_t = x_t + dt * v_t\\n\\n        raw_action = x_t[:, :, :FULL_ACTION_DIM]\\n        unnorm_action = self._unnormalize_action(raw_action)\\n        return unnorm_action.reshape(B, K, chunk_size, FULL_ACTION_DIM)\\n\\n    @torch.no_grad()\\n    def get_obs_features_and_samples(self, agentview_rgb, task_name, robot_state,\\n                                     eye_in_hand_rgb=None, K=10):\\n        \\\"\\\"\\\"\\n        End-to-end: raw obs → obs_features (960D) + K action samples (7D).\\n\\n        Returns:\\n            obs_features: (1, 960)\\n            samples: (1, K, chunk_size, FULL_ACTION_DIM)\\n        \\\"\\\"\\\"\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs(\\n            agentview_rgb, task_name, robot_state, eye_in_hand_rgb\\n        )\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\n            imgs, img_masks, lt, lm, state\\n        )\\n        samples = self.generate_k_samples_batched(kv_cache, pad_masks, K=K)\\n        return obs_feat, samples\\n\\n    @torch.no_grad()\\n    def get_obs_features_and_samples_batch(self, batch_obs, K=10):\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs_batch(batch_obs)\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\n            imgs, img_masks, lt, lm, state\\n        )\\n        samples = self.generate_k_samples_batched(kv_cache, pad_masks, K=K)\\n        return obs_feat, samples\\n\\n    @torch.no_grad()\\n    def generate_adaptive_k_samples(self, past_key_values, prefix_pad_masks,\\n                                     threshold, k_init=2, k_full=5):\\n        \\\"\\\"\\\"Adaptive K: generate k_init samples, expand to k_full if L2 disagreement >= threshold.\\\"\\\"\\\"\\n        init_samples = self.generate_k_samples_batched(\\n            past_key_values, prefix_pad_masks, K=k_init\\n        )\\n        B = init_samples.shape[0]\\n\\n        if k_init == 2:\\n            diff = init_samples[:, 0, :, :FULL_ACTION_DIM] - init_samples[:, 1, :, :FULL_ACTION_DIM]\\n            per_step_l2 = diff.norm(dim=-1)\\n            mean_l2 = per_step_l2.mean(dim=-1)\\n        else:\\n            dists = []\\n            for i in range(k_init):\\n                for j in range(i + 1, k_init):\\n                    diff = init_samples[:, i, :, :FULL_ACTION_DIM] - init_samples[:, j, :, :FULL_ACTION_DIM]\\n                    dists.append(diff.norm(dim=-1).mean(dim=-1))\\n            mean_l2 = torch.stack(dists).mean(dim=0)\\n\\n        needs_full = (mean_l2 >= threshold).any().item()\\n        l2_val = mean_l2.item() if B == 1 else mean_l2.cpu().tolist()\\n\\n        if not needs_full:\\n            return init_samples, {\\n                'path': 'fast', 'actual_k': k_init, 'l2_distance': l2_val,\\n            }\\n\\n        extra_samples = self.generate_k_samples_batched(\\n            past_key_values, prefix_pad_masks, K=k_full - k_init\\n        )\\n        all_samples = torch.cat([init_samples, extra_samples], dim=1)\\n        return all_samples, {\\n            'path': 'full', 'actual_k': k_full, 'l2_distance': l2_val,\\n        }\\n\\n    @torch.no_grad()\\n    def get_obs_features_and_samples_adaptive(self, agentview_rgb, task_name,\\n                                               robot_state, eye_in_hand_rgb=None,\\n                                               threshold=0.1, k_init=2, k_full=5):\\n        \\\"\\\"\\\"End-to-end adaptive K: obs -> features + adaptive samples + metadata.\\\"\\\"\\\"\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs(\\n            agentview_rgb, task_name, robot_state, eye_in_hand_rgb\\n        )\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\n            imgs, img_masks, lt, lm, state\\n        )\\n        samples, metadata = self.generate_adaptive_k_samples(\\n            kv_cache, pad_masks, threshold, k_init, k_full\\n        )\\n        return obs_feat, samples, metadata\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "1a48ca73-53bb-418e-a390-8dbccb9a054b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSmolVLA wrapper for ACR-VLA.\\\\n\\\\nProvides:\\\\n  1. obs_features extraction (mean-pooled VLM hidden states, 960D)\\\\n  2. K-sample flow-matching generation with shared KV cache\\\\n  3. LIBERO data preprocessing (image, language, state → SmolVLA inputs)\\\\n\\\\nPreprocessing follows the official lerobot pipeline:\\\\n  - Images: flip H+W → resize_with_pad 512×512 → normalize [-1,1]\\\\n  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\\\n  - Action output: unnormalize with MEAN_STD stats\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport math\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nimport numpy as np\\\\nfrom PIL import Image\\\\nfrom torchvision import transforms as T\\\\nfrom safetensors.torch import load_file\\\\n\\\\nfrom lerobot.policies.smolvla.modeling_smolvla import (\\\\n    SmolVLAPolicy,\\\\n    VLAFlowMatching,\\\\n    make_att_2d_masks,\\\\n    resize_with_pad,\\\\n)\\\\n\\\\ntry:\\\\n    from utils import FULL_ACTION_DIM, CORRECTION_DIM\\\\nexcept ImportError:\\\\n    from .utils import FULL_ACTION_DIM, CORRECTION_DIM\\\\n\\\\nNORM_EPS = 1e-8\\\\n\\\\n\\\\ndef split_action(action_7d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Split LIBERO 7D action into 6D pose and 1D gripper.\\\\n\\\\n    Works with numpy arrays and torch tensors, including batched inputs.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return action_7d[..., :CORRECTION_DIM], action_7d[..., CORRECTION_DIM:FULL_ACTION_DIM]\\\\n\\\\n\\\\nclass SmolVLAWrapper:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Frozen SmolVLA for obs_features and K-sample generation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, pretrained_path: str = \\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\",\\\\n                 device: str = \\\\\\\"cuda\\\\\\\"):\\\\n        self.device = torch.device(device)\\\\n        self.policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\\\n        self.policy.to(self.device)\\\\n        self.policy.eval()\\\\n        for p in self.policy.parameters():\\\\n            p.requires_grad = False\\\\n\\\\n        self.flow: VLAFlowMatching = self.policy.model\\\\n        self.processor = self.flow.vlm_with_expert.processor\\\\n        self.tokenizer = self.processor.tokenizer\\\\n        self.config = self.policy.config\\\\n\\\\n        self.vlm_hidden_size = self.flow.vlm_with_expert.config.text_config.hidden_size  # 960\\\\n        self._to_tensor = T.ToTensor()  # HWC uint8 → CHW float [0,1]\\\\n\\\\n        # Load normalizer stats\\\\n        model_dir = Path(pretrained_path)\\\\n        pre_stats = load_file(str(model_dir / \\\\\\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\\\\\"))\\\\n        post_stats = load_file(str(model_dir / \\\\\\\"policy_postprocessor_step_0_unnormalizer_processor.safetensors\\\\\\\"))\\\\n\\\\n        self.state_mean = pre_stats[\\\\\\\"observation.state.mean\\\\\\\"].to(self.device)  # (8,)\\\\n        self.state_std = pre_stats[\\\\\\\"observation.state.std\\\\\\\"].to(self.device)    # (8,)\\\\n        self.action_mean = post_stats[\\\\\\\"action.mean\\\\\\\"].to(self.device)           # (7,)\\\\n        self.action_std = post_stats[\\\\\\\"action.std\\\\\\\"].to(self.device)             # (7,)\\\\n\\\\n        # Image resize target from config\\\\n        self.resize_wh = self.config.resize_imgs_with_padding  # [512, 512]\\\\n\\\\n    def _preprocess_image(self, img_np: np.ndarray) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"HWC uint8 numpy → (1, C, H, W) float tensor ready for SmolVLA.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        img = self._to_tensor(img_np)       # (C, H, W) float [0,1]\\\\n        img = img.flip(dims=[-2, -1])       # flip H and W (LIBERO convention)\\\\n        img = img.unsqueeze(0).to(self.device)\\\\n        if self.resize_wh is not None:\\\\n            img = resize_with_pad(img, *self.resize_wh, pad_value=0)\\\\n        img = img * 2.0 - 1.0               # [0,1] → [-1,1] for SigLIP\\\\n        return img\\\\n\\\\n    def _normalize_state(self, state_raw: torch.Tensor) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"MEAN_STD normalize state. state_raw: (..., D) where D <= len(state_mean).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        D = state_raw.shape[-1]\\\\n        mean = self.state_mean[:D]\\\\n        std = self.state_std[:D]\\\\n        return (state_raw - mean) / (std + NORM_EPS)\\\\n\\\\n    def _unnormalize_action(self, action_norm: torch.Tensor) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"MEAN_STD unnormalize action. action_norm: (..., 7).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return action_norm * self.action_std + self.action_mean\\\\n\\\\n    @torch.no_grad()\\\\n    def preprocess_obs(self, agentview_\\\\n\\\\n... [截断: 输出过长，省略 7626 字符] ...\\\\n\\\\n_val, dtype=torch.float32,\\\\n                                     device=self.device)\\\\n            v_t = self.flow.denoise_step(\\\\n                x_t=x_t,\\\\n                prefix_pad_masks=expanded_masks,\\\\n                past_key_values=expanded_kv,\\\\n                timestep=time_tensor,\\\\n            )\\\\n            x_t = x_t + dt * v_t\\\\n\\\\n        raw_action = x_t[:, :, :FULL_ACTION_DIM]\\\\n        unnorm_action = self._unnormalize_action(raw_action)\\\\n        return unnorm_action.reshape(B, K, chunk_size, FULL_ACTION_DIM)\\\\n\\\\n    @torch.no_grad()\\\\n    def get_obs_features_and_samples(self, agentview_rgb, task_name, robot_state,\\\\n                                     eye_in_hand_rgb=None, K=10):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        End-to-end: raw obs → obs_features (960D) + K action samples (7D).\\\\n\\\\n        Returns:\\\\n            obs_features: (1, 960)\\\\n            samples: (1, K, chunk_size, FULL_ACTION_DIM)\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs(\\\\n            agentview_rgb, task_name, robot_state, eye_in_hand_rgb\\\\n        )\\\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\\\n            imgs, img_masks, lt, lm, state\\\\n        )\\\\n        samples = self.generate_k_samples_batched(kv_cache, pad_masks, K=K)\\\\n        return obs_feat, samples\\\\n\\\\n    @torch.no_grad()\\\\n    def get_obs_features_and_samples_batch(self, batch_obs, K=10):\\\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs_batch(batch_obs)\\\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\\\n            imgs, img_masks, lt, lm, state\\\\n        )\\\\n        samples = self.generate_k_samples_batched(kv_cache, pad_masks, K=K)\\\\n        return obs_feat, samples\\\\n\\\\n    @torch.no_grad()\\\\n    def generate_adaptive_k_samples(self, past_key_values, prefix_pad_masks,\\\\n                                     threshold, k_init=2, k_full=5):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Adaptive K: generate k_init samples, expand to k_full if L2 disagreement >= threshold.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        init_samples = self.generate_k_samples_batched(\\\\n            past_key_values, prefix_pad_masks, K=k_init\\\\n        )\\\\n        B = init_samples.shape[0]\\\\n\\\\n        if k_init == 2:\\\\n            diff = init_samples[:, 0, :, :FULL_ACTION_DIM] - init_samples[:, 1, :, :FULL_ACTION_DIM]\\\\n            per_step_l2 = diff.norm(dim=-1)\\\\n            mean_l2 = per_step_l2.mean(dim=-1)\\\\n        else:\\\\n            dists = []\\\\n            for i in range(k_init):\\\\n                for j in range(i + 1, k_init):\\\\n                    diff = init_samples[:, i, :, :FULL_ACTION_DIM] - init_samples[:, j, :, :FULL_ACTION_DIM]\\\\n                    dists.append(diff.norm(dim=-1).mean(dim=-1))\\\\n            mean_l2 = torch.stack(dists).mean(dim=0)\\\\n\\\\n        needs_full = (mean_l2 >= threshold).any().item()\\\\n        l2_val = mean_l2.item() if B == 1 else mean_l2.cpu().tolist()\\\\n\\\\n        if not needs_full:\\\\n            return init_samples, {\\\\n                'path': 'fast', 'actual_k': k_init, 'l2_distance': l2_val,\\\\n            }\\\\n\\\\n        extra_samples = self.generate_k_samples_batched(\\\\n            past_key_values, prefix_pad_masks, K=k_full - k_init\\\\n        )\\\\n        all_samples = torch.cat([init_samples, extra_samples], dim=1)\\\\n        return all_samples, {\\\\n            'path': 'full', 'actual_k': k_full, 'l2_distance': l2_val,\\\\n        }\\\\n\\\\n    @torch.no_grad()\\\\n    def get_obs_features_and_samples_adaptive(self, agentview_rgb, task_name,\\\\n                                               robot_state, eye_in_hand_rgb=None,\\\\n                                               threshold=0.1, k_init=2, k_full=5):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"End-to-end adaptive K: obs -> features + adaptive samples + metadata.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs(\\\\n            agentview_rgb, task_name, robot_state, eye_in_hand_rgb\\\\n        )\\\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\\\n            imgs, img_masks, lt, lm, state\\\\n        )\\\\n        samples, metadata = self.generate_adaptive_k_samples(\\\\n            kv_cache, pad_masks, threshold, k_init, k_full\\\\n        )\\\\n        return obs_feat, samples, metadata\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSmolVLA wrapper for ACR-VLA.\\n\\nProvides:\\n  1. obs_features extraction (mean-pooled VLM hidden states, 960D)\\n  2. K-sample flow-matching generation with shared KV cache\\n  3. LIBERO data preprocessing (image, language, state → SmolVLA inputs)\\n\\nPreprocessing follows the official lerobot pipeline:\\n  - Images: flip H+W → resize_with_pad 512×512 → normalize [-1,1]\\n  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\n  - Action output: unnormalize with MEAN_STD stats\\n\\\"\\\"\\\"\\nimport math\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn.functional as F\\nimport numpy as np\\nfrom PIL import Image\\nfrom torchvision import transforms as T\\nfrom safetensors.torch import load_file\\n\\nfrom lerobot.policies.smolvla.modeling_smolvla import (\\n    SmolVLAPolicy,\\n    VLAFlowMatching,\\n    make_att_2d_masks,\\n    resize_with_pad,\\n)\\n\\ntry:\\n    from utils import FULL_ACTION_DIM, CORRECTION_DIM\\nexcept ImportError:\\n    from .utils import FULL_ACTION_DIM, CORRECTION_DIM\\n\\nNORM_EPS = 1e-8\\n\\n\\ndef split_action(action_7d):\\n    \\\"\\\"\\\"Split LIBERO 7D action into 6D pose and 1D gripper.\\n\\n    Works with numpy arrays and torch tensors, including batched inputs.\\n    \\\"\\\"\\\"\\n    return action_7d[..., :CORRECTION_DIM], action_7d[..., CORRECTION_DIM:FULL_ACTION_DIM]\\n\\n\\nclass SmolVLAWrapper:\\n    \\\"\\\"\\\"Frozen SmolVLA for obs_features and K-sample generation.\\\"\\\"\\\"\\n\\n    def __init__(self, pretrained_path: str = \\\"/root/autodl-tmp/models/smolvla_libero/\\\",\\n                 device: str = \\\"cuda\\\"):\\n        self.device = torch.device(device)\\n        self.policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\n        self.policy.to(self.device)\\n        self.policy.eval()\\n        for p in self.policy.parameters():\\n            p.requires_grad = False\\n\\n        self.flow: VLAFlowMatching = self.policy.model\\n        self.processor = self.flow.vlm_with_expert.processor\\n        self.tokenizer = self.processor.tokenizer\\n        self.config = self.policy.config\\n\\n        self.vlm_hidden_size = self.flow.vlm_with_expert.config.text_config.hidden_size  # 960\\n        self._to_tensor = T.ToTensor()  # HWC uint8 → CHW float [0,1]\\n\\n        # Load normalizer stats\\n        model_dir = Path(pretrained_path)\\n        pre_stats = load_file(str(model_dir / \\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\"))\\n        post_stats = load_file(str(model_dir / \\\"policy_postprocessor_step_0_unnormalizer_processor.safetensors\\\"))\\n\\n        self.state_mean = pre_stats[\\\"observation.state.mean\\\"].to(self.device)  # (8,)\\n        self.state_std = pre_stats[\\\"observation.state.std\\\"].to(self.device)    # (8,)\\n        self.action_mean = post_stats[\\\"action.mean\\\"].to(self.device)           # (7,)\\n        self.action_std = post_stats[\\\"action.std\\\"].to(self.device)             # (7,)\\n\\n        # Image resize target from config\\n        self.resize_wh = self.config.resize_imgs_with_padding  # [512, 512]\\n\\n    def _preprocess_image(self, img_np: np.ndarray) -> torch.Tensor:\\n        \\\"\\\"\\\"HWC uint8 numpy → (1, C, H, W) float tensor ready for SmolVLA.\\\"\\\"\\\"\\n        img = self._to_tensor(img_np)       # (C, H, W) float [0,1]\\n        img = img.flip(dims=[-2, -1])       # flip H and W (LIBERO convention)\\n        img = img.unsqueeze(0).to(self.device)\\n        if self.resize_wh is not None:\\n            img = resize_with_pad(img, *self.resize_wh, pad_value=0)\\n        img = img * 2.0 - 1.0               # [0,1] → [-1,1] for SigLIP\\n        return img\\n\\n    def _normalize_state(self, state_raw: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD normalize state. state_raw: (..., D) where D <= len(state_mean).\\\"\\\"\\\"\\n        D = state_raw.shape[-1]\\n        mean = self.state_mean[:D]\\n        std = self.state_std[:D]\\n        return (state_raw - mean) / (std + NORM_EPS)\\n\\n    def _unnormalize_action(self, action_norm: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD unnormalize action. action_norm: (..., 7).\\\"\\\"\\\"\\n        return action_norm * self.action_std + self.action_mean\\n\\n    @torch.no_grad()\\n    def preprocess_obs(self, agentview_\\n\\n... [截断: 输出过长，省略 7626 字符] ...\\n\\n_val, dtype=torch.float32,\\n                                     device=self.device)\\n            v_t = self.flow.denoise_step(\\n                x_t=x_t,\\n                prefix_pad_masks=expanded_masks,\\n                past_key_values=expanded_kv,\\n                timestep=time_tensor,\\n            )\\n            x_t = x_t + dt * v_t\\n\\n        raw_action = x_t[:, :, :FULL_ACTION_DIM]\\n        unnorm_action = self._unnormalize_action(raw_action)\\n        return unnorm_action.reshape(B, K, chunk_size, FULL_ACTION_DIM)\\n\\n    @torch.no_grad()\\n    def get_obs_features_and_samples(self, agentview_rgb, task_name, robot_state,\\n                                     eye_in_hand_rgb=None, K=10):\\n        \\\"\\\"\\\"\\n        End-to-end: raw obs → obs_features (960D) + K action samples (7D).\\n\\n        Returns:\\n            obs_features: (1, 960)\\n            samples: (1, K, chunk_size, FULL_ACTION_DIM)\\n        \\\"\\\"\\\"\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs(\\n            agentview_rgb, task_name, robot_state, eye_in_hand_rgb\\n        )\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\n            imgs, img_masks, lt, lm, state\\n        )\\n        samples = self.generate_k_samples_batched(kv_cache, pad_masks, K=K)\\n        return obs_feat, samples\\n\\n    @torch.no_grad()\\n    def get_obs_features_and_samples_batch(self, batch_obs, K=10):\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs_batch(batch_obs)\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\n            imgs, img_masks, lt, lm, state\\n        )\\n        samples = self.generate_k_samples_batched(kv_cache, pad_masks, K=K)\\n        return obs_feat, samples\\n\\n    @torch.no_grad()\\n    def generate_adaptive_k_samples(self, past_key_values, prefix_pad_masks,\\n                                     threshold, k_init=2, k_full=5):\\n        \\\"\\\"\\\"Adaptive K: generate k_init samples, expand to k_full if L2 disagreement >= threshold.\\\"\\\"\\\"\\n        init_samples = self.generate_k_samples_batched(\\n            past_key_values, prefix_pad_masks, K=k_init\\n        )\\n        B = init_samples.shape[0]\\n\\n        if k_init == 2:\\n            diff = init_samples[:, 0, :, :FULL_ACTION_DIM] - init_samples[:, 1, :, :FULL_ACTION_DIM]\\n            per_step_l2 = diff.norm(dim=-1)\\n            mean_l2 = per_step_l2.mean(dim=-1)\\n        else:\\n            dists = []\\n            for i in range(k_init):\\n                for j in range(i + 1, k_init):\\n                    diff = init_samples[:, i, :, :FULL_ACTION_DIM] - init_samples[:, j, :, :FULL_ACTION_DIM]\\n                    dists.append(diff.norm(dim=-1).mean(dim=-1))\\n            mean_l2 = torch.stack(dists).mean(dim=0)\\n\\n        needs_full = (mean_l2 >= threshold).any().item()\\n        l2_val = mean_l2.item() if B == 1 else mean_l2.cpu().tolist()\\n\\n        if not needs_full:\\n            return init_samples, {\\n                'path': 'fast', 'actual_k': k_init, 'l2_distance': l2_val,\\n            }\\n\\n        extra_samples = self.generate_k_samples_batched(\\n            past_key_values, prefix_pad_masks, K=k_full - k_init\\n        )\\n        all_samples = torch.cat([init_samples, extra_samples], dim=1)\\n        return all_samples, {\\n            'path': 'full', 'actual_k': k_full, 'l2_distance': l2_val,\\n        }\\n\\n    @torch.no_grad()\\n    def get_obs_features_and_samples_adaptive(self, agentview_rgb, task_name,\\n                                               robot_state, eye_in_hand_rgb=None,\\n                                               threshold=0.1, k_init=2, k_full=5):\\n        \\\"\\\"\\\"End-to-end adaptive K: obs -> features + adaptive samples + metadata.\\\"\\\"\\\"\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs(\\n            agentview_rgb, task_name, robot_state, eye_in_hand_rgb\\n        )\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\n            imgs, img_masks, lt, lm, state\\n        )\\n        samples, metadata = self.generate_adaptive_k_samples(\\n            kv_cache, pad_masks, threshold, k_init, k_full\\n        )\\n        return obs_feat, samples, metadata\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T16:22:11.855Z_
+
+<details><summary>↩ Tool result · `toolu_01BPAuAfs4cGJx4V311t56Hm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/crm_cache/spatial/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "87966264-e485-4e9f-af46-5031e1fc682d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/crm_cache/spatial/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/crm_cache/spatial/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the cache directory and utils.py, and also check the actual server name (bjb2-28827 vs bjb2-40593 in project context).
+
+The task says bjb2-28827 but the project context says bjb2-40593. Let me check what's available. Let me also look at the utils.py for constants, and find the cache directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "26beb156-d3f8-4b64-abd2-e26039bc4c61",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019nS7mAA4rreL6Q6QX7XfHX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 25717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3985
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Cache 路径不存在，检查实际路径和 utils.py 常量。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "33ea4ce9-2b87-47ae-a899-df5e3b70c8c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019nS7mAA4rreL6Q6QX7XfHX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 25717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3985
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jz32DpYuTb75zz2KHcKiPu`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "find /root/autodl-tmp/crm_cache -name \"*.pt\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "4563c673-c4dd-4ddd-813c-60b5c20d3d9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019nS7mAA4rreL6Q6QX7XfHX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 25717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3985
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T16:22:18.540Z_
+
+<details><summary>↩ Tool result · `toolu_01Jz32DpYuTb75zz2KHcKiPu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/crm_cache': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "22b1a2ab-332f-4a41-9a1c-9728069862ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/crm_cache': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/crm_cache': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GRhePmeRP1FbTkAPsxB94b`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/src/utils.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "732c782b-0077-433d-983e-59d3216b269a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019nS7mAA4rreL6Q6QX7XfHX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 25717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3985
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019TCVYsevAHvNWyS6yD8MMN`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ls /root/autodl-tmp/crm_cache/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "76200477-36c6-499b-b59b-f66b4404cb33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019nS7mAA4rreL6Q6QX7XfHX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 25717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3985
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T16:22:19.250Z_
+
+<details><summary>↩ Tool result · `toolu_01GRhePmeRP1FbTkAPsxB94b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nACR-VLA utility functions.\\n\\n- LIBERO dataset loading\\n- Synthetic augmentation (known noise injection for OOD simulation)\\n- Evaluation metrics\\n- Checkpoint management\\n\\\"\\\"\\\"\\nimport torch\\nimport numpy as np\\nfrom pathlib import Path\\nimport h5py\\nimport glob\\n\\n\\nCORRECTION_DIM = 6   # 6D pose — CRM corrects only pose, not gripper\\nFULL_ACTION_DIM = 7  # 6D pose + 1D gripper (LIBERO env action space)\\nH_EFF = 5            # effective horizon (truncated from chunk_size=50)\\nCHUNK_SIZE = 50      # SmolVLA native chunk_size\\nOBS_DIM = 960        # VLM hidden_size\\nMAX_STATE_DIM = 32\\nMAX_ACTION_DIM = 32\\n\\nBENCHMARK_MAP = {\\n    \\\"spatial\\\": \\\"libero_spatial\\\",\\n    \\\"object\\\": \\\"libero_object\\\",\\n    \\\"goal\\\": \\\"libero_goal\\\",\\n    \\\"long\\\": \\\"libero_10\\\",\\n    \\\"90\\\": \\\"libero_90\\\",\\n}\\n\\n\\ndef set_seed(seed: int):\\n    torch.manual_seed(seed)\\n    np.random.seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n        torch.backends.cudnn.deterministic = True\\n        torch.backends.cudnn.benchmark = False\\n\\n\\ndef load_libero_demos(benchmark_name: str,\\n                      data_dir: str = \\\"/root/autodl-tmp/libero_data/\\\",\\n                      max_demos_per_task: int = 50):\\n    \\\"\\\"\\\"\\n    Load LIBERO demo trajectories from HDF5 files.\\n\\n    Returns:\\n        list of dicts with keys:\\n            - \\\"agentview_rgb\\\": (T, 128, 128, 3) uint8\\n            - \\\"eye_in_hand_rgb\\\": (T, 128, 128, 3) uint8\\n            - \\\"joint_states\\\": (T, 7) float\\n            - \\\"ee_states\\\": (T, 8) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\n            - \\\"actions\\\": (T, 7) float (6D pose + 1D gripper)\\n            - \\\"task_name\\\": str\\n    \\\"\\\"\\\"\\n    folder = BENCHMARK_MAP.get(benchmark_name, benchmark_name)\\n    data_path = Path(data_dir) / folder\\n    if not data_path.exists():\\n        raise FileNotFoundError(f\\\"LIBERO data not found at {data_path}\\\")\\n\\n    hdf5_files = sorted(data_path.glob(\\\"*.hdf5\\\"))\\n    if not hdf5_files:\\n        raise FileNotFoundError(f\\\"No HDF5 files in {data_path}\\\")\\n\\n    trajectories = []\\n    for hdf5_file in hdf5_files:\\n        task_name = hdf5_file.stem.replace(\\\"_demo\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\")\\n        with h5py.File(hdf5_file, \\\"r\\\") as f:\\n            demo_keys = sorted(\\n                [k for k in f[\\\"data\\\"].keys() if k.startswith(\\\"demo\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[1])\\n            )\\n            for dk in demo_keys[:max_demos_per_task]:\\n                demo = f[f\\\"data/{dk}\\\"]\\n                traj = {\\n                    \\\"agentview_rgb\\\": np.array(demo[\\\"obs/agentview_rgb\\\"]),\\n                    \\\"eye_in_hand_rgb\\\": np.array(demo[\\\"obs/eye_in_hand_rgb\\\"]),\\n                    \\\"joint_states\\\": np.array(demo[\\\"obs/joint_states\\\"]),\\n                    # BugFix C1: include gripper_states to match eval's 8D state\\n                    \\\"ee_states\\\": np.concatenate([\\n                        np.array(demo[\\\"obs/ee_states\\\"]),      # (T, 6) eef_pos + axisangle\\n                        np.array(demo[\\\"obs/gripper_states\\\"]),  # (T, 2) gripper_qpos\\n                    ], axis=-1),  # (T, 8)\\n                    \\\"actions\\\": np.array(demo[\\\"actions\\\"]),\\n                    \\\"task_name\\\": task_name,\\n                }\\n                trajectories.append(traj)\\n\\n    return trajectories\\n\\n\\ndef build_training_samples(trajectories: list, h_eff: int = H_EFF,\\n                           action_dim: int = CORRECTION_DIM):\\n    \\\"\\\"\\\"\\n    Convert trajectories into (timestep, image, state, expert_action_chunk) tuples.\\n\\n    expert_action is sliced to action_dim (default CORRECTION_DIM=6, pose only).\\n\\n    Returns:\\n        list of dicts with keys:\\n            - \\\"agentview_rgb\\\": (128, 128, 3) uint8\\n            - \\\"eye_in_hand_rgb\\\": (128, 128, 3) uint8\\n            - \\\"ee_states\\\": (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\n            - \\\"expert_action\\\": (h_eff, action_dim) float\\n            - \\\"task_name\\\": str\\n    \\\"\\\"\\\"\\n    samples = []\\n    for traj in trajectories:\\n        T = traj[\\\"actions\\\"].shape[0]\\n        for t in range(T - h_eff + 1):\\n            samples.append({\\n                \\\"agentview_rgb\\\": traj[\\\"agentview_rgb\\\"][t],\\n                \\\"eye_in_hand_rgb\\\": traj[\\\"eye_in_hand_rgb\\\"][t],\\n                \\\"ee_states\\\": traj[\\\"ee_states\\\"][t],\\n                \\\"expert_action\\\": traj[\\\"actions\\\"][t:t + h_eff, :action_dim].astype(np.float32),\\n                \\\"task_name\\\": traj[\\\"task_name\\\"],\\n            })\\n    return samples\\n\\n\\ndef synthetic_augmentation(expert_action: torch.Tensor,\\n                           noise_scale: torch.Tensor,\\n                           perturbation: torch.Tensor | None = None) -> torch.Tensor:\\n    \\\"\\\"\\\"Add known noise to expert actions to simulate OOD conditions.\\\"\\\"\\\"\\n    if expert_action.dim() == 2:\\n        noise = torch.randn_like(expert_action) * noise_scale.repeat(H_EFF).unsqueeze(0)\\n    else:\\n        noise = torch.randn_like(expert_action) * noise_scale.unsqueeze(0).unsqueeze(0)\\n    noisy = expert_action + noise\\n    if perturbation is not None:\\n        noisy = noisy + perturbation\\n    return noisy\\n\\n\\nclass CheckpointManager:\\n    def __init__(self, output_dir: str, max_keep: int = 5):\\n        self.output_dir = Path(output_dir)\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\n        self.max_keep = max_keep\\n\\n    def save(self, model: torch.nn.Module, optimizer: torch.optim.Optimizer,\\n             epoch: int, metrics: dict):\\n        path = self.output_dir / f\\\"checkpoint_epoch{epoch:04d}.pt\\\"\\n        torch.save({\\n            \\\"epoch\\\": epoch,\\n            \\\"model_state_dict\\\": model.state_dict(),\\n            \\\"optimizer_state_dict\\\": optimizer.state_dict(),\\n            \\\"metrics\\\": metrics,\\n        }, path)\\n        self._cleanup()\\n        return path\\n\\n    def load_best(self, model: torch.nn.Module, metric_key: str = \\\"val_loss\\\",\\n                  lower_is_better: bool = True):\\n        checkpoints = sorted(self.output_dir.glob(\\\"checkpoint_*.pt\\\"))\\n        if not checkpoints:\\n            raise FileNotFoundError(f\\\"No checkpoints in {self.output_dir}\\\")\\n\\n        best_path = None\\n        best_metric = float(\\\"inf\\\") if lower_is_better else float(\\\"-inf\\\")\\n        for cp_path in checkpoints:\\n            cp = torch.load(cp_path, map_location=\\\"cpu\\\", weights_only=False)\\n            metric = cp[\\\"metrics\\\"].get(metric_key, float(\\\"inf\\\"))\\n            if (lower_is_better and metric < best_metric) or \\\\\\n               (not lower_is_better and metric > best_metric):\\n                best_metric = metric\\n                best_path = cp_path\\n\\n        cp = torch.load(best_path, map_location=\\\"cpu\\\", weights_only=False)\\n        model.load_state_dict(cp[\\\"model_state_dict\\\"])\\n        return cp\\n\\n    def _cleanup(self):\\n        checkpoints = sorted(self.output_dir.glob(\\\"checkpoint_*.pt\\\"))\\n        while len(checkpoints) > self.max_keep:\\n            checkpoints[0].unlink()\\n            checkpoints.pop(0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "5e7e1bef-121e-4b0f-9ad1-ed6ed5c92d5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nACR-VLA utility functions.\\\\n\\\\n- LIBERO dataset loading\\\\n- Synthetic augmentation (known noise injection for OOD simulation)\\\\n- Evaluation metrics\\\\n- Checkpoint management\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport torch\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\nimport h5py\\\\nimport glob\\\\n\\\\n\\\\nCORRECTION_DIM = 6   # 6D pose — CRM corrects only pose, not gripper\\\\nFULL_ACTION_DIM = 7  # 6D pose + 1D gripper (LIBERO env action space)\\\\nH_EFF = 5            # effective horizon (truncated from chunk_size=50)\\\\nCHUNK_SIZE = 50      # SmolVLA native chunk_size\\\\nOBS_DIM = 960        # VLM hidden_size\\\\nMAX_STATE_DIM = 32\\\\nMAX_ACTION_DIM = 32\\\\n\\\\nBENCHMARK_MAP = {\\\\n    \\\\\\\"spatial\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n    \\\\\\\"object\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n    \\\\\\\"goal\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n    \\\\\\\"long\\\\\\\": \\\\\\\"libero_10\\\\\\\",\\\\n    \\\\\\\"90\\\\\\\": \\\\\\\"libero_90\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    torch.manual_seed(seed)\\\\n    np.random.seed(seed)\\\\n    if torch.cuda.is_available():\\\\n        torch.cuda.manual_seed_all(seed)\\\\n        torch.backends.cudnn.deterministic = True\\\\n        torch.backends.cudnn.benchmark = False\\\\n\\\\n\\\\ndef load_libero_demos(benchmark_name: str,\\\\n                      data_dir: str = \\\\\\\"/root/autodl-tmp/libero_data/\\\\\\\",\\\\n                      max_demos_per_task: int = 50):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Load LIBERO demo trajectories from HDF5 files.\\\\n\\\\n    Returns:\\\\n        list of dicts with keys:\\\\n            - \\\\\\\"agentview_rgb\\\\\\\": (T, 128, 128, 3) uint8\\\\n            - \\\\\\\"eye_in_hand_rgb\\\\\\\": (T, 128, 128, 3) uint8\\\\n            - \\\\\\\"joint_states\\\\\\\": (T, 7) float\\\\n            - \\\\\\\"ee_states\\\\\\\": (T, 8) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\\\n            - \\\\\\\"actions\\\\\\\": (T, 7) float (6D pose + 1D gripper)\\\\n            - \\\\\\\"task_name\\\\\\\": str\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    folder = BENCHMARK_MAP.get(benchmark_name, benchmark_name)\\\\n    data_path = Path(data_dir) / folder\\\\n    if not data_path.exists():\\\\n        raise FileNotFoundError(f\\\\\\\"LIBERO data not found at {data_path}\\\\\\\")\\\\n\\\\n    hdf5_files = sorted(data_path.glob(\\\\\\\"*.hdf5\\\\\\\"))\\\\n    if not hdf5_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No HDF5 files in {data_path}\\\\\\\")\\\\n\\\\n    trajectories = []\\\\n    for hdf5_file in hdf5_files:\\\\n        task_name = hdf5_file.stem.replace(\\\\\\\"_demo\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\")\\\\n        with h5py.File(hdf5_file, \\\\\\\"r\\\\\\\") as f:\\\\n            demo_keys = sorted(\\\\n                [k for k in f[\\\\\\\"data\\\\\\\"].keys() if k.startswith(\\\\\\\"demo\\\\\\\")],\\\\n                key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[1])\\\\n            )\\\\n            for dk in demo_keys[:max_demos_per_task]:\\\\n                demo = f[f\\\\\\\"data/{dk}\\\\\\\"]\\\\n                traj = {\\\\n                    \\\\\\\"agentview_rgb\\\\\\\": np.array(demo[\\\\\\\"obs/agentview_rgb\\\\\\\"]),\\\\n                    \\\\\\\"eye_in_hand_rgb\\\\\\\": np.array(demo[\\\\\\\"obs/eye_in_hand_rgb\\\\\\\"]),\\\\n                    \\\\\\\"joint_states\\\\\\\": np.array(demo[\\\\\\\"obs/joint_states\\\\\\\"]),\\\\n                    # BugFix C1: include gripper_states to match eval's 8D state\\\\n                    \\\\\\\"ee_states\\\\\\\": np.concatenate([\\\\n                        np.array(demo[\\\\\\\"obs/ee_states\\\\\\\"]),      # (T, 6) eef_pos + axisangle\\\\n                        np.array(demo[\\\\\\\"obs/gripper_states\\\\\\\"]),  # (T, 2) gripper_qpos\\\\n                    ], axis=-1),  # (T, 8)\\\\n                    \\\\\\\"actions\\\\\\\": np.array(demo[\\\\\\\"actions\\\\\\\"]),\\\\n                    \\\\\\\"task_name\\\\\\\": task_name,\\\\n                }\\\\n                trajectories.append(traj)\\\\n\\\\n    return trajectories\\\\n\\\\n\\\\ndef build_training_samples(trajectories: list, h_eff: int = H_EFF,\\\\n                           action_dim: int = CORRECTION_DIM):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Convert trajectories into (timestep, image, state, expert_action_chunk) tuples.\\\\n\\\\n    expert_action is sliced to action_dim (default CORRECTION_DIM=6, pose only).\\\\n\\\\n    Returns:\\\\n        list of dicts with keys:\\\\n            - \\\\\\\"agentview_rgb\\\\\\\": (128, 128, 3) uint8\\\\n            - \\\\\\\"eye_in_hand_rgb\\\\\\\": (128, 128, 3) uint8\\\\n            - \\\\\\\"ee_states\\\\\\\": (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\\\n            - \\\\\\\"expert_action\\\\\\\": (h_eff, action_dim) float\\\\n            - \\\\\\\"task_name\\\\\\\": str\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    samples = []\\\\n    for traj in trajectories:\\\\n        T = traj[\\\\\\\"actions\\\\\\\"].shape[0]\\\\n        for t in range(T - h_eff + 1):\\\\n            samples.append({\\\\n                \\\\\\\"agentview_rgb\\\\\\\": traj[\\\\\\\"agentview_rgb\\\\\\\"][t],\\\\n                \\\\\\\"eye_in_hand_rgb\\\\\\\": traj[\\\\\\\"eye_in_hand_rgb\\\\\\\"][t],\\\\n                \\\\\\\"ee_states\\\\\\\": traj[\\\\\\\"ee_states\\\\\\\"][t],\\\\n                \\\\\\\"expert_action\\\\\\\": traj[\\\\\\\"actions\\\\\\\"][t:t + h_eff, :action_dim].astype(np.float32),\\\\n                \\\\\\\"task_name\\\\\\\": traj[\\\\\\\"task_name\\\\\\\"],\\\\n            })\\\\n    return samples\\\\n\\\\n\\\\ndef synthetic_augmentation(expert_action: torch.Tensor,\\\\n                           noise_scale: torch.Tensor,\\\\n                           perturbation: torch.Tensor | None = None) -> torch.Tensor:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Add known noise to expert actions to simulate OOD conditions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if expert_action.dim() == 2:\\\\n        noise = torch.randn_like(expert_action) * noise_scale.repeat(H_EFF).unsqueeze(0)\\\\n    else:\\\\n        noise = torch.randn_like(expert_action) * noise_scale.unsqueeze(0).unsqueeze(0)\\\\n    noisy = expert_action + noise\\\\n    if perturbation is not None:\\\\n        noisy = noisy + perturbation\\\\n    return noisy\\\\n\\\\n\\\\nclass CheckpointManager:\\\\n    def __init__(self, output_dir: str, max_keep: int = 5):\\\\n        self.output_dir = Path(output_dir)\\\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\\\n        self.max_keep = max_keep\\\\n\\\\n    def save(self, model: torch.nn.Module, optimizer: torch.optim.Optimizer,\\\\n             epoch: int, metrics: dict):\\\\n        path = self.output_dir / f\\\\\\\"checkpoint_epoch{epoch:04d}.pt\\\\\\\"\\\\n        torch.save({\\\\n            \\\\\\\"epoch\\\\\\\": epoch,\\\\n            \\\\\\\"model_state_dict\\\\\\\": model.state_dict(),\\\\n            \\\\\\\"optimizer_state_dict\\\\\\\": optimizer.state_dict(),\\\\n            \\\\\\\"metrics\\\\\\\": metrics,\\\\n        }, path)\\\\n        self._cleanup()\\\\n        return path\\\\n\\\\n    def load_best(self, model: torch.nn.Module, metric_key: str = \\\\\\\"val_loss\\\\\\\",\\\\n                  lower_is_better: bool = True):\\\\n        checkpoints = sorted(self.output_dir.glob(\\\\\\\"checkpoint_*.pt\\\\\\\"))\\\\n        if not checkpoints:\\\\n            raise FileNotFoundError(f\\\\\\\"No checkpoints in {self.output_dir}\\\\\\\")\\\\n\\\\n        best_path = None\\\\n        best_metric = float(\\\\\\\"inf\\\\\\\") if lower_is_better else float(\\\\\\\"-inf\\\\\\\")\\\\n        for cp_path in checkpoints:\\\\n            cp = torch.load(cp_path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n            metric = cp[\\\\\\\"metrics\\\\\\\"].get(metric_key, float(\\\\\\\"inf\\\\\\\"))\\\\n            if (lower_is_better and metric < best_metric) or \\\\\\\\\\\\n               (not lower_is_better and metric > best_metric):\\\\n                best_metric = metric\\\\n                best_path = cp_path\\\\n\\\\n        cp = torch.load(best_path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n        model.load_state_dict(cp[\\\\\\\"model_state_dict\\\\\\\"])\\\\n        return cp\\\\n\\\\n    def _cleanup(self):\\\\n        checkpoints = sorted(self.output_dir.glob(\\\\\\\"checkpoint_*.pt\\\\\\\"))\\\\n        while len(checkpoints) > self.max_keep:\\\\n            checkpoints[0].unlink()\\\\n            checkpoints.pop(0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nACR-VLA utility functions.\\n\\n- LIBERO dataset loading\\n- Synthetic augmentation (known noise injection for OOD simulation)\\n- Evaluation metrics\\n- Checkpoint management\\n\\\"\\\"\\\"\\nimport torch\\nimport numpy as np\\nfrom pathlib import Path\\nimport h5py\\nimport glob\\n\\n\\nCORRECTION_DIM = 6   # 6D pose — CRM corrects only pose, not gripper\\nFULL_ACTION_DIM = 7  # 6D pose + 1D gripper (LIBERO env action space)\\nH_EFF = 5            # effective horizon (truncated from chunk_size=50)\\nCHUNK_SIZE = 50      # SmolVLA native chunk_size\\nOBS_DIM = 960        # VLM hidden_size\\nMAX_STATE_DIM = 32\\nMAX_ACTION_DIM = 32\\n\\nBENCHMARK_MAP = {\\n    \\\"spatial\\\": \\\"libero_spatial\\\",\\n    \\\"object\\\": \\\"libero_object\\\",\\n    \\\"goal\\\": \\\"libero_goal\\\",\\n    \\\"long\\\": \\\"libero_10\\\",\\n    \\\"90\\\": \\\"libero_90\\\",\\n}\\n\\n\\ndef set_seed(seed: int):\\n    torch.manual_seed(seed)\\n    np.random.seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n        torch.backends.cudnn.deterministic = True\\n        torch.backends.cudnn.benchmark = False\\n\\n\\ndef load_libero_demos(benchmark_name: str,\\n                      data_dir: str = \\\"/root/autodl-tmp/libero_data/\\\",\\n                      max_demos_per_task: int = 50):\\n    \\\"\\\"\\\"\\n    Load LIBERO demo trajectories from HDF5 files.\\n\\n    Returns:\\n        list of dicts with keys:\\n            - \\\"agentview_rgb\\\": (T, 128, 128, 3) uint8\\n            - \\\"eye_in_hand_rgb\\\": (T, 128, 128, 3) uint8\\n            - \\\"joint_states\\\": (T, 7) float\\n            - \\\"ee_states\\\": (T, 8) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\n            - \\\"actions\\\": (T, 7) float (6D pose + 1D gripper)\\n            - \\\"task_name\\\": str\\n    \\\"\\\"\\\"\\n    folder = BENCHMARK_MAP.get(benchmark_name, benchmark_name)\\n    data_path = Path(data_dir) / folder\\n    if not data_path.exists():\\n        raise FileNotFoundError(f\\\"LIBERO data not found at {data_path}\\\")\\n\\n    hdf5_files = sorted(data_path.glob(\\\"*.hdf5\\\"))\\n    if not hdf5_files:\\n        raise FileNotFoundError(f\\\"No HDF5 files in {data_path}\\\")\\n\\n    trajectories = []\\n    for hdf5_file in hdf5_files:\\n        task_name = hdf5_file.stem.replace(\\\"_demo\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\")\\n        with h5py.File(hdf5_file, \\\"r\\\") as f:\\n            demo_keys = sorted(\\n                [k for k in f[\\\"data\\\"].keys() if k.startswith(\\\"demo\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[1])\\n            )\\n            for dk in demo_keys[:max_demos_per_task]:\\n                demo = f[f\\\"data/{dk}\\\"]\\n                traj = {\\n                    \\\"agentview_rgb\\\": np.array(demo[\\\"obs/agentview_rgb\\\"]),\\n                    \\\"eye_in_hand_rgb\\\": np.array(demo[\\\"obs/eye_in_hand_rgb\\\"]),\\n                    \\\"joint_states\\\": np.array(demo[\\\"obs/joint_states\\\"]),\\n                    # BugFix C1: include gripper_states to match eval's 8D state\\n                    \\\"ee_states\\\": np.concatenate([\\n                        np.array(demo[\\\"obs/ee_states\\\"]),      # (T, 6) eef_pos + axisangle\\n                        np.array(demo[\\\"obs/gripper_states\\\"]),  # (T, 2) gripper_qpos\\n                    ], axis=-1),  # (T, 8)\\n                    \\\"actions\\\": np.array(demo[\\\"actions\\\"]),\\n                    \\\"task_name\\\": task_name,\\n                }\\n                trajectories.append(traj)\\n\\n    return trajectories\\n\\n\\ndef build_training_samples(trajectories: list, h_eff: int = H_EFF,\\n                           action_dim: int = CORRECTION_DIM):\\n    \\\"\\\"\\\"\\n    Convert trajectories into (timestep, image, state, expert_action_chunk) tuples.\\n\\n    expert_action is sliced to action_dim (default CORRECTION_DIM=6, pose only).\\n\\n    Returns:\\n        list of dicts with keys:\\n            - \\\"agentview_rgb\\\": (128, 128, 3) uint8\\n            - \\\"eye_in_hand_rgb\\\": (128, 128, 3) uint8\\n            - \\\"ee_states\\\": (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\n            - \\\"expert_action\\\": (h_eff, action_dim) float\\n            - \\\"task_name\\\": str\\n    \\\"\\\"\\\"\\n    samples = []\\n    for traj in trajectories:\\n        T = traj[\\\"actions\\\"].shape[0]\\n        for t in range(T - h_eff + 1):\\n            samples.append({\\n                \\\"agentview_rgb\\\": traj[\\\"agentview_rgb\\\"][t],\\n                \\\"eye_in_hand_rgb\\\": traj[\\\"eye_in_hand_rgb\\\"][t],\\n                \\\"ee_states\\\": traj[\\\"ee_states\\\"][t],\\n                \\\"expert_action\\\": traj[\\\"actions\\\"][t:t + h_eff, :action_dim].astype(np.float32),\\n                \\\"task_name\\\": traj[\\\"task_name\\\"],\\n            })\\n    return samples\\n\\n\\ndef synthetic_augmentation(expert_action: torch.Tensor,\\n                           noise_scale: torch.Tensor,\\n                           perturbation: torch.Tensor | None = None) -> torch.Tensor:\\n    \\\"\\\"\\\"Add known noise to expert actions to simulate OOD conditions.\\\"\\\"\\\"\\n    if expert_action.dim() == 2:\\n        noise = torch.randn_like(expert_action) * noise_scale.repeat(H_EFF).unsqueeze(0)\\n    else:\\n        noise = torch.randn_like(expert_action) * noise_scale.unsqueeze(0).unsqueeze(0)\\n    noisy = expert_action + noise\\n    if perturbation is not None:\\n        noisy = noisy + perturbation\\n    return noisy\\n\\n\\nclass CheckpointManager:\\n    def __init__(self, output_dir: str, max_keep: int = 5):\\n        self.output_dir = Path(output_dir)\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\n        self.max_keep = max_keep\\n\\n    def save(self, model: torch.nn.Module, optimizer: torch.optim.Optimizer,\\n             epoch: int, metrics: dict):\\n        path = self.output_dir / f\\\"checkpoint_epoch{epoch:04d}.pt\\\"\\n        torch.save({\\n            \\\"epoch\\\": epoch,\\n            \\\"model_state_dict\\\": model.state_dict(),\\n            \\\"optimizer_state_dict\\\": optimizer.state_dict(),\\n            \\\"metrics\\\": metrics,\\n        }, path)\\n        self._cleanup()\\n        return path\\n\\n    def load_best(self, model: torch.nn.Module, metric_key: str = \\\"val_loss\\\",\\n                  lower_is_better: bool = True):\\n        checkpoints = sorted(self.output_dir.glob(\\\"checkpoint_*.pt\\\"))\\n        if not checkpoints:\\n            raise FileNotFoundError(f\\\"No checkpoints in {self.output_dir}\\\")\\n\\n        best_path = None\\n        best_metric = float(\\\"inf\\\") if lower_is_better else float(\\\"-inf\\\")\\n        for cp_path in checkpoints:\\n            cp = torch.load(cp_path, map_location=\\\"cpu\\\", weights_only=False)\\n            metric = cp[\\\"metrics\\\"].get(metric_key, float(\\\"inf\\\"))\\n            if (lower_is_better and metric < best_metric) or \\\\\\n               (not lower_is_better and metric > best_metric):\\n                best_metric = metric\\n                best_path = cp_path\\n\\n        cp = torch.load(best_path, map_location=\\\"cpu\\\", weights_only=False)\\n        model.load_state_dict(cp[\\\"model_state_dict\\\"])\\n        return cp\\n\\n    def _cleanup(self):\\n        checkpoints = sorted(self.output_dir.glob(\\\"checkpoint_*.pt\\\"))\\n        while len(checkpoints) > self.max_keep:\\n            checkpoints[0].unlink()\\n            checkpoints.pop(0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T16:22:19.637Z_
+
+<details><summary>↩ Tool result · `toolu_019TCVYsevAHvNWyS6yD8MMN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/crm_cache/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "cc9e1b2c-b4cd-4cfc-bbea-ae6a01f078bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/crm_cache/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/crm_cache/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so:
+- The crm_cache doesn't exist on this server (bjb2-28827). The task mentions bjb2-40593 as the project server but wants me to work on bjb2-28827. The K=10 cache might be on a different server.
+- utils.py has OBS_DIM = 960, FULL_ACTION_DIM = 7, CORRECTION_DIM = 6, H_EFF = 5, CHUNK_SIZE = 50
+- SmolVLA wrapper has `get_obs_features_and_samples` returning obs_feat (1, 960) and samples (1, K, chunk_size, FULL_ACTION_DIM)
+
+
+- The wrapper generates samples with shape (B, K, 50, 7), but the precomputed k_samples.pt file is already truncated to (2402, 10, 5, 6) — meaning it's been reduced to H_EFF=5 and CORRECTION_DIM=6 instead of the full chunk_size and action dimensions.
+
+Now I'm designing the three files, starting with the UncertaintyHead module. I need a 3-layer MLP that stays within the 10K-30K parameter budget, so I'm calculating dimensions like 960→16→16→1 which gives roughly 15,665 parameters including biases — that fits the constraint.
+
+Writing the implementation files...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "37d6643c-dba7-483f-9d00-08253d1534d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hu2VPLkNCDVCYXjuveNQop",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3522,
+      "cache_read_input_tokens": 29702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+了解了项目结构。现在创建 3 个文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "cda00131-801f-493b-a2bf-be0050537ea3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hu2VPLkNCDVCYXjuveNQop",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3522,
+      "cache_read_input_tokens": 29702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013GuQqsLWVeQA2R9ZTQLwVd`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat > /root/acr-vla-conformal-refinement/src/uncertainty_head.py << 'PYEOF'\n\"\"\"\nUncertaintyHead: lightweight MLP predicting per-step uncertainty from VLA obs_features.\n\nInput: 960D obs_features (mean-pooled VLM hidden states from SmolVLA)\nOutput: scalar uncertainty score in [0, 1]\nArchitecture: 3-layer MLP (960 → 16 → 16 → 1), ~15.7K params\n\"\"\"\nimport json\nfrom pathlib import Path\n\nimport torch\nimport torch.nn as nn\n\n\nclass UncertaintyHead(nn.Module):\n\n    def __init__(self, input_dim=960, hidden_dim=16, num_layers=3):\n        super().__init__()\n        layers = []\n        in_d = input_dim\n        for _ in range(num_layers - 1):\n            layers.append(nn.Linear(in_d, hidden_dim))\n            layers.append(nn.ReLU())\n            in_d = hidden_dim\n        layers.append(nn.Linear(in_d, 1))\n        layers.append(nn.Sigmoid())\n        self.net = nn.Sequential(*layers)\n\n    def forward(self, obs_features):\n        return self.net(obs_features)\n\n    def count_parameters(self):\n        return sum(p.numel() for p in self.parameters())\n\n    def save(self, path):\n        path = Path(path)\n        path.parent.mkdir(parents=True, exist_ok=True)\n        torch.save(self.state_dict(), path)\n\n    @classmethod\n    def load(cls, path, input_dim=960, hidden_dim=16, num_layers=3, device=\"cpu\"):\n        model = cls(input_dim=input_dim, hidden_dim=hidden_dim, num_layers=num_layers)\n        model.load_state_dict(torch.load(path, map_location=device, weights_only=True))\n        model.to(device)\n        model.eval()\n        return model\n\n\nif __name__ == \"__main__\":\n    model = UncertaintyHead()\n    print(f\"UncertaintyHead: {model.count_parameters()} params\")\n    print(model)\n    x = torch.randn(4, 960)\n    y = model(x)\n    print(f\"Input: {x.shape} -> Output: {y.shape}, range: [{y.min().item():.4f}, {y.max().item():.4f}]\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "3f9af417-e44b-47cc-ae5e-40a1ff177a93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hu2VPLkNCDVCYXjuveNQop",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3522,
+      "cache_read_input_tokens": 29702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T16:22:49.409Z_
+
+<details><summary>↩ Tool result · `toolu_013GuQqsLWVeQA2R9ZTQLwVd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "79ebb340-0a62-4f10-a3e9-c8a09db34b0f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018NiwDowDS8eiVbzKjDsRG4`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat > /root/acr-vla-conformal-refinement/src/precompute_uncertainty_labels.py << 'PYEOF'\n\"\"\"\nPrecompute (obs_features, action_variance) pairs for UncertaintyHead training.\n\nMode A (--mode cache): extract from existing K=10 precomputed cache\n  Reads obs_features.pt and k_samples.pt directly.\n\nMode B (--mode sample): run SmolVLA inference to generate K samples per timestep\n  Loads LIBERO demos, runs SmolVLA encode_prefix + K-sample generation.\n\nOutput: single .pt file with {obs_features, action_variance, task_names}\n\"\"\"\nimport argparse\nimport sys\nfrom pathlib import Path\n\nimport torch\nimport numpy as np\nfrom tqdm import tqdm\n\nsys.path.insert(0, str(Path(__file__).resolve().parent))\nfrom utils import (\n    load_libero_demos, OBS_DIM, FULL_ACTION_DIM, CORRECTION_DIM, H_EFF,\n)\n\n\ndef compute_variance_from_samples(samples):\n    \"\"\"Compute per-timestep action variance from K samples.\n\n    Args:\n        samples: (N, K, H, D) action samples\n    Returns:\n        variance: (N,) scalar variance per timestep\n    \"\"\"\n    N, K = samples.shape[:2]\n    flat = samples.reshape(N, K, -1)  # (N, K, H*D)\n    return flat.std(dim=1).mean(dim=1)  # (N,)\n\n\ndef mode_cache(args):\n    cache_dir = Path(args.cache_dir)\n    obs_feat = torch.load(cache_dir / \"obs_features.pt\", map_location=\"cpu\", weights_only=True)\n    k_samples = torch.load(cache_dir / \"k_samples.pt\", map_location=\"cpu\", weights_only=True)\n    print(f\"Loaded cache: obs_features {obs_feat.shape}, k_samples {k_samples.shape}\")\n\n    variance = compute_variance_from_samples(k_samples)\n\n    task_names_path = cache_dir / \"task_names.pt\"\n    if task_names_path.exists():\n        task_names = torch.load(task_names_path, map_location=\"cpu\", weights_only=False)\n    else:\n        task_names = [\"unknown\"] * obs_feat.shape[0]\n        print(\"Warning: task_names.pt not found, using 'unknown'\")\n\n    return obs_feat, variance, task_names\n\n\ndef mode_sample(args):\n    from smolvla_wrapper import SmolVLAWrapper\n\n    device = args.device\n    K = args.K\n\n    print(f\"Loading SmolVLA from {args.smolvla_path}...\")\n    vla = SmolVLAWrapper(pretrained_path=args.smolvla_path, device=device)\n\n    print(f\"Loading demos for benchmark={args.benchmark}...\")\n    trajectories = load_libero_demos(args.benchmark, data_dir=args.data_dir)\n    print(f\"Loaded {len(trajectories)} trajectories\")\n\n    all_obs_features = []\n    all_variances = []\n    all_task_names = []\n\n    for traj_idx, traj in enumerate(tqdm(trajectories, desc=\"Trajectories\")):\n        T = traj[\"agentview_rgb\"].shape[0]\n        task_name = traj[\"task_name\"]\n\n        for t in range(T):\n            obs_feat, samples = vla.get_obs_features_and_samples(\n                agentview_rgb=traj[\"agentview_rgb\"][t],\n                task_name=task_name,\n                robot_state=traj[\"ee_states\"][t],\n                eye_in_hand_rgb=traj[\"eye_in_hand_rgb\"][t],\n                K=K,\n            )\n            # obs_feat: (1, OBS_DIM), samples: (1, K, CHUNK_SIZE, FULL_ACTION_DIM)\n            # Truncate to H_EFF and CORRECTION_DIM\n            samples_trunc = samples[:, :, :H_EFF, :CORRECTION_DIM]  # (1, K, 5, 6)\n\n            var = compute_variance_from_samples(samples_trunc)  # (1,)\n            all_obs_features.append(obs_feat.cpu())\n            all_variances.append(var.cpu())\n            all_task_names.append(task_name)\n\n    obs_features = torch.cat(all_obs_features, dim=0)  # (N, 960)\n    variances = torch.cat(all_variances, dim=0)  # (N,)\n    return obs_features, variances, all_task_names\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Precompute uncertainty labels\")\n    parser.add_argument(\"--benchmark\", type=str, required=True,\n                        choices=[\"spatial\", \"object\", \"goal\", \"long\", \"90\"])\n    parser.add_argument(\"--mode\", type=str, required=True, choices=[\"cache\", \"sample\"])\n    parser.add_argument(\"--cache_dir\", type=str, default=\"/root/autodl-tmp/crm_cache/spatial/\")\n    parser.add_argument(\"--output_file\", type=str, required=True)\n    parser.add_argument(\"--smolvla_path\", type=str,\n                        default=\"/root/autodl-tmp/models/smolvla_libero/\")\n    parser.add_argument(\"--data_dir\", type=str, default=\"/root/autodl-tmp/libero_data/\")\n    parser.add_argument(\"--K\", type=int, default=10)\n    parser.add_argument(\"--device\", type=str, default=\"cuda:0\")\n    args = parser.parse_args()\n\n    if args.mode == \"cache\":\n        obs_features, variance, task_names = mode_cache(args)\n    else:\n        obs_features, variance, task_names = mode_sample(args)\n\n    output_path = Path(args.output_file)\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    torch.save({\n        \"obs_features\": obs_features,\n        \"action_variance\": variance,\n        \"task_names\": task_names,\n    }, output_path)\n    print(f\"Saved {obs_features.shape[0]} samples to {output_path}\")\n    print(f\"  obs_features: {obs_features.shape}\")\n    print(f\"  action_variance: {variance.shape}, \"\n          f\"range=[{variance.min():.4f}, {variance.max():.4f}], \"\n          f\"mean={variance.mean():.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "cb05eda1-bf20-46bb-a7ba-94b53a499099",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014gpBTQYRyMsum3ipNVwJ4t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1792,
+      "cache_read_input_tokens": 33224,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1792
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T16:23:15.052Z_
+
+<details><summary>↩ Tool result · `toolu_018NiwDowDS8eiVbzKjDsRG4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "32e88935-398e-427b-ad9d-24ffd4955620",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TtZtNtExWN1hvtgiV4Rcit`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat > /root/acr-vla-conformal-refinement/src/train_uncertainty_head.py << 'PYEOF'\n\"\"\"\nTrain UncertaintyHead on precomputed (obs_features, action_variance) data.\n\nPipeline:\n  1. Load precomputed data\n  2. Binarize labels (variance > median → 1) or use raw variance as regression target\n  3. 80/20 train/val split\n  4. Train with BCE (binary) or MSE (regression)\n  5. Calibrate threshold tau on val set\n  6. Save model + threshold\n\"\"\"\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\n\nimport torch\nimport torch.nn as nn\nfrom torch.utils.data import DataLoader, TensorDataset\n\nsys.path.insert(0, str(Path(__file__).resolve().parent))\nfrom uncertainty_head import UncertaintyHead\n\n\ndef load_data(data_file, binary=True, val_ratio=0.2):\n    data = torch.load(data_file, map_location=\"cpu\", weights_only=False)\n    obs = data[\"obs_features\"]  # (N, 960)\n    var = data[\"action_variance\"]  # (N,)\n\n    if binary:\n        median = var.median()\n        labels = (var > median).float()\n        print(f\"Binary labels: median={median:.4f}, \"\n              f\"pos={labels.sum().long()}/{len(labels)}\")\n    else:\n        vmin, vmax = var.min(), var.max()\n        labels = (var - vmin) / (vmax - vmin + 1e-8)\n        print(f\"Regression labels: range=[{vmin:.4f}, {vmax:.4f}] -> [0,1]\")\n\n    N = obs.shape[0]\n    perm = torch.randperm(N)\n    split = int(N * (1 - val_ratio))\n    train_idx, val_idx = perm[:split], perm[split:]\n\n    train_ds = TensorDataset(obs[train_idx], labels[train_idx])\n    val_ds = TensorDataset(obs[val_idx], labels[val_idx])\n    return train_ds, val_ds, var\n\n\ndef calibrate_threshold(model, val_loader, device):\n    \"\"\"Find optimal threshold tau on val set maximizing F1 score.\"\"\"\n    model.eval()\n    all_preds, all_labels = [], []\n    with torch.no_grad():\n        for obs, labels in val_loader:\n            preds = model(obs.to(device)).squeeze(-1)\n            all_preds.append(preds.cpu())\n            all_labels.append(labels)\n    preds = torch.cat(all_preds)\n    labels = torch.cat(all_labels)\n\n    best_tau, best_f1 = 0.5, 0.0\n    for tau in torch.linspace(0.1, 0.9, 81):\n        tau_val = tau.item()\n        pred_pos = (preds > tau_val).float()\n        tp = ((pred_pos == 1) & (labels == 1)).sum().float()\n        fp = ((pred_pos == 1) & (labels == 0)).sum().float()\n        fn = ((pred_pos == 0) & (labels == 1)).sum().float()\n        precision = tp / (tp + fp + 1e-8)\n        recall = tp / (tp + fn + 1e-8)\n        f1 = 2 * precision * recall / (precision + recall + 1e-8)\n        if f1.item() > best_f1:\n            best_f1 = f1.item()\n            best_tau = tau_val\n            best_prec = precision.item()\n            best_rec = recall.item()\n\n    return best_tau, {\n        \"f1\": best_f1,\n        \"precision\": best_prec,\n        \"recall\": best_rec,\n    }\n\n\ndef evaluate(model, val_loader, criterion, device):\n    model.eval()\n    total_loss, n = 0.0, 0\n    with torch.no_grad():\n        for obs, labels in val_loader:\n            obs, labels = obs.to(device), labels.to(device)\n            preds = model(obs).squeeze(-1)\n            total_loss += criterion(preds, labels).item() * obs.shape[0]\n            n += obs.shape[0]\n    return total_loss / n\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Train UncertaintyHead\")\n    parser.add_argument(\"--data_file\", type=str, required=True)\n    parser.add_argument(\"--output_dir\", type=str, required=True)\n    parser.add_argument(\"--hidden_dim\", type=int, default=16)\n    parser.add_argument(\"--num_layers\", type=int, default=3)\n    parser.add_argument(\"--lr\", type=float, default=1e-3)\n    parser.add_argument(\"--epochs\", type=int, default=100)\n    parser.add_argument(\"--batch_size\", type=int, default=256)\n    parser.add_argument(\"--binary\", action=\"store_true\", default=True)\n    parser.add_argument(\"--regression\", dest=\"binary\", action=\"store_false\")\n    parser.add_argument(\"--val_ratio\", type=float, default=0.2)\n    parser.add_argument(\"--patience\", type=int, default=15)\n    parser.add_argument(\"--device\", type=str, default=\"cuda:0\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    args = parser.parse_args()\n\n    torch.manual_seed(args.seed)\n    device = torch.device(args.device if torch.cuda.is_available() else \"cpu\")\n\n    train_ds, val_ds, raw_var = load_data(\n        args.data_file, binary=args.binary, val_ratio=args.val_ratio\n    )\n    train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True)\n    val_loader = DataLoader(val_ds, batch_size=args.batch_size)\n\n    model = UncertaintyHead(\n        input_dim=960, hidden_dim=args.hidden_dim, num_layers=args.num_layers\n    ).to(device)\n    print(f\"Model: {model.count_parameters()} params\")\n\n    criterion = nn.BCELoss() if args.binary else nn.MSELoss()\n    optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n    best_val_loss = float(\"inf\")\n    patience_counter = 0\n\n    for epoch in range(1, args.epochs + 1):\n        model.train()\n        train_loss, n = 0.0, 0\n        for obs, labels in train_loader:\n            obs, labels = obs.to(device), labels.to(device)\n            preds = model(obs).squeeze(-1)\n            loss = criterion(preds, labels)\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n            train_loss += loss.item() * obs.shape[0]\n            n += obs.shape[0]\n        train_loss /= n\n\n        val_loss = evaluate(model, val_loader, criterion, device)\n\n        if epoch % 10 == 0 or epoch == 1:\n            print(f\"Epoch {epoch:3d}: train_loss={train_loss:.4f}, val_loss={val_loss:.4f}\")\n\n        if val_loss < best_val_loss:\n            best_val_loss = val_loss\n            patience_counter = 0\n            model.save(output_dir / \"uncertainty_head_best.pt\")\n        else:\n            patience_counter += 1\n            if patience_counter >= args.patience:\n                print(f\"Early stopping at epoch {epoch}\")\n                break\n\n    # Reload best model for threshold calibration\n    model = UncertaintyHead.load(\n        output_dir / \"uncertainty_head_best.pt\",\n        hidden_dim=args.hidden_dim, num_layers=args.num_layers, device=str(device),\n    )\n\n    if args.binary:\n        tau, val_metrics = calibrate_threshold(model, val_loader, device)\n    else:\n        tau = 0.5\n        val_metrics = {\"note\": \"regression mode, default tau=0.5\"}\n\n    val_metrics[\"best_val_loss\"] = best_val_loss\n\n    threshold_path = output_dir / \"threshold.json\"\n    with open(threshold_path, \"w\") as f:\n        json.dump({\"tau\": tau, \"val_metrics\": val_metrics}, f, indent=2)\n\n    print(f\"\\nDone. Saved to {output_dir}/\")\n    print(f\"  uncertainty_head_best.pt\")\n    print(f\"  threshold.json: tau={tau:.4f}, metrics={val_metrics}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "f25bf9f9-137f-4766-b3be-ddaa934b1348",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RaURP2Lkr2BxLq8ceVUJeb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1869,
+      "cache_read_input_tokens": 35016,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1869
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T16:23:44.043Z_
+
+<details><summary>↩ Tool result · `toolu_01TtZtNtExWN1hvtgiV4Rcit`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "b89d3b2c-2335-4e28-a3e9-c66b64e46999",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+3 个文件已创建，验证模型。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "a8868588-4ce5-4613-b905-d88b3a16cc25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Se4qNrGT3DaCnni5dnfxuC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2459,
+      "cache_read_input_tokens": 36885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2459
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GGDvsCDUWKwLR1r1iM4WTN`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cd /root/acr-vla-conformal-refinement && python src/uncertainty_head.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "a73d9cd1-25a2-47ae-add6-5ac508a979b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Se4qNrGT3DaCnni5dnfxuC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2459,
+      "cache_read_input_tokens": 36885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2459
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T16:23:48.192Z_
+
+<details><summary>↩ Tool result · `toolu_01GGDvsCDUWKwLR1r1iM4WTN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/acr-vla-conformal-refinement && python src/uncertainty_head.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "225d5255-7c0a-431b-a2f9-07e9ccd87bca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/acr-vla-conformal-refinement && python src/uncertainty_head.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/acr-vla-conformal-refinement && python src/uncertainty_head.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H7Hwz941qL46or1pRPTEW9`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "which python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "eadf8050-4d91-4a88-aee4-d3d6dde3072f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012E8Rq9ufhLBqkXdRqR4qKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 278,
+      "cache_read_input_tokens": 39344,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 278
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T16:23:51.710Z_
+
+<details><summary>↩ Tool result · `toolu_01H7Hwz941qL46or1pRPTEW9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "7a920e93-08e1-4b9b-afa9-7421724ce4e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ToQVv1vYiShbwBsqUPDQPf`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ls /root/miniconda3/bin/python*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "9d344971-5b18-4023-95e6-5d8f616a2310",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ufe4is1XmNHvQCoKXXqmY8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 197,
+      "cache_read_input_tokens": 39622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 197
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T16:23:55.439Z_
+
+<details><summary>↩ Tool result · `toolu_01ToQVv1vYiShbwBsqUPDQPf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "d204e00c-f2d2-4b38-9795-92ffa4b9ef1a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/bin/python3-config\\\\n/root/miniconda3/bin/python3.1\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01R7zWcSz1qXA4rWk1oLHMMm`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cd /root/acr-vla-conformal-refinement && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/uncertainty_head.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "12e39b97-e288-4308-9bba-416f509669f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gpC1hkjmkdCG4ThsoPg8E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 281,
+      "cache_read_input_tokens": 39819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 281
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T16:24:00.601Z_
+
+<details><summary>↩ Tool result · `toolu_01R7zWcSz1qXA4rWk1oLHMMm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"UncertaintyHead: 15665 params\\nUncertaintyHead(\\n  (net): Sequential(\\n    (0): Linear(in_features=960, out_features=16, bias=True)\\n    (1): ReLU()\\n    (2): Linear(in_features=16, out_features=16, bias=True)\\n    (3): ReLU()\\n    (4): Linear(in_features=16, out_features=1, bias=True)\\n    (5): Sigmoid()\\n  )\\n)\\nInput: torch.Size([4, 960]) -> Output: torch.Size([4, 1]), range: [0.5159, 0.5852]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "9499775e-8696-4a07-a24a-cdd605cc707f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"UncertaintyHead: 15665 params\\\\nUncertaintyHead(\\\\n  (net): Sequential(\\\\n    (0): Linear(in_features=960, out_features=16, bias=True)\\\\n    (1): ReLU()\\\\n    (2): Linear(in_features=16, out_features=16, bias=True)\\\\n    (3): ReLU()\\\\n    (4): Linear(in_features=16, out_features=1, bias=True)\\\\n    (5): Sigmoid()\\\\n  )\\\\n)\\\\nInput: torch.Size([4, 960]) -> Output: torch.Size([4, 1]), range: [0.5159, 0.5852]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"UncertaintyHead: 15665 params\\nUncertaintyHead(\\n  (net): Sequential(\\n    (0): Linear(in_features=960, out_features=16, bias=True)\\n    (1): ReLU()\\n    (2): Linear(in_features=16, out_features=16, bias=True)\\n    (3): ReLU()\\n    (4): Linear(in_features=16, out_features=1, bias=True)\\n    (5): Sigmoid()\\n  )\\n)\\nInput: torch.Size([4, 960]) -> Output: torch.Size([4, 1]), range: [0.5159, 0.5852]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+验证通过。
+
+- **`uncertainty_head.py`**: 3层 MLP (960→16→16→1), 15,665 参数, Sigmoid 输出 [0,1]
+- **`precompute_uncertainty_labels.py`**: 支持 `--mode cache`（从已有 K=10 cache 提取）和 `--mode sample`（SmolVLA 重新采样），输出 `{obs_features, action_variance, task_names}` 的 `.pt` 文件
+- **`train_uncertainty_head.py`**: BCE binary classification（默认）或 MSE regression, Adam lr=1e-3, early stopping, val set 上 F1 最优阈值 τ 校准, 输出 `uncertainty_head_best.pt` + `threshold.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "uuid": "1e7c784c-f6dd-45a5-a35f-c8f062cc7688",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016FWfMjgyMesaE543fJr7Ke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 396,
+      "cache_read_input_tokens": 40100,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 396
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 40_
+
+验证通过。
+
+- **`uncertainty_head.py`**: 3层 MLP (960→16→16→1), 15,665 参数, Sigmoid 输出 [0,1]
+- **`precompute_uncertainty_labels.py`**: 支持 `--mode cache`（从已有 K=10 cache 提取）和 `--mode sample`（SmolVLA 重新采样），输出 `{obs_features, action_variance, task_names}` 的 `.pt` 文件
+- **`train_uncertainty_head.py`**: BCE binary classification（默认）或 MSE regression, Adam lr=1e-3, early stopping, val set 上 F1 最优阈值 τ 校准, 输出 `uncertainty_head_best.pt` + `threshold.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 126968,
+  "duration_api_ms": 123326,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "8b05d38f-9861-401e-97ed-01c99c9360ed",
+  "total_cost_usd": 0.5485312499999999,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 28655,
+    "cache_read_input_tokens": 355987,
+    "output_tokens": 7548,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28655,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 212,
+        "cache_read_input_tokens": 40100,
+        "cache_creation_input_tokens": 396,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 396
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2594,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002674,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 7548,
+      "cacheReadInputTokens": 355987,
+      "cacheCreationInputTokens": 28655,
+      "webSearchRequests": 0,
+      "costUSD": 0.5458572500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0a630f1a-5728-4ddc-ad5a-59b82f7ca07e"
+}
+```
+
+</details>
+
+---

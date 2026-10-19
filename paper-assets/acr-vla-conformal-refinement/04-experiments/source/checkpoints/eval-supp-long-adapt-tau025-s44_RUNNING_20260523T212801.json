@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval-supp-long-adapt-tau025-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:44:32.204Z",
+    "updated_at": "2026-05-23T21:27:59.661Z",
+    "hypothesis": "Adaptive CRM tau=0.25 on Long suite seed44. Third seed for Long Adaptive 3-seed validation. Long VLA-only s42=58.0%.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark long --mode adaptive_conformal_crm --seed 44 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt",
+      "server": "cqa1-32758",
+      "gpu": 1,
+      "pid": 291315,
+      "tmux_session": "eval-supp-long-adapt-tau025-s44",
+      "seed": 44,
+      "model_name": "smolvla+crm_unified_4suite_r4",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt",
+      "eval_data": "LIBERO long suite",
+      "data_path": "LIBERO long suite (10 tasks)",
+      "data_count": 200
+    },
+    "metrics": {
+      "SR": 0.56,
+      "trigger_rate": 0.049
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-23T21:28:01.095363+00:00",
+  "trigger": "update_registry"
+}

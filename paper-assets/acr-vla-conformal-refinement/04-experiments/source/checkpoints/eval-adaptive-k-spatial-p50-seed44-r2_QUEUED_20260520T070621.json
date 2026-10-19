@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p50-seed44-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:42:09.659Z",
+    "updated_at": "2026-05-20T07:06:21.303Z",
+    "hypothesis": "K=2 L2 divergence-based adaptive K allocation (P50 threshold τ=0.074855) transfers from Object to Spatial benchmark, achieving comparable SR to fixed K=10 with ~62% compute savings. Cross-benchmark validation of adaptive K as core method.",
+    "parent": "eval-adaptive-k-spatial-p50-seed44",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_k --threshold 0.074855 --benchmark spatial --seed 44 --K 10 --max_correction_norm 0.2\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "240379",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed44-r2.log",
+      "submitted_at": "2026-05-20T06:42:43.134Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T07:06:21.994653+00:00",
+  "trigger": "update_registry"
+}

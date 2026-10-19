@@ -1,0 +1,15 @@
+{
+  "exp_id": "train-crm-pi05-goal-k1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:38:31.640Z",
+    "updated_at": "2026-05-24T08:39:17.523Z",
+    "hypothesis": "π0.5 CRM K=1 MultiScaleCRM training on LIBERO-Goal precomputed cache validates cross-model generalization of conformal refinement approach with obs_dim=2048."
+  },
+  "timestamp": "2026-05-24T08:39:19.825107+00:00",
+  "trigger": "update_registry"
+}

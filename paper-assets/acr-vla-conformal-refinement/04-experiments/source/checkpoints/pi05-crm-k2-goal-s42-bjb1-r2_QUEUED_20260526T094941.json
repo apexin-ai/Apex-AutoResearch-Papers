@@ -1,0 +1,29 @@
+{
+  "exp_id": "pi05-crm-k2-goal-s42-bjb1-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:44:25.673Z",
+    "updated_at": "2026-05-26T09:49:39.570Z",
+    "hypothesis": "π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Goal s42. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.",
+    "parent": "pi05-crm-k2-goal-s42-bjb1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_crm_k2_pi05_seed42.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "690800",
+      "log_path": "~/runs/acr-vla-conformal-refinement/pi05-crm-k2-goal-s42-bjb1-r2.log",
+      "submitted_at": "2026-05-26T09:46:02.459Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-26T09:49:41.257850+00:00",
+  "trigger": "update_registry"
+}

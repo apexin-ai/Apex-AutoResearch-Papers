@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-supp-goal-vla-only-s47-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:15:59.536Z",
+    "updated_at": "2026-05-24T09:16:39.611Z",
+    "hypothesis": "Goal s47 VLA-only (K=1) baseline, re-run after previous kill for π0.5 CRM training priority. Fills Goal s47 seed extension.",
+    "parent": "eval-supp-goal-vla-only-s47"
+  },
+  "timestamp": "2026-05-24T09:16:42.344417+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-adaptive-k1-spatial-tau025-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T15:11:16.467Z",
+    "updated_at": "2026-05-24T18:12:36.717Z",
+    "hypothesis": "Adaptive CRM with K=1 (pure CRM correction when gating triggers, no conformal selection) on Spatial τ=0.25. K=1 removes the multi-sample selection benefit, isolating the CRM correction quality. Expected SR lower than K=2 if conformal selection adds value.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.25 --benchmark spatial --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 1 2>&1 | tee logs/eval-adaptive-k1-spatial-s42.log\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "488687",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-adaptive-k1-spatial-tau025-s42.log",
+      "submitted_at": "2026-05-24T15:12:15.838Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T18:12:38.083939+00:00",
+  "trigger": "update_registry"
+}

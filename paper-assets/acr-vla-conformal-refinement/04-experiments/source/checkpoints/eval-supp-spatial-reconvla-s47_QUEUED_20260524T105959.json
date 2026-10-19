@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-spatial-reconvla-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T10:58:57.165Z",
+    "updated_at": "2026-05-24T10:59:57.887Z",
+    "hypothesis": "ReconVLA reconstruction-based baseline on LIBERO-Spatial at seed 47 for seed-extension coverage of the reconvla baseline."
+  },
+  "timestamp": "2026-05-24T10:59:59.188792+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1815 @@
+# analyze pi05 adaptive goal s44 bjb1 20260526T140311 retry2
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_analyze_pi05-adaptive-goal-s44-bjb1_20260526T140311_retry2.log`
+- **Structured JSON:** [`375c3bc456bb456f8084.json`](../../sessions/37/375c3bc456bb456f8084.json)
+
+## Before a recorded user message
+
+35 recorded events
+
+### System
+
+_source line 1_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ac596e2c-bccd-4da3-a641-7e89fac67502",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1780063200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.94,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "0f27430c-b08b-448d-b1f3-8f1a291b6867",
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+我来分析这个实验的结果。先读取日志和JSON输出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "ff9162b4-3e74-4d6a-a6e5-c810dca93c20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dx4wKz1z24spF1c9CE5nYc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11885,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11885
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VhP1zAcivNTKjGrTQzPBjw`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "d300fafb-f2c5-4bc7-81f8-3b814dc2aef7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dx4wKz1z24spF1c9CE5nYc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11885,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11885
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-26T14:04:52.002Z_
+
+<details><summary>↩ Tool result · `toolu_01VhP1zAcivNTKjGrTQzPBjw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "0258f042-dcbe-4110-bd7f-0ef7c8dd2712",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the log file and find the JSON output files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "ad4780ec-3f7b-4ee3-8da9-2c065d2814f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Q7gEG3snWC77u3YL19Tdi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 23726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 942
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YGQgZhwf324A1DjcKD932X`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -100 ~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "26be8588-a09c-4d42-b856-faa6d1602cd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Q7gEG3snWC77u3YL19Tdi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 23726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 942
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-26T14:05:01.369Z_
+
+<details><summary>↩ Tool result · `toolu_01YGQgZhwf324A1DjcKD932X`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Error reading SSH protocol banner\", \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "0684932e-8a18-4854-9e40-7e5131be7d10",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Error reading SSH protocol banner\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Error reading SSH protocol banner\", \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Diho9LtrDKxZgbhcXbKqfn`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/acr-vla-conformal-refinement/logs/ -name \"*goal*adaptive*\" -o -name \"*adaptive*goal*\" -o -name \"*pi05*adaptive*s44*\" -o -name \"*s44*adaptive*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "11c94aa8-245c-4d0e-a814-867293445c84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Q7gEG3snWC77u3YL19Tdi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 23726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 942
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T14:05:02.681Z_
+
+<details><summary>↩ Tool result · `toolu_01Diho9LtrDKxZgbhcXbKqfn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Error reading SSH protocol banner\", \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "b7472d4c-9178-4dcb-9154-0abbe73e12f8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Error reading SSH protocol banner\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Error reading SSH protocol banner\", \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+SSH connection failed. Let me retry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "940cb672-7a00-441f-9d09-313b1fe00800",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T8oBrcs6JKCfcNRdQKGFyF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24668,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+SSH连接失败，重试一次。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "bb8350c8-e42a-4c8c-b6b6-6400ec4fd878",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T8oBrcs6JKCfcNRdQKGFyF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24668,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VxaFFhCzDXbXfRXxxoxq4a`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -100 ~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "25630c5b-650c-47e5-a95d-45cc24ba3f3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T8oBrcs6JKCfcNRdQKGFyF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24668,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-26T14:05:06.447Z_
+
+<details><summary>↩ Tool result · `toolu_01VxaFFhCzDXbXfRXxxoxq4a`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Error reading SSH protocol banner\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "3bcac502-2779-4831-aacd-c50b4d3c6928",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Error reading SSH protocol banner\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Error reading SSH protocol banner\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+SSH is consistently failing with "Error reading SSH protocol banner". This could be a transient network issue or the server might be down/restarted. Let me try once more and if it fails, I should let the user know.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "ad678642-6693-457f-91dc-2162df62e044",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EBkdwNyZLCTU5UWfF6wPiU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 228,
+      "cache_read_input_tokens": 25157,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 228
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+SSH连接持续报 "Error reading SSH protocol banner"。再试一次。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "060463f4-ab7d-4b92-b13a-34a93d45dcec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EBkdwNyZLCTU5UWfF6wPiU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 228,
+      "cache_read_input_tokens": 25157,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 228
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hnr4x4BbWy4g9JEDfyUT2T`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -100 ~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "40ea29a5-f827-4402-bba7-ad21becced61",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EBkdwNyZLCTU5UWfF6wPiU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 228,
+      "cache_read_input_tokens": 25157,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 228
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-26T14:05:10.930Z_
+
+<details><summary>↩ Tool result · `toolu_01Hnr4x4BbWy4g9JEDfyUT2T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_pi05_K2_norm0.2_tau0.25_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\n[eval] Loading LIBERO goal environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  open_the_middle_drawer_of_the_cabinet: rollout 5/20, success so far: 3/5\\n  open_the_middle_drawer_of_the_cabinet: rollout 10/20, success so far: 7/10\\n  open_the_middle_drawer_of_the_cabinet: rollout 15/20, success so far: 12/15\\n  open_the_middle_drawer_of_the_cabinet: rollout 20/20, success so far: 17/20\\n[open_the_middle_drawer_of_the_cabinet] success rate: 85.0% (17/20)\\n  put_the_bowl_on_the_stove: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_the_stove: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_the_stove: rollout 15/20, success so far: 15/15\\n  put_the_bowl_on_the_stove: rollout 20/20, success so far: 20/20\\n[put_the_bowl_on_the_stove] success rate: 100.0% (20/20)\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 5/20, success so far: 3/5\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 10/20, success so far: 6/10\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 15/20, success so far: 10/15\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 20/20, success so far: 12/20\\n[put_the_wine_bottle_on_top_of_the_cabinet] success rate: 60.0% (12/20)\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 5/20, success so far: 2/5\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 10/20, success so far: 7/10\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 15/20, success so far: 11/15\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 20/20, success so far: 13/20\\n[open_the_top_drawer_and_put_the_bowl_inside] success rate: 65.0% (13/20)\\n  put_the_bowl_on_top_of_the_cabinet: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_top_of_the_cabinet: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_top_of_the_cabinet: rollout 15/20, success so far: 15/15\\n  put_the_bowl_on_top_of_the_cabinet: rollout 20/20, success so far: 20/20\\n[put_the_bowl_on_top_of_the_cabinet] success rate: 100.0% (20/20)\\n  push_the_plate_to_the_front_of_the_stove: rollout 5/20, success so far: 3/5\\n  push_the_plate_to_the_front_of_the_stove: rollout 10/20, success so far: 8/10\\n  push_the_plate_to_the_front_of_the_stove: rollout 15/20, success so far: 13/15\\n  push_the_plate_to_the_front_of_the_stove: rollout 20/20, success so far: 18/20\\n[push_the_plate_to_the_front_of_the_stove] success rate: 90.0% (18/20)\\n  put_the_cream_cheese_in_the_bowl: rollout 5/20, success so far: 5/5\\n  put_the_cream_cheese_in_the_bowl: rollout 10/20, success so far: 10/10\\n  put_the_cream_cheese_in_the_bowl: rollout 15/20, success so far: 15/15\\n  put_the_cream_cheese_in_the_bowl: rollout 20/20, success so far: 20/20\\n[put_the_cream_cheese_in_the_bowl] success rate: 100.0% (20/20)\\n  turn_on_the_stove: rollout 5/20, success so far: 5/5\\n  turn_on_the_stove: rollout 10/20, success so far: 10/10\\n  turn_on_the_stove: rollout 15/20, success so far: 15/15\\n  turn_on_the_stove: rollout 20/20, success so far: 20/20\\n[turn_on_the_stove] success rate: 100.0% (20/20)\\n  put_the_bowl_on_the_plate: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_the_plate: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_the_plate: rollout 15/20, success so far: 14/15\\n  put_the_bowl_on_the_plate: rollout 20/20, success so far: 19/20\\n[put_the_bowl_on_the_plate] success rate: 95.0% (19/20)\\n  put_the_wine_bottle_on_the_rack: rollout 5/20, success so far: 5/5\\n  put_the_wine_bottle_on_the_rack: rollout 10/20, success so far: 9/10\\n  put_the_wine_bottle_on_the_rack: rollout 15/20, success so far: 12/15\\n  put_the_wine_bottle_on_the_rack: rollout 20/20, success so far: 14/20\\n[put_the_wine_bottle_on_the_rack] success rate: 70.0% (14/20)\\n\\n============================================================\\nOverall success rate (adaptive_conformal_crm): 86.5% (173/200)\\n============================================================\\n[eval] Conformal CRM stats: mean_unc=0.1269, trigger_rate=10.0%\\n[eval] Results saved to logs/eval_goal_adaptive_conformal_crm_pi05_K2_norm0.2_tau0.25_seed44.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "0c98ecd7-4399-433d-80b5-6da383e407e4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_pi05_K2_norm0.2_tau0.25_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\\\n[eval] max_steps set to 300 for benchmark goal\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nAll keys loaded successfully!\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\\\n[eval] Loading LIBERO goal environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 5/20, success so far: 3/5\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 10/20, success so far: 7/10\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 15/20, success so far: 12/15\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 20/20, success so far: 17/20\\\\n[open_the_middle_drawer_of_the_cabinet] success rate: 85.0% (17/20)\\\\n  put_the_bowl_on_the_stove: rollout 5/20, success so far: 5/5\\\\n  put_the_bowl_on_the_stove: rollout 10/20, success so far: 10/10\\\\n  put_the_bowl_on_the_stove: rollout 15/20, success so far: 15/15\\\\n  put_the_bowl_on_the_stove: rollout 20/20, success so far: 20/20\\\\n[put_the_bowl_on_the_stove] success rate: 100.0% (20/20)\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 5/20, success so far: 3/5\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 10/20, success so far: 6/10\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 15/20, success so far: 10/15\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 20/20, success so far: 12/20\\\\n[put_the_wine_bottle_on_top_of_the_cabinet] success rate: 60.0% (12/20)\\\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 5/20, success so far: 2/5\\\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 10/20, success so far: 7/10\\\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 15/20, success so far: 11/15\\\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 20/20, success so far: 13/20\\\\n[open_the_top_drawer_and_put_the_bowl_inside] success rate: 65.0% (13/20)\\\\n  put_the_bowl_on_top_of_the_cabinet: rollout 5/20, success so far: 5/5\\\\n  put_the_bowl_on_top_of_the_cabinet: rollout 10/20, success so far: 10/10\\\\n  put_the_bowl_on_top_of_the_cabinet: rollout 15/20, success so far: 15/15\\\\n  put_the_bowl_on_top_of_the_cabinet: rollout 20/20, success so far: 20/20\\\\n[put_the_bowl_on_top_of_the_cabinet] success rate: 100.0% (20/20)\\\\n  push_the_plate_to_the_front_of_the_stove: rollout 5/20, success so far: 3/5\\\\n  push_the_plate_to_the_front_of_the_stove: rollout 10/20, success so far: 8/10\\\\n  push_the_plate_to_the_front_of_the_stove: rollout 15/20, success so far: 13/15\\\\n  push_the_plate_to_the_front_of_the_stove: rollout 20/20, success so far: 18/20\\\\n[push_the_plate_to_the_front_of_the_stove] success rate: 90.0% (18/20)\\\\n  put_the_cream_cheese_in_the_bowl: rollout 5/20, success so far: 5/5\\\\n  put_the_cream_cheese_in_the_bowl: rollout 10/20, success so far: 10/10\\\\n  put_the_cream_cheese_in_the_bowl: rollout 15/20, success so far: 15/15\\\\n  put_the_cream_cheese_in_the_bowl: rollout 20/20, success so far: 20/20\\\\n[put_the_cream_cheese_in_the_bowl] success rate: 100.0% (20/20)\\\\n  turn_on_the_stove: rollout 5/20, success so far: 5/5\\\\n  turn_on_the_stove: rollout 10/20, success so far: 10/10\\\\n  turn_on_the_stove: rollout 15/20, success so far: 15/15\\\\n  turn_on_the_stove: rollout 20/20, success so far: 20/20\\\\n[turn_on_the_stove] success rate: 100.0% (20/20)\\\\n  put_the_bowl_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  put_the_bowl_on_the_plate: rollout 10/20, success so far: 10/10\\\\n  put_the_bowl_on_the_plate: rollout 15/20, success so far: 14/15\\\\n  put_the_bowl_on_the_plate: rollout 20/20, success so far: 19/20\\\\n[put_the_bowl_on_the_plate] success rate: 95.0% (19/20)\\\\n  put_the_wine_bottle_on_the_rack: rollout 5/20, success so far: 5/5\\\\n  put_the_wine_bottle_on_the_rack: rollout 10/20, success so far: 9/10\\\\n  put_the_wine_bottle_on_the_rack: rollout 15/20, success so far: 12/15\\\\n  put_the_wine_bottle_on_the_rack: rollout 20/20, success so far: 14/20\\\\n[put_the_wine_bottle_on_the_rack] success rate: 70.0% (14/20)\\\\n\\\\n============================================================\\\\nOverall success rate (adaptive_conformal_crm): 86.5% (173/200)\\\\n============================================================\\\\n[eval] Conformal CRM stats: mean_unc=0.1269, trigger_rate=10.0%\\\\n[eval] Results saved to logs/eval_goal_adaptive_conformal_crm_pi05_K2_norm0.2_tau0.25_seed44.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_pi05_K2_norm0.2_tau0.25_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\n[eval] Loading LIBERO goal environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  open_the_middle_drawer_of_the_cabinet: rollout 5/20, success so far: 3/5\\n  open_the_middle_drawer_of_the_cabinet: rollout 10/20, success so far: 7/10\\n  open_the_middle_drawer_of_the_cabinet: rollout 15/20, success so far: 12/15\\n  open_the_middle_drawer_of_the_cabinet: rollout 20/20, success so far: 17/20\\n[open_the_middle_drawer_of_the_cabinet] success rate: 85.0% (17/20)\\n  put_the_bowl_on_the_stove: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_the_stove: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_the_stove: rollout 15/20, success so far: 15/15\\n  put_the_bowl_on_the_stove: rollout 20/20, success so far: 20/20\\n[put_the_bowl_on_the_stove] success rate: 100.0% (20/20)\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 5/20, success so far: 3/5\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 10/20, success so far: 6/10\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 15/20, success so far: 10/15\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 20/20, success so far: 12/20\\n[put_the_wine_bottle_on_top_of_the_cabinet] success rate: 60.0% (12/20)\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 5/20, success so far: 2/5\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 10/20, success so far: 7/10\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 15/20, success so far: 11/15\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 20/20, success so far: 13/20\\n[open_the_top_drawer_and_put_the_bowl_inside] success rate: 65.0% (13/20)\\n  put_the_bowl_on_top_of_the_cabinet: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_top_of_the_cabinet: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_top_of_the_cabinet: rollout 15/20, success so far: 15/15\\n  put_the_bowl_on_top_of_the_cabinet: rollout 20/20, success so far: 20/20\\n[put_the_bowl_on_top_of_the_cabinet] success rate: 100.0% (20/20)\\n  push_the_plate_to_the_front_of_the_stove: rollout 5/20, success so far: 3/5\\n  push_the_plate_to_the_front_of_the_stove: rollout 10/20, success so far: 8/10\\n  push_the_plate_to_the_front_of_the_stove: rollout 15/20, success so far: 13/15\\n  push_the_plate_to_the_front_of_the_stove: rollout 20/20, success so far: 18/20\\n[push_the_plate_to_the_front_of_the_stove] success rate: 90.0% (18/20)\\n  put_the_cream_cheese_in_the_bowl: rollout 5/20, success so far: 5/5\\n  put_the_cream_cheese_in_the_bowl: rollout 10/20, success so far: 10/10\\n  put_the_cream_cheese_in_the_bowl: rollout 15/20, success so far: 15/15\\n  put_the_cream_cheese_in_the_bowl: rollout 20/20, success so far: 20/20\\n[put_the_cream_cheese_in_the_bowl] success rate: 100.0% (20/20)\\n  turn_on_the_stove: rollout 5/20, success so far: 5/5\\n  turn_on_the_stove: rollout 10/20, success so far: 10/10\\n  turn_on_the_stove: rollout 15/20, success so far: 15/15\\n  turn_on_the_stove: rollout 20/20, success so far: 20/20\\n[turn_on_the_stove] success rate: 100.0% (20/20)\\n  put_the_bowl_on_the_plate: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_the_plate: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_the_plate: rollout 15/20, success so far: 14/15\\n  put_the_bowl_on_the_plate: rollout 20/20, success so far: 19/20\\n[put_the_bowl_on_the_plate] success rate: 95.0% (19/20)\\n  put_the_wine_bottle_on_the_rack: rollout 5/20, success so far: 5/5\\n  put_the_wine_bottle_on_the_rack: rollout 10/20, success so far: 9/10\\n  put_the_wine_bottle_on_the_rack: rollout 15/20, success so far: 12/15\\n  put_the_wine_bottle_on_the_rack: rollout 20/20, success so far: 14/20\\n[put_the_wine_bottle_on_the_rack] success rate: 70.0% (14/20)\\n\\n============================================================\\nOverall success rate (adaptive_conformal_crm): 86.5% (173/200)\\n============================================================\\n[eval] Conformal CRM stats: mean_unc=0.1269, trigger_rate=10.0%\\n[eval] Results saved to logs/eval_goal_adaptive_conformal_crm_pi05_K2_norm0.2_tau0.25_seed44.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me get the JSON file for more detailed metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "a6e51002-bd36-4d96-8704-7c38bac41317",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0123TCowg5zxpqoBghZ5H4SZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3132,
+      "cache_read_input_tokens": 25385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3132
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+日志读取成功，无OOM/error。读取JSON获取详细指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "74a316e2-a65d-4b94-88ac-921bdfc5cd69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0123TCowg5zxpqoBghZ5H4SZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3132,
+      "cache_read_input_tokens": 25385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3132
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nsypbmz7xdna9vRoVFVt9h`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_pi05_K2_norm0.2_tau0.25_seed44.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "836339dd-c4dd-4805-998d-5b01ba4c8463",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0123TCowg5zxpqoBghZ5H4SZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3132,
+      "cache_read_input_tokens": 25385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3132
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-26T14:05:31.878Z_
+
+<details><summary>↩ Tool result · `toolu_01Nsypbmz7xdna9vRoVFVt9h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.865,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.12688761466209225,\\n    \\\"trigger_rate\\\": 0.10014383315354189,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 27810,\\n    \\\"crm_applied_steps\\\": 2785,\\n    \\\"mean_correction_norm\\\": 0.2000000044623226\\n  },\\n  \\\"detailed_steps\\\": [\\n    {\\n      \\\"uncertainty\\\": 0.2117188721895218,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.08502837270498276,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.11305426806211472,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.14248408377170563,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.10935443639755249,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.0799005925655365,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.08236922323703766,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.06323849409818649,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.03322726488113403,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.0323062390089035,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.06610582023859024,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.055609047412872314,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.05551256239414215,\\n      \\\"triggered\\\": false,\\n   \\n\\n... [截断: 输出过长，省略 5379176 字符] ...\\n\\n  },\\n    {\\n      \\\"uncertainty\\\": 0.2587161362171173,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000000298023224,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.3993605077266693,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000001788139343,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.3106778562068939,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999998807907104,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.3393624722957611,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000001788139343,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.37154069542884827,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999998807907104,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.21359960734844208,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.23559217154979706,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.677638053894043,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999997317790985,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.3283517062664032,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000001788139343,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.48130178451538086,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000000298023224,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.309805691242218,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999997317790985,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.4372321665287018,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999998807907104,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.2355917990207672,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.25625523924827576,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000000298023224,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.22697310149669647,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.38316115736961365,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000000298023224,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.23300358653068542,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.8870970606803894,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999998807907104,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.3456629514694214,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000000298023224,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.2754170000553131,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999997317790985,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "2bda6c32-9367-4e26-987e-290d06ed40ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"adaptive_conformal_crm\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"goal\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.865,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.85,\\\\n      \\\\\\\"successes\\\\\\\": 17,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.6,\\\\n      \\\\\\\"successes\\\\\\\": 12,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.65,\\\\n      \\\\\\\"successes\\\\\\\": 13,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  },\\\\n  \\\\\\\"adaptive_stats\\\\\\\": {\\\\n    \\\\\\\"mean_uncertainty\\\\\\\": 0.12688761466209225,\\\\n    \\\\\\\"trigger_rate\\\\\\\": 0.10014383315354189,\\\\n    \\\\\\\"tau\\\\\\\": 0.25,\\\\n    \\\\\\\"total_steps\\\\\\\": 27810,\\\\n    \\\\\\\"crm_applied_steps\\\\\\\": 2785,\\\\n    \\\\\\\"mean_correction_norm\\\\\\\": 0.2000000044623226\\\\n  },\\\\n  \\\\\\\"detailed_steps\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.2117188721895218,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.08502837270498276,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.11305426806211472,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.14248408377170563,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.10935443639755249,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.0799005925655365,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.08236922323703766,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.06323849409818649,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.03322726488113403,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.0323062390089035,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.06610582023859024,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.055609047412872314,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.05551256239414215,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 5379176 字符] ...\\\\n\\\\n  },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.2587161362171173,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.20000000298023224,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.3993605077266693,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.20000001788139343,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.3106778562068939,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.19999998807907104,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.3393624722957611,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.20000001788139343,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.37154069542884827,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.19999998807907104,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.21359960734844208,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.23559217154979706,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.677638053894043,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.19999997317790985,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.3283517062664032,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.20000001788139343,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.48130178451538086,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.20000000298023224,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.309805691242218,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.19999997317790985,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.4372321665287018,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.19999998807907104,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.2355917990207672,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.25625523924827576,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.20000000298023224,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.22697310149669647,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.38316115736961365,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.20000000298023224,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.23300358653068542,\\\\n      \\\\\\\"triggered\\\\\\\": false,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.8870970606803894,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.19999998807907104,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.3456629514694214,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.20000000298023224,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    },\\\\n    {\\\\n      \\\\\\\"uncertainty\\\\\\\": 0.2754170000553131,\\\\n      \\\\\\\"triggered\\\\\\\": true,\\\\n      \\\\\\\"correction_norm\\\\\\\": 0.19999997317790985,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"rollout_idx\\\\\\\": 19\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 15.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.865,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.12688761466209225,\\n    \\\"trigger_rate\\\": 0.10014383315354189,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 27810,\\n    \\\"crm_applied_steps\\\": 2785,\\n    \\\"mean_correction_norm\\\": 0.2000000044623226\\n  },\\n  \\\"detailed_steps\\\": [\\n    {\\n      \\\"uncertainty\\\": 0.2117188721895218,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.08502837270498276,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.11305426806211472,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.14248408377170563,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.10935443639755249,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.0799005925655365,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.08236922323703766,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.06323849409818649,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.03322726488113403,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.0323062390089035,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.06610582023859024,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.055609047412872314,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"rollout_idx\\\": 0\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.05551256239414215,\\n      \\\"triggered\\\": false,\\n   \\n\\n... [截断: 输出过长，省略 5379176 字符] ...\\n\\n  },\\n    {\\n      \\\"uncertainty\\\": 0.2587161362171173,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000000298023224,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.3993605077266693,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000001788139343,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.3106778562068939,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999998807907104,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.3393624722957611,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000001788139343,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.37154069542884827,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999998807907104,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.21359960734844208,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.23559217154979706,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.677638053894043,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999997317790985,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.3283517062664032,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000001788139343,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.48130178451538086,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000000298023224,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.309805691242218,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999997317790985,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.4372321665287018,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999998807907104,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.2355917990207672,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.25625523924827576,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000000298023224,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.22697310149669647,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.38316115736961365,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000000298023224,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.23300358653068542,\\n      \\\"triggered\\\": false,\\n      \\\"correction_norm\\\": 0.0,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.8870970606803894,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999998807907104,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.3456629514694214,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.20000000298023224,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    },\\n    {\\n      \\\"uncertainty\\\": 0.2754170000553131,\\n      \\\"triggered\\\": true,\\n      \\\"correction_norm\\\": 0.19999997317790985,\\n      \\\"task_name\\\": \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"rollout_idx\\\": 19\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have all the data. Let me summarize and update the registry.
+
+Key metrics:
+- Overall SR: 86.5% (173/200)
+- mean_uncertainty: 0.1269
+- trigger_rate: 10.0% (2785/27810 steps)
+- tau: 0.25
+- mean_correction_norm: 0.2
+- No OOM, no errors, EXIT_CODE=0
+
+Per-task breakdown:
+1. open_the_middle_drawer_of_the_cabinet: 85.0% (17/20)
+2. put_the_bowl_on_the_stove: 100.0% (20/20)
+
+
+3. put_the_wine_bottle_on_top_of_the_cabinet: 60.0% (12/20)
+4. open_the_top_drawer_and_put_the_bowl_inside: 65.0% (13/20)
+5. put_the_bowl_on_top_of_the_cabinet: 100.0% (20/20)
+6. push_the_plate_to_the_front_of_the_stove: 90.0% (18/20)
+7. put_the_cream_cheese_in_the_bowl: 100.0% (20/20)
+8. turn_on_the_stove: 100.0% (20/20)
+9. put_the_bowl_on_the_plate: 95.0% (19/20)
+10. put_the_wine_bottle_on_the_rack: 70.0% (14/20)
+
+The overall performance comes to 86.5%, which falls short of the baseline around 96%, so the adaptive conformal approach with τ=0.25 is actually degrading results on the Goal suite even though it only activates about 10% of the time. I need to update the registry with these metrics, the conclusion, and the relevant checkpoint and log paths.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "bfdc5f53-3c41-4bc6-bd43-4722eacaee55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018F1KTnjUnZLTttRTNZxRkJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4792,
+      "cache_read_input_tokens": 28517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4792
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+数据完整，无OOM/error。总体SR=86.5%，低于VLA-only baseline (~96%)，conclusion=negative。更新registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "0df83c32-e5c4-4bf2-b5ba-c3f2ac02e175",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018F1KTnjUnZLTttRTNZxRkJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4792,
+      "cache_read_input_tokens": 28517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4792
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AVRKpcpYMewp338qrv9tmf`</summary>
+
+```json
+{
+  "exp_id": "pi05-adaptive-goal-s44-bjb1",
+  "field": "metrics",
+  "value": {
+    "success_rate": 0.865,
+    "successes": 173,
+    "total_rollouts": 200,
+    "trigger_rate": 0.1001,
+    "mean_unc": 0.1269,
+    "mean_correction_norm": 0.2,
+    "crm_applied_steps": 2785,
+    "total_steps": 27810,
+    "tau": 0.25,
+    "per_task": {
+      "open_the_middle_drawer_of_the_cabinet": {
+        "sr": 0.85,
+        "s": 17,
+        "t": 20
+      },
+      "put_the_bowl_on_the_stove": {
+        "sr": 1,
+        "s": 20,
+        "t": 20
+      },
+      "put_the_wine_bottle_on_top_of_the_cabinet": {
+        "sr": 0.6,
+        "s": 12,
+        "t": 20
+      },
+      "open_the_top_drawer_and_put_the_bowl_inside": {
+        "sr": 0.65,
+        "s": 13,
+        "t": 20
+      },
+      "put_the_bowl_on_top_of_the_cabinet": {
+        "sr": 1,
+        "s": 20,
+        "t": 20
+      },
+      "push_the_plate_to_the_front_of_the_stove": {
+        "sr": 0.9,
+        "s": 18,
+        "t": 20
+      },
+      "put_the_cream_cheese_in_the_bowl": {
+        "sr": 1,
+        "s": 20,
+        "t": 20
+      },
+      "turn_on_the_stove": {
+        "sr": 1,
+        "s": 20,
+        "t": 20
+      },
+      "put_the_bowl_on_the_plate": {
+        "sr": 0.95,
+        "s": 19,
+        "t": 20
+      },
+      "put_the_wine_bottle_on_the_rack": {
+        "sr": 0.7,
+        "s": 14,
+        "t": 20
+      }
+    }
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "f0d5b40f-d566-49d5-bf40-8d8abddd9246",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018F1KTnjUnZLTttRTNZxRkJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4792,
+      "cache_read_input_tokens": 28517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4792
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SxBKxv5Lw9Pok6eFkYTx4i`</summary>
+
+```json
+{
+  "exp_id": "pi05-adaptive-goal-s44-bjb1",
+  "field": "checkpoint_path",
+  "value": "N/A",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "e759b058-88be-4c6c-8410-fb8fb697f8cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018F1KTnjUnZLTttRTNZxRkJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4792,
+      "cache_read_input_tokens": 28517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4792
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01X7JHMkPLpvvcK5F85ANsTY`</summary>
+
+```json
+{
+  "exp_id": "pi05-adaptive-goal-s44-bjb1",
+  "field": "log_path",
+  "value": "~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "c61a330d-d793-47f9-9424-60a616b36dc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018F1KTnjUnZLTttRTNZxRkJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4792,
+      "cache_read_input_tokens": 28517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4792
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-26T14:05:59.961Z_
+
+<details><summary>↩ Tool result · `toolu_01AVRKpcpYMewp338qrv9tmf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"pi05-adaptive-goal-s44-bjb1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T10:18:00.006Z\", \"updated_at\": \"2026-05-26T14:05:55.994Z\", \"hypothesis\": \"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"81923\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"submitted_at\": \"2026-05-26T10:18:31.265Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\"], \"model_name\": \"pi05\", \"seed\": 44, \"data_path\": \"LIBERO-Goal\", \"data_count\": 20}, \"reproduce\": {\"finished_at\": \"2026-05-26T13:57:42.604Z\"}, \"metrics\": {\"success_rate\": 0.865, \"successes\": 173, \"total_rollouts\": 200, \"trigger_rate\": 0.1001, \"mean_unc\": 0.1269, \"mean_correction_norm\": 0.2, \"crm_applied_steps\": 2785, \"total_steps\": 27810, \"tau\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.85, \"s\": 17, \"t\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 0.6, \"s\": 12, \"t\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.65, \"s\": 13, \"t\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.9, \"s\": 18, \"t\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 0.95, \"s\": 19, \"t\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.7, \"s\": 14, \"t\": 20}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.4506}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "2a7fd8a1-b407-4f68-a0b6-a4d4ee1ef497",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-adaptive-goal-s44-bjb1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T10:18:00.006Z\\\", \\\"updated_at\\\": \\\"2026-05-26T14:05:55.994Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"81923\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T10:18:31.265Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 44, \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 20}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T13:57:42.604Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 0.865, \\\"successes\\\": 173, \\\"total_rollouts\\\": 200, \\\"trigger_rate\\\": 0.1001, \\\"mean_unc\\\": 0.1269, \\\"mean_correction_norm\\\": 0.2, \\\"crm_applied_steps\\\": 2785, \\\"total_steps\\\": 27810, \\\"tau\\\": 0.25, \\\"per_task\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": {\\\"sr\\\": 0.85, \\\"s\\\": 17, \\\"t\\\": 20}, \\\"put_the_bowl_on_the_stove\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\\"sr\\\": 0.6, \\\"s\\\": 12, \\\"t\\\": 20}, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\\"sr\\\": 0.65, \\\"s\\\": 13, \\\"t\\\": 20}, \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\\"sr\\\": 0.9, \\\"s\\\": 18, \\\"t\\\": 20}, \\\"put_the_cream_cheese_in_the_bowl\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"turn_on_the_stove\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"put_the_bowl_on_the_plate\\\": {\\\"sr\\\": 0.95, \\\"s\\\": 19, \\\"t\\\": 20}, \\\"put_the_wine_bottle_on_the_rack\\\": {\\\"sr\\\": 0.7, \\\"s\\\": 14, \\\"t\\\": 20}}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.4506}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-adaptive-goal-s44-bjb1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T10:18:00.006Z\", \"updated_at\": \"2026-05-26T14:05:55.994Z\", \"hypothesis\": \"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"81923\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"submitted_at\": \"2026-05-26T10:18:31.265Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\"], \"model_name\": \"pi05\", \"seed\": 44, \"data_path\": \"LIBERO-Goal\", \"data_count\": 20}, \"reproduce\": {\"finished_at\": \"2026-05-26T13:57:42.604Z\"}, \"metrics\": {\"success_rate\": 0.865, \"successes\": 173, \"total_rollouts\": 200, \"trigger_rate\": 0.1001, \"mean_unc\": 0.1269, \"mean_correction_norm\": 0.2, \"crm_applied_steps\": 2785, \"total_steps\": 27810, \"tau\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.85, \"s\": 17, \"t\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 0.6, \"s\": 12, \"t\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.65, \"s\": 13, \"t\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.9, \"s\": 18, \"t\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 0.95, \"s\": 19, \"t\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.7, \"s\": 14, \"t\": 20}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.4506}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-26T14:06:12.007Z_
+
+<details><summary>↩ Tool result · `toolu_01SxBKxv5Lw9Pok6eFkYTx4i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"pi05-adaptive-goal-s44-bjb1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T10:18:00.006Z\", \"updated_at\": \"2026-05-26T14:06:08.346Z\", \"hypothesis\": \"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"81923\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"submitted_at\": \"2026-05-26T10:18:31.265Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\"], \"model_name\": \"pi05\", \"seed\": 44, \"data_path\": \"LIBERO-Goal\", \"data_count\": 20}, \"reproduce\": {\"finished_at\": \"2026-05-26T13:57:42.604Z\"}, \"metrics\": {\"success_rate\": 0.865, \"successes\": 173, \"total_rollouts\": 200, \"trigger_rate\": 0.1001, \"mean_unc\": 0.1269, \"mean_correction_norm\": 0.2, \"crm_applied_steps\": 2785, \"total_steps\": 27810, \"tau\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.85, \"s\": 17, \"t\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 0.6, \"s\": 12, \"t\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.65, \"s\": 13, \"t\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.9, \"s\": 18, \"t\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 0.95, \"s\": 19, \"t\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.7, \"s\": 14, \"t\": 20}}}, \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.9988}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "6aae2148-b4a3-44bf-88df-38d6595b953c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-adaptive-goal-s44-bjb1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T10:18:00.006Z\\\", \\\"updated_at\\\": \\\"2026-05-26T14:06:08.346Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"81923\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T10:18:31.265Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 44, \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 20}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T13:57:42.604Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 0.865, \\\"successes\\\": 173, \\\"total_rollouts\\\": 200, \\\"trigger_rate\\\": 0.1001, \\\"mean_unc\\\": 0.1269, \\\"mean_correction_norm\\\": 0.2, \\\"crm_applied_steps\\\": 2785, \\\"total_steps\\\": 27810, \\\"tau\\\": 0.25, \\\"per_task\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": {\\\"sr\\\": 0.85, \\\"s\\\": 17, \\\"t\\\": 20}, \\\"put_the_bowl_on_the_stove\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\\"sr\\\": 0.6, \\\"s\\\": 12, \\\"t\\\": 20}, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\\"sr\\\": 0.65, \\\"s\\\": 13, \\\"t\\\": 20}, \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\\"sr\\\": 0.9, \\\"s\\\": 18, \\\"t\\\": 20}, \\\"put_the_cream_cheese_in_the_bowl\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"turn_on_the_stove\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"put_the_bowl_on_the_plate\\\": {\\\"sr\\\": 0.95, \\\"s\\\": 19, \\\"t\\\": 20}, \\\"put_the_wine_bottle_on_the_rack\\\": {\\\"sr\\\": 0.7, \\\"s\\\": 14, \\\"t\\\": 20}}}, \\\"checkpoint_path\\\": \\\"N/A\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.9988}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-adaptive-goal-s44-bjb1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T10:18:00.006Z\", \"updated_at\": \"2026-05-26T14:06:08.346Z\", \"hypothesis\": \"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"81923\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"submitted_at\": \"2026-05-26T10:18:31.265Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\"], \"model_name\": \"pi05\", \"seed\": 44, \"data_path\": \"LIBERO-Goal\", \"data_count\": 20}, \"reproduce\": {\"finished_at\": \"2026-05-26T13:57:42.604Z\"}, \"metrics\": {\"success_rate\": 0.865, \"successes\": 173, \"total_rollouts\": 200, \"trigger_rate\": 0.1001, \"mean_unc\": 0.1269, \"mean_correction_norm\": 0.2, \"crm_applied_steps\": 2785, \"total_steps\": 27810, \"tau\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.85, \"s\": 17, \"t\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 0.6, \"s\": 12, \"t\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.65, \"s\": 13, \"t\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.9, \"s\": 18, \"t\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 0.95, \"s\": 19, \"t\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.7, \"s\": 14, \"t\": 20}}}, \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.9988}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T14:06:33.190Z_
+
+<details><summary>↩ Tool result · `toolu_01X7JHMkPLpvvcK5F85ANsTY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"pi05-adaptive-goal-s44-bjb1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T10:18:00.006Z\", \"updated_at\": \"2026-05-26T14:06:27.772Z\", \"hypothesis\": \"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"81923\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"submitted_at\": \"2026-05-26T10:18:31.265Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\"], \"model_name\": \"pi05\", \"seed\": 44, \"data_path\": \"LIBERO-Goal\", \"data_count\": 20}, \"reproduce\": {\"finished_at\": \"2026-05-26T13:57:42.604Z\"}, \"metrics\": {\"success_rate\": 0.865, \"successes\": 173, \"total_rollouts\": 200, \"trigger_rate\": 0.1001, \"mean_unc\": 0.1269, \"mean_correction_norm\": 0.2, \"crm_applied_steps\": 2785, \"total_steps\": 27810, \"tau\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.85, \"s\": 17, \"t\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 0.6, \"s\": 12, \"t\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.65, \"s\": 13, \"t\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.9, \"s\": 18, \"t\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 0.95, \"s\": 19, \"t\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.7, \"s\": 14, \"t\": 20}}}, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 21.0601}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "2e0b6764-8649-4cd0-b6a4-f5bc2208271c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-adaptive-goal-s44-bjb1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T10:18:00.006Z\\\", \\\"updated_at\\\": \\\"2026-05-26T14:06:27.772Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"81923\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T10:18:31.265Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 44, \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 20}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T13:57:42.604Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 0.865, \\\"successes\\\": 173, \\\"total_rollouts\\\": 200, \\\"trigger_rate\\\": 0.1001, \\\"mean_unc\\\": 0.1269, \\\"mean_correction_norm\\\": 0.2, \\\"crm_applied_steps\\\": 2785, \\\"total_steps\\\": 27810, \\\"tau\\\": 0.25, \\\"per_task\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": {\\\"sr\\\": 0.85, \\\"s\\\": 17, \\\"t\\\": 20}, \\\"put_the_bowl_on_the_stove\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\\"sr\\\": 0.6, \\\"s\\\": 12, \\\"t\\\": 20}, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\\"sr\\\": 0.65, \\\"s\\\": 13, \\\"t\\\": 20}, \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\\"sr\\\": 0.9, \\\"s\\\": 18, \\\"t\\\": 20}, \\\"put_the_cream_cheese_in_the_bowl\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"turn_on_the_stove\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"put_the_bowl_on_the_plate\\\": {\\\"sr\\\": 0.95, \\\"s\\\": 19, \\\"t\\\": 20}, \\\"put_the_wine_bottle_on_the_rack\\\": {\\\"sr\\\": 0.7, \\\"s\\\": 14, \\\"t\\\": 20}}}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 21.0601}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-adaptive-goal-s44-bjb1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T10:18:00.006Z\", \"updated_at\": \"2026-05-26T14:06:27.772Z\", \"hypothesis\": \"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"81923\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"submitted_at\": \"2026-05-26T10:18:31.265Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\"], \"model_name\": \"pi05\", \"seed\": 44, \"data_path\": \"LIBERO-Goal\", \"data_count\": 20}, \"reproduce\": {\"finished_at\": \"2026-05-26T13:57:42.604Z\"}, \"metrics\": {\"success_rate\": 0.865, \"successes\": 173, \"total_rollouts\": 200, \"trigger_rate\": 0.1001, \"mean_unc\": 0.1269, \"mean_correction_norm\": 0.2, \"crm_applied_steps\": 2785, \"total_steps\": 27810, \"tau\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.85, \"s\": 17, \"t\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 0.6, \"s\": 12, \"t\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.65, \"s\": 13, \"t\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.9, \"s\": 18, \"t\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 0.95, \"s\": 19, \"t\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.7, \"s\": 14, \"t\": 20}}}, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 21.0601}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018WZeKrsbRdhS4AiFyjhB1x`</summary>
+
+```json
+{
+  "exp_id": "pi05-adaptive-goal-s44-bjb1",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "28298eb1-c540-4e08-b5fe-56a310cb8c42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134HuuH3G7K1VUh84tBhs1a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4819,
+      "cache_read_input_tokens": 33309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4819
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1780063200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.95,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "fad472e0-a144-4521-b499-91a12580fd9d",
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4"
+}
+```
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-26T14:06:54.839Z_
+
+<details><summary>↩ Tool result · `toolu_018WZeKrsbRdhS4AiFyjhB1x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"pi05-adaptive-goal-s44-bjb1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T10:18:00.006Z\", \"updated_at\": \"2026-05-26T14:06:51.320Z\", \"hypothesis\": \"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"81923\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"submitted_at\": \"2026-05-26T10:18:31.265Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\"], \"model_name\": \"pi05\", \"seed\": 44, \"data_path\": \"LIBERO-Goal\", \"data_count\": 20}, \"reproduce\": {\"finished_at\": \"2026-05-26T13:57:42.604Z\"}, \"metrics\": {\"success_rate\": 0.865, \"successes\": 173, \"total_rollouts\": 200, \"trigger_rate\": 0.1001, \"mean_unc\": 0.1269, \"mean_correction_norm\": 0.2, \"crm_applied_steps\": 2785, \"total_steps\": 27810, \"tau\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.85, \"s\": 17, \"t\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 0.6, \"s\": 12, \"t\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.65, \"s\": 13, \"t\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.9, \"s\": 18, \"t\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 0.95, \"s\": 19, \"t\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.7, \"s\": 14, \"t\": 20}}}, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 18.372}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "19294efc-93f7-4124-909d-422ee85db305",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-adaptive-goal-s44-bjb1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T10:18:00.006Z\\\", \\\"updated_at\\\": \\\"2026-05-26T14:06:51.320Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"81923\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T10:18:31.265Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 44, \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 20}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T13:57:42.604Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 0.865, \\\"successes\\\": 173, \\\"total_rollouts\\\": 200, \\\"trigger_rate\\\": 0.1001, \\\"mean_unc\\\": 0.1269, \\\"mean_correction_norm\\\": 0.2, \\\"crm_applied_steps\\\": 2785, \\\"total_steps\\\": 27810, \\\"tau\\\": 0.25, \\\"per_task\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": {\\\"sr\\\": 0.85, \\\"s\\\": 17, \\\"t\\\": 20}, \\\"put_the_bowl_on_the_stove\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\\"sr\\\": 0.6, \\\"s\\\": 12, \\\"t\\\": 20}, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\\"sr\\\": 0.65, \\\"s\\\": 13, \\\"t\\\": 20}, \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\\"sr\\\": 0.9, \\\"s\\\": 18, \\\"t\\\": 20}, \\\"put_the_cream_cheese_in_the_bowl\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"turn_on_the_stove\\\": {\\\"sr\\\": 1, \\\"s\\\": 20, \\\"t\\\": 20}, \\\"put_the_bowl_on_the_plate\\\": {\\\"sr\\\": 0.95, \\\"s\\\": 19, \\\"t\\\": 20}, \\\"put_the_wine_bottle_on_the_rack\\\": {\\\"sr\\\": 0.7, \\\"s\\\": 14, \\\"t\\\": 20}}}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 18.372}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-adaptive-goal-s44-bjb1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T10:18:00.006Z\", \"updated_at\": \"2026-05-26T14:06:51.320Z\", \"hypothesis\": \"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"81923\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"submitted_at\": \"2026-05-26T10:18:31.265Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\"], \"model_name\": \"pi05\", \"seed\": 44, \"data_path\": \"LIBERO-Goal\", \"data_count\": 20}, \"reproduce\": {\"finished_at\": \"2026-05-26T13:57:42.604Z\"}, \"metrics\": {\"success_rate\": 0.865, \"successes\": 173, \"total_rollouts\": 200, \"trigger_rate\": 0.1001, \"mean_unc\": 0.1269, \"mean_correction_norm\": 0.2, \"crm_applied_steps\": 2785, \"total_steps\": 27810, \"tau\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.85, \"s\": 17, \"t\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 0.6, \"s\": 12, \"t\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.65, \"s\": 13, \"t\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.9, \"s\": 18, \"t\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"s\": 20, \"t\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 0.95, \"s\": 19, \"t\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.7, \"s\": 14, \"t\": 20}}}, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 18.372}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+Registry 更新完成。结果汇总：
+
+## pi05-adaptive-goal-s44-bjb1 实验结果
+
+**Conclusion: NEGATIVE** — SR 86.5% 远低于 VLA-only baseline (~96%)
+
+### 总体指标
+| 指标 | 值 |
+|------|-----|
+| Overall SR | **86.5%** (173/200) |
+| Trigger Rate | 10.0% (2785/27810 steps) |
+| Mean Uncertainty | 0.1269 |
+| Mean Correction Norm | 0.20 |
+| τ (conformal threshold) | 0.25 |
+
+### Per-task Breakdown
+| Task | SR | Successes/Total |
+|------|-----|-----------------|
+| open_the_middle_drawer_of_the_cabinet | 85% | 17/20 |
+| put_the_bowl_on_the_stove | **100%** | 20/20 |
+| put_the_wine_bottle_on_top_of_the_cabinet | **60%** | 12/20 |
+| open_the_top_drawer_and_put_the_bowl_inside | **65%** | 13/20 |
+| put_the_bowl_on_top_of_the_cabinet | **100%** | 20/20 |
+| push_the_plate_to_the_front_of_the_stove | 90% | 18/20 |
+| put_the_cream_cheese_in_the_bowl | **100%** | 20/20 |
+| turn_on_the_stove | **100%** | 20/20 |
+| put_the_bowl_on_the_plate | 95% | 19/20 |
+| put_the_wine_bottle_on_the_rack | **70%** | 14/20 |
+
+### 诊断
+- 无 OOM/CUDA error，EXIT_CODE=0，实验执行正常
+- 损失主要集中在 3 个 task：wine_bottle_on_cabinet (60%)、drawer_bowl (65%)、wine_bottle_on_rack (70%)
+- trigger_rate 仅 10%，说明 τ=0.25 阈值较高，大部分时间 CRM 未介入，但即使低介入率仍导致了显著性能下降——Adaptive Conformal 在 π0.5 + Goal 上的 correction 方向可能有害
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "uuid": "363c2aee-8cd2-4953-9afe-a7e8ae6af8a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GKzzL8FAzpqQTSWN5gbt1v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1297,
+      "cache_read_input_tokens": 38128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1297
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 35_
+
+Registry 更新完成。结果汇总：
+
+## pi05-adaptive-goal-s44-bjb1 实验结果
+
+**Conclusion: NEGATIVE** — SR 86.5% 远低于 VLA-only baseline (~96%)
+
+### 总体指标
+| 指标 | 值 |
+|------|-----|
+| Overall SR | **86.5%** (173/200) |
+| Trigger Rate | 10.0% (2785/27810 steps) |
+| Mean Uncertainty | 0.1269 |
+| Mean Correction Norm | 0.20 |
+| τ (conformal threshold) | 0.25 |
+
+### Per-task Breakdown
+| Task | SR | Successes/Total |
+|------|-----|-----------------|
+| open_the_middle_drawer_of_the_cabinet | 85% | 17/20 |
+| put_the_bowl_on_the_stove | **100%** | 20/20 |
+| put_the_wine_bottle_on_top_of_the_cabinet | **60%** | 12/20 |
+| open_the_top_drawer_and_put_the_bowl_inside | **65%** | 13/20 |
+| put_the_bowl_on_top_of_the_cabinet | **100%** | 20/20 |
+| push_the_plate_to_the_front_of_the_stove | 90% | 18/20 |
+| put_the_cream_cheese_in_the_bowl | **100%** | 20/20 |
+| turn_on_the_stove | **100%** | 20/20 |
+| put_the_bowl_on_the_plate | 95% | 19/20 |
+| put_the_wine_bottle_on_the_rack | **70%** | 14/20 |
+
+### 诊断
+- 无 OOM/CUDA error，EXIT_CODE=0，实验执行正常
+- 损失主要集中在 3 个 task：wine_bottle_on_cabinet (60%)、drawer_bowl (65%)、wine_bottle_on_rack (70%)
+- trigger_rate 仅 10%，说明 τ=0.25 阈值较高，大部分时间 CRM 未介入，但即使低介入率仍导致了显著性能下降——Adaptive Conformal 在 π0.5 + Goal 上的 correction 方向可能有害
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 137839,
+  "duration_api_ms": 61661,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "cf9cece9-3368-4e9c-a7b4-a06a81c4f3a4",
+  "total_cost_usd": 0.3590335,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 27584,
+    "cache_read_input_tokens": 210731,
+    "output_tokens": 3180,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 27584,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 632,
+        "cache_read_input_tokens": 38128,
+        "cache_creation_input_tokens": 1297,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1297
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1578,
+      "outputTokens": 26,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017079999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 3180,
+      "cacheReadInputTokens": 210731,
+      "cacheCreationInputTokens": 27584,
+      "webSearchRequests": 0,
+      "costUSD": 0.3573255000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f7021676-5669-4251-9adf-a9aa16855dd9"
+}
+```
+
+</details>
+
+---

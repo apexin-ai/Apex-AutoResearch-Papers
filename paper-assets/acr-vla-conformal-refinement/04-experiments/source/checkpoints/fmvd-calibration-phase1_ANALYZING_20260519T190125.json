@@ -1,0 +1,35 @@
+{
+  "exp_id": "fmvd-calibration-phase1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:57:05.859Z",
+    "updated_at": "2026-05-19T19:01:24.394Z",
+    "hypothesis": "FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).",
+    "spec": {
+      "command": "python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "901435",
+      "log_path": "~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log",
+      "submitted_at": "2026-05-19T17:05:13.349Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/libero_data/libero_object/",
+      "data_count": 50,
+      "model_name": "smolvla_libero",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T19:01:21.318Z"
+    }
+  },
+  "timestamp": "2026-05-19T19:01:25.782745+00:00",
+  "trigger": "update_registry"
+}

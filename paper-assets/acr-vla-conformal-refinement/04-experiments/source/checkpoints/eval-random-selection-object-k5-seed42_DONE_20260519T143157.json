@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-random-selection-object-k5-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:43:11.414Z",
+    "updated_at": "2026-05-19T14:31:56.882Z",
+    "hypothesis": "Random selection baseline with K=5 on LIBERO-Object seed42. 从 K=5 VLA samples 中随机选 1 个执行（不用 argmin/CRM）。验证 K=5 decomposition 中 selection effect 是否真实：如果 random ≈ argmin (13.7%)，则 selection effect 不显著；如果 random < argmin，则 argmin 的选择能力在小候选池中有真实价值。",
+    "parent": "eval-argmin-object-k5-seed42",
+    "spec": {
+      "command": "cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=5 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode random_selection --benchmark object --n_rollouts 10 --seed 42 --K 5 --output_file logs/eval_object_random_selection_k5_seed42.json",
+      "server": "bjb1-32546",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "SmolVLA_random_selection_K5",
+      "seed": 42,
+      "eval_data": "LIBERO-Object (10 tasks x 10 rollouts)",
+      "checkpoint_source": "smolvla_libero (pretrained, no finetuning)"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T14:31:56.882Z"
+  },
+  "timestamp": "2026-05-19T14:31:57.384650+00:00",
+  "trigger": "update_registry"
+}

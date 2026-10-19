@@ -1,0 +1,33 @@
+{
+  "exp_id": "smolvla-crm-norm005-k10-object-s44-cqa1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T16:49:06.334Z",
+    "updated_at": "2026-05-27T00:59:03.790Z",
+    "hypothesis": "CRM obs_only (always-on, K=10 deep correction steps, max_correction_norm=0.05) on SmolVLA LIBERO-Object should match or improve over the existing K=10 norm=0.05 SmolVLA seeds s48 (0.735) and s49 patterns. Adds s44 seed to complete the D149 SmolVLA CRM K=10 multi-seed comparison vs. VLA-only baseline (s44=0.775).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --model smolvla --mode crm_obs_only --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_crm_norm005_s44_d149.json",
+      "server": "cqa1-32758",
+      "gpu": 3,
+      "pid": 492008,
+      "data_path": "LIBERO-Object",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 44,
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_crm_norm005_s44_d149.json",
+      "output_file": "/root/acr-vla-conformal-refinement/logs/eval_object_crm_norm005_s44_d149.json",
+      "checkpoint_path": "N/A-eval-only"
+    },
+    "metrics": {
+      "success_rate": 0.78
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-27T00:59:03.790Z"
+  },
+  "timestamp": "2026-05-27T00:59:07.059481+00:00",
+  "trigger": "update_registry"
+}

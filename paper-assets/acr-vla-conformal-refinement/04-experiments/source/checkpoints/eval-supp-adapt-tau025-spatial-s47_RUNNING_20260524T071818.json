@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-supp-adapt-tau025-spatial-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:15:43.884Z",
+    "updated_at": "2026-05-24T07:18:17.441Z",
+    "hypothesis": "Adaptive CRM tau=0.25 on Spatial suite seed47. Sixth seed extending variance analysis. 5-seed mean ~80.5%.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 47 --n_rollouts 20 --K 10 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:1"
+      ],
+      "tmux_session": "spatial-adapt-s47",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "model_name": "SmolVLA+Adaptive CRM",
+      "seed": 47,
+      "eval_data": "LIBERO-Spatial 10 tasks x 20 rollouts",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt"
+    }
+  },
+  "timestamp": "2026-05-24T07:18:18.914312+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval-adaptive-goal-s42-d149",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T10:25:19.669Z",
+    "updated_at": "2026-05-25T13:24:47.316Z",
+    "hypothesis": "SmolVLA Adaptive (τ=0.25, K=2) 在 goal 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --baseline_mode single --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_adaptive_seed42.json",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:1"
+      ],
+      "tmux_session": "eval-adaptive-goal-s42-d149",
+      "log_path": "bjb2-28827:/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_seed42.json",
+      "data_path": "/root/autodl-tmp/datasets/libero/libero_goal",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/smolvla_libero/",
+      "eval_data": "libero_goal n=20 per task (200 total)",
+      "crm_checkpoint": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "submitted_via": "ssh_execute+tmux",
+      "checkpoint_path": "N/A-eval"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_success_rate": 0.835,
+      "trigger_rate": 0.083
+    },
+    "completed_at": "2026-05-25T13:24:47.316Z"
+  },
+  "timestamp": "2026-05-25T13:24:48.845677+00:00",
+  "trigger": "update_registry"
+}

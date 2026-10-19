@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval-perdof-object-norm003-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:15:14.634Z",
+    "updated_at": "2026-05-19T11:28:09.358Z",
+    "hypothesis": "perdof CRM (ε=0.03) seed45 on LIBERO-Object. 补 magnitude curve 薄数据点：perdof ε=0.03 当前 n=1 (seed42=14%)，seed43/44 已在跑。验证 per-DOF correction 在极低 norm 下表现。",
+    "server": "bjb1-32546",
+    "gpu": "cuda:5",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-32546",
+      "gpu": "cuda:5",
+      "started_at": "2026-05-18T15:16:48.731Z",
+      "command": "cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_perdof_norm003_seed45.json"
+    },
+    "spec": {
+      "command": "cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_perdof_norm003_seed45.json",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "652406",
+      "log_path": "N/A",
+      "submitted_at": "2026-05-18T15:16:51.497Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A",
+      "notes": "bjb1-32546 GPU process dead, no JSON output",
+      "wall_clock_seconds": 72677.9,
+      "gpu_hours": 20.19
+    },
+    "pid": "652406",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm003-seed45.log",
+    "conclusion": "killed",
+    "completed_at": "2026-05-19T11:28:09.358Z"
+  },
+  "timestamp": "2026-05-19T11:28:10.022542+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval-supp-adapt-tau025-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:26:26.232Z",
+    "updated_at": "2026-05-23T04:06:38.592Z",
+    "hypothesis": "Adaptive CRM with tau=0.25 (~P90) reduces trigger rate to ~20-30% while maintaining SR, mapping the Pareto frontier of trigger_rate vs SR",
+    "parent": "eval-3dir-adaptive-spatial-s42",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark spatial --seed 42 --n_rollouts 20 --conformal_threshold 0.25",
+      "server": "bjb1-32546",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial",
+      "gpu": "cuda:2",
+      "pid": 626274
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-23T04:06:38.592Z"
+  },
+  "timestamp": "2026-05-23T04:06:39.697694+00:00",
+  "trigger": "update_registry"
+}

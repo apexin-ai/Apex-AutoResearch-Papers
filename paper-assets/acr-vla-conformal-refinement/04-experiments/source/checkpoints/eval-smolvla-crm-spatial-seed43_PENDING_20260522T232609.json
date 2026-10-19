@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-smolvla-crm-spatial-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:25:14.775Z",
+    "updated_at": "2026-05-22T23:26:08.410Z",
+    "hypothesis": "SmolVLA CRM (crm_obs_only, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating conformal refinement approach",
+    "parent": "train-crm-smolvla-3suite-v1"
+  },
+  "timestamp": "2026-05-22T23:26:09.506567+00:00",
+  "trigger": "update_registry"
+}

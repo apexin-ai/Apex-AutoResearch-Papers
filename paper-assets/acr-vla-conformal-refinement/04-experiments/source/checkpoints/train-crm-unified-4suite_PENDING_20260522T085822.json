@@ -1,0 +1,28 @@
+{
+  "exp_id": "train-crm-unified-4suite",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T08:57:48.529Z",
+    "updated_at": "2026-05-22T08:58:20.865Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/train_crm.py --benchmark object spatial goal long --obs_dim 960 --epochs 50 --batch_size 32 --lr 1e-3 --cache_dir /root/autodl-tmp/crm_cache_v5/ --output_dir /root/autodl-tmp/checkpoints/crm_unified_4suite/\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "882598",
+      "log_path": "~/runs/acr-vla-conformal-refinement/train-crm-unified-4suite.log",
+      "submitted_at": "2026-05-22T08:57:47.067Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Unified CRM trained on all 4 LIBERO suites (Object+Spatial+Goal+Long, 224K samples, K=10) with input_mode=full (unc_dim=40) should generalize across suites, enabling single-model eval on all benchmarks for paper Table"
+  },
+  "timestamp": "2026-05-22T08:58:22.729924+00:00",
+  "trigger": "update_registry"
+}

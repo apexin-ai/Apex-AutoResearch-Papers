@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval-obs-only-object-norm005-seed61",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:00:59.021Z",
+    "updated_at": "2026-05-21T02:04:08.190Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T02:01:10.058398+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0.15,
+      "successful_rollouts": 15,
+      "total_rollouts": 100
+    },
+    "notes": "Cron false positive（第N次）：eval 脚本正常完成但不写 sentinel/W&B，被 cron 误判 failed。实际 SR=15.0% (15/100)。手动修正 conclusion=success。"
+  },
+  "timestamp": "2026-05-21T02:04:09.083975+00:00",
+  "trigger": "update_registry"
+}

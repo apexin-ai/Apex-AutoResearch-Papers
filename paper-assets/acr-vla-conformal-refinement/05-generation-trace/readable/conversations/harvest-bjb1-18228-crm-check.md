@@ -1,0 +1,2182 @@
+# harvest bjb1 18228 crm check
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/chats/worker_harvest_bjb1-18228-crm-check_20260525T174426.jsonl`
+- **Structured JSON:** [`56fd482640598ed15a7c.json`](../../sessions/56/56fd482640598ed15a7c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+73 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-25T17:47:07.339981+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-25T17:47:07.342696+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "ToolSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-25T17:47:07.343058+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "nvidia-smi",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-25T17:47:07.343322+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ps aux --sort=-start_time",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "ps aux --sort=-start_time",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-25T17:47:07.345505+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T17:47:07.345815+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Tue May 26 01:44:42 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:98:00.0 Off |                  Off |\\n| 30%   48C    P2            132W /  450W |   13195MiB /  24564MiB |     27%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090        On  |   00000000:A8:00.0 Off |                  Off |\\n| 30%   51C    P2            108W /  450W |   14100MiB /  24564MiB |     29%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090        On  |   00000000:B8:00.0 Off |                  Off |\\n| 30%   28C    P8             20W /  450W |       4MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090        On  |   00000000:D8:00.0 Off |                  Off |\\n| 30%   45C    P2            1
+…[truncated 1205 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-25T17:47:07.346176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot     625895  0.0  0.0   7064  1604 ?        Rs   01:44   0:00 ps aux --sort=-start_time\\nroot     625881  2.0  0.0  16692 10680 ?        Ss   01:44   0:00 sshd: root@notty\\nroot     625817  0.0  0.0  16692 10568 ?        Ss   01:43   0:00 sshd: root@notty\\nroot     625278  288  0.9 47613036 10377352 pts/2 Rl+ 01:43   4:43 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 43 --n_rollouts 20 --output_file logs/eval_pi05_long_crm_seed43.json\\nroot     625279  0.0  0.0   2796  1116 pts/2    S+   01:43   0:00 tee /tmp/eval_pi05_long_crm_s43.log\\nroot     625272  0.0  0.0   4364  3212 pts/2    Ss+  01:43   0:00 bash -c cd /root/acr-vla-conformal-refinement && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 43 --n_rollouts 20 --output_file logs/eval_pi05_long_crm_seed43.json 2>&1 | tee /tmp/eval_pi05_long_crm_s43.log\\nroot     625077  0.0  0.0  16692 10716 ?        Ss   01:40   0:00 sshd: root@notty\\nroot     625064  0.0  0.0  16692 10540 ?        Ss   01:40   0:00 sshd: root@notty\\nroot     601275  138  1.1 77580272 12402096 pts/0 Rl+ May25 363:25 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_pi05_object_crm_seed42.json\\nroot     60127
+…[truncated 3973 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-25T17:47:07.346594+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-25T17:47:07.346895+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls -la /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "ls -la /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-25T17:47:07.347142+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 38652\\ndrwxr-xr-x  2 root root     180 May 25 12:41 .\\ndrwxr-xr-x 15 root root    4096 May 25 04:21 ..\\n-rw-r--r--  1 root root 7417653 May 25 11:14 checkpoint_epoch0046.pt\\n-rw-r--r--  1 root root 7417653 May 25 11:36 checkpoint_epoch0047.pt\\n-rw-r--r--  1 root root 7417653 May 25 11:58 checkpoint_epoch0048.pt\\n-rw-r--r--  1 root root 7417653 May 25 12:19 checkpoint_epoch0049.pt\\n-rw-r--r--  1 root root 7417653 May 25 12:41 checkpoint_epoch0050.pt\\n-rw-r--r--  1 root root 2484379 May 25 12:41 crm_best.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-25T17:47:07.348384+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls -lt /root/acr-vla-conformal-refinement/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "ls -lt /root/acr-vla-conformal-refinement/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-25T17:47:07.348788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 2568\\n-rw-r--r-- 1 root root   1793 May 26 00:11 eval_long_crm_seed42.json\\n-rw-r--r-- 1 root root   1905 May 25 20:29 eval_spatial_adaptive_seed47_bjb1.json\\n-rw-r--r-- 1 root root   1707 May 25 20:27 eval_spatial_vla_only_seed47_n20.json\\n-rw-r--r-- 1 root root 488330 May 25 19:18 eval_goal_adaptive_pi05_seed42.log\\n-rw-r--r-- 1 root root   7611 May 25 18:16 eval_spatial_adaptive_pi05_seed42_r2.log\\n-rw-r--r-- 1 root root   1326 May 25 16:50 eval_goal_adaptive_pi05_seed42.json\\n-rw-r--r-- 1 root root   1351 May 25 16:05 eval_goal_vla_only_pi05_seed43.log\\n-rw-r--r-- 1 root root   7145 May 25 15:59 eval_object_vla_only_pi05_seed42.log\\n-rw-r--r-- 1 root root   1495 May 25 15:59 eval_object_vla_only_pi05_seed42.json\\n-rw-r--r-- 1 root root   8173 May 25 15:58 eval_spatial_vla_only_pi05_seed43.log\\n-rw-r--r-- 1 root root   1704 May 25 15:58 eval_spatial_vla_only_pi05_seed43.json\\n-rw-r--r-- 1 root root   3416 May 25 13:26 eval_spatial_adaptive_pi05_seed42.log\\n-rw-r--r-- 1 root root   1704 May 25 12:57 eval_spatial_vla_only_pi05_seed42_paired.json\\n-rw-r--r-- 1 root root   1325 May 25 12:55 eval_goal_vla_only_pi05_seed42_paired.json\\n-rw-r--r-- 1 root root   6659 May 25 06:52 eval-supp-crm-norm005-obj-s48.log\\n-rw-r--r-- 1 root root   1508 May 25 06:52 eval_object_crm_obs_only_norm0.05_seed48.json\\n-rw-r--r-- 1 root root   5795 May 25 06:21 eval-supp-crm-norm005-goal-s49.log\\n-rw-r--r-- 1 root root   1335 May 25 06:21 eval_goal_crm_obs_only_norm0.05_seed49.json\\n-rw-r--r-- 1 root root   6418 May 25 02:44 eval-supp-obj-vla-only-s50.log\\n-rw-r--r-- 1 root root   1500 May 25 02:44 eval_object_vla_only_seed50.json\\n-rw-r--r-- 1 root root   7445 May 25 02:20 eval-supp-spatial-vla-only-s42.log\\n-rw-r--r-- 1 root root   1704 May 25 02:20 eval_spatial_vla_only_seed42.json\\n-rw-r--r-- 1 root root   1792 May 24 22:07 eval_long_vla_only_seed47.json\\n-rw-r--r-- 1 root root   1327 May 24 19:20 e
+…[truncated 6405 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-25T17:47:07.349070+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -30 /tmp/eval_pi05_object_crm_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "tail -30 /tmp/eval_pi05_object_crm_s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T17:47:07.350396+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[eval] Mode: crm_obs_only, benchmark: object\\n[eval] max_steps set to 280 for benchmark object\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15
+…[truncated 862 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-25T17:47:07.350687+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -30 /tmp/eval_pi05_long_crm_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "tail -30 /tmp/eval_pi05_long_crm_s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-25T17:47:07.350994+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_pi05_long_crm_seed42.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: long\\n[eval] max_steps set to 520 for benchmark long\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll k
+…[truncated 1560 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-25T17:47:07.351258+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -30 /tmp/eval_pi05_long_crm_s43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "tail -30 /tmp/eval_pi05_long_crm_s43.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-25T17:47:07.353464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_pi05_long_crm_seed43.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: long\\n[eval] max_steps set to 520 for benchmark long\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-25T17:47:07.353729+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "du -sh /root/autodl-tmp/crm_cache_pi05_2048/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "du -sh /root/autodl-tmp/crm_cache_pi05_2048/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T17:47:07.353958+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4.6G\\t/root/autodl-tmp/crm_cache_pi05_2048/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-25T17:47:07.354225+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_long_crm_seed42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_long_crm_seed42.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T17:47:07.354563+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.59,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 20\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 20\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 20\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.15,\\n     
+…[truncated 363 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-25T17:47:07.354837+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_seed47_bjb1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_seed47_bjb1.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-25T17:47:07.355149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.81,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.05,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pi
+…[truncated 525 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-25T17:47:07.357479+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_pi05_seed42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_pi05_seed42.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-25T17:47:07.357788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.0,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-25T17:47:07.358047+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/crm_cache_pi05_2048/ -type f -name \"*.pt\" -newer /root/autodl-tmp/crm_cache_pi05_2048/ -mtime -3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/autodl-tmp/crm_cache_pi05_2048/ -type f -name \"*.pt\" -newer /root/autodl-tmp/crm_cache_pi05_2048/ -mtime -3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-25T17:47:07.359492+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_0_500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_500_1000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_1000_1500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_1500_2000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_2000_2500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_2500_3000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_3000_3500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_3500_4000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_4000_4500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_4500_5000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_5000_5500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_5500_6000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_6000_6500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_6500_7000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_7000_7500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_7500_8000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_8000_8500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_8500_9000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_9000_9500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_9500_10000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_10000_10500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_10500_11000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_11000_11500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_11500_12000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_12000_12500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_12500_13000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_13000_13500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/
+…[truncated 6432 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-25T17:47:07.359784+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls -la /root/autodl-tmp/crm_cache_pi05_2048/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "ls -la /root/autodl-tmp/crm_cache_pi05_2048/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-25T17:47:07.360026+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 56\\ndrwxr-xr-x  6 root root    79 May 23 04:23 .\\ndrwxr-xr-x 20 root root  4096 May 23 04:19 ..\\ndrwxr-xr-x  2 root root  8192 May 24 14:14 goal\\ndrwxr-xr-x  2 root root 12288 May 26 01:30 long\\ndrwxr-xr-x  2 root root  8192 May 24 17:54 object\\ndrwxr-xr-x  2 root root  8192 May 24 13:32 spatial\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-25T17:47:07.360291+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/acr-vla-conformal-refinement/ -name \"train_crm*\" -name \"*.log\" -mtime -3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/acr-vla-conformal-refinement/ -name \"train_crm*\" -name \"*.log\" -mtime -3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-25T17:47:07.360525+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-25T17:47:07.360794+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/acr-vla-conformal-refinement/ -name \"*unified*\" -name \"*.log\" -mtime -3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/acr-vla-conformal-refinement/ -name \"*unified*\" -name \"*.log\" -mtime -3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-25T17:47:07.361034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-25T17:47:07.361250+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /tmp/ -name \"*crm*\" -name \"*.log\" -mtime -3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /tmp/ -name \"*crm*\" -name \"*.log\" -mtime -3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-25T17:47:07.362920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/eval_pi05_long_crm_s43.log\\n/tmp/train_crm_pi05_spatial.log\\n/tmp/train_crm_pi05_goal.log\\n/tmp/train_crm_pi05_unified_3suite.log\\n/tmp/eval_long_crm_s42.log\\n/tmp/eval_pi05_object_crm_s42.log\\n/tmp/eval_pi05_long_crm_s42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-25T17:47:07.363152+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls -la /root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_127000_127500.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "ls -la /root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_127000_127500.pt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-25T17:47:07.363401+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_127000_127500.pt': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-25T17:47:07.363620+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/crm_cache_pi05_2048/long/ -name \"precompute_pi05_long_*.pt\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/autodl-tmp/crm_cache_pi05_2048/long/ -name \"precompute_pi05_long_*.pt\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-25T17:47:07.363837+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-25T17:47:07.364049+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls -lt /root/autodl-tmp/crm_cache_pi05_2048/long/ -la",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "ls -lt /root/autodl-tmp/crm_cache_pi05_2048/long/ -la",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-25T17:47:07.366799+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1180608\\n-rw-r--r-- 1 root root 4758330 May 26 01:30 partial_s0_126500_127000.pt\\ndrwxr-xr-x 2 root root   12288 May 26 01:30 .\\n-rw-r--r-- 1 root root 4758330 May 26 01:13 partial_s0_126000_126500.pt\\n-rw-r--r-- 1 root root 4758330 May 26 00:57 partial_s0_125500_126000.pt\\n-rw-r--r-- 1 root root 4758330 May 26 00:40 partial_s0_125000_125500.pt\\n-rw-r--r-- 1 root root 4758330 May 26 00:23 partial_s0_124500_125000.pt\\n-rw-r--r-- 1 root root 4758330 May 26 00:06 partial_s0_124000_124500.pt\\n-rw-r--r-- 1 root root 4758330 May 25 23:49 partial_s0_123500_124000.pt\\n-rw-r--r-- 1 root root 4758330 May 25 23:33 partial_s0_123000_123500.pt\\n-rw-r--r-- 1 root root 4758330 May 25 23:17 partial_s0_122500_123000.pt\\n-rw-r--r-- 1 root root 4758330 May 25 23:01 partial_s0_122000_122500.pt\\n-rw-r--r-- 1 root root 4758330 May 25 22:45 partial_s0_121500_122000.pt\\n-rw-r--r-- 1 root root 4758330 May 25 22:29 partial_s0_121000_121500.pt\\n-rw-r--r-- 1 root root 4758330 May 25 22:13 partial_s0_120500_121000.pt\\n-rw-r--r-- 1 root root 4758330 May 25 21:57 partial_s0_120000_120500.pt\\n-rw-r--r-- 1 root root 4758330 May 25 21:41 partial_s0_119500_120000.pt\\n-rw-r--r-- 1 root root 4758330 May 25 21:24 partial_s0_119000_119500.pt\\n-rw-r--r-- 1 root root 4758330 May 25 21:07 partial_s0_118500_119000.pt\\n-rw-r--r-- 1 root root 4758330 May 25 20:49 partial_s0_118000_118500.pt\\n-rw-r--r-- 1 root root 4758330 May 25 20:32 partial_s0_117500_118000.pt\\n-rw-r--r-- 1 root root 4758330 May 25 20:16 partial_s0_117000_117500.pt\\n-rw-r--r-- 1 root root 4758330 May 25 19:58 partial_s0_116500_117000.pt\\n-rw-r--r-- 1 root root 4758330 May 25 19:41 partial_s0_116000_116500.pt\\n-rw-r--r-- 1 root root 4758330 May 25 19:23 partial_s0_115500_116000.pt\\n-rw-r--r-- 1 root root 4758330 May 25 19:06 partial_s0_115000_115500.pt\\n-rw-r--r-- 1 root root 4758330 May 25 18:49 partial_s0_114500_115000.pt\\n-rw-r--r-- 1 root root 4758330
+…[truncated 6431 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-25T17:47:07.367161+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -50 /tmp/train_crm_pi05_unified_3suite.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "tail -50 /tmp/train_crm_pi05_unified_3suite.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-25T17:47:07.367442+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[train_crm] args: {'benchmark': ['object', 'spatial', 'goal'], 'epochs': 50, 'batch_size': 256, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/', 'cache_dir': '/root/autodl-tmp/crm_cache_pi05_2048/', 'K': 10, 'obs_dim': 2048, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': False, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\\n[train_crm] device: cuda\\n[train] Loading cache (object): 72507 samples, K=10, obs_dim=2048\\n[train] Loading cache (spatial): 60250 samples, K=10, obs_dim=2048\\n[train] Loading cache (goal): 61728 samples, K=10, obs_dim=2048\\n[train] Total: 194485 samples from 3 benchmark(s)\\n[train] CRM parameters: 615,966\\n[train] Computing input normalization stats...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-25T17:47:07.367687+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "wc -l /root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_0_500.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "wc -l /root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_0_500.pt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-25T17:47:07.367926+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"14779 /root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_0_500.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-25T17:47:07.368152+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "head -30 /tmp/train_crm_pi05_unified_3suite.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "head -30 /tmp/train_crm_pi05_unified_3suite.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-25T17:47:07.370471+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[train_crm] args: {'benchmark': ['object', 'spatial', 'goal'], 'epochs': 50, 'batch_size': 256, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/', 'cache_dir': '/root/autodl-tmp/crm_cache_pi05_2048/', 'K': 10, 'obs_dim': 2048, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': False, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\\n[train_crm] device: cuda\\n[train] Loading cache (object): 72507 samples, K=10, obs_dim=2048\\n[train] Loading cache (spatial): 60250 samples, K=10, obs_dim=2048\\n[train] Loading cache (goal): 61728 samples, K=10, obs_dim=2048\\n[train] Total: 194485 samples from 3 benchmark(s)\\n[train] CRM parameters: 615,966\\n[train] Computing input normalization stats...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-25T17:47:07.370769+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "wc -l /tmp/train_crm_pi05_unified_3suite.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "wc -l /tmp/train_crm_pi05_unified_3suite.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-25T17:47:07.371002+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"8 /tmp/train_crm_pi05_unified_3suite.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-25T17:47:07.371485+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep -c \"partial_s0\" /tmp/train_crm_pi05_unified_3suite.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "grep -c \"partial_s0\" /tmp/train_crm_pi05_unified_3suite.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-25T17:47:07.371724+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-25T17:47:07.371955+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep -E \"Epoch|best|saved|done|finished|complete\" /tmp/train_crm_pi05_unified_3suite.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "grep -E \"Epoch|best|saved|done|finished|complete\" /tmp/train_crm_pi05_unified_3suite.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-25T17:47:07.372180+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-25T17:47:07.373509+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep -r \"total\" /tmp/train_crm_pi05_unified_3suite.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "grep -r \"total\" /tmp/train_crm_pi05_unified_3suite.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-25T17:47:07.373745+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-25T17:47:07.373963+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep -c \"Saving\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "grep -c \"Saving\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-25T17:47:07.374184+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-25T17:47:07.374423+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep \"total_demos\\|num_demos\\|n_demos\\|total_steps\\|max_demos\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "grep \"total_demos\\|num_demos\\|n_demos\\|total_steps\\|max_demos\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-25T17:47:07.374647+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-25T17:47:07.374867+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/crm_cache_pi05_2048/long/ -name \"precompute*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/autodl-tmp/crm_cache_pi05_2048/long/ -name \"precompute*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-25T17:47:07.375087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-25T17:47:07.378836+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed47_n20.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed47_n20.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-25T17:47:07.379221+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.785,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bl
+…[truncated 277 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-25T17:47:07.379670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "grep -rn \"total_steps\\|Total steps\\|total samples\\|Total samples\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "grep -rn \"total_steps\\|Total steps\\|total samples\\|Total samples\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-25T17:47:07.379914+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-25T17:47:07.380153+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed48.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed48.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-25T17:47:07.381646+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.735,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.55,\\n      \\\"successes\\\": 11,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"re
+…[truncated 78 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-25T17:47:07.383474+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_crm_obs_only_norm0.05_seed49.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_crm_obs_only_norm0.05_seed49.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-25T17:47:07.383788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.835,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.55,\\n      \\\"successes\\\": 11,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-25T17:47:07.384059+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/crm_cache_pi05_2048/long/ -name \"partial_s0_*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-18228",
+    "command": "find /root/autodl-tmp/crm_cache_pi05_2048/long/ -name \"partial_s0_*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-25T17:47:07.384471+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_0_500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_500_1000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_1000_1500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_1500_2000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_2000_2500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_2500_3000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_3000_3500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_3500_4000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_4000_4500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_4500_5000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_5000_5500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_5500_6000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_6000_6500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_6500_7000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_7000_7500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_7500_8000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_8000_8500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_8500_9000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_9000_9500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_9500_10000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_10000_10500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_10500_11000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_11000_11500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_11500_12000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_12000_12500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_12500_13000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_13000_13500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_13500_14000.pt\\n/root/autodl-tmp/crm_cache_p
+…[truncated 6435 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-25T17:47:07.384847+00:00_
+
+## 汇总报告
+
+### 1. π0.5 CRM 3-suite 统一训练 — **已完成**
+
+- **Checkpoint**: `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt` (2.4MB, 615,966 params)
+- 训练完成时间: May 25 12:41 (50 epochs 全部完成, epoch 46-50 checkpoints 保留)
+- 训练数据: 194,485 samples (object 72507 + spatial 60250 + goal 61728)
+- 配置: batch_size=256, lr=0.001, obs_dim=2048, K=10, MSE loss + λ_conf=0.1
+
+### 2. precompute-pi05-long-2048-r2 (PID 114507) — **仍在运行**
+
+- GPU 3, 9883MiB, 23% util
+- 已处理: 127,000 samples (254 partial files × 500)
+- 当前进度: ~16-17 min/shard
+- 参考其他 benchmark 规模 (60K-72K) 和 long 的更长 episode (520 vs 280 步)，**预计总量 ~130K-140K，接近完成（~94%）**
+- ETA: 约 2-4 小时后完成（~May 26 04:00-06:00 UTC）
+- 缓存目录: `/root/autodl-tmp/crm_cache_pi05_2048/long/`, 当前 4.6GB
+
+### 3. 正在运行的 eval 实验 (3个)
+
+| GPU | 进程 | 状态 | 进度 |
+|-----|------|------|------|
+| GPU 0 | eval_pi05_object_crm_seed42 (PID 601275) | 进行中 | task 3/10, 已跑 ~6h |
+| GPU 1 | eval_pi05_long_crm_seed42 (PID 601277) | 进行中 | task 1/10 完成 (70%), 已跑 ~6h |
+| GPU 2 | eval_pi05_long_crm_seed43 (PID 625278) | 刚启动 | 模型加载中 |
+
+### 4. 已完成的 eval 结果（bjb1-18228 本地，近 24h）
+
+| 文件 | Benchmark | Mode | Success Rate |
+|------|-----------|------|-------------|
+| `eval_long_crm_seed42.json` (May 26 00:11) | long | crm_obs_only | **59.0%** |
+| `eval_spatial_adaptive_seed47_bjb1.json` (May 25 20:29) | spatial | adaptive_conformal_crm | **81.0%** (trigger_rate=19.1%, τ=0.25) |
+| `eval_spatial_vla_only_seed47_n20.json` (May 25 20:27) | spatial | vla_only | **78.5%** |
+| `eval_goal_adaptive_pi05_seed42.json` (May 25 16:50) | goal | adaptive_conformal_crm | **0.0%** ⚠️ |
+| `eval_object_vla_only_pi05_seed42.json` (May 25 15:59) | object | vla_only | 见文件 |
+| `eval_spatial_vla_only_pi05_seed43.json` (May 25 15:58) | spatial | vla_only | 见文件 |
+| `eval_object_crm_obs_only_norm0.05_seed48.json` (May 25 06:52) | object | crm_obs_only | **73.5%** |
+| `eval_goal_crm_obs_only_norm0.05_seed49.json` (May 25 06:21) | goal | crm_obs_only | **83.5%** |
+
+### 5. 关键发现
+
+- **goal adaptive = 0.0%**: `eval_goal_adaptive_pi05_seed42.json` 所有 10 个 task 全部 0% 成功率，严重异常。可能是 adaptive mode 在 goal benchmark 上有 bug，或 conformal threshold / uncertainty head 配置问题。需要调查。
+- **CRM 在 goal 上表现好 (83.5%)，但 adaptive 版本完全失效** — 说明 uncertainty gating 机制可能在 goal benchmark 上错误判断了何时应用 CRM。
+- **spatial: adaptive (81.0%) vs vla_only (78.5%)** — CRM adaptive 有微小提升 (+2.5pp)，trigger rate 只有 19.1%。
+- **long CRM seed42: 59%** — 已完成但结果偏低，需要对比 vla_only baseline 来判断 CRM 效果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_harvest_bjb1-18228-crm-check_20260525T174426"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval-vla-only-goal-seed49",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:51:05.182Z",
+    "updated_at": "2026-05-20T05:53:47.529Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Goal seed49. 补齐 Goal baseline 样本量，与 CRM-Goal (64-72% SR) 配对对比。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark goal --seed 49 --n_rollouts 10 --K 1 --output_file logs/eval_goal_vla_only_seed49.json\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "248151",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-vla-only-goal-seed49.log",
+      "submitted_at": "2026-05-20T03:51:40.570Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "success_rate": 0.65,
+      "n_tasks": 10,
+      "n_rollouts": 10,
+      "total": 100
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T05:53:48.209726+00:00",
+  "trigger": "update_registry"
+}

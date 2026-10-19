@@ -1,0 +1,56 @@
+{
+  "exp_id": "eval-acr-object-v4-perdof",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:49:13.626Z",
+    "updated_at": "2026-05-15T15:45:38.531Z",
+    "hypothesis": "D021: ACR-VLA perdof CRM v3-norm with max_correction_norm=0.1 on LIBERO object benchmark. Cross-benchmark validation of spatial findings.",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode acr_vla --benchmark object --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1",
+      "server": "bjb1-32546",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "pid": "11116",
+      "data_path": "/root/autodl-tmp/libero_data/",
+      "data_count": 100,
+      "model_name": "ACR-VLA (CRM v3-norm perdof, max_correction_norm=0.1, object)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "LIBERO object 10 tasks x 10 rollouts",
+      "checkpoint_path": "N/A (eval-only)",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-acr-object-v4-perdof.log"
+    },
+    "metrics": {
+      "overall_sr": "11.0% (11/100)",
+      "total_success": 11,
+      "total_rollouts": 100,
+      "mode": "perdof",
+      "benchmark": "object",
+      "max_correction_norm": 0.1,
+      "seed": 42,
+      "K": 10,
+      "per_task": {
+        "alphabet_soup": "0%",
+        "cream_cheese": "0%",
+        "salad_dressing": "20%",
+        "bbq_sauce": "30%",
+        "ketchup": "0%",
+        "tomato_sauce": "0%",
+        "butter": "10%",
+        "milk": "0%",
+        "chocolate_pudding": "20%",
+        "orange_juice": "30%"
+      },
+      "note": "perdof object 11% vs argmin ~7% (partial). obs_only leads at ~14% (8/10). Confirms perdof not competitive on object."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T15:45:38.531Z"
+  },
+  "timestamp": "2026-05-15T15:45:38.686311+00:00",
+  "trigger": "update_registry"
+}

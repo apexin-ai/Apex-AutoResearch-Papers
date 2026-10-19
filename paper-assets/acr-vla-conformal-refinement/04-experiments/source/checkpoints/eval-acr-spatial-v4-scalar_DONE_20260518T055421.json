@@ -1,0 +1,63 @@
+{
+  "exp_id": "eval-acr-spatial-v4-scalar",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:15:49.209Z",
+    "updated_at": "2026-05-18T05:54:21.341Z",
+    "hypothesis": "D020: scalar_unc CRM (val_loss 0.0374) with max_correction_norm=0.1. Three-way ablation: perdof vs scalar_unc vs obs_only under identical correction magnitude.",
+    "spec": {
+      "hypothesis": "D020 三路消融：scalar_unc CRM v3-norm (val_loss 0.0374) with max_correction_norm=0.1. 与 perdof (cuda:3) 和 obs_only (cuda:0) 同条件对比，判断 per-DOF vs scalar conformal features 的增益",
+      "data_path": "/root/autodl-tmp/libero_data/",
+      "data_count": 100,
+      "model_name": "ACR-VLA (CRM v3-norm scalar_unc, max_correction_norm=0.1)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt",
+      "eval_data": "LIBERO spatial 10 tasks x 10 rollouts",
+      "command": "python -u src/evaluate.py --mode crm_scalar --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt --max_correction_norm 0.1",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 288939,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-scalar.log",
+      "gpu_ids": [
+        "cuda:2"
+      ]
+    },
+    "metrics": {
+      "tasks_done": "3/10",
+      "partial_results": {
+        "between_plate_and_ramekin": "60.0% (6/10)",
+        "next_to_ramekin": "100.0% (10/10)",
+        "from_table_center": "10.0% (1/10)"
+      },
+      "running_avg_3tasks": "56.7% (17/30)",
+      "snapshot_time": "2026-05-15T12:00:00Z",
+      "server": "bjb1-18228",
+      "gpu": "cuda:2",
+      "pid": 288939
+    },
+    "notes": "[2026-05-15] HUNG: 3/10 tasks done (56.7%, 17/30), stuck on task 4 env init for 8+ hours. Process alive (pid 288939, GPU 1450 MiB) but zero log progress. Needs kill+restart.",
+    "reproduce": {
+      "finished_at": "2026-05-15T04:57:54.647Z"
+    },
+    "failure_reason": "Kill-restart Worker 在 Director 撤销 kill 指令前已执行 SIGTERM (EXIT_CODE=143)。D026 kill 指令已被撤销但来不及阻止。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T04:57:55.887Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T04:57:57.857060+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-18T05:54:21.715089+00:00",
+  "trigger": "update_registry"
+}

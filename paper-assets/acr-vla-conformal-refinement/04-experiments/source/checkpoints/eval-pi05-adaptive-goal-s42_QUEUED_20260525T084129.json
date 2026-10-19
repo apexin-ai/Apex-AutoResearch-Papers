@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-pi05-adaptive-goal-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T08:41:04.077Z",
+    "updated_at": "2026-05-25T08:41:28.381Z",
+    "hypothesis": "π0.5 Adaptive CRM (τ=0.25) Goal s42。跨模型验证：若 π0.5 也在 Goal suite 上 Adaptive > VLA-only，则方法对 3.6B 模型同样有效。VLA-only baseline SR=0.98，天花板高但仍测试 gating 是否有害。",
+    "parent": "eval-pi05-adaptive-spatial-s42-r2"
+  },
+  "timestamp": "2026-05-25T08:41:29.902947+00:00",
+  "trigger": "update_registry"
+}

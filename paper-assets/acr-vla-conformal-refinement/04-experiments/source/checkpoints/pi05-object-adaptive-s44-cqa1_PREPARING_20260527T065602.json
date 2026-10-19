@@ -1,0 +1,14 @@
+{
+  "exp_id": "pi05-object-adaptive-s44-cqa1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:55:59.906Z",
+    "updated_at": "2026-05-27T06:55:59.906Z"
+  },
+  "timestamp": "2026-05-27T06:56:02.915040+00:00",
+  "trigger": "update_registry"
+}

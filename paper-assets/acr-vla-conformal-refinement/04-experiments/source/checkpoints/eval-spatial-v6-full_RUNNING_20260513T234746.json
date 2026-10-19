@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval-spatial-v6-full",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-13T23:04:28.766Z",
+    "updated_at": "2026-05-13T23:47:46.906Z",
+    "reproduce": {
+      "finished_at": "2026-05-13T23:34:08.615Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-13T23:34:09.898Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-13T23:34:11.481851+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 42",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/autodl-tmp/libero_data/ (spatial)",
+      "data_count": 100,
+      "model_name": "lerobot/smolvla_libero",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/eval_results/eval-spatial-v6-full.log",
+      "note": "restored after hotfix v2 restart, pending PID update from worker"
+    }
+  },
+  "timestamp": "2026-05-13T23:47:46.974874+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-3dir-norm01-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:37:49.389Z",
+    "updated_at": "2026-05-23T01:38:58.970Z",
+    "hypothesis": "Reducing max_correction_norm from 1.42 to 0.1 prevents CRM overcorrection and improves SR vs unconstrained CRM on LIBERO-Spatial",
+    "parent": "train-crm-smolvla-3suite-v1"
+  },
+  "timestamp": "2026-05-23T01:39:00.026673+00:00",
+  "trigger": "update_registry"
+}

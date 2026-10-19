@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval-pi05-vla-only-goal-s43-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:20:50.109Z",
+    "updated_at": "2026-05-27T06:34:24.977Z",
+    "hypothesis": "π0.5 VLA-only baseline on Goal s43. Cross-architecture validation without CRM.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark goal --seed 43 --n_rollouts 20 2>&1 | tee logs/eval-pi05-vla-only-goal-s43-v2.log\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "583098",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-goal-s43-v2.log",
+      "submitted_at": "2026-05-24T18:22:00.922Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Goal",
+      "data_count": 20,
+      "model_name": "pi05",
+      "seed": 43
+    },
+    "metrics": {
+      "success_rate": 0.97,
+      "n_rollouts": 20,
+      "benchmark": "goal"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-27T06:34:26.960782+00:00",
+  "trigger": "update_registry"
+}

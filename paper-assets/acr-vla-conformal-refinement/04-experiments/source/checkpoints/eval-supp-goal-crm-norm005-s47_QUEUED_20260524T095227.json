@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-goal-crm-norm005-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:51:56.065Z",
+    "updated_at": "2026-05-24T09:52:26.127Z",
+    "hypothesis": "Goal s47 CRM obs-only (norm=0.05) eval for seed extension. Sixth seed to tighten CI for Goal suite CRM method."
+  },
+  "timestamp": "2026-05-24T09:52:27.569664+00:00",
+  "trigger": "update_registry"
+}

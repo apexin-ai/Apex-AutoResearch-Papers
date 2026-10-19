@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-3dir-reconvla-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:37:57.325Z",
+    "updated_at": "2026-05-23T01:39:53.051Z",
+    "hypothesis": "ReconVLA K=10 argmin sampling without CRM correction isolates sample-selection benefit from CRM correction, serving as diagnostic baseline on LIBERO-Spatial",
+    "parent": "train-crm-smolvla-3suite-v1"
+  },
+  "timestamp": "2026-05-23T01:39:54.122613+00:00",
+  "trigger": "update_registry"
+}

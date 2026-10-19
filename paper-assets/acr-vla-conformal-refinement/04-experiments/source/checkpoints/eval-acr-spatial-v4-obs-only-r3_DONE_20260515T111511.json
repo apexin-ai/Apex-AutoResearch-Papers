@@ -1,0 +1,77 @@
+{
+  "exp_id": "eval-acr-spatial-v4-obs-only-r3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:14:05.934Z",
+    "updated_at": "2026-05-15T11:15:11.801Z",
+    "hypothesis": "Restart from T6. obs_only CRM v3-norm with max_correction_norm=0.1 on spatial. If obs_only >= perdof, conformal features need restructuring.",
+    "parent": "eval-acr-spatial-v4-obs-only-r2",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --start_task 6",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": 312420,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-obs-only-r3.log",
+      "submitted_at": "2026-05-15T05:14:38.600Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO spatial",
+      "data_count": 40,
+      "model_name": "ACR-VLA CRM obs_only v3-norm (restart from T6)",
+      "seed": 42,
+      "eval_data": "LIBERO spatial tasks 6-9",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "wall_clock_seconds": 21633.2,
+      "gpu_hours": 6.01
+    },
+    "metrics": {
+      "overall_sr": "35.0% (35/100)",
+      "total_success": 35,
+      "total_rollouts": 100,
+      "mode": "crm_obs_only",
+      "benchmark": "spatial",
+      "max_correction_norm": 0.1,
+      "seed": 42,
+      "K": 10,
+      "per_task": {
+        "T0": "90%",
+        "T1": "100%",
+        "T2": "0%",
+        "T3": "40%",
+        "T4": "10%",
+        "T5": "0%",
+        "T6": "90%",
+        "T7": "0%",
+        "T8": "20%",
+        "T9": "0%"
+      },
+      "r3_subset_T6_T9": "27.5% (11/40)",
+      "note": "D030: obs_only spatial 10-task = 35%. vs argmin 34% = +1pp. Scenario C threshold (>=39%) NOT MET. Earlier T0-T5 advantage (+5pp) wiped out by T6-T9."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T10:15:39.276Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T10:15:44.340640+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-obs-only-r3.log",
+    "completed_at": "2026-05-15T11:15:11.801Z"
+  },
+  "timestamp": "2026-05-15T11:15:11.945864+00:00",
+  "trigger": "update_registry"
+}

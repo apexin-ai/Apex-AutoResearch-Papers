@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval-perdof-object-norm005-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:31:56.813Z",
+    "updated_at": "2026-05-18T10:32:02.239Z",
+    "spec": {
+      "command": "cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_object_perdof_norm005_seed44.json",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "553043",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm005-seed44.log",
+      "submitted_at": "2026-05-17T23:31:56.266Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T10:32:03.093564+00:00",
+  "trigger": "update_registry"
+}

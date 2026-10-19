@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval-plan-a-spatial-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:17:17.907Z",
+    "updated_at": "2026-05-20T23:49:32.228Z",
+    "hypothesis": "D090 Plan A Spatial: K=10 forward → L2 pairwise distance as uncertainty → if L2 > τ(P50=0.074855): argmin-to-centroid + CRM correction; else: argmin-to-centroid only. Tests adaptive conformal CRM on LIBERO-Spatial (ID benchmark) seed44.",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode adaptive_conformal_crm --benchmark spatial --seed 44 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.074855 --output_file logs/eval_plan_a_spatial_seed44.json",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "664545",
+      "seed": 44,
+      "model_name": "SmolVLA+CRM_obs_only_adaptive",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 100,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "log_path": "/root/autodl-tmp/logs/plan_a_spatial_seed44.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.36,
+      "sr_pct": "36.0%",
+      "n_tasks": 10,
+      "n_rollouts": 10,
+      "total_rollouts": 100,
+      "mean_uncertainty": 0.2661,
+      "trigger_rate": 0.978
+    },
+    "completed_at": "2026-05-20T23:49:32.228Z"
+  },
+  "timestamp": "2026-05-20T23:49:33.190156+00:00",
+  "trigger": "update_registry"
+}

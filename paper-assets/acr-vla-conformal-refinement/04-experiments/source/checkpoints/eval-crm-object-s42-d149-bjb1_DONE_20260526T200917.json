@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval-crm-object-s42-d149-bjb1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T15:52:03.258Z",
+    "updated_at": "2026-05-26T20:09:15.800Z",
+    "hypothesis": "SmolVLA CRM (K=10, norm=0.05) on object s42 provides action correction (Table 1 D149 seed, bjb1-32546 rerun)",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --model smolvla --mode crm_obs_only --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_crm_norm005_s42_d149.json",
+      "server": "bjb1-32546",
+      "data_path": "LIBERO-object",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-object 10 tasks x 20 rollouts",
+      "pid": 909918,
+      "log_path": "logs/eval-crm-object-s42-d149-bjb1.log"
+    },
+    "metrics": {
+      "overall_sr": 0.77,
+      "per_task": {
+        "alphabet_soup": 0.7,
+        "cream_cheese": 0.7,
+        "salad_dressing": 0.75,
+        "bbq_sauce": 0.9,
+        "ketchup": 0.8,
+        "tomato_sauce": 0.7,
+        "butter": 0.7,
+        "milk": 0.75,
+        "chocolate_pudding": 0.85,
+        "orange_juice": 0.85
+      }
+    },
+    "checkpoint_path": "N/A - eval only",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval-crm-object-s42-d149-bjb1.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-26T20:09:15.800Z"
+  },
+  "timestamp": "2026-05-26T20:09:17.646024+00:00",
+  "trigger": "update_registry"
+}

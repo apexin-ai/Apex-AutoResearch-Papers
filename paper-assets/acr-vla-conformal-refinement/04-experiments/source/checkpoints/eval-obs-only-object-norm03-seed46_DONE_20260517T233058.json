@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval-obs-only-object-norm03-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:28:22.831Z",
+    "updated_at": "2026-05-17T23:30:58.329Z",
+    "hypothesis": "obs_only CRM at eps=0.3 on seed46 extends magnitude curve high-norm data. seed42=19%, seed44=18%, seed45=14%. 4th seed at this norm.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.3 --seed 46 --benchmark object --n_rollouts 10 --output_file logs/eval_object_obs_only_norm03_seed46.json",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "416568",
+      "seed": 46,
+      "model_name": "SmolVLA+CRM_obs_only",
+      "data_path": "LIBERO-Object 10 tasks",
+      "data_count": 100,
+      "eval_data": "LIBERO-Object",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "max_correction_norm": 0.3,
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm03_seed46.json",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt"
+    },
+    "metrics": {
+      "overall_sr": 0.17,
+      "successes": 17,
+      "total": 100
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T23:30:58.329Z"
+  },
+  "timestamp": "2026-05-17T23:30:58.693397+00:00",
+  "trigger": "update_registry"
+}

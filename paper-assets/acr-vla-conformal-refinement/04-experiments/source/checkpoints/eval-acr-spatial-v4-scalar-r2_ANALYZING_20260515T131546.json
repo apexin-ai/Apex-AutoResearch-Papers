@@ -1,0 +1,54 @@
+{
+  "exp_id": "eval-acr-spatial-v4-scalar-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:14:04.283Z",
+    "updated_at": "2026-05-15T13:15:46.401Z",
+    "hypothesis": "Restart from T3. scalar_unc CRM v3-norm with max_correction_norm=0.1 on spatial. Three-way ablation: perdof vs scalar_unc vs obs_only.",
+    "parent": "eval-acr-spatial-v4-scalar",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_scalar --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt --max_correction_norm 0.1 --start_task 3",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": 311881,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-scalar-r2.log",
+      "submitted_at": "2026-05-15T05:14:33.525Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO spatial",
+      "data_count": 70,
+      "model_name": "ACR-VLA CRM scalar_unc v3-norm (restart from T3)",
+      "seed": 42,
+      "eval_data": "LIBERO spatial tasks 3-9",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt"
+    },
+    "metrics": {
+      "tasks_done": "6/7 (from T3)",
+      "partial_results": {
+        "T3/pick_up_bowl_on_cookie_box": "40%",
+        "T4/pick_up_bowl_in_top_drawer": "0%",
+        "T5/pick_up_bowl_on_ramekin": "0%",
+        "T6/pick_up_bowl_next_to_cookie_box": "90%",
+        "T7/pick_up_bowl_on_stove": "0%",
+        "T8/pick_up_bowl_next_to_plate": "10%"
+      },
+      "snapshot_time": "2026-05-15T12:00:00Z",
+      "server": "bjb1-18228",
+      "process_status": "alive",
+      "pid": 311881,
+      "etime": "7h00m"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T13:15:46.019Z"
+    }
+  },
+  "timestamp": "2026-05-15T13:15:46.608763+00:00",
+  "trigger": "update_registry"
+}

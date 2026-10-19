@@ -1,0 +1,61 @@
+{
+  "exp_id": "eval-spatial-obs-only-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:09:30.589Z",
+    "updated_at": "2026-05-21T11:50:52.186Z",
+    "hypothesis": "补充 seed for Spatial crm_obs_only statistical robustness (low-priority, may be killed for π0.5)",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_spatial_obs_only_seed45.json",
+      "server": "bjb2-28827",
+      "seed": 45,
+      "model_name": "crm_obs_only",
+      "data_path": "spatial",
+      "data_count": 10,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "spatial"
+    },
+    "notes": "Cron false-positive: marked failed but actually completed successfully. Overall SR 34.0% (34/100) on LIBERO-Spatial with crm_obs_only mode (K=10, max_correction_norm=0.2). Output: /root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_seed45.json. Per-task: between_plate_ramekin=90%, next_to_ramekin=90%, table_center=0%, on_cookie_box=40%, in_top_drawer=10%, on_ramekin=0%, next_to_cookie_box=80%, on_stove=0%, next_to_plate=30%, on_wooden_cabinet=0%.",
+    "reproduce": {
+      "finished_at": "2026-05-21T11:48:53.463Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T11:49:04.204Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T11:49:25.607190+00:00"
+        }
+      ]
+    },
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_seed45.log",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+    "metrics": {
+      "overall_sr": 0.34,
+      "per_task_sr": [
+        0.9,
+        0.9,
+        0,
+        0.4,
+        0.1,
+        0,
+        0.8,
+        0,
+        0.3,
+        0
+      ],
+      "total_rollouts": 100,
+      "n_tasks": 10,
+      "n_rollouts_per_task": 10
+    }
+  },
+  "timestamp": "2026-05-21T11:50:53.104806+00:00",
+  "trigger": "update_registry"
+}

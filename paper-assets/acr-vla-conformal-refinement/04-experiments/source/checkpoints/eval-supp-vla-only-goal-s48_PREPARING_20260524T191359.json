@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-supp-vla-only-goal-s48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T15:35:48.983Z",
+    "updated_at": "2026-05-24T19:13:57.733Z",
+    "hypothesis": "VLA-only baseline seed 48 on Goal. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark goal --seed 48 --n_rollouts 20 2>&1 | tee logs/eval-supp-vla-only-goal-s48.log\"",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "941247",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-vla-only-goal-s48.log",
+      "submitted_at": "2026-05-24T15:38:38.015Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T19:13:59.164914+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-k2-spatial-vla-only-s47-paired",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T05:59:11.109Z",
+    "updated_at": "2026-05-25T05:59:43.785Z",
+    "hypothesis": "VLA-only baseline on Spatial s47, same-server paired with Adaptive s47 on bjb2-28827 for paired t-test.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-25T05:59:45.274520+00:00",
+  "trigger": "update_registry"
+}

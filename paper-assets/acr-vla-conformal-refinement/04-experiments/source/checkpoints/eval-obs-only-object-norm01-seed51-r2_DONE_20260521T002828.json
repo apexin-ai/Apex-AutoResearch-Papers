@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval-obs-only-object-norm01-seed51-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:13:00.000Z",
+    "updated_at": "2026-05-21T00:28:25.318Z",
+    "hypothesis": "CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed51 r2. Redo of crashed seed51 (process dead, no JSON). Norm sweep: filling ε=0.1 gap.",
+    "parent": "eval-obs-only-object-norm01-seed51",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 51 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_obs_only_object_norm01_seed51_r2.json",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "720055",
+      "seed": 51,
+      "model_name": "CRM_obs_only",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "log_path": "/root/autodl-tmp/logs/obs_only_object_norm01_seed51_r2.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T00:27:55.957Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T00:27:39.337Z"
+  },
+  "timestamp": "2026-05-21T00:28:28.004539+00:00",
+  "trigger": "update_registry"
+}

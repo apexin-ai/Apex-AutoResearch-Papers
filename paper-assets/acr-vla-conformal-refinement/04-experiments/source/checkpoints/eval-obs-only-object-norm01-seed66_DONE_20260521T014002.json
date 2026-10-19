@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-obs-only-object-norm01-seed66",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:30:00.000Z",
+    "updated_at": "2026-05-21T01:39:59.187Z",
+    "hypothesis": "obs_only CRM with epsilon=0.1 on LIBERO-Object seed66, additional seed for norm sweep statistical robustness",
+    "server": "bjb1-18228",
+    "gpu": "cuda:3",
+    "pid": 638518,
+    "seed": 66,
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python3 evaluate.py --benchmark object --K 10 --mode crm_obs_only --max_correction_norm 0.1 --seed 66",
+      "server": "bjb1-18228",
+      "data_path": "LIBERO-Object",
+      "data_count": 10,
+      "model_name": "SmolVLA-base",
+      "seed": 66
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T01:39:21.924Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T01:39:39.786Z"
+  },
+  "timestamp": "2026-05-21T01:40:02.857708+00:00",
+  "trigger": "update_registry"
+}

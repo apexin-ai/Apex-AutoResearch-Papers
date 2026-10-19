@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval-supp-goal-crm-norm005-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:51:56.065Z",
+    "updated_at": "2026-05-26T16:23:00.790Z",
+    "hypothesis": "Goal s47 CRM obs-only (norm=0.05) eval for seed extension. Sixth seed to tighten CI for Goal suite CRM method.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --seed 47 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO-Goal",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 47,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt",
+      "eval_data": "LIBERO-Goal 10 tasks x 20 rollouts",
+      "tmux_session": "goal-crm-s47",
+      "log_path": "/tmp/eval_goal_crm_s47.log",
+      "gpu": 1,
+      "pid": 199883
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 82
+    },
+    "checkpoint_path": "n/a-eval-only",
+    "completed_at": "2026-05-24T12:03:55.336Z"
+  },
+  "timestamp": "2026-05-26T16:23:02.686332+00:00",
+  "trigger": "update_registry"
+}

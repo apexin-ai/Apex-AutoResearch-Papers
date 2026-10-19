@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-supp-k2mean-object-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:27:45.450Z",
+    "updated_at": "2026-05-23T12:17:14.776Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --mode vla_only --baseline_mode mean --K 2 --benchmark object --seed 44 --n_rollouts 20\"",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "177859",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-k2mean-object-s44.log",
+      "submitted_at": "2026-05-23T11:27:59.483Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "K=2 mean baseline on Object seed44. Third seed for 3-seed mean±std. s42=79.5%, s43 running. Isolates multi-sample averaging on Object tasks."
+  },
+  "timestamp": "2026-05-23T12:17:15.990162+00:00",
+  "trigger": "update_registry"
+}

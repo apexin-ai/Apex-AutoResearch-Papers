@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval-pi05-vla-only-goal-seed42-r4-std",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:30:09.587Z",
+    "updated_at": "2026-05-22T17:16:00.966Z",
+    "failure_reason": "Ghost experiment — never submitted (no spec/command), cron misfire. Real experiment is eval-pi05-vla-only-goal-seed42-r4 (running).",
+    "reproduce": {
+      "finished_at": "2026-05-22T16:30:12.594Z"
+    },
+    "conclusion": "killed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T16:30:46.611319+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Phantom duplicate entry — real experiment is eval-pi05-vla-only-goal-seed42-r4 (DONE/success/98.0%)",
+    "spec": {
+      "command": "N/A - phantom entry",
+      "server": "N/A",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "N/A",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "N/A"
+    },
+    "completed_at": "2026-05-22T17:14:55.765Z"
+  },
+  "timestamp": "2026-05-22T17:16:02.076900+00:00",
+  "trigger": "update_registry"
+}

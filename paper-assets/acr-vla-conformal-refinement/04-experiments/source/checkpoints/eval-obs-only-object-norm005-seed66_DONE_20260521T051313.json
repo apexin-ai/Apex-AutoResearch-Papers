@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval-obs-only-object-norm005-seed66",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:30:00.000Z",
+    "updated_at": "2026-05-21T05:13:12.047Z",
+    "hypothesis": "obs_only CRM with epsilon=0.05 on LIBERO-Object seed66, additional seed for norm sweep statistical robustness",
+    "server": "bjb1-18228",
+    "gpu": "cuda:2",
+    "pid": 642506,
+    "seed": 66,
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python3 evaluate.py --benchmark object --K 10 --mode crm_obs_only --max_correction_norm 0.05 --seed 66 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "server": "bjb1-18228",
+      "data_path": "LIBERO-Object",
+      "data_count": 10,
+      "model_name": "SmolVLA-base",
+      "seed": 66
+    },
+    "notes": "[2026-05-21 修正] 之前的\"task 9/10 异常退出\"判断错误。实际进程跑完了全部 10 个 task (20 rollouts each, 共 200)，JSON 已生成: logs/eval_object_crm_obs_only_norm0.05_seed66.json。SR=11.0% (22/200)。原 conclusion=failed 已修正为 success。Log: /root/autodl-tmp/logs/norm005_seed66.log (bjb1-18228)。",
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-21T05:10:14.887Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-21T05:10:23.876Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T05:10:47.214816+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_success_rate": 0.11,
+      "total_successes": 22,
+      "total_rollouts": 200,
+      "n_rollouts_per_task": 20,
+      "n_tasks": 10,
+      "output_json": "/root/logs/eval_object_crm_obs_only_norm0.05_seed66.json"
+    }
+  },
+  "timestamp": "2026-05-21T05:13:13.001714+00:00",
+  "trigger": "update_registry"
+}

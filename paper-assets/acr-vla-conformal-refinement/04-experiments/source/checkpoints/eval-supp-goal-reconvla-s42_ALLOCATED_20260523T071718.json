@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-supp-goal-reconvla-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:03:28.711Z",
+    "updated_at": "2026-05-23T07:17:17.776Z",
+    "hypothesis": "Reconvla K=10 argmin baseline on Goal suite seed42. Spatial and Object both achieved 79.0%. If Goal also ~79%, confirms reconvla is suite-invariant. Goal VLA-only=71%, CRM=85.5%.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode reconvla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark goal --seed 42 --n_rollouts 20 --K 10 2>&1 | tee logs/eval-supp-goal-reconvla-s42.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "620817",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-goal-reconvla-s42.log",
+      "submitted_at": "2026-05-23T07:16:25.113Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-23T07:17:18.913114+00:00",
+  "trigger": "update_registry"
+}

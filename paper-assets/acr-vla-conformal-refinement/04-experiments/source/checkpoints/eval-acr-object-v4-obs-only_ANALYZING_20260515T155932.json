@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval-acr-object-v4-obs-only",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:53:41.689Z",
+    "updated_at": "2026-05-15T15:59:32.240Z",
+    "hypothesis": "D021: obs_only CRM v3-norm with max_correction_norm=0.1 on LIBERO object benchmark. Cross-benchmark validation — obs-only leads spatial at 57.5%.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "13797",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-acr-object-v4-obs-only.log",
+      "submitted_at": "2026-05-15T02:53:41.526Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "tasks_done": "6/10",
+      "partial_results": {
+        "alphabet_soup": "0% (0/10)",
+        "cream_cheese": "10% (1/10)",
+        "salad_dressing": "20% (2/10)",
+        "bbq_sauce": "40% (4/10)",
+        "ketchup": "10% (1/10)",
+        "tomato_sauce": "0% (0/10)"
+      },
+      "running_avg_6task": "13.3%",
+      "snapshot_time": "2026-05-15T19:45:00Z",
+      "server": "bjb1-32546",
+      "gpu": "cuda:2",
+      "pid": 13806,
+      "process_status": "alive"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T15:59:31.860Z"
+    }
+  },
+  "timestamp": "2026-05-15T15:59:32.395536+00:00",
+  "trigger": "update_registry"
+}

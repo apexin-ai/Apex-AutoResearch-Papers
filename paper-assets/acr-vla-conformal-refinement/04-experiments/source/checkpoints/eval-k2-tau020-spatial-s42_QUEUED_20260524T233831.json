@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-k2-tau020-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T21:37:23.017Z",
+    "updated_at": "2026-05-24T23:38:30.218Z",
+    "hypothesis": "K=2 τ-sweep: τ=0.20 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting. Key comparison point — τ=0.20 was peak SR under K=10 (81.0%).",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && echo '=== K=2 tau=0.20 START ===' && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.20 --benchmark spatial --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2 2>&1 | tee logs/eval-k2-tau020-spatial-s42.log && echo '=== K=2 tau=0.25 START ===' && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.25 --benchmark spatial --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2 2>&1 | tee logs/eval-k2-tau025-spatial-s42.log\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "788081",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-k2-tau020-spatial-s42.log",
+      "submitted_at": "2026-05-24T21:57:59.368Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-24T23:38:31.651263+00:00",
+  "trigger": "update_registry"
+}

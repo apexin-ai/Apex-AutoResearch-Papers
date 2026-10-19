@@ -1,0 +1,16 @@
+{
+  "exp_id": "train-crm-unified-4suite-r3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:34:36.171Z",
+    "updated_at": "2026-05-22T11:35:01.609Z",
+    "hypothesis": "Unified CRM (obs_only mode, unc_dim=0) trained on all 4 LIBERO suites with K=10 cache — matches Plan A architecture for fair comparison",
+    "parent": "train-crm-unified-4suite"
+  },
+  "timestamp": "2026-05-22T11:35:02.657296+00:00",
+  "trigger": "update_registry"
+}

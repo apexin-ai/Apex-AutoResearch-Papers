@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval-supp-reconvla-spatial-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:03:39.046Z",
+    "updated_at": "2026-05-23T11:21:32.905Z",
+    "hypothesis": "Reconvla K=10 argmin on Spatial seed43. Multi-seed validation (with s42=79%, s44). Tests cross-seed consistency of reconvla selection strategy.",
+    "parent": "eval-supp-reconvla-k2-spatial-s42",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=1 python src/evaluate.py --mode reconvla --K 10 --suite spatial --n_rollouts 20 --seed 43",
+      "server": "cqa1-32758",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 43,
+      "checkpoint_source": "n/a",
+      "eval_data": "LIBERO-Spatial",
+      "gpu": "cuda:1",
+      "pid": 34387
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_success_rate": 0.815,
+      "n_tasks": 10,
+      "n_rollouts": 20,
+      "per_task": {
+        "between_plate_ramekin": 0.95,
+        "next_to_ramekin": 0.95,
+        "table_center": 1,
+        "on_cookie_box": 1,
+        "top_drawer_cabinet": 0.7,
+        "on_ramekin": 0,
+        "next_to_cookie_box": 1,
+        "on_stove": 0.9,
+        "next_to_plate": 0.8,
+        "on_wooden_cabinet": 0.85
+      }
+    },
+    "checkpoint_path": "n/a",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval_spatial_reconvla_seed43.json",
+    "completed_at": "2026-05-23T11:21:32.905Z"
+  },
+  "timestamp": "2026-05-23T11:21:35.208742+00:00",
+  "trigger": "update_registry"
+}

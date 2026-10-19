@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval-object-vla-only-wrapper-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:00:05.406Z",
+    "updated_at": "2026-05-23T02:01:26.563Z",
+    "hypothesis": "SmolVLA wrapper VLA-only baseline on LIBERO-Object establishes fair comparison point for CRM method evaluation",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --mode vla_only --benchmark object --seed 42 --n_rollouts 20",
+      "server": "bjb2-28827",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "N/A (VLA-only, no CRM)",
+      "eval_data": "LIBERO-Object",
+      "gpu": "cuda:3",
+      "pid": 455214
+    }
+  },
+  "timestamp": "2026-05-23T02:01:27.743373+00:00",
+  "trigger": "update_registry"
+}

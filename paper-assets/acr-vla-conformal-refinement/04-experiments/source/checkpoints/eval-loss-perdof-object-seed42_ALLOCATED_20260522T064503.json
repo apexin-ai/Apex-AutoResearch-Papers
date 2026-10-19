@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-loss-perdof-object-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:44:22.703Z",
+    "updated_at": "2026-05-22T06:45:02.474Z",
+    "hypothesis": "Per-DOF weighted CRM eval on SmolVLA Object — testing if prioritizing high-precision DOFs improves downstream success rate vs uniform MSE"
+  },
+  "timestamp": "2026-05-22T06:45:03.435972+00:00",
+  "trigger": "update_registry"
+}

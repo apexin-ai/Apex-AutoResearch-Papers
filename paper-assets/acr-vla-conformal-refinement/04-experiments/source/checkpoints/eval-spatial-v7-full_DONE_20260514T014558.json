@@ -1,0 +1,52 @@
+{
+  "exp_id": "eval-spatial-v7-full",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:05:16.510Z",
+    "updated_at": "2026-05-14T01:45:58.391Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 42",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "123761",
+      "data_path": "/root/autodl-tmp/libero_data/ (spatial)",
+      "data_count": 100,
+      "model_name": "lerobot/smolvla_libero",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/eval_results/eval-spatial-v7.log",
+      "hypothesis": "SmolVLA baseline on libero_spatial with K=1 fix (vla_only single inference)",
+      "checkpoint_source": "lerobot/smolvla_libero",
+      "eval_data": "LIBERO spatial 10 tasks x 10 rollouts"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_success_rate": 0.3,
+      "total_successes": 30,
+      "total_episodes": 100,
+      "n_tasks": 10,
+      "n_rollouts": 10,
+      "per_task": {
+        "pick_up_black_bowl_between_plate_and_ramekin": 0.6,
+        "pick_up_black_bowl_next_to_ramekin": 1,
+        "pick_up_black_bowl_from_table_center": 0,
+        "pick_up_black_bowl_on_cookie_box": 0.2,
+        "pick_up_black_bowl_in_top_drawer": 0,
+        "pick_up_black_bowl_on_ramekin": 0,
+        "pick_up_black_bowl_next_to_cookie_box": 0.9,
+        "pick_up_black_bowl_on_stove": 0,
+        "pick_up_black_bowl_next_to_plate": 0.3,
+        "pick_up_black_bowl_on_wooden_cabinet": 0
+      }
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-14T01:45:58.391Z"
+  },
+  "timestamp": "2026-05-14T01:45:58.450655+00:00",
+  "trigger": "update_registry"
+}

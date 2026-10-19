@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval-adaptive-spatial-s47-bjb1-d149",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T10:25:42.635Z",
+    "updated_at": "2026-05-25T10:28:38.147Z",
+    "hypothesis": "SmolVLA Adaptive (τ=0.25, K=2) 在 spatial 上的选择性 gating 效果（Table 1 D149 seed s47 补跑，bjb1 副本）",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --baseline_mode single --seed 47 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_spatial_adaptive_seed47_bjb1.json",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "tmux_session": "eval-adaptive-spatial-s47-bjb1-d149",
+      "log_path": "/tmp/eval_spatial_adaptive_s47_bjb1.log",
+      "data_path": "/root/autodl-tmp/datasets/libero/libero_spatial",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 47,
+      "checkpoint_source": "/root/autodl-tmp/models/smolvla_libero/",
+      "eval_data": "libero_spatial n=20 per task (200 total)",
+      "crm_checkpoint": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "submitted_via": "ssh_execute+tmux"
+    }
+  },
+  "timestamp": "2026-05-25T10:28:39.674485+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,77 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p50-seed44-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:42:09.659Z",
+    "updated_at": "2026-05-20T09:52:38.418Z",
+    "hypothesis": "K=2 L2 divergence-based adaptive K allocation (P50 threshold τ=0.074855) transfers from Object to Spatial benchmark, achieving comparable SR to fixed K=10 with ~62% compute savings. Cross-benchmark validation of adaptive K as core method.",
+    "parent": "eval-adaptive-k-spatial-p50-seed44",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.074855 --k_full 10 --benchmark spatial --seed 44 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p50_seed44.json\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "249543",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed44-r2.log",
+      "submitted_at": "2026-05-20T07:08:05.277Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "bjb2-28827",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb2-28827",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T07:08:00.822Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.074855 --k_full 10 --benchmark spatial --seed 44 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p50_seed44.json\"",
+      "code_commit": "8a50cefb3480f7c96dd10ca611ff8bf656a5d397",
+      "finished_at": "2026-05-20T09:50:41.417Z",
+      "training_hours": 2.71
+    },
+    "pid": "249543",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed44-r2.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T09:50:52.601095+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_success_rate": 0.33,
+      "per_task_sr": {
+        "between_plate_and_ramekin": 0.6,
+        "next_to_ramekin": 1,
+        "from_table_center": 0,
+        "on_cookie_box": 0.3,
+        "in_top_drawer": 0.1,
+        "on_ramekin": 0,
+        "next_to_cookie_box": 0.9,
+        "on_stove": 0,
+        "next_to_plate": 0.4,
+        "on_wooden_cabinet": 0
+      },
+      "avg_k": 6.4,
+      "fast_path_ratio": 0.45,
+      "adaptive_trigger_rate": 0.55,
+      "mean_l2_distance": 0.0923,
+      "total_steps": 23661,
+      "fast_steps": 10649,
+      "full_steps": 13012,
+      "threshold": 0.074855,
+      "total_rollouts": 100
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T09:52:39.108055+00:00",
+  "trigger": "update_registry"
+}

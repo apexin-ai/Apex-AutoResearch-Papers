@@ -1,0 +1,63 @@
+{
+  "exp_id": "eval-vla-only-spatial-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:24:44.727Z",
+    "updated_at": "2026-05-19T15:29:44.589Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Spatial seed44. Spatial benchmark 第三个 VLA-only seed，配合 obs_only spatial seeds 报告 CRM 改进幅度。",
+    "spec": {
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:4"
+      ],
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 100,
+      "model_name": "SmolVLA_vla_only",
+      "seed": 44,
+      "eval_data": "LIBERO-Spatial (10 tasks x 10 rollouts)",
+      "command": "cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 44 --output_file logs/eval_spatial_vla_only_seed44.json"
+    },
+    "server": "bjb2-28827",
+    "gpu": "cuda:4",
+    "pid": "835806",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed44.log",
+    "reproduce": {
+      "command": "cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 44 --output_file logs/eval_spatial_vla_only_seed44.json",
+      "finished_at": "2026-05-19T15:27:05.121Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T15:27:13.496164+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0.31,
+      "successes": 31,
+      "total": 100,
+      "per_task": {
+        "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate": 0.6,
+        "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate": 1,
+        "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate": 0,
+        "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate": 0.3,
+        "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate": 0,
+        "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate": 0,
+        "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate": 0.9,
+        "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate": 0,
+        "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate": 0.3,
+        "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate": 0
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T15:29:45.141416+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval-perdof-object-norm01-seed46-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:05:32.383Z",
+    "updated_at": "2026-05-17T21:01:12.153Z",
+    "hypothesis": "perdof CRM at eps=0.1 on seed46 will show magnitude sensitivity collapse pattern similar to seed42, confirming obs_only robustness advantage",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_perdof --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --seed 46 --benchmark object",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": 393646,
+      "seed": 46,
+      "model_name": "SmolVLA+CRM_perdof",
+      "data_path": "LIBERO-Object 10 tasks",
+      "data_count": 100,
+      "eval_data": "LIBERO-Object",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.1,
+      "per_task": {
+        "alphabet_soup": 0,
+        "cream_cheese": 0,
+        "salad_dressing": 0.1,
+        "bbq_sauce": 0.3,
+        "ketchup": 0,
+        "tomato_sauce": 0,
+        "butter": 0,
+        "milk": 0.1,
+        "chocolate_pudding": 0.2,
+        "orange_juice": 0.3
+      }
+    },
+    "log_path": "logs/eval_object_perdof_norm01_seed46.log",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+    "completed_at": "2026-05-17T21:01:12.153Z"
+  },
+  "timestamp": "2026-05-17T21:01:12.921486+00:00",
+  "trigger": "update_registry"
+}

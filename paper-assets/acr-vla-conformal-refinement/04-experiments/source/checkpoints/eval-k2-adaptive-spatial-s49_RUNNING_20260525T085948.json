@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-k2-adaptive-spatial-s49",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T02:53:04.109Z",
+    "updated_at": "2026-05-25T08:59:47.263Z",
+    "hypothesis": "K=2 Adaptive Spatial (τ=0.25) 同服务器配对。K=2 是 Adaptive 方法设计的正确采样数（两次前向推理算 L2 距离做 gating）。配对 bjb1-32546 VLA-only baseline 用于 paired t-test。",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.25 --K 2 --benchmark spatial --seed 49 --n_rollouts 20 --max_correction_norm 0.2",
+      "server": "bjb1-32546",
+      "data_path": "libero_spatial",
+      "data_count": 20,
+      "model_name": "smolvla+crm_smolvla_3suite_v1",
+      "seed": 49,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "libero_spatial (20 rollouts)",
+      "gpu": "cuda:3",
+      "tmux_session": "eval-k2-adaptive-spatial-s49",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval-k2-adaptive-spatial-s49.log"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-25T08:59:48.719968+00:00",
+  "trigger": "update_registry"
+}

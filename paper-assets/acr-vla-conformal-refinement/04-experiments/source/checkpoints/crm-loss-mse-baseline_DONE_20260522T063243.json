@@ -1,0 +1,59 @@
+{
+  "exp_id": "crm-loss-mse-baseline",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:02:13.450Z",
+    "updated_at": "2026-05-22T06:32:42.169Z",
+    "hypothesis": "MSE baseline re-training on SmolVLA Object for controlled comparison with loss variants",
+    "spec": {
+      "command": "python src/train_crm.py --benchmark object --loss_type mse --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 960",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "845069",
+      "log_path": "~/runs/acr-vla-conformal-refinement/crm-loss-mse-baseline.log",
+      "submitted_at": "2026-05-22T05:02:45.750Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/crm_cache_v5/",
+      "data_count": 14570,
+      "model_name": "CRM_MSE_baseline",
+      "seed": 42,
+      "wall_clock_seconds": 5341.6,
+      "gpu_hours": 1.48
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T06:25:33.296Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T06:25:48.377898+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "best_val_loss": 0.00208,
+      "final_train_loss": 0.004038,
+      "best_epoch": 50,
+      "total_epochs": 50,
+      "initial_val_loss": 0.008373,
+      "exit_code": 0
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_loss_variants/mse/crm_best.pt",
+    "log_path": "/root/runs/acr-vla-conformal-refinement/crm-loss-mse-baseline.log",
+    "conclusion": "success",
+    "notes": "Training completed cleanly (50/50 epochs, EXIT_CODE=0). Val loss decreased monotonically from 0.008373 (ep1) → 0.002080 (ep50), no overfitting/plateau visible — model still converging at end of cosine schedule. Train_loss=0.004038 vs val_loss=0.002080 (val < train, expected with augmentation noise on train side). Best ckpt saved at epoch 50. Loss values are NOT directly comparable across variants (perdof uses per-DoF weights, conformal_guided adds aux term to MSE); ablation conclusion requires downstream robot eval (success rate on Object task). Provides controlled reference for the 3 loss variants under identical hyperparameters/seed.",
+    "completed_at": "2026-05-22T06:31:47.396Z"
+  },
+  "timestamp": "2026-05-22T06:32:43.218227+00:00",
+  "trigger": "update_registry"
+}

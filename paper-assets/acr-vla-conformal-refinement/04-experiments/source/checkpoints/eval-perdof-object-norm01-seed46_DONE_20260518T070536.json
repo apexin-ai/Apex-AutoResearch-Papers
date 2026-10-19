@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval-perdof-object-norm01-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:51:19.181Z",
+    "updated_at": "2026-05-18T07:05:36.145Z",
+    "hypothesis": "perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \"safe zone\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "393633",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed46.json",
+      "submitted_at": "2026-05-17T06:51:36.171Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "SmolVLA+CRM_perdof_v3_norm",
+      "seed": 46,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "LIBERO-Object (10 tasks x 10 rollouts)",
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 87240.0,
+      "gpu_hours": 24.23
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-18T07:05:36.145Z"
+  },
+  "timestamp": "2026-05-18T07:05:36.714205+00:00",
+  "trigger": "update_registry"
+}

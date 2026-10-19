@@ -1,0 +1,14 @@
+{
+  "exp_id": "pi05-crm-k2-spatial-s44-bjb2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T05:53:18.651Z",
+    "updated_at": "2026-05-26T05:53:18.651Z"
+  },
+  "timestamp": "2026-05-26T05:53:22.812428+00:00",
+  "trigger": "update_registry"
+}

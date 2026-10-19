@@ -1,0 +1,62 @@
+{
+  "exp_id": "pi05-adaptive-object-s42-cqa1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T06:53:47.761Z",
+    "updated_at": "2026-05-26T12:37:37.163Z",
+    "hypothesis": "π0.5 Adaptive Conformal CRM on Object s42. 4090 cluster backup for westd result, controlling Blackwell architecture bias.",
+    "spec": {
+      "command": "python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --benchmark object --seed 42 --n_rollouts 20",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "219038",
+      "log_path": "~/runs/acr-vla-conformal-refinement/pi05-adaptive-object-s42-cqa1.log",
+      "submitted_at": "2026-05-26T06:55:57.336Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "pi05",
+      "seed": 42,
+      "data_path": "libero_object",
+      "data_count": 200,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+      "eval_data": "libero_object_10tasks_x20rollouts",
+      "wall_clock_seconds": 20470.2,
+      "gpu_hours": 5.69
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T11:35:29.689Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T11:35:55.220098+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_success_rate": 0.855,
+      "n_rollouts": 20,
+      "n_tasks": 10,
+      "trigger_rate": 0.037,
+      "mean_uncertainty": 0.0842,
+      "conformal_threshold": 0.25,
+      "max_correction_norm": 0.2,
+      "per_task_min": 0.5,
+      "per_task_max": 1
+    },
+    "checkpoint_path": "N/A (eval-only)",
+    "completed_at": "2026-05-26T12:37:07.564Z"
+  },
+  "timestamp": "2026-05-26T12:37:44.392708+00:00",
+  "trigger": "update_registry"
+}

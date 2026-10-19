@@ -1,0 +1,63 @@
+{
+  "exp_id": "eval-perdof-object-default-seed44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:18:01.200Z",
+    "updated_at": "2026-05-17T11:28:16.075Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --output_file logs/eval_object_perdof_default_seed44.json",
+      "server": "bjb2-40593",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "316382",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-perdof-object-default-seed44.log",
+      "submitted_at": "2026-05-16T07:18:00.861Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "crm_v3_norm/perdof",
+      "seed": 44,
+      "data_path": "LIBERO object benchmark",
+      "data_count": 10,
+      "hypothesis": "perdof CRM v3-norm with DEFAULT max_correction_norm (~1.42) seed=44 on LIBERO object. perdof norm=0.1=11%, norm=0.2=11% on object — expected similar or worse at default.",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "LIBERO object",
+      "wall_clock_seconds": 86534.1,
+      "gpu_hours": 24.04
+    },
+    "hypothesis": "perdof CRM (default norm ~1.42) seed=44 on LIBERO Object. 验证 perdof 在 uncapped norm 下的 catastrophic collapse（seed42=0%）。为 magnitude curve 提供第二个 seed 的 default 数据点。",
+    "reproduce": {
+      "finished_at": "2026-05-17T07:20:12.857Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "negative",
+    "completed_at": "2026-05-17T07:20:15.008Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T07:20:19.307187+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 0,
+      "total_successes": 0,
+      "total_rollouts": 90,
+      "tasks_completed": 9,
+      "note": "Task 10 not started due to 24h timeout. 0/90 rollouts succeeded. Catastrophic collapse at unclipped norm.",
+      "seed": 44,
+      "mode": "crm_perdof",
+      "benchmark": "object",
+      "max_correction_norm": "default (~1.42)"
+    }
+  },
+  "timestamp": "2026-05-17T11:28:16.576122+00:00",
+  "trigger": "update_registry"
+}

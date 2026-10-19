@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-supp-obj-adapt-tau025-s45-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T17:55:59.154Z",
+    "updated_at": "2026-05-23T17:56:14.929Z",
+    "hypothesis": "Retry of eval-supp-obj-adapt-tau025-s45. Object Adaptive CRM τ=0.25 seed45 on bjb2-40593 after fixing missing CRM checkpoint.",
+    "parent": "eval-supp-obj-adapt-tau025-s45"
+  },
+  "timestamp": "2026-05-23T17:56:16.329176+00:00",
+  "trigger": "update_registry"
+}

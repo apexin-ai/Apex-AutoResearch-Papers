@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-perdof-object-default-seed47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:32:44.467Z",
+    "updated_at": "2026-05-18T16:33:40.597Z",
+    "hypothesis": "Per-DoF CRM (ε=default/unlimited) seed47 on LIBERO-Object. GPU 双跑补 seed。"
+  },
+  "timestamp": "2026-05-18T16:33:41.010913+00:00",
+  "trigger": "update_registry"
+}

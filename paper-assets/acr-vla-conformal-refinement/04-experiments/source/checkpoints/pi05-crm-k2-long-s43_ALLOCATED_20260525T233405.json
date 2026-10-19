@@ -1,0 +1,15 @@
+{
+  "exp_id": "pi05-crm-k2-long-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T23:33:19.948Z",
+    "updated_at": "2026-05-25T23:34:03.517Z",
+    "hypothesis": "π0.5 CRM K=2 obs_only on LIBERO-Long s43. Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks."
+  },
+  "timestamp": "2026-05-25T23:34:05.062062+00:00",
+  "trigger": "update_registry"
+}

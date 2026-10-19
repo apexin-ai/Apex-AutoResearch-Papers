@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-obj-vla-only-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:38:03.765Z",
+    "updated_at": "2026-05-24T08:38:25.075Z",
+    "hypothesis": "VLA-only (K=1) baseline on Object suite seed47. Sixth seed extending Object VLA-only coverage for variance analysis."
+  },
+  "timestamp": "2026-05-24T08:38:26.433471+00:00",
+  "trigger": "update_registry"
+}

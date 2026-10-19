@@ -1,0 +1,16 @@
+{
+  "exp_id": "train-crm-unified-4suite-r5-resumed",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:42:17.967Z",
+    "updated_at": "2026-05-23T01:42:30.288Z",
+    "hypothesis": "Unified CRM obs_only trained on all 4 LIBERO suites provides better generalization than 3-suite model, resumed from epoch 32 checkpoint after accidental pkill",
+    "parent": "train-crm-unified-4suite-r5"
+  },
+  "timestamp": "2026-05-23T01:42:32.305939+00:00",
+  "trigger": "update_registry"
+}

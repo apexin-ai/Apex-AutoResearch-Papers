@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-k2-tau045-spatial-s42-bjb2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T17:02:42.801Z",
+    "updated_at": "2026-05-26T17:03:03.181Z",
+    "hypothesis": "K=2 τ-sweep: τ=0.45 Adaptive Conformal on Spatial s42. Higher threshold → less correction → closer to VLA-only. Paper appendix tau sensitivity."
+  },
+  "timestamp": "2026-05-26T17:03:04.981452+00:00",
+  "trigger": "update_registry"
+}

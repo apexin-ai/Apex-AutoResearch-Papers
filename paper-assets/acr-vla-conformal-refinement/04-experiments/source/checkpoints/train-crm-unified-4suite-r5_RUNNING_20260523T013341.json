@@ -1,0 +1,42 @@
+{
+  "exp_id": "train-crm-unified-4suite-r5",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:24:37.459Z",
+    "updated_at": "2026-05-23T01:33:40.006Z",
+    "hypothesis": "Continuation of train-crm-unified-4suite-r4 (still running, cron false-alarm set r4 to DONE/failed). Unified CRM obs_only on 4 LIBERO suites, epoch 14/50, val_loss=0.007949",
+    "parent": "train-crm-unified-4suite-r4",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/train_crm.py --benchmark object spatial goal long --obs_dim 960 --epochs 50 --batch_size 32 --lr 1e-3 --input_mode obs_only --cache_dir /root/autodl-tmp/crm_cache_v5/ --output_dir /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "322367",
+      "data_path": "/root/autodl-tmp/crm_cache_v5/",
+      "data_count": 224555,
+      "model_name": "CRM-unified-4suite-obs_only",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/",
+      "log_path": "/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/train.log",
+      "checkpoint_source": "from_scratch (continuation of r4)",
+      "eval_data": "N/A - training run"
+    },
+    "metrics": {
+      "val_loss": 0.006075,
+      "epochs_completed": 32,
+      "epochs_target": 50,
+      "train_loss_final": 0.010489,
+      "best_epoch": 32,
+      "crash_epoch": 33,
+      "crash_count": 2
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-23T01:33:41.957554+00:00",
+  "trigger": "update_registry"
+}

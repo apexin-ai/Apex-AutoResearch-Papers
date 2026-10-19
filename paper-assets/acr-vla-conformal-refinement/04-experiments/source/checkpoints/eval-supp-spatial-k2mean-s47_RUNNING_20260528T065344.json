@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval-supp-spatial-k2mean-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-24T10:58:53.820Z",
+    "updated_at": "2026-05-28T06:53:42.345Z",
+    "hypothesis": "K=2 mean-of-samples VLA baseline on LIBERO-Spatial at seed 47 for seed-extension coverage of the naive averaging baseline.",
+    "completed_at": "2026-05-24T13:23:58.227Z",
+    "notes": "WARNING: per-task JSON was overwritten by eval-supp-spatial-vla-only-s47 (same output filename bug). SR=82% (164/200) confirmed from earlier harvest log, but per-task breakdown unrecoverable. BUG FIX: evaluate.py patched (commit 63f5c81 on cqa1-32758) — baseline_mode=mean now outputs to eval_{benchmark}_k{K}mean_seed{seed}.json.",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "success_rate": 0.82,
+          "total_successes": 164,
+          "total_trials": 200,
+          "note": "per-task data lost due to JSON overwrite by vla-only (same output filename bug M083)"
+        },
+        "notes": "WARNING: per-task JSON was overwritten by eval-supp-spatial-vla-only-s47 (same output filename bug). SR=82% (164/200) confirmed from earlier harvest log, but per-task breakdown unrecoverable. BUG FIX: evaluate.py patched (commit 63f5c81 on cqa1-32758) — baseline_mode=mean now outputs to eval_{benchmark}_k{K}mean_seed{seed}.json."
+      }
+    },
+    "spec": {
+      "command": "python -u src/evaluate.py --model smolvla --mode vla_only --baseline_mode mean --K 2 --benchmark spatial --seed 47 --n_rollouts 20",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "281459",
+      "model_name": "smolvla",
+      "seed": 47,
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "eval_data": "LIBERO-Spatial"
+    }
+  },
+  "timestamp": "2026-05-28T06:53:44.378163+00:00",
+  "trigger": "update_registry"
+}

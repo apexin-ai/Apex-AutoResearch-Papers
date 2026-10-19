@@ -1,0 +1,1342 @@
+# diag eval vla only object seed48
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_diag_eval-vla-only-object-seed48_20260519T234612.jsonl`
+- **Structured JSON:** [`0369e46e556eee9052a5.json`](../../sessions/03/0369e46e556eee9052a5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T23:47:23.088812+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T23:47:23.089129+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T23:47:23.089338+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/eval-vla-only-object-seed48.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "cat /root/acr-vla-conformal-refinement/eval-vla-only-object-seed48.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T23:47:23.089503+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T23:47:23.089637+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.json 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.json 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T23:47:23.089767+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T23:47:23.089889+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "dmesg -T 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "dmesg -T 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T23:47:23.090011+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T23:47:23.090129+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "df -h /root /tmp",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "df -h /root /tmp",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T23:47:23.090248+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "nvidia-smi",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T23:47:23.090398+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\noverlay          30G  8.9G   22G  30% /\\noverlay          30G  8.9G   22G  30% /\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T23:47:23.090553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Wed May 20 07:46:33 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:3D:00.0 Off |                  Off |\\n| 30%   28C    P8             21W /  425W |       0MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T23:47:23.090695+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "tmux list-sessions 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "tmux list-sessions 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T23:47:23.090817+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T23:47:23.090937+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "ps aux",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "ps aux",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T23:47:23.091072+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476   316 ?        Ss   May13   0:01 bash /init/boot/boot.sh\\nroot        881  1.6  0.0 724896 20164 ?        Sl   May13 162:56 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        900  0.0  0.0  15444  4464 ?        S    May13   0:38 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        902  0.2  0.0 5269628 97336 ?       Sl   May13  27:55 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        904  0.0  0.0 2181320 54276 ?       Sl   May13   4:19 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        905  0.0  0.0 191540 88880 ?        S    May13   0:03 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        906  0.0  0.0 3830840 18576 ?       Sl   May13   6:55 proxy -c /init/proxy/proxy.ini\\nroot        907  0.0  0.0 3461156 17208 ?       Sl   May13   2:59 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        974  0.0  0.0 17524960 4608 ?       Sl   May13   3:45 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_cg0t3xd4/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_cg0t3xd4/startup_error\\nroot     612368  0.0  0.0  16692 10688 ?        Ss   01:39   0:03 sshd: root@notty\\nroot     643113  0.0  0.0  25560 19324 ?        S    07:11   0:00 python3 -m http.server 18888\\nroot     645602  2.5  0.0  16692 10548 ?        Ss   07:46   0:00 sshd: root@notty\\nroot     645618  0.0  0.0   7064  1552 ?        Rs   07:46   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T23:47:23.091240+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/eval-vla-only-object-seed48.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "cat /root/acr-vla-conformal-refinement/eval-vla-only-object-seed48.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T23:47:23.091394+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/acr-vla-conformal-refinement/eval-vla-only-object-seed48.log: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T23:47:23.091517+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T23:47:23.091640+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1485 May 20 07:36 /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T23:47:23.091757+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T23:47:23.091876+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T23:47:23.091999+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "dmesg -T",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "dmesg -T",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T23:47:23.092119+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'dmesg' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T23:47:23.092234+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "du -sh /root/acr-vla-conformal-refinement/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "du -sh /root/acr-vla-conformal-refinement/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T23:47:23.092376+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"820K\\t/root/acr-vla-conformal-refinement/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T23:47:23.092492+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "du -sh /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "du -sh /root/autodl-tmp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T23:47:23.092613+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"99G\\t/root/autodl-tmp/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T23:47:23.092748+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "ls -la /root/acr-vla-conformal-refinement/*.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "ls -la /root/acr-vla-conformal-refinement/*.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T23:47:23.092879+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 713 May 19 16:16 /root/acr-vla-conformal-refinement/benchmark_output.log\\n-rw-r--r-- 1 root root 256 May 19 16:04 /root/acr-vla-conformal-refinement/verify2_output.log\\n-rw-r--r-- 1 root root 589 May 19 16:01 /root/acr-vla-conformal-refinement/verify_output.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T23:47:23.093018+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T23:47:23.093183+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.1,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"erro
+…[truncated 55 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T23:47:23.093358+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/benchmark_output.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "cat /root/acr-vla-conformal-refinement/benchmark_output.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T23:47:23.093499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model...\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\nLoading demo data...\\nEncoding prefix...\\n\\n==================================================\\nK = 5\\n==================================================\\nSequential: 1579.2 +/- 46.1 ms\\nBatched:    319.8 +/- 12.9 ms\\nSpeedup:    4.94x\\n\\n==================================================\\nK = 10\\n==================================================\\nSequential: 3167.4 +/- 61.9 ms\\nBatched:    313.7 +/- 13.4 ms\\nSpeedup:    10.10x\\n\\n==================================================\\nK = 20\\n==================================================\\nSequential: 6375.4 +/- 278.2 ms\\nBatched:    312.3 +/- 4.7 ms\\nSpeedup:    20.41x\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T23:47:23.093637+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "ls -la /root/acr-vla-conformal-refinement/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "ls -la /root/acr-vla-conformal-refinement/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T23:47:23.093783+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 124\\ndrwxr-xr-x 3 root root 4096 May 20 07:36 .\\ndrwxr-xr-x 9 root root 4096 May 19 16:04 ..\\n-rw-r--r-- 1 root root 7015 May 13 16:54 crm_spatial_train.log\\n-rw-r--r-- 1 root root 1484 May 14 07:36 eval-object-v5-full.log\\n-rw-r--r-- 1 root root 1697 May 16 08:42 eval_mag_obsonly_norm003.json\\n-rw-r--r-- 1 root root 1491 May 16 00:08 eval_object_obs_only.json\\n-rw-r--r-- 1 root root 3392 May 17 19:16 eval_object_perdof_norm01_seed47.log\\n-rw-r--r-- 1 root root 1494 May 18 20:17 eval_object_random_selection_seed42.json\\n-rw-r--r-- 1 root root 4925 May 18 20:17 eval_object_random_selection_seed42.log\\n-rw-r--r-- 1 root root 4203 May 20 01:13 eval_object_random_selection_seed46.log\\n-rw-r--r-- 1 root root 1488 May 19 19:40 eval_object_scalar_seed45_r2.json\\n-rw-r--r-- 1 root root 6117 May 19 19:40 eval_object_scalar_seed45_r2.log\\n-rw-r--r-- 1 root root 1485 May 16 12:58 eval_object_vla_only_seed44.json\\n-rw-r--r-- 1 root root 1485 May 20 07:36 eval_object_vla_only_seed48.json\\n-rw-r--r-- 1 root root 3939 May 20 07:36 eval_object_vla_only_seed48.log\\n-rw-r--r-- 1 root root 4246 May 20 00:31 eval_spatial_obs_only_norm02_seed43.log\\n-rw-r--r-- 1 root root 1696 May 20 04:28 eval_spatial_obs_only_norm02_seed44.json\\n-rw-r--r-- 1 root root 4787 May 20 04:28 eval_spatial_obs_only_norm02_seed44.log\\n-rw-r--r-- 1 root root 1283 May 20 04:29 eval_spatial_obs_only_norm02_seed45.log\\n-rw-r--r-- 1 root root  690 May 13 12:05 precompute.log\\n-rw-r--r-- 1 root root 1578 May 13 17:21 reconvla_object.log\\n-rw-r--r-- 1 root root 1638 May 13 16:56 reconvla_spatial.log\\ndrwxr-xr-x 2 root root   10 May 17 22:56 sentinels\\n-rw-r--r-- 1 root root  690 May 13 12:05 train_crm.log\\n-rw-r--r-- 1 root root 2678 May 13 14:34 train_crm_v2.log\\n-rw-r--r-- 1 root root 1812 May 13 17:35 vla_only_spatial_K1.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}
+…[truncated 2 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T23:47:23.093928+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "find /root/acr-vla-conformal-refinement/ -name \"*.log\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "find /root/acr-vla-conformal-refinement/ -name \"*.log\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-19T23:47:23.094052+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/verify2_output.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "cat /root/acr-vla-conformal-refinement/verify2_output.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T23:47:23.094170+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/verify_output.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "cat /root/acr-vla-conformal-refinement/verify_output.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T23:47:23.094320+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/mvp/mvp_results.log\\n/root/acr-vla-conformal-refinement/logs/precompute.log\\n/root/acr-vla-conformal-refinement/logs/train_crm.log\\n/root/acr-vla-conformal-refinement/logs/train_crm_v2.log\\n/root/acr-vla-conformal-refinement/logs/reconvla_spatial.log\\n/root/acr-vla-conformal-refinement/logs/reconvla_object.log\\n/root/acr-vla-conformal-refinement/logs/crm_spatial_train.log\\n/root/acr-vla-conformal-refinement/logs/vla_only_spatial_K1.log\\n/root/acr-vla-conformal-refinement/logs/eval-object-v5-full.log\\n/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed47.log\\n/root/acr-vla-conformal-refinement/logs/eval_object_random_selection_seed42.log\\n/root/acr-vla-conformal-refinement/logs/eval_object_scalar_seed45_r2.log\\n/root/acr-vla-conformal-refinement/logs/eval_object_random_selection_seed46.log\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed43.log\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed44.log\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed45.log\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.log\\n/root/acr-vla-conformal-refinement/verify_output.log\\n/root/acr-vla-conformal-refinement/verify2_output.log\\n/root/acr-vla-conformal-refinement/benchmark_output.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-19T23:47:23.094470+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Reducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\nAction magnitude: mean=0.2824, max=1.0227\\nAbsolute diff: max=3.21e-03, mean=4.47e-04\\nRelative diff: max=4.91e+00, mean=2.20e-02\\nSequential self-consistency: max diff=0.00e+00\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T23:47:23.094604+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model...\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\nLoading demo data...\\nEncoding prefix...\\nB=1, K=5, chunk_size=50, max_act_dim=32, num_steps=10\\nRunning sequential...\\nRunning batched...\\n\\nMax absolute diff:  3.21e-03\\nMean absolute diff: 4.47e-04\\nShape seq:    torch.Size([1, 5, 50, 7])\\nShape batch:  torch.Size([1, 5, 50, 7])\\n  Sample 0: max diff = 2.77e-03\\n  Sample 1: max diff = 2.35e-03\\n  Sample 2: max diff = 3.11e-03\\n  Sample 3: max diff = 2.93e-03\\n  Sample 4: max diff = 3.21e-03\\n\\n=== VERIFICATION FAILED: max diff = 3.21e-03 ===\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T23:47:23.094749+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-40593",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T23:47:23.094912+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 10, 'max_steps': 300, 'seed': 48, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_vla_only_seed48.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5}\\n[eval] Mode: vla_only, benchmark: object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/10)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/10, success so far: 1/10\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 10.0% (1/10)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/10, success so far: 2/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/10, success so far: 2/10\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 20.0% (2/10)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: 
+…[truncated 2193 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-19T23:47:23.095107+00:00_
+
+## 诊断报告
+
+### 结论：实验实际已成功完成，不是真正的失败
+
+日志和输出文件均显示实验已正常跑完全部 10 个任务 × 10 rollouts = 100 次评估。
+
+**根因：监控系统误判。** 实验进程在监控系统检测窗口外正常退出（进程完成后自然消失），被误判为"process dead"。没有 sentinel 文件或 W&B 上报，因此监控系统在 5 次检测不到进程后自动标记为失败。
+
+### 关键证据
+
+- **输出文件** `logs/eval_object_vla_only_seed48.json` 存在（1485字节，时间戳 May 20 07:36）
+- **日志文件** `logs/eval_object_vla_only_seed48.log` 完整，末尾打印了最终结果：`Overall success rate (vla_only): 10.0% (10/100)` 并显示 `Results saved to logs/eval_object_vla_only_seed48.json`
+- **无报错**，无 OOM、无 CUDA error、无 crash traceback
+
+### 实验结果
+- 模式: vla_only, benchmark: object, seed: 48, K=1
+- 总体成功率: **10.0%** (10/100)
+- 各任务成功率范围: 0%–30%
+
+### 服务器当前状态
+- **磁盘**: 根分区 30G 中已用 8.9G（30%），可用 22G — 磁盘充足，之前报告的 89% 已不适用
+- **GPU**: RTX 4090D, 0MiB 占用, 0% 利用率 — 空闲
+- **进程**: 无 Python 实验进程残留
+
+### 是否需要重试
+**不需要。** 实验已成功完成，结果已保存。需要做的是将此实验的状态从"failed"更正为"completed"，并采集已有结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diag_eval-vla-only-object-seed48_20260519T234612"
+}
+```
+
+</details>
+
+---

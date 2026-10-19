@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval-ablation-tau010-goal-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T13:06:32.832Z",
+    "updated_at": "2026-05-23T17:24:59.810Z",
+    "hypothesis": "τ-sweep ablation: τ=0.10 on Goal s42. Lower threshold → higher CRM trigger rate → more corrections. Part of 5-point τ-sensitivity curve (0.10, 0.15, 0.25, 0.40, always-on). Tests whether aggressive gating improves or hurts Goal performance.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.10 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO goal suite",
+      "data_count": 20,
+      "model_name": "smolvla + CRM 3suite v1",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO goal benchmark"
+    },
+    "metrics": {
+      "overall_sr": 0.81,
+      "trigger_rate": 0.739,
+      "tau": 0.1,
+      "crm_applied_steps": 22170,
+      "total_steps": 29984
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "N/A (eval only)",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-ablation-tau010-goal-s42.log + logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.1_seed42.json",
+    "completed_at": "2026-05-23T17:24:59.810Z"
+  },
+  "timestamp": "2026-05-23T17:25:01.988907+00:00",
+  "trigger": "update_registry"
+}

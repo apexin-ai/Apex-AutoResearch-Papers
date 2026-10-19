@@ -1,0 +1,40 @@
+{
+  "exp_id": "pi05-adaptive-goal-s43-bjb1-18228",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T06:45:32.801Z",
+    "updated_at": "2026-05-26T10:21:41.177Z",
+    "hypothesis": "π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on Goal s43. 4090 cluster cross-validation for westd Goal s43, controlling Blackwell architecture bias.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark goal --seed 43 --n_rollouts 20 --output_file logs/eval_goal_adaptive_pi05_seed43_bjb1.json\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "42105",
+      "log_path": "~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s43-bjb1-18228.log",
+      "submitted_at": "2026-05-26T06:45:50.338Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T10:20:16.236Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T10:21:05.177429+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-26T10:21:46.742132+00:00",
+  "trigger": "update_registry"
+}

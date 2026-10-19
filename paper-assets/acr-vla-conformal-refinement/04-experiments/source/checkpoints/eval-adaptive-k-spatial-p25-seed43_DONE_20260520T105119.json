@@ -1,0 +1,70 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p25-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:19:55.884Z",
+    "updated_at": "2026-05-20T10:51:17.226Z",
+    "hypothesis": "Adaptive K with P25 threshold (τ=0.054959) on LIBERO-Spatial will maintain competitive SR compared to K=10 baseline while reducing average inference cost by using fewer refinement steps when the model is confident.",
+    "spec": {
+      "command": "bash -c \"... python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.054959 --k_full 10 --benchmark spatial --seed 43 ...\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "314014",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p25-seed43.log",
+      "submitted_at": "2026-05-20T08:21:10.027Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA + CRM obs_only (adaptive_k P25)",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "LIBERO-Spatial (10 tasks x 10 rollouts)",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 9007.2,
+      "gpu_hours": 2.5
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T10:47:32.130Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T10:47:45.581311+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "sr": 30,
+      "avg_k": 7.6,
+      "fast_path_pct": 29.5,
+      "mean_l2": 0.089,
+      "total_rollouts": 100,
+      "per_task_sr": {
+        "between_plate_and_ramekin": 60,
+        "next_to_ramekin": 100,
+        "from_table_center": 0,
+        "on_cookie_box": 30,
+        "in_top_drawer": 10,
+        "on_ramekin": 0,
+        "next_to_cookie_box": 80,
+        "on_stove": 0,
+        "next_to_plate": 20,
+        "on_wooden_cabinet": 0
+      }
+    },
+    "completed_at": "2026-05-20T10:51:17.226Z"
+  },
+  "timestamp": "2026-05-20T10:51:19.606946+00:00",
+  "trigger": "update_registry"
+}

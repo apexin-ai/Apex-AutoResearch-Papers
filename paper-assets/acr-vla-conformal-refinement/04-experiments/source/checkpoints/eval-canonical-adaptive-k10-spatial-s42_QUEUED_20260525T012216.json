@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-canonical-adaptive-k10-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T23:04:50.613Z",
+    "updated_at": "2026-05-25T01:22:14.782Z",
+    "hypothesis": "Canonical same-server Adaptive K=10 on cqa1-32758 Spatial s42. Eliminates cross-server confound — paired with cqa1 VLA-only baseline for clean paired t-test.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark spatial --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 10 2>&1 | tee logs/eval-canonical-adaptive-k10-spatial-s42.log\"",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "209904",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-canonical-adaptive-k10-spatial-s42.log",
+      "submitted_at": "2026-05-24T23:07:09.098Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-25T01:22:16.379123+00:00",
+  "trigger": "update_registry"
+}

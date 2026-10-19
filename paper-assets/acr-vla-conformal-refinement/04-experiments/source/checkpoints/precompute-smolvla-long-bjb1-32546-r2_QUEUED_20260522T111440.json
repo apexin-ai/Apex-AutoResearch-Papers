@@ -1,0 +1,16 @@
+{
+  "exp_id": "precompute-smolvla-long-bjb1-32546-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:14:21.941Z",
+    "updated_at": "2026-05-22T11:14:39.039Z",
+    "hypothesis": "Retry: Precompute SmolVLA Long K=2 for crm_cache_v5 after fixing missing directory",
+    "parent": "precompute-smolvla-long-bjb1-32546"
+  },
+  "timestamp": "2026-05-22T11:14:40.307418+00:00",
+  "trigger": "update_registry"
+}

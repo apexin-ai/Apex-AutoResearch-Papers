@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval-obs-only-object-norm01-seed48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-17T23:02:39.518Z",
+    "updated_at": "2026-05-18T19:15:59.546Z",
+    "hypothesis": "obs_only CRM (ε=0.1) seed48 on LIBERO-Object. 补 obs_only ε=0.1 至 n=7。",
+    "completed_at": "2026-05-18T11:47:26.362Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "success_rate": 0.18,
+          "n_tasks": 10,
+          "n_rollouts": 10,
+          "total_rollouts": 100
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-18T19:15:59.996518+00:00",
+  "trigger": "update_registry"
+}

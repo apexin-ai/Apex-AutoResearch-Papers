@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-adapt-tau025-goal-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:05:16.443Z",
+    "updated_at": "2026-05-23T09:05:21.730Z",
+    "hypothesis": "Adaptive conformal CRM with tau=0.25 on goal benchmark at seed 44 should show consistent improvement over VLA-only baseline, validating robustness across seeds"
+  },
+  "timestamp": "2026-05-23T09:05:23.370646+00:00",
+  "trigger": "update_registry"
+}

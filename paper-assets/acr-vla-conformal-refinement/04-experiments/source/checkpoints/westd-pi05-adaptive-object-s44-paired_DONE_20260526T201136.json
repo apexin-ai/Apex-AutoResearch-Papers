@@ -1,0 +1,36 @@
+{
+  "exp_id": "westd-pi05-adaptive-object-s44-paired",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T14:02:06.206Z",
+    "updated_at": "2026-05-26T20:11:35.071Z",
+    "spec": {
+      "data_path": "libero_object",
+      "data_count": 200,
+      "model_name": "pi05",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_adaptive_pi05_seed44_westd.json\"",
+      "server": "westd-49937",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "493251",
+      "log_path": "logs/eval_object_adaptive_pi05_seed44_westd.json",
+      "submitted_at": "2026-05-26T22:04:26Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A - eval only"
+    },
+    "hypothesis": "π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on Object s44. westd same-server paired with VLA-only Object for Table 2 capability dependency analysis.",
+    "conclusion": "negative",
+    "completed_at": "2026-05-26T20:11:35.071Z"
+  },
+  "timestamp": "2026-05-26T20:11:36.879383+00:00",
+  "trigger": "update_registry"
+}

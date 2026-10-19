@@ -1,0 +1,15 @@
+{
+  "exp_id": "pi05-object-adaptive-s44-cqa1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:55:59.906Z",
+    "updated_at": "2026-05-27T06:56:57.692Z",
+    "hypothesis": "Pi0.5 Object adaptive conformal CRM s44 on cqa1: third seed for pi05 Object CRM evaluation"
+  },
+  "timestamp": "2026-05-27T06:56:59.545191+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-object-norm01-seed46-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:05:18.047Z",
+    "updated_at": "2026-05-17T07:05:59.714Z",
+    "hypothesis": "obs_only CRM at eps=0.1 on seed46 will achieve similar improvement over VLA-only as seen in seed42 (19%), testing seed robustness of the magnitude curve"
+  },
+  "timestamp": "2026-05-17T07:06:00.008986+00:00",
+  "trigger": "update_registry"
+}

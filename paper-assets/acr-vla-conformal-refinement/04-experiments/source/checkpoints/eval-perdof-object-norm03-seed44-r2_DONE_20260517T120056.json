@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval-perdof-object-norm03-seed44-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:22:10.412Z",
+    "updated_at": "2026-05-17T12:00:55.929Z",
+    "hypothesis": "perdof CRM ε=0.3 seed44 re-run on LIBERO-Object. 原 seed44 已完成(conclusion=negative, SR=4%). 重跑验证跨 seed 一致性。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.3 --output_file logs/eval_object_perdof_norm03_seed44_r2.json",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 421086,
+      "seed": 44,
+      "model_name": "SmolVLA+CRM_perdof",
+      "data_path": "LIBERO-Object 10 tasks",
+      "data_count": 100,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "eval_data": "LIBERO-Object (10 tasks x 10 rollouts)"
+    },
+    "conclusion": "negative",
+    "reproduce": {
+      "finished_at": "2026-05-17T11:50:26.264Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-17T11:50:20.975Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T11:50:33.595081+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-17T12:00:56.286003+00:00",
+  "trigger": "update_registry"
+}

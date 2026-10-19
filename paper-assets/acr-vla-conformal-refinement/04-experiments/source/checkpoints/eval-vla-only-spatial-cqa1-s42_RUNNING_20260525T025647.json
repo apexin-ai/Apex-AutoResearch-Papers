@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval-vla-only-spatial-cqa1-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T02:53:26.220Z",
+    "updated_at": "2026-05-25T02:56:45.258Z",
+    "hypothesis": "VLA-only baseline Spatial s42 on cqa1-32758. 同服务器配对数据用于 K=2 Adaptive paired t-test。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20",
+      "server": "cqa1-32758",
+      "data_path": "libero_spatial",
+      "data_count": 20,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "smolvla_base",
+      "eval_data": "libero_spatial",
+      "log_path": "/root/autodl-tmp/logs/eval-vla-only-spatial-cqa1-s42.log",
+      "tmux_session": "eval-vla-only-spatial-cqa1-s42"
+    }
+  },
+  "timestamp": "2026-05-25T02:56:47.912481+00:00",
+  "trigger": "update_registry"
+}

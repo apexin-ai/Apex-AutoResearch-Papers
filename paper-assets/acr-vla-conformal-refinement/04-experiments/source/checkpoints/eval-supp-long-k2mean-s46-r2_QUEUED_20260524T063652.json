@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-long-k2mean-s46-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:34:16.953Z",
+    "updated_at": "2026-05-24T06:36:51.259Z",
+    "hypothesis": "K=2 mean baseline on Long suite seed46 (re-deploy after r1 failed on bjb1-32546). Fifth seed completing Long K2mean 5-seed coverage. Isolates multi-sample averaging on Long suite."
+  },
+  "timestamp": "2026-05-24T06:36:52.542050+00:00",
+  "trigger": "update_registry"
+}

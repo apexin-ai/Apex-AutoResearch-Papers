@@ -1,0 +1,4500 @@
+# check bjb1 18228 critical exps 20260524T192333 retry1
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 95
+- **Recorded user turns:** 0
+- **Tool calls:** 40
+- **Original source:** `logs/workers/worker_check_bjb1-18228-critical-exps_20260524T192333_retry1.log`
+- **Structured JSON:** [`66b1494e9c55707ce7f6.json`](../../sessions/66/66b1494e9c55707ce7f6.json)
+
+## Before a recorded user message
+
+95 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-7[1m]",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6845d2b5-a98b-4a89-8375-18321ef469a8",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779664200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "15e22778-121f-405c-8a13-9dee6646167c",
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "1d304393-7e59-42c0-9b18-5868dcf5a266",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017hDfVnRWhtuyaFv6bGaLLq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15524,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15524
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011AtHFNPfvrACzcp11xdDLE`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__detect_image",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "ad7b1f0c-0f7b-4e71-bb9d-9f6aba14c593",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017hDfVnRWhtuyaFv6bGaLLq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15524,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15524
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T19:23:55.765Z_
+
+<details><summary>↩ Tool result · `toolu_011AtHFNPfvrACzcp11xdDLE`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "90d03e65-8b05-4be7-9134-8eb4dccf89c3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "c81f51ae-9c01-4d15-b641-cac134310dff",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UfAUEAXqMqyVAym3cKF53N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 19465,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19465
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29228
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0145PoruPfffRQDfkpYqEtpm`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "ad5d713a-64cc-440a-8061-db604892d787",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UfAUEAXqMqyVAym3cKF53N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 19465,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19465
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29228
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T19:24:02.072Z_
+
+<details><summary>↩ Tool result · `toolu_0145PoruPfffRQDfkpYqEtpm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 10 %, 580 MiB, 24564 MiB\\n1, 0 %, 0 MiB, 24564 MiB\\n2, 0 %, 0 MiB, 24564 MiB\\n3, 23 %, 9883 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "3da5363a-6679-471c-9b11-7e4756340caa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 10 %, 580 MiB, 24564 MiB\\\\n1, 0 %, 0 MiB, 24564 MiB\\\\n2, 0 %, 0 MiB, 24564 MiB\\\\n3, 23 %, 9883 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 10 %, 580 MiB, 24564 MiB\\n1, 0 %, 0 MiB, 24564 MiB\\n2, 0 %, 0 MiB, 24564 MiB\\n3, 23 %, 9883 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NYof6nRqAKLHLPkxbGWKwL`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ps -p 326310 -o pid,etime,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "e6478353-7730-467f-b8de-a65e30289438",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UfAUEAXqMqyVAym3cKF53N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 19465,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19465
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29228
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T19:24:02.921Z_
+
+<details><summary>↩ Tool result · `toolu_01NYof6nRqAKLHLPkxbGWKwL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED CMD\\n326310    08:45:17 bash -c rm -f /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\"'; } > ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "434f09ec-c1b5-430c-bea4-57068e336c12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED CMD\\\\n326310    08:45:17 bash -c rm -f /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED CMD\\n326310    08:45:17 bash -c rm -f /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\"'; } > ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S599kmR6nM7GP7s7sXAojn`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ps -p 114507 -o pid,etime,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "fd916905-16b0-4fc2-8bf6-b4b1e568a965",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UfAUEAXqMqyVAym3cKF53N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 19465,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19465
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29228
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-24T19:24:03.957Z_
+
+<details><summary>↩ Tool result · `toolu_01S599kmR6nM7GP7s7sXAojn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED CMD\\n114507  1-23:03:20 python -u src/train_crm.py --precompute --model pi05 --benchmark long --K 10 --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "ecd1042f-ade7-4a41-9246-b43982fce088",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED CMD\\\\n114507  1-23:03:20 python -u src/train_crm.py --precompute --model pi05 --benchmark long --K 10 --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED CMD\\n114507  1-23:03:20 python -u src/train_crm.py --precompute --model pi05 --benchmark long --K 10 --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G9sL1EveBaob8TuaBhnxJA`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "711ad19c-90fc-4c76-8371-1e2cebce1dd9",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UfAUEAXqMqyVAym3cKF53N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 19465,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19465
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29228
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T19:24:04.645Z_
+
+<details><summary>↩ Tool result · `toolu_01G9sL1EveBaob8TuaBhnxJA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "148a1f3e-a97a-40f1-ac66-74c9edacf905",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015PEVTryZpwvQsR7ymdGvaH`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls -lt /root/acr-vla-conformal-refinement/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "92148c4e-bdcb-4a43-915d-8fc45e398983",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UfAUEAXqMqyVAym3cKF53N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 19465,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19465
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29228
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T19:24:05.709Z_
+
+<details><summary>↩ Tool result · `toolu_015PEVTryZpwvQsR7ymdGvaH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 2008\\n-rw-r--r-- 1 root root   6418 May 25 02:44 eval-supp-obj-vla-only-s50.log\\n-rw-r--r-- 1 root root   1500 May 25 02:44 eval_object_vla_only_seed50.json\\n-rw-r--r-- 1 root root   7445 May 25 02:20 eval-supp-spatial-vla-only-s42.log\\n-rw-r--r-- 1 root root   1704 May 25 02:20 eval_spatial_vla_only_seed42.json\\n-rw-r--r-- 1 root root   1792 May 24 22:07 eval_long_vla_only_seed47.json\\n-rw-r--r-- 1 root root   1327 May 24 19:20 eval_goal_vla_only_seed47.json\\n-rw-r--r-- 1 root root   4299 May 24 16:32 eval-supp-goal-vla-only-s47.log\\n-rw-r--r-- 1 root root   3353 May 24 16:32 eval-supp-long-vla-only-s47-r2.log\\n-rw-r--r-- 1 root root   8558 May 23 02:07 eval_long_vla_only_seed42_r4_rerun.log\\n-rw-r--r-- 1 root root   1791 May 23 02:07 eval_long_vla_only_seed42_r4_rerun.json\\n-rw-r--r-- 1 root root   1791 May 23 00:40 eval_long_vla_only_seed44_r4.json\\n-rw-r--r-- 1 root root   1795 May 23 00:38 eval_long_vla_only_seed43_r4.json\\n-rw-r--r-- 1 root root   1325 May 23 00:16 eval_goal_vla_only_seed42_r4.json\\n-rw-r--r-- 1 root root   1704 May 22 20:18 eval_spatial_vla_only_pi05_seed43.json\\n-rw-r--r-- 1 root root   1704 May 22 20:17 eval_spatial_vla_only_pi05_seed42.json\\n-rw-r--r-- 1 root root   1704 May 22 20:17 eval_spatial_vla_only_pi05_seed44.json\\n-rw-r--r-- 1 root root   1498 May 22 19:23 eval_object_vla_only_pi05_seed44.json\\n-rw-r--r-- 1 root root   1498 May 22 19:23 eval_object_vla_only_pi05_seed43.json\\n-rw-r--r-- 1 root root   1495 May 22 19:21 eval_object_vla_only_pi05_seed42.json\\n-rw-r--r-- 1 root root   1491 May 22 18:33 eval_object_acr_vla_seed42.json\\n-rw-r--r-- 1 root root   4623 May 21 19:50 eval_object_obs_only_norm003_seed77.log\\n-rw-r--r-- 1 root root   1490 May 21 19:50 eval_object_obs_only_norm003_seed77.json\\n-rw-r--r-- 1 root root   4620 May 21 19:45 eval_object_obs_only_norm003_seed76.log\\n-rw-r--r-- 1 root root   1490 May 21 19:45 eval_object_obs_only_norm003_seed76.json\\n-rw-r--r-- 1 root root   4619 May 21 19:42 eval_object_obs_only_norm02_seed55.log\\n-rw-r--r-- 1 root root   1490 May 21 19:42 eval_object_obs_only_norm02_seed55.json\\n-rw-r--r-- 1 root root   5216 May 21 14:45 eval_k20_spatial_seed43.log\\n-rw-r--r-- 1 root root   1697 May 21 14:45 eval_k20_spatial_seed43.json\\n-rw-r--r-- 1 root root   5217 May 21 14:43 eval_k20_spatial_seed44.log\\n-rw-r--r-- 1 root root   1697 May 21 14:43 eval_k20_spatial_seed44.json\\n-rw-r--r-- 1 root root   1490 May 21 10:25 eval_obs_only_object_norm005_seed65.json\\n-rw-r--r-- 1 root root   1490 May 21 09:08 eval_obs_only_object_norm003_seed59.json\\n-rw-r--r-- 1 root root   1490 May 21 09:03 eval_obs_only_object_norm01_seed57.json\\n-rw-r--r-- 1 root root   1490 May 21 09:02 eval_obs_only_object_norm005_seed58.json\\n-rw-r--r-- 1 root root   1490 May 21 08:04 eval_obs_only_object_norm005_seed55.json\\n-rw-r--r-- 1 root root   1690 May 21 07:22 eval_plan_a_object_seed43.json\\n-rw-r--r-- 1 root root   1687 May 21 07:16 eval_plan_a_object_seed44.json\\n-rw-r--r-- 1 root root   1690 May 21 07:12 eval_plan_a_object_seed42.json\\n-rw-r--r-- 1 root root   4523 May 21 06:14 perdof_object_norm005_seed46.log\\n-rw-r--r-- 1 root root   1487 May 21 06:14 eval_perdof_object_norm005_seed46.json\\n-rw-r--r-- 1 root root   4539 May 21 05:31 obs_only_object_norm005_seed45.log\\n-rw-r--r-- 1 root root   1490 May 21 05:31 eval_obs_only_object_norm005_seed45.json\\n-rw-r--r-- 1 root root   4534 May 21 05:26 obs_only_object_norm01_seed50.log\\n-rw-r--r-- 1 root root   1490 May 21 05:26 eval_obs_only_object_norm01_seed50.json\\n-rw-r--r-- 1 root root   4540 May 21 05:25 obs_only_object_norm003_seed46.log\\n-rw-r--r-- 1 root root   1490 May 21 05:25 eval_obs_only_object_norm003_seed46.json\\n-rw-r--r-- 1 root root   3023 May 21 03:36 eval-obs-only-object-norm01-seed48.log\\n-rw-r--r-- 1 root root   4538 May 21 03:16 eval-obs-only-object-norm005-seed44.log\\n-rw-r--r-- 1 root root   1490 May 21 03:16 eval_obs_only_object_norm005_seed44.json\\n-rw-r--r-- 1 root root   4541 May 21 03:15 eval-obs-only-object-norm003-seed44.log\\n-rw-r--r-- 1 root root \\n\\n... [截断: 输出过长，省略 6333 字符] ...\\n\\n0 eval_object_obs_only_norm03_seed48.json\\n-rw-r--r-- 1 root root   1490 May 18 19:39 eval_object_obs_only_norm01_seed48.json\\n-rw-r--r-- 1 root root  11460 May 18 18:14 eval_object_perdof_norm02_seed45_r3.log\\n-rw-r--r-- 1 root root   1488 May 18 18:14 eval_object_perdof_norm02_seed45_r3.json\\n-rw-r--r-- 1 root root  11473 May 18 09:34 eval_object_obs_only_norm02_k5_seed42.log\\n-rw-r--r-- 1 root root   1490 May 18 09:34 eval_object_obs_only_norm02_k5_seed42.json\\n-rw-r--r-- 1 root root   6395 May 18 06:47 openvla_action_analysis.log\\n-rw-r--r-- 1 root root   2725 May 18 06:05 eval_object_obs_only_norm02_k20_seed42.log\\n-rw-r--r-- 1 root root  11560 May 18 04:38 eval_k1_crm_multiscale_object_seed44_bjb1-18228.log\\n-rw-r--r-- 1 root root   1488 May 18 04:38 eval_k1_crm_multiscale_object_seed44_bjb1-18228.json\\n-rw-r--r-- 1 root root  11556 May 18 04:37 eval_k1_crm_multiscale_object_seed43_bjb1-18228.log\\n-rw-r--r-- 1 root root   1489 May 18 04:37 eval_k1_crm_multiscale_object_seed43_bjb1-18228.json\\n-rw-r--r-- 1 root root   3726 May 18 02:49 debug_openvla_gripper_fix.log\\n-rw-r--r-- 1 root root   1805 May 18 02:34 debug_openvla_object_fix_verify.log\\n-rw-r--r-- 1 root root   2734 May 18 02:30 eval_object_obs_only_norm005_seed43_r2.log\\n-rw-r--r-- 1 root root   2633 May 18 01:56 eval_object_perdof_norm02_seed45.log\\n-rw-r--r-- 1 root root   2123 May 18 01:41 eval-obs-only-object-norm02-k20-seed42.log\\n-rw-r--r-- 1 root root   5989 May 18 01:38 eval_openvla_object_vla_only_seed42.log\\n-rw-r--r-- 1 root root   1725 May 18 01:38 eval_openvla_object_vla_only_seed42.json\\n-rw-r--r-- 1 root root   5555 May 17 23:16 precompute_k1.log\\ndrwxr-xr-x 2 root root      6 May 17 22:56 sentinels\\n-rw-r--r-- 1 root root    403 May 17 22:02 openvla_single_test.json\\n-rw-r--r-- 1 root root   1926 May 17 21:38 eval-perdof-object-norm02-seed45-r2.log\\n-rw-r--r-- 1 root root   1931 May 17 21:38 eval-obs-only-object-norm005-seed43.log\\n-rw-r--r-- 1 root root   1873 May 17 21:25 eval_object_obs_only_norm003_seed43.log\\n-rw-r--r-- 1 root root   2734 May 17 21:21 eval_object_obs_only_norm01_seed47.log\\n-rw-r--r-- 1 root root   2734 May 17 20:53 eval_object_obs_only_norm01_seed46.log\\n-rw-r--r-- 1 root root   6288 May 17 20:34 eval_object_obs_only_norm01_seed45.log\\n-rw-r--r-- 1 root root   1494 May 17 20:34 eval_object_obs_only_norm01_seed45.json\\n-rw-r--r-- 1 root root   1607 May 17 19:40 eval_object_obs_only_norm03_seed47.log\\n-rw-r--r-- 1 root root   4475 May 17 18:39 eval_object_perdof_norm01_seed44.log\\n-rw-r--r-- 1 root root   1488 May 17 18:39 eval_object_perdof_norm01_seed44.json\\n-rw-r--r-- 1 root root   1597 May 17 14:54 eval_object_perdof_norm01_seed47.log\\n-rw-r--r-- 1 root root   4498 May 17 13:04 eval_object_obs_only_norm02_seed46.log\\n-rw-r--r-- 1 root root   1490 May 17 13:04 eval_object_obs_only_norm02_seed46.json\\n-rw-r--r-- 1 root root   1488 May 17 12:40 eval_object_perdof_norm03_seed44.json\\n-rw-r--r-- 1 root root   4269 May 17 06:08 eval_object_vla_only_seed46.log\\n-rw-r--r-- 1 root root   1486 May 17 06:08 eval_object_vla_only_seed46.json\\n-rw-r--r-- 1 root root   1488 May 17 02:12 eval_object_perdof_seed44.json\\n-rw-r--r-- 1 root root   1486 May 16 23:28 eval_object_reconvla_seed44.json\\n-rw-r--r-- 1 root root   1490 May 16 22:38 eval_object_obs_only_norm02_seed44.json\\n-rw-r--r-- 1 root root   1487 May 16 16:57 eval_object_perdof_default_norm_r2.json\\n-rw-r--r-- 1 root root   1488 May 16 11:10 eval_object_perdof_seed43.json\\n-rw-r--r-- 1 root root   1490 May 16 08:40 eval_object_obs_only_seed43.json\\n-rw-r--r-- 1 root root   1486 May 16 08:34 eval_object_reconvla_seed43.json\\n-rw-r--r-- 1 root root   1698 May 16 01:20 eval_mag_obsonly_norm03.json\\n-rw-r--r-- 1 root root    304 May 15 15:06 eval_reconvla_spatial_r2.json\\n-rw-r--r-- 1 root root   2417 May 13 17:44 precompute_shard3.log\\n-rw-r--r-- 1 root root   2340 May 13 17:44 precompute_shard2.log\\n-rw-r--r-- 1 root root   2340 May 13 17:44 precompute_shard0.log\\n-rw-r--r-- 1 root root   2341 May 13 17:43 precompute_shard1.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "421d0b29-0a10-448f-b08f-249847a28a68",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 2008\\\\n-rw-r--r-- 1 root root   6418 May 25 02:44 eval-supp-obj-vla-only-s50.log\\\\n-rw-r--r-- 1 root root   1500 May 25 02:44 eval_object_vla_only_seed50.json\\\\n-rw-r--r-- 1 root root   7445 May 25 02:20 eval-supp-spatial-vla-only-s42.log\\\\n-rw-r--r-- 1 root root   1704 May 25 02:20 eval_spatial_vla_only_seed42.json\\\\n-rw-r--r-- 1 root root   1792 May 24 22:07 eval_long_vla_only_seed47.json\\\\n-rw-r--r-- 1 root root   1327 May 24 19:20 eval_goal_vla_only_seed47.json\\\\n-rw-r--r-- 1 root root   4299 May 24 16:32 eval-supp-goal-vla-only-s47.log\\\\n-rw-r--r-- 1 root root   3353 May 24 16:32 eval-supp-long-vla-only-s47-r2.log\\\\n-rw-r--r-- 1 root root   8558 May 23 02:07 eval_long_vla_only_seed42_r4_rerun.log\\\\n-rw-r--r-- 1 root root   1791 May 23 02:07 eval_long_vla_only_seed42_r4_rerun.json\\\\n-rw-r--r-- 1 root root   1791 May 23 00:40 eval_long_vla_only_seed44_r4.json\\\\n-rw-r--r-- 1 root root   1795 May 23 00:38 eval_long_vla_only_seed43_r4.json\\\\n-rw-r--r-- 1 root root   1325 May 23 00:16 eval_goal_vla_only_seed42_r4.json\\\\n-rw-r--r-- 1 root root   1704 May 22 20:18 eval_spatial_vla_only_pi05_seed43.json\\\\n-rw-r--r-- 1 root root   1704 May 22 20:17 eval_spatial_vla_only_pi05_seed42.json\\\\n-rw-r--r-- 1 root root   1704 May 22 20:17 eval_spatial_vla_only_pi05_seed44.json\\\\n-rw-r--r-- 1 root root   1498 May 22 19:23 eval_object_vla_only_pi05_seed44.json\\\\n-rw-r--r-- 1 root root   1498 May 22 19:23 eval_object_vla_only_pi05_seed43.json\\\\n-rw-r--r-- 1 root root   1495 May 22 19:21 eval_object_vla_only_pi05_seed42.json\\\\n-rw-r--r-- 1 root root   1491 May 22 18:33 eval_object_acr_vla_seed42.json\\\\n-rw-r--r-- 1 root root   4623 May 21 19:50 eval_object_obs_only_norm003_seed77.log\\\\n-rw-r--r-- 1 root root   1490 May 21 19:50 eval_object_obs_only_norm003_seed77.json\\\\n-rw-r--r-- 1 root root   4620 May 21 19:45 eval_object_obs_only_norm003_seed76.log\\\\n-rw-r--r-- 1 root root   1490 May 21 19:45 eval_object_obs_only_norm003_seed76.json\\\\n-rw-r--r-- 1 root root   4619 May 21 19:42 eval_object_obs_only_norm02_seed55.log\\\\n-rw-r--r-- 1 root root   1490 May 21 19:42 eval_object_obs_only_norm02_seed55.json\\\\n-rw-r--r-- 1 root root   5216 May 21 14:45 eval_k20_spatial_seed43.log\\\\n-rw-r--r-- 1 root root   1697 May 21 14:45 eval_k20_spatial_seed43.json\\\\n-rw-r--r-- 1 root root   5217 May 21 14:43 eval_k20_spatial_seed44.log\\\\n-rw-r--r-- 1 root root   1697 May 21 14:43 eval_k20_spatial_seed44.json\\\\n-rw-r--r-- 1 root root   1490 May 21 10:25 eval_obs_only_object_norm005_seed65.json\\\\n-rw-r--r-- 1 root root   1490 May 21 09:08 eval_obs_only_object_norm003_seed59.json\\\\n-rw-r--r-- 1 root root   1490 May 21 09:03 eval_obs_only_object_norm01_seed57.json\\\\n-rw-r--r-- 1 root root   1490 May 21 09:02 eval_obs_only_object_norm005_seed58.json\\\\n-rw-r--r-- 1 root root   1490 May 21 08:04 eval_obs_only_object_norm005_seed55.json\\\\n-rw-r--r-- 1 root root   1690 May 21 07:22 eval_plan_a_object_seed43.json\\\\n-rw-r--r-- 1 root root   1687 May 21 07:16 eval_plan_a_object_seed44.json\\\\n-rw-r--r-- 1 root root   1690 May 21 07:12 eval_plan_a_object_seed42.json\\\\n-rw-r--r-- 1 root root   4523 May 21 06:14 perdof_object_norm005_seed46.log\\\\n-rw-r--r-- 1 root root   1487 May 21 06:14 eval_perdof_object_norm005_seed46.json\\\\n-rw-r--r-- 1 root root   4539 May 21 05:31 obs_only_object_norm005_seed45.log\\\\n-rw-r--r-- 1 root root   1490 May 21 05:31 eval_obs_only_object_norm005_seed45.json\\\\n-rw-r--r-- 1 root root   4534 May 21 05:26 obs_only_object_norm01_seed50.log\\\\n-rw-r--r-- 1 root root   1490 May 21 05:26 eval_obs_only_object_norm01_seed50.json\\\\n-rw-r--r-- 1 root root   4540 May 21 05:25 obs_only_object_norm003_seed46.log\\\\n-rw-r--r-- 1 root root   1490 May 21 05:25 eval_obs_only_object_norm003_seed46.json\\\\n-rw-r--r-- 1 root root   3023 May 21 03:36 eval-obs-only-object-norm01-seed48.log\\\\n-rw-r--r-- 1 root root   4538 May 21 03:16 eval-obs-only-object-norm005-seed44.log\\\\n-rw-r--r-- 1 root root   1490 May 21 03:16 eval_obs_only_object_norm005_seed44.json\\\\n-rw-r--r-- 1 root root   4541 May 21 03:15 eval-obs-only-object-norm003-seed44.log\\\\n-rw-r--r-- 1 root root \\\\n\\\\n... [截断: 输出过长，省略 6333 字符] ...\\\\n\\\\n0 eval_object_obs_only_norm03_seed48.json\\\\n-rw-r--r-- 1 root root   1490 May 18 19:39 eval_object_obs_only_norm01_seed48.json\\\\n-rw-r--r-- 1 root root  11460 May 18 18:14 eval_object_perdof_norm02_seed45_r3.log\\\\n-rw-r--r-- 1 root root   1488 May 18 18:14 eval_object_perdof_norm02_seed45_r3.json\\\\n-rw-r--r-- 1 root root  11473 May 18 09:34 eval_object_obs_only_norm02_k5_seed42.log\\\\n-rw-r--r-- 1 root root   1490 May 18 09:34 eval_object_obs_only_norm02_k5_seed42.json\\\\n-rw-r--r-- 1 root root   6395 May 18 06:47 openvla_action_analysis.log\\\\n-rw-r--r-- 1 root root   2725 May 18 06:05 eval_object_obs_only_norm02_k20_seed42.log\\\\n-rw-r--r-- 1 root root  11560 May 18 04:38 eval_k1_crm_multiscale_object_seed44_bjb1-18228.log\\\\n-rw-r--r-- 1 root root   1488 May 18 04:38 eval_k1_crm_multiscale_object_seed44_bjb1-18228.json\\\\n-rw-r--r-- 1 root root  11556 May 18 04:37 eval_k1_crm_multiscale_object_seed43_bjb1-18228.log\\\\n-rw-r--r-- 1 root root   1489 May 18 04:37 eval_k1_crm_multiscale_object_seed43_bjb1-18228.json\\\\n-rw-r--r-- 1 root root   3726 May 18 02:49 debug_openvla_gripper_fix.log\\\\n-rw-r--r-- 1 root root   1805 May 18 02:34 debug_openvla_object_fix_verify.log\\\\n-rw-r--r-- 1 root root   2734 May 18 02:30 eval_object_obs_only_norm005_seed43_r2.log\\\\n-rw-r--r-- 1 root root   2633 May 18 01:56 eval_object_perdof_norm02_seed45.log\\\\n-rw-r--r-- 1 root root   2123 May 18 01:41 eval-obs-only-object-norm02-k20-seed42.log\\\\n-rw-r--r-- 1 root root   5989 May 18 01:38 eval_openvla_object_vla_only_seed42.log\\\\n-rw-r--r-- 1 root root   1725 May 18 01:38 eval_openvla_object_vla_only_seed42.json\\\\n-rw-r--r-- 1 root root   5555 May 17 23:16 precompute_k1.log\\\\ndrwxr-xr-x 2 root root      6 May 17 22:56 sentinels\\\\n-rw-r--r-- 1 root root    403 May 17 22:02 openvla_single_test.json\\\\n-rw-r--r-- 1 root root   1926 May 17 21:38 eval-perdof-object-norm02-seed45-r2.log\\\\n-rw-r--r-- 1 root root   1931 May 17 21:38 eval-obs-only-object-norm005-seed43.log\\\\n-rw-r--r-- 1 root root   1873 May 17 21:25 eval_object_obs_only_norm003_seed43.log\\\\n-rw-r--r-- 1 root root   2734 May 17 21:21 eval_object_obs_only_norm01_seed47.log\\\\n-rw-r--r-- 1 root root   2734 May 17 20:53 eval_object_obs_only_norm01_seed46.log\\\\n-rw-r--r-- 1 root root   6288 May 17 20:34 eval_object_obs_only_norm01_seed45.log\\\\n-rw-r--r-- 1 root root   1494 May 17 20:34 eval_object_obs_only_norm01_seed45.json\\\\n-rw-r--r-- 1 root root   1607 May 17 19:40 eval_object_obs_only_norm03_seed47.log\\\\n-rw-r--r-- 1 root root   4475 May 17 18:39 eval_object_perdof_norm01_seed44.log\\\\n-rw-r--r-- 1 root root   1488 May 17 18:39 eval_object_perdof_norm01_seed44.json\\\\n-rw-r--r-- 1 root root   1597 May 17 14:54 eval_object_perdof_norm01_seed47.log\\\\n-rw-r--r-- 1 root root   4498 May 17 13:04 eval_object_obs_only_norm02_seed46.log\\\\n-rw-r--r-- 1 root root   1490 May 17 13:04 eval_object_obs_only_norm02_seed46.json\\\\n-rw-r--r-- 1 root root   1488 May 17 12:40 eval_object_perdof_norm03_seed44.json\\\\n-rw-r--r-- 1 root root   4269 May 17 06:08 eval_object_vla_only_seed46.log\\\\n-rw-r--r-- 1 root root   1486 May 17 06:08 eval_object_vla_only_seed46.json\\\\n-rw-r--r-- 1 root root   1488 May 17 02:12 eval_object_perdof_seed44.json\\\\n-rw-r--r-- 1 root root   1486 May 16 23:28 eval_object_reconvla_seed44.json\\\\n-rw-r--r-- 1 root root   1490 May 16 22:38 eval_object_obs_only_norm02_seed44.json\\\\n-rw-r--r-- 1 root root   1487 May 16 16:57 eval_object_perdof_default_norm_r2.json\\\\n-rw-r--r-- 1 root root   1488 May 16 11:10 eval_object_perdof_seed43.json\\\\n-rw-r--r-- 1 root root   1490 May 16 08:40 eval_object_obs_only_seed43.json\\\\n-rw-r--r-- 1 root root   1486 May 16 08:34 eval_object_reconvla_seed43.json\\\\n-rw-r--r-- 1 root root   1698 May 16 01:20 eval_mag_obsonly_norm03.json\\\\n-rw-r--r-- 1 root root    304 May 15 15:06 eval_reconvla_spatial_r2.json\\\\n-rw-r--r-- 1 root root   2417 May 13 17:44 precompute_shard3.log\\\\n-rw-r--r-- 1 root root   2340 May 13 17:44 precompute_shard2.log\\\\n-rw-r--r-- 1 root root   2340 May 13 17:44 precompute_shard0.log\\\\n-rw-r--r-- 1 root root   2341 May 13 17:43 precompute_shard1.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 2008\\n-rw-r--r-- 1 root root   6418 May 25 02:44 eval-supp-obj-vla-only-s50.log\\n-rw-r--r-- 1 root root   1500 May 25 02:44 eval_object_vla_only_seed50.json\\n-rw-r--r-- 1 root root   7445 May 25 02:20 eval-supp-spatial-vla-only-s42.log\\n-rw-r--r-- 1 root root   1704 May 25 02:20 eval_spatial_vla_only_seed42.json\\n-rw-r--r-- 1 root root   1792 May 24 22:07 eval_long_vla_only_seed47.json\\n-rw-r--r-- 1 root root   1327 May 24 19:20 eval_goal_vla_only_seed47.json\\n-rw-r--r-- 1 root root   4299 May 24 16:32 eval-supp-goal-vla-only-s47.log\\n-rw-r--r-- 1 root root   3353 May 24 16:32 eval-supp-long-vla-only-s47-r2.log\\n-rw-r--r-- 1 root root   8558 May 23 02:07 eval_long_vla_only_seed42_r4_rerun.log\\n-rw-r--r-- 1 root root   1791 May 23 02:07 eval_long_vla_only_seed42_r4_rerun.json\\n-rw-r--r-- 1 root root   1791 May 23 00:40 eval_long_vla_only_seed44_r4.json\\n-rw-r--r-- 1 root root   1795 May 23 00:38 eval_long_vla_only_seed43_r4.json\\n-rw-r--r-- 1 root root   1325 May 23 00:16 eval_goal_vla_only_seed42_r4.json\\n-rw-r--r-- 1 root root   1704 May 22 20:18 eval_spatial_vla_only_pi05_seed43.json\\n-rw-r--r-- 1 root root   1704 May 22 20:17 eval_spatial_vla_only_pi05_seed42.json\\n-rw-r--r-- 1 root root   1704 May 22 20:17 eval_spatial_vla_only_pi05_seed44.json\\n-rw-r--r-- 1 root root   1498 May 22 19:23 eval_object_vla_only_pi05_seed44.json\\n-rw-r--r-- 1 root root   1498 May 22 19:23 eval_object_vla_only_pi05_seed43.json\\n-rw-r--r-- 1 root root   1495 May 22 19:21 eval_object_vla_only_pi05_seed42.json\\n-rw-r--r-- 1 root root   1491 May 22 18:33 eval_object_acr_vla_seed42.json\\n-rw-r--r-- 1 root root   4623 May 21 19:50 eval_object_obs_only_norm003_seed77.log\\n-rw-r--r-- 1 root root   1490 May 21 19:50 eval_object_obs_only_norm003_seed77.json\\n-rw-r--r-- 1 root root   4620 May 21 19:45 eval_object_obs_only_norm003_seed76.log\\n-rw-r--r-- 1 root root   1490 May 21 19:45 eval_object_obs_only_norm003_seed76.json\\n-rw-r--r-- 1 root root   4619 May 21 19:42 eval_object_obs_only_norm02_seed55.log\\n-rw-r--r-- 1 root root   1490 May 21 19:42 eval_object_obs_only_norm02_seed55.json\\n-rw-r--r-- 1 root root   5216 May 21 14:45 eval_k20_spatial_seed43.log\\n-rw-r--r-- 1 root root   1697 May 21 14:45 eval_k20_spatial_seed43.json\\n-rw-r--r-- 1 root root   5217 May 21 14:43 eval_k20_spatial_seed44.log\\n-rw-r--r-- 1 root root   1697 May 21 14:43 eval_k20_spatial_seed44.json\\n-rw-r--r-- 1 root root   1490 May 21 10:25 eval_obs_only_object_norm005_seed65.json\\n-rw-r--r-- 1 root root   1490 May 21 09:08 eval_obs_only_object_norm003_seed59.json\\n-rw-r--r-- 1 root root   1490 May 21 09:03 eval_obs_only_object_norm01_seed57.json\\n-rw-r--r-- 1 root root   1490 May 21 09:02 eval_obs_only_object_norm005_seed58.json\\n-rw-r--r-- 1 root root   1490 May 21 08:04 eval_obs_only_object_norm005_seed55.json\\n-rw-r--r-- 1 root root   1690 May 21 07:22 eval_plan_a_object_seed43.json\\n-rw-r--r-- 1 root root   1687 May 21 07:16 eval_plan_a_object_seed44.json\\n-rw-r--r-- 1 root root   1690 May 21 07:12 eval_plan_a_object_seed42.json\\n-rw-r--r-- 1 root root   4523 May 21 06:14 perdof_object_norm005_seed46.log\\n-rw-r--r-- 1 root root   1487 May 21 06:14 eval_perdof_object_norm005_seed46.json\\n-rw-r--r-- 1 root root   4539 May 21 05:31 obs_only_object_norm005_seed45.log\\n-rw-r--r-- 1 root root   1490 May 21 05:31 eval_obs_only_object_norm005_seed45.json\\n-rw-r--r-- 1 root root   4534 May 21 05:26 obs_only_object_norm01_seed50.log\\n-rw-r--r-- 1 root root   1490 May 21 05:26 eval_obs_only_object_norm01_seed50.json\\n-rw-r--r-- 1 root root   4540 May 21 05:25 obs_only_object_norm003_seed46.log\\n-rw-r--r-- 1 root root   1490 May 21 05:25 eval_obs_only_object_norm003_seed46.json\\n-rw-r--r-- 1 root root   3023 May 21 03:36 eval-obs-only-object-norm01-seed48.log\\n-rw-r--r-- 1 root root   4538 May 21 03:16 eval-obs-only-object-norm005-seed44.log\\n-rw-r--r-- 1 root root   1490 May 21 03:16 eval_obs_only_object_norm005_seed44.json\\n-rw-r--r-- 1 root root   4541 May 21 03:15 eval-obs-only-object-norm003-seed44.log\\n-rw-r--r-- 1 root root \\n\\n... [截断: 输出过长，省略 6333 字符] ...\\n\\n0 eval_object_obs_only_norm03_seed48.json\\n-rw-r--r-- 1 root root   1490 May 18 19:39 eval_object_obs_only_norm01_seed48.json\\n-rw-r--r-- 1 root root  11460 May 18 18:14 eval_object_perdof_norm02_seed45_r3.log\\n-rw-r--r-- 1 root root   1488 May 18 18:14 eval_object_perdof_norm02_seed45_r3.json\\n-rw-r--r-- 1 root root  11473 May 18 09:34 eval_object_obs_only_norm02_k5_seed42.log\\n-rw-r--r-- 1 root root   1490 May 18 09:34 eval_object_obs_only_norm02_k5_seed42.json\\n-rw-r--r-- 1 root root   6395 May 18 06:47 openvla_action_analysis.log\\n-rw-r--r-- 1 root root   2725 May 18 06:05 eval_object_obs_only_norm02_k20_seed42.log\\n-rw-r--r-- 1 root root  11560 May 18 04:38 eval_k1_crm_multiscale_object_seed44_bjb1-18228.log\\n-rw-r--r-- 1 root root   1488 May 18 04:38 eval_k1_crm_multiscale_object_seed44_bjb1-18228.json\\n-rw-r--r-- 1 root root  11556 May 18 04:37 eval_k1_crm_multiscale_object_seed43_bjb1-18228.log\\n-rw-r--r-- 1 root root   1489 May 18 04:37 eval_k1_crm_multiscale_object_seed43_bjb1-18228.json\\n-rw-r--r-- 1 root root   3726 May 18 02:49 debug_openvla_gripper_fix.log\\n-rw-r--r-- 1 root root   1805 May 18 02:34 debug_openvla_object_fix_verify.log\\n-rw-r--r-- 1 root root   2734 May 18 02:30 eval_object_obs_only_norm005_seed43_r2.log\\n-rw-r--r-- 1 root root   2633 May 18 01:56 eval_object_perdof_norm02_seed45.log\\n-rw-r--r-- 1 root root   2123 May 18 01:41 eval-obs-only-object-norm02-k20-seed42.log\\n-rw-r--r-- 1 root root   5989 May 18 01:38 eval_openvla_object_vla_only_seed42.log\\n-rw-r--r-- 1 root root   1725 May 18 01:38 eval_openvla_object_vla_only_seed42.json\\n-rw-r--r-- 1 root root   5555 May 17 23:16 precompute_k1.log\\ndrwxr-xr-x 2 root root      6 May 17 22:56 sentinels\\n-rw-r--r-- 1 root root    403 May 17 22:02 openvla_single_test.json\\n-rw-r--r-- 1 root root   1926 May 17 21:38 eval-perdof-object-norm02-seed45-r2.log\\n-rw-r--r-- 1 root root   1931 May 17 21:38 eval-obs-only-object-norm005-seed43.log\\n-rw-r--r-- 1 root root   1873 May 17 21:25 eval_object_obs_only_norm003_seed43.log\\n-rw-r--r-- 1 root root   2734 May 17 21:21 eval_object_obs_only_norm01_seed47.log\\n-rw-r--r-- 1 root root   2734 May 17 20:53 eval_object_obs_only_norm01_seed46.log\\n-rw-r--r-- 1 root root   6288 May 17 20:34 eval_object_obs_only_norm01_seed45.log\\n-rw-r--r-- 1 root root   1494 May 17 20:34 eval_object_obs_only_norm01_seed45.json\\n-rw-r--r-- 1 root root   1607 May 17 19:40 eval_object_obs_only_norm03_seed47.log\\n-rw-r--r-- 1 root root   4475 May 17 18:39 eval_object_perdof_norm01_seed44.log\\n-rw-r--r-- 1 root root   1488 May 17 18:39 eval_object_perdof_norm01_seed44.json\\n-rw-r--r-- 1 root root   1597 May 17 14:54 eval_object_perdof_norm01_seed47.log\\n-rw-r--r-- 1 root root   4498 May 17 13:04 eval_object_obs_only_norm02_seed46.log\\n-rw-r--r-- 1 root root   1490 May 17 13:04 eval_object_obs_only_norm02_seed46.json\\n-rw-r--r-- 1 root root   1488 May 17 12:40 eval_object_perdof_norm03_seed44.json\\n-rw-r--r-- 1 root root   4269 May 17 06:08 eval_object_vla_only_seed46.log\\n-rw-r--r-- 1 root root   1486 May 17 06:08 eval_object_vla_only_seed46.json\\n-rw-r--r-- 1 root root   1488 May 17 02:12 eval_object_perdof_seed44.json\\n-rw-r--r-- 1 root root   1486 May 16 23:28 eval_object_reconvla_seed44.json\\n-rw-r--r-- 1 root root   1490 May 16 22:38 eval_object_obs_only_norm02_seed44.json\\n-rw-r--r-- 1 root root   1487 May 16 16:57 eval_object_perdof_default_norm_r2.json\\n-rw-r--r-- 1 root root   1488 May 16 11:10 eval_object_perdof_seed43.json\\n-rw-r--r-- 1 root root   1490 May 16 08:40 eval_object_obs_only_seed43.json\\n-rw-r--r-- 1 root root   1486 May 16 08:34 eval_object_reconvla_seed43.json\\n-rw-r--r-- 1 root root   1698 May 16 01:20 eval_mag_obsonly_norm03.json\\n-rw-r--r-- 1 root root    304 May 15 15:06 eval_reconvla_spatial_r2.json\\n-rw-r--r-- 1 root root   2417 May 13 17:44 precompute_shard3.log\\n-rw-r--r-- 1 root root   2340 May 13 17:44 precompute_shard2.log\\n-rw-r--r-- 1 root root   2340 May 13 17:44 precompute_shard0.log\\n-rw-r--r-- 1 root root   2341 May 13 17:43 precompute_shard1.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "55d63521-abd3-422e-9083-e54317125626",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PU1z5r2EqhLpkMXZBVHF88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7018,
+      "cache_read_input_tokens": 35799,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7018
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C44D3983q2uJoZYDs78gtC`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "176f15d7-f607-4992-b33e-00b14c8cb01b",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PU1z5r2EqhLpkMXZBVHF88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7018,
+      "cache_read_input_tokens": 35799,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7018
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T19:24:16.472Z_
+
+<details><summary>↩ Tool result · `toolu_01C44D3983q2uJoZYDs78gtC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.8,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "0c3a5365-b2c2-46db-aa26-336ceae29c2d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.8,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.8,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RSH9TtisEavGF6dBubJJ6K`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed50.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "00566231-95d0-4fd7-bdc9-6430c18dd95b",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PU1z5r2EqhLpkMXZBVHF88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7018,
+      "cache_read_input_tokens": 35799,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7018
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T19:24:17.512Z_
+
+<details><summary>↩ Tool result · `toolu_01RSH9TtisEavGF6dBubJJ6K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.74,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "512ec262-aa42-4e16-800c-b7632ef2e3d9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.74,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.6,\\\\n      \\\\\\\"successes\\\\\\\": 12,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.85,\\\\n      \\\\\\\"successes\\\\\\\": 17,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.6,\\\\n      \\\\\\\"successes\\\\\\\": 12,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.85,\\\\n      \\\\\\\"successes\\\\\\\": 17,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.74,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MBpeQah4ZUx1EJKArCYXRT`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -60 /root/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "f077940b-c79e-4d5d-b2ea-b5dc30ed6eac",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PU1z5r2EqhLpkMXZBVHF88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7018,
+      "cache_read_input_tokens": 35799,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7018
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T19:24:19.076Z_
+
+<details><summary>↩ Tool result · `toolu_01MBpeQah4ZUx1EJKArCYXRT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  epoch 20 batch 650/684 loss=0.008486\\nEpoch 20/50  train_loss=0.008887  val_loss=0.005132  lr=6.55e-04\\n  → New best val_loss: 0.005132\\n  epoch 21 batch 50/684 loss=0.009062\\n  epoch 21 batch 100/684 loss=0.008185\\n  epoch 21 batch 150/684 loss=0.008334\\n  epoch 21 batch 200/684 loss=0.009436\\n  epoch 21 batch 250/684 loss=0.008499\\n  epoch 21 batch 300/684 loss=0.009684\\n  epoch 21 batch 350/684 loss=0.007860\\n  epoch 21 batch 400/684 loss=0.008913\\n  epoch 21 batch 450/684 loss=0.009512\\n  epoch 21 batch 500/684 loss=0.008157\\n  epoch 21 batch 550/684 loss=0.008394\\n  epoch 21 batch 600/684 loss=0.008607\\n  epoch 21 batch 650/684 loss=0.008392\\nEpoch 21/50  train_loss=0.008761  val_loss=0.004986  lr=6.24e-04\\n  → New best val_loss: 0.004986\\n  epoch 22 batch 50/684 loss=0.009616\\n  epoch 22 batch 100/684 loss=0.007501\\n  epoch 22 batch 150/684 loss=0.008272\\n  epoch 22 batch 200/684 loss=0.008836\\n  epoch 22 batch 250/684 loss=0.010569\\n  epoch 22 batch 300/684 loss=0.009522\\n  epoch 22 batch 350/684 loss=0.008381\\n  epoch 22 batch 400/684 loss=0.008611\\n  epoch 22 batch 450/684 loss=0.008360\\n  epoch 22 batch 500/684 loss=0.009196\\n  epoch 22 batch 550/684 loss=0.011113\\n  epoch 22 batch 600/684 loss=0.009334\\n  epoch 22 batch 650/684 loss=0.008907\\nEpoch 22/50  train_loss=0.008659  val_loss=0.004997  lr=5.94e-04\\n  epoch 23 batch 50/684 loss=0.008667\\n  epoch 23 batch 100/684 loss=0.008703\\n  epoch 23 batch 150/684 loss=0.009273\\n  epoch 23 batch 200/684 loss=0.008100\\n  epoch 23 batch 250/684 loss=0.010912\\n  epoch 23 batch 300/684 loss=0.009166\\n  epoch 23 batch 350/684 loss=0.008681\\n  epoch 23 batch 400/684 loss=0.008626\\n  epoch 23 batch 450/684 loss=0.008603\\n  epoch 23 batch 500/684 loss=0.008364\\n  epoch 23 batch 550/684 loss=0.009797\\n  epoch 23 batch 600/684 loss=0.008033\\n  epoch 23 batch 650/684 loss=0.009005\\nEpoch 23/50  train_loss=0.008523  val_loss=0.004856  lr=5.63e-04\\n  → New best val_loss: 0.004856\\n  epoch 24 batch 50/684 loss=0.008219\\n  epoch 24 batch 100/684 loss=0.009253\\n  epoch 24 batch 150/684 loss=0.010192\\n  epoch 24 batch 200/684 loss=0.009966\\n  epoch 24 batch 250/684 loss=0.008264\\n  epoch 24 batch 300/684 loss=0.008393\\n  epoch 24 batch 350/684 loss=0.007901\\n  epoch 24 batch 400/684 loss=0.008695\\n  epoch 24 batch 450/684 loss=0.007362\\n  epoch 24 batch 500/684 loss=0.008136\\n  epoch 24 batch 550/684 loss=0.008531\\n  epoch 24 batch 600/684 loss=0.008208\\n  epoch 24 batch 650/684 loss=0.007499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "2e591ef8-7f3d-4198-9d20-32c30861d00d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  epoch 20 batch 650/684 loss=0.008486\\\\nEpoch 20/50  train_loss=0.008887  val_loss=0.005132  lr=6.55e-04\\\\n  → New best val_loss: 0.005132\\\\n  epoch 21 batch 50/684 loss=0.009062\\\\n  epoch 21 batch 100/684 loss=0.008185\\\\n  epoch 21 batch 150/684 loss=0.008334\\\\n  epoch 21 batch 200/684 loss=0.009436\\\\n  epoch 21 batch 250/684 loss=0.008499\\\\n  epoch 21 batch 300/684 loss=0.009684\\\\n  epoch 21 batch 350/684 loss=0.007860\\\\n  epoch 21 batch 400/684 loss=0.008913\\\\n  epoch 21 batch 450/684 loss=0.009512\\\\n  epoch 21 batch 500/684 loss=0.008157\\\\n  epoch 21 batch 550/684 loss=0.008394\\\\n  epoch 21 batch 600/684 loss=0.008607\\\\n  epoch 21 batch 650/684 loss=0.008392\\\\nEpoch 21/50  train_loss=0.008761  val_loss=0.004986  lr=6.24e-04\\\\n  → New best val_loss: 0.004986\\\\n  epoch 22 batch 50/684 loss=0.009616\\\\n  epoch 22 batch 100/684 loss=0.007501\\\\n  epoch 22 batch 150/684 loss=0.008272\\\\n  epoch 22 batch 200/684 loss=0.008836\\\\n  epoch 22 batch 250/684 loss=0.010569\\\\n  epoch 22 batch 300/684 loss=0.009522\\\\n  epoch 22 batch 350/684 loss=0.008381\\\\n  epoch 22 batch 400/684 loss=0.008611\\\\n  epoch 22 batch 450/684 loss=0.008360\\\\n  epoch 22 batch 500/684 loss=0.009196\\\\n  epoch 22 batch 550/684 loss=0.011113\\\\n  epoch 22 batch 600/684 loss=0.009334\\\\n  epoch 22 batch 650/684 loss=0.008907\\\\nEpoch 22/50  train_loss=0.008659  val_loss=0.004997  lr=5.94e-04\\\\n  epoch 23 batch 50/684 loss=0.008667\\\\n  epoch 23 batch 100/684 loss=0.008703\\\\n  epoch 23 batch 150/684 loss=0.009273\\\\n  epoch 23 batch 200/684 loss=0.008100\\\\n  epoch 23 batch 250/684 loss=0.010912\\\\n  epoch 23 batch 300/684 loss=0.009166\\\\n  epoch 23 batch 350/684 loss=0.008681\\\\n  epoch 23 batch 400/684 loss=0.008626\\\\n  epoch 23 batch 450/684 loss=0.008603\\\\n  epoch 23 batch 500/684 loss=0.008364\\\\n  epoch 23 batch 550/684 loss=0.009797\\\\n  epoch 23 batch 600/684 loss=0.008033\\\\n  epoch 23 batch 650/684 loss=0.009005\\\\nEpoch 23/50  train_loss=0.008523  val_loss=0.004856  lr=5.63e-04\\\\n  → New best val_loss: 0.004856\\\\n  epoch 24 batch 50/684 loss=0.008219\\\\n  epoch 24 batch 100/684 loss=0.009253\\\\n  epoch 24 batch 150/684 loss=0.010192\\\\n  epoch 24 batch 200/684 loss=0.009966\\\\n  epoch 24 batch 250/684 loss=0.008264\\\\n  epoch 24 batch 300/684 loss=0.008393\\\\n  epoch 24 batch 350/684 loss=0.007901\\\\n  epoch 24 batch 400/684 loss=0.008695\\\\n  epoch 24 batch 450/684 loss=0.007362\\\\n  epoch 24 batch 500/684 loss=0.008136\\\\n  epoch 24 batch 550/684 loss=0.008531\\\\n  epoch 24 batch 600/684 loss=0.008208\\\\n  epoch 24 batch 650/684 loss=0.007499\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  epoch 20 batch 650/684 loss=0.008486\\nEpoch 20/50  train_loss=0.008887  val_loss=0.005132  lr=6.55e-04\\n  → New best val_loss: 0.005132\\n  epoch 21 batch 50/684 loss=0.009062\\n  epoch 21 batch 100/684 loss=0.008185\\n  epoch 21 batch 150/684 loss=0.008334\\n  epoch 21 batch 200/684 loss=0.009436\\n  epoch 21 batch 250/684 loss=0.008499\\n  epoch 21 batch 300/684 loss=0.009684\\n  epoch 21 batch 350/684 loss=0.007860\\n  epoch 21 batch 400/684 loss=0.008913\\n  epoch 21 batch 450/684 loss=0.009512\\n  epoch 21 batch 500/684 loss=0.008157\\n  epoch 21 batch 550/684 loss=0.008394\\n  epoch 21 batch 600/684 loss=0.008607\\n  epoch 21 batch 650/684 loss=0.008392\\nEpoch 21/50  train_loss=0.008761  val_loss=0.004986  lr=6.24e-04\\n  → New best val_loss: 0.004986\\n  epoch 22 batch 50/684 loss=0.009616\\n  epoch 22 batch 100/684 loss=0.007501\\n  epoch 22 batch 150/684 loss=0.008272\\n  epoch 22 batch 200/684 loss=0.008836\\n  epoch 22 batch 250/684 loss=0.010569\\n  epoch 22 batch 300/684 loss=0.009522\\n  epoch 22 batch 350/684 loss=0.008381\\n  epoch 22 batch 400/684 loss=0.008611\\n  epoch 22 batch 450/684 loss=0.008360\\n  epoch 22 batch 500/684 loss=0.009196\\n  epoch 22 batch 550/684 loss=0.011113\\n  epoch 22 batch 600/684 loss=0.009334\\n  epoch 22 batch 650/684 loss=0.008907\\nEpoch 22/50  train_loss=0.008659  val_loss=0.004997  lr=5.94e-04\\n  epoch 23 batch 50/684 loss=0.008667\\n  epoch 23 batch 100/684 loss=0.008703\\n  epoch 23 batch 150/684 loss=0.009273\\n  epoch 23 batch 200/684 loss=0.008100\\n  epoch 23 batch 250/684 loss=0.010912\\n  epoch 23 batch 300/684 loss=0.009166\\n  epoch 23 batch 350/684 loss=0.008681\\n  epoch 23 batch 400/684 loss=0.008626\\n  epoch 23 batch 450/684 loss=0.008603\\n  epoch 23 batch 500/684 loss=0.008364\\n  epoch 23 batch 550/684 loss=0.009797\\n  epoch 23 batch 600/684 loss=0.008033\\n  epoch 23 batch 650/684 loss=0.009005\\nEpoch 23/50  train_loss=0.008523  val_loss=0.004856  lr=5.63e-04\\n  → New best val_loss: 0.004856\\n  epoch 24 batch 50/684 loss=0.008219\\n  epoch 24 batch 100/684 loss=0.009253\\n  epoch 24 batch 150/684 loss=0.010192\\n  epoch 24 batch 200/684 loss=0.009966\\n  epoch 24 batch 250/684 loss=0.008264\\n  epoch 24 batch 300/684 loss=0.008393\\n  epoch 24 batch 350/684 loss=0.007901\\n  epoch 24 batch 400/684 loss=0.008695\\n  epoch 24 batch 450/684 loss=0.007362\\n  epoch 24 batch 500/684 loss=0.008136\\n  epoch 24 batch 550/684 loss=0.008531\\n  epoch 24 batch 600/684 loss=0.008208\\n  epoch 24 batch 650/684 loss=0.007499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JeEcrZKaaPgQmqJ7NPaWXu`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -30 /root/acr-vla-conformal-refinement/logs/eval-supp-spatial-vla-only-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "4884a98c-4732-4b6b-b0ce-f29d8a774cb7",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PU1z5r2EqhLpkMXZBVHF88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7018,
+      "cache_read_input_tokens": 35799,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7018
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T19:24:20.100Z_
+
+<details><summary>↩ Tool result · `toolu_01JeEcrZKaaPgQmqJ7NPaWXu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 0/10\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 0/15\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 0/20\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/20)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/20, success so far: 8/10\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/20, success so far: 2/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/20, success so far: 7/10\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 15/20, success so far: 12/15\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 14/15\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\n\\n============================================================\\nOverall success rate (vla_only): 80.0% (160/200)\\n============================================================\\n[eval] Results saved to logs/eval_spatial_vla_only_seed42.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "eb3aca02-73c2-452e-9207-7ecffe3bb010",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/20)\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/20, success so far: 2/5\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 15/20, success so far: 12/15\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\\\n\\\\n============================================================\\\\nOverall success rate (vla_only): 80.0% (160/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_spatial_vla_only_seed42.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 0/10\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 0/15\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 0/20\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/20)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/20, success so far: 8/10\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/20, success so far: 2/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/20, success so far: 7/10\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 15/20, success so far: 12/15\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 14/15\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\n\\n============================================================\\nOverall success rate (vla_only): 80.0% (160/200)\\n============================================================\\n[eval] Results saved to logs/eval_spatial_vla_only_seed42.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XNcknsoX9C5Ygvn9u7P3uN`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "tail -30 /root/acr-vla-conformal-refinement/logs/eval-supp-obj-vla-only-s50.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "2d1630e3-6a86-4684-b2f3-3aa449ff0a51",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PU1z5r2EqhLpkMXZBVHF88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7018,
+      "cache_read_input_tokens": 35799,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7018
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T19:24:21.160Z_
+
+<details><summary>↩ Tool result · `toolu_01XNcknsoX9C5Ygvn9u7P3uN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 12/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 60.0% (12/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 2/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n\\n============================================================\\nOverall success rate (vla_only): 74.0% (148/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_vla_only_seed50.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "5455099e-518e-47c6-9d4c-88c0689ff5f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 12/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 60.0% (12/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 2/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\\\n\\\\n============================================================\\\\nOverall success rate (vla_only): 74.0% (148/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_vla_only_seed50.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 12/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 60.0% (12/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 2/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n\\n============================================================\\nOverall success rate (vla_only): 74.0% (148/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_vla_only_seed50.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VzKXNtgEigh5kfkzaBM5h2`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ps -ef",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "59ec64c3-1bed-42f6-8e0f-86c5d329faac",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PU1z5r2EqhLpkMXZBVHF88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7018,
+      "cache_read_input_tokens": 35799,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7018
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T19:24:21.909Z_
+
+<details><summary>↩ Tool result · `toolu_01VzKXNtgEigh5kfkzaBM5h2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"UID         PID   PPID  C STIME TTY          TIME CMD\\nroot          1      0  0 May13 ?        00:00:02 bash /init/boot/boot.sh\\nroot        794      1  1 May13 ?        04:10:17 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        808    794  0 May13 ?        00:00:56 sshd: /usr/sbin/sshd -D [listener] 2 of 10-100 startups\\nroot        809    794  0 May13 ?        00:07:26 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        814    794  0 May13 ?        00:00:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        817    794  0 May13 ?        00:42:06 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        818    794  0 May13 ?        00:05:54 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        819    794  0 May13 ?        00:19:56 proxy -c /init/proxy/proxy.ini\\nroot        925    809  0 May13 ?        00:06:19 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_vbt2aa5n/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_vbt2aa5n/startup_error\\nroot     114507      1 99 May23 ?        2-14:00:53 python -u src/train_crm.py --precompute --model pi05 --benchmark long --K 10 --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/\\nroot     307456      1  0 May24 ?        00:00:00 tmux new-session -d -s long-vla-s47 cd /root/acr-vla-conformal-refinement && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark long --mode vla_only --seed 47 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_long_vla_s47.log\\nroot     326310 307456  0 May24 pts/2    00:00:00 bash -c rm -f /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\"'; } > ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log 2>&1\\nroot     326314 326310  0 May24 pts/2    00:00:00 timeout 43200 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\"\\nroot     326315 326314 99 May24 pts/2    08:49:23 python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\nroot     334898    808  0 May24 ?        00:00:04 sshd: root@notty\\nroot     392496    808  0 03:22 ?        00:00:00 sshd: root@notty\\nroot     392561 326315  0 03:23 pts/2    00:00:00 python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\nroot     392562 326315  0 03:23 pts/2    00:00:00 python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\nroot     392616    808  0 03:24 ?        00:00:00 sshd: root@notty\\nroot     392639    808  0 03:24 ?        00:00:00 sshd: unknown [priv]\\nsshd     392640 392639  0 03:24 ?        00:00:00 sshd: unknown [net]\\nroot     392649    808  0 03:24 ?        00:00:00 sshd: [accepted]\\nsshd     392654 392649  0 03:24 ?        00:00:00 sshd: [net]\\nroot     392658 392616  0 03:24 ?        00:00:00 ps -ef\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "1ff4db46-9b3e-460b-8eb0-f728c24bbfa7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"UID         PID   PPID  C STIME TTY          TIME CMD\\\\nroot          1      0  0 May13 ?        00:00:02 bash /init/boot/boot.sh\\\\nroot        794      1  1 May13 ?        04:10:17 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        808    794  0 May13 ?        00:00:56 sshd: /usr/sbin/sshd -D [listener] 2 of 10-100 startups\\\\nroot        809    794  0 May13 ?        00:07:26 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        814    794  0 May13 ?        00:00:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        817    794  0 May13 ?        00:42:06 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        818    794  0 May13 ?        00:05:54 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        819    794  0 May13 ?        00:19:56 proxy -c /init/proxy/proxy.ini\\\\nroot        925    809  0 May13 ?        00:06:19 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_vbt2aa5n/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_vbt2aa5n/startup_error\\\\nroot     114507      1 99 May23 ?        2-14:00:53 python -u src/train_crm.py --precompute --model pi05 --benchmark long --K 10 --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/\\\\nroot     307456      1  0 May24 ?        00:00:00 tmux new-session -d -s long-vla-s47 cd /root/acr-vla-conformal-refinement && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark long --mode vla_only --seed 47 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_long_vla_s47.log\\\\nroot     326310 307456  0 May24 pts/2    00:00:00 bash -c rm -f /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log 2>&1\\\\nroot     326314 326310  0 May24 pts/2    00:00:00 timeout 43200 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\\\\\"\\\\nroot     326315 326314 99 May24 pts/2    08:49:23 python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\\nroot     334898    808  0 May24 ?        00:00:04 sshd: root@notty\\\\nroot     392496    808  0 03:22 ?        00:00:00 sshd: root@notty\\\\nroot     392561 326315  0 03:23 pts/2    00:00:00 python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\\nroot     392562 326315  0 03:23 pts/2    00:00:00 python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\\nroot     392616    808  0 03:24 ?        00:00:00 sshd: root@notty\\\\nroot     392639    808  0 03:24 ?        00:00:00 sshd: unknown [priv]\\\\nsshd     392640 392639  0 03:24 ?        00:00:00 sshd: unknown [net]\\\\nroot     392649    808  0 03:24 ?        00:00:00 sshd: [accepted]\\\\nsshd     392654 392649  0 03:24 ?        00:00:00 sshd: [net]\\\\nroot     392658 392616  0 03:24 ?        00:00:00 ps -ef\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"UID         PID   PPID  C STIME TTY          TIME CMD\\nroot          1      0  0 May13 ?        00:00:02 bash /init/boot/boot.sh\\nroot        794      1  1 May13 ?        04:10:17 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        808    794  0 May13 ?        00:00:56 sshd: /usr/sbin/sshd -D [listener] 2 of 10-100 startups\\nroot        809    794  0 May13 ?        00:07:26 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        814    794  0 May13 ?        00:00:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        817    794  0 May13 ?        00:42:06 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        818    794  0 May13 ?        00:05:54 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        819    794  0 May13 ?        00:19:56 proxy -c /init/proxy/proxy.ini\\nroot        925    809  0 May13 ?        00:06:19 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_vbt2aa5n/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_vbt2aa5n/startup_error\\nroot     114507      1 99 May23 ?        2-14:00:53 python -u src/train_crm.py --precompute --model pi05 --benchmark long --K 10 --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/\\nroot     307456      1  0 May24 ?        00:00:00 tmux new-session -d -s long-vla-s47 cd /root/acr-vla-conformal-refinement && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark long --mode vla_only --seed 47 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_long_vla_s47.log\\nroot     326310 307456  0 May24 pts/2    00:00:00 bash -c rm -f /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/train-crm-pi05-unified-3suite-r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\"'; } > ~/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log 2>&1\\nroot     326314 326310  0 May24 pts/2    00:00:00 timeout 43200 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\\"\\nroot     326315 326314 99 May24 pts/2    08:49:23 python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\nroot     334898    808  0 May24 ?        00:00:04 sshd: root@notty\\nroot     392496    808  0 03:22 ?        00:00:00 sshd: root@notty\\nroot     392561 326315  0 03:23 pts/2    00:00:00 python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\nroot     392562 326315  0 03:23 pts/2    00:00:00 python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 256 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/\\nroot     392616    808  0 03:24 ?        00:00:00 sshd: root@notty\\nroot     392639    808  0 03:24 ?        00:00:00 sshd: unknown [priv]\\nsshd     392640 392639  0 03:24 ?        00:00:00 sshd: unknown [net]\\nroot     392649    808  0 03:24 ?        00:00:00 sshd: [accepted]\\nsshd     392654 392649  0 03:24 ?        00:00:00 sshd: [net]\\nroot     392658 392616  0 03:24 ?        00:00:00 ps -ef\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "2a8286a5-9549-40ac-9948-83e03cf08313",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KXXQDMwNW4MiavGuf8GkFr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11036,
+      "cache_read_input_tokens": 42817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11036
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q3opJZMVNY5RmLsrcZNYsC`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls -la /root/autodl-tmp/crm_cache_pi05_2048/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "02f57bde-139c-4915-b730-727c9b198852",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KXXQDMwNW4MiavGuf8GkFr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11036,
+      "cache_read_input_tokens": 42817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11036
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-24T19:24:30.594Z_
+
+<details><summary>↩ Tool result · `toolu_01Q3opJZMVNY5RmLsrcZNYsC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 52\\ndrwxr-xr-x  6 root root   79 May 23 04:23 .\\ndrwxr-xr-x 20 root root 4096 May 23 04:19 ..\\ndrwxr-xr-x  2 root root 8192 May 24 14:14 goal\\ndrwxr-xr-x  2 root root 8192 May 25 03:16 long\\ndrwxr-xr-x  2 root root 8192 May 24 17:54 object\\ndrwxr-xr-x  2 root root 8192 May 24 13:32 spatial\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "1771cb9f-1187-416f-b3dc-6020fed6689c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 52\\\\ndrwxr-xr-x  6 root root   79 May 23 04:23 .\\\\ndrwxr-xr-x 20 root root 4096 May 23 04:19 ..\\\\ndrwxr-xr-x  2 root root 8192 May 24 14:14 goal\\\\ndrwxr-xr-x  2 root root 8192 May 25 03:16 long\\\\ndrwxr-xr-x  2 root root 8192 May 24 17:54 object\\\\ndrwxr-xr-x  2 root root 8192 May 24 13:32 spatial\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 52\\ndrwxr-xr-x  6 root root   79 May 23 04:23 .\\ndrwxr-xr-x 20 root root 4096 May 23 04:19 ..\\ndrwxr-xr-x  2 root root 8192 May 24 14:14 goal\\ndrwxr-xr-x  2 root root 8192 May 25 03:16 long\\ndrwxr-xr-x  2 root root 8192 May 24 17:54 object\\ndrwxr-xr-x  2 root root 8192 May 24 13:32 spatial\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K74m2NEBRukKQVaqkE4YyX`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/crm_cache_pi05_2048 -maxdepth 2 -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "29fdc5cb-2e29-4135-8227-614f8393496b",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KXXQDMwNW4MiavGuf8GkFr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11036,
+      "cache_read_input_tokens": 42817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11036
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-24T19:24:31.656Z_
+
+<details><summary>↩ Tool result · `toolu_01K74m2NEBRukKQVaqkE4YyX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/crm_cache_pi05_2048\\n/root/autodl-tmp/crm_cache_pi05_2048/object\\n/root/autodl-tmp/crm_cache_pi05_2048/spatial\\n/root/autodl-tmp/crm_cache_pi05_2048/goal\\n/root/autodl-tmp/crm_cache_pi05_2048/long\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "56ad1d40-2630-4414-92e1-a2046675a583",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/crm_cache_pi05_2048\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object\\\\n/root/autodl-tmp/crm_cache_pi05_2048/spatial\\\\n/root/autodl-tmp/crm_cache_pi05_2048/goal\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/crm_cache_pi05_2048\\n/root/autodl-tmp/crm_cache_pi05_2048/object\\n/root/autodl-tmp/crm_cache_pi05_2048/spatial\\n/root/autodl-tmp/crm_cache_pi05_2048/goal\\n/root/autodl-tmp/crm_cache_pi05_2048/long\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MZVEKuRhFXEe1ZuighTyUY`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls -lt /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "0569abf9-b40a-4f6e-80f2-08cf24e75eab",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KXXQDMwNW4MiavGuf8GkFr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11036,
+      "cache_read_input_tokens": 42817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11036
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-24T19:24:34.692Z_
+
+<details><summary>↩ Tool result · `toolu_01MZVEKuRhFXEe1ZuighTyUY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 38648\\n-rw-r--r-- 1 root root 2484379 May 25 03:04 crm_best.pt\\n-rw-r--r-- 1 root root 7417653 May 25 03:04 checkpoint_epoch0023.pt\\n-rw-r--r-- 1 root root 7417653 May 25 02:42 checkpoint_epoch0022.pt\\n-rw-r--r-- 1 root root 7417653 May 25 02:20 checkpoint_epoch0021.pt\\n-rw-r--r-- 1 root root 7417653 May 25 01:58 checkpoint_epoch0020.pt\\n-rw-r--r-- 1 root root 7417653 May 25 01:37 checkpoint_epoch0019.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "a80ea738-627b-40e3-b6f7-fa53a45483fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 38648\\\\n-rw-r--r-- 1 root root 2484379 May 25 03:04 crm_best.pt\\\\n-rw-r--r-- 1 root root 7417653 May 25 03:04 checkpoint_epoch0023.pt\\\\n-rw-r--r-- 1 root root 7417653 May 25 02:42 checkpoint_epoch0022.pt\\\\n-rw-r--r-- 1 root root 7417653 May 25 02:20 checkpoint_epoch0021.pt\\\\n-rw-r--r-- 1 root root 7417653 May 25 01:58 checkpoint_epoch0020.pt\\\\n-rw-r--r-- 1 root root 7417653 May 25 01:37 checkpoint_epoch0019.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 38648\\n-rw-r--r-- 1 root root 2484379 May 25 03:04 crm_best.pt\\n-rw-r--r-- 1 root root 7417653 May 25 03:04 checkpoint_epoch0023.pt\\n-rw-r--r-- 1 root root 7417653 May 25 02:42 checkpoint_epoch0022.pt\\n-rw-r--r-- 1 root root 7417653 May 25 02:20 checkpoint_epoch0021.pt\\n-rw-r--r-- 1 root root 7417653 May 25 01:58 checkpoint_epoch0020.pt\\n-rw-r--r-- 1 root root 7417653 May 25 01:37 checkpoint_epoch0019.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01FiXEK74adMnaqCvEJ7LL6L`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "train-crm-pi05-unified-3suite-r2"
+  },
+  "fields": [
+    "*"
+  ],
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "366eea6d-8aeb-417e-9931-e9b24ebe6544",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KXXQDMwNW4MiavGuf8GkFr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11036,
+      "cache_read_input_tokens": 42817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11036
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014MDgeXZB65hXHyoYuqR8ct`</summary>
+
+```json
+{
+  "filters": {
+    "status": "PREPARING"
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "f654942f-a251-4af2-ba35-00923201afc0",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KXXQDMwNW4MiavGuf8GkFr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11036,
+      "cache_read_input_tokens": 42817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11036
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T19:24:37.609Z_
+
+<details><summary>↩ Tool result · `toolu_01FiXEK74adMnaqCvEJ7LL6L`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1766}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "d41c997e-429b-4ddd-b303-7674cc1bdf13",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1766}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1766}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-24T19:24:40.328Z_
+
+<details><summary>↩ Tool result · `toolu_014MDgeXZB65hXHyoYuqR8ct`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-supp-adapt-tau025-obj-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:38.804Z\", \"updated_at\": \"2026-05-24T19:15:04.682Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 49 on Object. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.74, \"trigger_rate\": 0.0417, \"mean_uncertainty\": 0.1131, \"per_task_sr\": {\"soup\": 0.7, \"cream_cheese\": 0.65, \"salad\": 0.8, \"bbq\": 0.8, \"ketchup\": 0.75, \"tomato\": 0.75, \"butter\": 0.6, \"milk\": 0.6, \"pudding\": 0.8, \"oj\": 0.95}}}, \"eval-supp-adapt-tau025-obj-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:35.331Z\", \"updated_at\": \"2026-05-24T19:15:00.439Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 48 on Object. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.76, \"trigger_rate\": 0.0389, \"mean_uncertainty\": 0.1117, \"per_task_sr\": {\"soup\": 0.75, \"cream_cheese\": 0.75, \"salad\": 0.7, \"bbq\": 0.9, \"ketchup\": 0.8, \"tomato\": 0.65, \"butter\": 0.6, \"milk\": 0.8, \"pudding\": 0.7, \"oj\": 0.95}}}, \"eval-supp-vla-only-obj-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:36:00.263Z\", \"updated_at\": \"2026-05-24T19:14:56.620Z\", \"hypothesis\": \"VLA-only baseline seed 49 on Object. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.755, \"per_task_sr\": {\"soup\": 0.55, \"cream_cheese\": 0.7, \"salad\": 0.8, \"bbq\": 0.95, \"ketchup\": 0.8, \"tomato\": 0.8, \"butter\": 0.6, \"milk\": 0.65, \"pudding\": 0.8, \"oj\": 0.9}}}, \"eval-supp-vla-only-obj-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:56.801Z\", \"updated_at\": \"2026-05-24T19:14:52.181Z\", \"hypothesis\": \"VLA-only baseline seed 48 on Object. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.79, \"per_task_sr\": {\"soup\": 0.65, \"cream_cheese\": 0.8, \"salad\": 0.75, \"bbq\": 0.9, \"ketchup\": 0.85, \"tomato\": 0.8, \"butter\": 0.65, \"milk\": 0.8, \"pudding\": 0.75, \"oj\": 0.95}}}, \"eval-supp-vla-only-goal-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:52.328Z\", \"updated_at\": \"2026-05-24T19:14:45.608Z\", \"hypothesis\": \"VLA-only baseline seed 49 on Goal. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.82, \"per_task_sr\": {\"middle_drawer\": 0.75, \"bowl_stove\": 0.95, \"wine_cabinet\": 0.85, \"drawer_bowl\": 0.65, \"bowl_cabinet\": 0.95, \"push_plate\": 0.85, \"cream_cheese\": 0.55, \"stove_on\": 1, \"bowl_plate\": 0.85, \"wine_rack\": 0.8}}}, \"eval-supp-vla-only-goal-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:48.983Z\", \"updated_at\": \"2026-05-24T19:14:41.979Z\", \"hypothesis\": \"VLA-only baseline seed 48 on Goal. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.85, \"per_task_sr\": {\"middle_drawer\": 0.9, \"bowl_stove\": 0.95, \"wine_cabinet\": 0.9, \"drawer_bowl\": 0.55, \"bowl_cabinet\": 1, \"push_plate\": 0.9, \"cream_cheese\": 0.6, \"stove_on\": 1, \"bowl_plate\": 0.9, \"wine_rack\": 0.8}}}, \"eval-supp-vla-only-spatial-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:45.687Z\", \"updated_at\": \"2026-05-24T19:14:38.303Z\", \"hypothesis\": \"VLA-only baseline seed 49 on Spatial. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.785, \"per_task_sr\": {\"between\": 0.9, \"next_ramekin\": 0.95, \"center\": 0.95, \"cookie_box\": 0.95, \"drawer\": 0.7, \"on_ramekin\": 0, \"next_cookie\": 0.9, \"stove\": 0.8, \"next_plate\": 0.75, \"cabinet\": 0.95}}}, \"eval-supp-vla-only-spatial-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:42.276Z\", \"updated_at\": \"2026-05-24T19:14:34.533Z\", \"hypothesis\": \"VLA-only baseline seed 48 on Spatial. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.795, \"per_task_sr\": {\"between\": 1, \"next_ramekin\": 0.9, \"center\": 0.95, \"cookie_box\": 0.95, \"drawer\": 0.8, \"on_ramekin\": 0, \"next_cookie\": 0.95, \"stove\": 0.75, \"next_plate\": 0.85, \"cabinet\": 0.8}}}, \"eval-pi05-reconvla-spatial-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:30.670Z\", \"updated_at\": \"2026-05-24T18:25:04.753Z\", \"hypothesis\": \"π0.5 ReconVLA baseline on Spatial s42. Cross-architecture comparison.\"}, \"eval-pi05-reconvla-object-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:39.327Z\", \"updated_at\": \"2026-05-24T18:24:33.207Z\", \"hypothesis\": \"π0.5 ReconVLA baseline on Object s42. Cross-architecture comparison.\"}, \"eval-pi05-reconvla-goal-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:34.087Z\", \"updated_at\": \"2026-05-24T18:24:26.298Z\", \"hypothesis\": \"π0.5 ReconVLA baseline on Goal s42. Cross-architecture comparison.\"}, \"eval-pi05-vla-only-object-s43-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:21:02.532Z\", \"updated_at\": \"2026-05-24T18:24:17.761Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-object-s42-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:20:54.180Z\", \"updated_at\": \"2026-05-24T18:22:09.002Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-goal-s43-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:20:50.109Z\", \"updated_at\": \"2026-05-24T18:22:02.990Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s43. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-goal-s42-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:20:44.991Z\", \"updated_at\": \"2026-05-24T18:21:56.779Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s42. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-spatial-s43-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:20:41.402Z\", \"updated_at\": \"2026-05-24T18:21:50.652Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Spatial s43. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-spatial-s42-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:20:36.642Z\", \"updated_at\": \"2026-05-24T18:21:44.495Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Spatial s42. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-object-s43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:27.320Z\", \"updated_at\": \"2026-05-24T18:18:32.142Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object (seed 43, 20 rollouts). Replicate seed for variance estimation.\"}, \"eval-pi05-vla-only-object-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:23.924Z\", \"updated_at\": \"2026-05-24T18:18:26.173Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object (seed 42, 20 rollouts). Establishes pi0.5 object-manipulation baseline.\"}, \"eval-pi05-vla-only-goal-s43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:20.358Z\", \"updated_at\": \"2026-05-24T18:18:19.755Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Goal (seed 43, 20 rollouts). Replicate seed for variance estimation.\"}, \"eval-pi05-vla-only-goal-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:16.938Z\", \"updated_at\": \"2026-05-24T18:18:11.708Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Goal (seed 42, 20 rollouts). Establishes pi0.5 goal-conditioned baseline for ablation against conformal refinement.\"}, \"eval-pi05-vla-only-spatial-s43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:13.434Z\", \"updated_at\": \"2026-05-24T18:18:03.806Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Spatial (seed 43, 20 rollouts). Replicate seed for variance estimation of pi0.5 baseline.\"}, \"eval-pi05-vla-only-spatial-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:09.880Z\", \"updated_at\": \"2026-05-24T18:17:56.636Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Spatial (seed 42, 20 rollouts). Establishes pi0.5 baseline success rate without conformal refinement, for comparison against reconvla/adaptive modes. Tests whether evaluate.py correctly handles --model pi05 with obs_dim=2048.\"}, \"eval-supp-adapt-tau025-goal-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:31.614Z\", \"updated_at\": \"2026-05-24T18:13:08.707Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 49 on Goal. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.815, \"trigger_rate\": 0.089, \"tau\": 0.25, \"benchmark\": \"goal\", \"seed\": 49}}, \"eval-supp-adapt-tau025-goal-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:28.081Z\", \"updated_at\": \"2026-05-24T18:13:01.700Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 48 on Goal. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.845, \"trigger_rate\": 0.089, \"tau\": 0.25, \"benchmark\": \"goal\", \"seed\": 48}}, \"eval-supp-adapt-tau025-spatial-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:24.486Z\", \"updated_at\": \"2026-05-24T18:12:54.817Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 49 on Spatial. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.82, \"trigger_rate\": 0.195, \"tau\": 0.25, \"benchmark\": \"spatial\", \"seed\": 49}}, \"eval-supp-adapt-tau025-spatial-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:20.958Z\", \"updated_at\": \"2026-05-24T18:12:47.985Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 48 on Spatial. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.81, \"trigger_rate\": 0.198, \"tau\": 0.25, \"benchmark\": \"spatial\", \"seed\": 48}}, \"eval-adaptive-k1-spatial-tau025-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:16.467Z\", \"updated_at\": \"2026-05-24T18:12:40.045Z\", \"hypothesis\": \"Adaptive CRM with K=1 (pure CRM correction when gating triggers, no conformal selection) on Spatial τ=0.25. K=1 removes the multi-sample selection benefit, isolating the CRM correction quality. Expected SR lower than K=2 if conformal selection adds value.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.197, \"tau\": 0.25, \"K\": 1, \"benchmark\": \"spatial\", \"seed\": 42}}, \"eval-crm-obj-s47-reeval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:13.035Z\", \"updated_at\": \"2026-05-24T18:12:33.152Z\", \"hypothesis\": \"CRM Object s47 re-eval to verify anomalous 82.5% SR (+2.6σ above 3-seed mean). If reproducible, it's a genuine high-variance seed; if not, original was a lucky run and should be excluded or noted.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.825, \"mode\": \"crm_obs_only\", \"benchmark\": \"object\", \"seed\": 47}}, \"eval-tau-sweep-spatial-tau030-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:09.697Z\", \"updated_at\": \"2026-05-24T18:12:26.456Z\", \"hypothesis\": \"Adaptive CRM with τ=0.30 on Spatial should show very low trigger rate (<10%) and SR close to VLA-only, mapping the right tail of the inverted-U curve where gating rarely activates.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.805, \"trigger_rate\": 0.167, \"tau\": 0.3, \"benchmark\": \"spatial\", \"seed\": 42}}, \"eval-tau-sweep-spatial-tau020-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:06.328Z\", \"updated_at\": \"2026-05-24T18:12:19.371Z\", \"hypothesis\": \"Adaptive CRM with τ=0.20 on Spatial should be near the optimal range (τ∈[0.15,0.25] from Goal sweep), confirming the inverted-U shape generalizes across suites with different trigger rate distributions.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.81, \"trigger_rate\": 0.266, \"tau\": 0.2, \"benchmark\": \"spatial\", \"seed\": 42}}, \"eval-tau-sweep-spatial-tau010-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:02.885Z\", \"updated_at\": \"2026-05-24T18:12:12.445Z\", \"hypothesis\": \"Adaptive CRM with τ=0.10 on Spatial (highest trigger rate ~20%) should show high trigger rate (~70-80%) and potentially lower SR due to over-correction, mapping the left side of the inverted-U τ curve already observed on Goal suite.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.79, \"trigger_rate\": 0.752, \"tau\": 0.1, \"benchmark\": \"spatial\", \"seed\": 42}}, \"eval-supp-adapt-tau025-obj-s50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T17:33:43.483Z\", \"updated_at\": \"2026-05-24T17:33:59.373Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed=50 on Object. Additional seed paired with VLA-only s50 to strengthen 8+ seed statistical comparison on the weakest-delta suite.\"}, \"eval-adaptive-k5-spatial-tau025-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:21.960Z\", \"updated_at\": \"2026-05-24T16:55:43.337Z\", \"hypothesis\": \"Adaptive CRM with K=5 (5 VLA samples when gating triggers, conformal ranking selects best) on Spatial τ=0.25. K=5 vs K=2 tests whether more samples improve selection quality. Diminishing returns expected if K=2 already captures enough diversity.\"}, \"eval-supp-obj-vla-only-s50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T16:19:00.188Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\"}, \"eval-supp-spatial-vla-only-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T16:18:54.182Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\"}, \"eval-supp-obj-crm-norm005-s46\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T03:25:56.315Z\", \"updated_at\": \"2026-05-24T03:26:33.701Z\", \"hypothesis\": \"Supplementary 5-seed evaluation: Object CRM obs_only norm0.05 seed46 variance analysis.\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200, \"source\": \"json_harvest_bjb1\"}, \"conclusion\": \"success\"}, \"eval-supp-k2mean-spatial-s45\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T23:02:16.008Z\", \"updated_at\": \"2026-05-23T23:02:16.008Z\", \"hypothesis\": \"K=2 mean baseline (vla_only, 2-sample average) on Spatial suite seed45. Fourth seed completing Spatial k2mean coverage (s42=negative, s43/s44=done). Isolates multi-sample averaging effect.\"}, \"eval-pi05-vla-only-long-seed42-r4-std\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T16:13:45.727Z\", \"updated_at\": \"2026-05-22T16:17:13.985Z\", \"conclusion\": \"killed\", \"notes\": \"Phantom experiment entry — never submitted (status was PREPARING, no spec/server/command). Cron false alarm. Real experiment is eval-pi05-vla-only-long-seed42-r4 (RUNNING on bjb2-40593).\"}, \"precompute-smolvla-goal-k10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T15:48:27.660Z\", \"updated_at\": \"2026-05-22T15:48:27.660Z\"}, \"precompute-smolvla-spatial-k10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T15:48:13.209Z\", \"updated_at\": \"2026-05-22T15:48:13.210Z\"}, \"precompute-smolvla-object-k10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T15:47:41.690Z\", \"updated_at\": \"2026-05-22T15:47:41.690Z\"}, \"eval-vla-only-long-seed2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T14:19:49.215Z\", \"updated_at\": \"2026-05-22T14:19:49.215Z\"}, \"eval-vla-only-long-seed1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T14:19:43.184Z\", \"updated_at\": \"2026-05-22T14:19:43.184Z\"}, \"eval-vla-only-long-seed0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T14:19:38.265Z\", \"updated_at\": \"2026-05-22T14:19:38.265Z\"}, \"precompute-pi05-long-bjb1-18228\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T09:00:18.250Z\", \"updated_at\": \"2026-05-22T09:00:18.250Z\"}, \"precompute-pi05-goal-bjb2-28827-s2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T08:03:27.743Z\", \"updated_at\": \"2026-05-22T08:03:27.743Z\"}, \"precompute-pi05-goal-bjb2-28827-s1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T08:03:23.271Z\", \"updated_at\": \"2026-05-22T08:03:23.271Z\"}, \"precompute-pi05-goal-bjb2-28827-s0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T08:03:18.740Z\", \"updated_at\": \"2026-05-22T08:03:18.741Z\"}, \"eval-smolvla-crm-long-seed44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T05:10:41.746Z\", \"updated_at\": \"2026-05-22T05:10:41.746Z\"}, \"eval-smolvla-crm-long-seed43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T05:10:32.722Z\", \"updated_at\": \"2026-05-22T05:10:32.722Z\"}, \"crm-pipeline-auto\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:37:34.472Z\", \"updated_at\": \"2026-05-21T16:37:34.472Z\"}, \"precompute-pi05-obj-s6-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T15:04:33.582Z\", \"updated_at\": \"2026-05-21T15:04:33.582Z\"}, \"precompute-pi05-obj-s9-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:39.622Z\", \"updated_at\": \"2026-05-21T14:19:39.622Z\"}, \"precompute-pi05-obj-s8-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:35.288Z\", \"updated_at\": \"2026-05-21T14:19:35.288Z\"}, \"precompute-pi05-obj-s7-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:30.950Z\", \"updated_at\": \"2026-05-21T14:19:30.950Z\"}, \"precompute-pi05-obj-s0-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:26.580Z\", \"updated_at\": \"2026-05-21T14:19:26.580Z\"}, \"precompute-pi05-obj-s5-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:22.348Z\", \"updated_at\": \"2026-05-21T14:19:22.348Z\"}, \"precompute-pi05-obj-s4-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:17.949Z\", \"updated_at\": \"2026-05-21T14:19:17.949Z\"}, \"precompute-pi05-obj-s3-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:13.168Z\", \"updated_at\": \"2026-05-21T14:19:13.169Z\"}, \"precompute-pi05-obj-s2-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:08.830Z\", \"updated_at\": \"2026-05-21T14:19:08.830Z\"}, \"precompute-pi05-obj-s1-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:04.514Z\", \"updated_at\": \"2026-05-21T14:19:04.514Z\"}, \"precompute-pi05-obj-s9-fix\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:05:27.170Z\", \"updated_at\": \"2026-05-21T14:05:27.170Z\"}, \"precompute-pi05-obj-s8-fix\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:05:22.511Z\", \"updated_at\": \"2026-05-21T14:05:22.511Z\"}, \"precompute-pi05-obj-s7-fix\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:05:17.907Z\", \"updated_at\": \"2026-05-21T14:05:17.907Z\"}, \"precompute-pi05-obj-s6-fix\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:05:13.392Z\", \"updated_at\": \"2026-05-21T14:05:13.392Z\"}, \"precompute-pi05-obj-s5-fix\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:05:08.790Z\", \"updated_at\": \"2026-05-21T14:05:08.790Z\"}, \"precompute-pi05-obj-shard9\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:50:29.762Z\", \"updated_at\": \"2026-05-21T13:50:29.762Z\"}, \"precompute-pi05-obj-shard8\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:50:25.069Z\", \"updated_at\": \"2026-05-21T13:50:25.069Z\"}, \"precompute-pi05-obj-shard7\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:50:20.551Z\", \"updated_at\": \"2026-05-21T13:50:20.551Z\"}, \"precompute-pi05-obj-shard6\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:50:15.986Z\", \"updated_at\": \"2026-05-21T13:50:15.986Z\"}, \"precompute-pi05-obj-shard5\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:50:11.352Z\", \"updated_at\": \"2026-05-21T13:50:11.353Z\"}, \"precompute-pi05-spatial-shard6\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:46:14.580Z\", \"updated_at\": \"2026-05-21T13:46:14.580Z\"}, \"precompute-pi05-spatial-shard5\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:46:08.912Z\", \"updated_at\": \"2026-05-21T13:46:08.912Z\"}, \"precompute-pi05-spatial-shard4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:46:03.897Z\", \"updated_at\": \"2026-05-21T13:46:03.897Z\"}, \"precompute-pi05-spatial-shard3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:45:58.808Z\", \"updated_at\": \"2026-05-21T13:45:58.808Z\"}, \"precompute-pi05-spatial-shard2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:45:51.058Z\", \"updated_at\": \"2026-05-21T13:45:51.058Z\"}, \"precompute-pi05-spatial-shard1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:45:45.565Z\", \"updated_at\": \"2026-05-21T13:45:45.566Z\"}, \"precompute-pi05-spatial-shard0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:45:40.280Z\", \"updated_at\": \"2026-05-21T13:45:40.280Z\"}, \"precompute-pi05-shard0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:13:53.765Z\", \"updated_at\": \"2026-05-21T13:44:35.499Z\", \"hypothesis\": \"π0.5 CRM feature precompute (shard 0/6). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\"}, \"precompute-pi05-shard9\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:19:30.227Z\", \"updated_at\": \"2026-05-21T13:42:56.355Z\", \"hypothesis\": \"π0.5 CRM feature precompute (shard 9/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\"}, \"precompute-pi05-shard8\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:19:22.125Z\", \"updated_at\": \"2026-05-21T13:42:50.972Z\", \"hypothesis\": \"π0.5 CRM feature precompute (shard 8/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\"}, \"precompute-pi05-shard7\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:19:03.096Z\", \"updated_at\": \"2026-05-21T13:42:45.877Z\", \"hypothesis\": \"π0.5 CRM feature precompute (shard 7/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\"}, \"precompute-pi05-shard6\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:18:56.927Z\", \"updated_at\": \"2026-05-21T13:42:40.538Z\", \"hypothesis\": \"π0.5 CRM feature precompute (shard 6/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\"}, \"precompute-pi05-shard5\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:15:49.135Z\", \"updated_at\": \"2026-05-21T13:42:35.528Z\"}, \"precompute-pi05-shard4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:15:32.187Z\", \"updated_at\": \"2026-05-21T13:42:30.590Z\"}, \"precompute-pi05-shard3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:15:13.099Z\", \"updated_at\": \"2026-05-21T13:42:24.367Z\"}, \"precompute-pi05-shard2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:14:59.128Z\", \"updated_at\": \"2026-05-21T13:42:18.667Z\"}, \"precompute-pi05-shard1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:14:44.417Z\", \"updated_at\": \"2026-05-21T13:42:13.102Z\"}, \"eval-pi05-baseline-object-seed42-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:30:28.663Z\", \"updated_at\": \"2026-05-21T08:02:33.602Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object seed42 (r2). Fix: corrected QUANTILES→MEAN_STD normalization mismatch that caused 0% SR in r1.\", \"parent\": \"eval-pi05-baseline-object-seed42\", \"notes\": \"KILLED (旧策略 action[0] only). 后续修复历程: (1) action queue fix → bbq_sauce 0/5 (2) vision tower 确认正确加载 (3) 图像 180° 翻转修复 (torch.flip dims=[2,3]) → **Quick verify SR=72%** 修复成功！根因: 官方 lerobot 对图像做 NCHW 180° 旋转，我们的 wrapper 缺失此步骤。\", \"conclusion\": \"killed\"}, \"eval-random-selection-object-seed42-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T04:34:04.735Z\", \"updated_at\": \"2026-05-21T04:34:32.245Z\", \"hypothesis\": \"Random Selection (K=10, uniform pick) on LIBERO-Object seed42. Isolates conformal ranking contribution: if Random ≈ VLA-only, then CRM's advantage comes from learned correction not just sampling diversity.\"}, \"eval-vla-only-spatial-seed50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T01:18:47.309Z\", \"updated_at\": \"2026-05-21T04:32:53.123Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Spatial seed50. 补齐 Spatial baseline 样本量，与 CRM Spatial 配对统计检验。\", \"metrics\": {\"success_rate\": 0.3, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}, \"conclusion\": \"success\"}, \"eval-crm-spatial-k10-seed50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:42:58.271Z\", \"updated_at\": \"2026-05-21T04:32:42.275Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Spatial seed50. 补齐 Spatial CRM 样本量 (n→7+)，增强 ID suite 上 CRM correction 效果的统计可靠性。\"}, \"eval-crm-spatial-k10-seed49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:42:47.989Z\", \"updated_at\": \"2026-05-21T04:32:32.158Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Spatial seed49. 补齐 Spatial CRM 样本量 (n→6+)，增强 ID suite 上 CRM correction 效果的统计可靠性。\", \"metrics\": {\"success_rate\": 0.32, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}}, \"eval-obs-only-object-norm02-k20-seed44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:27:30.715Z\", \"updated_at\": \"2026-05-21T04:32:24.008Z\", \"hypothesis\": \"CRM obs_only (ε=0.2, K=20) on LIBERO-Object seed44. K=20 第三个 seed，n=3 可报告 error bars，确认 K-value diminishing returns。\", \"conclusion\": \"killed\"}, \"eval-obs-only-object-norm02-k20-seed43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:27:28.230Z\", \"updated_at\": \"2026-05-21T04:32:17.159Z\", \"hypothesis\": \"CRM obs_only (ε=0.2, K=20) on LIBERO-Object seed43. K=20 第二个 seed，与 K=10 seed43 配对，增强 K-value curve K=20 端的统计可靠性。\", \"conclusion\": \"killed\"}, \"eval-obs-only-object-norm02-k20-seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T13:34:42.612Z\", \"updated_at\": \"2026-05-21T04:32:11.044Z\", \"hypothesis\": \"CRM obs_only (ε=0.2, K=20) on LIBERO-Object seed42. 扩展 K-value curve 到 K=20，验证收益曲线在 K=10→K=20 段是否趋平（预期 ≤+1pp over K=10 的 17.6%）。用 K=10 训练的 CRM 模型，eval 时生成 20 个 VLA 样本。\", \"conclusion\": \"killed\"}, \"eval-obs-only-object-norm003-seed76\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T02:57:48.001Z\", \"updated_at\": \"2026-05-21T03:33:43.610Z\", \"hypothesis\": \"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed76. Norm sweep: ε=0.03 has fewest seeds, expanding coverage for statistical confidence.\"}, \"eval-obs-only-object-norm01-seed77\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:15:13.220Z\", \"updated_at\": \"2026-05-21T03:17:06.237Z\", \"hypothesis\": \"CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed77. Norm sweep: ε=0.1 补种.\"}, \"eval-obs-only-object-norm01-seed76\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:15:10.875Z\", \"updated_at\": \"2026-05-21T03:17:01.964Z\", \"hypothesis\": \"CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed76. Norm sweep: ε=0.1 补种.\"}, \"eval-obs-only-object-norm005-seed77\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T02:57:21.662Z\", \"updated_at\": \"2026-05-21T03:16:58.507Z\", \"hypothesis\": \"CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed77. Norm sweep: ε=0.05 outlier verification.\"}, \"eval-obs-only-object-norm003-seed63-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:15:08.600Z\", \"updated_at\": \"2026-05-21T03:16:54.862Z\", \"hypothesis\": \"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed63 r3. Redo of killed seed63-r2 (M036 dual process). Norm sweep ε=0.03 seed balance.\"}, \"eval-obs-only-object-norm005-seed76\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:14:58.578Z\", \"updated_at\": \"2026-05-21T03:16:49.849Z\", \"hypothesis\": \"CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed76. Norm sweep: ε=0.05 has outlier seeds, expanding for variance verification.\"}, \"eval-obs-only-object-norm003-seed62-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:15:06.396Z\", \"updated_at\": \"2026-05-21T03:16:44.624Z\", \"hypothesis\": \"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed62 r3. Redo of killed seed62-r2 (M036 dual process). Norm sweep ε=0.03 seed balance.\"}, \"eval-obs-only-object-norm003-seed78\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:14:54.184Z\", \"updated_at\": \"2026-05-21T03:16:34.818Z\", \"hypothesis\": \"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed78. Norm sweep: ε=0.03 has fewest seeds, expanding coverage.\"}, \"eval-obs-only-object-norm003-seed77\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:14:50.541Z\", \"updated_at\": \"2026-05-21T03:16:26.327Z\", \"hypothesis\": \"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed77. Norm sweep: ε=0.03 has fewest seeds, expanding coverage.\"}, \"eval-obs-only-goal-norm02-seed53\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T13:07:47.325Z\", \"updated_at\": \"2026-05-20T13:08:32.542Z\", \"hypothesis\": \"CRM obs_only (ε=0.2) K=10 on LIBERO-Goal seed53. Additional OOD Goal seed for multi-seed robustness.\"}, \"eval-vla-only-long-seed54\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:16:25.982Z\", \"updated_at\": \"2026-05-20T05:59:13.545Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Long seed54. 补齐 Long baseline 样本量。\"}, \"eval-crm-long-seed54\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:32.457Z\", \"updated_at\": \"2026-05-20T05:39:32.457Z\"}, \"eval-vla-only-spatial-seed54\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:29.096Z\", \"updated_at\": \"2026-05-20T05:39:29.096Z\"}, \"eval-crm-long-seed53\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:25.536Z\", \"updated_at\": \"2026-05-20T05:39:25.536Z\"}, \"eval-vla-only-spatial-seed53\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:21.611Z\", \"updated_at\": \"2026-05-20T05:39:21.611Z\"}, \"eval-vla-only-spatial-seed52\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:11.774Z\", \"updated_at\": \"2026-05-20T05:39:11.774Z\"}, \"eval-crm-goal-seed50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:07.990Z\", \"updated_at\": \"2026-05-20T05:39:07.990Z\"}, \"eval-crm-goal-seed49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:04.130Z\", \"updated_at\": \"2026-05-20T05:39:04.130Z\"}, \"eval-crm-long-seed52\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:00.913Z\", \"updated_at\": \"2026-05-20T05:39:00.914Z\"}, \"eval-vla-only-goal-seed52\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:16:27.646Z\", \"updated_at\": \"2026-05-20T05:17:00.091Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Goal seed52. 补齐 Goal baseline 样本量 (n→9)。\"}, \"eval-vla-only-long-seed53\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:16:24.338Z\", \"updated_at\": \"2026-05-20T05:16:52.571Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Long seed53. 补齐 Long baseline 样本量，与 CRM-Long 配对。\"}, \"eval-crm-long-seed51\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:16:22.723Z\", \"updated_at\": \"2026-05-20T05:16:49.496Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Long seed51. 补齐 Long CRM OOD 样本量 (n→10)，增强 +3pp 效果的统计显著性。\"}, \"eval-vla-only-goal-seed50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:16:19.471Z\", \"updated_at\": \"2026-05-20T05:16:42.496Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Goal seed50. 补齐 Goal baseline 样本量 (n→7)，与 CRM-Goal (n=7) 配对。\"}, \"eval-crm-long-seed49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:43:08.930Z\", \"updated_at\": \"2026-05-20T05:15:52.486Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Long seed49. 补齐 Long CRM OOD 样本量 (n→8)，验证 CRM 在 OOD Long 上的效果稳定性。\", \"metrics\": {\"success_rate\": 0.14, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}}, \"eval-crm-long-seed48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:43:05.584Z\", \"updated_at\": \"2026-05-20T05:15:50.831Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Long seed48. 补齐 Long CRM OOD 样本量 (n→7)，验证 CRM 在 OOD Long 上的 +5.3pp 效果是否稳定或集中于单 task。\", \"metrics\": {\"success_rate\": 0.15, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}}, \"eval-crm-goal-seed48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:57:44.184Z\", \"updated_at\": \"2026-05-20T05:15:47.607Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Goal seed48. Goal OOD 补样本量 (n→6)，验证 CRM 在 cross-suite OOD 上的效果。seed46=72% 推高均值，看是否一致。\", \"metrics\": {\"success_rate\": 0.68, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}}, \"eval-crm-goal-seed47\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:54:07.709Z\", \"updated_at\": \"2026-05-20T04:33:38.995Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Goal seed47. Goal OOD 补样本量 (n→6)，增强 cross-suite OOD 统计可靠性。\", \"metrics\": {\"success_rate\": 0.69, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}}, \"eval-crm-spatial-seed48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T01:20:10.184Z\", \"updated_at\": \"2026-05-20T04:13:53.186Z\", \"metrics\": {\"success_rate\": 0.35, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}, \"conclusion\": \"success\"}, \"eval-vla-only-spatial-seed51\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T03:12:22.300Z\", \"updated_at\": \"2026-05-20T03:12:40.851Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Spatial seed51. 补齐 Spatial baseline 样本量，与 CRM-Spatial 配对检验。\"}, \"eval-vla-only-object-seed51\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:43:01.821Z\", \"updated_at\": \"2026-05-20T02:43:30.806Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Object seed51. 补齐 Object VLA-only 样本量 (n→8+)，增强主 ID benchmark baseline 统计可靠性。\"}, \"eval-vla-only-long-seed49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:42:51.266Z\", \"updated_at\": \"2026-05-20T02:43:21.463Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Long seed49. 补齐 Long VLA-only 样本量 (n→8)，增强 OOD baseline 统计可靠性，与 CRM-Long 配对检验。\"}, \"eval-adaptive-k-p25-seed44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T22:53:09.016Z\", \"updated_at\": \"2026-05-20T02:36:09.821Z\", \"hypothesis\": \"Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed44. ~75% steps trigger K=10+CRM. P25 sweep 第三个 seed。\"}, \"eval-crm-spatial-seed47\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T01:18:50.143Z\", \"updated_at\": \"2026-05-20T01:19:10.476Z\", \"hypothesis\": \"CRM obs_only (ε=0.2, K=10) on LIBERO-Spatial seed47. 补齐 CRM-Spatial 第 6 个 seed（当前 n=5, seeds 42-46），增强 in-distribution 效果的统计显著性。\"}, \"eval-vla-only-object-seed49-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T01:19:03.093Z\", \"updated_at\": \"2026-05-20T01:19:03.093Z\"}, \"eval-vla-only-spatial-seed49-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T22:12:47.550Z\", \"updated_at\": \"2026-05-19T22:12:58.379Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Spatial seed49. 补齐 Spatial VLA-only 样本量 (n→7)。重跑（前次进程死亡）。\"}}, \"count\": 132, \"total\": 132, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.6951}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "8ac47d4c-01f1-4ff1-b7f7-20f5d765ee48",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-supp-adapt-tau025-obj-s49\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:38.804Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:15:04.682Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM τ=0.25 seed 49 on Object. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.74, \\\"trigger_rate\\\": 0.0417, \\\"mean_uncertainty\\\": 0.1131, \\\"per_task_sr\\\": {\\\"soup\\\": 0.7, \\\"cream_cheese\\\": 0.65, \\\"salad\\\": 0.8, \\\"bbq\\\": 0.8, \\\"ketchup\\\": 0.75, \\\"tomato\\\": 0.75, \\\"butter\\\": 0.6, \\\"milk\\\": 0.6, \\\"pudding\\\": 0.8, \\\"oj\\\": 0.95}}}, \\\"eval-supp-adapt-tau025-obj-s48\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:35.331Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:15:00.439Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM τ=0.25 seed 48 on Object. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.76, \\\"trigger_rate\\\": 0.0389, \\\"mean_uncertainty\\\": 0.1117, \\\"per_task_sr\\\": {\\\"soup\\\": 0.75, \\\"cream_cheese\\\": 0.75, \\\"salad\\\": 0.7, \\\"bbq\\\": 0.9, \\\"ketchup\\\": 0.8, \\\"tomato\\\": 0.65, \\\"butter\\\": 0.6, \\\"milk\\\": 0.8, \\\"pudding\\\": 0.7, \\\"oj\\\": 0.95}}}, \\\"eval-supp-vla-only-obj-s49\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:36:00.263Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:14:56.620Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed 49 on Object. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.755, \\\"per_task_sr\\\": {\\\"soup\\\": 0.55, \\\"cream_cheese\\\": 0.7, \\\"salad\\\": 0.8, \\\"bbq\\\": 0.95, \\\"ketchup\\\": 0.8, \\\"tomato\\\": 0.8, \\\"butter\\\": 0.6, \\\"milk\\\": 0.65, \\\"pudding\\\": 0.8, \\\"oj\\\": 0.9}}}, \\\"eval-supp-vla-only-obj-s48\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:56.801Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:14:52.181Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed 48 on Object. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.79, \\\"per_task_sr\\\": {\\\"soup\\\": 0.65, \\\"cream_cheese\\\": 0.8, \\\"salad\\\": 0.75, \\\"bbq\\\": 0.9, \\\"ketchup\\\": 0.85, \\\"tomato\\\": 0.8, \\\"butter\\\": 0.65, \\\"milk\\\": 0.8, \\\"pudding\\\": 0.75, \\\"oj\\\": 0.95}}}, \\\"eval-supp-vla-only-goal-s49\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:52.328Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:14:45.608Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed 49 on Goal. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.82, \\\"per_task_sr\\\": {\\\"middle_drawer\\\": 0.75, \\\"bowl_stove\\\": 0.95, \\\"wine_cabinet\\\": 0.85, \\\"drawer_bowl\\\": 0.65, \\\"bowl_cabinet\\\": 0.95, \\\"push_plate\\\": 0.85, \\\"cream_cheese\\\": 0.55, \\\"stove_on\\\": 1, \\\"bowl_plate\\\": 0.85, \\\"wine_rack\\\": 0.8}}}, \\\"eval-supp-vla-only-goal-s48\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:48.983Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:14:41.979Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed 48 on Goal. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.85, \\\"per_task_sr\\\": {\\\"middle_drawer\\\": 0.9, \\\"bowl_stove\\\": 0.95, \\\"wine_cabinet\\\": 0.9, \\\"drawer_bowl\\\": 0.55, \\\"bowl_cabinet\\\": 1, \\\"push_plate\\\": 0.9, \\\"cream_cheese\\\": 0.6, \\\"stove_on\\\": 1, \\\"bowl_plate\\\": 0.9, \\\"wine_rack\\\": 0.8}}}, \\\"eval-supp-vla-only-spatial-s49\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:45.687Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:14:38.303Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed 49 on Spatial. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.785, \\\"per_task_sr\\\": {\\\"between\\\": 0.9, \\\"next_ramekin\\\": 0.95, \\\"center\\\": 0.95, \\\"cookie_box\\\": 0.95, \\\"drawer\\\": 0.7, \\\"on_ramekin\\\": 0, \\\"next_cookie\\\": 0.9, \\\"stove\\\": 0.8, \\\"next_plate\\\": 0.75, \\\"cabinet\\\": 0.95}}}, \\\"eval-supp-vla-only-spatial-s48\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:42.276Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:14:34.533Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed 48 on Spatial. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.795, \\\"per_task_sr\\\": {\\\"between\\\": 1, \\\"next_ramekin\\\": 0.9, \\\"center\\\": 0.95, \\\"cookie_box\\\": 0.95, \\\"drawer\\\": 0.8, \\\"on_ramekin\\\": 0, \\\"next_cookie\\\": 0.95, \\\"stove\\\": 0.75, \\\"next_plate\\\": 0.85, \\\"cabinet\\\": 0.8}}}, \\\"eval-pi05-reconvla-spatial-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:30.670Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:25:04.753Z\\\", \\\"hypothesis\\\": \\\"π0.5 ReconVLA baseline on Spatial s42. Cross-architecture comparison.\\\"}, \\\"eval-pi05-reconvla-object-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:39.327Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:24:33.207Z\\\", \\\"hypothesis\\\": \\\"π0.5 ReconVLA baseline on Object s42. Cross-architecture comparison.\\\"}, \\\"eval-pi05-reconvla-goal-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:34.087Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:24:26.298Z\\\", \\\"hypothesis\\\": \\\"π0.5 ReconVLA baseline on Goal s42. Cross-architecture comparison.\\\"}, \\\"eval-pi05-vla-only-object-s43-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:21:02.532Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:24:17.761Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s43. Cross-architecture validation without CRM.\\\"}, \\\"eval-pi05-vla-only-object-s42-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:20:54.180Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:22:09.002Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s42. Cross-architecture validation without CRM.\\\"}, \\\"eval-pi05-vla-only-goal-s43-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:20:50.109Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:22:02.990Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Goal s43. Cross-architecture validation without CRM.\\\"}, \\\"eval-pi05-vla-only-goal-s42-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:20:44.991Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:21:56.779Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Goal s42. Cross-architecture validation without CRM.\\\"}, \\\"eval-pi05-vla-only-spatial-s43-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:20:41.402Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:21:50.652Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Spatial s43. Cross-architecture validation without CRM.\\\"}, \\\"eval-pi05-vla-only-spatial-s42-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:20:36.642Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:21:44.495Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Spatial s42. Cross-architecture validation without CRM.\\\"}, \\\"eval-pi05-vla-only-object-s43\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:27.320Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:18:32.142Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object (seed 43, 20 rollouts). Replicate seed for variance estimation.\\\"}, \\\"eval-pi05-vla-only-object-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:23.924Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:18:26.173Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object (seed 42, 20 rollouts). Establishes pi0.5 object-manipulation baseline.\\\"}, \\\"eval-pi05-vla-only-goal-s43\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:20.358Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:18:19.755Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Goal (seed 43, 20 rollouts). Replicate seed for variance estimation.\\\"}, \\\"eval-pi05-vla-only-goal-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:16.938Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:18:11.708Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Goal (seed 42, 20 rollouts). Establishes pi0.5 goal-conditioned baseline for ablation against conformal refinement.\\\"}, \\\"eval-pi05-vla-only-spatial-s43\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:13.434Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:18:03.806Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Spatial (seed 43, 20 rollouts). Replicate seed for variance estimation of pi0.5 baseline.\\\"}, \\\"eval-pi05-vla-only-spatial-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:09.880Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:17:56.636Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Spatial (seed 42, 20 rollouts). Establishes pi0.5 baseline success rate without conformal refinement, for comparison against reconvla/adaptive modes. Tests whether evaluate.py correctly handles --model pi05 with obs_dim=2048.\\\"}, \\\"eval-supp-adapt-tau025-goal-s49\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:31.614Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:13:08.707Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM τ=0.25 seed 49 on Goal. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.815, \\\"trigger_rate\\\": 0.089, \\\"tau\\\": 0.25, \\\"benchmark\\\": \\\"goal\\\", \\\"seed\\\": 49}}, \\\"eval-supp-adapt-tau025-goal-s48\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:28.081Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:13:01.700Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM τ=0.25 seed 48 on Goal. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.845, \\\"trigger_rate\\\": 0.089, \\\"tau\\\": 0.25, \\\"benchmark\\\": \\\"goal\\\", \\\"seed\\\": 48}}, \\\"eval-supp-adapt-tau025-spatial-s49\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:24.486Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:12:54.817Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM τ=0.25 seed 49 on Spatial. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.82, \\\"trigger_rate\\\": 0.195, \\\"tau\\\": 0.25, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 49}}, \\\"eval-supp-adapt-tau025-spatial-s48\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:35:20.958Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:12:47.985Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM τ=0.25 seed 48 on Spatial. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.81, \\\"trigger_rate\\\": 0.198, \\\"tau\\\": 0.25, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 48}}, \\\"eval-adaptive-k1-spatial-tau025-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:11:16.467Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:12:40.045Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM with K=1 (pure CRM correction when gating triggers, no conformal selection) on Spatial τ=0.25. K=1 removes the multi-sample selection benefit, isolating the CRM correction quality. Expected SR lower than K=2 if conformal selection adds value.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.795, \\\"trigger_rate\\\": 0.197, \\\"tau\\\": 0.25, \\\"K\\\": 1, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42}}, \\\"eval-crm-obj-s47-reeval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:11:13.035Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:12:33.152Z\\\", \\\"hypothesis\\\": \\\"CRM Object s47 re-eval to verify anomalous 82.5% SR (+2.6σ above 3-seed mean). If reproducible, it's a genuine high-variance seed; if not, original was a lucky run and should be excluded or noted.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.825, \\\"mode\\\": \\\"crm_obs_only\\\", \\\"benchmark\\\": \\\"object\\\", \\\"seed\\\": 47}}, \\\"eval-tau-sweep-spatial-tau030-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:11:09.697Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:12:26.456Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM with τ=0.30 on Spatial should show very low trigger rate (<10%) and SR close to VLA-only, mapping the right tail of the inverted-U curve where gating rarely activates.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.805, \\\"trigger_rate\\\": 0.167, \\\"tau\\\": 0.3, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42}}, \\\"eval-tau-sweep-spatial-tau020-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:11:06.328Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:12:19.371Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM with τ=0.20 on Spatial should be near the optimal range (τ∈[0.15,0.25] from Goal sweep), confirming the inverted-U shape generalizes across suites with different trigger rate distributions.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.81, \\\"trigger_rate\\\": 0.266, \\\"tau\\\": 0.2, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42}}, \\\"eval-tau-sweep-spatial-tau010-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:11:02.885Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:12:12.445Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM with τ=0.10 on Spatial (highest trigger rate ~20%) should show high trigger rate (~70-80%) and potentially lower SR due to over-correction, mapping the left side of the inverted-U τ curve already observed on Goal suite.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.79, \\\"trigger_rate\\\": 0.752, \\\"tau\\\": 0.1, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42}}, \\\"eval-supp-adapt-tau025-obj-s50\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T17:33:43.483Z\\\", \\\"updated_at\\\": \\\"2026-05-24T17:33:59.373Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM τ=0.25 seed=50 on Object. Additional seed paired with VLA-only s50 to strengthen 8+ seed statistical comparison on the weakest-delta suite.\\\"}, \\\"eval-adaptive-k5-spatial-tau025-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:11:21.960Z\\\", \\\"updated_at\\\": \\\"2026-05-24T16:55:43.337Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM with K=5 (5 VLA samples when gating triggers, conformal ranking selects best) on Spatial τ=0.25. K=5 vs K=2 tests whether more samples improve selection quality. Diminishing returns expected if K=2 already captures enough diversity.\\\"}, \\\"eval-supp-obj-vla-only-s50\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:56:27.183Z\\\", \\\"updated_at\\\": \\\"2026-05-24T16:19:00.188Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\\\"}, \\\"eval-supp-spatial-vla-only-s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T15:56:22.838Z\\\", \\\"updated_at\\\": \\\"2026-05-24T16:18:54.182Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\\\"}, \\\"eval-supp-obj-crm-norm005-s46\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T03:25:56.315Z\\\", \\\"updated_at\\\": \\\"2026-05-24T03:26:33.701Z\\\", \\\"hypothesis\\\": \\\"Supplementary 5-seed evaluation: Object CRM obs_only norm0.05 seed46 variance analysis.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"successes\\\": 159, \\\"total\\\": 200, \\\"source\\\": \\\"json_harvest_bjb1\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-supp-k2mean-spatial-s45\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-23T23:02:16.008Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:02:16.008Z\\\", \\\"hypothesis\\\": \\\"K=2 mean baseline (vla_only, 2-sample average) on Spatial suite seed45. Fourth seed completing Spatial k2mean coverage (s42=negative, s43/s44=done). Isolates multi-sample averaging effect.\\\"}, \\\"eval-pi05-vla-only-long-seed42-r4-std\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T16:13:45.727Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:17:13.985Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Phantom experiment entry — never submitted (status was PREPARING, no spec/server/command). Cron false alarm. Real experiment is eval-pi05-vla-only-long-seed42-r4 (RUNNING on bjb2-40593).\\\"}, \\\"precompute-smolvla-goal-k10\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T15:48:27.660Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:48:27.660Z\\\"}, \\\"precompute-smolvla-spatial-k10\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T15:48:13.209Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:48:13.210Z\\\"}, \\\"precompute-smolvla-object-k10\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T15:47:41.690Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:47:41.690Z\\\"}, \\\"eval-vla-only-long-seed2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T14:19:49.215Z\\\", \\\"updated_at\\\": \\\"2026-05-22T14:19:49.215Z\\\"}, \\\"eval-vla-only-long-seed1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T14:19:43.184Z\\\", \\\"updated_at\\\": \\\"2026-05-22T14:19:43.184Z\\\"}, \\\"eval-vla-only-long-seed0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T14:19:38.265Z\\\", \\\"updated_at\\\": \\\"2026-05-22T14:19:38.265Z\\\"}, \\\"precompute-pi05-long-bjb1-18228\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T09:00:18.250Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:00:18.250Z\\\"}, \\\"precompute-pi05-goal-bjb2-28827-s2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T08:03:27.743Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:03:27.743Z\\\"}, \\\"precompute-pi05-goal-bjb2-28827-s1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T08:03:23.271Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:03:23.271Z\\\"}, \\\"precompute-pi05-goal-bjb2-28827-s0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T08:03:18.740Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:03:18.741Z\\\"}, \\\"eval-smolvla-crm-long-seed44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T05:10:41.746Z\\\", \\\"updated_at\\\": \\\"2026-05-22T05:10:41.746Z\\\"}, \\\"eval-smolvla-crm-long-seed43\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T05:10:32.722Z\\\", \\\"updated_at\\\": \\\"2026-05-22T05:10:32.722Z\\\"}, \\\"crm-pipeline-auto\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T16:37:34.472Z\\\", \\\"updated_at\\\": \\\"2026-05-21T16:37:34.472Z\\\"}, \\\"precompute-pi05-obj-s6-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T15:04:33.582Z\\\", \\\"updated_at\\\": \\\"2026-05-21T15:04:33.582Z\\\"}, \\\"precompute-pi05-obj-s9-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:19:39.622Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:19:39.622Z\\\"}, \\\"precompute-pi05-obj-s8-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:19:35.288Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:19:35.288Z\\\"}, \\\"precompute-pi05-obj-s7-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:19:30.950Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:19:30.950Z\\\"}, \\\"precompute-pi05-obj-s0-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:19:26.580Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:19:26.580Z\\\"}, \\\"precompute-pi05-obj-s5-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:19:22.348Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:19:22.348Z\\\"}, \\\"precompute-pi05-obj-s4-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:19:17.949Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:19:17.949Z\\\"}, \\\"precompute-pi05-obj-s3-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:19:13.168Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:19:13.169Z\\\"}, \\\"precompute-pi05-obj-s2-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:19:08.830Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:19:08.830Z\\\"}, \\\"precompute-pi05-obj-s1-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:19:04.514Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:19:04.514Z\\\"}, \\\"precompute-pi05-obj-s9-fix\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:05:27.170Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:05:27.170Z\\\"}, \\\"precompute-pi05-obj-s8-fix\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:05:22.511Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:05:22.511Z\\\"}, \\\"precompute-pi05-obj-s7-fix\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:05:17.907Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:05:17.907Z\\\"}, \\\"precompute-pi05-obj-s6-fix\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:05:13.392Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:05:13.392Z\\\"}, \\\"precompute-pi05-obj-s5-fix\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T14:05:08.790Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:05:08.790Z\\\"}, \\\"precompute-pi05-obj-shard9\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:50:29.762Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:50:29.762Z\\\"}, \\\"precompute-pi05-obj-shard8\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:50:25.069Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:50:25.069Z\\\"}, \\\"precompute-pi05-obj-shard7\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:50:20.551Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:50:20.551Z\\\"}, \\\"precompute-pi05-obj-shard6\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:50:15.986Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:50:15.986Z\\\"}, \\\"precompute-pi05-obj-shard5\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:50:11.352Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:50:11.353Z\\\"}, \\\"precompute-pi05-spatial-shard6\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:46:14.580Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:46:14.580Z\\\"}, \\\"precompute-pi05-spatial-shard5\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:46:08.912Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:46:08.912Z\\\"}, \\\"precompute-pi05-spatial-shard4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:46:03.897Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:46:03.897Z\\\"}, \\\"precompute-pi05-spatial-shard3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:45:58.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:45:58.808Z\\\"}, \\\"precompute-pi05-spatial-shard2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:45:51.058Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:45:51.058Z\\\"}, \\\"precompute-pi05-spatial-shard1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:45:45.565Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:45:45.566Z\\\"}, \\\"precompute-pi05-spatial-shard0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T13:45:40.280Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:45:40.280Z\\\"}, \\\"precompute-pi05-shard0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T12:13:53.765Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:44:35.499Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM feature precompute (shard 0/6). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\\\"}, \\\"precompute-pi05-shard9\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T12:19:30.227Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:42:56.355Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM feature precompute (shard 9/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\\\"}, \\\"precompute-pi05-shard8\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T12:19:22.125Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:42:50.972Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM feature precompute (shard 8/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\\\"}, \\\"precompute-pi05-shard7\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T12:19:03.096Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:42:45.877Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM feature precompute (shard 7/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\\\"}, \\\"precompute-pi05-shard6\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T12:18:56.927Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:42:40.538Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM feature precompute (shard 6/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\\\"}, \\\"precompute-pi05-shard5\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T12:15:49.135Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:42:35.528Z\\\"}, \\\"precompute-pi05-shard4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T12:15:32.187Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:42:30.590Z\\\"}, \\\"precompute-pi05-shard3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T12:15:13.099Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:42:24.367Z\\\"}, \\\"precompute-pi05-shard2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T12:14:59.128Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:42:18.667Z\\\"}, \\\"precompute-pi05-shard1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T12:14:44.417Z\\\", \\\"updated_at\\\": \\\"2026-05-21T13:42:13.102Z\\\"}, \\\"eval-pi05-baseline-object-seed42-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T03:30:28.663Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:02:33.602Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed42 (r2). Fix: corrected QUANTILES→MEAN_STD normalization mismatch that caused 0% SR in r1.\\\", \\\"parent\\\": \\\"eval-pi05-baseline-object-seed42\\\", \\\"notes\\\": \\\"KILLED (旧策略 action[0] only). 后续修复历程: (1) action queue fix → bbq_sauce 0/5 (2) vision tower 确认正确加载 (3) 图像 180° 翻转修复 (torch.flip dims=[2,3]) → **Quick verify SR=72%** 修复成功！根因: 官方 lerobot 对图像做 NCHW 180° 旋转，我们的 wrapper 缺失此步骤。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval-random-selection-object-seed42-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T04:34:04.735Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:34:32.245Z\\\", \\\"hypothesis\\\": \\\"Random Selection (K=10, uniform pick) on LIBERO-Object seed42. Isolates conformal ranking contribution: if Random ≈ VLA-only, then CRM's advantage comes from learned correction not just sampling diversity.\\\"}, \\\"eval-vla-only-spatial-seed50\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T01:18:47.309Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:32:53.123Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Spatial seed50. 补齐 Spatial baseline 样本量，与 CRM Spatial 配对统计检验。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.3, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total\\\": 100}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-crm-spatial-k10-seed50\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T02:42:58.271Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:32:42.275Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only K=10 on LIBERO-Spatial seed50. 补齐 Spatial CRM 样本量 (n→7+)，增强 ID suite 上 CRM correction 效果的统计可靠性。\\\"}, \\\"eval-crm-spatial-k10-seed49\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T02:42:47.989Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:32:32.158Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only K=10 on LIBERO-Spatial seed49. 补齐 Spatial CRM 样本量 (n→6+)，增强 ID suite 上 CRM correction 效果的统计可靠性。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.32, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total\\\": 100}}, \\\"eval-obs-only-object-norm02-k20-seed44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T14:27:30.715Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:32:24.008Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.2, K=20) on LIBERO-Object seed44. K=20 第三个 seed，n=3 可报告 error bars，确认 K-value diminishing returns。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval-obs-only-object-norm02-k20-seed43\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T14:27:28.230Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:32:17.159Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.2, K=20) on LIBERO-Object seed43. K=20 第二个 seed，与 K=10 seed43 配对，增强 K-value curve K=20 端的统计可靠性。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval-obs-only-object-norm02-k20-seed42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T13:34:42.612Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:32:11.044Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.2, K=20) on LIBERO-Object seed42. 扩展 K-value curve 到 K=20，验证收益曲线在 K=10→K=20 段是否趋平（预期 ≤+1pp over K=10 的 17.6%）。用 K=10 训练的 CRM 模型，eval 时生成 20 个 VLA 样本。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval-obs-only-object-norm003-seed76\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T02:57:48.001Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:33:43.610Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed76. Norm sweep: ε=0.03 has fewest seeds, expanding coverage for statistical confidence.\\\"}, \\\"eval-obs-only-object-norm01-seed77\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T03:15:13.220Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:17:06.237Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed77. Norm sweep: ε=0.1 补种.\\\"}, \\\"eval-obs-only-object-norm01-seed76\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T03:15:10.875Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:17:01.964Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed76. Norm sweep: ε=0.1 补种.\\\"}, \\\"eval-obs-only-object-norm005-seed77\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T02:57:21.662Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:16:58.507Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed77. Norm sweep: ε=0.05 outlier verification.\\\"}, \\\"eval-obs-only-object-norm003-seed63-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T03:15:08.600Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:16:54.862Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed63 r3. Redo of killed seed63-r2 (M036 dual process). Norm sweep ε=0.03 seed balance.\\\"}, \\\"eval-obs-only-object-norm005-seed76\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T03:14:58.578Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:16:49.849Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed76. Norm sweep: ε=0.05 has outlier seeds, expanding for variance verification.\\\"}, \\\"eval-obs-only-object-norm003-seed62-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T03:15:06.396Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:16:44.624Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed62 r3. Redo of killed seed62-r2 (M036 dual process). Norm sweep ε=0.03 seed balance.\\\"}, \\\"eval-obs-only-object-norm003-seed78\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T03:14:54.184Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:16:34.818Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed78. Norm sweep: ε=0.03 has fewest seeds, expanding coverage.\\\"}, \\\"eval-obs-only-object-norm003-seed77\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T03:14:50.541Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:16:26.327Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed77. Norm sweep: ε=0.03 has fewest seeds, expanding coverage.\\\"}, \\\"eval-obs-only-goal-norm02-seed53\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T13:07:47.325Z\\\", \\\"updated_at\\\": \\\"2026-05-20T13:08:32.542Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.2) K=10 on LIBERO-Goal seed53. Additional OOD Goal seed for multi-seed robustness.\\\"}, \\\"eval-vla-only-long-seed54\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:16:25.982Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:59:13.545Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Long seed54. 补齐 Long baseline 样本量。\\\"}, \\\"eval-crm-long-seed54\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:39:32.457Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:39:32.457Z\\\"}, \\\"eval-vla-only-spatial-seed54\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:39:29.096Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:39:29.096Z\\\"}, \\\"eval-crm-long-seed53\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:39:25.536Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:39:25.536Z\\\"}, \\\"eval-vla-only-spatial-seed53\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:39:21.611Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:39:21.611Z\\\"}, \\\"eval-vla-only-spatial-seed52\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:39:11.774Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:39:11.774Z\\\"}, \\\"eval-crm-goal-seed50\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:39:07.990Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:39:07.990Z\\\"}, \\\"eval-crm-goal-seed49\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:39:04.130Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:39:04.130Z\\\"}, \\\"eval-crm-long-seed52\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:39:00.913Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:39:00.914Z\\\"}, \\\"eval-vla-only-goal-seed52\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:16:27.646Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:17:00.091Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Goal seed52. 补齐 Goal baseline 样本量 (n→9)。\\\"}, \\\"eval-vla-only-long-seed53\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:16:24.338Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:16:52.571Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Long seed53. 补齐 Long baseline 样本量，与 CRM-Long 配对。\\\"}, \\\"eval-crm-long-seed51\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:16:22.723Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:16:49.496Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only K=10 on LIBERO-Long seed51. 补齐 Long CRM OOD 样本量 (n→10)，增强 +3pp 效果的统计显著性。\\\"}, \\\"eval-vla-only-goal-seed50\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T05:16:19.471Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:16:42.496Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Goal seed50. 补齐 Goal baseline 样本量 (n→7)，与 CRM-Goal (n=7) 配对。\\\"}, \\\"eval-crm-long-seed49\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T02:43:08.930Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:15:52.486Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only K=10 on LIBERO-Long seed49. 补齐 Long CRM OOD 样本量 (n→8)，验证 CRM 在 OOD Long 上的效果稳定性。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.14, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total\\\": 100}}, \\\"eval-crm-long-seed48\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T02:43:05.584Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:15:50.831Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only K=10 on LIBERO-Long seed48. 补齐 Long CRM OOD 样本量 (n→7)，验证 CRM 在 OOD Long 上的 +5.3pp 效果是否稳定或集中于单 task。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.15, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total\\\": 100}}, \\\"eval-crm-goal-seed48\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T02:57:44.184Z\\\", \\\"updated_at\\\": \\\"2026-05-20T05:15:47.607Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only K=10 on LIBERO-Goal seed48. Goal OOD 补样本量 (n→6)，验证 CRM 在 cross-suite OOD 上的效果。seed46=72% 推高均值，看是否一致。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.68, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total\\\": 100}}, \\\"eval-crm-goal-seed47\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T02:54:07.709Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:33:38.995Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only K=10 on LIBERO-Goal seed47. Goal OOD 补样本量 (n→6)，增强 cross-suite OOD 统计可靠性。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.69, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total\\\": 100}}, \\\"eval-crm-spatial-seed48\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T01:20:10.184Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:13:53.186Z\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.35, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total\\\": 100}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-vla-only-spatial-seed51\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T03:12:22.300Z\\\", \\\"updated_at\\\": \\\"2026-05-20T03:12:40.851Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Spatial seed51. 补齐 Spatial baseline 样本量，与 CRM-Spatial 配对检验。\\\"}, \\\"eval-vla-only-object-seed51\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T02:43:01.821Z\\\", \\\"updated_at\\\": \\\"2026-05-20T02:43:30.806Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Object seed51. 补齐 Object VLA-only 样本量 (n→8+)，增强主 ID benchmark baseline 统计可靠性。\\\"}, \\\"eval-vla-only-long-seed49\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T02:42:51.266Z\\\", \\\"updated_at\\\": \\\"2026-05-20T02:43:21.463Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Long seed49. 补齐 Long VLA-only 样本量 (n→8)，增强 OOD baseline 统计可靠性，与 CRM-Long 配对检验。\\\"}, \\\"eval-adaptive-k-p25-seed44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T22:53:09.016Z\\\", \\\"updated_at\\\": \\\"2026-05-20T02:36:09.821Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed44. ~75% steps trigger K=10+CRM. P25 sweep 第三个 seed。\\\"}, \\\"eval-crm-spatial-seed47\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T01:18:50.143Z\\\", \\\"updated_at\\\": \\\"2026-05-20T01:19:10.476Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.2, K=10) on LIBERO-Spatial seed47. 补齐 CRM-Spatial 第 6 个 seed（当前 n=5, seeds 42-46），增强 in-distribution 效果的统计显著性。\\\"}, \\\"eval-vla-only-object-seed49-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T01:19:03.093Z\\\", \\\"updated_at\\\": \\\"2026-05-20T01:19:03.093Z\\\"}, \\\"eval-vla-only-spatial-seed49-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T22:12:47.550Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:12:58.379Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Spatial seed49. 补齐 Spatial VLA-only 样本量 (n→7)。重跑（前次进程死亡）。\\\"}}, \\\"count\\\": 132, \\\"total\\\": 132, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6951}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval-supp-adapt-tau025-obj-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:38.804Z\", \"updated_at\": \"2026-05-24T19:15:04.682Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 49 on Object. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.74, \"trigger_rate\": 0.0417, \"mean_uncertainty\": 0.1131, \"per_task_sr\": {\"soup\": 0.7, \"cream_cheese\": 0.65, \"salad\": 0.8, \"bbq\": 0.8, \"ketchup\": 0.75, \"tomato\": 0.75, \"butter\": 0.6, \"milk\": 0.6, \"pudding\": 0.8, \"oj\": 0.95}}}, \"eval-supp-adapt-tau025-obj-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:35.331Z\", \"updated_at\": \"2026-05-24T19:15:00.439Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 48 on Object. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.76, \"trigger_rate\": 0.0389, \"mean_uncertainty\": 0.1117, \"per_task_sr\": {\"soup\": 0.75, \"cream_cheese\": 0.75, \"salad\": 0.7, \"bbq\": 0.9, \"ketchup\": 0.8, \"tomato\": 0.65, \"butter\": 0.6, \"milk\": 0.8, \"pudding\": 0.7, \"oj\": 0.95}}}, \"eval-supp-vla-only-obj-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:36:00.263Z\", \"updated_at\": \"2026-05-24T19:14:56.620Z\", \"hypothesis\": \"VLA-only baseline seed 49 on Object. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.755, \"per_task_sr\": {\"soup\": 0.55, \"cream_cheese\": 0.7, \"salad\": 0.8, \"bbq\": 0.95, \"ketchup\": 0.8, \"tomato\": 0.8, \"butter\": 0.6, \"milk\": 0.65, \"pudding\": 0.8, \"oj\": 0.9}}}, \"eval-supp-vla-only-obj-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:56.801Z\", \"updated_at\": \"2026-05-24T19:14:52.181Z\", \"hypothesis\": \"VLA-only baseline seed 48 on Object. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.79, \"per_task_sr\": {\"soup\": 0.65, \"cream_cheese\": 0.8, \"salad\": 0.75, \"bbq\": 0.9, \"ketchup\": 0.85, \"tomato\": 0.8, \"butter\": 0.65, \"milk\": 0.8, \"pudding\": 0.75, \"oj\": 0.95}}}, \"eval-supp-vla-only-goal-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:52.328Z\", \"updated_at\": \"2026-05-24T19:14:45.608Z\", \"hypothesis\": \"VLA-only baseline seed 49 on Goal. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.82, \"per_task_sr\": {\"middle_drawer\": 0.75, \"bowl_stove\": 0.95, \"wine_cabinet\": 0.85, \"drawer_bowl\": 0.65, \"bowl_cabinet\": 0.95, \"push_plate\": 0.85, \"cream_cheese\": 0.55, \"stove_on\": 1, \"bowl_plate\": 0.85, \"wine_rack\": 0.8}}}, \"eval-supp-vla-only-goal-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:48.983Z\", \"updated_at\": \"2026-05-24T19:14:41.979Z\", \"hypothesis\": \"VLA-only baseline seed 48 on Goal. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.85, \"per_task_sr\": {\"middle_drawer\": 0.9, \"bowl_stove\": 0.95, \"wine_cabinet\": 0.9, \"drawer_bowl\": 0.55, \"bowl_cabinet\": 1, \"push_plate\": 0.9, \"cream_cheese\": 0.6, \"stove_on\": 1, \"bowl_plate\": 0.9, \"wine_rack\": 0.8}}}, \"eval-supp-vla-only-spatial-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:45.687Z\", \"updated_at\": \"2026-05-24T19:14:38.303Z\", \"hypothesis\": \"VLA-only baseline seed 49 on Spatial. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.785, \"per_task_sr\": {\"between\": 0.9, \"next_ramekin\": 0.95, \"center\": 0.95, \"cookie_box\": 0.95, \"drawer\": 0.7, \"on_ramekin\": 0, \"next_cookie\": 0.9, \"stove\": 0.8, \"next_plate\": 0.75, \"cabinet\": 0.95}}}, \"eval-supp-vla-only-spatial-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:42.276Z\", \"updated_at\": \"2026-05-24T19:14:34.533Z\", \"hypothesis\": \"VLA-only baseline seed 48 on Spatial. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.795, \"per_task_sr\": {\"between\": 1, \"next_ramekin\": 0.9, \"center\": 0.95, \"cookie_box\": 0.95, \"drawer\": 0.8, \"on_ramekin\": 0, \"next_cookie\": 0.95, \"stove\": 0.75, \"next_plate\": 0.85, \"cabinet\": 0.8}}}, \"eval-pi05-reconvla-spatial-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:30.670Z\", \"updated_at\": \"2026-05-24T18:25:04.753Z\", \"hypothesis\": \"π0.5 ReconVLA baseline on Spatial s42. Cross-architecture comparison.\"}, \"eval-pi05-reconvla-object-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:39.327Z\", \"updated_at\": \"2026-05-24T18:24:33.207Z\", \"hypothesis\": \"π0.5 ReconVLA baseline on Object s42. Cross-architecture comparison.\"}, \"eval-pi05-reconvla-goal-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:34.087Z\", \"updated_at\": \"2026-05-24T18:24:26.298Z\", \"hypothesis\": \"π0.5 ReconVLA baseline on Goal s42. Cross-architecture comparison.\"}, \"eval-pi05-vla-only-object-s43-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:21:02.532Z\", \"updated_at\": \"2026-05-24T18:24:17.761Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-object-s42-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:20:54.180Z\", \"updated_at\": \"2026-05-24T18:22:09.002Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-goal-s43-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:20:50.109Z\", \"updated_at\": \"2026-05-24T18:22:02.990Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s43. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-goal-s42-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:20:44.991Z\", \"updated_at\": \"2026-05-24T18:21:56.779Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s42. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-spatial-s43-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:20:41.402Z\", \"updated_at\": \"2026-05-24T18:21:50.652Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Spatial s43. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-spatial-s42-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:20:36.642Z\", \"updated_at\": \"2026-05-24T18:21:44.495Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Spatial s42. Cross-architecture validation without CRM.\"}, \"eval-pi05-vla-only-object-s43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:27.320Z\", \"updated_at\": \"2026-05-24T18:18:32.142Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object (seed 43, 20 rollouts). Replicate seed for variance estimation.\"}, \"eval-pi05-vla-only-object-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:23.924Z\", \"updated_at\": \"2026-05-24T18:18:26.173Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object (seed 42, 20 rollouts). Establishes pi0.5 object-manipulation baseline.\"}, \"eval-pi05-vla-only-goal-s43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:20.358Z\", \"updated_at\": \"2026-05-24T18:18:19.755Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Goal (seed 43, 20 rollouts). Replicate seed for variance estimation.\"}, \"eval-pi05-vla-only-goal-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:16.938Z\", \"updated_at\": \"2026-05-24T18:18:11.708Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Goal (seed 42, 20 rollouts). Establishes pi0.5 goal-conditioned baseline for ablation against conformal refinement.\"}, \"eval-pi05-vla-only-spatial-s43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:13.434Z\", \"updated_at\": \"2026-05-24T18:18:03.806Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Spatial (seed 43, 20 rollouts). Replicate seed for variance estimation of pi0.5 baseline.\"}, \"eval-pi05-vla-only-spatial-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T18:17:09.880Z\", \"updated_at\": \"2026-05-24T18:17:56.636Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Spatial (seed 42, 20 rollouts). Establishes pi0.5 baseline success rate without conformal refinement, for comparison against reconvla/adaptive modes. Tests whether evaluate.py correctly handles --model pi05 with obs_dim=2048.\"}, \"eval-supp-adapt-tau025-goal-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:31.614Z\", \"updated_at\": \"2026-05-24T18:13:08.707Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 49 on Goal. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.815, \"trigger_rate\": 0.089, \"tau\": 0.25, \"benchmark\": \"goal\", \"seed\": 49}}, \"eval-supp-adapt-tau025-goal-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:28.081Z\", \"updated_at\": \"2026-05-24T18:13:01.700Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 48 on Goal. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.845, \"trigger_rate\": 0.089, \"tau\": 0.25, \"benchmark\": \"goal\", \"seed\": 48}}, \"eval-supp-adapt-tau025-spatial-s49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:24.486Z\", \"updated_at\": \"2026-05-24T18:12:54.817Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 49 on Spatial. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.82, \"trigger_rate\": 0.195, \"tau\": 0.25, \"benchmark\": \"spatial\", \"seed\": 49}}, \"eval-supp-adapt-tau025-spatial-s48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:35:20.958Z\", \"updated_at\": \"2026-05-24T18:12:47.985Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed 48 on Spatial. Additional seed for 8-seed mean±std to strengthen claim that Adaptive > VLA-only across all suites.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.81, \"trigger_rate\": 0.198, \"tau\": 0.25, \"benchmark\": \"spatial\", \"seed\": 48}}, \"eval-adaptive-k1-spatial-tau025-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:16.467Z\", \"updated_at\": \"2026-05-24T18:12:40.045Z\", \"hypothesis\": \"Adaptive CRM with K=1 (pure CRM correction when gating triggers, no conformal selection) on Spatial τ=0.25. K=1 removes the multi-sample selection benefit, isolating the CRM correction quality. Expected SR lower than K=2 if conformal selection adds value.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.197, \"tau\": 0.25, \"K\": 1, \"benchmark\": \"spatial\", \"seed\": 42}}, \"eval-crm-obj-s47-reeval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:13.035Z\", \"updated_at\": \"2026-05-24T18:12:33.152Z\", \"hypothesis\": \"CRM Object s47 re-eval to verify anomalous 82.5% SR (+2.6σ above 3-seed mean). If reproducible, it's a genuine high-variance seed; if not, original was a lucky run and should be excluded or noted.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.825, \"mode\": \"crm_obs_only\", \"benchmark\": \"object\", \"seed\": 47}}, \"eval-tau-sweep-spatial-tau030-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:09.697Z\", \"updated_at\": \"2026-05-24T18:12:26.456Z\", \"hypothesis\": \"Adaptive CRM with τ=0.30 on Spatial should show very low trigger rate (<10%) and SR close to VLA-only, mapping the right tail of the inverted-U curve where gating rarely activates.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.805, \"trigger_rate\": 0.167, \"tau\": 0.3, \"benchmark\": \"spatial\", \"seed\": 42}}, \"eval-tau-sweep-spatial-tau020-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:06.328Z\", \"updated_at\": \"2026-05-24T18:12:19.371Z\", \"hypothesis\": \"Adaptive CRM with τ=0.20 on Spatial should be near the optimal range (τ∈[0.15,0.25] from Goal sweep), confirming the inverted-U shape generalizes across suites with different trigger rate distributions.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.81, \"trigger_rate\": 0.266, \"tau\": 0.2, \"benchmark\": \"spatial\", \"seed\": 42}}, \"eval-tau-sweep-spatial-tau010-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:02.885Z\", \"updated_at\": \"2026-05-24T18:12:12.445Z\", \"hypothesis\": \"Adaptive CRM with τ=0.10 on Spatial (highest trigger rate ~20%) should show high trigger rate (~70-80%) and potentially lower SR due to over-correction, mapping the left side of the inverted-U τ curve already observed on Goal suite.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.79, \"trigger_rate\": 0.752, \"tau\": 0.1, \"benchmark\": \"spatial\", \"seed\": 42}}, \"eval-supp-adapt-tau025-obj-s50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T17:33:43.483Z\", \"updated_at\": \"2026-05-24T17:33:59.373Z\", \"hypothesis\": \"Adaptive CRM τ=0.25 seed=50 on Object. Additional seed paired with VLA-only s50 to strengthen 8+ seed statistical comparison on the weakest-delta suite.\"}, \"eval-adaptive-k5-spatial-tau025-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:11:21.960Z\", \"updated_at\": \"2026-05-24T16:55:43.337Z\", \"hypothesis\": \"Adaptive CRM with K=5 (5 VLA samples when gating triggers, conformal ranking selects best) on Spatial τ=0.25. K=5 vs K=2 tests whether more samples improve selection quality. Diminishing returns expected if K=2 already captures enough diversity.\"}, \"eval-supp-obj-vla-only-s50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T16:19:00.188Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\"}, \"eval-supp-spatial-vla-only-s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T16:18:54.182Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\"}, \"eval-supp-obj-crm-norm005-s46\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T03:25:56.315Z\", \"updated_at\": \"2026-05-24T03:26:33.701Z\", \"hypothesis\": \"Supplementary 5-seed evaluation: Object CRM obs_only norm0.05 seed46 variance analysis.\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200, \"source\": \"json_harvest_bjb1\"}, \"conclusion\": \"success\"}, \"eval-supp-k2mean-spatial-s45\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T23:02:16.008Z\", \"updated_at\": \"2026-05-23T23:02:16.008Z\", \"hypothesis\": \"K=2 mean baseline (vla_only, 2-sample average) on Spatial suite seed45. Fourth seed completing Spatial k2mean coverage (s42=negative, s43/s44=done). Isolates multi-sample averaging effect.\"}, \"eval-pi05-vla-only-long-seed42-r4-std\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T16:13:45.727Z\", \"updated_at\": \"2026-05-22T16:17:13.985Z\", \"conclusion\": \"killed\", \"notes\": \"Phantom experiment entry — never submitted (status was PREPARING, no spec/server/command). Cron false alarm. Real experiment is eval-pi05-vla-only-long-seed42-r4 (RUNNING on bjb2-40593).\"}, \"precompute-smolvla-goal-k10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T15:48:27.660Z\", \"updated_at\": \"2026-05-22T15:48:27.660Z\"}, \"precompute-smolvla-spatial-k10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T15:48:13.209Z\", \"updated_at\": \"2026-05-22T15:48:13.210Z\"}, \"precompute-smolvla-object-k10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T15:47:41.690Z\", \"updated_at\": \"2026-05-22T15:47:41.690Z\"}, \"eval-vla-only-long-seed2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T14:19:49.215Z\", \"updated_at\": \"2026-05-22T14:19:49.215Z\"}, \"eval-vla-only-long-seed1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T14:19:43.184Z\", \"updated_at\": \"2026-05-22T14:19:43.184Z\"}, \"eval-vla-only-long-seed0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T14:19:38.265Z\", \"updated_at\": \"2026-05-22T14:19:38.265Z\"}, \"precompute-pi05-long-bjb1-18228\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T09:00:18.250Z\", \"updated_at\": \"2026-05-22T09:00:18.250Z\"}, \"precompute-pi05-goal-bjb2-28827-s2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T08:03:27.743Z\", \"updated_at\": \"2026-05-22T08:03:27.743Z\"}, \"precompute-pi05-goal-bjb2-28827-s1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T08:03:23.271Z\", \"updated_at\": \"2026-05-22T08:03:23.271Z\"}, \"precompute-pi05-goal-bjb2-28827-s0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T08:03:18.740Z\", \"updated_at\": \"2026-05-22T08:03:18.741Z\"}, \"eval-smolvla-crm-long-seed44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T05:10:41.746Z\", \"updated_at\": \"2026-05-22T05:10:41.746Z\"}, \"eval-smolvla-crm-long-seed43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T05:10:32.722Z\", \"updated_at\": \"2026-05-22T05:10:32.722Z\"}, \"crm-pipeline-auto\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:37:34.472Z\", \"updated_at\": \"2026-05-21T16:37:34.472Z\"}, \"precompute-pi05-obj-s6-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T15:04:33.582Z\", \"updated_at\": \"2026-05-21T15:04:33.582Z\"}, \"precompute-pi05-obj-s9-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:39.622Z\", \"updated_at\": \"2026-05-21T14:19:39.622Z\"}, \"precompute-pi05-obj-s8-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:35.288Z\", \"updated_at\": \"2026-05-21T14:19:35.288Z\"}, \"precompute-pi05-obj-s7-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:30.950Z\", \"updated_at\": \"2026-05-21T14:19:30.950Z\"}, \"precompute-pi05-obj-s0-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:26.580Z\", \"updated_at\": \"2026-05-21T14:19:26.580Z\"}, \"precompute-pi05-obj-s5-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:22.348Z\", \"updated_at\": \"2026-05-21T14:19:22.348Z\"}, \"precompute-pi05-obj-s4-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:17.949Z\", \"updated_at\": \"2026-05-21T14:19:17.949Z\"}, \"precompute-pi05-obj-s3-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:13.168Z\", \"updated_at\": \"2026-05-21T14:19:13.169Z\"}, \"precompute-pi05-obj-s2-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:08.830Z\", \"updated_at\": \"2026-05-21T14:19:08.830Z\"}, \"precompute-pi05-obj-s1-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:19:04.514Z\", \"updated_at\": \"2026-05-21T14:19:04.514Z\"}, \"precompute-pi05-obj-s9-fix\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:05:27.170Z\", \"updated_at\": \"2026-05-21T14:05:27.170Z\"}, \"precompute-pi05-obj-s8-fix\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:05:22.511Z\", \"updated_at\": \"2026-05-21T14:05:22.511Z\"}, \"precompute-pi05-obj-s7-fix\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:05:17.907Z\", \"updated_at\": \"2026-05-21T14:05:17.907Z\"}, \"precompute-pi05-obj-s6-fix\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:05:13.392Z\", \"updated_at\": \"2026-05-21T14:05:13.392Z\"}, \"precompute-pi05-obj-s5-fix\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T14:05:08.790Z\", \"updated_at\": \"2026-05-21T14:05:08.790Z\"}, \"precompute-pi05-obj-shard9\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:50:29.762Z\", \"updated_at\": \"2026-05-21T13:50:29.762Z\"}, \"precompute-pi05-obj-shard8\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:50:25.069Z\", \"updated_at\": \"2026-05-21T13:50:25.069Z\"}, \"precompute-pi05-obj-shard7\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:50:20.551Z\", \"updated_at\": \"2026-05-21T13:50:20.551Z\"}, \"precompute-pi05-obj-shard6\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:50:15.986Z\", \"updated_at\": \"2026-05-21T13:50:15.986Z\"}, \"precompute-pi05-obj-shard5\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:50:11.352Z\", \"updated_at\": \"2026-05-21T13:50:11.353Z\"}, \"precompute-pi05-spatial-shard6\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:46:14.580Z\", \"updated_at\": \"2026-05-21T13:46:14.580Z\"}, \"precompute-pi05-spatial-shard5\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:46:08.912Z\", \"updated_at\": \"2026-05-21T13:46:08.912Z\"}, \"precompute-pi05-spatial-shard4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:46:03.897Z\", \"updated_at\": \"2026-05-21T13:46:03.897Z\"}, \"precompute-pi05-spatial-shard3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:45:58.808Z\", \"updated_at\": \"2026-05-21T13:45:58.808Z\"}, \"precompute-pi05-spatial-shard2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:45:51.058Z\", \"updated_at\": \"2026-05-21T13:45:51.058Z\"}, \"precompute-pi05-spatial-shard1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:45:45.565Z\", \"updated_at\": \"2026-05-21T13:45:45.566Z\"}, \"precompute-pi05-spatial-shard0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T13:45:40.280Z\", \"updated_at\": \"2026-05-21T13:45:40.280Z\"}, \"precompute-pi05-shard0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:13:53.765Z\", \"updated_at\": \"2026-05-21T13:44:35.499Z\", \"hypothesis\": \"π0.5 CRM feature precompute (shard 0/6). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\"}, \"precompute-pi05-shard9\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:19:30.227Z\", \"updated_at\": \"2026-05-21T13:42:56.355Z\", \"hypothesis\": \"π0.5 CRM feature precompute (shard 9/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\"}, \"precompute-pi05-shard8\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:19:22.125Z\", \"updated_at\": \"2026-05-21T13:42:50.972Z\", \"hypothesis\": \"π0.5 CRM feature precompute (shard 8/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\"}, \"precompute-pi05-shard7\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:19:03.096Z\", \"updated_at\": \"2026-05-21T13:42:45.877Z\", \"hypothesis\": \"π0.5 CRM feature precompute (shard 7/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\"}, \"precompute-pi05-shard6\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:18:56.927Z\", \"updated_at\": \"2026-05-21T13:42:40.538Z\", \"hypothesis\": \"π0.5 CRM feature precompute (shard 6/10). Extract 2048D obs features + K=10 action samples from frozen π0.5 on LIBERO Object+Spatial demos for CRM training.\"}, \"precompute-pi05-shard5\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:15:49.135Z\", \"updated_at\": \"2026-05-21T13:42:35.528Z\"}, \"precompute-pi05-shard4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:15:32.187Z\", \"updated_at\": \"2026-05-21T13:42:30.590Z\"}, \"precompute-pi05-shard3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:15:13.099Z\", \"updated_at\": \"2026-05-21T13:42:24.367Z\"}, \"precompute-pi05-shard2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:14:59.128Z\", \"updated_at\": \"2026-05-21T13:42:18.667Z\"}, \"precompute-pi05-shard1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T12:14:44.417Z\", \"updated_at\": \"2026-05-21T13:42:13.102Z\"}, \"eval-pi05-baseline-object-seed42-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:30:28.663Z\", \"updated_at\": \"2026-05-21T08:02:33.602Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object seed42 (r2). Fix: corrected QUANTILES→MEAN_STD normalization mismatch that caused 0% SR in r1.\", \"parent\": \"eval-pi05-baseline-object-seed42\", \"notes\": \"KILLED (旧策略 action[0] only). 后续修复历程: (1) action queue fix → bbq_sauce 0/5 (2) vision tower 确认正确加载 (3) 图像 180° 翻转修复 (torch.flip dims=[2,3]) → **Quick verify SR=72%** 修复成功！根因: 官方 lerobot 对图像做 NCHW 180° 旋转，我们的 wrapper 缺失此步骤。\", \"conclusion\": \"killed\"}, \"eval-random-selection-object-seed42-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T04:34:04.735Z\", \"updated_at\": \"2026-05-21T04:34:32.245Z\", \"hypothesis\": \"Random Selection (K=10, uniform pick) on LIBERO-Object seed42. Isolates conformal ranking contribution: if Random ≈ VLA-only, then CRM's advantage comes from learned correction not just sampling diversity.\"}, \"eval-vla-only-spatial-seed50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T01:18:47.309Z\", \"updated_at\": \"2026-05-21T04:32:53.123Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Spatial seed50. 补齐 Spatial baseline 样本量，与 CRM Spatial 配对统计检验。\", \"metrics\": {\"success_rate\": 0.3, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}, \"conclusion\": \"success\"}, \"eval-crm-spatial-k10-seed50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:42:58.271Z\", \"updated_at\": \"2026-05-21T04:32:42.275Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Spatial seed50. 补齐 Spatial CRM 样本量 (n→7+)，增强 ID suite 上 CRM correction 效果的统计可靠性。\"}, \"eval-crm-spatial-k10-seed49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:42:47.989Z\", \"updated_at\": \"2026-05-21T04:32:32.158Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Spatial seed49. 补齐 Spatial CRM 样本量 (n→6+)，增强 ID suite 上 CRM correction 效果的统计可靠性。\", \"metrics\": {\"success_rate\": 0.32, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}}, \"eval-obs-only-object-norm02-k20-seed44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:27:30.715Z\", \"updated_at\": \"2026-05-21T04:32:24.008Z\", \"hypothesis\": \"CRM obs_only (ε=0.2, K=20) on LIBERO-Object seed44. K=20 第三个 seed，n=3 可报告 error bars，确认 K-value diminishing returns。\", \"conclusion\": \"killed\"}, \"eval-obs-only-object-norm02-k20-seed43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:27:28.230Z\", \"updated_at\": \"2026-05-21T04:32:17.159Z\", \"hypothesis\": \"CRM obs_only (ε=0.2, K=20) on LIBERO-Object seed43. K=20 第二个 seed，与 K=10 seed43 配对，增强 K-value curve K=20 端的统计可靠性。\", \"conclusion\": \"killed\"}, \"eval-obs-only-object-norm02-k20-seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T13:34:42.612Z\", \"updated_at\": \"2026-05-21T04:32:11.044Z\", \"hypothesis\": \"CRM obs_only (ε=0.2, K=20) on LIBERO-Object seed42. 扩展 K-value curve 到 K=20，验证收益曲线在 K=10→K=20 段是否趋平（预期 ≤+1pp over K=10 的 17.6%）。用 K=10 训练的 CRM 模型，eval 时生成 20 个 VLA 样本。\", \"conclusion\": \"killed\"}, \"eval-obs-only-object-norm003-seed76\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T02:57:48.001Z\", \"updated_at\": \"2026-05-21T03:33:43.610Z\", \"hypothesis\": \"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed76. Norm sweep: ε=0.03 has fewest seeds, expanding coverage for statistical confidence.\"}, \"eval-obs-only-object-norm01-seed77\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:15:13.220Z\", \"updated_at\": \"2026-05-21T03:17:06.237Z\", \"hypothesis\": \"CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed77. Norm sweep: ε=0.1 补种.\"}, \"eval-obs-only-object-norm01-seed76\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:15:10.875Z\", \"updated_at\": \"2026-05-21T03:17:01.964Z\", \"hypothesis\": \"CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed76. Norm sweep: ε=0.1 补种.\"}, \"eval-obs-only-object-norm005-seed77\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T02:57:21.662Z\", \"updated_at\": \"2026-05-21T03:16:58.507Z\", \"hypothesis\": \"CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed77. Norm sweep: ε=0.05 outlier verification.\"}, \"eval-obs-only-object-norm003-seed63-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:15:08.600Z\", \"updated_at\": \"2026-05-21T03:16:54.862Z\", \"hypothesis\": \"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed63 r3. Redo of killed seed63-r2 (M036 dual process). Norm sweep ε=0.03 seed balance.\"}, \"eval-obs-only-object-norm005-seed76\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:14:58.578Z\", \"updated_at\": \"2026-05-21T03:16:49.849Z\", \"hypothesis\": \"CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed76. Norm sweep: ε=0.05 has outlier seeds, expanding for variance verification.\"}, \"eval-obs-only-object-norm003-seed62-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:15:06.396Z\", \"updated_at\": \"2026-05-21T03:16:44.624Z\", \"hypothesis\": \"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed62 r3. Redo of killed seed62-r2 (M036 dual process). Norm sweep ε=0.03 seed balance.\"}, \"eval-obs-only-object-norm003-seed78\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:14:54.184Z\", \"updated_at\": \"2026-05-21T03:16:34.818Z\", \"hypothesis\": \"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed78. Norm sweep: ε=0.03 has fewest seeds, expanding coverage.\"}, \"eval-obs-only-object-norm003-seed77\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:14:50.541Z\", \"updated_at\": \"2026-05-21T03:16:26.327Z\", \"hypothesis\": \"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed77. Norm sweep: ε=0.03 has fewest seeds, expanding coverage.\"}, \"eval-obs-only-goal-norm02-seed53\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T13:07:47.325Z\", \"updated_at\": \"2026-05-20T13:08:32.542Z\", \"hypothesis\": \"CRM obs_only (ε=0.2) K=10 on LIBERO-Goal seed53. Additional OOD Goal seed for multi-seed robustness.\"}, \"eval-vla-only-long-seed54\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:16:25.982Z\", \"updated_at\": \"2026-05-20T05:59:13.545Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Long seed54. 补齐 Long baseline 样本量。\"}, \"eval-crm-long-seed54\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:32.457Z\", \"updated_at\": \"2026-05-20T05:39:32.457Z\"}, \"eval-vla-only-spatial-seed54\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:29.096Z\", \"updated_at\": \"2026-05-20T05:39:29.096Z\"}, \"eval-crm-long-seed53\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:25.536Z\", \"updated_at\": \"2026-05-20T05:39:25.536Z\"}, \"eval-vla-only-spatial-seed53\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:21.611Z\", \"updated_at\": \"2026-05-20T05:39:21.611Z\"}, \"eval-vla-only-spatial-seed52\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:11.774Z\", \"updated_at\": \"2026-05-20T05:39:11.774Z\"}, \"eval-crm-goal-seed50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:07.990Z\", \"updated_at\": \"2026-05-20T05:39:07.990Z\"}, \"eval-crm-goal-seed49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:04.130Z\", \"updated_at\": \"2026-05-20T05:39:04.130Z\"}, \"eval-crm-long-seed52\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:39:00.913Z\", \"updated_at\": \"2026-05-20T05:39:00.914Z\"}, \"eval-vla-only-goal-seed52\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:16:27.646Z\", \"updated_at\": \"2026-05-20T05:17:00.091Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Goal seed52. 补齐 Goal baseline 样本量 (n→9)。\"}, \"eval-vla-only-long-seed53\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:16:24.338Z\", \"updated_at\": \"2026-05-20T05:16:52.571Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Long seed53. 补齐 Long baseline 样本量，与 CRM-Long 配对。\"}, \"eval-crm-long-seed51\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:16:22.723Z\", \"updated_at\": \"2026-05-20T05:16:49.496Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Long seed51. 补齐 Long CRM OOD 样本量 (n→10)，增强 +3pp 效果的统计显著性。\"}, \"eval-vla-only-goal-seed50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T05:16:19.471Z\", \"updated_at\": \"2026-05-20T05:16:42.496Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Goal seed50. 补齐 Goal baseline 样本量 (n→7)，与 CRM-Goal (n=7) 配对。\"}, \"eval-crm-long-seed49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:43:08.930Z\", \"updated_at\": \"2026-05-20T05:15:52.486Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Long seed49. 补齐 Long CRM OOD 样本量 (n→8)，验证 CRM 在 OOD Long 上的效果稳定性。\", \"metrics\": {\"success_rate\": 0.14, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}}, \"eval-crm-long-seed48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:43:05.584Z\", \"updated_at\": \"2026-05-20T05:15:50.831Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Long seed48. 补齐 Long CRM OOD 样本量 (n→7)，验证 CRM 在 OOD Long 上的 +5.3pp 效果是否稳定或集中于单 task。\", \"metrics\": {\"success_rate\": 0.15, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}}, \"eval-crm-goal-seed48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:57:44.184Z\", \"updated_at\": \"2026-05-20T05:15:47.607Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Goal seed48. Goal OOD 补样本量 (n→6)，验证 CRM 在 cross-suite OOD 上的效果。seed46=72% 推高均值，看是否一致。\", \"metrics\": {\"success_rate\": 0.68, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}}, \"eval-crm-goal-seed47\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:54:07.709Z\", \"updated_at\": \"2026-05-20T04:33:38.995Z\", \"hypothesis\": \"CRM obs_only K=10 on LIBERO-Goal seed47. Goal OOD 补样本量 (n→6)，增强 cross-suite OOD 统计可靠性。\", \"metrics\": {\"success_rate\": 0.69, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}}, \"eval-crm-spatial-seed48\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T01:20:10.184Z\", \"updated_at\": \"2026-05-20T04:13:53.186Z\", \"metrics\": {\"success_rate\": 0.35, \"n_tasks\": 10, \"n_rollouts\": 10, \"total\": 100}, \"conclusion\": \"success\"}, \"eval-vla-only-spatial-seed51\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T03:12:22.300Z\", \"updated_at\": \"2026-05-20T03:12:40.851Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Spatial seed51. 补齐 Spatial baseline 样本量，与 CRM-Spatial 配对检验。\"}, \"eval-vla-only-object-seed51\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:43:01.821Z\", \"updated_at\": \"2026-05-20T02:43:30.806Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Object seed51. 补齐 Object VLA-only 样本量 (n→8+)，增强主 ID benchmark baseline 统计可靠性。\"}, \"eval-vla-only-long-seed49\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:42:51.266Z\", \"updated_at\": \"2026-05-20T02:43:21.463Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Long seed49. 补齐 Long VLA-only 样本量 (n→8)，增强 OOD baseline 统计可靠性，与 CRM-Long 配对检验。\"}, \"eval-adaptive-k-p25-seed44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T22:53:09.016Z\", \"updated_at\": \"2026-05-20T02:36:09.821Z\", \"hypothesis\": \"Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed44. ~75% steps trigger K=10+CRM. P25 sweep 第三个 seed。\"}, \"eval-crm-spatial-seed47\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T01:18:50.143Z\", \"updated_at\": \"2026-05-20T01:19:10.476Z\", \"hypothesis\": \"CRM obs_only (ε=0.2, K=10) on LIBERO-Spatial seed47. 补齐 CRM-Spatial 第 6 个 seed（当前 n=5, seeds 42-46），增强 in-distribution 效果的统计显著性。\"}, \"eval-vla-only-object-seed49-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T01:19:03.093Z\", \"updated_at\": \"2026-05-20T01:19:03.093Z\"}, \"eval-vla-only-spatial-seed49-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T22:12:47.550Z\", \"updated_at\": \"2026-05-19T22:12:58.379Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Spatial seed49. 补齐 Spatial VLA-only 样本量 (n→7)。重跑（前次进程死亡）。\"}}, \"count\": 132, \"total\": 132, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.6951}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "42d28a92-fdc0-4d5f-ab69-580fb1a7b79b",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_013XxW4p3erVb9SzA2W8jnvq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23161,
+      "cache_read_input_tokens": 53853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23161
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NUHotSwZsofhSUo2ajvU8Q`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/crm_cache_pi05_2048/object -maxdepth 1 -type f -name \"*.pt\" -printf \"%f\\n\" | wc -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "d4d50979-6851-498d-8f11-acac09642df2",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_013XxW4p3erVb9SzA2W8jnvq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23161,
+      "cache_read_input_tokens": 53853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23161
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T19:24:59.111Z_
+
+<details><summary>↩ Tool result · `toolu_01NUHotSwZsofhSUo2ajvU8Q`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "532c757a-98eb-499e-879a-729f9c661209",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hz1LfJh7Jj5UzUVoGqnh3B`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/crm_cache_pi05_2048/long -maxdepth 1 -type f -name \"*.pt\" -printf \"%f\\n\" | wc -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "9b8a0cb5-463c-4b7b-94ce-607a69e48bc0",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_013XxW4p3erVb9SzA2W8jnvq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23161,
+      "cache_read_input_tokens": 53853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23161
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T19:25:00.157Z_
+
+<details><summary>↩ Tool result · `toolu_01Hz1LfJh7Jj5UzUVoGqnh3B`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "d154d54f-aeb6-47b0-96be-66e9c3c20b14",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AbmU4HjKR2BpCEB2mHmchZ`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "du -sh /root/autodl-tmp/crm_cache_pi05_2048/object /root/autodl-tmp/crm_cache_pi05_2048/long /root/autodl-tmp/crm_cache_pi05_2048/spatial /root/autodl-tmp/crm_cache_pi05_2048/goal",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "aa68a5d0-3f7c-4ef2-a69f-383bf1c326a9",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_013XxW4p3erVb9SzA2W8jnvq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23161,
+      "cache_read_input_tokens": 53853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23161
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T19:25:02.574Z_
+
+<details><summary>↩ Tool result · `toolu_01AbmU4HjKR2BpCEB2mHmchZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3G\\t/root/autodl-tmp/crm_cache_pi05_2048/object\\n790M\\t/root/autodl-tmp/crm_cache_pi05_2048/long\\n1.1G\\t/root/autodl-tmp/crm_cache_pi05_2048/spatial\\n1.1G\\t/root/autodl-tmp/crm_cache_pi05_2048/goal\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "cba5903d-8825-456f-862a-e1e3395a5d4a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3G\\\\t/root/autodl-tmp/crm_cache_pi05_2048/object\\\\n790M\\\\t/root/autodl-tmp/crm_cache_pi05_2048/long\\\\n1.1G\\\\t/root/autodl-tmp/crm_cache_pi05_2048/spatial\\\\n1.1G\\\\t/root/autodl-tmp/crm_cache_pi05_2048/goal\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.3G\\t/root/autodl-tmp/crm_cache_pi05_2048/object\\n790M\\t/root/autodl-tmp/crm_cache_pi05_2048/long\\n1.1G\\t/root/autodl-tmp/crm_cache_pi05_2048/spatial\\n1.1G\\t/root/autodl-tmp/crm_cache_pi05_2048/goal\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GqHVGrPxhrftZMGA2gibsw`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "stat -c \"%Y %n\" /root/autodl-tmp/crm_cache_pi05_2048/long /root/autodl-tmp/crm_cache_pi05_2048/object",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "cc112a2a-1ffe-40e3-ad0a-959ae985e8e8",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_013XxW4p3erVb9SzA2W8jnvq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23161,
+      "cache_read_input_tokens": 53853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23161
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-24T19:25:04.132Z_
+
+<details><summary>↩ Tool result · `toolu_01GqHVGrPxhrftZMGA2gibsw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1779650218 /root/autodl-tmp/crm_cache_pi05_2048/long\\n1779616494 /root/autodl-tmp/crm_cache_pi05_2048/object\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "3a2dfe1b-4c98-4954-9dde-42245c806552",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1779650218 /root/autodl-tmp/crm_cache_pi05_2048/long\\\\n1779616494 /root/autodl-tmp/crm_cache_pi05_2048/object\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1779650218 /root/autodl-tmp/crm_cache_pi05_2048/long\\n1779616494 /root/autodl-tmp/crm_cache_pi05_2048/object\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B9KgTn2qtbgcRw2HdxhWFA`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/crm_cache_pi05_2048/long -maxdepth 1 -type f -name \"*.pt\" -printf \"%T@ %f\\n\" -newer /root/autodl-tmp/crm_cache_pi05_2048/spatial/. | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "86380fc4-35db-4568-aafb-ae361134b99f",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_013XxW4p3erVb9SzA2W8jnvq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23161,
+      "cache_read_input_tokens": 53853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23161
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-24T19:25:05.011Z_
+
+<details><summary>↩ Tool result · `toolu_01B9KgTn2qtbgcRw2HdxhWFA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "6ef95b42-ca94-491f-84ec-2b5c84a829c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "6777d81e-c527-4326-a267-ecb02a3e177e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01GjFHeZMfaMw8JXTmBtmibT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2707,
+      "cache_read_input_tokens": 77014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2707
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014zNjke3WyS77PN4pAThuA3`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/crm_cache_pi05_2048/object -maxdepth 1 -type f -name \"*.pt\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "567cc980-8604-45ac-be25-04ab94422a47",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01GjFHeZMfaMw8JXTmBtmibT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2707,
+      "cache_read_input_tokens": 77014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2707
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-24T19:25:13.196Z_
+
+<details><summary>↩ Tool result · `toolu_014zNjke3WyS77PN4pAThuA3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_0_500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_500_1000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_1000_1500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_1500_2000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_2000_2500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_2500_3000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_3000_3500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_3500_4000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_4000_4500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_4500_5000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_5000_5500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_5500_6000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_6000_6500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_6500_7000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_7000_7500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_7500_8000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_8000_8500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_8500_9000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_9000_9500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_9500_10000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_10000_10500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_10500_11000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_11000_11500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_11500_12000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_12000_12500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_12500_13000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_13000_13500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_13500_14000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_14000_14500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_14500_15000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_15000_15500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_15500_16000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_16000_16500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_16500_17000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_17000_17500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_17500_18000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_18000_18500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_18500_19000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_19000_19500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_19500_20000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_20000_20500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_20500_21000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_21000_21500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_21500_22000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_22000_22500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_22500_23000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_23000_23500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_23500_24000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_24000_24500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_24500_25000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_25000_25500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_25500_26000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_26000_26500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_26500_27000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_27000_27500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_27500_28000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_28000_28500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0\\n\\n... [截断: 输出过长，省略 2355 字符] ...\\n\\n05_2048/object/partial_s0_45500_46000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_46000_46500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_46500_47000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_47000_47500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_47500_48000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_48000_48500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_48500_49000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_49000_49500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_49500_50000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_50000_50500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_50500_51000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_51000_51500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_51500_52000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_52000_52500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_52500_53000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_53000_53500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_53500_54000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_54000_54500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_54500_55000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_55000_55500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_55500_56000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_56000_56500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_56500_57000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_57000_57500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_57500_58000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_58000_58500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_58500_59000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_59000_59500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_59500_60000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_60000_60500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_60500_61000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_61000_61500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_61500_62000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_62000_62500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_62500_63000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_63000_63500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_63500_64000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_64000_64500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_64500_65000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_65000_65500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_65500_66000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_66000_66500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_66500_67000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_67000_67500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_67500_68000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_68000_68500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_68500_69000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_69000_69500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_69500_70000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_70000_70500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_70500_71000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_71000_71500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_71500_72000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_72000_72500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_72500_72507.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/obs_features.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/k_samples.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/expert_actions.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "766c04fa-d296-4020-a7b8-18bc509d67ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_0_500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_500_1000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_1000_1500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_1500_2000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_2000_2500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_2500_3000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_3000_3500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_3500_4000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_4000_4500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_4500_5000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_5000_5500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_5500_6000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_6000_6500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_6500_7000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_7000_7500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_7500_8000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_8000_8500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_8500_9000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_9000_9500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_9500_10000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_10000_10500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_10500_11000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_11000_11500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_11500_12000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_12000_12500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_12500_13000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_13000_13500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_13500_14000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_14000_14500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_14500_15000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_15000_15500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_15500_16000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_16000_16500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_16500_17000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_17000_17500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_17500_18000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_18000_18500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_18500_19000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_19000_19500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_19500_20000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_20000_20500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_20500_21000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_21000_21500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_21500_22000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_22000_22500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_22500_23000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_23000_23500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_23500_24000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_24000_24500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_24500_25000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_25000_25500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_25500_26000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_26000_26500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_26500_27000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_27000_27500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_27500_28000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_28000_28500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0\\\\n\\\\n... [截断: 输出过长，省略 2355 字符] ...\\\\n\\\\n05_2048/object/partial_s0_45500_46000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_46000_46500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_46500_47000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_47000_47500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_47500_48000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_48000_48500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_48500_49000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_49000_49500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_49500_50000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_50000_50500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_50500_51000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_51000_51500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_51500_52000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_52000_52500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_52500_53000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_53000_53500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_53500_54000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_54000_54500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_54500_55000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_55000_55500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_55500_56000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_56000_56500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_56500_57000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_57000_57500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_57500_58000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_58000_58500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_58500_59000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_59000_59500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_59500_60000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_60000_60500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_60500_61000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_61000_61500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_61500_62000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_62000_62500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_62500_63000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_63000_63500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_63500_64000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_64000_64500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_64500_65000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_65000_65500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_65500_66000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_66000_66500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_66500_67000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_67000_67500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_67500_68000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_68000_68500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_68500_69000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_69000_69500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_69500_70000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_70000_70500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_70500_71000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_71000_71500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_71500_72000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_72000_72500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_72500_72507.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/obs_features.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/k_samples.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/object/expert_actions.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_0_500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_500_1000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_1000_1500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_1500_2000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_2000_2500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_2500_3000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_3000_3500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_3500_4000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_4000_4500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_4500_5000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_5000_5500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_5500_6000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_6000_6500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_6500_7000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_7000_7500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_7500_8000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_8000_8500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_8500_9000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_9000_9500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_9500_10000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_10000_10500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_10500_11000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_11000_11500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_11500_12000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_12000_12500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_12500_13000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_13000_13500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_13500_14000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_14000_14500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_14500_15000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_15000_15500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_15500_16000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_16000_16500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_16500_17000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_17000_17500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_17500_18000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_18000_18500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_18500_19000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_19000_19500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_19500_20000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_20000_20500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_20500_21000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_21000_21500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_21500_22000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_22000_22500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_22500_23000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_23000_23500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_23500_24000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_24000_24500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_24500_25000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_25000_25500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_25500_26000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_26000_26500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_26500_27000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_27000_27500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_27500_28000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_28000_28500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0\\n\\n... [截断: 输出过长，省略 2355 字符] ...\\n\\n05_2048/object/partial_s0_45500_46000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_46000_46500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_46500_47000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_47000_47500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_47500_48000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_48000_48500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_48500_49000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_49000_49500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_49500_50000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_50000_50500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_50500_51000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_51000_51500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_51500_52000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_52000_52500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_52500_53000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_53000_53500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_53500_54000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_54000_54500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_54500_55000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_55000_55500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_55500_56000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_56000_56500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_56500_57000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_57000_57500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_57500_58000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_58000_58500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_58500_59000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_59000_59500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_59500_60000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_60000_60500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_60500_61000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_61000_61500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_61500_62000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_62000_62500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_62500_63000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_63000_63500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_63500_64000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_64000_64500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_64500_65000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_65000_65500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_65500_66000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_66000_66500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_66500_67000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_67000_67500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_67500_68000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_68000_68500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_68500_69000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_69000_69500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_69500_70000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_70000_70500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_70500_71000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_71000_71500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_71500_72000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_72000_72500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/partial_s0_72500_72507.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/obs_features.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/k_samples.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/object/expert_actions.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ND95EQmuPTyFWrEWMMtxSv`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "find /root/autodl-tmp/crm_cache_pi05_2048/long -maxdepth 1 -type f -name \"*.pt\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "35513fce-e654-43dd-ba48-d0b5b419cddc",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01GjFHeZMfaMw8JXTmBtmibT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2707,
+      "cache_read_input_tokens": 77014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2707
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-24T19:25:14.243Z_
+
+<details><summary>↩ Tool result · `toolu_01ND95EQmuPTyFWrEWMMtxSv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_0_500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_500_1000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_1000_1500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_1500_2000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_2000_2500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_2500_3000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_3000_3500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_3500_4000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_4000_4500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_4500_5000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_5000_5500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_5500_6000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_6000_6500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_6500_7000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_7000_7500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_7500_8000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_8000_8500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_8500_9000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_9000_9500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_9500_10000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_10000_10500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_10500_11000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_11000_11500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_11500_12000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_12000_12500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_12500_13000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_13000_13500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_13500_14000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_14000_14500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_14500_15000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_15000_15500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_15500_16000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_16000_16500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_16500_17000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_17000_17500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_17500_18000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_18000_18500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_18500_19000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_19000_19500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_19500_20000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_20000_20500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_20500_21000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_21000_21500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_21500_22000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_22000_22500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_22500_23000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_23000_23500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_23500_24000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_24000_24500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_24500_25000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_25000_25500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_25500_26000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_26000_26500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_26500_27000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_27000_27500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_27500_28000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_28000_28500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_28500_29000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_29000_29500.pt\\n/root/autodl-tmp/crm_cache_pi05_\\n\\n... [截断: 输出过长，省略 3788 字符] ...\\n\\n-tmp/crm_cache_pi05_2048/long/partial_s0_57500_58000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_58000_58500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_58500_59000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_59000_59500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_59500_60000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_60000_60500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_60500_61000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_61000_61500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_61500_62000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_62000_62500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_62500_63000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_63000_63500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_63500_64000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_64000_64500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_64500_65000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_65000_65500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_65500_66000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_66000_66500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_66500_67000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_67000_67500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_67500_68000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_68000_68500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_68500_69000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_69000_69500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_69500_70000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_70000_70500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_70500_71000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_71000_71500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_71500_72000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_72000_72500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_72500_73000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_73000_73500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_73500_74000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_74000_74500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_74500_75000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_75000_75500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_75500_76000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_76000_76500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_76500_77000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_77000_77500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_77500_78000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_78000_78500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_78500_79000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_79000_79500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_79500_80000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_80000_80500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_80500_81000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_81000_81500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_81500_82000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_82000_82500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_82500_83000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_83000_83500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_83500_84000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_84000_84500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_84500_85000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_85000_85500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_85500_86000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_86000_86500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_86500_87000.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "2aa5a959-aed0-49b2-a7f5-31322e55a68b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_0_500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_500_1000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_1000_1500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_1500_2000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_2000_2500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_2500_3000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_3000_3500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_3500_4000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_4000_4500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_4500_5000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_5000_5500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_5500_6000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_6000_6500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_6500_7000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_7000_7500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_7500_8000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_8000_8500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_8500_9000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_9000_9500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_9500_10000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_10000_10500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_10500_11000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_11000_11500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_11500_12000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_12000_12500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_12500_13000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_13000_13500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_13500_14000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_14000_14500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_14500_15000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_15000_15500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_15500_16000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_16000_16500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_16500_17000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_17000_17500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_17500_18000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_18000_18500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_18500_19000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_19000_19500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_19500_20000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_20000_20500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_20500_21000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_21000_21500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_21500_22000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_22000_22500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_22500_23000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_23000_23500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_23500_24000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_24000_24500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_24500_25000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_25000_25500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_25500_26000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_26000_26500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_26500_27000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_27000_27500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_27500_28000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_28000_28500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_28500_29000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_29000_29500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_\\\\n\\\\n... [截断: 输出过长，省略 3788 字符] ...\\\\n\\\\n-tmp/crm_cache_pi05_2048/long/partial_s0_57500_58000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_58000_58500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_58500_59000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_59000_59500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_59500_60000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_60000_60500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_60500_61000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_61000_61500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_61500_62000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_62000_62500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_62500_63000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_63000_63500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_63500_64000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_64000_64500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_64500_65000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_65000_65500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_65500_66000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_66000_66500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_66500_67000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_67000_67500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_67500_68000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_68000_68500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_68500_69000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_69000_69500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_69500_70000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_70000_70500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_70500_71000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_71000_71500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_71500_72000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_72000_72500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_72500_73000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_73000_73500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_73500_74000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_74000_74500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_74500_75000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_75000_75500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_75500_76000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_76000_76500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_76500_77000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_77000_77500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_77500_78000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_78000_78500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_78500_79000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_79000_79500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_79500_80000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_80000_80500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_80500_81000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_81000_81500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_81500_82000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_82000_82500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_82500_83000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_83000_83500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_83500_84000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_84000_84500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_84500_85000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_85000_85500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_85500_86000.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_86000_86500.pt\\\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_86500_87000.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_0_500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_500_1000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_1000_1500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_1500_2000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_2000_2500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_2500_3000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_3000_3500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_3500_4000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_4000_4500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_4500_5000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_5000_5500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_5500_6000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_6000_6500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_6500_7000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_7000_7500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_7500_8000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_8000_8500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_8500_9000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_9000_9500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_9500_10000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_10000_10500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_10500_11000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_11000_11500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_11500_12000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_12000_12500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_12500_13000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_13000_13500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_13500_14000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_14000_14500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_14500_15000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_15000_15500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_15500_16000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_16000_16500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_16500_17000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_17000_17500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_17500_18000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_18000_18500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_18500_19000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_19000_19500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_19500_20000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_20000_20500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_20500_21000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_21000_21500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_21500_22000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_22000_22500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_22500_23000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_23000_23500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_23500_24000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_24000_24500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_24500_25000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_25000_25500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_25500_26000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_26000_26500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_26500_27000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_27000_27500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_27500_28000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_28000_28500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_28500_29000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_29000_29500.pt\\n/root/autodl-tmp/crm_cache_pi05_\\n\\n... [截断: 输出过长，省略 3788 字符] ...\\n\\n-tmp/crm_cache_pi05_2048/long/partial_s0_57500_58000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_58000_58500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_58500_59000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_59000_59500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_59500_60000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_60000_60500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_60500_61000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_61000_61500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_61500_62000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_62000_62500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_62500_63000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_63000_63500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_63500_64000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_64000_64500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_64500_65000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_65000_65500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_65500_66000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_66000_66500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_66500_67000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_67000_67500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_67500_68000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_68000_68500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_68500_69000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_69000_69500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_69500_70000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_70000_70500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_70500_71000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_71000_71500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_71500_72000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_72000_72500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_72500_73000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_73000_73500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_73500_74000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_74000_74500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_74500_75000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_75000_75500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_75500_76000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_76000_76500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_76500_77000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_77000_77500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_77500_78000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_78000_78500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_78500_79000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_79000_79500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_79500_80000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_80000_80500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_80500_81000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_81000_81500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_81500_82000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_82000_82500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_82500_83000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_83000_83500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_83500_84000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_84000_84500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_84500_85000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_85000_85500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_85500_86000.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_86000_86500.pt\\n/root/autodl-tmp/crm_cache_pi05_2048/long/partial_s0_86500_87000.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D8NVZKdHzmwft1jEiReQyR`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "head -40 /root/runs/acr-vla-conformal-refinement/train-crm-pi05-unified-3suite-r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "91197c36-9335-4232-8ecb-6a030748bf8d",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01GjFHeZMfaMw8JXTmBtmibT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2707,
+      "cache_read_input_tokens": 77014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2707
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-24T19:25:15.627Z_
+
+<details><summary>↩ Tool result · `toolu_01D8NVZKdHzmwft1jEiReQyR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[train_crm] args: {'benchmark': ['object', 'spatial', 'goal'], 'epochs': 50, 'batch_size': 256, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/', 'cache_dir': '/root/autodl-tmp/crm_cache_pi05_2048/', 'K': 10, 'obs_dim': 2048, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': False, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\\n[train_crm] device: cuda\\n[train] Loading cache (object): 72507 samples, K=10, obs_dim=2048\\n[train] Loading cache (spatial): 60250 samples, K=10, obs_dim=2048\\n[train] Loading cache (goal): 61728 samples, K=10, obs_dim=2048\\n[train] Total: 194485 samples from 3 benchmark(s)\\n[train] CRM parameters: 615,966\\n[train] Computing input normalization stats...\\n[train] Norm stats set: mean [-30.0995, 15.1128], std [0.0042, 6.0493]\\n  epoch 1 batch 50/684 loss=0.014804\\n  epoch 1 batch 100/684 loss=0.015135\\n  epoch 1 batch 150/684 loss=0.017683\\n  epoch 1 batch 200/684 loss=0.015153\\n  epoch 1 batch 250/684 loss=0.013661\\n  epoch 1 batch 300/684 loss=0.017864\\n  epoch 1 batch 350/684 loss=0.013935\\n  epoch 1 batch 400/684 loss=0.014687\\n  epoch 1 batch 450/684 loss=0.017204\\n  epoch 1 batch 500/684 loss=0.016003\\n  epoch 1 batch 550/684 loss=0.014150\\n  epoch 1 batch 600/684 loss=0.014305\\n  epoch 1 batch 650/684 loss=0.014799\\nEpoch 1/50  train_loss=0.014627  val_loss=0.008004  lr=9.99e-04\\n  → New best val_loss: 0.008004\\n  epoch 2 batch 50/684 loss=0.011040\\n  epoch 2 batch 100/684 loss=0.012163\\n  epoch 2 batch 150/684 loss=0.014222\\n  epoch 2 batch 200/684 loss=0.012658\\n  epoch 2 batch 250/684 loss=0.012742\\n  epoch 2 batch 300/684 loss=0.010917\\n  epoch 2 batch 350/684 loss=0.012855\\n  epoch 2 batch 400/684 loss=0.011774\\n  epoch 2 batch 450/684 loss=0.012410\\n  epoch 2 batch 500/684 loss=0.014653\\n  epoch 2 batch 550/684 loss=0.012521\\n  epoch 2 batch 600/684 loss=0.011786\\n  epoch 2 batch 650/684 loss=0.012555\\nEpoch 2/50  train_loss=0.013494  val_loss=0.007411  lr=9.96e-04\\n  → New best val_loss: 0.007411\\n  epoch 3 batch 50/684 loss=0.012816\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "d3a92034-d70c-40d0-81c8-739ceae5a1df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[train_crm] args: {'benchmark': ['object', 'spatial', 'goal'], 'epochs': 50, 'batch_size': 256, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/', 'cache_dir': '/root/autodl-tmp/crm_cache_pi05_2048/', 'K': 10, 'obs_dim': 2048, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': False, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\\\\n[train_crm] device: cuda\\\\n[train] Loading cache (object): 72507 samples, K=10, obs_dim=2048\\\\n[train] Loading cache (spatial): 60250 samples, K=10, obs_dim=2048\\\\n[train] Loading cache (goal): 61728 samples, K=10, obs_dim=2048\\\\n[train] Total: 194485 samples from 3 benchmark(s)\\\\n[train] CRM parameters: 615,966\\\\n[train] Computing input normalization stats...\\\\n[train] Norm stats set: mean [-30.0995, 15.1128], std [0.0042, 6.0493]\\\\n  epoch 1 batch 50/684 loss=0.014804\\\\n  epoch 1 batch 100/684 loss=0.015135\\\\n  epoch 1 batch 150/684 loss=0.017683\\\\n  epoch 1 batch 200/684 loss=0.015153\\\\n  epoch 1 batch 250/684 loss=0.013661\\\\n  epoch 1 batch 300/684 loss=0.017864\\\\n  epoch 1 batch 350/684 loss=0.013935\\\\n  epoch 1 batch 400/684 loss=0.014687\\\\n  epoch 1 batch 450/684 loss=0.017204\\\\n  epoch 1 batch 500/684 loss=0.016003\\\\n  epoch 1 batch 550/684 loss=0.014150\\\\n  epoch 1 batch 600/684 loss=0.014305\\\\n  epoch 1 batch 650/684 loss=0.014799\\\\nEpoch 1/50  train_loss=0.014627  val_loss=0.008004  lr=9.99e-04\\\\n  → New best val_loss: 0.008004\\\\n  epoch 2 batch 50/684 loss=0.011040\\\\n  epoch 2 batch 100/684 loss=0.012163\\\\n  epoch 2 batch 150/684 loss=0.014222\\\\n  epoch 2 batch 200/684 loss=0.012658\\\\n  epoch 2 batch 250/684 loss=0.012742\\\\n  epoch 2 batch 300/684 loss=0.010917\\\\n  epoch 2 batch 350/684 loss=0.012855\\\\n  epoch 2 batch 400/684 loss=0.011774\\\\n  epoch 2 batch 450/684 loss=0.012410\\\\n  epoch 2 batch 500/684 loss=0.014653\\\\n  epoch 2 batch 550/684 loss=0.012521\\\\n  epoch 2 batch 600/684 loss=0.011786\\\\n  epoch 2 batch 650/684 loss=0.012555\\\\nEpoch 2/50  train_loss=0.013494  val_loss=0.007411  lr=9.96e-04\\\\n  → New best val_loss: 0.007411\\\\n  epoch 3 batch 50/684 loss=0.012816\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[train_crm] args: {'benchmark': ['object', 'spatial', 'goal'], 'epochs': 50, 'batch_size': 256, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/', 'cache_dir': '/root/autodl-tmp/crm_cache_pi05_2048/', 'K': 10, 'obs_dim': 2048, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': False, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\\n[train_crm] device: cuda\\n[train] Loading cache (object): 72507 samples, K=10, obs_dim=2048\\n[train] Loading cache (spatial): 60250 samples, K=10, obs_dim=2048\\n[train] Loading cache (goal): 61728 samples, K=10, obs_dim=2048\\n[train] Total: 194485 samples from 3 benchmark(s)\\n[train] CRM parameters: 615,966\\n[train] Computing input normalization stats...\\n[train] Norm stats set: mean [-30.0995, 15.1128], std [0.0042, 6.0493]\\n  epoch 1 batch 50/684 loss=0.014804\\n  epoch 1 batch 100/684 loss=0.015135\\n  epoch 1 batch 150/684 loss=0.017683\\n  epoch 1 batch 200/684 loss=0.015153\\n  epoch 1 batch 250/684 loss=0.013661\\n  epoch 1 batch 300/684 loss=0.017864\\n  epoch 1 batch 350/684 loss=0.013935\\n  epoch 1 batch 400/684 loss=0.014687\\n  epoch 1 batch 450/684 loss=0.017204\\n  epoch 1 batch 500/684 loss=0.016003\\n  epoch 1 batch 550/684 loss=0.014150\\n  epoch 1 batch 600/684 loss=0.014305\\n  epoch 1 batch 650/684 loss=0.014799\\nEpoch 1/50  train_loss=0.014627  val_loss=0.008004  lr=9.99e-04\\n  → New best val_loss: 0.008004\\n  epoch 2 batch 50/684 loss=0.011040\\n  epoch 2 batch 100/684 loss=0.012163\\n  epoch 2 batch 150/684 loss=0.014222\\n  epoch 2 batch 200/684 loss=0.012658\\n  epoch 2 batch 250/684 loss=0.012742\\n  epoch 2 batch 300/684 loss=0.010917\\n  epoch 2 batch 350/684 loss=0.012855\\n  epoch 2 batch 400/684 loss=0.011774\\n  epoch 2 batch 450/684 loss=0.012410\\n  epoch 2 batch 500/684 loss=0.014653\\n  epoch 2 batch 550/684 loss=0.012521\\n  epoch 2 batch 600/684 loss=0.011786\\n  epoch 2 batch 650/684 loss=0.012555\\nEpoch 2/50  train_loss=0.013494  val_loss=0.007411  lr=9.96e-04\\n  → New best val_loss: 0.007411\\n  epoch 3 batch 50/684 loss=0.012816\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "2ce3fdbf-f787-400a-8437-fe3252b206f6",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015n8QfAcxQNEknGXhXsZfn8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12577,
+      "cache_read_input_tokens": 79721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12577
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+Now I'll update the registry for the two completed evals and the CRM training, then write the report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "36474f2f-d308-430e-b371-b9104e0e08f2",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015n8QfAcxQNEknGXhXsZfn8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12577,
+      "cache_read_input_tokens": 79721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12577
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WzWiUeP77pLPReFm1u5o3q`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-vla-only-s42",
+  "field": "metrics",
+  "value": {
+    "overall_success_rate": 0.8,
+    "successes": 160,
+    "total": 200,
+    "n_rollouts": 20,
+    "benchmark": "spatial",
+    "seed": 42,
+    "mode": "vla_only",
+    "model": "pi05"
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "1faaf75a-66ea-4588-81bf-a95ae31d5c0c",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015n8QfAcxQNEknGXhXsZfn8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12577,
+      "cache_read_input_tokens": 79721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12577
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PMrHe2uCw2BrwpMVXgyM1n`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-obj-vla-only-s50",
+  "field": "metrics",
+  "value": {
+    "overall_success_rate": 0.74,
+    "successes": 148,
+    "total": 200,
+    "n_rollouts": 20,
+    "benchmark": "object",
+    "seed": 50,
+    "mode": "vla_only",
+    "model": "pi05"
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "95c4ed71-bb7d-43b9-82d1-2486096878ea",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015n8QfAcxQNEknGXhXsZfn8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12577,
+      "cache_read_input_tokens": 79721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12577
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-24T19:25:32.972Z_
+
+<details><summary>↩ Tool result · `toolu_01WzWiUeP77pLPReFm1u5o3q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-vla-only-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T19:25:31.525Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"pid\": \"356458\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\", \"submitted_at\": \"2026-05-24T16:18:52.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"spatial\", \"seed\": 42, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.5369}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "94c14ad7-7a4e-4d0e-9686-bce98d3a303c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-vla-only-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T15:56:22.838Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:25:31.525Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"356458\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T16:18:52.189Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200, \\\"n_rollouts\\\": 20, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42, \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi05\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5369}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-vla-only-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T19:25:31.525Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"pid\": \"356458\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\", \"submitted_at\": \"2026-05-24T16:18:52.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"spatial\", \"seed\": 42, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.5369}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-24T19:25:36.669Z_
+
+<details><summary>↩ Tool result · `toolu_01PMrHe2uCw2BrwpMVXgyM1n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-obj-vla-only-s50\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T19:25:35.191Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"356733\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\", \"submitted_at\": \"2026-05-24T16:18:58.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"overall_success_rate\": 0.74, \"successes\": 148, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"object\", \"seed\": 50, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.6805}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "77d730cd-e5f0-483b-975e-8605aa6c5ff7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-vla-only-s50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T15:56:27.183Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:25:35.191Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"356733\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T16:18:58.101Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.74, \\\"successes\\\": 148, \\\"total\\\": 200, \\\"n_rollouts\\\": 20, \\\"benchmark\\\": \\\"object\\\", \\\"seed\\\": 50, \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi05\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.6805}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-obj-vla-only-s50\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T19:25:35.191Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"356733\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\", \"submitted_at\": \"2026-05-24T16:18:58.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"overall_success_rate\": 0.74, \"successes\": 148, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"object\", \"seed\": 50, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.6805}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "ecd0c3c9-ad27-4694-8957-4ba45f296185",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JnrfQLUm5awz5sz3sY5L2q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2442,
+      "cache_read_input_tokens": 92298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2442
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01T5otLFDYxj5Ww8CLPNdtHm`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-vla-only-s42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "23742c69-59a0-4221-822b-7c7eec1e31ad",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JnrfQLUm5awz5sz3sY5L2q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2442,
+      "cache_read_input_tokens": 92298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2442
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018MYn4HExpzBMGPX1V2aGMB`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-obj-vla-only-s50",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "625e9c71-213a-4cb9-b402-3885f8acb0e6",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JnrfQLUm5awz5sz3sY5L2q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2442,
+      "cache_read_input_tokens": 92298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2442
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-24T19:25:45.431Z_
+
+<details><summary>↩ Tool result · `toolu_01T5otLFDYxj5Ww8CLPNdtHm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 2.0845}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "a2bc8492-d2bf-4d4f-997b-15dbe848c295",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0845}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 2.0845}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-24T19:25:48.546Z_
+
+<details><summary>↩ Tool result · `toolu_018MYn4HExpzBMGPX1V2aGMB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 3.1001}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "2cd5f871-ccc2-42b4-8a97-db0b146ff8bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1001}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 3.1001}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QN5cvvhdm4iJbhTqFEDADs`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-vla-only-s42",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "e1062650-d52c-4a20-ab8c-524481a0e378",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Xb3vueLimfNkGwyZpU5iBS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 94740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 842
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TjVybVLfU4usNgs3t2QEyk`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-obj-vla-only-s50",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "576588c0-cff9-448f-86b7-5bac601aae0a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Xb3vueLimfNkGwyZpU5iBS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 94740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 842
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-24T19:25:58.340Z_
+
+<details><summary>↩ Tool result · `toolu_01QN5cvvhdm4iJbhTqFEDADs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-vla-only-s42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T19:25:53.600Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"pid\": \"356458\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\", \"submitted_at\": \"2026-05-24T16:18:52.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"spatial\", \"seed\": 42, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.9129}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "faeae146-9a0d-4033-815d-a533f88027ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-vla-only-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T15:56:22.838Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:25:53.600Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"356458\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T16:18:52.189Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200, \\\"n_rollouts\\\": 20, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42, \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi05\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.9129}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-vla-only-s42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T19:25:53.600Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"pid\": \"356458\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\", \"submitted_at\": \"2026-05-24T16:18:52.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"spatial\", \"seed\": 42, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.9129}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-24T19:26:05.154Z_
+
+<details><summary>↩ Tool result · `toolu_01TjVybVLfU4usNgs3t2QEyk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-obj-vla-only-s50\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T19:26:00.394Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"356733\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\", \"submitted_at\": \"2026-05-24T16:18:58.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"overall_success_rate\": 0.74, \"successes\": 148, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"object\", \"seed\": 50, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.7986}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "08e871ef-232c-47c1-906d-70bdb47725ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-vla-only-s50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T15:56:27.183Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:26:00.394Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"356733\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T16:18:58.101Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.74, \\\"successes\\\": 148, \\\"total\\\": 200, \\\"n_rollouts\\\": 20, \\\"benchmark\\\": \\\"object\\\", \\\"seed\\\": 50, \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi05\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.7986}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-obj-vla-only-s50\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T19:26:00.394Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"356733\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\", \"submitted_at\": \"2026-05-24T16:18:58.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"overall_success_rate\": 0.74, \"successes\": 148, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"object\", \"seed\": 50, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.7986}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JvEQYTVjHgnsy92apDNbXM`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-vla-only-s42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "6379eb6f-b8da-47bd-9a4c-e66ea6034e4d",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01YQW9VB3stN4mfEccq4wn5w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1863,
+      "cache_read_input_tokens": 95582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1863
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011DPZdFRmQFq8NkT2GmDQCb`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-obj-vla-only-s50",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "1f60a582-665c-4c2c-b147-4e3174394788",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01YQW9VB3stN4mfEccq4wn5w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1863,
+      "cache_read_input_tokens": 95582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1863
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-24T19:26:13.398Z_
+
+<details><summary>↩ Tool result · `toolu_01JvEQYTVjHgnsy92apDNbXM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to RUNNING without spec fields: ['data_count', 'data_path', 'model_name', 'seed']. Pass spec={...} with at least: ['command', 'data_count', 'data_path', 'model_name', 'seed', 'server']\", \"metadata\": {\"elapsed_seconds\": 2.2732}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "02c8d699-57d3-49b1-946c-b8797d753e12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to RUNNING without spec fields: ['data_count', 'data_path', 'model_name', 'seed']. Pass spec={...} with at least: ['command', 'data_count', 'data_path', 'model_name', 'seed', 'server']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2732}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to RUNNING without spec fields: ['data_count', 'data_path', 'model_name', 'seed']. Pass spec={...} with at least: ['command', 'data_count', 'data_path', 'model_name', 'seed', 'server']\", \"metadata\": {\"elapsed_seconds\": 2.2732}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-24T19:26:15.451Z_
+
+<details><summary>↩ Tool result · `toolu_011DPZdFRmQFq8NkT2GmDQCb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to RUNNING without spec fields: ['data_count', 'data_path', 'model_name', 'seed']. Pass spec={...} with at least: ['command', 'data_count', 'data_path', 'model_name', 'seed', 'server']\", \"metadata\": {\"elapsed_seconds\": 2.0415}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "c3efd761-e47d-4e09-bce4-b9c8af63f4af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to RUNNING without spec fields: ['data_count', 'data_path', 'model_name', 'seed']. Pass spec={...} with at least: ['command', 'data_count', 'data_path', 'model_name', 'seed', 'server']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0415}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to RUNNING without spec fields: ['data_count', 'data_path', 'model_name', 'seed']. Pass spec={...} with at least: ['command', 'data_count', 'data_path', 'model_name', 'seed', 'server']\", \"metadata\": {\"elapsed_seconds\": 2.0415}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Qokh7DrLjcskxvQJB9W6mm`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-vla-only-s42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": {
+    "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\"",
+    "server": "bjb1-18228",
+    "data_path": "LIBERO-Spatial (10 tasks × 20 rollouts)",
+    "data_count": 200,
+    "model_name": "pi05",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/models/pi05_libero_finetuned/",
+    "eval_data": "LIBERO-Spatial",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log",
+    "checkpoint_path": "/root/autodl-tmp/models/pi05_libero_finetuned/"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "ff2b3318-69fb-40d9-9d2e-562631a71507",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PuuadCxn7DZYu9cTQR65bX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 97445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 705
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Qx2ahGgPBPSoeQD2p3jHpk`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-obj-vla-only-s50",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": {
+    "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\"",
+    "server": "bjb1-18228",
+    "data_path": "LIBERO-Object (10 tasks × 20 rollouts)",
+    "data_count": 200,
+    "model_name": "pi05",
+    "seed": 50,
+    "checkpoint_source": "/root/autodl-tmp/models/pi05_libero_finetuned/",
+    "eval_data": "LIBERO-Object",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log",
+    "checkpoint_path": "/root/autodl-tmp/models/pi05_libero_finetuned/"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "46ff78c6-c9ab-407f-a773-cbb813fe9a48",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PuuadCxn7DZYu9cTQR65bX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 97445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 705
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-24T19:26:33.740Z_
+
+<details><summary>↩ Tool result · `toolu_01Qokh7DrLjcskxvQJB9W6mm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-vla-only-s42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T19:26:28.953Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"pid\": \"356458\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\", \"submitted_at\": \"2026-05-24T16:18:52.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Spatial (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Spatial\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\"}, \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"spatial\", \"seed\": 42, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.8019}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "cbfeb446-f534-448f-a5ba-a26e0b40e8ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-vla-only-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T15:56:22.838Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:26:28.953Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"356458\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T16:18:52.189Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Spatial (10 tasks × 20 rollouts)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"eval_data\\\": \\\"LIBERO-Spatial\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\"}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200, \\\"n_rollouts\\\": 20, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42, \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi05\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.8019}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-vla-only-s42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T19:26:28.953Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"pid\": \"356458\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\", \"submitted_at\": \"2026-05-24T16:18:52.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Spatial (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Spatial\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\"}, \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"spatial\", \"seed\": 42, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.8019}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-24T19:26:41.858Z_
+
+<details><summary>↩ Tool result · `toolu_01Qx2ahGgPBPSoeQD2p3jHpk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-obj-vla-only-s50\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T19:26:35.763Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"356733\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\", \"submitted_at\": \"2026-05-24T16:18:58.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 50, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\"}, \"metrics\": {\"overall_success_rate\": 0.74, \"successes\": 148, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"object\", \"seed\": 50, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.0982}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "2337a93d-aefa-4217-ad68-42d653f63aca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-vla-only-s50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T15:56:27.183Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:26:35.763Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"356733\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T16:18:58.101Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (10 tasks × 20 rollouts)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 50, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\"}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.74, \\\"successes\\\": 148, \\\"total\\\": 200, \\\"n_rollouts\\\": 20, \\\"benchmark\\\": \\\"object\\\", \\\"seed\\\": 50, \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi05\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.0982}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-obj-vla-only-s50\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T19:26:35.763Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"356733\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\", \"submitted_at\": \"2026-05-24T16:18:58.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 50, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\"}, \"metrics\": {\"overall_success_rate\": 0.74, \"successes\": 148, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"object\", \"seed\": 50, \"mode\": \"vla_only\", \"model\": \"pi05\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.0982}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EEtADg269jmtti1fTtKY45`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-vla-only-s42",
+  "field": "conclusion",
+  "value": "success",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "08d5383b-b4f6-40ad-867a-30024b038b04",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017e7Z5UkqeDY8jC45NCe9yF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2724,
+      "cache_read_input_tokens": 98150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2724
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01VEZDHLgJpgCq4Zff9244fA`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-obj-vla-only-s50",
+  "field": "conclusion",
+  "value": "success",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "4d813315-b9e4-4107-847a-35731d1ecb9e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017e7Z5UkqeDY8jC45NCe9yF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2724,
+      "cache_read_input_tokens": 98150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2724
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-24T19:26:53.093Z_
+
+<details><summary>↩ Tool result · `toolu_01EEtADg269jmtti1fTtKY45`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-vla-only-s42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T19:26:49.739Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"pid\": \"356458\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\", \"submitted_at\": \"2026-05-24T16:18:52.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Spatial (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Spatial\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\"}, \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"spatial\", \"seed\": 42, \"mode\": \"vla_only\", \"model\": \"pi05\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.7006}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "db96a4f2-fdce-47a9-8067-de7842f33dd2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-vla-only-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T15:56:22.838Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:26:49.739Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"356458\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T16:18:52.189Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Spatial (10 tasks × 20 rollouts)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"eval_data\\\": \\\"LIBERO-Spatial\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\"}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200, \\\"n_rollouts\\\": 20, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42, \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi05\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.7006}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-vla-only-s42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T19:26:49.739Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"pid\": \"356458\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\", \"submitted_at\": \"2026-05-24T16:18:52.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Spatial (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Spatial\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\"}, \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"spatial\", \"seed\": 42, \"mode\": \"vla_only\", \"model\": \"pi05\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.7006}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-24T19:26:59.148Z_
+
+<details><summary>↩ Tool result · `toolu_01VEZDHLgJpgCq4Zff9244fA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-obj-vla-only-s50\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T19:26:56.754Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"356733\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\", \"submitted_at\": \"2026-05-24T16:18:58.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 50, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\"}, \"metrics\": {\"overall_success_rate\": 0.74, \"successes\": 148, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"object\", \"seed\": 50, \"mode\": \"vla_only\", \"model\": \"pi05\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.025}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "c1354fca-4f41-4a37-bd14-627ee64a0d3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-vla-only-s50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T15:56:27.183Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:26:56.754Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"356733\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T16:18:58.101Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (10 tasks × 20 rollouts)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 50, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\"}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.74, \\\"successes\\\": 148, \\\"total\\\": 200, \\\"n_rollouts\\\": 20, \\\"benchmark\\\": \\\"object\\\", \\\"seed\\\": 50, \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi05\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.025}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-obj-vla-only-s50\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T19:26:56.754Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"356733\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\", \"submitted_at\": \"2026-05-24T16:18:58.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 50, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\"}, \"metrics\": {\"overall_success_rate\": 0.74, \"successes\": 148, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"object\", \"seed\": 50, \"mode\": \"vla_only\", \"model\": \"pi05\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.025}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KjwGrNm7f3rgSj5WjaVA1x`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-vla-only-s42",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "d0a29494-c44f-4f4f-b689-c2dc8b6d8345",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NYYCpJTFLFJ6KB4Ay5FVvU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2071,
+      "cache_read_input_tokens": 100874,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2071
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BSCSZzY2zs8LSswv8QGvro`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-obj-vla-only-s50",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "4587f493-c19e-498a-a7dd-a5c5b0cd526e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NYYCpJTFLFJ6KB4Ay5FVvU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2071,
+      "cache_read_input_tokens": 100874,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2071
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-24T19:27:12.710Z_
+
+<details><summary>↩ Tool result · `toolu_01KjwGrNm7f3rgSj5WjaVA1x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-vla-only-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T19:27:05.963Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"pid\": \"356458\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\", \"submitted_at\": \"2026-05-24T16:18:52.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Spatial (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Spatial\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"wall_clock_seconds\": 11293.8, \"gpu_hours\": 3.14}, \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"spatial\", \"seed\": 42, \"mode\": \"vla_only\", \"model\": \"pi05\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T19:27:05.964Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.8736}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "085a73cc-b2c9-4e35-a431-677e9ac708a5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-vla-only-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T15:56:22.838Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:27:05.963Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"356458\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T16:18:52.189Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Spatial (10 tasks × 20 rollouts)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"eval_data\\\": \\\"LIBERO-Spatial\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"wall_clock_seconds\\\": 11293.8, \\\"gpu_hours\\\": 3.14}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200, \\\"n_rollouts\\\": 20, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42, \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi05\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-24T19:27:05.964Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.8736}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-vla-only-s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:22.838Z\", \"updated_at\": \"2026-05-24T19:27:05.963Z\", \"hypothesis\": \"VLA-only baseline seed=42 on Spatial (supp-era 20 rollouts). Fills the gap for paired Adaptive vs VLA-only comparison at s42.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-spatial-vla-only-s42.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"pid\": \"356458\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-vla-only-s42.log\", \"submitted_at\": \"2026-05-24T16:18:52.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Spatial (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Spatial\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"wall_clock_seconds\": 11293.8, \"gpu_hours\": 3.14}, \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"spatial\", \"seed\": 42, \"mode\": \"vla_only\", \"model\": \"pi05\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T19:27:05.964Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.8736}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-24T19:27:23.487Z_
+
+<details><summary>↩ Tool result · `toolu_01BSCSZzY2zs8LSswv8QGvro`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-obj-vla-only-s50\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T19:27:16.109Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"356733\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\", \"submitted_at\": \"2026-05-24T16:18:58.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 50, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"wall_clock_seconds\": 11298.0, \"gpu_hours\": 3.14}, \"metrics\": {\"overall_success_rate\": 0.74, \"successes\": 148, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"object\", \"seed\": 50, \"mode\": \"vla_only\", \"model\": \"pi05\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T19:27:16.109Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.7582}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "53286526-d31c-4db6-ae7d-b9ead1ed8ee5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-vla-only-s50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T15:56:27.183Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:27:16.109Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"356733\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T16:18:58.101Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (10 tasks × 20 rollouts)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 50, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"wall_clock_seconds\\\": 11298.0, \\\"gpu_hours\\\": 3.14}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.74, \\\"successes\\\": 148, \\\"total\\\": 200, \\\"n_rollouts\\\": 20, \\\"benchmark\\\": \\\"object\\\", \\\"seed\\\": 50, \\\"mode\\\": \\\"vla_only\\\", \\\"model\\\": \\\"pi05\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-24T19:27:16.109Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.7582}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-obj-vla-only-s50\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:56:27.183Z\", \"updated_at\": \"2026-05-24T19:27:16.109Z\", \"hypothesis\": \"VLA-only baseline seed=50 on Object. Additional seed to strengthen 8+ seed statistical comparison for Adaptive vs VLA-only on the weakest-delta suite.\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 50 --n_rollouts 20 2>&1 | tee logs/eval-supp-obj-vla-only-s50.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"356733\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-obj-vla-only-s50.log\", \"submitted_at\": \"2026-05-24T16:18:58.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks × 20 rollouts)\", \"data_count\": 200, \"model_name\": \"pi05\", \"seed\": 50, \"checkpoint_source\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"/root/autodl-tmp/models/pi05_libero_finetuned/\", \"wall_clock_seconds\": 11298.0, \"gpu_hours\": 3.14}, \"metrics\": {\"overall_success_rate\": 0.74, \"successes\": 148, \"total\": 200, \"n_rollouts\": 20, \"benchmark\": \"object\", \"seed\": 50, \"mode\": \"vla_only\", \"model\": \"pi05\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T19:27:16.109Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.7582}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "5b0e0e21-a52e-44f7-8b22-afd9b5339fd4",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015NiTd5JfPYbGFYiBusM7qW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2266,
+      "cache_read_input_tokens": 102945,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2266
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_016YzJNcEWEatXy3EHLQioHD`</summary>
+
+```json
+{
+  "name": "bjb1-18228 关键实验状态检查 (2026-05-24)",
+  "type": "report",
+  "description": "bjb1-18228 上 π0.5 CRM 训练 + 2 个 supp eval + precompute 状态核查报告",
+  "project": "acr-vla-conformal-refinement",
+  "content_filename": "bjb1_18228_check.md",
+  "content": "# bjb1-18228 关键实验状态核查 (UTC 2026-05-24 19:27)\n\n## 摘要\n\n| 实验 | 状态 | 关键结论 |\n|------|------|---------|\n| train-crm-pi05-unified-3suite-r2 | **RUNNING** | epoch 24/50, best val_loss=0.004856 (epoch 23), ETA ~10h |\n| eval-supp-spatial-vla-only-s42 | **DONE → registry updated** | SR=80.0% (160/200) |\n| eval-supp-obj-vla-only-s50 | **DONE → registry updated** | SR=74.0% (148/200) |\n| precompute-pi05-long-2048-r2 | **RUNNING** | PID 114507 存活 (已跑 2d 14h), 已写 175+ partial 文件 |\n| precompute-pi05-object-2048-r2 | **COMPLETE** | obs_features.pt + k_samples.pt + expert_actions.pt 已生成 (2026-05-24 17:54) |\n\n## GPU 占用 (4×RTX 4090 24GB)\n\n| GPU | Util | Mem | 进程 |\n|-----|------|-----|------|\n| 0   | 10%  | 580 MiB  | π0.5 CRM 训练 (cached features → 显存极低) |\n| 1   | 0%   | 0 MiB    | **空闲** |\n| 2   | 0%   | 0 MiB    | **空闲** |\n| 3   | 23%  | 9883 MiB | Long precompute (pi05 inference) |\n\n→ **cuda:1 / cuda:2 完全空闲，可立即部署新作业。**\n\n---\n\n## 1. π0.5 CRM 训练 (最高优先级)\n\n- **exp_id**: `train-crm-pi05-unified-3suite-r2`\n- **PID 326310** (bash wrapper) 存活, **PID 326315** (python) 99% CPU 运行中\n- **GPU**: cuda:0 (CUDA_VISIBLE_DEVICES=0)\n- **数据**: 194,485 samples (object 72507 + spatial 60250 + goal 61728), K=10, obs_dim=2048\n- **模型**: CRM 615,966 参数\n- **进度** (来自 `/root/runs/.../train-crm-pi05-unified-3suite-r2.log`):\n  - 已跑 **24/50 epochs**, 已耗时 **8h45m**\n  - 每 epoch ~22 min (684 batches × 256 batch_size)\n  - **best val_loss = 0.004856 @ epoch 23**, lr 现在 5.6e-4 (cosine 衰减)\n  - 训练 loss 从 0.0146 → 0.0085 (稳定下降)\n- **checkpoint dir**: `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/`\n  - 已保存 epoch19/20/21/22/23 + `crm_best.pt` (2.4MB, 更新于 03:04)\n- **预计完成**: 剩余 26 epochs × 22min ≈ **9.5h** → ETA 2026-05-25 ~13:00 UTC\n- **timeout 限制**: 43200s = 12h；wrapper 启动于 ~18:35 UTC，timeout 截止约 06:35 UTC（**风险：可能在 epoch 35±2 时被 timeout 中断**）\n\n⚠️ **建议**: 若需要训完 50 epoch，需在 timeout 触发前用 wrapper 显式延长或允许 resume；当前 `crm_best.pt` 已可作为可用 checkpoint。\n\n---\n\n## 2. eval-supp-spatial-vla-only-s42\n\n- **已完成**, 退出日志 `logs/eval-supp-spatial-vla-only-s42.log` 显示 `Overall success rate (vla_only): 80.0% (160/200)`\n- JSON: `logs/eval_spatial_vla_only_seed42.json` (mtime 05-25 02:20)\n- 10 tasks × 20 rollouts, **最差任务**: `pick_up_the_black_bowl_on_the_ramekin` 0/20 (=0%)\n- 其余 9 个任务 SR 在 0.7–1.0 之间\n- **Registry 已更新**: PREPARING → QUEUED → RUNNING → DONE (conclusion=success)，metrics 已填，wall_clock=11293.8s\n\n## 3. eval-supp-obj-vla-only-s50\n\n- **已完成**, `Overall success rate (vla_only): 74.0% (148/200)`\n- JSON: `logs/eval_object_vla_only_seed50.json` (mtime 05-25 02:44)\n- 最差任务: butter 0.60, cream_cheese 0.60, milk/chocolate_pudding/soup 各 0.70\n- 最好: bbq_sauce 0.95, orange_juice 0.85\n- **Registry 已更新**: DONE, conclusion=success, wall_clock=11298.0s\n\n---\n\n## 4. Precompute 状态\n\n### precompute-pi05-long-2048-r2  (RUNNING)\n- PID **114507** 存活, 已运行 **2d 14h**, GPU 3 占 9.9GB\n- cache dir: `/root/autodl-tmp/crm_cache_pi05_2048/long/` (790 MB)\n- 当前最大 partial: `partial_s0_86500_87000.pt` (mtime 03:16 UTC，5min 前还在写)\n- 未见 `obs_features.pt` / `k_samples.pt` 等合并文件 → 还没收尾\n\n### precompute-pi05-object-2048-r2  (COMPLETE，无进程)\n- cache dir: `/root/autodl-tmp/crm_cache_pi05_2048/object/` (1.3 GB)\n- 最后 partial: `partial_s0_72500_72507.pt` (说明源 demos = 72,507 帧)\n- **`obs_features.pt` + `k_samples.pt` + `expert_actions.pt` 已生成** → 完成\n- 注: object cache 实际被 CRM 训练 (#1) 正在使用 (72507 samples 与训练日志匹配)\n\n---\n\n## 待办建议\n\n1. ⚠️ **CRM 训练 timeout 风险**: 12h timeout 在 26 剩余 epoch 完成前到达。若需完整 50 epoch，需 (a) 提前 resume 准备，或 (b) 接受 `crm_best.pt` (epoch 23) 作为 final ckpt。\n2. ✅ **cuda:1 / cuda:2 空闲**: 可立即部署其他 supp eval（如 8-seed 补全队列、pi05 ReconVLA cross-arch eval、tau sweep 等仍在 PREPARING 的实验）。\n3. ⚠️ **Long precompute** 不阻塞训练（在 GPU 3，独立），但若需要 long benchmark 加入 CRM 训练数据集，需等其收尾合并。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "340d783c-30a8-4878-a2e8-ef74c91a5e14",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015NiTd5JfPYbGFYiBusM7qW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2266,
+      "cache_read_input_tokens": 102945,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2266
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-24T19:28:11.896Z_
+
+<details><summary>↩ Tool result · `toolu_016YzJNcEWEatXy3EHLQioHD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_169b13\", \"name\": \"bjb1-18228 关键实验状态检查 (2026-05-24)\", \"type\": \"report\", \"description\": \"bjb1-18228 上 π0.5 CRM 训练 + 2 个 supp eval + precompute 状态核查报告\", \"path\": \"projects/acr-vla-conformal-refinement/artifacts/_project/report/bjb1_18228_check.md\", \"url\": null, \"project\": \"acr-vla-conformal-refinement\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-24T19:28:11.485806+00:00\", \"tags\": []}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "5f1e1616-3894-409e-97eb-0f51e31f9359",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260524_169b13\\\", \\\"name\\\": \\\"bjb1-18228 关键实验状态检查 (2026-05-24)\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"bjb1-18228 上 π0.5 CRM 训练 + 2 个 supp eval + precompute 状态核查报告\\\", \\\"path\\\": \\\"projects/acr-vla-conformal-refinement/artifacts/_project/report/bjb1_18228_check.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-24T19:28:11.485806+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_169b13\", \"name\": \"bjb1-18228 关键实验状态检查 (2026-05-24)\", \"type\": \"report\", \"description\": \"bjb1-18228 上 π0.5 CRM 训练 + 2 个 supp eval + precompute 状态核查报告\", \"path\": \"projects/acr-vla-conformal-refinement/artifacts/_project/report/bjb1_18228_check.md\", \"url\": null, \"project\": \"acr-vla-conformal-refinement\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-24T19:28:11.485806+00:00\", \"tags\": []}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+## 检查结果
+
+**全部 5 个实验/任务实际运行状态已确认。registry 已更新 2 个 supp eval 至 DONE。**
+
+### 关键结论
+
+| 项 | 状态 | 数据 |
+|---|---|---|
+| π0.5 CRM 训练 | **RUNNING** (PID 326315) | epoch 24/50, val_loss 0.004856, ETA ~10h |
+| eval-supp-spatial-vla-only-s42 | **DONE → registry updated** | SR=**80.0%** (160/200) |
+| eval-supp-obj-vla-only-s50 | **DONE → registry updated** | SR=**74.0%** (148/200) |
+| precompute-long (PID 114507) | RUNNING (2d 14h, 175+ partial) | 仍在写, GPU 3 占 9.9GB |
+| precompute-object | **COMPLETE** | obs_features/k_samples/expert_actions 已合并 |
+
+### GPU 占用
+- GPU 0: π0.5 CRM 训练（580MB，feature cached）
+- GPU 1, 2: **空闲，可立即部署**
+- GPU 3: long precompute
+
+### 风险提示
+- CRM 训练 wrapper timeout=12h，剩余 26 epoch × 22 min ≈ 9.5h，**逼近 timeout**。`crm_best.pt`(epoch 23) 已存，可作 fallback。
+
+报告已写入 `artifacts/_project/report/bjb1_18228_check.md` (art_20260524_169b13)。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "uuid": "661405d5-ff27-426e-bd21-98ff3bac34ed",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01XF4MhqPRbWog1QzyZUdcsX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3552,
+      "cache_read_input_tokens": 105211,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3552
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 95_
+
+## 检查结果
+
+**全部 5 个实验/任务实际运行状态已确认。registry 已更新 2 个 supp eval 至 DONE。**
+
+### 关键结论
+
+| 项 | 状态 | 数据 |
+|---|---|---|
+| π0.5 CRM 训练 | **RUNNING** (PID 326315) | epoch 24/50, val_loss 0.004856, ETA ~10h |
+| eval-supp-spatial-vla-only-s42 | **DONE → registry updated** | SR=**80.0%** (160/200) |
+| eval-supp-obj-vla-only-s50 | **DONE → registry updated** | SR=**74.0%** (148/200) |
+| precompute-long (PID 114507) | RUNNING (2d 14h, 175+ partial) | 仍在写, GPU 3 占 9.9GB |
+| precompute-object | **COMPLETE** | obs_features/k_samples/expert_actions 已合并 |
+
+### GPU 占用
+- GPU 0: π0.5 CRM 训练（580MB，feature cached）
+- GPU 1, 2: **空闲，可立即部署**
+- GPU 3: long precompute
+
+### 风险提示
+- CRM 训练 wrapper timeout=12h，剩余 26 epoch × 22 min ≈ 9.5h，**逼近 timeout**。`crm_best.pt`(epoch 23) 已存，可作 fallback。
+
+报告已写入 `artifacts/_project/report/bjb1_18228_check.md` (art_20260524_169b13)。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 274011,
+  "duration_api_ms": 199766,
+  "num_turns": 41,
+  "stop_reason": "end_turn",
+  "session_id": "ec362a5a-2e67-45b8-8adb-9663d5651f7d",
+  "total_cost_usd": 1.55917325,
+  "usage": {
+    "input_tokens": 25,
+    "cache_creation_input_tokens": 107953,
+    "cache_read_input_tokens": 1109024,
+    "output_tokens": 13111,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 107953,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 530,
+        "cache_read_input_tokens": 105211,
+        "cache_creation_input_tokens": 3552,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3552
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1960,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002055,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-7[1m]": {
+      "inputTokens": 25,
+      "outputTokens": 13111,
+      "cacheReadInputTokens": 1109024,
+      "cacheCreationInputTokens": 107953,
+      "webSearchRequests": 0,
+      "costUSD": 1.55711825,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "214bc46e-ecbe-470d-97d9-b76d10bb42b9"
+}
+```
+
+</details>
+
+---

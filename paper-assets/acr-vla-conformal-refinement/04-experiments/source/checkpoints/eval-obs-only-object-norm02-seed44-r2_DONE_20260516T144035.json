@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval-obs-only-object-norm02-seed44-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T01:32:15.187Z",
+    "updated_at": "2026-05-16T14:40:35.177Z",
+    "hypothesis": "Retry of eval-obs-only-object-norm02-seed44 (EXIT_CODE=127, missing conda activate). obs_only CRM norm=0.2 seed=44 on LIBERO object. Third seed for Fisher test. seed42=22% (PROJECT HIGH).",
+    "server": "bjb1-18228",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-18228",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-16T01:32:45.643Z",
+      "finished_at": "2026-05-16T14:40:32.978Z",
+      "training_hours": 13.13
+    },
+    "completed_at": "2026-05-16T01:34:19.695Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_seed44.json",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "428406",
+      "seed": 44,
+      "model_name": "crm_obs_only_norm02",
+      "data_path": "LIBERO object benchmark",
+      "data_count": 100
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T14:40:35.431423+00:00",
+  "trigger": "update_registry"
+}

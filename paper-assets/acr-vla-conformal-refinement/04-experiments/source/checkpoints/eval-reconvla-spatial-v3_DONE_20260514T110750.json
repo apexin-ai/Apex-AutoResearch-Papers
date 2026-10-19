@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval-reconvla-spatial-v3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-13T23:04:34.297Z",
+    "updated_at": "2026-05-14T11:07:50.691Z",
+    "reproduce": {
+      "finished_at": "2026-05-14T11:07:49.901Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-13T23:34:14.141Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-13T23:34:15.524386+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u src/evaluate.py --mode reconvla --benchmark spatial --n_rollouts 10 --seed 42 --K 10",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "118108",
+      "data_path": "/root/autodl-tmp/libero_data/ (spatial)",
+      "data_count": 100,
+      "model_name": "SampleConsensus (scalar Euclidean argmin)",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/eval_results/eval-reconvla-spatial-v3.log",
+      "hypothesis": "SampleConsensus scalar baseline for ACR-VLA comparison",
+      "checkpoint_source": "lerobot/smolvla_libero",
+      "eval_data": "LIBERO spatial 10 tasks x 10 rollouts"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T11:07:50.755551+00:00",
+  "trigger": "update_registry"
+}

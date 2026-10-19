@@ -1,0 +1,56 @@
+{
+  "exp_id": "eval-perdof-object-norm003-seed47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:56:24.175Z",
+    "updated_at": "2026-05-19T19:05:12.052Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm003-seed47.log",
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_perdof_norm003_seed47.json\"",
+      "server": "bjb1-18228",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "SmolVLA+CRM_perdof",
+      "seed": 47
+    },
+    "hypothesis": "perdof CRM with ε=0.03 (max_correction_norm) on LIBERO-Object seed47 tests whether a smaller correction magnitude improves or degrades task success rate compared to ε=0.05",
+    "reproduce": {
+      "finished_at": "2026-05-19T18:45:55.645Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T18:46:06.068016+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_success_rate": 0.15,
+      "n_tasks": 10,
+      "n_rollouts": 10,
+      "per_task": {
+        "alphabet_soup": 0,
+        "cream_cheese": 0,
+        "salad_dressing": 0.2,
+        "bbq_sauce": 0.3,
+        "ketchup": 0,
+        "tomato_sauce": 0.1,
+        "butter": 0.2,
+        "milk": 0.1,
+        "chocolate_pudding": 0.3,
+        "orange_juice": 0.3
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T19:05:12.052Z"
+  },
+  "timestamp": "2026-05-19T19:05:12.641743+00:00",
+  "trigger": "update_registry"
+}

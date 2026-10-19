@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-goal-k2mean-s45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T21:31:04.113Z",
+    "updated_at": "2026-05-23T21:31:43.597Z",
+    "hypothesis": "K=2 mean baseline on Goal suite seed45. Matched-seed companion for Goal s45 4-seed extension."
+  },
+  "timestamp": "2026-05-23T21:31:44.922035+00:00",
+  "trigger": "update_registry"
+}

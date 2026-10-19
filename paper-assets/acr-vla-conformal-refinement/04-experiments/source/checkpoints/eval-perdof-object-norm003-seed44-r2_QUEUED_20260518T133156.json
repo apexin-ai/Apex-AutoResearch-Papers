@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-perdof-object-norm003-seed44-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:31:41.748Z",
+    "updated_at": "2026-05-18T13:31:56.185Z",
+    "hypothesis": "perdof CRM ε=0.03 seed44 on LIBERO-Object。magnitude curve 低 ε 端 perdof ε=0.03 当前 seed42=14% (n=1)，seed43 已在跑。重试 r2 修正 python 路径。",
+    "parent": "eval-perdof-object-norm003-seed44"
+  },
+  "timestamp": "2026-05-18T13:31:56.624147+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-supp-reconvla-spatial-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:03:39.046Z",
+    "updated_at": "2026-05-23T08:19:55.504Z",
+    "hypothesis": "Reconvla K=10 argmin on Spatial seed43. Multi-seed validation (with s42=79%, s44). Tests cross-seed consistency of reconvla selection strategy.",
+    "parent": "eval-supp-reconvla-k2-spatial-s42"
+  },
+  "timestamp": "2026-05-23T08:19:56.739859+00:00",
+  "trigger": "update_registry"
+}

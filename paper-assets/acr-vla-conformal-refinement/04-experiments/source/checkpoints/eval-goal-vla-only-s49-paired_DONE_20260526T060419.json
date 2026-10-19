@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval-goal-vla-only-s49-paired",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T02:09:43.708Z",
+    "updated_at": "2026-05-26T06:04:17.775Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/evaluate.py --model smolvla --mode vla_only --baseline_mode single --benchmark goal --seed 49 --n_rollouts 20",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO-Goal",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 49,
+      "tmux_session": "goal_vla_s49",
+      "gpu": 0,
+      "log_path": "/root/acr-vla-conformal-refinement/logs/goal_vla_only_s49_bjb2.log",
+      "checkpoint_path": "N/A (vla_only baseline)",
+      "output_file": "logs/eval_goal_vla_only_seed49.json"
+    },
+    "hypothesis": "SmolVLA vla_only baseline on LIBERO-Goal s49. Paired baseline for Adaptive Conformal CRM uplift measurement.",
+    "metrics": {
+      "success_rate": 0.835,
+      "n_rollouts": 200,
+      "benchmark": "goal",
+      "seed": 49
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-26T06:04:17.775Z"
+  },
+  "timestamp": "2026-05-26T06:04:19.375041+00:00",
+  "trigger": "update_registry"
+}

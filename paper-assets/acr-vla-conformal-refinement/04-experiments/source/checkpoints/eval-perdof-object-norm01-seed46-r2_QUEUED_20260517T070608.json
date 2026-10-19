@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-perdof-object-norm01-seed46-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:05:32.383Z",
+    "updated_at": "2026-05-17T07:06:08.111Z",
+    "hypothesis": "perdof CRM at eps=0.1 on seed46 will show magnitude sensitivity collapse pattern similar to seed42, confirming obs_only robustness advantage"
+  },
+  "timestamp": "2026-05-17T07:06:08.397324+00:00",
+  "trigger": "update_registry"
+}

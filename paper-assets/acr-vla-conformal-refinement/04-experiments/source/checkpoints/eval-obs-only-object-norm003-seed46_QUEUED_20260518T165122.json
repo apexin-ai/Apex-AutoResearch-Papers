@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-object-norm003-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:50:34.507Z",
+    "updated_at": "2026-05-18T16:51:21.937Z",
+    "hypothesis": "obs_only CRM (ε=0.03) seed46 on LIBERO-Object. GPU 双跑补 magnitude curve 最薄点 ε=0.03。"
+  },
+  "timestamp": "2026-05-18T16:51:22.371518+00:00",
+  "trigger": "update_registry"
+}

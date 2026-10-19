@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval-obs-only-spatial-norm02-k5-seed45-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:30:33.621Z",
+    "updated_at": "2026-05-19T16:25:54.177Z",
+    "hypothesis": "CRM obs-only with K=5 conformal refinement steps and max_correction_norm=0.2 will improve SmolVLA spatial task success rate compared to baseline, though potentially less than K=10 due to fewer correction iterations.",
+    "parent": "eval-obs-only-spatial-norm02-k5-seed45",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 45 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_spatial_obs_only_norm02_k5_seed45.json",
+      "server": "bjb2-28827",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 10,
+      "model_name": "SmolVLA+CRM_obs_only",
+      "seed": 45,
+      "gpu": "cuda:5",
+      "pid": 845019,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "LIBERO-spatial",
+      "output_file": "logs/eval_spatial_obs_only_norm02_k5_seed45.json",
+      "log_file": "logs/eval_spatial_obs_only_norm02_k5_seed45.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T16:25:51.927Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T16:25:54.177Z"
+  },
+  "timestamp": "2026-05-19T16:25:54.728688+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "westd-pi05-vla-only-long-s44-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T13:18:18.464Z",
+    "updated_at": "2026-05-26T13:18:18.464Z"
+  },
+  "timestamp": "2026-05-26T13:18:21.887599+00:00",
+  "trigger": "update_registry"
+}

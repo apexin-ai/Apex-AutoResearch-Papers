@@ -1,0 +1,56 @@
+{
+  "exp_id": "eval-obs-only-spatial-norm02-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:49:20.087Z",
+    "updated_at": "2026-05-20T15:19:32.051Z",
+    "hypothesis": "CRM obs_only K=10 norm02 on LIBERO-Spatial seed42. Filling missing seed42 for Spatial CRM to balance seed coverage across configs.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 ... python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --seed 42 --n_rollouts 10 --K 10 --crm_checkpoint .../crm_best.pt --max_correction_norm 0.2",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "340026",
+      "log_path": "logs/eval-obs-only-spatial-norm02-seed42.log",
+      "submitted_at": "2026-05-20T10:52:21.255Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA + CRM obs_only (K=10, norm02)",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T12:13:36.856Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T12:13:46.992861+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "status_note": "INCOMPLETE - only 2/10 tasks evaluated before process terminated",
+      "partial_per_task": {
+        "between_plate_ramekin": 0.9,
+        "next_to_ramekin": 1
+      },
+      "tasks_completed": 2,
+      "tasks_total": 10
+    },
+    "checkpoint_path": "N/A",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval-obs-only-spatial-norm02-seed42.log",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-20T15:19:32.787523+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-crm-spatial-s48-d149-bjb1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T15:51:58.942Z",
+    "updated_at": "2026-05-26T15:53:21.957Z",
+    "hypothesis": "SmolVLA CRM (K=10, norm=0.05) on spatial s48 provides action correction (Table 1 D149 seed, bjb1-32546 rerun)"
+  },
+  "timestamp": "2026-05-26T15:53:23.674529+00:00",
+  "trigger": "update_registry"
+}

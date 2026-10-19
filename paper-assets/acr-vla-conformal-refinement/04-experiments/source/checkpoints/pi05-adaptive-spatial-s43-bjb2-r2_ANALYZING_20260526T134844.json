@@ -1,0 +1,43 @@
+{
+  "exp_id": "pi05-adaptive-spatial-s43-bjb2-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:55:43.728Z",
+    "updated_at": "2026-05-26T13:48:42.801Z",
+    "hypothesis": "π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s43. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.",
+    "server": "bjb2-28827",
+    "gpu": "cuda:4",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb2-28827",
+      "gpu": "cuda:4",
+      "started_at": "2026-05-26T09:58:56.968Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark spatial --seed 43 --n_rollouts 20 --output_file logs/eval_spatial_adaptive_pi05_seed43.json\"",
+      "code_commit": "446587cac5747e7984fa7b08bbc5f07456c7d059",
+      "finished_at": "2026-05-26T13:25:36.749Z",
+      "training_hours": 3.44
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark spatial --seed 43 --n_rollouts 20 --output_file logs/eval_spatial_adaptive_pi05_seed43.json\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "336003",
+      "log_path": "~/runs/acr-vla-conformal-refinement/pi05-adaptive-spatial-s43-bjb2-r2.log",
+      "submitted_at": "2026-05-26T09:59:04.023Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "336003",
+    "log_path": "~/runs/acr-vla-conformal-refinement/pi05-adaptive-spatial-s43-bjb2-r2.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-26T13:48:44.807602+00:00",
+  "trigger": "update_registry"
+}

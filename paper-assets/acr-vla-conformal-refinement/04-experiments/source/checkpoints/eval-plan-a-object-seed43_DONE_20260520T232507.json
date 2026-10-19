@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval-plan-a-object-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:32:51.140Z",
+    "updated_at": "2026-05-20T23:25:05.891Z",
+    "hypothesis": "D090 Plan A: K=10 forward → L2 pairwise distance as uncertainty → if L2 > τ(P50=0.074855): argmin-to-centroid + CRM obs_only correction; else: argmin-to-centroid only. 测试 adaptive conformal CRM 在 LIBERO-Object seed43 上的表现。",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode adaptive_conformal_crm --benchmark object --seed 43 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.074855",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "560444",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "SmolVLA+CRM_obs_only(adaptive_conformal_crm)",
+      "seed": 43,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "log_path": "/root/autodl-tmp/logs/plan_a_object_seed43.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.16,
+      "sr_pct": "16.0%",
+      "n_tasks": 10,
+      "n_rollouts": 10,
+      "total_rollouts": 100,
+      "mean_uncertainty": 0.1457,
+      "trigger_rate": 0.84
+    },
+    "completed_at": "2026-05-20T23:25:05.891Z"
+  },
+  "timestamp": "2026-05-20T23:25:07.432037+00:00",
+  "trigger": "update_registry"
+}

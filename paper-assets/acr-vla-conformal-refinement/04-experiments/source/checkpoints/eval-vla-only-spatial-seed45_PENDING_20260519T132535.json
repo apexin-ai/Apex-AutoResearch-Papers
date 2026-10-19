@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-vla-only-spatial-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:24:47.682Z",
+    "updated_at": "2026-05-19T13:25:35.122Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Spatial seed45. Spatial benchmark 第四个 VLA-only seed，配合 obs_only spatial seeds 报告 CRM 改进幅度。"
+  },
+  "timestamp": "2026-05-19T13:25:35.615844+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval-obs-only-object-norm005-seed67",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:35:00.000Z",
+    "updated_at": "2026-05-21T04:44:08.410Z",
+    "hypothesis": "CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed67. Norm sweep seed balance for ε=0.05.",
+    "server": "bjb1-32546",
+    "gpu": "cuda:2",
+    "pid": 805840,
+    "seed": 67,
+    "spec": {
+      "command": "detected on GPU, submitted by prior Worker but not registered",
+      "server": "bjb1-32546",
+      "data_path": "/root/autodl-tmp/acr-vla-conformal-refinement/",
+      "data_count": "100 rollouts",
+      "model_name": "crm_v3_norm/obs_only",
+      "seed": 67,
+      "gpu": "cuda:2"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T04:43:57.464Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T04:44:08.410Z"
+  },
+  "timestamp": "2026-05-21T04:44:09.447715+00:00",
+  "trigger": "update_registry"
+}

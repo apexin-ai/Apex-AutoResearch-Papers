@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval-supp-obj-adapt-tau025-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:16:00.470Z",
+    "updated_at": "2026-05-23T10:01:15.766Z",
+    "hypothesis": "Object Adaptive CRM with correct tau=0.25 (previous r2 used tau=0.074855, too aggressive with 70% trigger rate → no improvement). tau=0.25 worked on Spatial (82% vs 78.5% VLA-only). Object VLA-only=77.8%±1.0%.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.25 --benchmark object --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2 2>&1 | tee logs/eval-supp-obj-adapt-tau025-s42.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "620539",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-obj-adapt-tau025-s42.log",
+      "submitted_at": "2026-05-23T07:16:18.400Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Object"
+    },
+    "parent": "eval-supp-obj-adapt-s42-r2",
+    "reproduce": {
+      "finished_at": "2026-05-23T10:01:10.879Z"
+    }
+  },
+  "timestamp": "2026-05-23T10:01:18.407453+00:00",
+  "trigger": "update_registry"
+}

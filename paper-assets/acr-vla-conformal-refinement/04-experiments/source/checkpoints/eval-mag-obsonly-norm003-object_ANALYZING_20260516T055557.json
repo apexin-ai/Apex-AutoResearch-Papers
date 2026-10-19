@@ -1,0 +1,62 @@
+{
+  "exp_id": "eval-mag-obsonly-norm003-object",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:47:31.254Z",
+    "updated_at": "2026-05-16T05:55:56.949Z",
+    "hypothesis": "Object magnitude sweep: obs_only CRM v3-norm at norm=0.03 on LIBERO object benchmark. Completes 5-point magnitude curve (0.03/0.05/0.1/0.2/0.3). Tests minimum effective correction magnitude on object domain.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 121325,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-mag-obsonly-norm003-object.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "data_path": "LIBERO object benchmark",
+      "data_count": 100,
+      "model_name": "crm_obs_only",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "object benchmark, max_correction_norm=0.03, K=10, n_rollouts=10",
+      "parent": "eval-acr-object-v4-obs-only"
+    },
+    "metrics": {
+      "overall_sr": 0.16,
+      "tasks_done": 100,
+      "tasks_total": 100,
+      "per_task": {
+        "pick_up_the_alphabet_soup_and_place_it_in_the_basket": 0,
+        "pick_up_the_cream_cheese_and_place_it_in_the_basket": 0.2,
+        "pick_up_the_salad_dressing_and_place_it_in_the_basket": 0.1,
+        "pick_up_the_bbq_sauce_and_place_it_in_the_basket": 0.4,
+        "pick_up_the_ketchup_and_place_it_in_the_basket": 0,
+        "pick_up_the_tomato_sauce_and_place_it_in_the_basket": 0,
+        "pick_up_the_butter_and_place_it_in_the_basket": 0.1,
+        "pick_up_the_milk_and_place_it_in_the_basket": 0.2,
+        "pick_up_the_chocolate_pudding_and_place_it_in_the_basket": 0.3,
+        "pick_up_the_orange_juice_and_place_it_in_the_basket": 0.3
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T05:35:17.752Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T05:35:20.742243+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T05:55:57.165468+00:00",
+  "trigger": "update_registry"
+}

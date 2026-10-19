@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval-argmin-object-seed44-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T01:32:14.163Z",
+    "updated_at": "2026-05-16T15:28:29.765Z",
+    "hypothesis": "Retry of eval-argmin-object-seed44 (EXIT_CODE=127, missing conda activate). argmin baseline K=10 seed=44 on LIBERO object. Third seed for Fisher test. seed42=12%, seed43=17%.",
+    "server": "bjb1-18228",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-18228",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-16T01:32:36.214Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode reconvla --benchmark object --n_rollouts 10 --seed 44 --K 10 --output_file logs/eval_object_reconvla_seed44.json\"",
+      "finished_at": "2026-05-16T15:28:27.588Z",
+      "training_hours": 13.93
+    },
+    "completed_at": "2026-05-16T01:34:17.696Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode reconvla --benchmark object --n_rollouts 10 --seed 44 --K 10 --output_file logs/eval_object_reconvla_seed44.json",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "428117",
+      "seed": 44,
+      "model_name": "reconvla_argmin",
+      "data_path": "LIBERO object benchmark",
+      "data_count": 100
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T15:28:30.016067+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-pi05-vla-only-spatial-seed44-r4",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:52:38.008Z",
+    "updated_at": "2026-05-22T11:53:17.881Z",
+    "hypothesis": "π0.5 VLA-only baseline on LIBERO-Spatial with official settings: n_action_steps=10, 10 dummy steps gripper-open, max_steps=280",
+    "parent": "eval-pi05-vla-only-spatial-seed44-r3"
+  },
+  "timestamp": "2026-05-22T11:53:18.945939+00:00",
+  "trigger": "update_registry"
+}

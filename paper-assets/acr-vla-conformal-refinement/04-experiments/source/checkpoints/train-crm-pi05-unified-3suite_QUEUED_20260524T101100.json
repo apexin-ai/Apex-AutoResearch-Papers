@@ -1,0 +1,15 @@
+{
+  "exp_id": "train-crm-pi05-unified-3suite",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T10:10:37.619Z",
+    "updated_at": "2026-05-24T10:10:59.228Z",
+    "hypothesis": "π0.5 unified 3-suite (Spatial+Goal+Object) CRM training validates whether CGS+CRM correction generalizes across VLA backbones. With SmolVLA unified CRM as precedent, mirroring the same recipe on π0.5 tests whether the conformal-refinement signal is backbone-agnostic. D135 dropped Long suite due to DDL constraint — 3-suite coverage is sufficient for cross-model claim."
+  },
+  "timestamp": "2026-05-24T10:11:00.710953+00:00",
+  "trigger": "update_registry"
+}

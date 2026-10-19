@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval-canonical-adaptive-k10-spatial-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T23:04:57.826Z",
+    "updated_at": "2026-05-25T08:32:20.284Z",
+    "hypothesis": "Canonical K=10 Adaptive Conformal (τ=0.25) on Spatial s44. Same-server data for paired t-test. Resubmit after timeout failure on cqa1.",
+    "spec": {
+      "command": "tmux new-session -d -s eval-canonical-adaptive-k10-spatial-s44 'cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=5 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 18000 python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.25 --K 10 --benchmark spatial --seed 44 --n_rollouts 20 --max_correction_norm 0.2 2>&1 | tee logs/eval-canonical-adaptive-k10-spatial-s44.log'",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "210458",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval-canonical-adaptive-k10-spatial-s44.log",
+      "submitted_at": "2026-05-24T23:07:25.453Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "SmolVLA+CRM",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial 10 tasks x 20 rollouts",
+      "tmux_session": "eval-canonical-adaptive-k10-spatial-s44",
+      "timeout_seconds": 18000,
+      "wall_clock_seconds": 33894.8,
+      "gpu_hours": 9.42
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-25T08:32:20.284Z"
+  },
+  "timestamp": "2026-05-25T08:32:21.758806+00:00",
+  "trigger": "update_registry"
+}

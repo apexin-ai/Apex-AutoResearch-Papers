@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval-vla-only-object-seed50",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-19T21:24:17.487Z",
+    "updated_at": "2026-05-20T20:08:12.502Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Object seed50. Expanding VLA-only seed coverage for seed balance.",
+    "reproduce": {
+      "finished_at": "2026-05-19T23:17:13.814Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T23:17:28.740244+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "success_rate": 0.09,
+          "total_rollouts": 100,
+          "successes": 9,
+          "per_task": {
+            "alphabet_soup": 0,
+            "cream_cheese": 0.1,
+            "salad_dressing": 0.1,
+            "bbq_sauce": 0.2,
+            "ketchup": 0,
+            "tomato_sauce": 0.1,
+            "butter": 0,
+            "milk": 0.1,
+            "chocolate_pudding": 0.1,
+            "orange_juice": 0.2
+          }
+        }
+      }
+    },
+    "completed_at": "2026-05-19T23:39:17.611Z"
+  },
+  "timestamp": "2026-05-20T20:08:13.317667+00:00",
+  "trigger": "update_registry"
+}

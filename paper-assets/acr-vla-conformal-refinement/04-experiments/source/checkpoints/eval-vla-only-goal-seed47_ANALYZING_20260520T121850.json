@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval-vla-only-goal-seed47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-19T21:32:24.476Z",
+    "updated_at": "2026-05-20T12:18:49.628Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Goal seed47. 补齐 Goal VLA-only 样本量 (n→7)，与 CRM-Goal 配对统计检验。",
+    "completed_at": "2026-05-19T22:08:05.186Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      },
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T12:14:09.600871+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=4 ... python -u src/evaluate.py --mode vla_only --benchmark goal --seed 47 --n_rollouts 10",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "336621",
+      "log_path": "logs/eval-vla-only-goal-seed47.log",
+      "submitted_at": "2026-05-20T10:52:26.721Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Goal",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA (vla_only)",
+      "seed": 47
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T12:13:54.165Z"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T12:18:50.379859+00:00",
+  "trigger": "update_registry"
+}

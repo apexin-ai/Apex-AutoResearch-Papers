@@ -1,0 +1,52 @@
+{
+  "exp_id": "eval-pi05-vla-only-goal-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:17:20.358Z",
+    "updated_at": "2026-05-25T00:37:52.191Z",
+    "hypothesis": "π0.5 VLA-only baseline on LIBERO-Goal (seed 43, 20 rollouts). Replicate seed for variance estimation.",
+    "spec": {
+      "command": "python -u src/evaluate.py --model pi05 --mode vla_only --benchmark goal --seed 43 --n_rollouts 20",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "574597",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-goal-s43.log",
+      "submitted_at": "2026-05-24T18:18:17.275Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Goal",
+      "data_count": 200,
+      "model_name": "pi0.5",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/models/pi05_libero_finetuned/",
+      "eval_data": "LIBERO-Goal (10 tasks x 20 rollouts)",
+      "wall_clock_seconds": 22774.9,
+      "gpu_hours": 6.33
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T23:54:22.850Z"
+    },
+    "metrics": {
+      "overall_success_rate": 0.97,
+      "n_rollouts": 20,
+      "n_tasks": 10,
+      "total_rollouts": 200,
+      "benchmark": "goal",
+      "mode": "vla_only",
+      "model": "pi0.5"
+    },
+    "checkpoint_path": "N/A (eval only, pi05_libero_finetuned)",
+    "log_path": "bjb1-32546:/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_pi05_seed43.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-25T00:37:52.191Z"
+  },
+  "timestamp": "2026-05-25T00:37:53.630965+00:00",
+  "trigger": "update_registry"
+}

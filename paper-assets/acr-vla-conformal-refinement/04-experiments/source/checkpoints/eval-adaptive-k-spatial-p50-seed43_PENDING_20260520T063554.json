@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p50-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:34:52.011Z",
+    "updated_at": "2026-05-20T06:35:53.691Z",
+    "hypothesis": "K=2 L2 divergence-based adaptive K allocation (P50 threshold τ=0.074855) transfers from Object to Spatial benchmark, achieving comparable SR to fixed K=10 with ~62% compute savings. Cross-benchmark validation of adaptive K as core method."
+  },
+  "timestamp": "2026-05-20T06:35:54.384164+00:00",
+  "trigger": "update_registry"
+}

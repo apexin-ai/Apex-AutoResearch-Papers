@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval-obs-only-object-norm01-seed51-r3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:41:19.545Z",
+    "updated_at": "2026-05-21T03:09:53.889Z",
+    "hypothesis": "CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed51 r3. Redo after python PATH failure on bjb1-32546. Norm sweep: filling ε=0.1 gap.",
+    "parent": "eval-obs-only-object-norm01-seed51-r2",
+    "spec": {
+      "command": "cd /root/acr-vla-conformal-refinement && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 51 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_obs_only_object_norm01_seed51_r3.json",
+      "server": "bjb1-32546",
+      "gpu": "cuda:0",
+      "seed": 51,
+      "model_name": "CRM_obs_only",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "checkpoint_source": "crm_v3_norm_obs_only",
+      "eval_data": "LIBERO-Object",
+      "log_path": "/root/autodl-tmp/logs/obs_only_object_norm01_seed51_r3.log",
+      "pid": 731912
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T03:09:56.581887+00:00",
+  "trigger": "update_registry"
+}

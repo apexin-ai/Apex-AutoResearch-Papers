@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval-k2-tau010-spatial-s42-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T23:28:29.356Z",
+    "updated_at": "2026-05-25T00:52:12.177Z",
+    "hypothesis": "K=2 τ-sweep: τ=0.10 Adaptive Conformal on Spatial s42. Retry after first attempt failed (conda not activated). Expect high trigger rate at low τ.",
+    "spec": {
+      "command": "python evaluate.py --mode adaptive_conformal_crm --K 2 --conformal_threshold 0.10 --benchmark spatial --seed 42 --n_rollouts 20",
+      "server": "bjb2-40593",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "327574",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-k2-tau010-spatial-s42-r2.log",
+      "submitted_at": "2026-05-24T23:28:41.167Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "SmolVLA+CRM",
+      "seed": 42,
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "wall_clock_seconds": 5011.0,
+      "gpu_hours": 1.39
+    },
+    "conclusion": "killed",
+    "log_path": "bjb2-40593:/root/acr-vla-conformal-refinement/logs/eval-k2-tau010-spatial-s42-r2.log",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-25T00:52:12.177Z"
+  },
+  "timestamp": "2026-05-25T00:52:14.041327+00:00",
+  "trigger": "update_registry"
+}

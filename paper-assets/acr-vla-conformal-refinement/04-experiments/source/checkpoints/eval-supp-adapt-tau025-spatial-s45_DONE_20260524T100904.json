@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval-supp-adapt-tau025-spatial-s45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:48:54.415Z",
+    "updated_at": "2026-05-24T10:09:03.019Z",
+    "hypothesis": "Adaptive CRM tau=0.25 (conformal_threshold) with max_correction_norm=0.2 on Spatial suite seed45. Extending from 3-seed (s42/s43/s44) to 5-seed for variance analysis. 3-seed mean 80.8%±1.1%.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --K 10 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "model_name": "smolvla+crm-adaptive",
+      "seed": 45,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial 10 tasks x 20 rollouts",
+      "benchmark": "spatial",
+      "mode": "adaptive_conformal_crm",
+      "max_correction_norm": 0.2,
+      "conformal_threshold": 0.25,
+      "K": 10,
+      "tmux_session": "eval-supp-adapt-tau025-spatial-s45",
+      "gpu": 4,
+      "checkpoint_path": "n/a-eval-only",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval-supp-adapt-tau025-spatial-s45.log",
+      "result_json": "/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.8,
+      "successes": 160,
+      "total": 200,
+      "mean_uncertainty": 0.1885,
+      "trigger_rate": 0.2013,
+      "tau": 0.25,
+      "total_steps": 28599,
+      "crm_applied_steps": 5758
+    },
+    "completed_at": "2026-05-24T10:09:03.019Z"
+  },
+  "timestamp": "2026-05-24T10:09:04.345904+00:00",
+  "trigger": "update_registry"
+}

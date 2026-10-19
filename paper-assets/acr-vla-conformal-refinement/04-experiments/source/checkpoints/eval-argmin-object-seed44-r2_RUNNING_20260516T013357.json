@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval-argmin-object-seed44-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:32:14.163Z",
+    "updated_at": "2026-05-16T01:33:57.442Z",
+    "hypothesis": "Retry of eval-argmin-object-seed44 (EXIT_CODE=127, missing conda activate). argmin baseline K=10 seed=44 on LIBERO object. Third seed for Fisher test. seed42=12%, seed43=17%.",
+    "server": "bjb1-18228",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-18228",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-16T01:32:36.214Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode reconvla --benchmark object --n_rollouts 10 --seed 44 --K 10 --output_file logs/eval_object_reconvla_seed44.json\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode reconvla --benchmark object --n_rollouts 10 --seed 44 --K 10 --output_file logs/eval_object_reconvla_seed44.json\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "428117",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-argmin-object-seed44-r2.log",
+      "submitted_at": "2026-05-16T01:32:39.030Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "428117",
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-argmin-object-seed44-r2.log",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T01:33:57.924185+00:00",
+  "trigger": "update_registry"
+}

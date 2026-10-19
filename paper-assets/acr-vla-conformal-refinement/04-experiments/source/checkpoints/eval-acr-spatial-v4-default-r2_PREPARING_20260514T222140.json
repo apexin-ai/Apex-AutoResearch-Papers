@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval-acr-spatial-v4-default-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:17:37.194Z",
+    "updated_at": "2026-05-14T22:21:40.602Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-default-r2.log",
+      "submitted_at": "2026-05-14T22:17:36.857Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "D018 retry: Normalization alone fixes CRM correction degradation. v3-norm per-DOF checkpoint with default max_correction_norm (~1.42). If >30% baseline → normalization was the main fix. If still < 30% → magnitude control also needed (compare with v4-small at 0.1).",
+    "parent": "eval-acr-spatial-v4-default",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T22:21:40.700243+00:00",
+  "trigger": "update_registry"
+}

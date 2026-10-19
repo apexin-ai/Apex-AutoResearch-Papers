@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-vla-only-goal-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:31:14.902Z",
+    "updated_at": "2026-05-19T17:31:45.373Z",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark goal --n_rollouts 10 --seed 45 --K 1 --output_file logs/eval_goal_vla_only_seed45.json\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "917287",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-vla-only-goal-seed45.log",
+      "submitted_at": "2026-05-19T17:31:14.140Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "VLA-only baseline on LIBERO-Goal seed45. 补齐 Goal suite 第 4 个 seed (n=4)，与 seed42/43/44-r2 配套。LIBERO-Goal 目标条件泛化 baseline。"
+  },
+  "timestamp": "2026-05-19T17:31:45.937422+00:00",
+  "trigger": "update_registry"
+}

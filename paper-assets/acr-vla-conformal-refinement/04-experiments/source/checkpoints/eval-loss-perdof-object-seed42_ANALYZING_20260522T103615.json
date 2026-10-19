@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval-loss-perdof-object-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:44:22.703Z",
+    "updated_at": "2026-05-22T10:36:12.825Z",
+    "hypothesis": "Per-DOF weighted CRM eval on SmolVLA Object — testing if prioritizing high-precision DOFs improves downstream success rate vs uniform MSE",
+    "spec": {
+      "command": "python src/evaluate.py --model smolvla --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_loss_variants/perdof_weighted/crm_best.pt --benchmark object --seed 42 --n_rollouts 20 --obs_dim 960",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "857640",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-loss-perdof-object-seed42.log",
+      "submitted_at": "2026-05-22T06:45:31.934Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": 200,
+      "model_name": "CRM_perdof",
+      "seed": 42,
+      "checkpoint_source": "crm-loss-perdof",
+      "eval_data": "LIBERO-Object"
+    },
+    "parent": "crm-loss-perdof",
+    "reproduce": {
+      "finished_at": "2026-05-22T10:36:02.722Z"
+    }
+  },
+  "timestamp": "2026-05-22T10:36:15.125084+00:00",
+  "trigger": "update_registry"
+}

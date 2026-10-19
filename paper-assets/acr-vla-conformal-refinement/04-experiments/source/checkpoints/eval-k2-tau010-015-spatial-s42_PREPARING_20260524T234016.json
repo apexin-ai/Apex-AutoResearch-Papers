@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval-k2-tau010-015-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T21:58:23.211Z",
+    "updated_at": "2026-05-24T23:40:15.510Z",
+    "hypothesis": "K=2 τ-sweep: τ=0.10 then τ=0.15 serial on Spatial s42. K=2 matches Table 1 production setting. Retry after tmux name conflict with previous attempt.",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && echo '=== K=2 tau=0.10 START ===' && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.10 --benchmark spatial --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2 2>&1 | tee logs/eval-k2-tau010-spatial-s42.log && echo '=== K=2 tau=0.15 START ===' && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.15 --benchmark spatial --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2 2>&1 | tee logs/eval-k2-tau015-spatial-s42.log\"",
+      "server": "bjb2-40593",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-k2-tau010-015-spatial-s42.log",
+      "submitted_at": "2026-05-24T21:58:37.308Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-24T23:40:16.959685+00:00",
+  "trigger": "update_registry"
+}

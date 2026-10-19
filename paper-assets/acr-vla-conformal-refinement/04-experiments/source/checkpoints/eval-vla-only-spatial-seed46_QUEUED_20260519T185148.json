@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-vla-only-spatial-seed46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:51:37.036Z",
+    "updated_at": "2026-05-19T18:51:46.939Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Spatial seed46. 补齐 Spatial VLA-only n=5，与 seed42/43/44/45 配套。"
+  },
+  "timestamp": "2026-05-19T18:51:48.088124+00:00",
+  "trigger": "update_registry"
+}

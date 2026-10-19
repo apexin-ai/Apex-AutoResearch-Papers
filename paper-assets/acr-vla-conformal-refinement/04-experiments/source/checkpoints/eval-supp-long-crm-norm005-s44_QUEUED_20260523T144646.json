@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-long-crm-norm005-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:44:35.159Z",
+    "updated_at": "2026-05-23T14:46:45.044Z",
+    "hypothesis": "CRM norm=0.05 always-on on Long suite seed44. Third seed for Long CRM 3-seed validation."
+  },
+  "timestamp": "2026-05-23T14:46:46.234200+00:00",
+  "trigger": "update_registry"
+}

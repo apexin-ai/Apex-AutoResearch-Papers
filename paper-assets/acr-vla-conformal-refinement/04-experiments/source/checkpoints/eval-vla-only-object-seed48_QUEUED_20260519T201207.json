@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-vla-only-object-seed48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:10:31.390Z",
+    "updated_at": "2026-05-19T20:12:07.197Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Object seed48. 补齐 Object VLA-only 样本量，与 CRM K=10 配对统计检验。"
+  },
+  "timestamp": "2026-05-19T20:12:07.759513+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-k2-goal-vla-only-s46-paired",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T06:08:23.483Z",
+    "updated_at": "2026-05-25T06:09:05.096Z",
+    "hypothesis": "VLA-only baseline on Goal s46, same-server paired on bjb2-28827. Extends Goal seed coverage for paired t-test."
+  },
+  "timestamp": "2026-05-25T06:09:06.556838+00:00",
+  "trigger": "update_registry"
+}

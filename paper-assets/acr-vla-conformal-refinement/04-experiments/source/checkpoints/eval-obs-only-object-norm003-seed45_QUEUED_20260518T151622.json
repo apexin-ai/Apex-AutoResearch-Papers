@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-object-norm003-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:16:07.852Z",
+    "updated_at": "2026-05-18T15:16:21.719Z",
+    "hypothesis": "obs_only CRM (ε=0.03) seed45 on LIBERO-Object. 补 magnitude curve 最薄数据点：obs_only ε=0.03 当前 n=1，seed43/44 已在跑。第 4 个 seed 确保极低 norm 端有可靠 error bars。"
+  },
+  "timestamp": "2026-05-18T15:16:22.120307+00:00",
+  "trigger": "update_registry"
+}

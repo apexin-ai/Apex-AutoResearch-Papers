@@ -1,0 +1,21 @@
+{
+  "exp_id": "precompute-pi05-features-object",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:15:58.259Z",
+    "updated_at": "2026-05-21T12:15:58.259Z",
+    "spec": {
+      "command": "precompute π0.5 2048D features for LIBERO-Object+Spatial, 10 shards parallel",
+      "server": "bjb2-40593+bjb2-28827+bjb1-18228",
+      "data_path": "LIBERO-Object+Spatial",
+      "model_name": "pi0.5",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-21T12:16:00.932217+00:00",
+  "trigger": "update_registry"
+}

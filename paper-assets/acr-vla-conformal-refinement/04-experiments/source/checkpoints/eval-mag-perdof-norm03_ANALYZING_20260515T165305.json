@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval-mag-perdof-norm03",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:16:16.095Z",
+    "updated_at": "2026-05-15T16:53:05.125Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --benchmark spatial --mode acr_vla --max_correction_norm 0.3 --n_rollouts 10 --K 10 --smolvla_path /root/autodl-tmp/models/smolvla_libero/ --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --output_file logs/eval_mag_perdof_norm03.json",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO spatial benchmark",
+      "data_count": "10 tasks x 10 rollouts",
+      "model_name": "SmolVLA + CRM-v3-norm-perdof",
+      "seed": 42,
+      "checkpoint_source": "crm-train-v3-norm-perdof",
+      "eval_data": "LIBERO spatial"
+    },
+    "gpu": "bjb2-28827:cuda:3",
+    "pid": 14260,
+    "metrics": {
+      "tasks_done": "7/10",
+      "partial_results": {
+        "T0_between_plate_ramekin": "70%",
+        "T1_next_to_ramekin": "50%",
+        "T2_table_center": "10%",
+        "T3_on_cookie_box": "10%",
+        "T4_top_drawer": "0%",
+        "T5_on_ramekin": "0%",
+        "T6_next_to_cookie_box": "90%"
+      },
+      "running_avg_7task": "32.9%",
+      "snapshot_time": "2026-05-15T09:00:00Z",
+      "server": "bjb2-28827",
+      "process_status": "alive"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T16:53:04.031Z"
+    }
+  },
+  "timestamp": "2026-05-15T16:53:05.498011+00:00",
+  "trigger": "update_registry"
+}

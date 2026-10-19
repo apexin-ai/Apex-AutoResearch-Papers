@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval-reconvla-spatial-v3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-13T23:04:34.297Z",
+    "updated_at": "2026-05-13T23:47:15.384Z",
+    "reproduce": {
+      "finished_at": "2026-05-13T23:34:12.801Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-13T23:34:14.141Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-13T23:34:15.524386+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-13T23:47:15.430406+00:00",
+  "trigger": "update_registry"
+}

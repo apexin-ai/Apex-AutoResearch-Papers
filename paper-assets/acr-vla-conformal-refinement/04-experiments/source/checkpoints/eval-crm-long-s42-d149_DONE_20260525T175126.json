@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval-crm-long-s42-d149",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:20:45.404Z",
+    "updated_at": "2026-05-25T17:51:24.699Z",
+    "hypothesis": "SmolVLA CRM (K=10, norm=0.05) 在 Long benchmark 上的 action correction 效果（Table 1 D149 seed，CRM 用 3suite checkpoint 跨 suite 泛化）",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark long --mode crm_obs_only --baseline_mode single --seed 42 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_long_crm_seed42.json",
+      "server": "bjb1-18228",
+      "gpu": 2,
+      "seed": 42,
+      "benchmark": "long",
+      "model_name": "smolvla",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Long",
+      "data_path": "LIBERO-Long",
+      "data_count": 200,
+      "log_path": "bjb2-28827:/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed42.json",
+      "checkpoint_path": "N/A-eval"
+    },
+    "metrics": {
+      "success_rate": 0.565
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-25T17:51:24.699Z"
+  },
+  "timestamp": "2026-05-25T17:51:26.303051+00:00",
+  "trigger": "update_registry"
+}

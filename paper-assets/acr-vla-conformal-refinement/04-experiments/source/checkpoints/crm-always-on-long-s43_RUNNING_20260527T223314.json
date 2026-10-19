@@ -1,0 +1,35 @@
+{
+  "exp_id": "crm-always-on-long-s43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T15:37:40.810Z",
+    "updated_at": "2026-05-27T22:33:12.987Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark long --K 2 --seed 43 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001 --output_file logs/eval_long_crm_always_on_k2_norm0.2_seed43.json\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "887379",
+      "log_path": "~/runs/acr-vla-conformal-refinement/crm-always-on-long-s43.log",
+      "submitted_at": "2026-05-27T15:37:37.796Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Long (built-in benchmark)",
+      "data_count": "200 (20 rollouts × 10 tasks)",
+      "model_name": "smolvla",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Long"
+    },
+    "hypothesis": "K=2 CRM always-on (τ=0.001, every-step correction) on LIBERO-Long s43. Table 1 ablation: controls for K=2 sampling budget while removing conformal gating, isolating the value of selective triggering vs. blanket correction.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-27T22:33:14.948704+00:00",
+  "trigger": "update_registry"
+}

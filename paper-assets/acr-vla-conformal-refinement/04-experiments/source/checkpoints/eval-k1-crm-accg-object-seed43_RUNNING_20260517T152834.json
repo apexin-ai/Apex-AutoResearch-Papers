@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-k1-crm-accg-object-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:27:59.825Z",
+    "updated_at": "2026-05-17T15:28:33.545Z",
+    "hypothesis": "K=1 CRM with ACCG (fallback 960D) on LIBERO-Object seed43. 验证 ACCG correction 是否优于 K=1 VLA-only baseline (mean 10.8%). Parent: train-crm-k1-accg-object-seed42-fallback",
+    "parent": "train-crm-k1-accg-object-seed42-fallback",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --mode crm_k1_accg --benchmark object --n_rollouts 10 --seed 43 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt --max_correction_norm 0.2 --output_file logs/eval_k1_crm_accg_object_seed43.json",
+      "server": "bjb1-32546",
+      "gpu_id": 4,
+      "tmux_session": "eval-k1-accg-seed43",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt",
+      "eval_data": "LIBERO-Object (10 tasks x 10 rollouts)",
+      "seed": 43,
+      "model_name": "crm_k1_accg",
+      "data_path": "LIBERO-Object",
+      "data_count": 100
+    }
+  },
+  "timestamp": "2026-05-17T15:28:34.211598+00:00",
+  "trigger": "update_registry"
+}

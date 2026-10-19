@@ -1,0 +1,43 @@
+# code fix openvla eval wrapper
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_code_fix-openvla-eval-wrapper_20260524T064508_result.json`
+- **Structured JSON:** [`f60c90a44e922f741b7e.json`](../../sessions/f6/f60c90a44e922f741b7e.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+诊断完成。所有三个问题**已经修复**，pipeline 正在运行中：
+
+**状态总结：**
+
+1. **OpenVLA 模型加载** — 已通过 `openvla_compat.py` 修复。`patch_openvla_for_transformers5()` 手动注册了 `openvla` model type 到 AutoConfig/AutoModelForCausalLM，并 patch 了 SDPA、`tie_weights` 签名和 GenerationMixin 继承。模型在 transformers 5.8.1 下成功加载（60s, ~15.1 GB VRAM）。
+
+2. **K=1 MultiScaleCRM eval** — 已在 `openvla_eval.py` 中实现 `--mode crm_k1_multiscale` 分支，包含：
+   - `select_action_crm_k1_multiscale_openvla` 函数
+   - MultiScaleCRM 加载逻辑（支持 `model_state_dict` 格式）
+   - OpenVLA wrapper 的 `predict_action_with_features` 提取 4 层 multi-scale features
+
+3. **CRM K1 训练已完成** — 50/50 epochs, best val_loss=0.077477。Checkpoint 在 `/root/autodl-tmp/checkpoints/crm_openvla_k1_multiscale/object/crm_k1_best.pt`。
+
+**正在运行的进程：**
+- **GPU 1**: OpenVLA VLA-only baseline eval (seed42 v3) — PID 114990, 已运行 ~40 分钟
+- **GPU 2-5**: SmolVLA spatial evals (seed 45/46, vla_only / crm / adaptive)
+- **GPU 0**: 空闲（CRM K1 训练已结束）
+
+VLA-only eval 的日志输出因 nohup 缓冲暂时只显示到 rollout 1/20，但进程持续高 CPU 运行，正常推进中。无需额外修复操作。
+
+---

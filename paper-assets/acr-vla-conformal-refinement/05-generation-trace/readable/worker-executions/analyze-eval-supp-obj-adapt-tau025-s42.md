@@ -1,0 +1,670 @@
+# analyze eval supp obj adapt tau025 s42
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 12
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_analyze_eval-supp-obj-adapt-tau025-s42_20260523T100543.log`
+- **Structured JSON:** [`03bc52fab8b3d6bf084b.json`](../../sessions/03/03bc52fab8b3d6bf084b.json)
+
+## Before a recorded user message
+
+12 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "aa555d1d-934a-4111-995b-28b6912777f0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779634800,
+    "rateLimitType": "seven_day",
+    "utilization": 0.83,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "493d129c-fd9d-43f3-ae3d-1f57a9a67735",
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the experiment log from the server using ssh_read_only.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee",
+  "uuid": "64db322e-8e98-4efa-9708-2215dd2b9c3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X2SsiyU7EAEAiPhbtvnkDZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11279,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11279
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BfKrXz1wv8BFtvSodjqtPM`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee",
+  "uuid": "db22bb6d-5eff-414a-b599-471363355846",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X2SsiyU7EAEAiPhbtvnkDZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11279,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11279
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T10:05:55.188Z_
+
+<details><summary>↩ Tool result · `toolu_01BfKrXz1wv8BFtvSodjqtPM`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee",
+  "uuid": "acda50c4-af1f-480c-b364-8a1c44a76c7f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Y7kM1CAJwfkeJRE9WVvif`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tail -100 /root/acr-vla-conformal-refinement/logs/eval-supp-obj-adapt-tau025-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee",
+  "uuid": "ff0c3ccf-ad15-4110-9944-e1bbe91fc464",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7vr5c6C6dK7FYqgRG6TAP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 457,
+      "cache_read_input_tokens": 23120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 457
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T10:05:59.147Z_
+
+<details><summary>↩ Tool result · `toolu_011Y7kM1CAJwfkeJRE9WVvif`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: object\\n[eval] max_steps set to 280 for benchmark object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  30%|███       | 149/489 [00:00<00:00, 1450.53it/s]\\rLoading weights:  63%|██████▎   | 309/489 [00:00<00:00, 1536.55it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 1760.59it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n\\n============================================================\\nOverall success rate (adaptive_conformal_crm): 81.0% (162/200)\\n============================================================\\n[eval] Conformal CRM stats: mean_unc=0.1090, trigger_rate=3.5%\\n[eval] Results saved to logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee",
+  "uuid": "39f17c7e-c434-4f5a-8154-ad210a8c9803",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\\\n[eval] Mode: adaptive_conformal_crm, benchmark: object\\\\n[eval] max_steps set to 280 for benchmark object\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  30%|███       | 149/489 [00:00<00:00, 1450.53it/s]\\\\rLoading weights:  63%|██████▎   | 309/489 [00:00<00:00, 1536.55it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 1760.59it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\\\n\\\\n============================================================\\\\nOverall success rate (adaptive_conformal_crm): 81.0% (162/200)\\\\n============================================================\\\\n[eval] Conformal CRM stats: mean_unc=0.1090, trigger_rate=3.5%\\\\n[eval] Results saved to logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: object\\n[eval] max_steps set to 280 for benchmark object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  30%|███       | 149/489 [00:00<00:00, 1450.53it/s]\\rLoading weights:  63%|██████▎   | 309/489 [00:00<00:00, 1536.55it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 1760.59it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n\\n============================================================\\nOverall success rate (adaptive_conformal_crm): 81.0% (162/200)\\n============================================================\\n[eval] Conformal CRM stats: mean_unc=0.1090, trigger_rate=3.5%\\n[eval] Results saved to logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013SWweVVqMrd795Y1Yvfcr4`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee",
+  "uuid": "6bf5c934-3310-4f17-88f3-16bcd42484f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017AbrSr9ems1UsDnZVK8S6U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3084,
+      "cache_read_input_tokens": 23577,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3084
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T10:06:03.655Z_
+
+<details><summary>↩ Tool result · `toolu_013SWweVVqMrd795Y1Yvfcr4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.81,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.10903255019352551,\\n    \\\"trigger_rate\\\": 0.0354785004879729,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 34838,\\n    \\\"crm_applied_steps\\\": 1236\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee",
+  "uuid": "4ede894e-08e0-499d-8a82-83169378d723",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"adaptive_conformal_crm\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.81,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.85,\\\\n      \\\\\\\"successes\\\\\\\": 17,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.65,\\\\n      \\\\\\\"successes\\\\\\\": 13,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  },\\\\n  \\\\\\\"adaptive_stats\\\\\\\": {\\\\n    \\\\\\\"mean_uncertainty\\\\\\\": 0.10903255019352551,\\\\n    \\\\\\\"trigger_rate\\\\\\\": 0.0354785004879729,\\\\n    \\\\\\\"tau\\\\\\\": 0.25,\\\\n    \\\\\\\"total_steps\\\\\\\": 34838,\\\\n    \\\\\\\"crm_applied_steps\\\\\\\": 1236\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.81,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.10903255019352551,\\n    \\\"trigger_rate\\\": 0.0354785004879729,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 34838,\\n    \\\"crm_applied_steps\\\": 1236\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+## Object Adaptive CRM (τ=0.25, seed=42) 结果
+
+**Overall: 81.0% (162/200)**
+
+### Per-task
+
+| Task | Rate | Succ/Total |
+|------|------|------------|
+| alphabet_soup | 80% | 16/20 |
+| cream_cheese | 80% | 16/20 |
+| salad_dressing | **90%** | 18/20 |
+| bbq_sauce | **90%** | 18/20 |
+| ketchup | 85% | 17/20 |
+| tomato_sauce | 80% | 16/20 |
+| butter | **65%** | 13/20 |
+| milk | 75% | 15/20 |
+| chocolate_pudding | 75% | 15/20 |
+| orange_juice | **90%** | 18/20 |
+
+### Adaptive Stats
+
+- **trigger_rate**: 3.55% (1236/34838 steps)
+- **mean_uncertainty**: 0.1090
+- **τ**: 0.25
+- **max_correction_norm**: 0.2
+
+### 对比
+
+| Method | Object SR |
+|--------|-----------|
+| VLA-only | 79% |
+| CRM (always-on) | 77% |
+| ReConVLA | 79% |
+| **Adaptive CRM τ=0.25** | **81%** |
+
+τ=0.25 比之前错误的 τ=0.074855 (77.5%) 高 3.5pp，超过所有 baseline。trigger rate 从之前的高频触发降到 3.55%，说明只在高不确定性时介入，效果更好。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee",
+  "uuid": "89fac363-22a3-46cc-9363-a426d720ec38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZzv1KrER22QBWdrRBQAkC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1224,
+      "cache_read_input_tokens": 26661,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1224
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 12_
+
+## Object Adaptive CRM (τ=0.25, seed=42) 结果
+
+**Overall: 81.0% (162/200)**
+
+### Per-task
+
+| Task | Rate | Succ/Total |
+|------|------|------------|
+| alphabet_soup | 80% | 16/20 |
+| cream_cheese | 80% | 16/20 |
+| salad_dressing | **90%** | 18/20 |
+| bbq_sauce | **90%** | 18/20 |
+| ketchup | 85% | 17/20 |
+| tomato_sauce | 80% | 16/20 |
+| butter | **65%** | 13/20 |
+| milk | 75% | 15/20 |
+| chocolate_pudding | 75% | 15/20 |
+| orange_juice | **90%** | 18/20 |
+
+### Adaptive Stats
+
+- **trigger_rate**: 3.55% (1236/34838 steps)
+- **mean_uncertainty**: 0.1090
+- **τ**: 0.25
+- **max_correction_norm**: 0.2
+
+### 对比
+
+| Method | Object SR |
+|--------|-----------|
+| VLA-only | 79% |
+| CRM (always-on) | 77% |
+| ReConVLA | 79% |
+| **Adaptive CRM τ=0.25** | **81%** |
+
+τ=0.25 比之前错误的 τ=0.074855 (77.5%) 高 3.5pp，超过所有 baseline。trigger rate 从之前的高频触发降到 3.55%，说明只在高不确定性时介入，效果更好。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 23252,
+  "duration_api_ms": 22764,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "609a8863-25f3-432d-bd00-a0a655281cee",
+  "total_cost_usd": 0.16518549999999999,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 16044,
+    "cache_read_input_tokens": 85199,
+    "output_tokens": 848,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16044,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 443,
+        "cache_read_input_tokens": 26661,
+        "cache_creation_input_tokens": 1224,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1224
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1001,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001071,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 848,
+      "cacheReadInputTokens": 85199,
+      "cacheCreationInputTokens": 16044,
+      "webSearchRequests": 0,
+      "costUSD": 0.1641145,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "a8a9d2c4-ab98-4afa-9010-c185844506a3"
+}
+```
+
+</details>
+
+---

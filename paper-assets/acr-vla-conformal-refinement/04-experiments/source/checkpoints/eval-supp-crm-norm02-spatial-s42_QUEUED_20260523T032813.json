@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-supp-crm-norm02-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:26:15.065Z",
+    "updated_at": "2026-05-23T03:28:12.578Z",
+    "hypothesis": "CRM norm=0.2 always-on isolates whether adaptive gating (81% SR) outperforms same-norm always-on correction on LIBERO-Spatial",
+    "parent": "eval-3dir-adaptive-spatial-s42"
+  },
+  "timestamp": "2026-05-23T03:28:13.710679+00:00",
+  "trigger": "update_registry"
+}

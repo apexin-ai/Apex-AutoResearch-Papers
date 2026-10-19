@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval-lto-splitA-heldout",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T04:34:59.607Z",
+    "updated_at": "2026-05-19T04:59:28.320Z",
+    "spec": {
+      "command": "killed (buggy .replace task matching)",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "970686",
+      "log_path": "N/A",
+      "submitted_at": "2026-05-19T04:34:58.943Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": 50,
+      "model_name": "SmolVLA+CRM_lto_splitA",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_lto_splitA_fixed/crm_best.pt",
+      "eval_data": "LIBERO-Object held-out (5 tasks x 10 rollouts)",
+      "checkpoint_path": "N/A (eval-only, killed due to task matching bug)",
+      "wall_clock_seconds": 1469.4,
+      "gpu_hours": 0.41
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-19T04:59:28.321Z"
+  },
+  "timestamp": "2026-05-19T04:59:29.163649+00:00",
+  "trigger": "update_registry"
+}

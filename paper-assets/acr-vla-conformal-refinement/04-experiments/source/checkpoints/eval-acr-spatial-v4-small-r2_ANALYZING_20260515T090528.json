@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval-acr-spatial-v4-small-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:14:05.220Z",
+    "updated_at": "2026-05-15T09:05:28.218Z",
+    "hypothesis": "Restart from T7. ACR-VLA perdof CRM v3-norm with max_correction_norm=0.1 on spatial. Full per-DOF uncertainty pipeline.",
+    "parent": "eval-acr-spatial-v4-small",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/crm_best.pt --max_correction_norm 0.1 --start_task 7",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 312150,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-small-r2.log",
+      "submitted_at": "2026-05-15T05:14:36.298Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO spatial",
+      "data_count": 30,
+      "model_name": "ACR-VLA CRM perdof v3-norm (restart from T7)",
+      "seed": 42,
+      "eval_data": "LIBERO spatial tasks 7-9",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/crm_best.pt"
+    },
+    "notes": "[D027] Framing 暂不裁决。Scenario A/B/C 取决于 magnitude sweep + object benchmark 结果。spatial matched-task perdof=argmin (0pp) 意味着 Scenario A 在 spatial 上不可能。",
+    "metrics": {
+      "partial_results": {
+        "T7_on_stove": "10.0% (1/10)"
+      },
+      "tasks_done_restart": "1/3",
+      "note": "Restart from T7. T7=10% confirmed. T8 in progress.",
+      "snapshot_time": "2026-05-15T06:45Z"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T09:05:27.552Z"
+    }
+  },
+  "timestamp": "2026-05-15T09:05:28.380810+00:00",
+  "trigger": "update_registry"
+}

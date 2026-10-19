@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-k2-tau015-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T21:37:19.297Z",
+    "updated_at": "2026-05-24T23:38:22.047Z",
+    "hypothesis": "K=2 τ-sweep: τ=0.15 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.15 --benchmark spatial --seed 42 --n_rollouts 20 --max_correction_norm 0.2 --K 2 2>&1 | tee logs/eval-k2-tau015-spatial-s42.log\"",
+      "server": "bjb2-40593",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "319989",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-k2-tau015-spatial-s42.log",
+      "submitted_at": "2026-05-24T22:41:32.830Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-24T23:38:23.727471+00:00",
+  "trigger": "update_registry"
+}

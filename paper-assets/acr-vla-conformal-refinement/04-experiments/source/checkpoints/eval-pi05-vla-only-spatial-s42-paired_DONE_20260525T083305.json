@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval-pi05-vla-only-spatial-s42-paired",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:30:12.187Z",
+    "updated_at": "2026-05-25T08:33:04.033Z",
+    "hypothesis": "π0.5 VLA-only baseline Spatial s42 on bjb1-18228. 跨模型验证的 baseline，与后续 π0.5 Adaptive 同服务器配对。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark spatial --seed 42 --n_rollouts 20 --output_file logs/eval_spatial_vla_only_pi05_seed42_paired.json",
+      "server": "bjb1-18228",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "pid": 446358,
+      "log_path": "/tmp/eval-pi05-vla-only-spatial-s42-paired.log",
+      "model_name": "pi05",
+      "seed": 42,
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "benchmark": "spatial",
+      "mode": "vla_only",
+      "timeout": 18000,
+      "account": "root",
+      "gpu": "cuda:1"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.98,
+      "successes": 196,
+      "total": 200,
+      "mode": "vla_only",
+      "benchmark": "spatial",
+      "seed": 42,
+      "model": "pi05"
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-25T08:33:04.034Z"
+  },
+  "timestamp": "2026-05-25T08:33:05.514380+00:00",
+  "trigger": "update_registry"
+}

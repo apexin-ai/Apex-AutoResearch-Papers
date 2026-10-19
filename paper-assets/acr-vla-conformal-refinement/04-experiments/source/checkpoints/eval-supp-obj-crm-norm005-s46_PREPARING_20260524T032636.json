@@ -1,0 +1,22 @@
+{
+  "exp_id": "eval-supp-obj-crm-norm005-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T03:25:56.315Z",
+    "updated_at": "2026-05-24T03:26:33.701Z",
+    "hypothesis": "Supplementary 5-seed evaluation: Object CRM obs_only norm0.05 seed46 variance analysis.",
+    "metrics": {
+      "success_rate": 0.795,
+      "successes": 159,
+      "total": 200,
+      "source": "json_harvest_bjb1"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T03:26:36.233908+00:00",
+  "trigger": "update_registry"
+}

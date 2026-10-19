@@ -1,0 +1,487 @@
+# cron hook pi05 crm k2 object s42 bjb1
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/cron_hook_pi05-crm-k2-object-s42-bjb1.jsonl`
+- **Structured JSON:** [`608a1f8ea428ef2deb21.json`](../../sessions/60/608a1f8ea428ef2deb21.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+14 recorded events
+
+### User
+
+_source line 1 · 2026-05-27T05:17:31.518850+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #28。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- evaluate.py 必须用 commit a594db5 版本（D163），不可升级或修改评估代码
+- westd-49937 RTX PRO 6000 与 4090 有 ~3pp 系统偏差（D158），Table 数据必须同 GPU 型号配对（D164）
+- cqa1-32758 磁盘 /autodl-pub 94%（仅 ~474G/7T 可用）⚠️，bjb2-24035 磁盘 90% ⚠️——部署实验前先检查
+- C001 硬约束：每个实验启动前必须 `nvidia-smi` 确认目标 GPU 显存 < 500MiB，否则禁止启动
+- C002：EXIT_CODE=0 ≠ 实验成功，收割时必须检查日志无 OOM/CUDA error 且无 task SR=0%
+- CRM checkpoint 路径：SmolVLA 用 `crm_smolvla_3suite_v1/crm_best.pt`，π0.5 用 `crm_pi05_unified_3suite/crm_best.pt`（`crm_smolvla_3suite_unified` 不存在，多次导致部署失败）
+- bjb1-32546 无 .git，无法回溯代码历史
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-18228** (4×4090): 当前跑 SmolVLA τ-sweep Long s43 (cuda:0/1/2)
+- **bjb1-32546** (6×4090): SmolVLA Table 1 数据来源服务器，当前空闲
+- **bjb2-28827** (6×4090): 1TB RAM，当前空闲
+- **bjb2-24035** (1×4090D): 磁盘紧张（90%），当前空闲
+- **cqa1-32758** (6×4090D): 当前跑 SmolVLA VLA-only Long n20 s42/s43 (cuda:0/1)，磁盘 94% ⚠️
+- **westd-49937** (6×RTX PRO 6000 Blackwell): 仅用于非 Table 数据
+- Python: 各服务器用 `/root/miniconda3/bin/python`（conda base）
+- CRM ckpt: SmolVLA `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`
+- 活跃进程：见 report.md RUNNING 表（5 个实验跑在 bjb1-18228 和 cqa1-32758）
+
+### 3. 📊 当前状态
+**本 session 是冷启动**——前面 ~20 条 [WRITE HANDOFF] 未能执行（session 反复 reset 但未成功处理）。本次终于读取了项目文件。
+
+**RUNNING (5)**:
+- smolvla-tau015-long-s43 — bjb1-18228:cuda:0，SmolVLA τ=0.15 Long s43
+- smolvla-tau025-long-s43 — bjb1-18228:cuda:1，SmolVLA τ=0.25 Long s43
+- smolvla-tau035-long-s43 — bjb1-18228:cuda:2，SmolVLA τ=0.35 Long s43
+- smolvla-vla-only-long-n20-s42 — cqa1-32758:cuda:0
+- smolvla-vla-only-long-n20-s43 — cqa1-32758:cuda:1
+
+**ANALYZING (1)**: 待查具体 exp_id
+
+**最近完成**: smolvla-tau015/025/035-long-s42 全部 success (2026-05-27 03:05)；pi05-goal-tau015-s43 negative (05-27 02:45)
+
+**等待**: 10 个 QUEUED + 185 个 PREPARING（τ-sweep 补充实验）；Agent 系统性 crash 问题已上报 Manager
+
+### 4. 📋 待办（条件触发式）
+- smolvla-tau015/025/035-long-s43 完成 → 收割 metrics，更新 scatter_data.csv（τ-sweep Long s43 三个数据点）
+- smolvla-vla-only-long-n20-s42/s43 完成 → 更新 VLA-only Long 基线（当前只有 s43=59.5%）
+- 上述全部收割完 → 向 Director 汇报最终 τ-sweep 数据表，推动 Appendix 图表更新
+- DDL 前：确认论文 v54 是否需要基于新数据更新，提交最终版
+- QUEUED 中的 K=2 τ-sweep 实验 → 有 GPU 空出时部署
+
+### 5. 🎯 战略上下文
+- **CoRL 2026 DDL: 2026-05-28 20:00 北京时间（~34h from last ROADMAP update）**
+- Table 1 + Table 2 已锁定，论文 v54 (14 页) Step 5 收敛 + D169 Appendix patch 完成
+- 审稿提交已发，pending 用户审批 review mode
+- τ-sweep 定位为 sensitivity analysis（D169），不作为 MC2 within-suite 证据
+- MC1: Adaptive ≥ CRM on 3/4 suites, recovery 19-38%
+- MC3: π0.5 全面负向已 reframe 为"模型能力依赖性"（D155），不 claim cross-model generalization
+- **Agent 稳定性问题**：连续 ~20 次 reset 后只处理 1-2 条消息就死，已向 Manager 升级
+- **易错**：别把 westd Blackwell 数据混入 Table；别用 `crm_smolvla_3suite_unified`（不存在）；cqa1/bjb2-24035 磁盘紧张先清理再部署
+
+## 可查的历史
+前 289 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-27T05:24:19.671920+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-27T05:24:20.301940+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 630
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-27T05:24:27.412684+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "read_registry reconcile_crons",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "read_registry reconcile_crons",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-27T05:24:27.732836+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 320
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-27T05:24:27.733230+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "main_agent_post_to_director spawn_worker",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "main_agent_post_to_director spawn_worker",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-27T05:24:27.793088+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 59
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-27T05:24:27.858529+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "read_project_file read_roadmap",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "read_project_file read_roadmap",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-27T05:24:27.917499+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 58
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T05:24:32.844013+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-27T05:24:32.908681+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-27T05:24:33.942009+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T05:24:34.048082+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T05:25:25.689480+00:00_
+
+Error: result (626,792 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-096e8e94/3cb258e6-7318-495e-83d3-4d8eafa7d4d1/tool-results/mcp-agent-ml-research-read_registry-1779859524900.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-096e8e94/3cb258e6-7318-495e-83d3-4d8eafa7d4d1/tool-results/mcp-agent-ml-research-read_registry-1779859524900.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-096e8e94/3cb258e6-7318-495e-83d3-4d8eafa7d4d1/tool-results/mcp-agent-ml-research-read_registry-1779859524900.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pi05-crm-k2-object-s42-bjb1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 52845
+}
+```
+
+</details>
+
+---

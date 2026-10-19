@@ -1,0 +1,64 @@
+{
+  "exp_id": "eval-argmin-only-spatial",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:47:58.683Z",
+    "updated_at": "2026-05-15T04:57:46.099Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode reconvla --benchmark spatial --n_rollouts 10 --seed 42 --K 10",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "231421",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-argmin-only-spatial.log",
+      "submitted_at": "2026-05-14T17:47:58.583Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "data_path": "/root/autodl-tmp/libero_data/ (spatial)",
+      "data_count": 100,
+      "model_name": "SmolVLA K=10 argmin selection (no CRM correction)",
+      "seed": 42,
+      "hypothesis": "Isolate argmin base action selection from CRM correction. If argmin-only ≈ VLA mean (40%), CRM delta is the sole culprit. If argmin-only << VLA mean, argmin selection itself is problematic.",
+      "eval_data": "LIBERO spatial 10 tasks x 10 rollouts",
+      "wall_clock_seconds": 40187.5,
+      "gpu_hours": 11.16
+    },
+    "metrics": {
+      "tasks_done": "9/10",
+      "partial_results": {
+        "between_plate_and_ramekin": "60.0% (6/10)",
+        "next_to_ramekin": "100.0% (10/10)",
+        "from_table_center": "0.0% (0/10)",
+        "on_cookie_box": "30.0% (3/10)",
+        "in_top_drawer": "10.0% (1/10)",
+        "on_ramekin": "10.0% (1/10)",
+        "next_to_cookie_box": "90.0% (9/10)",
+        "on_stove": "0.0% (0/10)",
+        "next_to_plate": "30.0% (3/10)"
+      },
+      "running_avg_9tasks": "36.7% (33/90)",
+      "snapshot_time": "2026-05-15T12:00:00Z",
+      "server": "bjb1-18228",
+      "gpu": "cuda:1",
+      "pid": 231421
+    },
+    "notes": "[2026-05-15] HUNG: 9/10 tasks done (36.7%, 33/90), stuck on task 10 env init for 8+ hours. Process alive (pid 231426, GPU 1414 MiB) but zero log progress. Needs kill+restart.",
+    "reproduce": {
+      "finished_at": "2026-05-15T04:57:45.148Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T04:57:46.099Z"
+  },
+  "timestamp": "2026-05-15T04:57:46.219489+00:00",
+  "trigger": "update_registry"
+}

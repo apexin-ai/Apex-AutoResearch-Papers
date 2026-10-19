@@ -1,0 +1,36 @@
+{
+  "exp_id": "pi05-adaptive-goal-s42-tau015-bjb2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T16:39:43.454Z",
+    "updated_at": "2026-05-26T18:19:28.205Z",
+    "hypothesis": "π0.5 Adaptive Conformal CRM (K=2, τ=0.15) on goal s42. Cross-architecture tau sensitivity analysis for pi05 model.",
+    "server": "bjb2-28827",
+    "gpu": "cuda:2",
+    "spec": {
+      "command": "python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.15 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark goal --seed 42 --n_rollouts 20",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "445988",
+      "model_name": "pi05",
+      "seed": 42,
+      "data_path": "LIBERO-Goal",
+      "data_count": 200,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+      "eval_data": "LIBERO-goal 10 tasks x 20 rollouts"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T18:19:08.024Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-26T18:19:31.110339+00:00",
+  "trigger": "update_registry"
+}

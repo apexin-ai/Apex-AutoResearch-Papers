@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval-supp-vla-only-obj-s49",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T15:36:00.263Z",
+    "updated_at": "2026-05-24T23:32:49.067Z",
+    "hypothesis": "VLA-only baseline seed 49 on Object. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --benchmark object --seed 49 --n_rollouts 20 2>&1 | tee logs/eval-supp-vla-only-obj-s49.log\"",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "942933",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-vla-only-obj-s49.log",
+      "submitted_at": "2026-05-24T15:38:56.078Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.755,
+      "per_task_sr": {
+        "soup": 0.55,
+        "cream_cheese": 0.7,
+        "salad": 0.8,
+        "bbq": 0.95,
+        "ketchup": 0.8,
+        "tomato": 0.8,
+        "butter": 0.6,
+        "milk": 0.65,
+        "pudding": 0.8,
+        "oj": 0.9
+      }
+    }
+  },
+  "timestamp": "2026-05-24T23:32:50.525710+00:00",
+  "trigger": "update_registry"
+}

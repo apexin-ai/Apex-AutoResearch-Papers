@@ -1,0 +1,14 @@
+{
+  "exp_id": "smolvla-tau035-goal-s43-bjb1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:52:04.550Z",
+    "updated_at": "2026-05-26T22:52:04.551Z"
+  },
+  "timestamp": "2026-05-26T22:52:06.397064+00:00",
+  "trigger": "update_registry"
+}

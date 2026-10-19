@@ -1,0 +1,21 @@
+{
+  "exp_id": "eval-adaptive-k-p90-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:53:10.641Z",
+    "updated_at": "2026-05-19T23:15:59.957Z",
+    "hypothesis": "Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed42. ~10% steps trigger K=10+CRM. 高阈值极端——接近 K=2 only，验证 SR 下限。",
+    "spec": {
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T23:16:00.603483+00:00",
+  "trigger": "update_registry"
+}

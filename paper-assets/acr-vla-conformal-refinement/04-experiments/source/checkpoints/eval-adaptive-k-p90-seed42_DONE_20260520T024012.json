@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval-adaptive-k-p90-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:53:10.641Z",
+    "updated_at": "2026-05-20T02:40:12.273Z",
+    "hypothesis": "Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed42. ~10% steps trigger K=10+CRM. 高阈值极端——接近 K=2 only，验证 SR 下限。",
+    "spec": {
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "147198",
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.126512 --k_full 10 --benchmark object --seed 42 --n_rollouts 10 --output_file logs/eval_adaptive_k_p90_seed42.json\"",
+      "data_path": "LIBERO-Object",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA + CRM obs_only (adaptive_k)",
+      "seed": 42,
+      "adaptive_threshold": 0.126512,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "LIBERO-Object (10 tasks x 10 rollouts)",
+      "mode": "adaptive_k",
+      "checkpoint_path": "N/A-eval-only",
+      "log_path": "/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed42.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.12,
+      "avg_actual_k": 2.672,
+      "fast_path_ratio": 0.916,
+      "total_steps": 28258,
+      "fast_steps": 25886,
+      "full_steps": 2372
+    },
+    "completed_at": "2026-05-20T02:40:12.273Z"
+  },
+  "timestamp": "2026-05-20T02:40:12.973863+00:00",
+  "trigger": "update_registry"
+}

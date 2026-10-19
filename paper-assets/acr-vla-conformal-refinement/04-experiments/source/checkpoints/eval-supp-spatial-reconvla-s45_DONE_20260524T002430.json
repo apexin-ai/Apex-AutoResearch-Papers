@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-supp-spatial-reconvla-s45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T21:31:16.039Z",
+    "updated_at": "2026-05-24T00:24:27.075Z",
+    "hypothesis": "Reconvla K=10 on Spatial suite seed45. Fourth seed extending Spatial Reconvla. 3-seed: 79.8%±1.0%.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark spatial --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "server": "cqa1-32758",
+      "gpu": "cuda:5",
+      "seed": 45,
+      "model_name": "SmolVLA-Reconvla",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "eval_data": "LIBERO-Spatial",
+      "checkpoint_source": "crm_smolvla_3suite_v1/crm_best.pt",
+      "log_path": "/tmp/eval_spatial_reconvla_s45.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T00:24:14.738Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-24T00:24:09.035Z"
+  },
+  "timestamp": "2026-05-24T00:24:30.511639+00:00",
+  "trigger": "update_registry"
+}

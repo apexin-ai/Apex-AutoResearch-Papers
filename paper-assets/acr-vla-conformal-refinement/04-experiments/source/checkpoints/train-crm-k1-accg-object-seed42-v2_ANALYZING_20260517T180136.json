@@ -1,0 +1,48 @@
+{
+  "exp_id": "train-crm-k1-accg-object-seed42-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:51:14.367Z",
+    "updated_at": "2026-05-17T18:01:36.102Z",
+    "spec": {
+      "command": "python -u train_crm_k1.py --benchmark object --epochs 50 --batch_size 512 --lr 1e-3 --seed 42 --loss_mode multi --lambda_dir 0.1 --lambda_tri 0.05 --lambda_mag 0.01 --max_correction_norm 0.2 --wandb_project acr-vla-conformal-refinement --wandb_run_name crm-k1-v2-accg-multistage-object --auto",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 436926,
+      "log_path": "/root/acr-vla-conformal-refinement/logs/train_crm_k1_full.log",
+      "submitted_at": "2026-05-17T15:51:13.882Z",
+      "submitted_via": "tmux (manual)",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "crm_k1_accg_multiscale",
+      "seed": 42,
+      "data_path": "/root/autodl-tmp/libero_data/libero_object/",
+      "data_count": 72507,
+      "checkpoint_source": "N/A (training from scratch)"
+    },
+    "hypothesis": "K=1 CRM with ACCG using full multi-scale features (4×960D from SmolVLA layers [3,7,11,15]). Multi-scale should capture richer correction signals than single-stage 960D fallback (val_loss=0.006505). Parent: train-crm-k1-accg-object-seed42-fallback",
+    "parent": "train-crm-k1-accg-object-seed42-fallback",
+    "conclusion": "failed",
+    "notes": "HDF5 corruption report was false alarm - all 10 files verified intact (md5 match, h5py OK). Training continued past crash point. Precompute running: 7500/72507, ~75 min remaining. conclusion=failed was set prematurely; training is actually running.",
+    "reproduce": {
+      "finished_at": "2026-05-17T18:01:06.354Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T18:01:12.607135+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-17T18:01:36.479879+00:00",
+  "trigger": "update_registry"
+}

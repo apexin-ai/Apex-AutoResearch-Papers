@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-obs-only-object-norm02-k5-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T04:37:18.401Z",
+    "updated_at": "2026-05-18T04:37:31.042Z",
+    "spec": {
+      "command": "cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 43 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed43.json",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "527465",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm02-k5-seed43.log",
+      "submitted_at": "2026-05-18T04:37:17.870Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "obs_only CRM K=5 ε=0.2 seed43. Second seed for K-value curve (seed42=14%). Director highest priority."
+  },
+  "timestamp": "2026-05-18T04:37:31.409454+00:00",
+  "trigger": "update_registry"
+}

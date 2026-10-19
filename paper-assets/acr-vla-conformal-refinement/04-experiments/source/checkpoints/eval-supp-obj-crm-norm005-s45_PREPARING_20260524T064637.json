@@ -1,0 +1,23 @@
+{
+  "exp_id": "eval-supp-obj-crm-norm005-s45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T03:56:52.910Z",
+    "updated_at": "2026-05-24T06:46:35.437Z",
+    "metrics": {
+      "success_rate": 0.765,
+      "successes": 153,
+      "total": 200,
+      "source": "json_harvest_bjb2-40593",
+      "json_file": "eval_object_crm_obs_only_norm0.05_seed45.json"
+    },
+    "hypothesis": "CRM obs-only norm=0.05 on Object suite seed45. Extends Object CRM obs-only coverage for variance analysis.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T06:46:37.998297+00:00",
+  "trigger": "update_registry"
+}

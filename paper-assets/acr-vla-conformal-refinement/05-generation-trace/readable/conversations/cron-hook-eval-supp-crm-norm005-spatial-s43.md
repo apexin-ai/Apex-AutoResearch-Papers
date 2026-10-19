@@ -1,0 +1,456 @@
+# cron hook eval supp crm norm005 spatial s43
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/cron_hook_eval-supp-crm-norm005-spatial-s43.jsonl`
+- **Structured JSON:** [`ca42629411587e468c86.json`](../../sessions/ca/ca42629411587e468c86.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+14 recorded events
+
+### User
+
+_source line 1 · 2026-05-24T00:55:37.227632+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #26。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，当前 5 台服务器各 6 卡全分配，但不得跨项目用卡
+- CRM checkpoint 统一用 `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`（3-suite 训练），不要用旧的 v0/v2 checkpoint
+- SmolVLA precompute 必须基于 lerobot 官方代码修改的 wrapper pipeline（D120/D122），禁止用自研 native precompute
+- `train-crm-unified-4suite-r6` 是唯一活跃的 CRM 训练（4-suite 含 Long），完成前 Long suite 全部阻塞，不得提前用 3-suite checkpoint 跑 Long eval
+- Adaptive CRM 的 τ 必须是 0.25（D128 确认），之前 Object suite 用错 τ=0.074855 导致 negative，不要重蹈
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-32546**: 6×GPU, 工作目录 `/root/acr-vla-conformal-refinement`, Python `/root/miniconda3/bin/python`, conda base
+  - 活跃: `train-crm-unified-4suite-r6` (PID 668372, cuda:3), `eval-supp-adapt-tau025-spatial-s44` (PID 742219, cuda:1), `eval-supp-crm-norm005-spatial-s44` (PID 759205, cuda:5)
+  - cuda:0/2/4 刚释放（3 个 ANALYZING 实验完成）
+- **bjb2-28827**: 6×GPU, 同路径同环境
+  - 活跃: 6 个 eval 占满 cuda:0-5（adapt-tau025-obj/goal, k2mean-obj/spatial, reconvla-goal, vla-only-goal）
+- **cqa1-32758**: 6×RTX 4090D, 同路径同环境
+  - 活跃: 6 个 eval 占满 cuda:0-5（k2mean spatial/object/goal s43, reconvla spatial s43/s44, reconvla goal s43）
+- **bjb1-18228 / bjb2-40593**: 无活跃实验，bjb2-40593 磁盘 90% 危险
+- 模型: SmolVLA weights 在各服务器 HF cache, π0.5 在 `/root/autodl-tmp/`
+- π0.5 precompute: 4 个 shard 在 bjb1-32546 跑（PID 113456/113796/114159/114507），预计 25-60h
+- W&B: 项目 `acr-vla-conformal-refinement`
+
+### 3. 📊 当前状态
+**刚做完**：收到 `eval-supp-crm-norm005-spatial-s43` 完成回调，发现同时有 3 个实验进入 ANALYZING：
+1. `eval-supp-crm-norm005-spatial-s43` — CRM norm=0.05 Spatial seed43（seed42=80%）
+2. `eval-supp-adapt-tau025-spatial-s43` — Adaptive τ=0.25 Spatial seed43（seed42=82%）
+3. `eval-supp-reconvla-k2-spatial-s42` — K=2 argmin ablation Spatial seed42（验证 centroid bug）
+
+已派 3 个分析 Worker（前两个确认启动，第三个之前 session 已有同类 worker 在跑）：
+- `worker_analyze_eval-supp-crm-norm005-spatial-s43_20260523T083401` — running
+- `worker_analyze_eval-supp-adapt-tau025-spatial-s43_20260523T083433` — running
+- `worker_analyze_eval-supp-reconvla-k2-spatial-s42_20260523T083410` — running（上一轮派的）
+
+**等待回调**：上述 3 个 Worker 完成后需要汇总结果 → 更新 report.md → 汇报 Director。bjb1-32546 释放的 cuda:0/2/4 可以立即安排新实验。
+
+**RUNNING 实验（15 个）**：全在跑 SmolVLA 多种子 eval，覆盖 5 种方法 × 3 suite。`train-crm-unified-4suite-r6` 是 Long suite CRM 训练。
+
+**另有 1 个 running Worker**：`worker_deploy_bjb2-40593-fix-redeploy-k2mean` 在修复 K=2 mean 部署问题。
+
+### 4. 📋 待办
+- 3 个分析 Worker 回调 → 汇总 Spatial seed43 多种子结果（CRM/Adaptive/K=2 argmin）→ 更新 ROADMAP 矩阵 → 汇报 Director
+- bjb1-32546 cuda:0/2/4 释放 → 从实验矩阵缺口中选下一批（优先: Goal suite 缺口多——Goal Reconvla/K=2 mean/Adaptive 都缺）
+- `train-crm-unified-4suite-r6` 完成 → 解锁 Long suite 全套 eval（VLA-only/CRM/Reconvla/Adaptive/K=2 mean）
+- π0.5 precompute 4 shard 全完成 → 启动 π0.5 CRM 训练 → π0.5 eval 全套
+- Spatial 3-seed 数据集齐（seed42+43+44）→ 计算 mean±std，更新 paper 表格
+- `eval-supp-crm-norm005-spatial-s44` / `eval-supp-adapt-tau025-spatial-s44` 完成 → Spatial 3-seed 全部到位
+
+### 5. 🎯 战略上下文
+- **DDL: CoRL 2026 = 2026-05-29，≤6 天**。2-model paper (SmolVLA 0.4B + π0.5 3.6B)
+- **核心 story**: Adaptive CRM τ=0.25 是 headline method（Spatial +3.5pp, trigger 仅 19.4%），CRM always-on 是 strong baseline，Reconvla/K=2 mean 是 ablation
+- **实验矩阵关键缺口**: SmolVLA Long suite 全空（等 4-suite CRM 训练），π0.5 CRM/eval 全空（等 precompute），SmolVLA Goal 多个方法缺
+- **易错点**:
+  - Object Adaptive τ 必须用 0.25 不是旧的 0.074855（D128 教训）
+  - Goal VLA-only seed42=71% 是旧数据标 `*`，可能需要重跑确认
+  - K=2 mean 模式有 centroid bug（K=2 时 d1==d2 → 总选 sample 0），K=2 argmin ≈ VLA-only 是预期行为不是 bug
+  - π0.5 VLA-only baseline 已饱和 94-99%，CRM 可能没有提升空间——这是已知风险，Director 已知（D121）
+
+## 可查的历史
+前 261 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-24T00:55:51.059693+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-24T00:55:51.150489+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 90
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-24T00:55:54.117685+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-24T00:55:54.714763+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-24T00:55:55.263449+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-24T00:55:55.733664+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-24T00:55:55.734092+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T00:56:05.178749+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-supp-spatial-reconvla-s46\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-24T00:52:50.566Z\", \"updated_at\": \"2026-05-24T00:53:19.282Z\", \"hypothesis\": \"Reconvla K=10 argmin on Spatial suite seed46. Fifth seed extending Spatial Reconvla coverage. 3-seed mean ~80%. Completes 5-seed variance analysis.\"}, \"eval-supp-spatial-vla-only-s46\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-24T00:34:46.225Z\", \"updated_at\": \"2026-05-24T00:35:25.376Z\", \"hypothesis\": \"Spatial VLA-only baseline seed46. Fifth seed for Spatial VLA-only variance analysis. 3-seed mean 78.7%±0.3%.\"}, \"eval-supp-long-vla-only-s46\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-24T00:32:53.028Z\", \"updated_at\": \"2026-05-24T00:33:27.913Z\", \"hypothesis\": \"Long VLA-only baseline seed46. Fifth seed for Long VLA-only variance analysis. 3-seed mean 58.0%±1.5%.\"}, \"eval-supp-spatial-crm-norm005-s46\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-24T00:22:31.743Z\", \"updated_at\": \"2026-05-24T00:23:19.360Z\", \"hypothesis\": \"CRM always-on norm=0.05 on Spatial suite seed46. Fifth seed for Spatial CRM variance analysis. 3-seed mean ~79.8%.\"}, \"eval-supp-spatial-adapt-tau025-s46\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-23T23:45:59.585Z\", \"updated_at\": \"2026-05-23T23:46:45.330Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Spatial suite seed46. Fifth seed extending Spatial Adaptive for variance analysis. 3-seed mean 80.8%±1.1%.\"}, \"eval-supp-spatial-k2mean-s46\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-23T23:41:52.628Z\", \"updated_at\": \"2026-05-23T23:44:39.106Z\", \"hypothesis\": \"K=2 mean baseline on Spatial suite seed46. Fifth seed extending Spatial K2mean coverage for variance analysis.\"}, \"eval-supp-spatial-adapt-tau025-s45-r3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-23T23:42:31.834Z\", \"updated_at\": \"2026-05-23T23:43:42.064Z\", \"h
+…[truncated 2942 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 11061
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T00:56:13.114752+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.8661}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 18399
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T01:01:53.666324+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 22, \"results\": [{\"exp_id\": \"precompute-pi05-object-2048-r2\", \"success\": true, \"actions\": [\"Job still running (pid=113456)\"]}, {\"exp_id\": \"precompute-pi05-spatial-2048-r2\", \"success\": true, \"actions\": [\"Job still running (pid=113796)\"]}, {\"exp_id\": \"precompute-pi05-goal-2048-r2\", \"success\": true, \"actions\": [\"Job still running (pid=114159)\"]}, {\"exp_id\": \"precompute-pi05-long-2048-r2\", \"success\": true, \"actions\": [\"Job still running (pid=114507)\"]}, {\"exp_id\": \"eval-supp-long-crm-norm005-s45\", \"success\": true, \"actions\": [\"Stale cron removed (registry status=DONE)\"]}, {\"exp_id\": \"eval-supp-long-reconvla-s45\", \"success\": true, \"actions\": [\"Process gone, no sentinel, no W&B — escalating to agent (miss 2/5)\"]}, {\"exp_id\": \"eval-supp-long-k2mean-s45\", \"success\": true, \"actions\": [\"Job still running (pid=924226)\"]}, {\"exp_id\": \"eval-supp-spatial-adapt-tau025-s45\", \"success\": true, \"actions\": [\"Job still running (pid=502816)\"]}, {\"exp_id\": \"eval-supp-goal-adapt-tau025-s46\", \"success\": true, \"actions\": [\"Job still running (pid=eval-goal-adapt-s46)\"]}, {\"exp_id\": \"eval-supp-goal-crm-norm005-s46\", \"success\": true, \"actions\": [\"Job still running (pid=eval-goal-crm-s46)\"]}, {\"exp_id\": \"eval-supp-goal-reconvla-s46\", \"success\": true, \"actions\": [\"Job still running (pid=eval-supp-goal-reconvla-s46)\"]}, {\"exp_id\": \"eval-supp-goal-k2mean-s46\", \"success\": true, \"actions\": [\"Job still running (pid=eval-goal-k2mean-s46)\"]}, {\"exp_id\": \"eval-supp-goal-vla-only-s46\", \"success\": true, \"actions\": [\"Job still running (pid=eval-supp-goal-vla-only-s46)\"]}, {\"exp_id\": \"eval-supp-reconvla-obj-s45\", \"success\": true, \"actions\": [\"Process gone, no sentinel, no W&B — escalating to agent (miss 1/5)\"]}, {\"exp_id\": \"eval-supp-spatial-k2mean-s45\", \"success\": true, \"actions\": [\"Job still running (p
+…[truncated 937 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 358402
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T01:01:53.717316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"# Handover — 2026-05-24\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval-supp-spatial-reconvla-s46 | Reconvla K=10 argmin on Spatial suite seed46. Fifth seed extending Spatial Reconvla coverage. 3-seed mean ~80%. Completes 5-seed variance analysis. | — | — | — |\\n\\n## 待处理\\n- eval-supp-long-adapt-tau025-s46: Adaptive CRM tau=0.25 on Long suite seed46. Fifth seed for Long Adaptive variance analysis. s42-s45 mean ~59.5%.（等待人工审批）\\n- eval-supp-long-reconvla-s46: Reconvla K=10 argmin on Long suite seed46. Fifth seed for Long Reconvla variance analysis. s42-s45 mean ~57.8%.（等待人工审批）\\n- …另有 99 项\\n\\n## 近期结论\\n- **eval-supp-long-crm-norm005-s45** (success): CRM norm=0.05 always-on on Long suite seed45. Fourth seed for Long CRM validation.\\n\\n## 趋势\\n成功 427 / 负向 72 / 失败 85 / 共 736\\nSR: 0.605 ↑（近 3 次 success）\\nsuccesses: 121 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-18228: 无 GPU 信息\\nbjb1-32546: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\nbjb2-28827: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\nbjb2-40593: 无 GPU 信息\\ncqa1-32758: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\n\\n## 告警\\n- plan_001-crm-smolvla: 训练失败 — unknown\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\n- eval-spatial-reeval-v2: 已被终止 — unknown\\n- precompute-v2-shard0: 已被终止 — unknown\\n- precompute-v2-shard1: 已被终止 — unknown\\n- precompute-v2-shard2: 已被终止 — unknown\\n- eval-spatial-v3-full: 已被终止 — unknown\\n- precompute-v3-shard0: 已被终止 — unknown\\n- precompute-v3-shard1: 已被终止 — unknown\\n- precompute-v3-shard2: 已被终止 — unknown\\n- eval-spatial-v4-full: 已被终止 — unknown\\n- eval-object-v4-full: 已被终止 — unknown\\n- eval-spatial-v5-full: 已被终止 — unknow
+…[truncated 5270 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 357983
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-24T01:01:53.717976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-23 22:41 UTC | 更新原因: Fix Reviewer-flagged range inconsistency (+1.8→+1.9pp to match paper). Update GPU status (4 idle). π0.5 timeline. paper_framing.md D134 note added.\\n\\n> 详见 paper_framing.md（已标注 D134 supersedes D129）\\n\\n## 核心方向\\n**ACR-VLA: Adaptive Conformal Refinement for Frozen Flow-Matching VLAs**。CoRL 2026 DDL **2026-05-29**（≤5天）。\\n\\n## 核心叙事 (D134) — 全 4 suites 3-seed 验证 ✅\\n**\\\"Gating correctly modulates intervention intensity — improves where VLA uncertain, preserves where VLA confident\\\"**\\n- Adaptive ≥ CRM on ALL 4 suites (+1.0 to +1.9pp on 3-seed mean) ✅\\n- Trigger_rate > 7%: Adaptive > VLA-only (Spatial +2.1pp, Goal +1.3pp) ✅\\n- Trigger_rate < 5%: Adaptive ≈ VLA-only within noise (Object Δ=+0.1pp, Long Δ=-0.3pp = 0.22σ) ✅\\n- CRM always-on harmful on 2/4 suites (Object -1.2pp, Long -2.2pp) ✅\\n\\n## 跨 suite 完整结果（Table 1 — 3-seed final）\\n| Suite | VLA-only | CRM | Adaptive | Δ(Adapt-VLA) | Δ(Adapt-CRM) |\\n|-------|---------|-----|----------|-------------|--------------|\\n| Spatial | 78.7±0.3(3s) | 79.8±1.3(3s) | 80.8±1.1(3s) | **+2.1pp** | +1.0pp |\\n| Goal | 83.7±1.3(3s) | 83.7±1.8(3s) | 85.0±1.3(3s) | **+1.3pp** | +1.3pp |\\n| Object | 77.7±1.3(5s) | 76.5±2.3(3s) | 77.8±2.1(5s) | +0.1pp | +1.3pp |\\n| Long | 58.0±1.5(3s) | 55.8±1.2(3s) | 57.7±1.5(3s) | -0.3pp | **+1.9pp** |\\n\\n## τ-sweep ablation (D132) ✅ 完成\\n倒 U 型曲线，最优区间 τ∈[0.15, 0.25]。Appendix §B 就绪。\\n\\n## Trigger-rate vs Improvement Figure ✅ 完成\\n4 suite scatter plot。清晰二分模式：trigger>7% = improvement, trigger<5% = baseline preserved。\\n\\n## 论文文本状态\\n- experiments.tex Table 1 + 正文：数值已 Reviewer 验证 PASS ✅\\n- Object CRM \\\"-1.3pp\\\" → \\\"-1.2pp\\\" 已修正（与表值一致）✅\\n- paper_framing.md：D134 header 已更新 ✅\\n\\n## GPU 状态（当前）\\n19/23 在跑 + 4 空闲待部署：\\n
+…[truncated 2531 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 357983
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-24T01:01:54.106699+00:00_
+
+You've hit your limit · resets 3pm (UTC)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-supp-crm-norm005-spatial-s43"
+}
+```
+
+</details>
+
+---

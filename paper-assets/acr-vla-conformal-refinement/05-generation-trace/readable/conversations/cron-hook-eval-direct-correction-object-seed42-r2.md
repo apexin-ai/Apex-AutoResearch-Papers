@@ -1,0 +1,1466 @@
+# cron hook eval direct correction object seed42 r2
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 1
+- **Tool calls:** 22
+- **Original source:** `logs/chats/cron_hook_eval-direct-correction-object-seed42-r2.jsonl`
+- **Structured JSON:** [`588e9b141efa3c8f3da5.json`](../../sessions/58/588e9b141efa3c8f3da5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+46 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T11:10:52.004192+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #19。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，当前 4 台服务器：bjb1-18228, bjb1-32546, bjb2-28827, bjb2-40593
+- bjb2-40593 磁盘 `/usr/bin/nvidia-smi` 分区已用 90%（仅剩 46GB），不要在该服务器启动写大量 checkpoint 的实验（eval log 很小可以用）
+- Narrative B 已锁定 (D043)，论文 framing 不可改动除非 Director 明确批准
+- `eval-direct-correction` 前两次 SIGTERM 是资源冲突（非代码 bug），r3 已成功完成 SR=14%，不需再重试
+- pooled Fisher test 统计必须从 raw JSON 读取实际 trial counts，不能硬编码（翻倍 bug 教训）
+
+### 2. 🖥️ 基础设施快照
+- **4 台服务器**: bjb1-18228, bjb1-32546, bjb2-28827, bjb2-40593
+- 工作目录: `/root/acr-vla-conformal-refinement/`
+- Python: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（submit 命令必须 bash -c 包裹）
+- CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`（obs_only 327K params）
+- 评测命令: `python -u src/evaluate.py --mode {mode} --benchmark object --seed {seed} --max_correction_norm {norm} --crm_checkpoint ... --n_rollouts 10 --output_file results/...`
+- W&B: 未配置（eval 实验不走 W&B，cron 通过进程存活 + log 检测完成）
+- 活跃 GPU 进程: 12 experiments RUNNING（cron 监控中），详见 registry
+
+### 3. 📊 当前状态
+**刚做完**: session-start 初始化 + 批量新结果处理。发现 5 个实验完成（obs-only-seed46=15%, direct-correction-r3=14%, perdof-norm03-seed44=4%, obs-only-norm03-seed45=14%, vla-mean-seed45=13%）。已向 Director 汇报。
+
+**已派发 2 个 Worker**（等回调）:
+- `worker_ssh_deploy-preparing-experiments-batch5_20260517T070743`: SSH 检查空闲 GPU + 部署 4 个 PREPARING 实验 (norm01 seed46/47 obs_only+perdof)
+- `worker_analysis_batch-results-update-20260517_20260517T070805`: 更新 pooled 统计 + memory.md
+
+**RUNNING 实验 (12)**:
+- perdof ablation: norm01-seed44/45, norm02-seed44/45, norm03-seed45-r2, default-seed44
+- obs_only: default-seed45, norm01-seed45, norm02-seed47
+- scalar: seed45
+- argmin: seed46, seed47
+
+### 4. 📋 待办
+- deploy Worker 回调 → 确认 4 PREPARING 实验成功启动，更新 registry 为 RUNNING
+- analysis Worker 回调 → 确认 memory.md 更新，检查 pooled 统计正确性
+- argmin seed46/47 完成 → 计算 6-seed pooled Fisher p（目标: obs_only 17% vs argmin ~13%, 预估 p~0.08-0.12）
+- perdof norm01/02/default seed44/45 全部完成 → 汇总 magnitude curve multi-seed error bars，准备论文 figure 数据
+- 所有 eval 完成 → 汇报 Director 最终统计 + 建议启动 paper figures matplotlib 脚本
+- Director 回复建议（paper figures / 下一步）→ 执行
+
+### 5. 🎯 战略上下文
+- **核心结论**: obs_only CRM (ε=0.2) 唯一存活。5-seed pooled: obs_only 17.0% vs argmin 13.5%, +3.5pp。Narrative B = mechanism insight（magnitude robustness）为主线
+- **新关键数据点**: direct-correction=14% ≈ argmin → 证明 CRM 价值在 selection signal 而非 correction itself。这完成了 Claim 1 的 ablation 证据链
+- **投稿**: CoRL 2026，abstract DDL ~May 26，full paper DDL ~Jun 2（剩 ~10 天）
+- **决策链**: D038(ε=0.2最优) → D039(perdof default=0%崩溃) → D042(claim结构) → D043(Narrative B锁定) → D044(Claim 1降级)
+- **易错点**:
+  - magnitude curve 数据来自不同 seed，论文 figure 用 seed42 单线（已有完整 6 点），multi-seed 做 error bar 是补充
+  - 5-seed obs_only pooled (85/500) 目前只能和 4-seed argmin (54/400) 比（不对称），等 seed46/47 argmin 完成才能做 paired 6-seed Fisher
+  - perdof norm=0.3 两个 seed 都是 4%（deterministic collapse），但 obs_only norm=0.3 有波动（19% vs 14%），报告时注意标注 variance
+
+## 项目硬约束 (memory.md 节选)
+
+## bjb2-40593 环境问题 (2026-05-14-15)
+
+- 无 .git repo
+- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）
+- Ghost PID 211962 已 kill
+- scalar seed44 OOM SIGKILL（系统 RAM，非 GPU OOM）— 已在 bjb1-32546 重试
+
+## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)
+
+tmux 用 `sh` 而非 `bash` 执行命令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ..."` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。
+
+## [失败模式] EXIT_CODE=129 (SIGHUP) ≠ 真正失败 (2026-05-16)
+
+**案例**: eval-argmin-object-seed44-r2 和 crm-train-v1 都报 EXIT_CODE=129，但实验已完成并保存了完整结果。
+**根因**: tmux session 在主进程正常退出后收到 SIGHUP（终端断开或 session 被清理）。
+**规则**: EXIT_CODE=129 时不要直接判定失败。先查日志末尾确认是否已打印 "Results saved" / 完成信息，再检查输出文件完整性。如果都正常，标记 conclusion=success。
+
+## [失败模式] Kill 操作前必须逐参数比对 (2026-05-15)
+
+**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) 的重复实验，kill 了有效进程。cuda:0 空闲 9 小时。
+**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。
+**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐项比对关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。
+
+## [失败模式] pooled_fisher_test.py 翻倍 bug (2026-05-16)
+
+**事故**: 脚本 KNOWN_DATA 将所有 counts ×2（假设 n_rollouts=20），输出 p=0.035（实际 p=0.110）。差点导致错误切换到 Narrative A。
+**规则**: 统计检验必须从 raw JSON 读取实际 trial counts，不能硬编码假设。任何 p<0.05 结果必须交叉验证（检查 N 是否与 registry 一致）。
+
+## [部署规范] GPU 冲突防范 (2026-05-16)
+
+**事故**: bjb2-28827 cuda:2/cuda:3 上多次出现双进程共存，互相竞争 compute，效率降低 ~50%。同一 output file 被两进程写入导致数据损坏。
+**根因**: 部署命令未显式指定 CUDA_VISIBLE_DEVICES，或未确认目标 GPU 无已有进程。
+**规则**:
+1. 所有部署命令必须显式设 `CUDA_VISIBLE_DEVICES=N`
+2. 部署前先 `nvidia-smi -i N` 确认目标 GPU 无进程
+3. 部署后 20s 内验证进程在目标 GPU 上启动
+4. 一张 GPU 只跑一个评估实验（除非 Director 明式批准共享）
+
+## 可查的历史
+前 132 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T11:11:04.834473+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T11:11:04.834802+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T11:11:08.247017+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "limit": "0",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "limit": "0",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T11:11:08.699977+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T11:11:09.203311+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-perdof-object-norm02-seed46\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T10:54:38.275Z\", \"updated_at\": \"2026-05-17T10:55:13.212Z\", \"hypothesis\": \"perdof CRM ε=0.2 seed46 on LIBERO-Object. 补充 perdof magnitude curve ε=0.2 数据（目前仅 seed43=9%）。与 obs_only ε=0.2 seed46 配对对比。\"}, \"eval-perdof-object-norm01-seed47-bjb1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T10:27:16.189Z\", \"updated_at\": \"2026-05-17T10:29:43.551Z\", \"hypothesis\": \"Duplicate of perdof norm=0.1 seed47 on bjb1-32546 (deployed by orphan Worker). Also running on bjb2-40593.\"}, \"eval-obs-only-object-norm03-seed46\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T10:28:22.831Z\", \"updated_at\": \"2026-05-17T10:28:56.574Z\", \"hypothesis\": \"obs_only CRM at eps=0.3 on seed46 extends magnitude curve high-norm data. seed42=19%, seed44=18%, seed45=14%. 4th seed at this norm.\"}, \"eval-perdof-object-norm01-seed46-r2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T07:05:32.383Z\", \"updated_at\": \"2026-05-17T07:18:04.606Z\", \"hypothesis\": \"perdof CRM at eps=0.1 on seed46 will show magnitude sensitivity collapse pattern similar to seed42, confirming obs_only robustness advantage\"}, \"eval-obs-only-object-norm01-seed47-r2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T07:05:28.139Z\", \"updated_at\": \"2026-05-17T07:17:58.529Z\", \"hypothesis\": \"obs_only CRM at eps=0.1 on seed47 will achieve similar improvement over VLA-only as seen in seed42 (19%), testing seed robustness of the magnitude curve\"}, \"eval-obs-only-object-norm01-seed46-r2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T07:05:18.047Z\", \"updated_at\": \"2026-05-17T07:17:52.154Z\", \"hypothesis\": \"obs_only CRM at eps=0.1 on seed46 will achieve similar improvement over VLA-only as seen in seed42 (19%), testing seed robustness of the magnitude curve\"}, \"eval-perdof-object-norm02-seed45\": {\"st
+…[truncated 1704 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 956
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T11:11:09.203764+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T11:11:09.505457+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T11:11:34.753560+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 11, \"results\": [{\"exp_id\": \"eval-perdof-object-norm02-seed46\", \"success\": true, \"actions\": [\"Job still running (pid=389051)\"]}, {\"exp_id\": \"eval-perdof-object-norm01-seed47-bjb1\", \"success\": true, \"actions\": [\"Job still running (pid=414817)\"]}, {\"exp_id\": \"eval-obs-only-object-norm03-seed46\", \"success\": true, \"actions\": [\"Job still running (pid=416568)\"]}, {\"exp_id\": \"eval-perdof-object-norm01-seed46-r2\", \"success\": true, \"actions\": [\"Job still running (pid=393646)\"]}, {\"exp_id\": \"eval-obs-only-object-norm01-seed47-r2\", \"success\": true, \"actions\": [\"Job still running (pid=588037)\"]}, {\"exp_id\": \"eval-obs-only-object-norm01-seed46-r2\", \"success\": true, \"actions\": [\"Job still running (pid=587763)\"]}, {\"exp_id\": \"eval-perdof-object-norm02-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=222824)\"]}, {\"exp_id\": \"eval-scalar-object-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=224623)\"]}, {\"exp_id\": \"eval-obs-only-object-default-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=242264)\"]}, {\"exp_id\": \"eval-obs-only-object-norm01-seed45\", \"success\": true, \"actions\": [\"Job still running (pid=587763)\"]}, {\"exp_id\": \"eval-perdof-object-norm02-seed44\", \"success\": true, \"actions\": [\"Job still running (pid=326081)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 26053
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T11:11:34.754157+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-17 10:56 UTC | 更新原因: D047 6v6 Fisher exact p=0.0074 确认, perdof seed44=8%修正, 9/17 GPU 在跑\\n\\n## 核心方向\\nobs_only CRM 是唯一存活路径。**ε=0.2 是最优配置**（D038）。**Narrative B 已锁定**（D043）：mechanism insight（obs_only magnitude robustness vs perdof collapse）为核心贡献。**6v6 Fisher exact p=0.0074** 为 supplementary evidence（D047）。详见 paper_framing.md。\\n\\n## 投稿目标\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~9 天。\\n\\n## 当前进展\\n- **阶段**: Phase 4 → 准备启动 Paper Agent 正式写作（等用户确认方向 A）\\n- **6v6 pooled (ε=0.2)**: obs_only 105/600 (17.5%) vs argmin 74/600 (12.3%), **+5.2pp, Fisher exact p=0.0074** ✅\\n- **D047**: Claim 1 升级为 \\\"statistically significant (p<0.01, Cohen's d=1.21)\\\"\\n- **D045**: Figure 2 用多 seed 均值±stderr\\n- **GPU**: 9/17 在跑，需填满空闲卡\\n- **论文草稿**: 全 section 有 draft，核心统计数据就绪\\n\\n## Object Benchmark — obs_only ε=0.2 vs argmin（6v6 LOCKED ✅）\\n\\n| Seed | obs_only ε=0.2 | argmin | Δ |\\n|------|----------------|--------|-----|\\n| 42 | 22% | 12% | +10 |\\n| 43 | 16% | 17% | -1 |\\n| 44 | 16% | 13% | +3 |\\n| 45 | 16% | 12% | +4 |\\n| 46 | 15% | 10% | +5 |\\n| 47 | 20% | 10% | +10 |\\n| **Pooled** | **105/600 (17.5%)** | **74/600 (12.3%)** | **+5.2pp, p=0.0074** |\\n\\n## Magnitude Sweep — 多 seed 均值（D045）\\n\\n| norm | obs_only (seeds, mean) | perdof (seeds, mean) | gap |\\n|------|----------------------|---------------------|-----|\\n| 0.03 | 1s: 16% | 1s: 14% | +2pp |\\n| 0.05 | 1s: ~13% | 1s: 14% | -1pp |\\n| 0.10 | 3s: 19/12/16 → **15.7%** | 3s: 11/11/8 → **10.0%** | +5.7pp |\\n| 0.20 | 6s: 22/16/16/16/15/20 → **17.5%** | 1s: 11% | +6.5pp |\\n| 0.30 | 3s: 19/18/14 → **17.0%** | 3s: 4/4/6 → **4.7%** | +12.3pp |\\n| default | 1s: 17% | 1s: 0% | +17pp |\\n\\n## 近期任务\\n- [x] 6v6 Fisher exact p=0.0074 确认 (D047)\\n- [x] argmin seed
+…[truncated 2833 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 25550
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T11:11:34.804837+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval-perdof-object-norm02-seed46 | perdof CRM ε=0.2 seed46 on LIBERO-Object. 补充 perdof magnitude curve ε=0.2 数据（目前仅 seed43=9%）。与 obs_only ε=0.2 seed46 配对对比。 | — | — | — |\\n| eval-perdof-object-norm01-seed47-bjb1 | Duplicate of perdof norm=0.1 seed47 on bjb1-32546 (deployed by orphan Worker). Also running on bjb2-40593. | — | — | — |\\n| eval-obs-only-object-norm03-seed46 | obs_only CRM at eps=0.3 on seed46 extends magnitude curve high-norm data. seed42=19%, seed44=18%, seed45=14%. 4th seed at this norm. | — | — | — |\\n\\n## 待处理\\n- eval-obs-only-object-norm01-seed47: obs_only CRM (ε=0.1) seed=47 on LIBERO Object. 4th seed for magnitude curve low-norm point. Combined with seeds 42/45/46, provides error bar for obs_only at ε=0.1. Supports robustness narrative (obs_only stable across all norms).（准备中）\\n- eval-obs-only-object-norm01-seed46: obs_only CRM (ε=0.1) seed=46 on LIBERO Object. Extends magnitude curve low-norm segment to 3+ seeds. If consistent with seed42=19% and seed45 (running), strengthens robustness claim that obs_only maintains stable performance across all ε values.（准备中）\\n- eval-perdof-object-norm01-seed46: perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\"safe zone\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.（准备中）\\n\\n## 近期结论\\n- **eval-obs-only-object-norm02-seed47** (success): obs_only CRM (ε=0.2) seed=47 on LIBERO object benchmark. Extends multi-seed comparison to 6 seeds. If consistent with seeds 42-44 (16-22%), strengthens pooled significance for Narrative A transition.\\n- **e
+…[truncated 4670 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 25299
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T11:11:53.840443+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'PREPARING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'PREPARING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T11:11:54.492960+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-obs-only-object-norm01-seed47\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T06:51:15.721Z\", \"updated_at\": \"2026-05-17T06:54:17.648Z\", \"hypothesis\": \"obs_only CRM (ε=0.1) seed=47 on LIBERO Object. 4th seed for magnitude curve low-norm point. Combined with seeds 42/45/46, provides error bar for obs_only at ε=0.1. Supports robustness narrative (obs_only stable across all norms).\", \"conclusion\": \"killed\"}, \"eval-obs-only-object-norm01-seed46\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T06:51:13.356Z\", \"updated_at\": \"2026-05-17T06:54:15.239Z\", \"hypothesis\": \"obs_only CRM (ε=0.1) seed=46 on LIBERO Object. Extends magnitude curve low-norm segment to 3+ seeds. If consistent with seed42=19% and seed45 (running), strengthens robustness claim that obs_only maintains stable performance across all ε values.\", \"conclusion\": \"killed\"}, \"eval-perdof-object-norm01-seed46\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T06:51:19.181Z\", \"updated_at\": \"2026-05-17T06:51:36.588Z\", \"hypothesis\": \"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\"safe zone\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\"}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4657}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 652
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T11:11:54.493448+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'DONE'}",
+  "limit": "10",
+  "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'DONE'}",
+    "limit": "10",
+    "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T11:11:54.945307+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-obs-only-object-norm02-seed47\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T11:05:43.649Z\", \"hypothesis\": \"obs_only CRM (ε=0.2) seed=47 on LIBERO object benchmark. Extends multi-seed comparison to 6 seeds. If consistent with seeds 42-44 (16-22%), strengthens pooled significance for Narrative A transition.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.2, \"successes\": 20, \"total\": 100, \"benchmark\": \"object\", \"mode\": \"obs_only\", \"norm\": 0.2, \"seed\": 47}}, \"eval-perdof-object-norm01-seed44\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T10:59:11.317Z\", \"hypothesis\": \"perdof CRM (ε=0.1) seed=44 on LIBERO Object. 验证 perdof 在低 norm 的安全区域（seed42=11%，seed45 running）。多 seed 支撑 magnitude curve 低 norm 段。\", \"conclusion\": \"negative\", \"metrics\": {\"overall_sr\": 0.08, \"total_successes\": 8, \"total_rollouts\": 100, \"seed\": 44, \"mode\": \"crm_perdof\", \"max_correction_norm\": 0.1}}, \"eval-perdof-object-norm03-seed45-r2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T10:57:16.754Z\", \"hypothesis\": \"perdof CRM (ε=0.3) seed=45 on LIBERO object benchmark. Retry after unregistered process conflict. Expected to confirm perdof collapse at high norm (seed42=4%, seed44 running). Supports magnitude curve narrative.\", \"metrics\": {\"overall_sr\": 0.06, \"successes\": 6, \"total\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0.1, \"milk\": 0, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.1}}, \"conclusion\": \"success\"}, \"eval-obs-only-object-norm01-seed47-bjb2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T10:56:41.892Z\", \"hypothesis\": \"Duplicate of seed47 obs_only norm=0.1 on bjb2 (survived GPU conflict cleanup), provides extra seed47 data point\", \"conclusion\": \"killed\"}, \"eval-obs-only-object-norm02-seed46\"
+…[truncated 3375 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T11:12:23.274897+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T11:12:23.275357+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T11:12:26.411441+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T11:12:26.463421+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_magnitude-curve-data-aggregation_20260517T110748\", \"task_type\": \"analysis:magnitude-curve-data-aggregation\", \"project\": \"acr-vla-conformal-refinement\", \"status\": \"running\", \"started_at\": \"2026-05-17T11:07:48.470050+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T11:12:26.463797+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T11:12:27.068773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [{\"server\": \"bjb2-28827\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"eval-scalar-object-seed45\"}, {\"server\": \"bjb2-28827\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"eval-obs-only-object-default-seed45\"}, {\"server\": \"bjb2-28827\", \"gpu_id\": \"cuda:5\", \"exp_id\": \"eval-perdof-object-norm02-seed44\"}, {\"server\": \"bjb1-18228\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"eval-obs-only-object-norm01-seed46-r2\"}, {\"server\": \"bjb1-18228\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"eval-obs-only-object-norm01-seed47-r2\"}, {\"server\": \"bjb1-32546\", \"gpu_id\": \"cuda:4\", \"exp_id\": \"eval-perdof-object-norm01-seed46-r2\"}, {\"server\": \"bjb1-32546\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"eval-perdof-object-norm01-seed47-bjb1\"}, {\"server\": \"bjb1-32546\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"eval-obs-only-object-norm03-seed46\"}, {\"server\": \"bjb2-28827\", \"gpu_id\": \"cuda:4\", \"exp_id\": \"eval-perdof-object-norm02-seed46\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"eval-scalar-object-seed45\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"eval-obs-only-object-default-seed45\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"eval-perdof-object-norm02-seed44\", \"gpus\": [\"cuda:5\"], \"util_avg\": null}, {\"exp_id\": \"eval-obs-only-object-norm01-seed46-r2\", \"gpus\": [\"cuda:2\"], \"util_avg\": null}, {\"exp_id\": \"eval-obs-only-object-norm01-seed47-r2\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"eval-perdof-object-norm01-seed46-r2\", \"gpus\": [\"cuda:4\"], \"util_avg\": null}, {\"exp_id\": \"eval-perdof-object-norm01-seed47-bjb1\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}, {\"exp_id\": \"eval-obs-only-object-norm03-seed46\", \"gpus\": [\"cuda:2\"], \"util_avg\": null}, {\"exp_id\": \"eval-perdof-object-norm02-seed46
+…[truncated 376 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 604
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T11:13:51.112633+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T11:13:51.210506+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_e3eeb922.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "Read",
+  "elapsed_ms": 97
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T11:13:53.189760+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T11:13:53.221553+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "Glob",
+  "elapsed_ms": 31
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T11:13:55.313390+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T11:13:55.464372+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "Glob",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T11:13:57.788276+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T11:13:57.847488+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "Read",
+  "elapsed_ms": 59
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T11:14:48.068618+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T11:14:48.119438+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T11:14:54.391061+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "acr-vla-conformal-refinement",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "acr-vla-conformal-refinement",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T11:14:54.441698+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"acr-vla-conformal-refinement\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"autodl-4090:cuda:0\"], \"gpu_ids\": [\"bjb2-40593:cuda:0\", \"bjb1-18228:cuda:0\", \"bjb1-18228:cuda:1\", \"bjb1-18228:cuda:2\", \"bjb1-18228:cuda:3\", \"bjb1-32546:cuda:0\", \"bjb1-32546:cuda:1\", \"bjb1-32546:cuda:2\", \"bjb1-32546:cuda:3\", \"bjb1-32546:cuda:4\", \"bjb1-32546:cuda:5\", \"bjb2-28827:cuda:0\", \"bjb2-28827:cuda:1\", \"bjb2-28827:cuda:2\", \"bjb2-28827:cuda:3\", \"bjb2-28827:cuda:4\", \"bjb2-28827:cuda:5\"], \"project_path\": \"/root/acr-vla-conformal-refinement\", \"servers\": [\"bjb2-40593\", \"bjb1-18228\", {\"account\": \"root\", \"server\": \"bjb1-32546\"}, {\"account\": \"root\", \"server\": \"bjb2-28827\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T11:15:49.311392+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'RUNNING'}",
+  "limit": "2",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'RUNNING'}",
+    "limit": "2",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T11:15:50.064246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-perdof-object-norm02-seed46\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T10:54:38.275Z\", \"updated_at\": \"2026-05-17T10:55:13.212Z\", \"hypothesis\": \"perdof CRM ε=0.2 seed46 on LIBERO-Object. 补充 perdof magnitude curve ε=0.2 数据（目前仅 seed43=9%）。与 obs_only ε=0.2 seed46 配对对比。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_perdof_norm02_seed46.json\", \"server\": \"bjb2-28827\", \"gpu\": [\"cuda:4\"], \"pid\": 389051, \"seed\": 46, \"model_name\": \"SmolVLA+CRM_perdof\", \"data_path\": \"LIBERO-Object 10 tasks\", \"data_count\": 100, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 10 rollouts)\"}}, \"eval-perdof-object-norm01-seed47-bjb1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T10:27:16.189Z\", \"updated_at\": \"2026-05-17T10:29:43.551Z\", \"hypothesis\": \"Duplicate of perdof norm=0.1 seed47 on bjb1-32546 (deployed by orphan Worker). Also running on bjb2-40593.\", \"spec\": {\"command\": \"cd /root/autodl-tmp/acr-vla && python evaluate.py --model smolvla --mode crm_perdof --benchmark object --seed 47 --n_rollouts 10 --norm_limit 0.1 --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:1\"], \"pid\": 414817, \"data_path\": \"/root/autodl-tmp/acr-vla/libero/data\", \"data_count\": 100, \"model_name\": \"SmolVLA-450M + CRM-perdof\", \"seed\": 47, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks × 10 rollouts)\"}}}, \"count\": 2, \"total\": 11, \"baseline\": null}, \"error\": nul
+…[truncated 49 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 752
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-17T11:15:50.064763+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'conclusion': 'success'}",
+  "limit": "3",
+  "fields": "['spec', 'metrics', 'conclusion']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'conclusion': 'success'}",
+    "limit": "3",
+    "fields": "['spec', 'metrics', 'conclusion']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T11:15:50.568836+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-obs-only-object-norm02-seed47\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_seed47.json\\\"\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:0\"], \"pid\": \"319128\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm02-seed47.log\", \"submitted_at\": \"2026-05-16T21:33:49.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO object benchmark (10 tasks)\", \"data_count\": 100, \"model_name\": \"crm_v3_norm_obs_only\", \"seed\": 47, \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_seed47.json\", \"wall_clock_seconds\": 48714.4, \"gpu_hours\": 13.53}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.2, \"successes\": 20, \"total\": 100, \"benchmark\": \"object\", \"mode\": \"obs_only\", \"norm\": 0.2, \"seed\": 47}}, \"eval-perdof-object-norm03-seed45-r2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.3 --output_file logs/eval_object_perdof_norm03_seed45_r2.json\\\"\", \"server\": \
+…[truncated 2329 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-17T11:16:35.636629+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": "{'status': 'RUNNING'}",
+  "limit": "0",
+  "fields": "['spec', 'status']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "acr-vla-conformal-refinement",
+    "filters": "{'status': 'RUNNING'}",
+    "limit": "0",
+    "fields": "['spec', 'status']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T11:16:36.088205+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-perdof-object-norm02-seed46\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_perdof_norm02_seed46.json\", \"server\": \"bjb2-28827\", \"gpu\": [\"cuda:4\"], \"pid\": 389051, \"seed\": 46, \"model_name\": \"SmolVLA+CRM_perdof\", \"data_path\": \"LIBERO-Object 10 tasks\", \"data_count\": 100, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 10 rollouts)\"}}, \"eval-perdof-object-norm01-seed47-bjb1\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"cd /root/autodl-tmp/acr-vla && python evaluate.py --model smolvla --mode crm_perdof --benchmark object --seed 47 --n_rollouts 10 --norm_limit 0.1 --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:1\"], \"pid\": 414817, \"data_path\": \"/root/autodl-tmp/acr-vla/libero/data\", \"data_count\": 100, \"model_name\": \"SmolVLA-450M + CRM-perdof\", \"seed\": 47, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks × 10 rollouts)\"}}, \"eval-obs-only-object-norm03-seed46\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_obs_only --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.3 --seed 46 --benchmark object --n_rollouts 10 --output_file logs/eval_object_obs_only_norm03_seed46.json\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:2\"], \"pid\": \"416568\", \"seed\": 46, \"model_name\": \"SmolVLA+CRM_obs_only\", \"data_path\": \"LIBERO-Object 10 tasks\", \"data_count\": 
+…[truncated 5992 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-17T11:18:10.832140+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ssh:ghost-check-and-deploy-batch6",
+  "project": "acr-vla-conformal-refinement",
+  "tool_groups": "['ssh', 'registry']",
+  "task_prompt": "## 任务：检查 Ghost 实验 + 在空闲 GPU 上部署新 magnitude curve 实验\n\n### 背景\n我们在做 LIBERO-Object benchmark 的评估实验，为论文 Figure 2 (magnitude curve) 收集多 seed 数据。当前有 2 个实验在 registry 标 RUNNING 但硬件资源检测工具没看到它们，需要 SSH 确认。确认空闲 GPU 后部署新实验。\n\n### 第一步：Ghost 实验诊断\n\nSSH 到以下服务器检查这 2 个实验是否真的在跑：\n\n**Ghost 1**: eval-perdof-object-norm02-seed45\n- 服务器: bjb2-28827\n- GPU: cuda:1\n- PID: 222824\n- 命令: `CUDA_VISIBLE_DEVICES=1 python src/evaluate.py --mode crm_perdof ... --max_correction_norm 0.2 --seed 45`\n- 检查方式: `ps aux | grep 222824`, `nvidia-smi -i 1`\n- 如果进程不存在：检查 `logs/eval_object_perdof_norm02_seed45.json` 是否存在且完整。如果完整（有 overall_sr 字段），调 `update_registry` 设 status=DONE, conclusion=success, 记录 metrics。如果不完整或不存在，设 conclusion=failed。\n\n**Ghost 2**: eval-obs-only-object-norm01-seed45\n- 服务器: bjb1-18228\n- GPU: cuda:0\n- PID: 未记录\n- 命令包含: `CUDA_VISIBLE_DEVICES=0 python src/evaluate.py --mode crm_obs_only --max_correction_norm 0.1 --seed 45`\n- 检查方式: `ps aux | grep evaluate.py | grep \"seed 45\"`, `nvidia-smi -i 0`\n- 同样检查输出文件 `logs/eval_object_obs_only_norm01_seed45.json`\n\n对每个 ghost 实验：如果进程已结束且输出完整，用 `update_registry` 更新为 DONE + success（提取 overall_sr 等 metrics）。如果输出不完整/不存在，更新为 DONE + failed。\n\n### 第二步：确认空闲 GPU\n\n在每台服务器上执行 `nvidia-smi` 确认哪些 GPU 真的空闲（无进程）：\n\n- bjb1-18228: 预期 cuda:0, cuda:1 空闲（cuda:2,3 在跑）\n- bjb1-32546: 预期 cuda:0, cuda:3, cuda:5 空闲（cuda:1,2,4 在跑）\n- bjb2-28827: 预期 cuda:1, cuda:2 空闲（cuda:0,3,4,5 在跑）\n- bjb2-40593: 预期 cuda:0 空闲（但磁盘仅剩 46GB，eval 小 log 可以用）\n\n**在每个服务器上确认 GPU 空闲后**，再部署。\n\n### 第三步：部署新实验\n\n在确认空闲的 GPU 上部署以下实验。使用 `submit_training_job` 提交（自动处理 tmux + cron 监控）。\n\n**命令模板（obs_only）**:\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES={gpu_num} python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed {seed} --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm {norm} --output_file logs/eval_object_obs_only_norm{label}_seed{seed}.json\"\n```\n\n**命令模板（perdof）**:\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES={gpu_num} python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed {seed} --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm {norm} --output_file logs/eval_object_perdof_norm{label}_seed{seed}.json\"\n```\n\n**命令模板（default norm，无 --max_correction_norm 参数）**:\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES={gpu_num} python -u src/evaluate.py --mode {mode} --benchmark object --n_rollouts 10 --seed {seed} --K 10 --crm_checkpoint {checkpoint} --output_file logs/{output_file}.json\"\n```\n\n**部署列表（按优先级）**:\n\n| # | Server | GPU | Mode | Norm | Seed | Exp ID | Hypothesis |\n|---|--------|-----|------|------|------|--------|------------|\n| 1 | bjb1-18228 | cuda:0 | crm_obs_only | 0.03 | 43 | eval-obs-only-object-norm003-seed43 | obs_only at ε=0.03 seed43, extending low-norm data (seed42=16%). Second seed for error bar. |\n| 2 | bjb1-18228 | cuda:1 | crm_perdof | 0.03 | 43 | eval-perdof-object-norm003-seed43 | perdof at ε=0.03 seed43, extending low-norm data (seed42=14%). Paired with obs_only seed43. |\n| 3 | bjb1-32546 | cuda:0 | crm_obs_only | 0.05 | 43 | eval-obs-only-object-norm005-seed43 | obs_only at ε=0.05 seed43, extending low-norm data (seed42≈13%). Second seed for error bar. |\n| 4 | bjb1-32546 | cuda:3 | crm_perdof | 0.05 | 43 | eval-perdof-object-norm005-seed43 | perdof at ε=0.05 seed43, extending low-norm data (seed42=14%). Paired with obs_only seed43. |\n| 5 | bjb1-32546 | cuda:5 | crm_obs_only | default | 43 | eval-obs-only-object-default-seed43 | obs_only at default norm (no clipping) seed43. seed42=17%. Extends robustness at extreme magnitude. |\n| 6 | bjb2-28827 | cuda:1 | crm_perdof | 0.3 | 46 | eval-perdof-object-norm03-seed46 | perdof at ε=0.3 seed46. seed42=4%, seed44=4%, seed45=6%. 4th seed confirms collapse. |\n| 7 | bjb2-28827 | cuda:2 | crm_perdof | default | 45 | eval-perdof-object-default-seed45 | perdof at default norm seed45. seed44=0%. Confirms catastrophic collapse at extreme magnitude. |\n| 8 | bjb2-40593 | cuda:0 | crm_obs_only | 0.03 | 44 | eval-obs-only-object-norm003-seed44 | obs_only at ε=0.03 seed44, 3rd seed for error bar at lowest norm point. |\n\n**对于 #5（default norm obs_only）**：无 --max_correction_norm 参数。checkpoint = obs_only。\n**对于 #7（default norm perdof）**：无 --max_correction_norm 参数。checkpoint = perdof (`/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt`)。\n\n每个实验部署前：\n1. 先用 `nvidia-smi -i {gpu_num}` 确认该 GPU 无进程\n2. 用 `submit_training_job` 提交（传 exp_id, server, gpu_id, command）\n3. 提交后 20s 内用 `nvidia-smi -i {gpu_num}` 验证进程已启动\n4. 更新 registry：status=RUNNING, 填 spec（command, server, gpu, pid, seed, model_name, data_path, data_count=100, checkpoint_source, eval_data）\n\n**如果某个 GPU 上已有进程（包括 ghost 实验还在跑）**，跳过该 GPU 不部署，记录原因。\n\n**重要规则**：\n- bjb2-40593 磁盘仅 46GB 可用，eval log 很小（< 1MB）所以可以用\n- GPU 编号从 0 开始（CUDA_VISIBLE_DEVICES=0 对应 submit_training_job 的 gpu_id=\"cuda:0\"）\n- 只在白名单 GPU 上部署\n- 如果 ghost 实验已完成且释放了 GPU，该 GPU 可以用于新实验\n\n### 环境\n- Python: conda base 环境\n- 项目路径: `/root/acr-vla-conformal-refinement/`\n- 所有服务器 account: root\n\n### 产出\n完成后汇总：\n1. Ghost 实验诊断结果（alive/completed/failed + metrics if completed）\n2. 成功部署的实验列表（exp_id, server, gpu, pid）\n3. 未能部署的实验及原因\n",
+  "context": "## 失败模式提醒\n- submit_training_job 的命令必须用 bash -c 包裹（sh 下 conda 不可用，EXIT_CODE=127）\n- 部署前必须 nvidia-smi 确认 GPU 空闲，防止冲突\n- EXIT_CODE=129 (SIGHUP) 不一定是失败，检查输出文件完整性\n- Kill 操作前必须逐参数比对（norm=0.3 ≠ norm=0.03）"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ssh:ghost-check-and-deploy-batch6",
+    "project": "acr-vla-conformal-refinement",
+    "tool_groups": "['ssh', 'registry']",
+    "task_prompt": "## 任务：检查 Ghost 实验 + 在空闲 GPU 上部署新 magnitude curve 实验\n\n### 背景\n我们在做 LIBERO-Object benchmark 的评估实验，为论文 Figure 2 (magnitude curve) 收集多 seed 数据。当前有 2 个实验在 registry 标 RUNNING 但硬件资源检测工具没看到它们，需要 SSH 确认。确认空闲 GPU 后部署新实验。\n\n### 第一步：Ghost 实验诊断\n\nSSH 到以下服务器检查这 2 个实验是否真的在跑：\n\n**Ghost 1**: eval-perdof-object-norm02-seed45\n- 服务器: bjb2-28827\n- GPU: cuda:1\n- PID: 222824\n- 命令: `CUDA_VISIBLE_DEVICES=1 python src/evaluate.py --mode crm_perdof ... --max_correction_norm 0.2 --seed 45`\n- 检查方式: `ps aux | grep 222824`, `nvidia-smi -i 1`\n- 如果进程不存在：检查 `logs/eval_object_perdof_norm02_seed45.json` 是否存在且完整。如果完整（有 overall_sr 字段），调 `update_registry` 设 status=DONE, conclusion=success, 记录 metrics。如果不完整或不存在，设 conclusion=failed。\n\n**Ghost 2**: eval-obs-only-object-norm01-seed45\n- 服务器: bjb1-18228\n- GPU: cuda:0\n- PID: 未记录\n- 命令包含: `CUDA_VISIBLE_DEVICES=0 python src/evaluate.py --mode crm_obs_only --max_correction_norm 0.1 --seed 45`\n- 检查方式: `ps aux | grep evaluate.py | grep \"seed 45\"`, `nvidia-smi -i 0`\n- 同样检查输出文件 `logs/eval_object_obs_only_norm01_seed45.json`\n\n对每个 ghost 实验：如果进程已结束且输出完整，用 `update_registry` 更新为 DONE + success（提取 overall_sr 等 metrics）。如果输出不完整/不存在，更新为 DONE + failed。\n\n### 第二步：确认空闲 GPU\n\n在每台服务器上执行 `nvidia-smi` 确认哪些 GPU 真的空闲（无进程）：\n\n- bjb1-18228: 预期 cuda:0, cuda:1 空闲（cuda:2,3 在跑）\n- bjb1-32546: 预期 cuda:0, cuda:3, cuda:5 空闲（cuda:1,2,4 在跑）\n- bjb2-28827: 预期 cuda:1, cuda:2 空闲（cuda:0,3,4,5 在跑）\n- bjb2-40593: 预期 cuda:0 空闲（但磁盘仅剩 46GB，eval 小 log 可以用）\n\n**在每个服务器上确认 GPU 空闲后**，再部署。\n\n### 第三步：部署新实验\n\n在确认空闲的 GPU 上部署以下实验。使用 `submit_training_job` 提交（自动处理 tmux + cron 监控）。\n\n**命令模板（obs_only）**:\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES={gpu_num} python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed {seed} --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm {norm} --output_file logs/eval_object_obs_only_norm{label}_seed{seed}.json\"\n```\n\n**命令模板（perdof）**:\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES={gpu_num} python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed {seed} --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm {norm} --output_file logs/eval_object_perdof_norm{label}_seed{seed}.json\"\n```\n\n**命令模板（default norm，无 --max_correction_norm 参数）**:\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES={gpu_num} python -u src/evaluate.py --mode {mode} --benchmark object --n_rollouts 10 --seed {seed} --K 10 --crm_checkpoint {checkpoint} --output_file logs/{output_file}.json\"\n```\n\n**部署列表（按优先级）**:\n\n| # | Server | GPU | Mode | Norm | Seed | Exp ID | Hypothesis |\n|---|--------|-----|------|------|------|--------|------------|\n| 1 | bjb1-18228 | cuda:0 | crm_obs_only | 0.03 | 43 | eval-obs-only-object-norm003-seed43 | obs_only at ε=0.03 seed43, extending low-norm data (seed42=16%). Second seed for error bar. |\n| 2 | bjb1-18228 | cuda:1 | crm_perdof | 0.03 | 43 | eval-perdof-object-norm003-seed43 | perdof at ε=0.03 seed43, extending low-norm data (seed42=14%). Paired with obs_only seed43. |\n| 3 | bjb1-32546 | cuda:0 | crm_obs_only | 0.05 | 43 | eval-obs-only-object-norm005-seed43 | obs_only at ε=0.05 seed43, extending low-norm data (seed42≈13%). Second seed for error bar. |\n| 4 | bjb1-32546 | cuda:3 | crm_perdof | 0.05 | 43 | eval-perdof-object-norm005-seed43 | perdof at ε=0.05 seed43, extending low-norm data (seed42=14%). Paired with obs_only seed43. |\n| 5 | bjb1-32546 | cuda:5 | crm_obs_only | default | 43 | eval-obs-only-object-default-seed43 | obs_only at default norm (no clipping) seed43. seed42=17%. Extends robustness at extreme magnitude. |\n| 6 | bjb2-28827 | cuda:1 | crm_perdof | 0.3 | 46 | eval-perdof-object-norm03-seed46 | perdof at ε=0.3 seed46. seed42=4%, seed44=4%, seed45=6%. 4th seed confirms collapse. |\n| 7 | bjb2-28827 | cuda:2 | crm_perdof | default | 45 | eval-perdof-object-default-seed45 | perdof at default norm seed45. seed44=0%. Confirms catastrophic collapse at extreme magnitude. |\n| 8 | bjb2-40593 | cuda:0 | crm_obs_only | 0.03 | 44 | eval-obs-only-object-norm003-seed44 | obs_only at ε=0.03 seed44, 3rd seed for error bar at lowest norm point. |\n\n**对于 #5（default norm obs_only）**：无 --max_correction_norm 参数。checkpoint = obs_only。\n**对于 #7（default norm perdof）**：无 --max_correction_norm 参数。checkpoint = perdof (`/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt`)。\n\n每个实验部署前：\n1. 先用 `nvidia-smi -i {gpu_num}` 确认该 GPU 无进程\n2. 用 `submit_training_job` 提交（传 exp_id, server, gpu_id, command）\n3. 提交后 20s 内用 `nvidia-smi -i {gpu_num}` 验证进程已启动\n4. 更新 registry：status=RUNNING, 填 spec（command, server, gpu, pid, seed, model_name, data_path, data_count=100, checkpoint_source, eval_data）\n\n**如果某个 GPU 上已有进程（包括 ghost 实验还在跑）**，跳过该 GPU 不部署，记录原因。\n\n**重要规则**：\n- bjb2-40593 磁盘仅 46GB 可用，eval log 很小（< 1MB）所以可以用\n- GPU 编号从 0 开始（CUDA_VISIBLE_DEVICES=0 对应 submit_training_job 的 gpu_id=\"cuda:0\"）\n- 只在白名单 GPU 上部署\n- 如果 ghost 实验已完成且释放了 GPU，该 GPU 可以用于新实验\n\n### 环境\n- Python: conda base 环境\n- 项目路径: `/root/acr-vla-conformal-refinement/`\n- 所有服务器 account: root\n\n### 产出\n完成后汇总：\n1. Ghost 实验诊断结果（alive/completed/failed + metrics if completed）\n2. 成功部署的实验列表（exp_id, server, gpu, pid）\n3. 未能部署的实验及原因\n",
+    "context": "## 失败模式提醒\n- submit_training_job 的命令必须用 bash -c 包裹（sh 下 conda 不可用，EXIT_CODE=127）\n- 部署前必须 nvidia-smi 确认 GPU 空闲，防止冲突\n- EXIT_CODE=129 (SIGHUP) 不一定是失败，检查输出文件完整性\n- Kill 操作前必须逐参数比对（norm=0.3 ≠ norm=0.03）"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T11:18:25.552991+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_ghost-check-and-deploy-batch6_20260517T111811\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ssh_ghost-check-and-deploy-batch6_20260517T111811.log\", \"setup_data\": {}, \"message\": \"Worker worker_ssh_ghost-check-and-deploy-batch6_20260517T111811 started. Use get_worker_status('worker_ssh_ghost-check-and-deploy-batch6_20260517T111811') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 14720
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-17T11:18:25.654443+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:paper-claims-data-alignment",
+  "project": "acr-vla-conformal-refinement",
+  "tool_groups": "['knowledge', 'registry']",
+  "task_prompt": "## 任务：Paper Claims vs 实验数据对齐检查\n\n### 背景\n我们准备写 CoRL 2026 论文（deadline ~May 26 abstract, ~Jun 2 full paper）。核心发现是 obs_only CRM 在 magnitude robustness 上显著优于 perdof CRM。需要检查 paper_framing.md 中的每个 claim 是否都有充分的实验数据支撑。\n\n### 你的任务\n\n1. 读 `paper_framing.md` 提取所有 claims（核心 claims 和 supporting claims）\n2. 读 `read_registry` 获取所有 conclusion=success 的实验及其 metrics\n3. 读 `ROADMAP.md` 获取当前数据汇总表\n4. 对每个 claim，检查：\n   - 支撑该 claim 的实验 ID 列表\n   - 数据是否充分（seeds 数量、统计显著性）\n   - 是否有缺口（某个 claim 缺少直接数据支撑）\n\n### 产出\n\n写入 `save_project_file(file=\"paper_data_alignment.md\")`，格式：\n\n```markdown\n# Paper Claims vs Data Alignment Report\n> Generated: 2026-05-17\n\n## Claim 1: [claim text]\n- 支撑实验: [exp_id list]\n- 数据充分度: ✅/⚠️/❌\n- 缺口: [if any]\n\n## Claim 2: ...\n...\n\n## Summary\n- ✅ 充分支撑的 claims: N\n- ⚠️ 部分支撑（需更多数据）: N\n- ❌ 缺乏支撑: N\n- 当前 RUNNING 实验能填补的缺口: [list]\n```\n\n### 注意\n- 不要编造数据，只引用 registry 中实际存在的 metrics\n- 统计显著性标准：6v6 Fisher exact p=0.0074 已确认（D047）\n- magnitude curve 是核心 figure，检查每个 norm 点的 seed 覆盖率\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:paper-claims-data-alignment",
+    "project": "acr-vla-conformal-refinement",
+    "tool_groups": "['knowledge', 'registry']",
+    "task_prompt": "## 任务：Paper Claims vs 实验数据对齐检查\n\n### 背景\n我们准备写 CoRL 2026 论文（deadline ~May 26 abstract, ~Jun 2 full paper）。核心发现是 obs_only CRM 在 magnitude robustness 上显著优于 perdof CRM。需要检查 paper_framing.md 中的每个 claim 是否都有充分的实验数据支撑。\n\n### 你的任务\n\n1. 读 `paper_framing.md` 提取所有 claims（核心 claims 和 supporting claims）\n2. 读 `read_registry` 获取所有 conclusion=success 的实验及其 metrics\n3. 读 `ROADMAP.md` 获取当前数据汇总表\n4. 对每个 claim，检查：\n   - 支撑该 claim 的实验 ID 列表\n   - 数据是否充分（seeds 数量、统计显著性）\n   - 是否有缺口（某个 claim 缺少直接数据支撑）\n\n### 产出\n\n写入 `save_project_file(file=\"paper_data_alignment.md\")`，格式：\n\n```markdown\n# Paper Claims vs Data Alignment Report\n> Generated: 2026-05-17\n\n## Claim 1: [claim text]\n- 支撑实验: [exp_id list]\n- 数据充分度: ✅/⚠️/❌\n- 缺口: [if any]\n\n## Claim 2: ...\n...\n\n## Summary\n- ✅ 充分支撑的 claims: N\n- ⚠️ 部分支撑（需更多数据）: N\n- ❌ 缺乏支撑: N\n- 当前 RUNNING 实验能填补的缺口: [list]\n```\n\n### 注意\n- 不要编造数据，只引用 registry 中实际存在的 metrics\n- 统计显著性标准：6v6 Fisher exact p=0.0074 已确认（D047）\n- magnitude curve 是核心 figure，检查每个 norm 点的 seed 覆盖率\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T11:18:28.167430+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_paper-claims-data-alignment_20260517T111825\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analysis_paper-claims-data-alignment_20260517T111825.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_paper-claims-data-alignment_20260517T111825 started. Use get_worker_status('worker_analysis_paper-claims-data-alignment_20260517T111825') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2512
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-17T11:19:05.208432+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 9/17 在跑 (2 ghost 诊断中) | Worker 3 (GPU 0 / CPU 3) | 磁盘: bjb2-40593 90% (46GB)\n\n## Session 19 启动状态\n\n**RUNNING 实验 (11)**:\n- magnitude curve 数据采集中：obs_only/perdof 各 norm 点多 seed 补充\n- 长跑实验（>24h）：scalar-seed45, perdof-norm02-seed45, obs-only-default-seed45, obs-only-norm01-seed45 在 bjb2-28827/bjb1-18228 上\n\n**Ghost 诊断**:\n- eval-perdof-object-norm02-seed45 (bjb2-28827 cuda:1) 和 eval-obs-only-object-norm01-seed45 (bjb1-18228 cuda:0)：registry 标 RUNNING 但硬件资源扫描未检测到。已派 Worker SSH 诊断——可能已完成但 cron 未捕获退出。\n\n**已启动 batch 6 部署 (8 个新实验, 填充空闲 GPU)**:\n\n| Exp | Mode | Norm | Seed | Server/GPU |\n|-----|------|------|------|------------|\n| obs-only-norm003-seed43 | obs_only | 0.03 | 43 | bjb1-18228 cuda:0 |\n| perdof-norm003-seed43 | perdof | 0.03 | 43 | bjb1-18228 cuda:1 |\n| obs-only-norm005-seed43 | obs_only | 0.05 | 43 | bjb1-32546 cuda:0 |\n| perdof-norm005-seed43 | perdof | 0.05 | 43 | bjb1-32546 cuda:3 |\n| obs-only-default-seed43 | obs_only | default | 43 | bjb1-32546 cuda:5 |\n| perdof-norm03-seed46 | perdof | 0.3 | 46 | bjb2-28827 cuda:1 |\n| perdof-default-seed45 | perdof | default | 45 | bjb2-28827 cuda:2 |\n| obs-only-norm003-seed44 | obs_only | 0.03 | 44 | bjb2-40593 cuda:0 |\n\n**目的**: 补全 magnitude curve 图的弱点——norm=0.03 和 norm=0.05 目前仅 1 seed，无法画 error bar。新部署完成后，所有 norm 点至少 3 seeds。\n\n**Paper 准备**:\n- Paper claims vs data alignment 检查 Worker 已启动\n- 6v6 Fisher p=0.0074 已锁定 (D047)\n- ROADMAP 标\"等用户确认方向 A → 启动 Paper Agent\"\n\n**请 Director 确认**: 是否可以启动 Paper Agent 正式写作？核心统计数据已就绪（6v6 p=0.0074, magnitude curve pattern 清晰），剩余 RUNNING 实验是补充 error bar 数据，不影响论文主线。CoRL abstract DDL ~May 26，距今 9 天。",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 9/17 在跑 (2 ghost 诊断中) | Worker 3 (GPU 0 / CPU 3) | 磁盘: bjb2-40593 90% (46GB)\n\n## Session 19 启动状态\n\n**RUNNING 实验 (11)**:\n- magnitude curve 数据采集中：obs_only/perdof 各 norm 点多 seed 补充\n- 长跑实验（>24h）：scalar-seed45, perdof-norm02-seed45, obs-only-default-seed45, obs-only-norm01-seed45 在 bjb2-28827/bjb1-18228 上\n\n**Ghost 诊断**:\n- eval-perdof-object-norm02-seed45 (bjb2-28827 cuda:1) 和 eval-obs-only-object-norm01-seed45 (bjb1-18228 cuda:0)：registry 标 RUNNING 但硬件资源扫描未检测到。已派 Worker SSH 诊断——可能已完成但 cron 未捕获退出。\n\n**已启动 batch 6 部署 (8 个新实验, 填充空闲 GPU)**:\n\n| Exp | Mode | Norm | Seed | Server/GPU |\n|-----|------|------|------|------------|\n| obs-only-norm003-seed43 | obs_only | 0.03 | 43 | bjb1-18228 cuda:0 |\n| perdof-norm003-seed43 | perdof | 0.03 | 43 | bjb1-18228 cuda:1 |\n| obs-only-norm005-seed43 | obs_only | 0.05 | 43 | bjb1-32546 cuda:0 |\n| perdof-norm005-seed43 | perdof | 0.05 | 43 | bjb1-32546 cuda:3 |\n| obs-only-default-seed43 | obs_only | default | 43 | bjb1-32546 cuda:5 |\n| perdof-norm03-seed46 | perdof | 0.3 | 46 | bjb2-28827 cuda:1 |\n| perdof-default-seed45 | perdof | default | 45 | bjb2-28827 cuda:2 |\n| obs-only-norm003-seed44 | obs_only | 0.03 | 44 | bjb2-40593 cuda:0 |\n\n**目的**: 补全 magnitude curve 图的弱点——norm=0.03 和 norm=0.05 目前仅 1 seed，无法画 error bar。新部署完成后，所有 norm 点至少 3 seeds。\n\n**Paper 准备**:\n- Paper claims vs data alignment 检查 Worker 已启动\n- 6v6 Fisher p=0.0074 已锁定 (D047)\n- ROADMAP 标\"等用户确认方向 A → 启动 Paper Agent\"\n\n**请 Director 确认**: 是否可以启动 Paper Agent 正式写作？核心统计数据已就绪（6v6 p=0.0074, magnitude curve pattern 清晰），剩余 RUNNING 实验是补充 error bar 数据，不影响论文主线。CoRL abstract DDL ~May 26，距今 9 天。",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T11:19:09.332664+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4124
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-17T11:19:14.012125+00:00_
+
+Session 19 初始化完成。
+
+**当前状态**：
+- 11 实验 RUNNING（cron 确认），2 个 ghost 诊断中
+- 3 Workers 在跑：SSH deploy batch 6（8 新实验填满空闲 GPU）、paper claims alignment、magnitude curve aggregation
+- 已向 Director 汇报并请求确认启动 Paper Agent
+
+等待 Worker 回调和 Director 回复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval-direct-correction-object-seed42-r2"
+}
+```
+
+</details>
+
+---

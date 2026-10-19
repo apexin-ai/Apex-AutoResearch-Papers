@@ -1,0 +1,14 @@
+{
+  "exp_id": "pi05-adaptive-long-s42-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T03:44:44.161Z",
+    "updated_at": "2026-05-26T03:44:44.161Z"
+  },
+  "timestamp": "2026-05-26T03:44:45.720948+00:00",
+  "trigger": "update_registry"
+}

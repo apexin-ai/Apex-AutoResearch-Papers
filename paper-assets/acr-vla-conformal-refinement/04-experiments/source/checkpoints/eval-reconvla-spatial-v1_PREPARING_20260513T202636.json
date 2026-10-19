@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval-reconvla-spatial-v1",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:15:35.450Z",
+    "updated_at": "2026-05-13T20:26:36.397Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode reconvla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --smolvla_path /root/autodl-tmp/models/smolvla_libero/",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "85963",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-reconvla-spatial-v1.log",
+      "data_path": "/root/autodl-tmp/libero_data/ (spatial)",
+      "data_count": "10 tasks x 10 rollouts x 300 steps",
+      "model_name": "lerobot/smolvla_libero (450M) + ReconVLA argmin selection K=10",
+      "seed": 42,
+      "hypothesis": "ReconVLA (scalar Euclidean nonconformity + argmin) as baseline for ACR-VLA comparison",
+      "checkpoint_source": "lerobot/smolvla_libero"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T20:26:35.759Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-13T20:26:36.458001+00:00",
+  "trigger": "update_registry"
+}

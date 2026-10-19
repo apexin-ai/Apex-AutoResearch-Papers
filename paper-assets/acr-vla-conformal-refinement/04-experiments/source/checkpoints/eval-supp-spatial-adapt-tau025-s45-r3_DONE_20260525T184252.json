@@ -1,0 +1,52 @@
+{
+  "exp_id": "eval-supp-spatial-adapt-tau025-s45-r3",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:42:31.834Z",
+    "updated_at": "2026-05-25T18:42:50.782Z",
+    "hypothesis": "Adaptive CRM tau=0.25 on Spatial suite seed45. Re-deployed after prior kills. Validates Adaptive improvement on Spatial (3-seed mean +2.1pp over VLA-only 78.7%).",
+    "parent": "eval-supp-spatial-adapt-tau025-s45",
+    "spec": {
+      "command": "python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "server": "cqa1-32758",
+      "gpu": "cuda:4",
+      "seed": 45,
+      "model_name": "SmolVLA+AdaptiveCRM",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200,
+      "eval_data": "LIBERO-Spatial",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "log_path": "/root/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log",
+      "pid": "502821",
+      "tmux_session": "eval-supp-spatial-adapt-tau025-s45"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T01:30:45.031Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "killed",
+    "completed_at": "2026-05-24T01:31:11.421Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-24T01:31:34.981793+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 80,
+      "successes": 160,
+      "total": 200,
+      "trigger_rate": 20,
+      "mean_unc": 0.1863
+    }
+  },
+  "timestamp": "2026-05-25T18:42:52.317790+00:00",
+  "trigger": "update_registry"
+}

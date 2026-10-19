@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval-obs-only-object-norm003-seed62-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:41:26.296Z",
+    "updated_at": "2026-05-21T00:42:21.972Z",
+    "hypothesis": "CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed62 r2. Redo after python PATH failure on bjb1-32546. Norm sweep seed balance for ε=0.03.",
+    "parent": "eval-obs-only-object-norm003-seed62"
+  },
+  "timestamp": "2026-05-21T00:42:22.943695+00:00",
+  "trigger": "update_registry"
+}

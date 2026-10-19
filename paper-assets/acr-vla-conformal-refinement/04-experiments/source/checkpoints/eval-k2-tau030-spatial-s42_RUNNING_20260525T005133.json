@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-k2-tau030-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T21:37:30.605Z",
+    "updated_at": "2026-05-25T00:51:31.886Z",
+    "hypothesis": "K=2 τ-sweep: τ=0.30 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting.",
+    "spec": {
+      "command": "python evaluate.py --mode adaptive_conformal_crm --K 2 --conformal_threshold 0.30 --benchmark spatial --seed 42 --n_rollouts 20",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "475008",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-k2-tau030-spatial-s42.log",
+      "submitted_at": "2026-05-24T21:58:05.975Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "SmolVLA+CRM",
+      "seed": 42,
+      "data_path": "LIBERO-Spatial",
+      "data_count": 200
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-25T00:51:33.382618+00:00",
+  "trigger": "update_registry"
+}

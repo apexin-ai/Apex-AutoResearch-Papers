@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval-obs-only-object-norm003-seed49",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:09:03.172Z",
+    "updated_at": "2026-05-19T04:58:18.789Z",
+    "hypothesis": "obs_only CRM (ε=0.03) seed49 on LIBERO-Object. 补 magnitude curve 最薄点 ε=0.03 (当前 n=1)，第 6 个 seed 确保极低 norm 端统计可靠。",
+    "spec": {
+      "command": "crm_obs_only --benchmark object --seed 49 --K 10 --max_correction_norm 0.03 --n_rollouts 10",
+      "server": "bjb1-18228",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "crm_obs_only",
+      "seed": 49,
+      "eval_data": "LIBERO-Object",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T04:58:19.281243+00:00",
+  "trigger": "update_registry"
+}

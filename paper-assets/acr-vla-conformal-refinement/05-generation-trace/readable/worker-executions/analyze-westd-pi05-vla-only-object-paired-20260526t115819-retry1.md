@@ -1,0 +1,2115 @@
+# analyze westd pi05 vla only object paired 20260526T115819 retry1
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_analyze_westd-pi05-vla-only-object-paired_20260526T115819_retry1.log`
+- **Structured JSON:** [`484c54dd3eef4ea184fc.json`](../../sessions/48/484c54dd3eef4ea184fc.json)
+
+## Before a recorded user message
+
+42 recorded events
+
+### System
+
+_source line 1_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__compare_wandb_runs",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__fetch_wandb_metrics",
+    "mcp__agent-ml-research__fetch_wandb_run_history",
+    "mcp__agent-ml-research__get_best_wandb_run",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__list_wandb_runs",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-7[1m]",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e5f57a30-84bc-4857-bb4f-504a8cb997b9",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1780063200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.9,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "0793566c-b23e-4715-b7a6-d93f3a31a3d1",
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "87421816-5d8b-471e-90d4-21ede16d8736",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01MwRztvCtFXN3CQXCn1G4W8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 14833,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14833
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AaZ9qkSEQi6BhDxiSKZx3z`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__list_wandb_runs,mcp__agent-ml-research__fetch_wandb_metrics",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "c73b7f01-5535-4a90-b3f6-46c833a17f9e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01MwRztvCtFXN3CQXCn1G4W8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 14833,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14833
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-26T11:58:46.115Z_
+
+<details><summary>↩ Tool result · `toolu_01AaZ9qkSEQi6BhDxiSKZx3z`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_wandb_runs"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "b69d5ecd-2683-485b-a2a5-2989803fd068",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__list_wandb_runs",
+      "mcp__agent-ml-research__fetch_wandb_metrics"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__list_wandb_runs,mcp__agent-ml-research__fetch_wandb_metrics",
+    "total_deferred_tools": 31
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013iAqDAS2iroBrd8USzeUqm`</summary>
+
+```json
+{
+  "server": "westd-49937",
+  "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed42_westd.json /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed43_westd.json /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed44_westd.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "c9d15baf-90a0-4c94-b2d3-bec66cccb003",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_012od6ehz9Nq6opTF3SxXD84",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 17426,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17426
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 28792
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01HfwDstEQHEaBn5tGdf9Q2C`</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": {
+    "exp_id": "westd-pi05-vla-only-object-s42-paired"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "ed278815-53fd-4514-8db2-82e667c62f64",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_012od6ehz9Nq6opTF3SxXD84",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 17426,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17426
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 28792
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "isUsingOverage": false
+  },
+  "uuid": "b08fa961-c7a5-4318-b4a0-ce4409b5dfd4",
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-26T11:58:56.688Z_
+
+<details><summary>↩ Tool result · `toolu_013iAqDAS2iroBrd8USzeUqm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1498 May 26 19:37 /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed42_westd.json\\n-rw-r--r-- 1 root root 1495 May 26 19:38 /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed43_westd.json\\n-rw-r--r-- 1 root root 1498 May 26 19:39 /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed44_westd.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "17648ace-874a-4cc1-96bd-1c888c5bde74",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1498 May 26 19:37 /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed42_westd.json\\\\n-rw-r--r-- 1 root root 1495 May 26 19:38 /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed43_westd.json\\\\n-rw-r--r-- 1 root root 1498 May 26 19:39 /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed44_westd.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1498 May 26 19:37 /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed42_westd.json\\n-rw-r--r-- 1 root root 1495 May 26 19:38 /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed43_westd.json\\n-rw-r--r-- 1 root root 1498 May 26 19:39 /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed44_westd.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T11:59:03.594Z_
+
+<details><summary>↩ Tool result · `toolu_01HfwDstEQHEaBn5tGdf9Q2C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.8624}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "32114722-42cb-4dec-aed9-e08c61bdfb15",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.8624}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.8624}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vyie7kX3K9k5YRfAv9h8CE`</summary>
+
+```json
+{
+  "server": "westd-49937",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed42_westd.json /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed43_westd.json /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed44_westd.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "384341c1-2653-49b4-8765-9cdfea905095",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_018bVDr7qiZvmQRX2yBvNeEV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 33760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 887
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0142ZbGhGsvXE4WzKp4GpR5t`</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": {
+    "exp_id": "westd-pi05-vla-only-object-s42-paired"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "33660b8d-03ff-477c-9b9b-6e2b8875a55e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_018bVDr7qiZvmQRX2yBvNeEV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 33760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 887
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1780063200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.9,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "3b692bc5-28c0-49e6-a0bf-fb23984c6e7d",
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-26T11:59:08.609Z_
+
+<details><summary>↩ Tool result · `toolu_01Vyie7kX3K9k5YRfAv9h8CE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.995,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 1.0,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.995,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "5ecf5add-f652-4315-81d5-574605f757aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.995,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.995,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.995,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 1.0,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.995,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-26T11:59:15.185Z_
+
+<details><summary>↩ Tool result · `toolu_0142ZbGhGsvXE4WzKp4GpR5t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.528}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "a379106b-6e13-4619-8569-478d46d1e9ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.528}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.528}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "1c642bf6-b233-471e-bfc6-054280d57213",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UPTNZbZgBCyWCHTs14BZjQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3979,
+      "cache_read_input_tokens": 34647,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3979
+      },
+      "output_tokens": 109,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Got the three results. Now checking for comparison data and updating registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "15d1eafa-17cd-4da7-834b-7d86b9e21f7b",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UPTNZbZgBCyWCHTs14BZjQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3979,
+      "cache_read_input_tokens": 34647,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3979
+      },
+      "output_tokens": 109,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01XaSDYEBfPX2v3CzH4GstsH`</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "filters": {
+    "conclusion": "success"
+  },
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "3f095e7b-9675-486c-b580-80df92ab15f1",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UPTNZbZgBCyWCHTs14BZjQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3979,
+      "cache_read_input_tokens": 34647,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3979
+      },
+      "output_tokens": 109,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-26T11:59:30.343Z_
+
+<details><summary>↩ Tool result · `toolu_01XaSDYEBfPX2v3CzH4GstsH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"westd-pi05-vla-only-goal-s44-paired\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-26T11:02:01.323Z\", \"updated_at\": \"2026-05-26T11:59:07.164Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s44 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.955, \"per_task_sr\": {\"open_the_middle_drawer_of_the_cabinet\": 0.95, \"put_the_bowl_on_the_stove\": 0.95, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.9, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.8, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 0.95, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 1}, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20}}, \"westd-pi05-vla-only-object-s43-paired\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-26T11:02:30.548Z\", \"updated_at\": \"2026-05-26T11:58:56.941Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\"}, \"westd-pi05-vla-only-goal-s43-paired\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-26T11:01:46.159Z\", \"updated_at\": \"2026-05-26T11:58:29.625Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.965, \"per_task_sr\": {\"open_the_middle_drawer_of_the_cabinet\": 1, \"put_the_bowl_on_the_stove\": 1, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.9, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.85, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 1, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.9}, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20}}, \"westd-pi05-vla-only-object-s42-paired\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-26T11:02:15.888Z\", \"updated_at\": \"2026-05-26T11:58:17.206Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\"}, \"westd-pi05-vla-only-goal-s42-paired\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-26T11:01:32.135Z\", \"updated_at\": \"2026-05-26T11:57:57.565Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.975, \"per_task_sr\": {\"open_the_middle_drawer_of_the_cabinet\": 0.95, \"put_the_bowl_on_the_stove\": 1, \"put_the_wine_bottle_on_top_of_the_cabinet\": 1, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.9, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 0.95, \"put_the_cream_cheese_in_the_bowl\": 1, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.95}, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20}}, \"pi05-adaptive-object-s43-bjb2-24035\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T10:51:28.267Z\", \"updated_at\": \"2026-05-26T11:57:37.320Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Object s43. Table 2 cross-architecture gating analysis. Tests adaptive gating on Object suite.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.83, \"benchmark\": \"object\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"pi05-adaptive-goal-s42-cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:53:55.121Z\", \"updated_at\": \"2026-05-26T11:28:57.790Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM on Goal s42. 4090 cluster backup for westd result, controlling Blackwell architecture bias.\", \"metrics\": {\"success_rate\": 0.895, \"success_count\": 179, \"total_rollouts\": 200, \"trigger_rate\": 0.081, \"mean_unc\": 0.1152, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"K\": 2, \"max_correction_norm\": 0.2, \"conformal_threshold\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.7, \"put_the_bowl_on_the_stove\": 0.95, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.85, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.7, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 0.9, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.85}}, \"conclusion\": \"success\"}, \"westd-pi05-crm-k2-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:26:05.028Z\", \"updated_at\": \"2026-05-26T10:52:23.271Z\", \"hypothesis\": \"π0.5 CRM obs_only K=2 (ε=0.05, always-on) on LIBERO-Goal s42. Tests whether unconditional CRM correction (no adaptive gating) helps π0.5 on goal suite. Comparison vs adaptive gating and K=2 mean baseline.\", \"metrics\": {\"success_rate\": 0.855, \"benchmark\": \"goal\", \"mode\": \"crm_obs_only\", \"seed\": 42, \"K\": 2, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-object-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:53.085Z\", \"updated_at\": \"2026-05-26T10:52:12.970Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Object s42. Cross-suite validation of adaptive conformal refinement on π0.5.\", \"metrics\": {\"success_rate\": 0.835, \"benchmark\": \"object\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-goal-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:43.389Z\", \"updated_at\": \"2026-05-26T10:51:54.441Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s43. Seed variation for 3-seed mean±std on Goal benchmark.\", \"metrics\": {\"success_rate\": 0.875, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:38.990Z\", \"updated_at\": \"2026-05-26T10:51:37.558Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s42. Tests whether adaptive conformal refinement improves π0.5 on goal-conditioned tasks.\", \"metrics\": {\"success_rate\": 0.88, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"pi05-adaptive-goal-s43-bjb1-18228\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:45:32.801Z\", \"updated_at\": \"2026-05-26T10:24:06.070Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on Goal s43. 4090 cluster cross-validation for westd Goal s43, controlling Blackwell architecture bias.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 89.5}}, \"eval-adaptive-spatial-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:22.983Z\", \"updated_at\": \"2026-05-26T08:53:46.783Z\", \"metrics\": {\"overall_success_rate\": 0.805, \"trigger_rate\": 0.195, \"successes\": 161, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed44_paired_r2.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed44. Paired with s42 (SR=0.795) and s43 for 3-seed mean±std of Adaptive method on Spatial.\", \"conclusion\": \"success\"}, \"eval-adaptive-spatial-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:18.913Z\", \"updated_at\": \"2026-05-26T08:53:39.086Z\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.203, \"successes\": 159, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed43_paired_r2.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed43. Paired with s42 (SR=0.795) and s44 for 3-seed mean±std of Adaptive method on Spatial.\", \"conclusion\": \"success\"}, \"eval-adaptive-goal-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:14.632Z\", \"updated_at\": \"2026-05-26T08:53:31.602Z\", \"metrics\": {\"overall_success_rate\": 0.865, \"trigger_rate\": 0.068, \"successes\": 173, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed44. Paired with s42 (SR=0.835) and s43 for 3-seed mean±std of Adaptive method on Goal.\", \"conclusion\": \"success\"}, \"eval-adaptive-goal-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:10.566Z\", \"updated_at\": \"2026-05-26T08:53:24.015Z\", \"metrics\": {\"overall_success_rate\": 0.845, \"trigger_rate\": 0.088, \"successes\": 169, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed43. Paired with s42 (SR=0.835) and s44 for 3-seed mean±std of Adaptive method on Goal.\", \"conclusion\": \"success\"}, \"eval-adaptive-object-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:06.313Z\", \"updated_at\": \"2026-05-26T08:53:16.512Z\", \"metrics\": {\"overall_success_rate\": 0.75, \"trigger_rate\": 0.036, \"successes\": 150, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed44. Paired with s42 (SR=0.81) and s43 for 3-seed mean±std of Adaptive method on Object.\", \"conclusion\": \"success\"}, \"eval-adaptive-object-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:02.246Z\", \"updated_at\": \"2026-05-26T08:53:07.449Z\", \"metrics\": {\"overall_success_rate\": 0.775, \"trigger_rate\": 0.037, \"successes\": 155, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed43. Paired with s42 (SR=0.81) and s44 for 3-seed mean±std of Adaptive method on Object.\", \"conclusion\": \"success\"}, \"eval-adaptive-spatial-k1-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:18:42.872Z\", \"updated_at\": \"2026-05-26T08:47:52.554Z\", \"hypothesis\": \"K=1 Adaptive Conformal on Spatial s42 at τ=0.20. Single-sample correction vs K=10 multi-sample centering — if K=1 SR is lower, it supports the claim that multi-sample centering improves correction quality by reducing noise in the correction vector.\", \"conclusion\": \"success\", \"notes\": \"K=1 Adaptive eval completed on bjb2-28827. Metrics need harvesting from log. K=1 single-sample correction baseline for K-sweep comparison.\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.198, \"successes\": 159, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed42_paired_r2.json\"}}, \"westd-pi05-vla-only-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:44:47.876Z\", \"updated_at\": \"2026-05-26T08:35:57.908Z\", \"hypothesis\": \"π0.5 VLA-only single-sample baseline (K=1) on LIBERO-Goal s42. D158: must run on westd for paired comparison with westd Adaptive Goal s42, controlling for hardware variation.\", \"metrics\": {\"overall_success_rate\": 0.975, \"successes\": 195, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.9, \"successes\": 18, \"total\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}}, \"delta_vs_4090_s42\": \"+2.0pp (97.5% vs 95.5%)\"}, \"conclusion\": \"success\"}, \"eval-supp-goal-vla-only-wrapper-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T11:34:09.581Z\", \"updated_at\": \"2026-05-26T07:27:17.856Z\", \"hypothesis\": \"Goal VLA-only wrapper fresh eval seed43. Confirms 83.5% baseline across seeds. r4 files (97.5-98%) confirmed as Pi0.5.\", \"metrics\": {\"success_rate\": 82.5, \"source\": \"JSON file eval_goal_vla_only_seed43.json on bjb1-32546, harvested 2026-05-26\"}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau090_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:49:10.797Z\", \"updated_at\": \"2026-05-26T07:00:51.716Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.90 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.89, \"mean_uncertainty\": 0.1148, \"trigger_rate\": 0.0035, \"crm_applied_steps\": 94, \"total_steps\": 26628, \"tau\": 0.9, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau070_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:49:02.809Z\", \"updated_at\": \"2026-05-26T07:00:47.412Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.70 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.87, \"mean_uncertainty\": 0.121, \"trigger_rate\": 0.0104, \"crm_applied_steps\": 283, \"total_steps\": 27265, \"tau\": 0.7, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau050_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:46:41.927Z\", \"updated_at\": \"2026-05-26T07:00:43.156Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.50 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.87, \"mean_uncertainty\": 0.1196, \"trigger_rate\": 0.0206, \"crm_applied_steps\": 565, \"total_steps\": 27431, \"tau\": 0.5, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"goal_vla_only_s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:08:05.449Z\", \"updated_at\": \"2026-05-26T06:52:16.465Z\", \"hypothesis\": \"SmolVLA VLA-only baseline on LIBERO-Goal s48. Provides baseline data point for paired comparison against adaptive conformal CRM at same seed.\", \"metrics\": {\"success_rate\": 0.795, \"n_rollouts\": 200}, \"conclusion\": \"success\"}, \"goal_adapt_s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:08:15.451Z\", \"updated_at\": \"2026-05-26T06:52:02.185Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s48. Tests if conformal-gated CRM correction improves SmolVLA goal performance at seed 48 vs VLA-only baseline.\", \"metrics\": {\"success_rate\": 0.85, \"n_rollouts\": 200, \"delta_vs_baseline_pp\": 5.5}, \"conclusion\": \"success\"}, \"westd-pi05-k2mean-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:26:00.379Z\", \"updated_at\": \"2026-05-26T06:45:41.247Z\", \"hypothesis\": \"π0.5 K=2 mean baseline (vla_only, no CRM) on LIBERO-Goal s42. Isolates sampling effect (K=2 averaging) from CRM correction for π0.5 mechanism analysis. Paired with adaptive_conformal_crm at same seed.\", \"metrics\": {\"success_rate\": 0.995}, \"conclusion\": \"success\"}, \"eval-goal-vla-only-s49-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:09:43.708Z\", \"updated_at\": \"2026-05-26T06:04:17.775Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Goal s49. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.835, \"n_rollouts\": 200, \"benchmark\": \"goal\", \"seed\": 49}, \"conclusion\": \"success\"}, \"eval-spatial-vla-only-s48-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:21.164Z\", \"updated_at\": \"2026-05-26T06:04:02.289Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Spatial s48. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.775, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 48}, \"conclusion\": \"success\"}, \"eval-spatial-vla-only-s46-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:02.079Z\", \"updated_at\": \"2026-05-26T06:03:54.343Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Spatial s46. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.8, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 46}, \"conclusion\": \"success\"}, \"eval-spatial-adapt-tau025-s48-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:29.000Z\", \"updated_at\": \"2026-05-26T06:03:45.555Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Spatial s48. Paired with vla_only s48 for SR uplift measurement.\", \"metrics\": {\"success_rate\": 0.81, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 48}, \"conclusion\": \"success\"}, \"pi05-crm-k2-long-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T23:33:23.785Z\", \"updated_at\": \"2026-05-26T03:41:20.154Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only on LIBERO-Long s44. Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"benchmark\": \"long\", \"model\": \"pi0.5\", \"mode\": \"crm_obs_only\", \"K\": 2, \"norm\": 0.05, \"seed\": 44, \"per_task\": {\"LIVING_ROOM_SCENE2_soup_sauce\": 1, \"LIVING_ROOM_SCENE2_cream_butter\": 0.95, \"KITCHEN_SCENE3_stove_moka\": 0.95, \"KITCHEN_SCENE4_bowl_drawer\": 0.85, \"LIVING_ROOM_SCENE5_mugs_plates\": 1, \"STUDY_SCENE1_book_caddy\": 0.6, \"LIVING_ROOM_SCENE6_mug_pudding\": 0.65, \"LIVING_ROOM_SCENE1_soup_cream\": 0.9, \"KITCHEN_SCENE8_moka_pots\": 0.2, \"KITCHEN_SCENE6_mug_microwave\": 0.9}}}, \"eval-k2-tau030-spatial-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:37:30.605Z\", \"updated_at\": \"2026-05-26T02:22:03.983Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.30 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"trigger_rate\": 0.168, \"benchmark\": \"spatial\", \"seed\": 42, \"tau\": 0.3, \"K\": 2, \"norm\": 0.2}}, \"eval-k2-tau020-spatial-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:37:23.017Z\", \"updated_at\": \"2026-05-26T02:21:56.906Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.20 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting. Key comparison point — τ=0.20 was peak SR under K=10 (81.0%).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.81, \"trigger_rate\": 0.267, \"benchmark\": \"spatial\", \"seed\": 42, \"tau\": 0.2, \"K\": 2, \"norm\": 0.2}, \"notes\": \"Cron 报告 EXIT_CODE=124，但日志分析显示 τ=0.20 eval 已完成 (SR=80.5%, 161/200)。超时发生在同 tmux session 继续跑 τ=0.25 时。数据完整，纠正为 success。\"}, \"precompute-pi05-long-2048-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T06:18:31.140Z\", \"updated_at\": \"2026-05-25T22:40:55.662Z\", \"hypothesis\": \"Precomputing π0.5 obs_features and K=2048 action samples on LIBERO-Long enables downstream CRM training for cross-model (SmolVLA→π0.5) generalization verification without re-running inference at train time.\", \"conclusion\": \"success\"}, \"eval-vla-only-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T18:04:32.173Z\", \"updated_at\": \"2026-05-25T18:07:31.799Z\", \"hypothesis\": \"SmolVLA VLA-only baseline 在 LIBERO-Long suite 上的 SR（seed=44，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.545}}, \"eval-adaptive-long-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T13:29:54.027Z\", \"updated_at\": \"2026-05-25T18:07:24.041Z\", \"hypothesis\": \"SmolVLA Adaptive CRM (K=2, norm=0.2, τ=0.25) 在 LIBERO-Long suite 上的 gated correction 效果（seed=43，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.58}}, \"eval-crm-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T13:29:36.645Z\", \"updated_at\": \"2026-05-25T18:07:16.146Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10) Long s44 — D149 缺失格，完成 CRM Long 3-seed 数据\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.555}}, \"eval-crm-long-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T18:04:09.941Z\", \"updated_at\": \"2026-05-25T18:07:06.638Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10, norm=0.05) 在 LIBERO-Long suite 上的 action correction 效果（seed=43，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.545}}, \"eval-smolvla-crm-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:30:10.261Z\", \"updated_at\": \"2026-05-25T17:51:36.375Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10) Goal s42。Table 1 CRM 列补充数据，seed 方案 Goal 用 s42/s43/s44。\", \"metrics\": {\"success_rate\": 0.83}, \"conclusion\": \"success\"}, \"eval-crm-long-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T11:20:45.404Z\", \"updated_at\": \"2026-05-25T17:51:24.699Z\", \"hypothesis\": \"SmolVLA CRM (K=10, norm=0.05) 在 Long benchmark 上的 action correction 效果（Table 1 D149 seed，CRM 用 3suite checkpoint 跨 suite 泛化）\", \"metrics\": {\"success_rate\": 0.565}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-object-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T18:17:27.320Z\", \"updated_at\": \"2026-05-25T17:51:17.181Z\", \"hypothesis\": \"π0.5 VLA-only baseline Object s43。跨模型验证 baseline。\", \"metrics\": {\"success_rate\": 0.985}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-goal-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:10:26.481Z\", \"updated_at\": \"2026-05-25T17:51:09.042Z\", \"hypothesis\": \"π0.5 VLA-only baseline Goal s44。跨模型验证 baseline。\", \"metrics\": {\"success_rate\": 0.975}, \"conclusion\": \"success\"}, \"eval-smolvla-crm-goal-seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:10:37.288Z\", \"updated_at\": \"2026-05-25T17:50:35.892Z\", \"hypothesis\": \"CRM obs_only (K=10, norm=0.05) on Goal s44. Completes Goal CRM seed coverage for Table 1.\", \"parent\": \"train-crm-smolvla-3suite-v1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.825, \"successes\": 165, \"total\": 200}}, \"eval-vla-only-spatial-bjb1-s49\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T01:32:07.247Z\", \"updated_at\": \"2026-05-25T17:50:28.137Z\", \"hypothesis\": \"VLA-only baseline on Spatial s49 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200}}, \"eval-vla-only-spatial-bjb1-s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T01:32:03.658Z\", \"updated_at\": \"2026-05-25T17:50:15.719Z\", \"hypothesis\": \"VLA-only baseline on Spatial s48 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.775, \"successes\": 155, \"total\": 200}}, \"eval-adaptive-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:31.160Z\", \"updated_at\": \"2026-05-25T17:50:07.726Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s44 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.54, \"trigger_rate\": 0.045, \"mean_uncertainty\": 0.126}}, \"eval-adaptive-long-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:27.324Z\", \"updated_at\": \"2026-05-25T17:49:59.707Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.58, \"trigger_rate\": 0.043, \"mean_uncertainty\": 0.125}}, \"eval-k2-spatial-vla-only-s44-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:39.553Z\", \"updated_at\": \"2026-05-25T17:49:20.052Z\", \"hypothesis\": \"VLA-only baseline on Spatial s44, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200}}, \"eval-k2-spatial-vla-only-s43-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:27.742Z\", \"updated_at\": \"2026-05-25T17:49:12.564Z\", \"hypothesis\": \"VLA-only baseline on Spatial s43, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200}}}, \"count\": 50, \"total\": 600, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.8717}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "fa0c3cba-0bcc-48dc-b585-d7acc748a385",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"westd-pi05-vla-only-goal-s44-paired\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-26T11:02:01.323Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:59:07.164Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Goal s44 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.955, \\\"per_task_sr\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": 0.95, \\\"put_the_bowl_on_the_stove\\\": 0.95, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.9, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.8, \\\"put_the_bowl_on_top_of_the_cabinet\\\": 1, \\\"push_the_plate_to_the_front_of_the_stove\\\": 1, \\\"put_the_cream_cheese_in_the_bowl\\\": 0.95, \\\"turn_on_the_stove\\\": 1, \\\"put_the_bowl_on_the_plate\\\": 1, \\\"put_the_wine_bottle_on_the_rack\\\": 1}, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 44, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20}}, \\\"westd-pi05-vla-only-object-s43-paired\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-26T11:02:30.548Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:58:56.941Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-vla-only-goal-s43-paired\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-26T11:01:46.159Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:58:29.625Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Goal s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.965, \\\"per_task_sr\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": 1, \\\"put_the_bowl_on_the_stove\\\": 1, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.9, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.85, \\\"put_the_bowl_on_top_of_the_cabinet\\\": 1, \\\"push_the_plate_to_the_front_of_the_stove\\\": 1, \\\"put_the_cream_cheese_in_the_bowl\\\": 1, \\\"turn_on_the_stove\\\": 1, \\\"put_the_bowl_on_the_plate\\\": 1, \\\"put_the_wine_bottle_on_the_rack\\\": 0.9}, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20}}, \\\"westd-pi05-vla-only-object-s42-paired\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-26T11:02:15.888Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:58:17.206Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-vla-only-goal-s42-paired\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-26T11:01:32.135Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:57:57.565Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Goal s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.975, \\\"per_task_sr\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": 0.95, \\\"put_the_bowl_on_the_stove\\\": 1, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 1, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.9, \\\"put_the_bowl_on_top_of_the_cabinet\\\": 1, \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.95, \\\"put_the_cream_cheese_in_the_bowl\\\": 1, \\\"turn_on_the_stove\\\": 1, \\\"put_the_bowl_on_the_plate\\\": 1, \\\"put_the_wine_bottle_on_the_rack\\\": 0.95}, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20}}, \\\"pi05-adaptive-object-s43-bjb2-24035\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T10:51:28.267Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:57:37.320Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Object s43. Table 2 cross-architecture gating analysis. Tests adaptive gating on Object suite.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.83, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}}, \\\"pi05-adaptive-goal-s42-cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:53:55.121Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:28:57.790Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM on Goal s42. 4090 cluster backup for westd result, controlling Blackwell architecture bias.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.895, \\\"success_count\\\": 179, \\\"total_rollouts\\\": 200, \\\"trigger_rate\\\": 0.081, \\\"mean_unc\\\": 0.1152, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"K\\\": 2, \\\"max_correction_norm\\\": 0.2, \\\"conformal_threshold\\\": 0.25, \\\"per_task\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": 0.7, \\\"put_the_bowl_on_the_stove\\\": 0.95, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.85, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.7, \\\"put_the_bowl_on_top_of_the_cabinet\\\": 1, \\\"push_the_plate_to_the_front_of_the_stove\\\": 1, \\\"put_the_cream_cheese_in_the_bowl\\\": 0.9, \\\"turn_on_the_stove\\\": 1, \\\"put_the_bowl_on_the_plate\\\": 1, \\\"put_the_wine_bottle_on_the_rack\\\": 0.85}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-crm-k2-goal-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T04:26:05.028Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:52:23.271Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM obs_only K=2 (ε=0.05, always-on) on LIBERO-Goal s42. Tests whether unconditional CRM correction (no adaptive gating) helps π0.5 on goal suite. Comparison vs adaptive gating and K=2 mean baseline.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.855, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"crm_obs_only\\\", \\\"seed\\\": 42, \\\"K\\\": 2, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-adaptive-object-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T04:19:53.085Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:52:12.970Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Object s42. Cross-suite validation of adaptive conformal refinement on π0.5.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.835, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-adaptive-goal-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T04:19:43.389Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:51:54.441Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s43. Seed variation for 3-seed mean±std on Goal benchmark.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.875, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-adaptive-goal-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T04:19:38.990Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:51:37.558Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s42. Tests whether adaptive conformal refinement improves π0.5 on goal-conditioned tasks.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.88, \\\"benchmark\\\": \\\"goal\\\", \\\"mode\\\": \\\"adaptive_conformal_crm\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}, \\\"conclusion\\\": \\\"success\\\"}, \\\"pi05-adaptive-goal-s43-bjb1-18228\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:45:32.801Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:24:06.070Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on Goal s43. 4090 cluster cross-validation for westd Goal s43, controlling Blackwell architecture bias.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 89.5}}, \\\"eval-adaptive-spatial-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:22.983Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:46.783Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.805, \\\"trigger_rate\\\": 0.195, \\\"successes\\\": 161, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_spatial_adaptive_k2_tau025_seed44_paired_r2.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed44. Paired with s42 (SR=0.795) and s43 for 3-seed mean±std of Adaptive method on Spatial.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-spatial-s43-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:18.913Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:39.086Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.795, \\\"trigger_rate\\\": 0.203, \\\"successes\\\": 159, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_spatial_adaptive_k2_tau025_seed43_paired_r2.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed43. Paired with s42 (SR=0.795) and s44 for 3-seed mean±std of Adaptive method on Spatial.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-goal-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:14.632Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:31.602Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.865, \\\"trigger_rate\\\": 0.068, \\\"successes\\\": 173, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed44. Paired with s42 (SR=0.835) and s43 for 3-seed mean±std of Adaptive method on Goal.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-goal-s43-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:10.566Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:24.015Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.845, \\\"trigger_rate\\\": 0.088, \\\"successes\\\": 169, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed43. Paired with s42 (SR=0.835) and s44 for 3-seed mean±std of Adaptive method on Goal.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-object-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:06.313Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:16.512Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.75, \\\"trigger_rate\\\": 0.036, \\\"successes\\\": 150, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed44. Paired with s42 (SR=0.81) and s43 for 3-seed mean±std of Adaptive method on Object.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-object-s43-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:48:02.246Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:07.449Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.775, \\\"trigger_rate\\\": 0.037, \\\"successes\\\": 155, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\\"}, \\\"hypothesis\\\": \\\"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed43. Paired with s42 (SR=0.81) and s44 for 3-seed mean±std of Adaptive method on Object.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-adaptive-spatial-k1-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T21:18:42.872Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:47:52.554Z\\\", \\\"hypothesis\\\": \\\"K=1 Adaptive Conformal on Spatial s42 at τ=0.20. Single-sample correction vs K=10 multi-sample centering — if K=1 SR is lower, it supports the claim that multi-sample centering improves correction quality by reducing noise in the correction vector.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"K=1 Adaptive eval completed on bjb2-28827. Metrics need harvesting from log. K=1 single-sample correction baseline for K-sweep comparison.\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.795, \\\"trigger_rate\\\": 0.198, \\\"successes\\\": 159, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"source\\\": \\\"eval_spatial_adaptive_k2_tau025_seed42_paired_r2.json\\\"}}, \\\"westd-pi05-vla-only-goal-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:44:47.876Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:35:57.908Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only single-sample baseline (K=1) on LIBERO-Goal s42. D158: must run on westd for paired comparison with westd Adaptive Goal s42, controlling for hardware variation.\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.975, \\\"successes\\\": 195, \\\"total_rollouts\\\": 200, \\\"n_tasks\\\": 10, \\\"n_rollouts_per_task\\\": 20, \\\"per_task\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": {\\\"sr\\\": 0.95, \\\"successes\\\": 19, \\\"total\\\": 20}, \\\"put_the_bowl_on_the_stove\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\\"sr\\\": 0.9, \\\"successes\\\": 18, \\\"total\\\": 20}, \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\\"sr\\\": 0.95, \\\"successes\\\": 19, \\\"total\\\": 20}, \\\"put_the_cream_cheese_in_the_bowl\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"turn_on_the_stove\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"put_the_bowl_on_the_plate\\\": {\\\"sr\\\": 1, \\\"successes\\\": 20, \\\"total\\\": 20}, \\\"put_the_wine_bottle_on_the_rack\\\": {\\\"sr\\\": 0.95, \\\"successes\\\": 19, \\\"total\\\": 20}}, \\\"delta_vs_4090_s42\\\": \\\"+2.0pp (97.5% vs 95.5%)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-supp-goal-vla-only-wrapper-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T11:34:09.581Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:27:17.856Z\\\", \\\"hypothesis\\\": \\\"Goal VLA-only wrapper fresh eval seed43. Confirms 83.5% baseline across seeds. r4 files (97.5-98%) confirmed as Pi0.5.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 82.5, \\\"source\\\": \\\"JSON file eval_goal_vla_only_seed43.json on bjb1-32546, harvested 2026-05-26\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"tau_sweep_goal_tau090_s42_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:49:10.797Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:00:51.716Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive Conformal τ=0.90 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.89, \\\"mean_uncertainty\\\": 0.1148, \\\"trigger_rate\\\": 0.0035, \\\"crm_applied_steps\\\": 94, \\\"total_steps\\\": 26628, \\\"tau\\\": 0.9, \\\"n_rollouts\\\": 20}, \\\"conclusion\\\": \\\"success\\\"}, \\\"tau_sweep_goal_tau070_s42_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:49:02.809Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:00:47.412Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive Conformal τ=0.70 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.87, \\\"mean_uncertainty\\\": 0.121, \\\"trigger_rate\\\": 0.0104, \\\"crm_applied_steps\\\": 283, \\\"total_steps\\\": 27265, \\\"tau\\\": 0.7, \\\"n_rollouts\\\": 20}, \\\"conclusion\\\": \\\"success\\\"}, \\\"tau_sweep_goal_tau050_s42_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T06:46:41.927Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:00:43.156Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive Conformal τ=0.50 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.87, \\\"mean_uncertainty\\\": 0.1196, \\\"trigger_rate\\\": 0.0206, \\\"crm_applied_steps\\\": 565, \\\"total_steps\\\": 27431, \\\"tau\\\": 0.5, \\\"n_rollouts\\\": 20}, \\\"conclusion\\\": \\\"success\\\"}, \\\"goal_vla_only_s48\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:08:05.449Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:52:16.465Z\\\", \\\"hypothesis\\\": \\\"SmolVLA VLA-only baseline on LIBERO-Goal s48. Provides baseline data point for paired comparison against adaptive conformal CRM at same seed.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"n_rollouts\\\": 200}, \\\"conclusion\\\": \\\"success\\\"}, \\\"goal_adapt_s48\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:08:15.451Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:52:02.185Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s48. Tests if conformal-gated CRM correction improves SmolVLA goal performance at seed 48 vs VLA-only baseline.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.85, \\\"n_rollouts\\\": 200, \\\"delta_vs_baseline_pp\\\": 5.5}, \\\"conclusion\\\": \\\"success\\\"}, \\\"westd-pi05-k2mean-goal-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T04:26:00.379Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:45:41.247Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline (vla_only, no CRM) on LIBERO-Goal s42. Isolates sampling effect (K=2 averaging) from CRM correction for π0.5 mechanism analysis. Paired with adaptive_conformal_crm at same seed.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.995}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-goal-vla-only-s49-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:09:43.708Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:04:17.775Z\\\", \\\"hypothesis\\\": \\\"SmolVLA vla_only baseline on LIBERO-Goal s49. Paired baseline for Adaptive Conformal CRM uplift measurement.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.835, \\\"n_rollouts\\\": 200, \\\"benchmark\\\": \\\"goal\\\", \\\"seed\\\": 49}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-spatial-vla-only-s48-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:10:21.164Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:04:02.289Z\\\", \\\"hypothesis\\\": \\\"SmolVLA vla_only baseline on LIBERO-Spatial s48. Paired baseline for Adaptive Conformal CRM uplift measurement.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.775, \\\"n_rollouts\\\": 200, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 48}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-spatial-vla-only-s46-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:10:02.079Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:03:54.343Z\\\", \\\"hypothesis\\\": \\\"SmolVLA vla_only baseline on LIBERO-Spatial s46. Paired baseline for Adaptive Conformal CRM uplift measurement.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.8, \\\"n_rollouts\\\": 200, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 46}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-spatial-adapt-tau025-s48-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:10:29.000Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:03:45.555Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Spatial s48. Paired with vla_only s48 for SR uplift measurement.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.81, \\\"n_rollouts\\\": 200, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 48}, \\\"conclusion\\\": \\\"success\\\"}, \\\"pi05-crm-k2-long-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T23:33:23.785Z\\\", \\\"updated_at\\\": \\\"2026-05-26T03:41:20.154Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only on LIBERO-Long s44. Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200, \\\"benchmark\\\": \\\"long\\\", \\\"model\\\": \\\"pi0.5\\\", \\\"mode\\\": \\\"crm_obs_only\\\", \\\"K\\\": 2, \\\"norm\\\": 0.05, \\\"seed\\\": 44, \\\"per_task\\\": {\\\"LIVING_ROOM_SCENE2_soup_sauce\\\": 1, \\\"LIVING_ROOM_SCENE2_cream_butter\\\": 0.95, \\\"KITCHEN_SCENE3_stove_moka\\\": 0.95, \\\"KITCHEN_SCENE4_bowl_drawer\\\": 0.85, \\\"LIVING_ROOM_SCENE5_mugs_plates\\\": 1, \\\"STUDY_SCENE1_book_caddy\\\": 0.6, \\\"LIVING_ROOM_SCENE6_mug_pudding\\\": 0.65, \\\"LIVING_ROOM_SCENE1_soup_cream\\\": 0.9, \\\"KITCHEN_SCENE8_moka_pots\\\": 0.2, \\\"KITCHEN_SCENE6_mug_microwave\\\": 0.9}}}, \\\"eval-k2-tau030-spatial-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T21:37:30.605Z\\\", \\\"updated_at\\\": \\\"2026-05-26T02:22:03.983Z\\\", \\\"hypothesis\\\": \\\"K=2 τ-sweep: τ=0.30 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"trigger_rate\\\": 0.168, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42, \\\"tau\\\": 0.3, \\\"K\\\": 2, \\\"norm\\\": 0.2}}, \\\"eval-k2-tau020-spatial-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T21:37:23.017Z\\\", \\\"updated_at\\\": \\\"2026-05-26T02:21:56.906Z\\\", \\\"hypothesis\\\": \\\"K=2 τ-sweep: τ=0.20 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting. Key comparison point — τ=0.20 was peak SR under K=10 (81.0%).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.81, \\\"trigger_rate\\\": 0.267, \\\"benchmark\\\": \\\"spatial\\\", \\\"seed\\\": 42, \\\"tau\\\": 0.2, \\\"K\\\": 2, \\\"norm\\\": 0.2}, \\\"notes\\\": \\\"Cron 报告 EXIT_CODE=124，但日志分析显示 τ=0.20 eval 已完成 (SR=80.5%, 161/200)。超时发生在同 tmux session 继续跑 τ=0.25 时。数据完整，纠正为 success。\\\"}, \\\"precompute-pi05-long-2048-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T06:18:31.140Z\\\", \\\"updated_at\\\": \\\"2026-05-25T22:40:55.662Z\\\", \\\"hypothesis\\\": \\\"Precomputing π0.5 obs_features and K=2048 action samples on LIBERO-Long enables downstream CRM training for cross-model (SmolVLA→π0.5) generalization verification without re-running inference at train time.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-vla-only-long-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T18:04:32.173Z\\\", \\\"updated_at\\\": \\\"2026-05-25T18:07:31.799Z\\\", \\\"hypothesis\\\": \\\"SmolVLA VLA-only baseline 在 LIBERO-Long suite 上的 SR（seed=44，D149 Table 1 数据填充）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.545}}, \\\"eval-adaptive-long-s43-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T13:29:54.027Z\\\", \\\"updated_at\\\": \\\"2026-05-25T18:07:24.041Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive CRM (K=2, norm=0.2, τ=0.25) 在 LIBERO-Long suite 上的 gated correction 效果（seed=43，D149 Table 1 数据填充）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.58}}, \\\"eval-crm-long-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T13:29:36.645Z\\\", \\\"updated_at\\\": \\\"2026-05-25T18:07:16.146Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM obs_only (K=10) Long s44 — D149 缺失格，完成 CRM Long 3-seed 数据\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.555}}, \\\"eval-crm-long-s43-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T18:04:09.941Z\\\", \\\"updated_at\\\": \\\"2026-05-25T18:07:06.638Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM obs_only (K=10, norm=0.05) 在 LIBERO-Long suite 上的 action correction 效果（seed=43，D149 Table 1 数据填充）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.545}}, \\\"eval-smolvla-crm-goal-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T09:30:10.261Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:51:36.375Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM obs_only (K=10) Goal s42。Table 1 CRM 列补充数据，seed 方案 Goal 用 s42/s43/s44。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.83}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-crm-long-s42-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T11:20:45.404Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:51:24.699Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 Long benchmark 上的 action correction 效果（Table 1 D149 seed，CRM 用 3suite checkpoint 跨 suite 泛化）\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.565}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-pi05-vla-only-object-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T18:17:27.320Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:51:17.181Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline Object s43。跨模型验证 baseline。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.985}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-pi05-vla-only-goal-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T09:10:26.481Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:51:09.042Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline Goal s44。跨模型验证 baseline。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.975}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-smolvla-crm-goal-seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T05:10:37.288Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:50:35.892Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (K=10, norm=0.05) on Goal s44. Completes Goal CRM seed coverage for Table 1.\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.825, \\\"successes\\\": 165, \\\"total\\\": 200}}, \\\"eval-vla-only-spatial-bjb1-s49\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T01:32:07.247Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:50:28.137Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s49 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"successes\\\": 159, \\\"total\\\": 200}}, \\\"eval-vla-only-spatial-bjb1-s48\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T01:32:03.658Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:50:15.719Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s48 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.775, \\\"successes\\\": 155, \\\"total\\\": 200}}, \\\"eval-adaptive-long-s44-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T10:25:31.160Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:50:07.726Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s44 补跑）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.54, \\\"trigger_rate\\\": 0.045, \\\"mean_uncertainty\\\": 0.126}}, \\\"eval-adaptive-long-s42-d149\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T10:25:27.324Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:49:59.707Z\\\", \\\"hypothesis\\\": \\\"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.58, \\\"trigger_rate\\\": 0.043, \\\"mean_uncertainty\\\": 0.125}}, \\\"eval-k2-spatial-vla-only-s44-paired-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:05:39.553Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:49:20.052Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s44, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200}}, \\\"eval-k2-spatial-vla-only-s43-paired-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T06:05:27.742Z\\\", \\\"updated_at\\\": \\\"2026-05-25T17:49:12.564Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on Spatial s43, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.795, \\\"successes\\\": 159, \\\"total\\\": 200}}}, \\\"count\\\": 50, \\\"total\\\": 600, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.8717}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"westd-pi05-vla-only-goal-s44-paired\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-26T11:02:01.323Z\", \"updated_at\": \"2026-05-26T11:59:07.164Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s44 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.955, \"per_task_sr\": {\"open_the_middle_drawer_of_the_cabinet\": 0.95, \"put_the_bowl_on_the_stove\": 0.95, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.9, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.8, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 0.95, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 1}, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20}}, \"westd-pi05-vla-only-object-s43-paired\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-26T11:02:30.548Z\", \"updated_at\": \"2026-05-26T11:58:56.941Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\"}, \"westd-pi05-vla-only-goal-s43-paired\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-26T11:01:46.159Z\", \"updated_at\": \"2026-05-26T11:58:29.625Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.965, \"per_task_sr\": {\"open_the_middle_drawer_of_the_cabinet\": 1, \"put_the_bowl_on_the_stove\": 1, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.9, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.85, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 1, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.9}, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20}}, \"westd-pi05-vla-only-object-s42-paired\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-26T11:02:15.888Z\", \"updated_at\": \"2026-05-26T11:58:17.206Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\"}, \"westd-pi05-vla-only-goal-s42-paired\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-26T11:01:32.135Z\", \"updated_at\": \"2026-05-26T11:57:57.565Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Goal s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.975, \"per_task_sr\": {\"open_the_middle_drawer_of_the_cabinet\": 0.95, \"put_the_bowl_on_the_stove\": 1, \"put_the_wine_bottle_on_top_of_the_cabinet\": 1, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.9, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 0.95, \"put_the_cream_cheese_in_the_bowl\": 1, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.95}, \"benchmark\": \"goal\", \"mode\": \"vla_only\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20}}, \"pi05-adaptive-object-s43-bjb2-24035\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T10:51:28.267Z\", \"updated_at\": \"2026-05-26T11:57:37.320Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Object s43. Table 2 cross-architecture gating analysis. Tests adaptive gating on Object suite.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.83, \"benchmark\": \"object\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"pi05-adaptive-goal-s42-cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:53:55.121Z\", \"updated_at\": \"2026-05-26T11:28:57.790Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM on Goal s42. 4090 cluster backup for westd result, controlling Blackwell architecture bias.\", \"metrics\": {\"success_rate\": 0.895, \"success_count\": 179, \"total_rollouts\": 200, \"trigger_rate\": 0.081, \"mean_unc\": 0.1152, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"K\": 2, \"max_correction_norm\": 0.2, \"conformal_threshold\": 0.25, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.7, \"put_the_bowl_on_the_stove\": 0.95, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.85, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.7, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 0.9, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.85}}, \"conclusion\": \"success\"}, \"westd-pi05-crm-k2-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:26:05.028Z\", \"updated_at\": \"2026-05-26T10:52:23.271Z\", \"hypothesis\": \"π0.5 CRM obs_only K=2 (ε=0.05, always-on) on LIBERO-Goal s42. Tests whether unconditional CRM correction (no adaptive gating) helps π0.5 on goal suite. Comparison vs adaptive gating and K=2 mean baseline.\", \"metrics\": {\"success_rate\": 0.855, \"benchmark\": \"goal\", \"mode\": \"crm_obs_only\", \"seed\": 42, \"K\": 2, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-object-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:53.085Z\", \"updated_at\": \"2026-05-26T10:52:12.970Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Object s42. Cross-suite validation of adaptive conformal refinement on π0.5.\", \"metrics\": {\"success_rate\": 0.835, \"benchmark\": \"object\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-goal-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:43.389Z\", \"updated_at\": \"2026-05-26T10:51:54.441Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s43. Seed variation for 3-seed mean±std on Goal benchmark.\", \"metrics\": {\"success_rate\": 0.875, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"westd-pi05-adaptive-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:19:38.990Z\", \"updated_at\": \"2026-05-26T10:51:37.558Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s42. Tests whether adaptive conformal refinement improves π0.5 on goal-conditioned tasks.\", \"metrics\": {\"success_rate\": 0.88, \"benchmark\": \"goal\", \"mode\": \"adaptive_conformal_crm\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}, \"conclusion\": \"success\"}, \"pi05-adaptive-goal-s43-bjb1-18228\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:45:32.801Z\", \"updated_at\": \"2026-05-26T10:24:06.070Z\", \"hypothesis\": \"π0.5 Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on Goal s43. 4090 cluster cross-validation for westd Goal s43, controlling Blackwell architecture bias.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 89.5}}, \"eval-adaptive-spatial-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:22.983Z\", \"updated_at\": \"2026-05-26T08:53:46.783Z\", \"metrics\": {\"overall_success_rate\": 0.805, \"trigger_rate\": 0.195, \"successes\": 161, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed44_paired_r2.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed44. Paired with s42 (SR=0.795) and s43 for 3-seed mean±std of Adaptive method on Spatial.\", \"conclusion\": \"success\"}, \"eval-adaptive-spatial-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:18.913Z\", \"updated_at\": \"2026-05-26T08:53:39.086Z\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.203, \"successes\": 159, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed43_paired_r2.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed43. Paired with s42 (SR=0.795) and s44 for 3-seed mean±std of Adaptive method on Spatial.\", \"conclusion\": \"success\"}, \"eval-adaptive-goal-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:14.632Z\", \"updated_at\": \"2026-05-26T08:53:31.602Z\", \"metrics\": {\"overall_success_rate\": 0.865, \"trigger_rate\": 0.068, \"successes\": 173, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed44. Paired with s42 (SR=0.835) and s43 for 3-seed mean±std of Adaptive method on Goal.\", \"conclusion\": \"success\"}, \"eval-adaptive-goal-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:10.566Z\", \"updated_at\": \"2026-05-26T08:53:24.015Z\", \"metrics\": {\"overall_success_rate\": 0.845, \"trigger_rate\": 0.088, \"successes\": 169, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Goal benchmark seed43. Paired with s42 (SR=0.835) and s44 for 3-seed mean±std of Adaptive method on Goal.\", \"conclusion\": \"success\"}, \"eval-adaptive-object-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:06.313Z\", \"updated_at\": \"2026-05-26T08:53:16.512Z\", \"metrics\": {\"overall_success_rate\": 0.75, \"trigger_rate\": 0.036, \"successes\": 150, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed44. Paired with s42 (SR=0.81) and s43 for 3-seed mean±std of Adaptive method on Object.\", \"conclusion\": \"success\"}, \"eval-adaptive-object-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:48:02.246Z\", \"updated_at\": \"2026-05-26T08:53:07.449Z\", \"metrics\": {\"overall_success_rate\": 0.775, \"trigger_rate\": 0.037, \"successes\": 155, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\"}, \"hypothesis\": \"Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Object benchmark seed43. Paired with s42 (SR=0.81) and s44 for 3-seed mean±std of Adaptive method on Object.\", \"conclusion\": \"success\"}, \"eval-adaptive-spatial-k1-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:18:42.872Z\", \"updated_at\": \"2026-05-26T08:47:52.554Z\", \"hypothesis\": \"K=1 Adaptive Conformal on Spatial s42 at τ=0.20. Single-sample correction vs K=10 multi-sample centering — if K=1 SR is lower, it supports the claim that multi-sample centering improves correction quality by reducing noise in the correction vector.\", \"conclusion\": \"success\", \"notes\": \"K=1 Adaptive eval completed on bjb2-28827. Metrics need harvesting from log. K=1 single-sample correction baseline for K-sweep comparison.\", \"metrics\": {\"overall_success_rate\": 0.795, \"trigger_rate\": 0.198, \"successes\": 159, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"source\": \"eval_spatial_adaptive_k2_tau025_seed42_paired_r2.json\"}}, \"westd-pi05-vla-only-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:44:47.876Z\", \"updated_at\": \"2026-05-26T08:35:57.908Z\", \"hypothesis\": \"π0.5 VLA-only single-sample baseline (K=1) on LIBERO-Goal s42. D158: must run on westd for paired comparison with westd Adaptive Goal s42, controlling for hardware variation.\", \"metrics\": {\"overall_success_rate\": 0.975, \"successes\": 195, \"total_rollouts\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}, \"put_the_bowl_on_the_stove\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_wine_bottle_on_top_of_the_cabinet\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"open_the_top_drawer_and_put_the_bowl_inside\": {\"sr\": 0.9, \"successes\": 18, \"total\": 20}, \"put_the_bowl_on_top_of_the_cabinet\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"push_the_plate_to_the_front_of_the_stove\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}, \"put_the_cream_cheese_in_the_bowl\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"turn_on_the_stove\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_bowl_on_the_plate\": {\"sr\": 1, \"successes\": 20, \"total\": 20}, \"put_the_wine_bottle_on_the_rack\": {\"sr\": 0.95, \"successes\": 19, \"total\": 20}}, \"delta_vs_4090_s42\": \"+2.0pp (97.5% vs 95.5%)\"}, \"conclusion\": \"success\"}, \"eval-supp-goal-vla-only-wrapper-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T11:34:09.581Z\", \"updated_at\": \"2026-05-26T07:27:17.856Z\", \"hypothesis\": \"Goal VLA-only wrapper fresh eval seed43. Confirms 83.5% baseline across seeds. r4 files (97.5-98%) confirmed as Pi0.5.\", \"metrics\": {\"success_rate\": 82.5, \"source\": \"JSON file eval_goal_vla_only_seed43.json on bjb1-32546, harvested 2026-05-26\"}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau090_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:49:10.797Z\", \"updated_at\": \"2026-05-26T07:00:51.716Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.90 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.89, \"mean_uncertainty\": 0.1148, \"trigger_rate\": 0.0035, \"crm_applied_steps\": 94, \"total_steps\": 26628, \"tau\": 0.9, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau070_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:49:02.809Z\", \"updated_at\": \"2026-05-26T07:00:47.412Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.70 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.87, \"mean_uncertainty\": 0.121, \"trigger_rate\": 0.0104, \"crm_applied_steps\": 283, \"total_steps\": 27265, \"tau\": 0.7, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"tau_sweep_goal_tau050_s42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T06:46:41.927Z\", \"updated_at\": \"2026-05-26T07:00:43.156Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal τ=0.50 sensitivity on Goal s42. Extended τ-sweep range for sensitivity analysis.\", \"metrics\": {\"success_rate\": 0.87, \"mean_uncertainty\": 0.1196, \"trigger_rate\": 0.0206, \"crm_applied_steps\": 565, \"total_steps\": 27431, \"tau\": 0.5, \"n_rollouts\": 20}, \"conclusion\": \"success\"}, \"goal_vla_only_s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:08:05.449Z\", \"updated_at\": \"2026-05-26T06:52:16.465Z\", \"hypothesis\": \"SmolVLA VLA-only baseline on LIBERO-Goal s48. Provides baseline data point for paired comparison against adaptive conformal CRM at same seed.\", \"metrics\": {\"success_rate\": 0.795, \"n_rollouts\": 200}, \"conclusion\": \"success\"}, \"goal_adapt_s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:08:15.451Z\", \"updated_at\": \"2026-05-26T06:52:02.185Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Goal s48. Tests if conformal-gated CRM correction improves SmolVLA goal performance at seed 48 vs VLA-only baseline.\", \"metrics\": {\"success_rate\": 0.85, \"n_rollouts\": 200, \"delta_vs_baseline_pp\": 5.5}, \"conclusion\": \"success\"}, \"westd-pi05-k2mean-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T04:26:00.379Z\", \"updated_at\": \"2026-05-26T06:45:41.247Z\", \"hypothesis\": \"π0.5 K=2 mean baseline (vla_only, no CRM) on LIBERO-Goal s42. Isolates sampling effect (K=2 averaging) from CRM correction for π0.5 mechanism analysis. Paired with adaptive_conformal_crm at same seed.\", \"metrics\": {\"success_rate\": 0.995}, \"conclusion\": \"success\"}, \"eval-goal-vla-only-s49-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:09:43.708Z\", \"updated_at\": \"2026-05-26T06:04:17.775Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Goal s49. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.835, \"n_rollouts\": 200, \"benchmark\": \"goal\", \"seed\": 49}, \"conclusion\": \"success\"}, \"eval-spatial-vla-only-s48-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:21.164Z\", \"updated_at\": \"2026-05-26T06:04:02.289Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Spatial s48. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.775, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 48}, \"conclusion\": \"success\"}, \"eval-spatial-vla-only-s46-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:02.079Z\", \"updated_at\": \"2026-05-26T06:03:54.343Z\", \"hypothesis\": \"SmolVLA vla_only baseline on LIBERO-Spatial s46. Paired baseline for Adaptive Conformal CRM uplift measurement.\", \"metrics\": {\"success_rate\": 0.8, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 46}, \"conclusion\": \"success\"}, \"eval-spatial-adapt-tau025-s48-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:10:29.000Z\", \"updated_at\": \"2026-05-26T06:03:45.555Z\", \"hypothesis\": \"SmolVLA Adaptive Conformal CRM (K=2, τ=0.25, ε=0.2) on LIBERO-Spatial s48. Paired with vla_only s48 for SR uplift measurement.\", \"metrics\": {\"success_rate\": 0.81, \"n_rollouts\": 200, \"benchmark\": \"spatial\", \"seed\": 48}, \"conclusion\": \"success\"}, \"pi05-crm-k2-long-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T23:33:23.785Z\", \"updated_at\": \"2026-05-26T03:41:20.154Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only on LIBERO-Long s44. Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.8, \"successes\": 160, \"total\": 200, \"benchmark\": \"long\", \"model\": \"pi0.5\", \"mode\": \"crm_obs_only\", \"K\": 2, \"norm\": 0.05, \"seed\": 44, \"per_task\": {\"LIVING_ROOM_SCENE2_soup_sauce\": 1, \"LIVING_ROOM_SCENE2_cream_butter\": 0.95, \"KITCHEN_SCENE3_stove_moka\": 0.95, \"KITCHEN_SCENE4_bowl_drawer\": 0.85, \"LIVING_ROOM_SCENE5_mugs_plates\": 1, \"STUDY_SCENE1_book_caddy\": 0.6, \"LIVING_ROOM_SCENE6_mug_pudding\": 0.65, \"LIVING_ROOM_SCENE1_soup_cream\": 0.9, \"KITCHEN_SCENE8_moka_pots\": 0.2, \"KITCHEN_SCENE6_mug_microwave\": 0.9}}}, \"eval-k2-tau030-spatial-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:37:30.605Z\", \"updated_at\": \"2026-05-26T02:22:03.983Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.30 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"trigger_rate\": 0.168, \"benchmark\": \"spatial\", \"seed\": 42, \"tau\": 0.3, \"K\": 2, \"norm\": 0.2}}, \"eval-k2-tau020-spatial-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T21:37:23.017Z\", \"updated_at\": \"2026-05-26T02:21:56.906Z\", \"hypothesis\": \"K=2 τ-sweep: τ=0.20 Adaptive Conformal on Spatial s42. K=2 matches Table 1 production setting. Key comparison point — τ=0.20 was peak SR under K=10 (81.0%).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.81, \"trigger_rate\": 0.267, \"benchmark\": \"spatial\", \"seed\": 42, \"tau\": 0.2, \"K\": 2, \"norm\": 0.2}, \"notes\": \"Cron 报告 EXIT_CODE=124，但日志分析显示 τ=0.20 eval 已完成 (SR=80.5%, 161/200)。超时发生在同 tmux session 继续跑 τ=0.25 时。数据完整，纠正为 success。\"}, \"precompute-pi05-long-2048-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T06:18:31.140Z\", \"updated_at\": \"2026-05-25T22:40:55.662Z\", \"hypothesis\": \"Precomputing π0.5 obs_features and K=2048 action samples on LIBERO-Long enables downstream CRM training for cross-model (SmolVLA→π0.5) generalization verification without re-running inference at train time.\", \"conclusion\": \"success\"}, \"eval-vla-only-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T18:04:32.173Z\", \"updated_at\": \"2026-05-25T18:07:31.799Z\", \"hypothesis\": \"SmolVLA VLA-only baseline 在 LIBERO-Long suite 上的 SR（seed=44，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.545}}, \"eval-adaptive-long-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T13:29:54.027Z\", \"updated_at\": \"2026-05-25T18:07:24.041Z\", \"hypothesis\": \"SmolVLA Adaptive CRM (K=2, norm=0.2, τ=0.25) 在 LIBERO-Long suite 上的 gated correction 效果（seed=43，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.58}}, \"eval-crm-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T13:29:36.645Z\", \"updated_at\": \"2026-05-25T18:07:16.146Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10) Long s44 — D149 缺失格，完成 CRM Long 3-seed 数据\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.555}}, \"eval-crm-long-s43-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T18:04:09.941Z\", \"updated_at\": \"2026-05-25T18:07:06.638Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10, norm=0.05) 在 LIBERO-Long suite 上的 action correction 效果（seed=43，D149 Table 1 数据填充）\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.545}}, \"eval-smolvla-crm-goal-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:30:10.261Z\", \"updated_at\": \"2026-05-25T17:51:36.375Z\", \"hypothesis\": \"SmolVLA CRM obs_only (K=10) Goal s42。Table 1 CRM 列补充数据，seed 方案 Goal 用 s42/s43/s44。\", \"metrics\": {\"success_rate\": 0.83}, \"conclusion\": \"success\"}, \"eval-crm-long-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T11:20:45.404Z\", \"updated_at\": \"2026-05-25T17:51:24.699Z\", \"hypothesis\": \"SmolVLA CRM (K=10, norm=0.05) 在 Long benchmark 上的 action correction 效果（Table 1 D149 seed，CRM 用 3suite checkpoint 跨 suite 泛化）\", \"metrics\": {\"success_rate\": 0.565}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-object-s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T18:17:27.320Z\", \"updated_at\": \"2026-05-25T17:51:17.181Z\", \"hypothesis\": \"π0.5 VLA-only baseline Object s43。跨模型验证 baseline。\", \"metrics\": {\"success_rate\": 0.985}, \"conclusion\": \"success\"}, \"eval-pi05-vla-only-goal-s44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:10:26.481Z\", \"updated_at\": \"2026-05-25T17:51:09.042Z\", \"hypothesis\": \"π0.5 VLA-only baseline Goal s44。跨模型验证 baseline。\", \"metrics\": {\"success_rate\": 0.975}, \"conclusion\": \"success\"}, \"eval-smolvla-crm-goal-seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:10:37.288Z\", \"updated_at\": \"2026-05-25T17:50:35.892Z\", \"hypothesis\": \"CRM obs_only (K=10, norm=0.05) on Goal s44. Completes Goal CRM seed coverage for Table 1.\", \"parent\": \"train-crm-smolvla-3suite-v1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.825, \"successes\": 165, \"total\": 200}}, \"eval-vla-only-spatial-bjb1-s49\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T01:32:07.247Z\", \"updated_at\": \"2026-05-25T17:50:28.137Z\", \"hypothesis\": \"VLA-only baseline on Spatial s49 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200}}, \"eval-vla-only-spatial-bjb1-s48\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T01:32:03.658Z\", \"updated_at\": \"2026-05-25T17:50:15.719Z\", \"hypothesis\": \"VLA-only baseline on Spatial s48 on bjb1-32546. Same-server paired data for canonical K=10 Adaptive t-test.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.775, \"successes\": 155, \"total\": 200}}, \"eval-adaptive-long-s44-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:31.160Z\", \"updated_at\": \"2026-05-25T17:50:07.726Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s44 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.54, \"trigger_rate\": 0.045, \"mean_uncertainty\": 0.126}}, \"eval-adaptive-long-s42-d149\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T10:25:27.324Z\", \"updated_at\": \"2026-05-25T17:49:59.707Z\", \"hypothesis\": \"SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s42 补跑）\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.58, \"trigger_rate\": 0.043, \"mean_uncertainty\": 0.125}}, \"eval-k2-spatial-vla-only-s44-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:39.553Z\", \"updated_at\": \"2026-05-25T17:49:20.052Z\", \"hypothesis\": \"VLA-only baseline on Spatial s44, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200}}, \"eval-k2-spatial-vla-only-s43-paired-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T06:05:27.742Z\", \"updated_at\": \"2026-05-25T17:49:12.564Z\", \"hypothesis\": \"VLA-only baseline on Spatial s43, same-server paired on bjb1-32546. Redeploy r2 after cqa1 reboot loss.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.795, \"successes\": 159, \"total\": 200}}}, \"count\": 50, \"total\": 600, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.8717}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "34f0433e-3890-4e90-be42-ce7d400efe21",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UY3Bts15nTQZMdTizNoJMS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15359,
+      "cache_read_input_tokens": 38626,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15359
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+All three experiments already exist in registry (status=ANALYZING). Updating with metrics and status=DONE.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "e6f5fa37-bd39-49b3-af84-59b464ee5a01",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UY3Bts15nTQZMdTizNoJMS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15359,
+      "cache_read_input_tokens": 38626,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15359
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019HQDmXY4zjf5jEMJyJ66gN`</summary>
+
+```json
+{
+  "exp_id": "westd-pi05-vla-only-object-s42-paired",
+  "field": "metrics",
+  "value": {
+    "success_rate": 0.995,
+    "successes": 199,
+    "total_rollouts": 200,
+    "benchmark": "object",
+    "mode": "vla_only",
+    "seed": 42,
+    "model": "pi05",
+    "n_rollouts": 20,
+    "n_tasks": 10,
+    "per_task_sr": {
+      "pick_up_the_alphabet_soup_and_place_it_in_the_basket": 1,
+      "pick_up_the_cream_cheese_and_place_it_in_the_basket": 1,
+      "pick_up_the_salad_dressing_and_place_it_in_the_basket": 1,
+      "pick_up_the_bbq_sauce_and_place_it_in_the_basket": 0.95,
+      "pick_up_the_ketchup_and_place_it_in_the_basket": 1,
+      "pick_up_the_tomato_sauce_and_place_it_in_the_basket": 1,
+      "pick_up_the_butter_and_place_it_in_the_basket": 1,
+      "pick_up_the_milk_and_place_it_in_the_basket": 1,
+      "pick_up_the_chocolate_pudding_and_place_it_in_the_basket": 1,
+      "pick_up_the_orange_juice_and_place_it_in_the_basket": 1
+    },
+    "hardware": "westd Blackwell"
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "af426779-c6d3-4ad5-a145-325da2b683ce",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UY3Bts15nTQZMdTizNoJMS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15359,
+      "cache_read_input_tokens": 38626,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15359
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Xm29YkSFwdMVoSXuwrDQgV`</summary>
+
+```json
+{
+  "exp_id": "westd-pi05-vla-only-object-s43-paired",
+  "field": "metrics",
+  "value": {
+    "success_rate": 1,
+    "successes": 200,
+    "total_rollouts": 200,
+    "benchmark": "object",
+    "mode": "vla_only",
+    "seed": 43,
+    "model": "pi05",
+    "n_rollouts": 20,
+    "n_tasks": 10,
+    "per_task_sr": {
+      "pick_up_the_alphabet_soup_and_place_it_in_the_basket": 1,
+      "pick_up_the_cream_cheese_and_place_it_in_the_basket": 1,
+      "pick_up_the_salad_dressing_and_place_it_in_the_basket": 1,
+      "pick_up_the_bbq_sauce_and_place_it_in_the_basket": 1,
+      "pick_up_the_ketchup_and_place_it_in_the_basket": 1,
+      "pick_up_the_tomato_sauce_and_place_it_in_the_basket": 1,
+      "pick_up_the_butter_and_place_it_in_the_basket": 1,
+      "pick_up_the_milk_and_place_it_in_the_basket": 1,
+      "pick_up_the_chocolate_pudding_and_place_it_in_the_basket": 1,
+      "pick_up_the_orange_juice_and_place_it_in_the_basket": 1
+    },
+    "hardware": "westd Blackwell"
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "4c7964dd-b14f-4a9e-8bdf-d06547cf88d1",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UY3Bts15nTQZMdTizNoJMS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15359,
+      "cache_read_input_tokens": 38626,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15359
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017MPgzAND5NgT47yHeRBsw8`</summary>
+
+```json
+{
+  "exp_id": "westd-pi05-vla-only-object-s44-paired",
+  "field": "metrics",
+  "value": {
+    "success_rate": 0.995,
+    "successes": 199,
+    "total_rollouts": 200,
+    "benchmark": "object",
+    "mode": "vla_only",
+    "seed": 44,
+    "model": "pi05",
+    "n_rollouts": 20,
+    "n_tasks": 10,
+    "per_task_sr": {
+      "pick_up_the_alphabet_soup_and_place_it_in_the_basket": 1,
+      "pick_up_the_cream_cheese_and_place_it_in_the_basket": 1,
+      "pick_up_the_salad_dressing_and_place_it_in_the_basket": 1,
+      "pick_up_the_bbq_sauce_and_place_it_in_the_basket": 0.95,
+      "pick_up_the_ketchup_and_place_it_in_the_basket": 1,
+      "pick_up_the_tomato_sauce_and_place_it_in_the_basket": 1,
+      "pick_up_the_butter_and_place_it_in_the_basket": 1,
+      "pick_up_the_milk_and_place_it_in_the_basket": 1,
+      "pick_up_the_chocolate_pudding_and_place_it_in_the_basket": 1,
+      "pick_up_the_orange_juice_and_place_it_in_the_basket": 1
+    },
+    "hardware": "westd Blackwell"
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "ca6eaea4-0e19-42a7-b1bf-c70b25e1cc45",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UY3Bts15nTQZMdTizNoJMS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15359,
+      "cache_read_input_tokens": 38626,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15359
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-26T12:00:09.407Z_
+
+<details><summary>↩ Tool result · `toolu_019HQDmXY4zjf5jEMJyJ66gN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s42-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:15.888Z\", \"updated_at\": \"2026-05-26T12:00:06.174Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-26T11:19:04.337Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:48:36.048Z\", \"training_hours\": 0.49}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:3\"], \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"submitted_at\": \"2026-05-26T11:19:17.346Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"successes\": 199, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.7024}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "f23da4c5-2ca3-4dce-a964-f0fb63f9833c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"westd-pi05-vla-only-object-s42-paired\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:02:15.888Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:00:06.174Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-26T11:19:04.337Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"a594db578deeeeddc0ab068549e315c5a3bb4d6a\\\", \\\"finished_at\\\": \\\"2026-05-26T11:48:36.048Z\\\", \\\"training_hours\\\": 0.49}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"201673\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:19:17.346Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"201673\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.995, \\\"successes\\\": 199, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 1}, \\\"hardware\\\": \\\"westd Blackwell\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 24.7024}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s42-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:15.888Z\", \"updated_at\": \"2026-05-26T12:00:06.174Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-26T11:19:04.337Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:48:36.048Z\", \"training_hours\": 0.49}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:3\"], \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"submitted_at\": \"2026-05-26T11:19:17.346Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"successes\": 199, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.7024}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-26T12:00:38.950Z_
+
+<details><summary>↩ Tool result · `toolu_01Xm29YkSFwdMVoSXuwrDQgV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s43-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:30.548Z\", \"updated_at\": \"2026-05-26T12:00:36.277Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"started_at\": \"2026-05-26T11:19:54.492Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:46:59.594Z\", \"training_hours\": 0.45}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:4\"], \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"submitted_at\": \"2026-05-26T11:20:07.286Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:49:29.164309+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 1, \"successes\": 200, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 29.5072}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "6515f69b-e9c3-4d54-8dd7-7dda450db56f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"westd-pi05-vla-only-object-s43-paired\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:02:30.548Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:00:36.277Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"started_at\\\": \\\"2026-05-26T11:19:54.492Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"a594db578deeeeddc0ab068549e315c5a3bb4d6a\\\", \\\"finished_at\\\": \\\"2026-05-26T11:46:59.594Z\\\", \\\"training_hours\\\": 0.45}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"205359\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:20:07.286Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"205359\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T11:49:29.164309+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 1, \\\"successes\\\": 200, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 1}, \\\"hardware\\\": \\\"westd Blackwell\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 29.5072}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s43-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:30.548Z\", \"updated_at\": \"2026-05-26T12:00:36.277Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"started_at\": \"2026-05-26T11:19:54.492Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:46:59.594Z\", \"training_hours\": 0.45}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:4\"], \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"submitted_at\": \"2026-05-26T11:20:07.286Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:49:29.164309+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 1, \"successes\": 200, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 29.5072}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-26T12:01:10.107Z_
+
+<details><summary>↩ Tool result · `toolu_017MPgzAND5NgT47yHeRBsw8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s44-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:45.036Z\", \"updated_at\": \"2026-05-26T12:01:06.752Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\", \"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"started_at\": \"2026-05-26T11:20:41.954Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:51:42.620Z\", \"training_hours\": 0.52}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:5\"], \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"submitted_at\": \"2026-05-26T11:20:54.134Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:52:27.848319+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:53:35.087334+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"successes\": 199, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 31.1284}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "e965a3c4-a2ec-4770-8d68-757617384491",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"westd-pi05-vla-only-object-s44-paired\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:02:45.036Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:01:06.752Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"started_at\\\": \\\"2026-05-26T11:20:41.954Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"a594db578deeeeddc0ab068549e315c5a3bb4d6a\\\", \\\"finished_at\\\": \\\"2026-05-26T11:51:42.620Z\\\", \\\"training_hours\\\": 0.52}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"210173\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:20:54.134Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"210173\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T11:52:27.848319+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T11:53:35.087334+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.995, \\\"successes\\\": 199, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 44, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 1}, \\\"hardware\\\": \\\"westd Blackwell\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.1284}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s44-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:45.036Z\", \"updated_at\": \"2026-05-26T12:01:06.752Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\", \"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"started_at\": \"2026-05-26T11:20:41.954Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:51:42.620Z\", \"training_hours\": 0.52}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:5\"], \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"submitted_at\": \"2026-05-26T11:20:54.134Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:52:27.848319+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:53:35.087334+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"successes\": 199, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 31.1284}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "5f436c00-8729-4642-be31-16b9ba998604",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01ReZHenpse8ccPv8bUE3kWs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7003,
+      "cache_read_input_tokens": 53985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7003
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01H9bkBqFFrffqy9TBG413jC`</summary>
+
+```json
+{
+  "exp_id": "westd-pi05-vla-only-object-s42-paired",
+  "field": "checkpoint_path",
+  "value": "N/A - eval only",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "4235c5e5-0f1c-4efa-9348-648f09d10042",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01ReZHenpse8ccPv8bUE3kWs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7003,
+      "cache_read_input_tokens": 53985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7003
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01429mQHwztr3CvoXXhkVULe`</summary>
+
+```json
+{
+  "exp_id": "westd-pi05-vla-only-object-s43-paired",
+  "field": "checkpoint_path",
+  "value": "N/A - eval only",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "23f98ac7-4d98-43bf-8446-932698a0b77a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01ReZHenpse8ccPv8bUE3kWs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7003,
+      "cache_read_input_tokens": 53985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7003
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01LrG3icnZkhvx5iRyY1GDyd`</summary>
+
+```json
+{
+  "exp_id": "westd-pi05-vla-only-object-s44-paired",
+  "field": "checkpoint_path",
+  "value": "N/A - eval only",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "3c902a62-4dee-4853-a00e-fe19d33ad94a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01ReZHenpse8ccPv8bUE3kWs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7003,
+      "cache_read_input_tokens": 53985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7003
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-26T12:01:43.834Z_
+
+<details><summary>↩ Tool result · `toolu_01H9bkBqFFrffqy9TBG413jC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s42-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:15.888Z\", \"updated_at\": \"2026-05-26T12:01:40.063Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-26T11:19:04.337Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:48:36.048Z\", \"training_hours\": 0.49}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:3\"], \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"submitted_at\": \"2026-05-26T11:19:17.346Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"successes\": 199, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}, \"checkpoint_path\": \"N/A - eval only\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 29.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "759e0dd7-ca45-44eb-be35-eacb3b6c725d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"westd-pi05-vla-only-object-s42-paired\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:02:15.888Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:01:40.063Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-26T11:19:04.337Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"a594db578deeeeddc0ab068549e315c5a3bb4d6a\\\", \\\"finished_at\\\": \\\"2026-05-26T11:48:36.048Z\\\", \\\"training_hours\\\": 0.49}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"201673\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:19:17.346Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"201673\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.995, \\\"successes\\\": 199, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 42, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 1}, \\\"hardware\\\": \\\"westd Blackwell\\\"}, \\\"checkpoint_path\\\": \\\"N/A - eval only\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 29.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s42-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:15.888Z\", \"updated_at\": \"2026-05-26T12:01:40.063Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-26T11:19:04.337Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:48:36.048Z\", \"training_hours\": 0.49}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:3\"], \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"submitted_at\": \"2026-05-26T11:19:17.346Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"successes\": 199, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 42, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}, \"checkpoint_path\": \"N/A - eval only\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 29.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-26T12:02:18.470Z_
+
+<details><summary>↩ Tool result · `toolu_01429mQHwztr3CvoXXhkVULe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s43-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:30.548Z\", \"updated_at\": \"2026-05-26T12:02:14.240Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"started_at\": \"2026-05-26T11:19:54.492Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:46:59.594Z\", \"training_hours\": 0.45}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:4\"], \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"submitted_at\": \"2026-05-26T11:20:07.286Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:49:29.164309+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 1, \"successes\": 200, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}, \"checkpoint_path\": \"N/A - eval only\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 34.6053}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "154025b4-20dc-4543-8bfc-5695dc47d392",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"westd-pi05-vla-only-object-s43-paired\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:02:30.548Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:02:14.240Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"started_at\\\": \\\"2026-05-26T11:19:54.492Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"a594db578deeeeddc0ab068549e315c5a3bb4d6a\\\", \\\"finished_at\\\": \\\"2026-05-26T11:46:59.594Z\\\", \\\"training_hours\\\": 0.45}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"205359\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:20:07.286Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"205359\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T11:49:29.164309+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 1, \\\"successes\\\": 200, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 1}, \\\"hardware\\\": \\\"westd Blackwell\\\"}, \\\"checkpoint_path\\\": \\\"N/A - eval only\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 34.6053}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s43-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:30.548Z\", \"updated_at\": \"2026-05-26T12:02:14.240Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"started_at\": \"2026-05-26T11:19:54.492Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:46:59.594Z\", \"training_hours\": 0.45}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:4\"], \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"submitted_at\": \"2026-05-26T11:20:07.286Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:49:29.164309+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 1, \"successes\": 200, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}, \"checkpoint_path\": \"N/A - eval only\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 34.6053}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-26T12:02:52.899Z_
+
+<details><summary>↩ Tool result · `toolu_01LrG3icnZkhvx5iRyY1GDyd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s44-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:45.036Z\", \"updated_at\": \"2026-05-26T12:02:48.636Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\", \"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"started_at\": \"2026-05-26T11:20:41.954Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:51:42.620Z\", \"training_hours\": 0.52}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:5\"], \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"submitted_at\": \"2026-05-26T11:20:54.134Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:52:27.848319+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:53:35.087334+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"successes\": 199, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}, \"checkpoint_path\": \"N/A - eval only\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 34.3969}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "ab3c9c5e-0230-43ff-a148-6c144d5336f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"westd-pi05-vla-only-object-s44-paired\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:02:45.036Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:02:48.636Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"started_at\\\": \\\"2026-05-26T11:20:41.954Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"a594db578deeeeddc0ab068549e315c5a3bb4d6a\\\", \\\"finished_at\\\": \\\"2026-05-26T11:51:42.620Z\\\", \\\"training_hours\\\": 0.52}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"210173\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:20:54.134Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"210173\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T11:52:27.848319+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T11:53:35.087334+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.995, \\\"successes\\\": 199, \\\"total_rollouts\\\": 200, \\\"benchmark\\\": \\\"object\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 44, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0.95, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 1, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 1}, \\\"hardware\\\": \\\"westd Blackwell\\\"}, \\\"checkpoint_path\\\": \\\"N/A - eval only\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 34.3969}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s44-paired\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:45.036Z\", \"updated_at\": \"2026-05-26T12:02:48.636Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\", \"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"started_at\": \"2026-05-26T11:20:41.954Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:51:42.620Z\", \"training_hours\": 0.52}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:5\"], \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"submitted_at\": \"2026-05-26T11:20:54.134Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:52:27.848319+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:53:35.087334+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.995, \"successes\": 199, \"total_rollouts\": 200, \"benchmark\": \"object\", \"mode\": \"vla_only\", \"seed\": 44, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 1, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.95, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 1, \"pick_up_the_butter_and_place_it_in_the_basket\": 1, \"pick_up_the_milk_and_place_it_in_the_basket\": 1, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 1, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 1}, \"hardware\": \"westd Blackwell\"}, \"checkpoint_path\": \"N/A - eval only\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 34.3969}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PFyC5Aru5gcH9A2nEMSo68`</summary>
+
+```json
+{
+  "exp_id": "westd-pi05-vla-only-object-s42-paired",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "e53038c1-4003-412c-a7f6-08bb7587166d",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014CBNg7YSpSPZx6if1gvjks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5273,
+      "cache_read_input_tokens": 60988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5273
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Xpn3qCL3bD2GH8K9fQWdZX`</summary>
+
+```json
+{
+  "exp_id": "westd-pi05-vla-only-object-s43-paired",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "5bfceb3e-8ce4-4372-b3df-e2254b52982d",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014CBNg7YSpSPZx6if1gvjks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5273,
+      "cache_read_input_tokens": 60988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5273
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018EEXj9b7fdJNh52wAydHyz`</summary>
+
+```json
+{
+  "exp_id": "westd-pi05-vla-only-object-s44-paired",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "21a4c238-bd0e-42a1-b4f9-5f4d0da148dd",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014CBNg7YSpSPZx6if1gvjks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5273,
+      "cache_read_input_tokens": 60988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5273
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-26T12:03:38.222Z_
+
+<details><summary>↩ Tool result · `toolu_01PFyC5Aru5gcH9A2nEMSo68`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s42-paired\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:15.888Z\", \"updated_at\": \"2026-05-26T12:03:23.016Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-26T11:19:04.337Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:48:36.048Z\", \"training_hours\": 0.49}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:3\"], \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"submitted_at\": \"2026-05-26T11:19:17.346Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2645.7, \"gpu_hours\": 0.73}, \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.995, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_min\": 0.95, \"per_task_max\": 1}, \"checkpoint_path\": \"N/A - eval only\", \"completed_at\": \"2026-05-26T12:03:23.016Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 42.0972}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "54133ec7-af78-42cc-8030-cd4d2a8513f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"westd-pi05-vla-only-object-s42-paired\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:02:15.888Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:03:23.016Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-26T11:19:04.337Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"a594db578deeeeddc0ab068549e315c5a3bb4d6a\\\", \\\"finished_at\\\": \\\"2026-05-26T11:48:36.048Z\\\", \\\"training_hours\\\": 0.49}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"201673\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:19:17.346Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2645.7, \\\"gpu_hours\\\": 0.73}, \\\"pid\\\": \\\"201673\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.995, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task_min\\\": 0.95, \\\"per_task_max\\\": 1}, \\\"checkpoint_path\\\": \\\"N/A - eval only\\\", \\\"completed_at\\\": \\\"2026-05-26T12:03:23.016Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 42.0972}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s42-paired\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:15.888Z\", \"updated_at\": \"2026-05-26T12:03:23.016Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s42 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-26T11:19:04.337Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:48:36.048Z\", \"training_hours\": 0.49}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed42_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:3\"], \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"submitted_at\": \"2026-05-26T11:19:17.346Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2645.7, \"gpu_hours\": 0.73}, \"pid\": \"201673\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s42-paired.log\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.995, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_min\": 0.95, \"per_task_max\": 1}, \"checkpoint_path\": \"N/A - eval only\", \"completed_at\": \"2026-05-26T12:03:23.016Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 42.0972}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-26T12:04:15.895Z_
+
+<details><summary>↩ Tool result · `toolu_01Xpn3qCL3bD2GH8K9fQWdZX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s43-paired\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:30.548Z\", \"updated_at\": \"2026-05-26T12:04:01.005Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"started_at\": \"2026-05-26T11:19:54.492Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:46:59.594Z\", \"training_hours\": 0.45}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:4\"], \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"submitted_at\": \"2026-05-26T11:20:07.286Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2633.7, \"gpu_hours\": 0.73}, \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:49:29.164309+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 1, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_min\": 1, \"per_task_max\": 1}, \"checkpoint_path\": \"N/A - eval only\", \"completed_at\": \"2026-05-26T12:04:01.005Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 37.6398}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "33be3665-3714-48b8-b7a1-279bcbfa5295",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"westd-pi05-vla-only-object-s43-paired\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:02:30.548Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:04:01.005Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"started_at\\\": \\\"2026-05-26T11:19:54.492Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"a594db578deeeeddc0ab068549e315c5a3bb4d6a\\\", \\\"finished_at\\\": \\\"2026-05-26T11:46:59.594Z\\\", \\\"training_hours\\\": 0.45}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"205359\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:20:07.286Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2633.7, \\\"gpu_hours\\\": 0.73}, \\\"pid\\\": \\\"205359\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T11:49:29.164309+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 1, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task_min\\\": 1, \\\"per_task_max\\\": 1}, \\\"checkpoint_path\\\": \\\"N/A - eval only\\\", \\\"completed_at\\\": \\\"2026-05-26T12:04:01.005Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 37.6398}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s43-paired\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:30.548Z\", \"updated_at\": \"2026-05-26T12:04:01.005Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s43 (westd same-server paired). Blackwell paired comparison for cross-hardware validation.\", \"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:4\", \"started_at\": \"2026-05-26T11:19:54.492Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:46:59.594Z\", \"training_hours\": 0.45}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed43_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:4\"], \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"submitted_at\": \"2026-05-26T11:20:07.286Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2633.7, \"gpu_hours\": 0.73}, \"pid\": \"205359\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s43-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:49:29.164309+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 1, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_min\": 1, \"per_task_max\": 1}, \"checkpoint_path\": \"N/A - eval only\", \"completed_at\": \"2026-05-26T12:04:01.005Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 37.6398}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-26T12:04:42.576Z_
+
+<details><summary>↩ Tool result · `toolu_018EEXj9b7fdJNh52wAydHyz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s44-paired\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:45.036Z\", \"updated_at\": \"2026-05-26T12:04:28.711Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\", \"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"started_at\": \"2026-05-26T11:20:41.954Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:51:42.620Z\", \"training_hours\": 0.52}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:5\"], \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"submitted_at\": \"2026-05-26T11:20:54.134Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2614.6, \"gpu_hours\": 0.73}, \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:52:27.848319+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:53:35.087334+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.995, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_min\": 0.95, \"per_task_max\": 1}, \"checkpoint_path\": \"N/A - eval only\", \"completed_at\": \"2026-05-26T12:04:28.711Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 26.6411}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "40d6b80d-91d8-4826-b56a-0c1542872582",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"westd-pi05-vla-only-object-s44-paired\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:02:45.036Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:04:28.711Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"started_at\\\": \\\"2026-05-26T11:20:41.954Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"a594db578deeeeddc0ab068549e315c5a3bb4d6a\\\", \\\"finished_at\\\": \\\"2026-05-26T11:51:42.620Z\\\", \\\"training_hours\\\": 0.52}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-49937\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"210173\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:20:54.134Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2614.6, \\\"gpu_hours\\\": 0.73}, \\\"pid\\\": \\\"210173\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T11:52:27.848319+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T11:53:35.087334+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.995, \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10, \\\"per_task_min\\\": 0.95, \\\"per_task_max\\\": 1}, \\\"checkpoint_path\\\": \\\"N/A - eval only\\\", \\\"completed_at\\\": \\\"2026-05-26T12:04:28.711Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 26.6411}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"westd-pi05-vla-only-object-s44-paired\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:02:45.036Z\", \"updated_at\": \"2026-05-26T12:04:28.711Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Object s44. westd same-server paired comparison (Blackwell).\", \"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-49937\", \"gpu\": \"cuda:5\", \"started_at\": \"2026-05-26T11:20:41.954Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"code_commit\": \"a594db578deeeeddc0ab068549e315c5a3bb4d6a\", \"finished_at\": \"2026-05-26T11:51:42.620Z\", \"training_hours\": 0.52}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --output_file logs/eval_object_vla_only_pi05_seed44_westd.json\\\"\", \"server\": \"westd-49937\", \"gpu\": [\"cuda:5\"], \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"submitted_at\": \"2026-05-26T11:20:54.134Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2614.6, \"gpu_hours\": 0.73}, \"pid\": \"210173\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/westd-pi05-vla-only-object-s44-paired.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:52:27.848319+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T11:53:35.087334+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.995, \"n_rollouts\": 20, \"n_tasks\": 10, \"per_task_min\": 0.95, \"per_task_max\": 1}, \"checkpoint_path\": \"N/A - eval only\", \"completed_at\": \"2026-05-26T12:04:28.711Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 26.6411}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+All three transitioned to DONE.
+
+## π0.5 VLA-only Object (westd Blackwell, same-server paired)
+
+| Seed | Success Rate | Successes / Total |
+|------|-------------|-------------------|
+| 42   | 0.995       | 199 / 200         |
+| 43   | 1.000       | 200 / 200         |
+| 44   | 0.995       | 199 / 200         |
+
+**Mean ± Std**: 0.9967 ± 0.0029 (n-1 sample std)
+
+唯一失败：s42 和 s44 各在 `bbq_sauce` 任务上漏掉 1 个 rollout（19/20）。s43 全部 200/200 满分。
+
+## 对比 Registry 中已知 π0.5 Object 结果
+
+| Experiment | SR | Hardware |
+|------------|-----|----------|
+| **westd Object VLA-only s42 (本次)** | **0.995** | westd Blackwell |
+| **westd Object VLA-only s43 (本次)** | **1.000** | westd Blackwell |
+| **westd Object VLA-only s44 (本次)** | **0.995** | westd Blackwell |
+| eval-pi05-vla-only-object-s43 | 0.985 | cqa1/d149 (RTX) |
+| westd-pi05-adaptive-object-s42 | 0.835 | westd Blackwell |
+| pi05-adaptive-object-s43-bjb2-24035 | 0.830 | bjb2 (RTX 4090) |
+
+**观察**：
+- westd Blackwell 上 VLA-only baseline (99.67%) 明显高于 4090 同 seed (98.5%)，跨硬件存在 +1.2pp 偏移
+- Object suite 在 π0.5 上几近饱和（99.67% 是天花板效应），Adaptive Conformal CRM 在此 suite 反而严重下降（83-83.5%）——这与 Goal/Spatial 上的提升趋势相反，说明 Adaptive 对已饱和任务有负面 over-correction
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "uuid": "fdba44df-7dce-46ee-963b-d6caf61f9487",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NV7EPzzjicMkjRkrtNcCaR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4285,
+      "cache_read_input_tokens": 66261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4285
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 42_
+
+All three transitioned to DONE.
+
+## π0.5 VLA-only Object (westd Blackwell, same-server paired)
+
+| Seed | Success Rate | Successes / Total |
+|------|-------------|-------------------|
+| 42   | 0.995       | 199 / 200         |
+| 43   | 1.000       | 200 / 200         |
+| 44   | 0.995       | 199 / 200         |
+
+**Mean ± Std**: 0.9967 ± 0.0029 (n-1 sample std)
+
+唯一失败：s42 和 s44 各在 `bbq_sauce` 任务上漏掉 1 个 rollout（19/20）。s43 全部 200/200 满分。
+
+## 对比 Registry 中已知 π0.5 Object 结果
+
+| Experiment | SR | Hardware |
+|------------|-----|----------|
+| **westd Object VLA-only s42 (本次)** | **0.995** | westd Blackwell |
+| **westd Object VLA-only s43 (本次)** | **1.000** | westd Blackwell |
+| **westd Object VLA-only s44 (本次)** | **0.995** | westd Blackwell |
+| eval-pi05-vla-only-object-s43 | 0.985 | cqa1/d149 (RTX) |
+| westd-pi05-adaptive-object-s42 | 0.835 | westd Blackwell |
+| pi05-adaptive-object-s43-bjb2-24035 | 0.830 | bjb2 (RTX 4090) |
+
+**观察**：
+- westd Blackwell 上 VLA-only baseline (99.67%) 明显高于 4090 同 seed (98.5%)，跨硬件存在 +1.2pp 偏移
+- Object suite 在 π0.5 上几近饱和（99.67% 是天花板效应），Adaptive Conformal CRM 在此 suite 反而严重下降（83-83.5%）——这与 Goal/Spatial 上的提升趋势相反，说明 Adaptive 对已饱和任务有负面 over-correction
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 372338,
+  "duration_api_ms": 75810,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "a19e50a8-c76a-4f03-8512-ac1f71cb37f2",
+  "total_cost_usd": 0.7332402499999999,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 69045,
+    "cache_read_input_tokens": 320842,
+    "output_tokens": 5590,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 69045,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 689,
+        "cache_read_input_tokens": 66261,
+        "cache_creation_input_tokens": 4285,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4285
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1333,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001453,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-7[1m]": {
+      "inputTokens": 17,
+      "outputTokens": 5590,
+      "cacheReadInputTokens": 320842,
+      "cacheCreationInputTokens": 69045,
+      "webSearchRequests": 0,
+      "costUSD": 0.73178725,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "79c41803-f636-4d80-b5cc-0f3b23d06d4a"
+}
+```
+
+</details>
+
+---

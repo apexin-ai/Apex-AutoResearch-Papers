@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval-pi05-vla-only-object-s43-v2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:21:02.532Z",
+    "updated_at": "2026-05-27T06:36:11.554Z",
+    "hypothesis": "π0.5 VLA-only baseline on Object s43. Cross-architecture validation without CRM.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 2>&1 | tee logs/eval-pi05-vla-only-object-s43-v2.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "393309",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-s43-v2.log",
+      "submitted_at": "2026-05-24T18:24:15.755Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object",
+      "data_count": 20,
+      "model_name": "pi05",
+      "seed": 43
+    },
+    "notes": "INVALID: CUDA OOM crash. alphabet_soup 任务整批 0/20，cream_cheese 受影响降至 70%，导致 overall 86.5% (173/200) 偏低。日志中明确出现 torch.OutOfMemoryError。不要将此结果用于替换 r4 (98.5%)。详见 artifacts/.../pi05_object_s43_investigation.md",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-27T06:36:15.021529+00:00",
+  "trigger": "update_registry"
+}

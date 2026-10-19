@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-perdof-object-norm03-seed46-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:28:13.840Z",
+    "updated_at": "2026-05-17T11:28:18.648Z",
+    "hypothesis": "perdof CRM ε=0.3 seed46 retry on LIBERO-Object. 原 PID 394433 退出，PID 392856 在 bjb2-28827 cuda:2 继续运行。seed42=4%, seed44=4%, seed45=6%。"
+  },
+  "timestamp": "2026-05-17T11:28:19.111950+00:00",
+  "trigger": "update_registry"
+}

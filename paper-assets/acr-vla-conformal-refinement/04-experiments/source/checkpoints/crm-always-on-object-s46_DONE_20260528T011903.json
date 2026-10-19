@@ -1,0 +1,39 @@
+{
+  "exp_id": "crm-always-on-object-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T21:53:08.683Z",
+    "updated_at": "2026-05-28T01:18:57.649Z",
+    "spec": {
+      "command": "python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark object --K 2 --seed 46 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "420749",
+      "log_path": "~/runs/acr-vla-conformal-refinement/crm-always-on-object-s46.log",
+      "submitted_at": "2026-05-27T21:53:05.824Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object (built-in)",
+      "data_count": "200",
+      "model_name": "smolvla",
+      "seed": 46,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Object",
+      "checkpoint_path": "N/A (eval-only)",
+      "wall_clock_seconds": 12351.8,
+      "gpu_hours": 3.43
+    },
+    "conclusion": "success",
+    "hypothesis": "CRM always-on (tau=0.001) on object benchmark with seed 46 should produce consistent SR near other seeds, confirming multi-seed reliability of the always-on correction strategy",
+    "completed_at": "2026-05-28T01:18:57.649Z"
+  },
+  "timestamp": "2026-05-28T01:19:03.216519+00:00",
+  "trigger": "update_registry"
+}

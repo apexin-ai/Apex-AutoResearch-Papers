@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval-vla-only-goal-seed47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-19T21:32:24.476Z",
+    "updated_at": "2026-05-20T12:10:51.676Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Goal seed47. 补齐 Goal VLA-only 样本量 (n→7)，与 CRM-Goal 配对统计检验。",
+    "completed_at": "2026-05-19T22:08:05.186Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode vla_only --benchmark goal --seed 47 --n_rollouts 10 --K 1 --output_file logs/eval_vla_only_goal_seed47.json 2>&1 | tee logs/eval-vla-only-goal-seed47.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "314050",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-vla-only-goal-seed47.log",
+      "submitted_at": "2026-05-20T10:52:26.721Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T12:10:52.493367+00:00",
+  "trigger": "update_registry"
+}

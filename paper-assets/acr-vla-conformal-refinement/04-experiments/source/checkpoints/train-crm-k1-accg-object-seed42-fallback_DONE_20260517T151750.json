@@ -1,0 +1,38 @@
+{
+  "exp_id": "train-crm-k1-accg-object-seed42-fallback",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:02:35.790Z",
+    "updated_at": "2026-05-17T15:17:49.965Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=4 python -u train_crm_k1.py --benchmark object --epochs 50 --batch_size 512 --lr 1e-3 --seed 42 --loss_mode multi --lambda_dir 0.1 --lambda_tri 0.05 --lambda_mag 0.01 --max_correction_norm 0.2 --reuse_k10_cache --k10_cache_dir /root/autodl-tmp/crm_cache_v5/ --auto --no_wandb",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": 456622,
+      "log_path": "/root/acr-vla-conformal-refinement/logs/train_crm_k1_fallback.log",
+      "submitted_at": "2026-05-17T15:02:35.104Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_id": "cuda:4",
+      "data_path": "/root/autodl-tmp/crm_cache_v5/",
+      "data_count": 4857,
+      "model_name": "crm_k1_accg_fallback",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_k1/",
+      "wall_clock_seconds": 914.9,
+      "gpu_hours": 0.25
+    },
+    "hypothesis": "CRM K=1 with ACCG architecture trained on K=10 single-stage cache (960D fallback) can learn effective corrections for object benchmark, achieving low val_loss comparable to multi-scale approach",
+    "conclusion": "success",
+    "completed_at": "2026-05-17T15:17:49.965Z"
+  },
+  "timestamp": "2026-05-17T15:17:50.571107+00:00",
+  "trigger": "update_registry"
+}

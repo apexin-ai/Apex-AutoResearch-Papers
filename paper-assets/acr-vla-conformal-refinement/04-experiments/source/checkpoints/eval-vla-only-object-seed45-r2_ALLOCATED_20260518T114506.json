@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-vla-only-object-seed45-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:44:42.438Z",
+    "updated_at": "2026-05-18T11:45:06.425Z",
+    "hypothesis": "VLA-only baseline seed45 rerun with n_rollouts=10 for consistency. Original seed45 used n_rollouts=20. Current VLA-only: [12,12,10,9,13] mean=11.2%"
+  },
+  "timestamp": "2026-05-18T11:45:06.941643+00:00",
+  "trigger": "update_registry"
+}

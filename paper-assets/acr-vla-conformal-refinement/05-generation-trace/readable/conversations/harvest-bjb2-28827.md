@@ -1,0 +1,1181 @@
+# harvest bjb2 28827
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/chats/worker_harvest_bjb2-28827_20260524T032336.jsonl`
+- **Structured JSON:** [`a622e40966fa79fb7197.json`](../../sessions/a6/a622e40966fa79fb7197.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+39 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-24T03:25:15.920736+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-24T03:25:15.921247+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-24T03:25:15.921568+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-24T03:25:15.921798+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 MiB, 24564 MiB\\n1, 0 %, 0 MiB, 24564 MiB\\n2, 0 %, 0 MiB, 24564 MiB\\n3, 0 %, 0 MiB, 24564 MiB\\n4, 0 %, 0 MiB, 24564 MiB\\n5, 0 %, 0 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-24T03:25:15.922002+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "find /root/acr-vla-conformal-refinement/logs/ -name '*.json' -mtime -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "find /root/acr-vla-conformal-refinement/logs/ -name '*.json' -mtime -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T03:25:15.922380+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed45.json\\n/root/acr-vla-conformal-refinement/logs/latency_profile.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_random_selection_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_default_seed45_r2.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm01_seed45_r2.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm003_seed46.json\\n/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_default_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_random_selection_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm03_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_perdof_default_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_k5_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm005_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_reconvla_k5_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm005_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_k5_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_k5_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_random_selection_k5_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed44_r2.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed46_r2.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_argmin_k5_seed44_r2.json\\n/root/acr-vla-conform
+…[truncated 6409 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-24T03:25:15.922669+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ls -la /tmp/eval_*.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "ls -la /tmp/eval_*.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-24T03:25:15.922914+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 6239 May 23 10:30 /tmp/eval_crm_object_seed42.log\\n-rw-r--r-- 1 root root 6330 May 23 10:28 /tmp/eval_crm_object_seed43.log\\n-rw-r--r-- 1 root root 6245 May 23 10:29 /tmp/eval_crm_object_seed44.log\\n-rw-r--r-- 1 root root 1281 May 23 07:20 /tmp/eval_crm_spatial_seed42.log\\n-rw-r--r-- 1 root root 1281 May 23 07:20 /tmp/eval_crm_spatial_seed43.log\\n-rw-r--r-- 1 root root 1281 May 23 07:20 /tmp/eval_crm_spatial_seed44.log\\n-rw-r--r-- 1 root root 2567 May 23 03:38 /tmp/eval_dryrun.log\\n-rw-r--r-- 1 root root 5633 May 24 09:19 /tmp/eval_goal_adapt_s46.log\\n-rw-r--r-- 1 root root 5590 May 24 06:45 /tmp/eval_goal_crm_s45.log\\n-rw-r--r-- 1 root root 5597 May 24 09:21 /tmp/eval_goal_crm_s46.log\\n-rw-r--r-- 1 root root 5259 May 24 09:17 /tmp/eval_goal_k2mean_s46.log\\n-rw-r--r-- 1 root root 5326 May 24 06:39 /tmp/eval_goal_reconvla_s45.log\\n-rw-r--r-- 1 root root 1559 May 24 07:04 /tmp/eval_goal_reconvla_s46.log\\n-rw-r--r-- 1 root root 5349 May 24 06:39 /tmp/eval_goal_vla_s45.log\\n-rw-r--r-- 1 root root 1496 May 24 07:04 /tmp/eval_goal_vla_s46.log\\n-rw-r--r-- 1 root root 7657 May 24 09:58 /tmp/eval_long_k2mean_s45.log\\n-rw-r--r-- 1 root root 1439 May 16 02:18 /tmp/eval_mag_perdof_norm03_object.log\\n-rw-r--r-- 1 root root 1458 May 23 07:21 /tmp/eval_vla_object_seed43.log\\n-rw-r--r-- 1 root root 1459 May 23 07:21 /tmp/eval_vla_object_seed44.log\\n-rw-r--r-- 1 root root 7195 May 23 09:32 /tmp/eval_vla_spatial_seed42.log\\n-rw-r--r-- 1 root root 7191 May 23 09:31 /tmp/eval_vla_spatial_seed43.log\\n-rw-r--r-- 1 root root 7112 May 23 09:30 /tmp/eval_vla_spatial_seed44.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-24T03:25:15.923138+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "df -h / /root/autodl-tmp",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "df -h / /root/autodl-tmp",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T03:25:15.923427+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\noverlay          30G   14G   17G  44% /\\n/dev/md0        250G   82G  169G  33% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-24T03:25:15.923709+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_crm_obs_only_norm0.05_seed46.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_crm_obs_only_norm0.05_seed46.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T03:25:15.923983+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.82,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.55,\\n      \\\"successes\\\": 11,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-24T03:25:15.924223+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed46.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed46.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T03:25:15.924551+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.835,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.14811611429988258,\\n    \\\"trigger_rate\\\": 0.0909404659188956,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 28975,\\n 
+…[truncated 148 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-24T03:25:15.924801+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_k2mean_seed46.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_k2mean_seed46.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T03:25:15.925067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"mean\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.825,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.55,\\n      \\\"successes\\\": 11,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-24T03:25:15.925316+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed46.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed46.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T03:25:15.925588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.83,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 12,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.55,\\n      \\\"successes\\\": 11,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-24T03:25:15.925808+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_reconvla_seed46.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_reconvla_seed46.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T03:25:15.926064+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"reconvla\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.79,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.55,\\n      \\\"successes\\\": 11,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-24T03:25:15.926307+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_long_k2mean_seed45.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-28827",
+    "command": "cat /root/acr-vla-conformal-refinement/logs/eval_long_k2mean_seed45.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T03:25:15.926587+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"mean\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.56,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 20\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 20\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 6,\\n      \\\"total\\\": 20\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"succ
+…[truncated 353 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-24T03:25:15.926894+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-crm-norm005-s46",
+  "field": "metrics",
+  "value": "{'success_rate': 0.82, 'source': 'json_harvest_bjb2-28827'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-supp-goal-crm-norm005-s46",
+    "field": "metrics",
+    "value": "{'success_rate': 0.82, 'source': 'json_harvest_bjb2-28827'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-24T03:25:15.927115+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-adapt-tau025-s46",
+  "field": "metrics",
+  "value": "{'success_rate': 0.835, 'trigger_rate': 0.0909, 'tau': 0.25, 'source': 'json_harvest_bjb2-28827'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-supp-goal-adapt-tau025-s46",
+    "field": "metrics",
+    "value": "{'success_rate': 0.835, 'trigger_rate': 0.0909, 'tau': 0.25, 'source': 'json_harvest_bjb2-28827'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-24T03:25:15.927350+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-k2mean-s46",
+  "field": "metrics",
+  "value": "{'success_rate': 0.825, 'source': 'json_harvest_bjb2-28827'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-supp-goal-k2mean-s46",
+    "field": "metrics",
+    "value": "{'success_rate': 0.825, 'source': 'json_harvest_bjb2-28827'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-24T03:25:15.927563+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-vla-only-s46",
+  "field": "metrics",
+  "value": "{'success_rate': 0.83, 'source': 'json_harvest_bjb2-28827'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-supp-goal-vla-only-s46",
+    "field": "metrics",
+    "value": "{'success_rate': 0.83, 'source': 'json_harvest_bjb2-28827'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-24T03:25:15.927786+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-reconvla-s46",
+  "field": "metrics",
+  "value": "{'success_rate': 0.79, 'source': 'json_harvest_bjb2-28827'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-supp-goal-reconvla-s46",
+    "field": "metrics",
+    "value": "{'success_rate': 0.79, 'source': 'json_harvest_bjb2-28827'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T03:25:15.928077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-crm-norm005-s46\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:06:31.022Z\", \"updated_at\": \"2026-05-24T03:24:26.680Z\", \"hypothesis\": \"CRM always-on norm=0.05 on Goal suite seed46. Fifth seed extending Goal CRM. s42-s45 mean ~83%. Completes 5-seed coverage.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-28827\", \"gpu\": \"cuda:3\", \"seed\": 46, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_goal_crm_s46.log\", \"tmux_session\": \"eval-goal-crm-s46\", \"checkpoint_path\": \"n/a-eval-only\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T01:36:34.079Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T01:37:08.984Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-24T01:37:50.254490+00:00\"}]}, \"metrics\": {\"success_rate\": 0.82, \"source\": \"json_harvest_bjb2-28827\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.1688}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-24T03:25:15.928369+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-supp-long-k2mean-s45",
+  "field": "metrics",
+  "value": "{'success_rate': 0.56, 'source': 'json_harvest_bjb2-28827'}",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-supp-long-k2mean-s45",
+    "field": "metrics",
+    "value": "{'success_rate': 0.56, 'source': 'json_harvest_bjb2-28827'}",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T03:25:15.928678+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-adapt-tau025-s46\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:02:43.468Z\", \"updated_at\": \"2026-05-24T03:24:30.058Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Goal suite seed46. Fifth seed extending Goal Adaptive. s42-s45 mean ~84%. Completes 5-seed coverage.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 46 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-28827\", \"gpu\": \"cuda:5\", \"pid\": \"unknown\", \"log_path\": \"/tmp/eval_goal_adapt_s46.log\", \"submitted_at\": \"2026-05-23T23:03:32.801Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 46, \"model_name\": \"SmolVLA+AdaptiveCRM\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"tmux_session\": \"eval-goal-adapt-s46\", \"checkpoint_path\": \"n/a-eval-only\", \"wall_clock_seconds\": 9126.9, \"gpu_hours\": 2.54}, \"reproduce\": {\"finished_at\": \"2026-05-24T01:35:26.310Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T01:35:39.747Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-24T01:36:01.971157+00:00\"}]}, \"metrics\": {\"success_rate\": 0.835, \"trigger_rate\": 0.0909, \"tau\": 0.25, \"source\": \"json_harvest_bjb2-28827\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.3357}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-24T03:25:15.928973+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-k2mean-s46\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:06:24.679Z\", \"updated_at\": \"2026-05-24T03:24:33.666Z\", \"hypothesis\": \"K=2 mean baseline on Goal suite seed46. Extends Goal K2mean to 4th completed seed for variance analysis.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode vla_only --baseline_mode mean --K 2 --seed 46 --n_rollouts 20 --output_file logs/eval_goal_k2mean_seed46.json\", \"server\": \"bjb2-28827\", \"gpu\": \"cuda:1\", \"seed\": 46, \"model_name\": \"SmolVLA-K2mean\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"log_path\": \"/tmp/eval_goal_k2mean_s46.log\", \"tmux_session\": \"eval-goal-k2mean-s46\", \"checkpoint_source\": \"n/a\", \"checkpoint_path\": \"n/a-eval-only\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T01:32:53.337Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T01:33:16.731Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-24T01:33:39.070461+00:00\"}]}, \"metrics\": {\"success_rate\": 0.825, \"source\": \"json_harvest_bjb2-28827\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.6027}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T03:25:15.929250+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-vla-only-s46\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:02:24.393Z\", \"updated_at\": \"2026-05-24T03:24:37.030Z\", \"hypothesis\": \"Goal VLA-only baseline seed46. Fifth seed extending Goal VLA-only. s42-s45 mean ~84%. Completes 5-seed coverage.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode vla_only --seed 46 --n_rollouts 20 --K 1\", \"server\": \"bjb2-28827\", \"gpu\": \"cuda:0\", \"pid\": \"991460\", \"log_path\": \"/tmp/eval_goal_vla_s46.log\", \"submitted_at\": \"2026-05-23T23:03:11.586Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 46, \"model_name\": \"SmolVLA\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"tmux_session\": \"eval-supp-goal-vla-only-s46\", \"checkpoint_source\": \"n/a\", \"checkpoint_path\": \"n/a-eval-only\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T01:20:39.871Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T01:21:11.796398+00:00\"}]}, \"metrics\": {\"success_rate\": 0.83, \"source\": \"json_harvest_bjb2-28827\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.2769}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-24T03:25:15.929540+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-reconvla-s46\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:02:35.384Z\", \"updated_at\": \"2026-05-24T03:24:40.326Z\", \"hypothesis\": \"Reconvla K=10 argmin on Goal suite seed46. Fifth seed extending Goal Reconvla. s42-s45 mean ~83%. Completes 5-seed coverage.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-28827\", \"gpu\": \"cuda:2\", \"pid\": \"992062\", \"log_path\": \"/tmp/eval_goal_reconvla_s46.log\", \"submitted_at\": \"2026-05-23T23:03:22.963Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 46, \"model_name\": \"SmolVLA-Reconvla\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"tmux_session\": \"eval-supp-goal-reconvla-s46\", \"checkpoint_path\": \"n/a-eval-only\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T01:28:39.321Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T01:29:27.445398+00:00\"}]}, \"metrics\": {\"success_rate\": 0.79, \"source\": \"json_harvest_bjb2-28827\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.2066}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T03:25:15.929824+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-long-k2mean-s45\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T20:20:29.949Z\", \"updated_at\": \"2026-05-24T03:24:43.469Z\", \"hypothesis\": \"K=2 mean baseline on Long suite seed45. Fourth seed extending Long K2mean coverage. VLA-only s45 on bjb1-32546 provides baseline.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --benchmark long --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_long_k2mean_seed45.json\", \"server\": \"bjb2-28827\", \"gpu\": \"cuda:4\", \"seed\": 45, \"model_name\": \"SmolVLA-K2mean\", \"data_path\": \"LIBERO-Long\", \"data_count\": 200, \"eval_data\": \"LIBERO-Long\", \"log_path\": \"/tmp/eval_long_k2mean_s45.log\", \"pid\": 924226}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:09:20.528Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T02:09:29.913Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:09:45.657923+00:00\"}]}, \"metrics\": {\"success_rate\": 0.56, \"source\": \"json_harvest_bjb2-28827\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.2372}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-24T03:25:15.930103+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-vla-only-s46",
+  "field": "conclusion",
+  "value": "success",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-supp-goal-vla-only-s46",
+    "field": "conclusion",
+    "value": "success",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-24T03:25:15.930327+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-reconvla-s46",
+  "field": "conclusion",
+  "value": "success",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval-supp-goal-reconvla-s46",
+    "field": "conclusion",
+    "value": "success",
+    "project": "acr-vla-conformal-refinement"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-24T03:25:15.930578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-vla-only-s46\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:02:24.393Z\", \"updated_at\": \"2026-05-24T03:24:57.117Z\", \"hypothesis\": \"Goal VLA-only baseline seed46. Fifth seed extending Goal VLA-only. s42-s45 mean ~84%. Completes 5-seed coverage.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode vla_only --seed 46 --n_rollouts 20 --K 1\", \"server\": \"bjb2-28827\", \"gpu\": \"cuda:0\", \"pid\": \"991460\", \"log_path\": \"/tmp/eval_goal_vla_s46.log\", \"submitted_at\": \"2026-05-23T23:03:11.586Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 46, \"model_name\": \"SmolVLA\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"tmux_session\": \"eval-supp-goal-vla-only-s46\", \"checkpoint_source\": \"n/a\", \"checkpoint_path\": \"n/a-eval-only\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T01:20:39.871Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T01:21:11.796398+00:00\"}]}, \"metrics\": {\"success_rate\": 0.83, \"source\": \"json_harvest_bjb2-28827\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.1742}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T03:25:15.930845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-reconvla-s46\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:02:35.384Z\", \"updated_at\": \"2026-05-24T03:25:02.365Z\", \"hypothesis\": \"Reconvla K=10 argmin on Goal suite seed46. Fifth seed extending Goal Reconvla. s42-s45 mean ~83%. Completes 5-seed coverage.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-28827\", \"gpu\": \"cuda:2\", \"pid\": \"992062\", \"log_path\": \"/tmp/eval_goal_reconvla_s46.log\", \"submitted_at\": \"2026-05-23T23:03:22.963Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 46, \"model_name\": \"SmolVLA-Reconvla\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"tmux_session\": \"eval-supp-goal-reconvla-s46\", \"checkpoint_path\": \"n/a-eval-only\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T01:28:39.321Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T01:29:27.445398+00:00\"}]}, \"metrics\": {\"success_rate\": 0.79, \"source\": \"json_harvest_bjb2-28827\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.0847}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_bjb2-28827_20260524T032336",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-24T03:25:15.931124+00:00_
+
+全部完成。汇总如下：
+
+## GPU 状态
+6× GPU 全部空闲（0% 利用率，0 MiB 显存占用）
+
+## 收割结果
+
+| JSON 文件 | success_rate | exp_id | Registry |
+|-----------|-------------|--------|----------|
+| `eval_goal_crm_obs_only_norm0.05_seed46.json` | **0.820** | eval-supp-goal-crm-norm005-s46 | ✓ metrics + conclusion=success |
+| `eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed46.json` | **0.835** (trigger_rate=9.1%) | eval-supp-goal-adapt-tau025-s46 | ✓ metrics + conclusion=success |
+| `eval_goal_k2mean_seed46.json` | **0.825** | eval-supp-goal-k2mean-s46 | ✓ metrics + conclusion=success |
+| `eval_goal_vla_only_seed46.json` | **0.830** | eval-supp-goal-vla-only-s46 | ✓ metrics + conclusion=success |
+| `eval_goal_reconvla_seed46.json` | **0.790** | eval-supp-goal-reconvla-s46 | ✓ metrics + conclusion=success |
+| `eval_long_k2mean_seed45.json` | **0.560** | eval-supp-long-k2mean-s45 | ✓ metrics + conclusion=success |
+
+## 磁盘
+| 分区 | 用量 |
+|------|------|
+| `/`（根） | 14G/30G（44%）|
+| `/root/autodl-tmp` | 82G/250G（33%）|
+
+6 个被 cron 误标 failed 的实验已全部恢复，metrics 和 conclusion 均已更新到 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_harvest_bjb2-28827_20260524T032336"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-long-k2mean-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T17:26:25.473Z",
+    "updated_at": "2026-05-23T17:26:49.141Z",
+    "hypothesis": "K=2 mean baseline on Long suite seed44. Third seed for Long K2mean 3-seed validation. s42 running, s43 running."
+  },
+  "timestamp": "2026-05-23T17:26:50.393328+00:00",
+  "trigger": "update_registry"
+}

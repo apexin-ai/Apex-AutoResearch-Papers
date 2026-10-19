@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-obs-only-spatial-norm02-seed48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:14:26.858Z",
+    "updated_at": "2026-05-20T03:14:26.858Z",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T03:14:27.497155+00:00",
+  "trigger": "update_registry"
+}

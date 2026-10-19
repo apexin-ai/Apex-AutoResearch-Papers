@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval-supp-goal-reconvla-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:03:28.711Z",
+    "updated_at": "2026-05-23T09:29:34.055Z",
+    "hypothesis": "Reconvla K=10 argmin on Goal suite seed42. Spatial=79%, Object=79%. Tests cross-suite consistency. Goal CRM=85.5%, if reconvla also high, confirms Goal benefits most from any refinement.",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode reconvla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark goal --seed 42 --n_rollouts 20 --K 10 2>&1 | tee logs/eval-supp-goal-reconvla-s42.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "620817",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-goal-reconvla-s42.log",
+      "submitted_at": "2026-05-23T07:16:25.113Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Goal"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T09:29:31.280Z"
+    }
+  },
+  "timestamp": "2026-05-23T09:29:36.452713+00:00",
+  "trigger": "update_registry"
+}

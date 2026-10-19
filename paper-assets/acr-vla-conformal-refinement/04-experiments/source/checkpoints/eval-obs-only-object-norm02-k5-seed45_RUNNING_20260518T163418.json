@@ -1,0 +1,23 @@
+{
+  "exp_id": "eval-obs-only-object-norm02-k5-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:32:38.704Z",
+    "updated_at": "2026-05-18T16:34:17.561Z",
+    "hypothesis": "Obs-only CRM (ε=0.2, K=5) seed45 on LIBERO-Object. GPU 双跑补 seed。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 45 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed45.json",
+      "server": "bjb2-28827",
+      "seed": 45,
+      "data_path": "LIBERO-Object",
+      "data_count": 10,
+      "model_name": "openvla-7b+crm_obs_only"
+    }
+  },
+  "timestamp": "2026-05-18T16:34:18.389175+00:00",
+  "trigger": "update_registry"
+}

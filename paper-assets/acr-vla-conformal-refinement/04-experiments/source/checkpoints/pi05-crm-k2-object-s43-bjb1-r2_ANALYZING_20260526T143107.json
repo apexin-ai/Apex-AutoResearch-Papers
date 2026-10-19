@@ -1,0 +1,117 @@
+{
+  "exp_id": "pi05-crm-k2-object-s43-bjb1-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:44:42.092Z",
+    "updated_at": "2026-05-26T14:31:05.760Z",
+    "hypothesis": "π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Object s43. Table 2 cross-architecture CRM impact with near-expert VLA. Re-run after bjb1-32546 node-level tmux cleanup.",
+    "parent": "pi05-crm-k2-object-s43-bjb1",
+    "spec": {
+      "command": "python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark object --seed 43",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "692165",
+      "log_path": "~/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s43-bjb1-r2.log",
+      "submitted_at": "2026-05-26T09:46:30.430Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_object",
+      "data_count": 20,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/models/pi05_libero_finetuned",
+      "eval_data": "libero_object"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T14:26:36.860Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T14:27:04.027575+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 87,
+      "successes": 174,
+      "total_rollouts": 200,
+      "benchmark": "object",
+      "mode": "crm_obs_only",
+      "model": "pi05",
+      "K": 2,
+      "max_correction_norm": 0.05,
+      "seed": 43,
+      "n_rollouts": 20,
+      "n_tasks": 10,
+      "per_task": {
+        "alphabet_soup": {
+          "sr": 100,
+          "successes": 20,
+          "total": 20
+        },
+        "cream_cheese": {
+          "sr": 70,
+          "successes": 14,
+          "total": 20
+        },
+        "salad_dressing": {
+          "sr": 95,
+          "successes": 19,
+          "total": 20
+        },
+        "bbq_sauce": {
+          "sr": 90,
+          "successes": 18,
+          "total": 20
+        },
+        "ketchup": {
+          "sr": 65,
+          "successes": 13,
+          "total": 20
+        },
+        "tomato_sauce": {
+          "sr": 95,
+          "successes": 19,
+          "total": 20
+        },
+        "butter": {
+          "sr": 95,
+          "successes": 19,
+          "total": 20
+        },
+        "milk": {
+          "sr": 95,
+          "successes": 19,
+          "total": 20
+        },
+        "chocolate_pudding": {
+          "sr": 80,
+          "successes": 16,
+          "total": 20
+        },
+        "orange_juice": {
+          "sr": 85,
+          "successes": 17,
+          "total": 20
+        }
+      },
+      "delta_vs_vla_only_pp": -12.5,
+      "vla_only_baseline_sr": 99.5
+    },
+    "log_path": "/root/runs/acr-vla-conformal-refinement/pi05-crm-k2-object-s43-bjb1-r2.log",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-26T14:31:07.543590+00:00",
+  "trigger": "update_registry"
+}

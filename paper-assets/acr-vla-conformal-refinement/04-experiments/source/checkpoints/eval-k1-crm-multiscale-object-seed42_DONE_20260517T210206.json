@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval-k1-crm-multiscale-object-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:34:09.846Z",
+    "updated_at": "2026-05-17T21:02:06.052Z",
+    "hypothesis": "K=1 CRM with ACCG (multi-scale 4x960D from layers [3,7,11,15]) on LIBERO-Object seed42. Compare with fallback (single-stage) and VLA-only baseline (10.8%). Multi-scale features enable layer-wise importance weighting for more informative correction signals.",
+    "parent": "train-crm-k1-accg-object-seed42-v2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_k1_accg --benchmark object --n_rollouts 10 --seed 42 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt --max_correction_norm 0.2",
+      "server": "bjb2-28827",
+      "gpu": "cuda:0",
+      "pid": 455518,
+      "model_name": "crm_k1_accg_multiscale",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt",
+      "eval_data": "LIBERO-Object",
+      "data_path": "LIBERO-Object benchmark (10 tasks)",
+      "data_count": 100,
+      "seed": 42,
+      "log_path": "logs/eval_k1_crm_multiscale_object_seed42.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "overall_sr": 0.12,
+      "successes": 12,
+      "total": 100,
+      "per_task": {
+        "alphabet_soup": 0,
+        "cream_cheese": 0,
+        "salad_dressing": 0.1,
+        "bbq_sauce": 0.2,
+        "ketchup": 0,
+        "tomato_sauce": 0.3,
+        "butter": 0.1,
+        "milk": 0,
+        "chocolate_pudding": 0.3,
+        "orange_juice": 0.2
+      }
+    },
+    "completed_at": "2026-05-17T21:02:06.052Z"
+  },
+  "timestamp": "2026-05-17T21:02:06.721600+00:00",
+  "trigger": "update_registry"
+}

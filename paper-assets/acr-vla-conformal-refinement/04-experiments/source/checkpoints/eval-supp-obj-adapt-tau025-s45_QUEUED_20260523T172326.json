@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-obj-adapt-tau025-s45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T17:22:29.274Z",
+    "updated_at": "2026-05-23T17:23:24.697Z",
+    "hypothesis": "Adaptive CRM tau=0.25 on Object suite seed45. Extends 3-seed (s42=81%, s43=77.5%, s44=75%) to 5-seed for tighter confidence intervals."
+  },
+  "timestamp": "2026-05-23T17:23:26.040613+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,73 @@
+{
+  "exp_id": "eval-supp-goal-crm005-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:12:29.401Z",
+    "updated_at": "2026-05-23T07:18:26.864Z",
+    "spec": {
+      "command": "evaluate.py --mode crm_obs_only --max_correction_norm 0.05 --benchmark goal",
+      "server": "bjb2-28827",
+      "gpu": "cuda:2",
+      "pid": 524322,
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-goal-crm005-s42.log",
+      "submitted_at": "2026-05-23T04:12:27.091Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Goal",
+      "wall_clock_seconds": 10324.7,
+      "gpu_hours": 2.87
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T06:25:03.372Z"
+    },
+    "failure_reason": "N/A — process still running, cron misjudged exit. ~35% complete as of 2026-05-23.",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T04:28:40.701334+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T06:25:17.505645+00:00"
+        }
+      ]
+    },
+    "hypothesis": "CRM norm=0.05 on Goal suite extends cross-suite validation (tested on Spatial and Object) to a third benchmark",
+    "metrics": {
+      "success_rate": 85.5,
+      "total_successes": 171,
+      "total_episodes": 200,
+      "per_task": {
+        "middle_drawer": 85,
+        "bowl_stove": 100,
+        "wine_bottle_cabinet": 95,
+        "top_drawer_bowl": 70,
+        "bowl_cabinet": 95,
+        "plate_stove": 95,
+        "cream_cheese_bowl": 50,
+        "stove": 95,
+        "bowl_plate": 95,
+        "wine_bottle_rack": 75
+      }
+    },
+    "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-goal-crm005-s42.log",
+    "checkpoint_path": "n/a (eval-only experiment)",
+    "completed_at": "2026-05-23T07:04:31.749Z"
+  },
+  "timestamp": "2026-05-23T07:18:29.035126+00:00",
+  "trigger": "update_registry"
+}
