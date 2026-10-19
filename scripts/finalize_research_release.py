@@ -12,7 +12,7 @@ import write_asset_guides as guides
 def main():
     if os.environ.get('GITHUB_ACTIONS') != 'true':
         raise RuntimeError('Run this final metadata pass in temporary Actions storage.')
-    temporary = Path(os.environ['RUNNER_TEMP']) / 'release-finalization'
+    temporary = Path(os.environ['RUNNER_TEMP']).resolve() / 'release-finalization'
     temporary.mkdir()
     askpass = temporary / 'git-askpass.py'
     askpass.write_text('#!/usr/bin/env python3\nimport os,sys\nprint("x-access-token" if "username" in sys.argv[1].lower() else os.environ["GITHUB_TOKEN"])\n')
@@ -69,6 +69,8 @@ def main():
     if additional.exists():
         for pdf in json.loads(additional.read_text())['pdfs']:
             pdf_records.append({**pdf, 'release_path':'supplementary/exports/source/'+pdf['file']})
+    for pdf in pdf_records:
+        assert pdf['release_path'] in tracked, 'Missing manuscript export: ' + pdf['release_path']
     by_hash = {}
     for pdf in pdf_records: by_hash.setdefault(pdf['sha256'], []).append(pdf)
     normalized_title = lambda value: re.sub(r'[^\w]+', '', value.casefold())

@@ -35,7 +35,7 @@ def main():
  roots=list((ROOT/'paper-assets').glob('*/08-index/asset-manifest.json'))+list((ROOT/'research-snapshots').glob('*/*/08-index/asset-manifest.json'))
  for manifest in roots:
   project=manifest.parents[1];info=json.loads(manifest.read_text())
-  rows=list(csv.DictReader((project/'08-index/asset-manifest.csv').open(encoding='utf-8-sig')))
+  with (project/'08-index/asset-manifest.csv').open(encoding='utf-8-sig') as handle:rows=list(csv.DictReader(handle))
   table=['## Concrete file examples','','| Content | Examples from this snapshot |','|---|---|']
   for category,(label,description) in LABELS.items():
    folder=project/category;folder.mkdir(exist_ok=True)

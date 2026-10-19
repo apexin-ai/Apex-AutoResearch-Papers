@@ -26,3 +26,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/finalize_research_release.py
+      - name: Preserve metadata for any unindexed mirror objects
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unmatched-source-metadata
+          path: ${{ runner.temp }}/release-finalization/repo/unmatched-mirror-objects.json
+          if-no-files-found: ignore
+          retention-days: 7
