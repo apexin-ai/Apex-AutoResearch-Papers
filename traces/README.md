@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **29 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **31 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -22,6 +22,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [crosscoder-behavioral-circuit-transplant](../paper-assets/crosscoder-behavioral-circuit-transplant/05-generation-trace/README.md) | 5 | 9 | 6 | 0 | 1,393 | [Read](../paper-assets/crosscoder-behavioral-circuit-transplant/05-generation-trace/readable/README.md) |
 | [diagprm-stage-reasoning](../paper-assets/diagprm-stage-reasoning/05-generation-trace/README.md) | 4 | 6 | 8 | 0 | 851 | [Read](../paper-assets/diagprm-stage-reasoning/05-generation-trace/readable/README.md) |
 | [diff_collision_sdf](../paper-assets/diff_collision_sdf/05-generation-trace/README.md) | 292 | 790 | 746 | 36 | 149,990 | [Read](../paper-assets/diff_collision_sdf/05-generation-trace/readable/README.md) |
+| [distill_sparse_swiglu](../paper-assets/distill_sparse_swiglu/05-generation-trace/README.md) | 582 | 1,072 | 867 | 125 | 197,700 | [Read](../paper-assets/distill_sparse_swiglu/05-generation-trace/readable/README.md) |
 | [ec_hte_llm_annotation](../paper-assets/ec_hte_llm_annotation/05-generation-trace/README.md) | 72 | 183 | 175 | 4 | 75,488 | [Read](../paper-assets/ec_hte_llm_annotation/05-generation-trace/readable/README.md) |
 | [entrainment_gated_ft](../paper-assets/entrainment_gated_ft/05-generation-trace/README.md) | 99 | 266 | 223 | 11 | 80,801 | [Read](../paper-assets/entrainment_gated_ft/05-generation-trace/readable/README.md) |
 | [error_diag_dpo_recovery](../paper-assets/error_diag_dpo_recovery/05-generation-trace/README.md) | 47 | 141 | 130 | 5 | 25,149 | [Read](../paper-assets/error_diag_dpo_recovery/05-generation-trace/readable/README.md) |
@@ -34,10 +35,11 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [schema-dag-extraction](../paper-assets/schema-dag-extraction/05-generation-trace/README.md) | 217 | 506 | 474 | 45 | 131,771 | [Read](../paper-assets/schema-dag-extraction/05-generation-trace/readable/README.md) |
 | [structfuse-context](../paper-assets/structfuse-context/05-generation-trace/README.md) | 183 | 510 | 496 | 43 | 90,756 | [Read](../paper-assets/structfuse-context/05-generation-trace/readable/README.md) |
 | [tbab_multi_turn](../paper-assets/tbab_multi_turn/05-generation-trace/README.md) | 24 | 48 | 44 | 0 | 10,572 | [Read](../paper-assets/tbab_multi_turn/05-generation-trace/readable/README.md) |
+| [temp-adv-distill-vla](../paper-assets/temp-adv-distill-vla/05-generation-trace/README.md) | 8 | 25 | 19 | 0 | 9,052 | [Read](../paper-assets/temp-adv-distill-vla/05-generation-trace/readable/README.md) |
 | [verification_triggered_retrieval](../paper-assets/verification_triggered_retrieval/05-generation-trace/README.md) | 4 | 5 | 4 | 0 | 4,203 | [Read](../paper-assets/verification_triggered_retrieval/05-generation-trace/readable/README.md) |
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**31,215 source records · 2,519,807 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**33,913 source records · 2,726,559 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

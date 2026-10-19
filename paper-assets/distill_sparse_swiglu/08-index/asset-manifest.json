@@ -1,0 +1,131 @@
+{
+  "project": "distill_sparse_swiglu",
+  "code_count": 1783,
+  "data_count": 2536,
+  "env_count": 6,
+  "tex_count": 29,
+  "bib_count": 2,
+  "review_count": 27,
+  "validation_count": 10,
+  "contribution_count": 5,
+  "chat_count": 582,
+  "worker_count": 1939,
+  "trace_count": 2646,
+  "trace_bytes": 313916398,
+  "maintenance_count": 123,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 5,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "28d0188a6df7dbdee3cd365cf3c054d15afa54f1c1e8143006e935c777252474",
+  "title": "Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs",
+  "pages": 18,
+  "status_marker": "Anonymous ACL submission",
+  "version_count": 31,
+  "version_paths": [
+    "figures/paper/per_layer_retention_chart.pdf",
+    "figures/paper/mask_divergence_heatmap.pdf",
+    "figures/paper/neuron_scatter_layer16.pdf",
+    "figures/paper/fig3_subsumption.pdf",
+    "figures/paper/gradient_snr_comparison.pdf",
+    "figures/paper/k_curve_ppl.pdf",
+    "figures/paper/mask_comparison.pdf",
+    "figures/paper/lagrangian_dynamics.pdf",
+    "figures/paper/fig2_sparsity_sweep.pdf",
+    "figures/paper/snr_trajectory.pdf",
+    "figures/paper/fig1_overview.pdf",
+    "paper/main.pdf",
+    "artifacts/review_round_25/submitted.pdf",
+    "artifacts/review_round_17/submitted.pdf",
+    "artifacts/figures/paper/fig2_sparsity_sweep.pdf",
+    "artifacts/review_round_28/submitted.pdf",
+    "artifacts/dream_reports/dream_20260518T173518/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260518T173518/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260518T173518/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T164925/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T164925/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T164925/best/paper.pdf",
+    "artifacts/review_round_19/submitted.pdf",
+    "artifacts/review_round_27/submitted.pdf",
+    "artifacts/review_round_26/submitted.pdf",
+    "artifacts/review_round_18/submitted.pdf",
+    "artifacts/review_round_22/submitted.pdf",
+    "artifacts/review_round_21/submitted.pdf",
+    "artifacts/review_round_23/submitted.pdf",
+    "artifacts/review_round_20/submitted.pdf",
+    "artifacts/review_round_24/submitted.pdf"
+  ],
+  "archive_rel": "distill_sparse_swiglu/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "distill_sparse_swiglu/workspace.tar.gz",
+    "sha256": "f7eac3c6a537353e5fe458403f004301cd51028817ebce7e8c122f113a9aa61a",
+    "bytes": 301019426,
+    "etag": "\"555c08e605fb4f137cdc795306c18fd7-36\"",
+    "modified": "2026-05-31T17:30:48+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "29 source files; 31 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "5 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "582 conversations; 1939 worker logs/results; 2646 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "1783 code/configuration files; 6 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "2536 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "27 internal review records; 10 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "123 project documentation files; 5 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ]
+}

@@ -332,6 +332,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39280436179"
+    },
+    "distill_sparse_swiglu/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 301019426,
+        "etag": "\"555c08e605fb4f137cdc795306c18fd7-36\"",
+        "modified": "2026-05-31T17:30:48+00:00"
+      },
+      "archive_sha256": "f7eac3c6a537353e5fe458403f004301cd51028817ebce7e8c122f113a9aa61a",
+      "projects": [
+        "distill_sparse_swiglu",
+        "temp-adv-distill-vla"
+      ],
+      "counts": [
+        {
+          "project": "distill_sparse_swiglu",
+          "title": "Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs",
+          "paper_pdf": "paper.pdf",
+          "code_count": 1783,
+          "data_count": 2536,
+          "trace_count": 2646
+        },
+        {
+          "project": "temp-adv-distill-vla",
+          "title": "temp adv distill vla",
+          "paper_pdf": null,
+          "code_count": 20,
+          "data_count": 25,
+          "trace_count": 52
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39280436179"
     }
   }
 }

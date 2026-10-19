@@ -204,6 +204,22 @@
       }
     },
     {
+      "project": "distill_sparse_swiglu",
+      "title": "Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs",
+      "catalog": "../paper-assets/distill_sparse_swiglu/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2646,
+        "messages": 197700,
+        "user_turns": 6165,
+        "tool_calls": 79884,
+        "unparsed_lines": 976,
+        "result": 867,
+        "worker": 1072,
+        "conversation": 582,
+        "history": 125
+      }
+    },
+    {
       "project": "ec_hte_llm_annotation",
       "title": "When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects",
       "catalog": "../paper-assets/ec_hte_llm_annotation/05-generation-trace/catalog.json",
@@ -372,6 +388,21 @@
         "worker": 48,
         "result": 44,
         "conversation": 24
+      }
+    },
+    {
+      "project": "temp-adv-distill-vla",
+      "title": "temp adv distill vla",
+      "catalog": "../paper-assets/temp-adv-distill-vla/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 52,
+        "messages": 9052,
+        "user_turns": 120,
+        "tool_calls": 3722,
+        "unparsed_lines": 24,
+        "result": 19,
+        "worker": 25,
+        "conversation": 8
       }
     },
     {
