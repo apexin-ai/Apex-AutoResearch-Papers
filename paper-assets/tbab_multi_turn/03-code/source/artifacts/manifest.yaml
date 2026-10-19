@@ -1,0 +1,130 @@
+- id: art_20260518_77a36f
+  name: data_availability_report
+  type: report
+  description: MVP 数据可用性调研：TurnWiseData 不可用，lost_in_conversation 可用（600条，2-8 turns，CDLA
+    许可）
+  path: projects/tbab_multi_turn/artifacts/_project/report/data_availability_report.md
+  url: null
+  project: tbab_multi_turn
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:09:11.475814+00:00'
+  tags:
+  - data
+  - mvp
+  - lost_in_conversation
+- id: art_20260518_52d627
+  name: position_ids_architecture_report
+  type: report
+  description: Qwen2.5-7B position_ids 操控 + TBAB bridge token 架构技术调研报告，含 RoPE 源码分析、4D
+    attention mask 方案、LoRA 集成、数据处理 pipeline 和 MVP 实现路径
+  path: projects/tbab_multi_turn/artifacts/_project/report/position_ids_architecture_report.md
+  url: null
+  project: tbab_multi_turn
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:19:37.717330+00:00'
+  tags:
+  - technical-report
+  - position-ids
+  - rope
+  - bridge-tokens
+  - lora
+  - architecture
+- id: art_20260518_9d5cb4
+  name: model_selection_rope10k_report
+  type: report
+  description: 7B级开源模型 rope_theta 调查报告：13个候选模型的参数对比，确认 Mistral-7B-v0.1 为 MVP 首选（rope_theta=10K,
+    d_head=128, GQA, 32K context, Apache 2.0）
+  path: projects/tbab_multi_turn/artifacts/_project/report/model_selection_rope10k_report.md
+  url: null
+  project: tbab_multi_turn
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:34:13.612006+00:00'
+  tags:
+  - model-selection
+  - rope-theta
+  - mistral
+  - mvp
+- id: art_20260518_9838ba
+  name: position_ids_v2_report
+  type: report
+  description: 'TBAB Position IDs v2: Bridge Token Position 策略统一（选定方案B）+ 模型无关泛化实现
+    + RoPE 频段恢复的 rope_theta 泛化分析'
+  path: projects/tbab_multi_turn/artifacts/_project/report/position_ids_v2_report.md
+  url: null
+  project: tbab_multi_turn
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:44:40.111945+00:00'
+  tags:
+  - position_ids
+  - bridge_token
+  - rope
+  - architecture
+  - v2
+- id: art_20260518_2c6c8f
+  name: eval_lost_in_conversation_report
+  type: report
+  description: Lost in Conversation 评估代码验证报告：数据集统计、P̄/A⁹⁰/U₁₀⁹⁰ 计算方式、code/math 评估方法、Sharded
+    模拟机制、本地模型适配方案
+  path: projects/tbab_multi_turn/artifacts/_project/report/eval_lost_in_conversation_report.md
+  url: null
+  project: tbab_multi_turn
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:57:10.105044+00:00'
+  tags:
+  - evaluation
+  - lost_in_conversation
+  - benchmark
+  - dataset
+- id: art_20260518_3ddcaf
+  name: training_data_survey_report
+  type: report
+  description: 多轮对话训练数据调研报告：ShareGPT/UltraChat/LMSYS/WildChat/oasst2 对比，≥5 turns 子集统计，推荐方案，预处理代码
+  path: projects/tbab_multi_turn/artifacts/_project/report/training_data_survey_report.md
+  url: null
+  project: tbab_multi_turn
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T06:14:09.634450+00:00'
+  tags:
+  - data
+  - survey
+  - multi-turn
+  - sharegpt
+  - ultrachat
+  - training
+- id: art_20260518_cd0c04
+  name: training_data_2500
+  type: data
+  description: 2500 multi-turn training samples (1500 ShareGPT + 1000 UltraChat, >=5
+    turns, <=3500 Mistral tokens). Located at westd-29046:/root/tbab_multi_turn/data/training_data.json
+    (22MB)
+  path: projects/tbab_multi_turn/artifacts/_project/data/training_data_2500_info.txt
+  url: null
+  project: tbab_multi_turn
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T06:56:11.069606+00:00'
+  tags:
+  - training-data
+  - mvp
+  - sharegpt
+  - ultrachat
+- id: art_20260518_2f8a2b
+  name: training_data_stats
+  type: report
+  description: 'Statistics report for the 2500 training samples: turn/token distributions
+    and filtering pipeline'
+  path: projects/tbab_multi_turn/artifacts/_project/report/data_stats.txt
+  url: null
+  project: tbab_multi_turn
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T06:56:14.395204+00:00'
+  tags:
+  - training-data
+  - stats

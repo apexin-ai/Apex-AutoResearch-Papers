@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee9670155daa874c72b6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu3 orphan cleanup",
+  "task_key": "worker_ops_gpu3_orphan_cleanup_20260525T195704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu3_orphan_cleanup_20260525T195704_result.json",
+    "occurrence": 1,
+    "bytes": 299,
+    "sha256": "a6642a6136bcbd7e4d69377dac9dbfea0a685c4c6121ddc4c0d9dbabee1a31fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**报告：**\n\n- **GPU 3 进程**：仅 PID 75123（`eval_safelibero.py`，checkpoint `a1_sdf_pi05_object_pudding_seed2_l005/best`），是合法的 eval 任务\n- **Orphan 状态**：PID 35423、72605 已不存在，无需清理\n- **显存占用**：8991 MiB / 48GB，状态正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu3-orphan-cleanup.md"
+}

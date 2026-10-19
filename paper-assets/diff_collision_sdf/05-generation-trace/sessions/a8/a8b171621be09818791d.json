@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8b171621be09818791d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval launch a1 object rerun v11",
+  "task_key": "worker_eval_launch_a1_object_rerun_v11_20260522T181233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_launch_a1_object_rerun_v11_20260522T181233_result.json",
+    "occurrence": 1,
+    "bytes": 528,
+    "sha256": "913638eafb85582f995332741cd0563d3a0ceb9635879c03f5907fb522f6c007"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**状态：** tmux session `eval_a1_obj_rerun` 已创建，正在等待 GPU 3 上的 `eval_oracle_m024fix`（PID 859190，40 episodes，预计 ~30 min 完成）退出后自动启动 A1 object rerun。\n\n- 输出：`/root/autodl-tmp/eval_results/a1_rerun_v11_eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json`\n- 日志：`/root/autodl-tmp/eval_results/eval_a1_lora_object_v11_rerun.log`\n- Registry: `eval_a1_lora_object_v11_rerun` → RUNNING\n- Cron 监控已注册（120s 间隔）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-launch-a1-object-rerun-v11.md"
+}

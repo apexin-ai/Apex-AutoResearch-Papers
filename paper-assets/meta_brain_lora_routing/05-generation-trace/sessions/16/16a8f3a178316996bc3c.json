@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16a8f3a178316996bc3c",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "eval visual physical r16",
+  "task_key": "worker_eval_visual_physical_r16_20260516T070121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_visual_physical_r16_20260516T070121_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "8f5d44347ba4db8ce5903c7ce55fe18377d823474084a74bfa05ea8b141cba6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个评估任务已成功提交并运行中：\n\n| 实验 | tmux session | PID | 命令 |\n|------|-------------|-----|------|\n| `eval_visual_r16` | `eval_visual_r16` | **408926** | `CUDA_VISIBLE_DEVICES=1 python phase1/evaluate_libero_plus.py --lora_visual_dir .../lora_visual_r16/final/ --routing par --gpu 0 --num_episodes 50 --seeds 42` |\n| `eval_physical_r16` | `eval_physical_r16` | **408929** | `CUDA_VISIBLE_DEVICES=1 python phase1/evaluate_libero_plus.py --lora_physical_dir .../lora_physical_r16/final/ --routing par --gpu 0 --num_episodes 50 --seeds 42` |\n\n注意：两个任务同时在 GPU 1 上启动了（都设了 `CUDA_VISIBLE_DEVICES=1`），可能会争抢显存。如果 OOM，需要改为串行执行。日志分别在：\n- `/root/meta_brain_lora_routing/phase1/outputs/eval_visual_r16.log`\n- `/root/meta_brain_lora_routing/phase1/outputs/eval_physical_r16.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-visual-physical-r16.md"
+}

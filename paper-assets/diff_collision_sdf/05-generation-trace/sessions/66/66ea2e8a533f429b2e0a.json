@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66ea2e8a533f429b2e0a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code prepare spatial bowl lora control",
+  "task_key": "worker_code_prepare_spatial_bowl_lora_control_20260526T120342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_spatial_bowl_lora_control_20260526T120342_result.json",
+    "occurrence": 1,
+    "bytes": 2245,
+    "sha256": "54c8c4f9ca9de8a77d33bdff0d95b56680fd36eee40aa9c34502a10213158f66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。以下是产出：\n\n---\n\n## Plan 015: spatial_bowl LoRA-only Control\n\n### 配置核对\n\n| 参数 | SDF 训练 (plan_007) | LoRA-only Control (plan_015) |\n|------|-------|---------|\n| 脚本 | `train_a1_sdf_aux_pi05.py` | `train_pi05_lora_baseline.py` |\n| scene | spatial_bowl | spatial_bowl |\n| seed | 0 | 0 |\n| batch_size | 32 | 32 |\n| num_train_steps | 30000 | 30000 |\n| lr | 2.5e-5 | 2.5e-5 |\n| warmup_phase_steps | 5000 | 5000 |\n| save_interval | 2000 | 2000 |\n| LoRA config | pali_rank=16, expert_rank=32 | 同上 |\n| lambda_sdf | 0.005 | N/A (无 SDF decoder) |\n| lambda_ee | 0.01 | N/A (无 EE extractor) |\n| 模型 | Pi0.5 (pi05_libero) | 同上 |\n| 数据 | safelibero_spatial | 同上 |\n| exp_name | `a1_sdf_pi05_spatial_bowl_seed0_l005` | `pi05_lora_baseline_spatial_bowl_seed0` |\n| checkpoint | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/` | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/` (同 name) |\n\n### GPU 状态\n- GPU 0-2: 占用中 (~27GB each, 100% utilization)\n- **GPU 3: 空闲**，可立即启动\n\n### 之前的 baseline_lora_spatial_bowl_s0.log\n是用旧脚本 `train_baseline.py` 跑的，启动就报错失败了。没有残留 checkpoint。\n\n### 训练命令（tmux 启动，预估 >30h）\n\n```bash\ntmux new-session -d -s plan015 \"cd /root/colliforce-vla && source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && export WANDB_MODE=disabled && python scripts/train_pi05_lora_baseline.py --scene spatial_bowl --seed 0 --gpu 3 --batch_size 32 --num_train_steps 30000 --lr 2.5e-5 --save_interval 2000 --log_interval 100 2>&1 | tee /root/runs/diff_collision_sdf/plan015_lora_baseline_spatial_bowl_s0.log\"\n```\n\n### 预估训练时间\nSDF 训练 ~4.63s/step。LoRA-only 无 SDF/EE 计算开销，预估 ~4.0-4.3s/step，30000 steps ≈ **33-36 小时**。\n\n### 注意事项\n- `train_pi05_lora_baseline.py` 原生支持 spatial_bowl，无需改代码\n- Phase 1/2 调度与 SDF 训练完全一致（Phase 1: 5000 steps LoRA frozen, Phase 2: LoRA unfrozen + gradient warmup）\n- 唯一差异：无 SDF decoder 和 EE extractor，loss 只有 action loss\n- GPU 3 现在就空闲，不需要等 SDF 训练完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-spatial-bowl-lora-control.md"
+}

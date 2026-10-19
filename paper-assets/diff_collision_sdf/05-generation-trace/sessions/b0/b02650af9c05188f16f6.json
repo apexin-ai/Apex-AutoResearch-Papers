@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b02650af9c05188f16f6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check westd45947 status",
+  "task_key": "worker_ops_check_westd45947_status_20260522T094126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_westd45947_status_20260522T094126_result.json",
+    "occurrence": 1,
+    "bytes": 1346,
+    "sha256": "6de54ddb271e30465287764bab11fdd9cc9b51ab80ddb1a5dc02468277ffa40e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-45947 状态报告\n\n### 任务 1: A3 eval v10a (tmux: eval_a3)\n**状态: 运行中** — 正在评估 Task 3 (bbq sauce)，PID 343880\n\n已完成 3/N 个 task，当前结果：\n\n| Task | 名称 | TSR | CAR | Smoothness | Max Disp |\n|------|------|-----|-----|------------|----------|\n| 0 | orange juice → basket | 0.0% (0/50) | 90.0% (45/50) | 0.004492 | 0.0009m |\n| 1 | chocolate pudding → basket | 0.0% (0/50) | 88.0% (44/50) | 0.006804 | 0.0108m |\n| 2 | milk → basket | 0.0% (0/50) | 64.0% (32/50) | 0.004336 | 0.0168m |\n| 3 | bbq sauce → basket | 进行中... | — | — | — |\n\nTSR 全部为 0，CAR 在 64%-90% 之间。每个 task 50 episodes 约耗时 ~68 分钟。\n\n### 任务 2: pi0.5 checkpoint 下载\n**状态: 运行中** — PID 368719 仍在执行，当前已下载 **1.8GB**。文件结构已有 params/、assets/ 等目录。\n\n### 任务 3: A3 spatial_bowl 训练\n**状态: 运行中** — PID 191747，当前进度 **step 20,443 / 30,000 (68%)**\n- loss ≈ 0.023-0.032，lr = 8.01e-06\n- 速度 ~4.0s/it，预计剩余 **~10.6h**\n\n### 任务 4: GPU 状态\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| cuda:0 | 100% | 23,935 / 97,887 MiB (24.5%) |\n| cuda:1 | 52% | 8,632 / 97,887 MiB (8.8%) |\n\ncuda:0 跑 spatial_bowl 训练，cuda:1 跑 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd45947-status.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8c847e1203c43fc5d8d5",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops kill serve policy and dryrun",
+  "task_key": "worker_ops_kill_serve_policy_and_dryrun_20260522T231905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_serve_policy_and_dryrun_20260522T231905.log",
+    "occurrence": 1,
+    "bytes": 781508,
+    "sha256": "12137fbbe11ccd29af1e8efefdcf63df9afbf50ddf90717844d694c237e2c1ae"
+  },
+  "statistics": {
+    "messages": 253,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 69,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 253,
+      "chunks": [
+        {
+          "path": "8c847e1203c43fc5d8d5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c847e1203c43fc5d8d5-part-0002.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-kill-serve-policy-and-dryrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ecc245d4527e0c4ff1f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval precheck",
+  "task_key": "worker_ops_eval_precheck_20260526T221530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_precheck_20260526T221530_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "88e5bd4899dae4552434c477ae69591c5e64fecfc860c4311f38abf6ae30e12b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/eval_prep_l01_high.md`。\n\n核心发现：\n\n1. **λ=0.1 s0, s1, s2 的 eval 已全部完成** — westd-45947 上有 seed=7 的 reeval 结果（今天完成）\n2. **LoRA baseline s2 是唯一阻塞项** — checkpoint 仅到 18000，未在训练中，需恢复训练到 30000\n3. **所有 6 个 GPU 当前被占用**，跑 eval/reeval batch，新任务需等完成\n4. westd-35807 的 s1_l01 eval 之前 ep 114/200 中断，但 westd-45947 已补齐"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-precheck.md"
+}

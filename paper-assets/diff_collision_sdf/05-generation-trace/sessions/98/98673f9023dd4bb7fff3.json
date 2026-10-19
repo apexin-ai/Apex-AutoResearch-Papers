@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98673f9023dd4bb7fff3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check phase2 lambda0 s2 exit",
+  "task_key": "worker_ops_check_phase2_lambda0_s2_exit_20260526T111441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_phase2_lambda0_s2_exit_20260526T111441_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "d21e584f2c5497fc9bb5018a5146d04ab930f37df95ec6429646102d9edf90d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：训练成功完成。**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | 正常完成 10000/10000 步 |\n| Final action loss | 0.0113 |\n| Best loss | 0.00651 @ step 4000 |\n| 耗时 | ~12h 53min (4.64 s/step) |\n| Checkpoint | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000` |\n| 可用 ckpts | 9999, 10000, best |\n\n注意：实际 output_dir 为 `...seed2_l0/` 而非 spec 中指定的 `...seed2_phase2_lambda0/`（训练脚本自动按 lambda 值命名）。Cron 不存在，无需删除。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-phase2-lambda0-s2-exit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5d86a8c8beaee5bf623",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "setup spatial bowl eval auto",
+  "task_key": "worker_setup_spatial_bowl_eval_auto_20260527T201318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_spatial_bowl_eval_auto_20260527T201318_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "73dd73b206671a5052245bf516a1e1699bfacca37d86336136d32a4df050cd66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sentinel 已部署并运行。\n\n| 项 | 值 |\n|---|---|\n| Sentinel PID | **875618** |\n| 监控训练 PID | 341425 (spatial_bowl seed=0, gpu:3, 30K steps) |\n| Checkpoint 路径 | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/pi05_lora_baseline_spatial_bowl_seed0/30000`（fallback: `best`） |\n| Eval GPU | cuda:0 |\n| Eval 命令 | `--config_name pi05_libero --model_type lora_baseline --pi05 --suite safelibero_spatial --safety_level II --n_episodes 50 --seed 7` |\n| Eval 日志 | `/root/autodl-tmp/eval_results/eval_spatial_bowl_lora_ctrl_s0.log` |\n| Sentinel 日志 | `/root/autodl-tmp/auto_eval_spatial_bowl_sentinel.log` |\n| 预计触发时间 | ~06:15 UTC 5/28 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-spatial-bowl-eval-auto.md"
+}

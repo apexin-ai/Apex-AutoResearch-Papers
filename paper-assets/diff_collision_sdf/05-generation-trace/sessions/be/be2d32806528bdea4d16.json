@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be2d32806528bdea4d16",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval task0 results and monitor",
+  "task_key": "worker_ops_eval_task0_results_and_monitor_20260525T093336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_task0_results_and_monitor_20260525T093336_result.json",
+    "occurrence": 1,
+    "bytes": 1635,
+    "sha256": "eeeab57411b9e2d70feaadb58b8ba0033eb8b468fc2e1068ffb1b9879ff3cee5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Task 0 结果 (30K checkpoint, 200 eps/task)\n\n| Checkpoint | Seed | λ | TSR | CAR | frozen | fake_safe% | real_safe% | avg_ee_disp |\n|------------|------|-------|------|------|--------|-----------|-----------|-------------|\n| s1_l005 | 1 | 0.005 | **30.5%** (61/200) | **56.5%** (113/200) | 0.0% | 87.6% | 12.4% | 1.4653 |\n| s1_l01 | 1 | 0.01 | **26.5%** (53/200) | **52.5%** (105/200) | 0.0% | 99.0% | 1.0% | 1.4864 |\n| s2_l005 | 2 | 0.005 | **26.0%** (52/200) | **57.5%** (115/200) | 0.0% | 93.9% | 6.1% | 1.4938 |\n| s2_l01 | 2 | 0.01 | **22.5%** (45/200) | **55.5%** (111/200) | 0.0% | 92.8% | 7.2% | 1.5217 |\n\n### 对比 10K 参考值\n\n| | 10K s0_l005 | 30K s1_l005 | 30K s2_l005 |\n|---|---|---|---|\n| TSR | ~62% | 30.5% | 26.0% |\n| CAR | ~62% | 56.5% | 57.5% |\n\n| | 10K s0_l01 | 30K s1_l01 | 30K s2_l01 |\n|---|---|---|---|\n| TSR | ~58% | 26.5% | 22.5% |\n| CAR | ~56% | 52.5% | 55.5% |\n\n**30K 全面劣于 10K**：TSR 骤降一半（30.5% vs 62%），CAR 略降。collision+success 占成功的绝大部分（s1_l01 只有 1 个 safe 成功），说明模型几乎只在碰撞后才能完成任务。\n\n---\n\n## Task 1 当前进度\n\n| Eval | 当前 Task | Episode 进度 | 最新时间戳 |\n|------|-----------|-------------|-----------|\n| s1_l005 | Task 1 | **99/200** | 17:34 |\n| s1_l01 | Task 1 | **96/200** | 17:35 |\n| s2_l005 | Task 1 | **87/200** | 17:35 |\n| s2_l01 | Task 1 | **86/200** | 17:35 |\n\nTask 1 开始于 ~16:25-16:35，当前约 50% 进度。按当前速率（~1 ep/min），预计 ~19:15-19:40 完成 Task 1。全部 4 个 Task 完成预计还需 ~6-7 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-task0-results-and-monitor.md"
+}

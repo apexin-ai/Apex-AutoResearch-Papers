@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a93d8e56520e4eca7d4",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "ops unzip assets tail logs",
+  "task_key": "worker_ops_unzip-assets-tail-logs_20260516T042424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_unzip-assets-tail-logs_20260516T042424_result.json",
+    "occurrence": 1,
+    "bytes": 1127,
+    "sha256": "2db79e2c1fd66ad6a8dd596333ac490856505316e07cf2b33a85eefc019ebc6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "解压进程仍在运行。\n\n## 结果报告\n\n### (a) LIBERO-Plus 解压\n- `assets.zip` 位于 `/root/autodl-tmp/libero_plus_assets/assets.zip`（非用户给的路径）\n- 文件数量多，30s 内未完成，已用 nohup 后台执行，PID=395986，进程确认在跑\n- 日志：`/tmp/unzip_libero.log`，可稍后用 `tail /tmp/unzip_libero.log` 确认完成\n\n### (b) 4 路训练状态\n\n所有训练总 steps = **10,000**，每 50 步 ≈ 51s（~1.02s/step）\n\n| 训练 | PID | 当前 Step | Loss | LR | Grad Norm |\n|------|--------|-----------|-------|----|-----------|\n| lora_visual (r16) | 391439 | **1750** | 0.0139 | 1.87e-4 | 0.04 |\n| lora_physical (r16) | 391516 | **1750** | 0.0136 | 1.87e-4 | 0.04 |\n| lora_universal_r16 | 391658 | **1750** | 0.0144 | 1.87e-4 | 0.03 |\n| lora_universal_r48 | 391805 | **1750** | 0.0139 | 1.87e-4 | 0.02 |\n\n**进度**：1750/10000 = **17.5%**\n\n**预计完成时间**：剩余 8250 步，50 步/51s → 还需 ~8415s ≈ **2h20min** → **约 14:45（北京时间）**\n\n4 路 loss 都已从 ~0.095 降到 ~0.014 并趋于平稳，训练正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-unzip-assets-tail-logs.md"
+}

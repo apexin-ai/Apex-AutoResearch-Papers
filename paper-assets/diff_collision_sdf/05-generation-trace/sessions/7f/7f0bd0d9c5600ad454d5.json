@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f0bd0d9c5600ad454d5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval 30k 4models westd35807",
+  "task_key": "worker_ops_eval_30k_4models_westd35807_20260525T045506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_30k_4models_westd35807_20260525T045506_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "2f8363d4e42b71d6d86b1a5764a03ad25d49f515e6d80cecc9a413da451bd68b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 evals are running successfully. Summary:\n\n| Session | GPU | Port | Checkpoint | Episode 1 Status |\n|---------|-----|------|-----------|-----------------|\n| `eval_s1_l005` | 0 | 8000 | seed1_l005/best | FAIL \\| safe \\| ee_disp=1.50 \\| 62.3s |\n| `eval_s1_l01` | 1 | 8001 | seed1_l01/best | FAIL \\| COLLISION@118 \\| ee_disp=1.60 \\| 61.8s |\n| `eval_s2_l005` | 2 | 8002 | seed2_l005/best | FAIL \\| safe \\| ee_disp=1.61 \\| 57.4s |\n| `eval_s2_l01` | 3 | 8003 | seed2_l01/best | FAIL \\| safe \\| ee_disp=1.52 \\| 59.1s |\n\nAll robots are active (ee_disp > 1.5), not frozen. ~60s/episode with 4 concurrent jobs (slightly slower than the dry-run's 55s due to shared CPU for LIBERO sim).\n\n**ETA**: 200 episodes × 4 tasks × 60s ÷ 3600 ≈ **13.3 hours** per eval → all finish around ~02:30 CST May 26.\n\n**Results will be saved to**:\n- `/root/autodl-tmp/eval_results/30k_evals/s1_l005/results.json`\n- `/root/autodl-tmp/eval_results/30k_evals/s1_l01/results.json`\n- `/root/autodl-tmp/eval_results/30k_evals/s2_l005/results.json`\n- `/root/autodl-tmp/eval_results/30k_evals/s2_l01/results.json`\n\n**Logs**: `/tmp/eval_30k_<name>.log`  \n**tmux sessions**: `eval_s1_l005`, `eval_s1_l01`, `eval_s2_l005`, `eval_s2_l01`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-30k-4models-westd35807.md"
+}

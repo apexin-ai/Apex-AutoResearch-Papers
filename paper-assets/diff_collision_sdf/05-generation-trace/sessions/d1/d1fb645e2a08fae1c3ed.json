@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1fb645e2a08fae1c3ed",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper p1 2 3 4 content",
+  "task_key": "worker_paper_p1-2-3-4-content_20260528T063740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p1-2-3-4-content_20260528T063740_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "52d373acd02f1ecc51f23eaa127146bedb306da57a28fd97a7fa5a9b2895654a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改完成：\n\n- **P1-2** (claim2.tex:34): 在 oracle 段落末尾添加了 ecological validity caveat——Pi0+A1 已完全 collapse 为 degenerate case，LoRA-based oracle（TSR 70-80%）提供更强证据。\n- **P1-3** (method.tex:36): 脚注内容提升到正文——Pi0 A1 用 obstacle displacement（因 EE 定义不一致），Pi0.5 用 EE displacement，5 个数量级的 bimodal gap 使两者等价。\n- **P1-4** (method.tex:36): 同段末尾添加——bimodal gap 使简单阈值充分，velocity/action-variance filter 留待 future work。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p1-2-3-4-content.md"
+}

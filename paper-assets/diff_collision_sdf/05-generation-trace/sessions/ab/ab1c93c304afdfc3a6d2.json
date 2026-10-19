@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "ab1c93c304afdfc3a6d2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose a1 lora object pudding s0",
+  "task_key": "worker_diagnose_a1_lora_object_pudding_s0_20260522T135429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_a1_lora_object_pudding_s0_20260522T135429_result.json",
+    "occurrence": 1,
+    "bytes": 1498,
+    "sha256": "d60af9c1978941982c214d793dd68bb1ff159813456add4e86db622976163a45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n```json\n{\n  \"actually_completed\": true,\n  \"steps_completed\": 30000,\n  \"best_loss\": 0.01326,\n  \"final_loss\": 0.0184,\n  \"phase2_lora_active\": false,\n  \"root_cause\": \"M016 false positive\",\n  \"checkpoints_found\": [\"29999\", \"30000\", \"best\"],\n  \"error_type\": \"false_positive\"\n}\n```\n\n**详细发现**：\n\n- **训练完整完成** 30000/30000 steps，总耗时 ~33h，~3.96s/step，进程已正常退出\n- **无任何错误** — grep error/traceback/oom/killed 全部零匹配\n- **Checkpoints 完整** — `29999/`、`30000/`、`best/` 三个目录均存在，`model.safetensors` 约 6.7GB，时间戳 May 22 21:44-21:45\n- **best_loss = 0.01326**（step 29999）\n- **确认 M016 误报** — WANDB_MODE=disabled 导致 cron 无法读取 W&B metrics，误判为 failed\n\n**LoRA 警告**：日志末尾的诊断输出显示 steps 0-90 期间 `LoRA params: 0`，整个训练过程未检测到 Phase 2 / unfreeze / LoRA inject 相关日志。仅有 658,948 个可训练参数（均非 LoRA）。如果此实验预期启用 LoRA，这可能是一个问题——但不影响\"训练已完成\"的判定。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "actually_completed": true,
+              "steps_completed": 30000,
+              "best_loss": 0.01326,
+              "final_loss": 0.0184,
+              "phase2_lora_active": false,
+              "root_cause": "M016 false positive",
+              "checkpoints_found": [
+                "29999",
+                "30000",
+                "best"
+              ],
+              "error_type": "false_positive"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-a1-lora-object-pudding-s0.md"
+}

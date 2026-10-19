@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "588256c1dc913a835197",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval oracle a3 force refine object v11 v2",
+  "task_key": "worker_eval_oracle_a3_force_refine_object_v11_v2_20260522T153721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_oracle_a3_force_refine_object_v11_v2_20260522T153721_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "9fb0001a0cbdc5dd06717b9405c94fcda1c8b3f9f63b7254a27ea3f918a1c5a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已成功启动，正在加载 Task 0 环境。\n\n配置摘要：\n- **tmux session**: `oracle_a3_force_refine`\n- **GPU**: cuda:2 (CUDA_VISIBLE_DEVICES=2, --gpu 0)\n- **40 episodes**: 4 tasks × 10 each\n- **checkpoint**: a3_grad_refine_object_pudding best\n- **新增**: `--force_refine` 强制每步 SDF refinement\n- **日志**: `/root/autodl-tmp/eval_results/oracle_a3_force_refine.log`\n- **输出**: `/root/autodl-tmp/eval_results/oracle_force_refine_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-oracle-a3-force-refine-object-v11-v2.md"
+}

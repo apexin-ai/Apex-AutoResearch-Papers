@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "bbf88f8c6d1fe33e90fc",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code feature space oracle cuda2 v2",
+  "task_key": "worker_code_feature_space_oracle_cuda2_v2_20260522T201817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_feature_space_oracle_cuda2_v2_20260522T201817.log",
+    "occurrence": 1,
+    "bytes": 999916,
+    "sha256": "c197ea398bb35eb3c6a9608eec8a07e5b308a9fbac7bf1f856f4fbe3963f1f8a"
+  },
+  "statistics": {
+    "messages": 237,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 86,
+      "tool_result": 86,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 139,
+      "chunks": [
+        {
+          "path": "bbf88f8c6d1fe33e90fc-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "bbf88f8c6d1fe33e90fc-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 98,
+      "chunks": [
+        {
+          "path": "bbf88f8c6d1fe33e90fc-part-0002.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-feature-space-oracle-cuda2-v2.md"
+}

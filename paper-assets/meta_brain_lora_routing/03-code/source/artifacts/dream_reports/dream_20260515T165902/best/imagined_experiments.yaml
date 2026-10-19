@@ -1,0 +1,958 @@
+tier: best
+narrative_guidance: 'Original framing holds without modification. Headline: "Meta-Brain
+  achieves 78.9% on LIBERO-Plus with ~12M params, outperforming parameter-matched
+  rank-48 universal LoRA by 13.8pp — perturbation-diagnostic routing is a more efficient
+  use of adaptation capacity than uniform correction." Ablation ladder strictly monotonic:
+  Frozen (53.6) < Universal-r16 (62.4) < Universal-r48 (65.1) < Random (65.8) < Meta-Brain
+  (78.9) < Oracle (80.7). Existential control (rank-48 universal) cleanly defeated.
+  Random routing offers negligible gain over universal-r48 (+0.7pp, p=0.38, n.s.),
+  ruling out ensemble effects. Oracle gap only 1.8pp, confirming PAR router quality.
+  Clean LIBERO preserved (+0.3pp). Cross-type mismatch drop avg 17.4pp validates expert
+  specialization. Rank sweep shows benefit monotonically increasing (13.8→13.9→14.2pp).
+  All 3 claims stand at full strength. Paper structure: Phase 0 finding → architecture
+  → ablation ladder → per-perturbation cross-type analysis → rank sweep → parameter
+  efficiency. Bibliography covers MoE routing (Switch Transformer, GShard, ST-MoE,
+  V-MoE), VLA robustness (VLA-GSE, SAFE, RobustVLA, FTM, FLA, SRPO, CorridorVLA),
+  LoRA adaptation (LoRA, LoRA-SP, MoIRA, CORAL, AdaLoRA, DoRA), VLA foundations (pi0,
+  OpenVLA, SmolVLA, Octo, RT-2), benchmarks (LIBERO, LIBERO-Plus), reaching 30+ refs
+  comfortably.
+
+  '
+imagined_experiments:
+- name: LoRA Expert Training — 3 Specialized + 1 Universal
+  plan_id: plan_002
+  description: 'Train 4 LoRA adapters (rank 16, Q/K/V/O on all 18 PaliGemma layers,
+    3.7M params each): LoRA-V (online visual augmentation), LoRA-S (oracle spatial
+    demos), LoRA-P (oracle physical demos), Universal (mixed all-perturbation data).
+    Evaluate each expert on its matched type AND cross-type.
+
+    '
+  expected_results:
+    lora_v_on_visual: 80.2
+    lora_v_on_spatial: 62.0
+    lora_v_on_physical: 60.2
+    lora_s_on_visual: 59.5
+    lora_s_on_spatial: 77.5
+    lora_s_on_physical: 60.0
+    lora_p_on_visual: 58.2
+    lora_p_on_spatial: 60.8
+    lora_p_on_physical: 74.8
+    universal_r16_visual: 64.8
+    universal_r16_spatial: 60.5
+    universal_r16_physical: 58.2
+    universal_r16_overall: 62.4
+    cross_type_avg_drop_pp: 17.4
+    val_action_mse_lora_v: 0.0082
+    val_action_mse_lora_s: 0.0091
+    val_action_mse_lora_p: 0.0098
+    val_action_mse_universal: 0.0105
+    convergence_epochs: 15
+  result_rationale: '在 best 档下，perturbation-specific LoRA 学到了质性不同的修正模式。LoRA-V 在 视觉扰动上达到
+    80.2%（+29.4pp over frozen），因为在线增强（camera jitter, brightness shift, background
+    swap, Gaussian noise）精确匹配 LIBERO-Plus 视觉 扰动分布，LoRA 只需学习 early-layer visual representation
+    的低秩修正。LoRA-S 和 LoRA-P 在各自类型上分别达到 77.5%/74.8%，略低于 LoRA-V，原因有二：(1) spatial 和 physical
+    的 oracle demo 采集本身引入采集噪声；(2) 空间和物理扰动涉及 action-level 的高层语义调整，比纯视觉修正的 representation
+    变换更复杂。 关键证据在 cross-type performance：LoRA-V 在 spatial 上仅 62.0%（drop 18.2pp）， 因为视觉修正无法纠正
+    layout 引起的 action trajectory 偏移——这两种修正在 representation space 中方向正交。LoRA-P 在 visual
+    上仅 58.2%（drop 16.6pp）， 因为力学修正作用于 late-layer action planning，反而干扰了本该保持的 early-layer
+    visual features。cross-type 仍高于 frozen（58-62% vs 50-57%），说明 experts 学到了部分可迁移的通用
+    robustness（如 LoRA 的低秩约束本身有 regularization 效果）， 但 type-specific 部分不可互换。Universal
+    LoRA 在各类型上均为中等水平（58-65%）， 是典型的 jack-of-all-trades：3.7M 参数被迫在三种修正方向之间妥协， 每个方向分到的有效容量不足以匹配专有
+    expert。Val MSE 证实了这一点：专有 expert （0.008-0.010）显著低于 universal（0.0105），说明 specialization
+    带来更精确的 action prediction。
+
+    '
+  tables:
+  - name: Cross-type evaluation matrix
+    description: '3×3 expert-vs-type matrix + universal 行。对角线显著高于非对角线 （avg drop 17.4pp），验证修正不可互换。
+
+      '
+    data:
+      headers:
+      - Expert \ Type
+      - Visual (%)
+      - Spatial (%)
+      - Physical (%)
+      rows:
+      - - LoRA-V
+        - 80.2 ★
+        - '62.0'
+        - '60.2'
+      - - LoRA-S
+        - '59.5'
+        - 77.5 ★
+        - '60.0'
+      - - LoRA-P
+        - '58.2'
+        - '60.8'
+        - 74.8 ★
+      - - Universal-r16
+        - '64.8'
+        - '60.5'
+        - '58.2'
+      - - Frozen pi0
+        - '50.8'
+        - '57.5'
+        - '56.2'
+  figures_description:
+  - Heatmap of cross-type matrix, diagonal cells green, off-diagonal cells orange/red,
+    showing 15-20pp drop
+  - 'Training loss curves: 4 LoRA adapters, showing convergence at ~15 epochs'
+  analysis: 'Cross-type drop 全部 >15pp（最小 15.3pp for LoRA-P on spatial，最大 19.1pp for
+    LoRA-V on spatial/physical avg），直接验证 Claim 2 的前提假设。Universal LoRA 在所有类型上都不如对应的
+    matched expert（差距 12-17pp），确立了 routing 的必要性。
+
+    '
+- name: Meta-Brain Assembly — PAR Router + LoRA Bank E2E
+  plan_id: plan_003
+  description: '组装 PAR router (PaliGemma layer 6, 2-layer MLP, first-token pooling)
+    + 3 LoRA experts，soft routing: h_corrected = h_frozen + Σ_k p(type_k)·LoRA_k(h_frozen)。
+    冻结 LoRA 参数，仅微调 PAR routing weights。全 LIBERO-Plus benchmark 评估。
+
+    '
+  expected_results:
+    libero_plus_overall: 78.9
+    libero_plus_std: 1.2
+    per_type_visual: 81.2
+    per_type_spatial: 77.5
+    per_type_physical: 74.8
+    per_subtype_camera: 78.5
+    per_subtype_light: 83.8
+    per_subtype_background: 80.2
+    per_subtype_noise: 82.1
+    per_subtype_layout: 77.5
+    per_subtype_robot: 74.8
+    routing_weight_visual_on_lora_v: 0.91
+    routing_weight_spatial_on_lora_s: 0.88
+    routing_weight_physical_on_lora_p: 0.86
+    routing_entropy_visual: 0.12
+    routing_entropy_spatial: 0.15
+    routing_entropy_physical: 0.18
+    par_routing_accuracy: 96.8
+    e2e_finetuning_epochs: 5
+    total_trainable_params_M: 11.6
+  result_rationale: '78.9% 整体成功率来自三个因素的协同：(1) PAR router routing accuracy 达 96.8%——
+    Phase 0 已证明 layer 6 first-token 激活在 3-class 上 F1=1.0，端到端微调只需 轻微校准 soft routing
+    的温度参数；(2) soft routing entropy 极低（0.12-0.18）， 说明 router 对每种扰动类型高度确信，routing weights
+    近似 one-hot（视觉扰动时 LoRA-V 权重 0.91），使 Meta-Brain 在运行时近似 oracle routing——这直接解释了 oracle
+    gap 仅 1.8pp；(3) 各 expert 本身质量高（plan_002 验证），routing 只需 选对 expert 即可。per-type 排序
+    V>S>P（81.2>77.5>74.8）反映了扰动修正的内在 难度梯度：视觉扰动是最规则的低秩变换（brightness/contrast 近似线性），空间扰动
+    需要调整 mid-level spatial reasoning，物理扰动涉及 action planning 的高层语义 重构。per-subtype 中
+    light 最高（83.8%）因为亮度变化是最平滑的视觉扰动， camera 稍低（78.5%）因为视角变化需要更复杂的几何 re-projection。Physical
+    expert 的 routing confidence 稍低（0.86 vs 0.91）因为物理扰动在激活空间中的 cluster 略松散（Phase 0:
+    physical F1=0.951 at K=1 vs spatial F1=1.0）。
+
+    '
+  tables:
+  - name: LIBERO-Plus per-perturbation breakdown
+    data:
+      headers:
+      - Perturbation
+      - Type
+      - Success (%)
+      - Δ Frozen (pp)
+      - Routing Weight
+      rows:
+      - - Camera
+        - Visual
+        - '78.5'
+        - '+30.3'
+        - 'LoRA-V: 0.92'
+      - - Light
+        - Visual
+        - '83.8'
+        - '+31.3'
+        - 'LoRA-V: 0.93'
+      - - Background
+        - Visual
+        - '80.2'
+        - '+29.4'
+        - 'LoRA-V: 0.90'
+      - - Noise
+        - Visual
+        - '82.1'
+        - '+28.9'
+        - 'LoRA-V: 0.89'
+      - - Layout
+        - Spatial
+        - '77.5'
+        - '+20.0'
+        - 'LoRA-S: 0.88'
+      - - Robot
+        - Physical
+        - '74.8'
+        - '+18.6'
+        - 'LoRA-P: 0.86'
+      - - Overall
+        - —
+        - '78.9'
+        - '+25.3'
+        - —
+  figures_description:
+  - 'PAR routing weight heatmap 3×3: rows=input perturbation type, cols=LoRA expert,
+    near-diagonal structure'
+  - 'Per-subtype grouped bar chart: Meta-Brain vs Frozen pi0, gain annotated'
+  analysis: '78.9% overall + near-diagonal routing weights + 96.8% routing accuracy
+    共同 构成 best 档核心证据。routing entropy 的 per-type 差异（0.12 visual vs 0.18 physical）反映了
+    Phase 0 分类精度的差异——但即使 physical 的 entropy 也远低于 maximum（0.18 vs log(3)=1.10），确认所有类型的
+    routing 都高度确定。
+
+    '
+- name: Oracle Routing Ablation
+  plan_id: plan_004
+  description: '用 ground-truth 扰动类型标签（hard one-hot）替换 PAR router，测量 learned routing
+    与 perfect routing 的上界差距。
+
+    '
+  expected_results:
+    oracle_overall: 80.7
+    oracle_std: 0.9
+    oracle_visual: 83.0
+    oracle_spatial: 79.2
+    oracle_physical: 76.5
+    oracle_minus_meta_brain_overall: 1.8
+    oracle_minus_meta_brain_visual: 1.8
+    oracle_minus_meta_brain_spatial: 1.7
+    oracle_minus_meta_brain_physical: 1.7
+  result_rationale: 'Oracle routing 达到 80.7%，仅比 Meta-Brain（78.9%）高 1.8pp。Gap 小于 routing
+    分类错误率所预测的值（routing accuracy 96.8% → 3.2% 错误 → 预期 impact ~3pp）， 因为 PAR 的 soft routing
+    在分类不完全正确时仍分配了较高权重给正确 expert （如 misrouted visual 案例中 LoRA-V 仍获 0.65 权重 vs LoRA-S
+    0.35），使得 routing error 的 downstream impact 被 dampen。per-type gap 高度一致 （1.7-1.8pp），说明
+    PAR router 在三种类型上的性能均衡，没有系统性偏向。 Physical 的 oracle gap（1.7pp）最小，看似反直觉（physical
+    的 routing accuracy 最低），但 physical expert 的 cross-type performance（60.0-60.8%）高于其他
+    expert 的 cross-type（58.2-62.0%），使得 misrouting 的惩罚较轻。
+
+    '
+  tables: []
+  figures_description:
+  - 'Bar chart: Meta-Brain vs Oracle per-type, error bars from 5 seeds, gap annotated'
+  analysis: '1.8pp gap 证明 PAR router 不是系统瓶颈。未来提升应聚焦于 expert 质量 （更好训练数据、更高 rank）而非
+    router 改进。Oracle 结果也为 routing 设定了 performance ceiling：~80.7% 是 rank-16 expert
+    bank 的理论上限。
+
+    '
+- name: Ablation Ladder — Full Systematic Comparison
+  plan_id: plan_005
+  description: 'LIBERO-Plus 上 6 个系统配置的系统对比（5 seeds）：Frozen → Universal-r16 → Universal-r48
+    → Random Routing → Meta-Brain → Oracle。包含 rank-48 parameter-matched control 和
+    random routing baseline。
+
+    '
+  expected_results:
+    frozen_pi0_overall: 53.6
+    frozen_pi0_std: 0.8
+    universal_r16_overall: 62.4
+    universal_r16_std: 1.4
+    universal_r48_overall: 65.1
+    universal_r48_std: 1.3
+    random_routing_overall: 65.8
+    random_routing_std: 2.1
+    meta_brain_overall: 78.9
+    meta_brain_std: 1.2
+    oracle_routing_overall: 80.7
+    oracle_routing_std: 0.9
+    step_frozen_to_r16: 8.8
+    step_r16_to_r48: 2.7
+    step_r48_to_random: 0.7
+    step_random_to_meta_brain: 13.1
+    step_meta_brain_to_oracle: 1.8
+    routing_gap_vs_rank48: 13.8
+    routing_gap_vs_random: 13.1
+    random_vs_r48_pvalue: 0.38
+    meta_brain_vs_random_pvalue: 3.0e-05
+    meta_brain_vs_r48_pvalue: 1.0e-05
+    per_type_visual_frozen: 50.8
+    per_type_spatial_frozen: 57.5
+    per_type_physical_frozen: 56.2
+    per_type_visual_r48: 67.5
+    per_type_spatial_r48: 63.2
+    per_type_physical_r48: 60.8
+    per_type_visual_random: 66.8
+    per_type_spatial_random: 65.5
+    per_type_physical_random: 63.2
+  result_rationale: '消融梯度严格单调递增（53.6→62.4→65.1→65.8→78.9→80.7），每一步对应一个 独立的能力维度： (1)
+    Frozen→r16（+8.8pp）：LoRA 本身提供了通用的 representation correction 能力， 即使不区分扰动类型，低秩修正也能改善
+    feature robustness。 (2) r16→r48（+2.7pp）：增加 rank 有帮助但收益递减——3.2× 参数仅换来 2.7pp， 说明
+    universal correction 的 capacity utilization efficiency 随 rank 下降， 因为额外参数被迫在三种互斥修正方向上妥协。
+    (3) r48→Random（+0.7pp, p=0.38 不显著）：仅 3 个 expert 的 ensemble 效应 几乎不存在。Random routing
+    有时碰巧选对 expert（1/3 概率），拉高了均值， 但也有 2/3 概率选错并导致 suboptimal correction。这两个效应近似抵消，
+    使 random 仅比 universal 高 0.7pp。p=0.38 的不显著性是关键 null result—— 它排除了 "Meta-Brain 的好处来自
+    ensemble averaging" 的 alternative explanation。 (4) Random→Meta-Brain（+13.1pp,
+    p<0.001）：整个梯度中最大的单步跳跃。 精确 routing 带来的提升远超 capacity scaling（2.7pp）和 ensemble（0.7pp）的
+    总和——routing 的边际贡献（13.1pp）是 capacity scaling（2.7pp）的 4.9×。 这是 Claim 2 的核心量化证据。
+    (5) Meta-Brain→Oracle（+1.8pp）：PAR router 接近理论上限。 Random routing 的高 std（2.1 vs
+    Meta-Brain 的 1.2）反映了随机 expert 分配的 天然不稳定性——在某些 seed 下碰巧匹配较多，在其他 seed 下则严重不匹配。
+
+    '
+  tables:
+  - name: Ablation Ladder — Main Results (5 seeds)
+    data:
+      headers:
+      - Method
+      - Params
+      - Overall (%)
+      - Visual (%)
+      - Spatial (%)
+      - Physical (%)
+      - Δ Frozen
+      rows:
+      - - Frozen pi0
+        - '0'
+        - 53.6 ± 0.8
+        - '50.8'
+        - '57.5'
+        - '56.2'
+        - —
+      - - Universal r16
+        - 3.7M
+        - 62.4 ± 1.4
+        - '64.8'
+        - '60.5'
+        - '58.2'
+        - '+8.8'
+      - - Universal r48
+        - 12M
+        - 65.1 ± 1.3
+        - '67.5'
+        - '63.2'
+        - '60.8'
+        - '+11.5'
+      - - Random Routing
+        - 12M
+        - 65.8 ± 2.1
+        - '66.8'
+        - '65.5'
+        - '63.2'
+        - '+12.2'
+      - - Meta-Brain (ours)
+        - 12M
+        - 78.9 ± 1.2
+        - '81.2'
+        - '77.5'
+        - '74.8'
+        - '+25.3'
+      - - Oracle Routing
+        - 12M
+        - 80.7 ± 0.9
+        - '83.0'
+        - '79.2'
+        - '76.5'
+        - '+27.1'
+  - name: Statistical significance
+    data:
+      headers:
+      - Comparison
+      - Gap (pp)
+      - p-value
+      - Significant?
+      rows:
+      - - Meta-Brain vs r48
+        - '13.8'
+        - <0.001
+        - Yes (***)
+      - - Meta-Brain vs Random
+        - '13.1'
+        - <0.001
+        - Yes (***)
+      - - Random vs r48
+        - '0.7'
+        - '0.38'
+        - No (n.s.)
+      - - Oracle vs Meta-Brain
+        - '1.8'
+        - '0.03'
+        - Yes (*)
+  figures_description:
+  - 'Bar chart: 6 bars in ablation order, color-coded cold→warm, 5-seed error bars,
+    significance brackets'
+  - 'Decomposition pie chart: routing contribution (13.1pp) vs capacity (2.7pp) vs
+    ensemble (0.7pp) vs baseline (8.8pp)'
+  analysis: '消融梯度提供三个推论：(a) routing >> ensemble（13.1pp vs 0.7pp, ratio 18.7×）； (b)
+    routing >> capacity scaling（13.8pp vs 2.7pp, ratio 5.1×）； (c) PAR ≈ oracle（gap
+    1.8pp）。Random vs r48 的 null result（p=0.38）是 全文最关键的 negative finding——它排除了 Claim
+    2 的唯一 alternative explanation。
+
+    '
+- name: FTM/FLA Reproduction — Visual-Only Baseline
+  plan_id: plan_006
+  description: '在 pi0 backbone 上复现 FTM（Fine-Tuning Masking），对比 FTM vs Meta-Brain 在视觉扰动上的表现，并展示
+    Meta-Brain 在 spatial/physical 上的独特优势。
+
+    '
+  expected_results:
+    ftm_visual_avg: 75.7
+    ftm_camera: 73.2
+    ftm_light: 78.5
+    ftm_background: 74.8
+    ftm_noise: 76.2
+    ftm_spatial: 55.8
+    ftm_physical: 54.5
+    ftm_overall: 65.2
+    ftm_params_K: 4
+    meta_brain_vs_ftm_visual_gap: 5.5
+    meta_brain_vs_ftm_spatial_gap: 21.7
+    meta_brain_vs_ftm_physical_gap: 20.3
+  result_rationale: 'FTM 在 pi0 上复现后视觉扰动达 75.7%（+24.9pp over frozen），以极少参数（4K） 实现了可观修正，验证了
+    FTM 的 feature masking 原理在 pi0 上同样有效—— masking 通过抑制 early-layer 中被扰动 corrupted
+    的 feature channel 来恢复 clean representation。但 FTM 在 spatial（55.8%）和 physical（54.5%）上等同于
+    frozen baseline 甚至略低（spatial -1.7pp），因为 FTM 的核心假设是扰动破坏 视觉特征——对 layout 变化或机器人初始状态变化，masking
+    visual channels 不仅 无益反而可能抑制有用的 spatial/physical 信号。Meta-Brain 在视觉扰动上也高于 FTM（81.2%
+    vs 75.7%，+5.5pp），因为 rank-16 LoRA（3.7M params）比 feature masking（4K params）有更大的修正表达能力——LoRA
+    可以 rotate 和 scale 整个 subspace，而 masking 只能 zero-out channels。但 FTM 的极高参数效率 （4K
+    params for +24.9pp on visual）使其在 visual-only 场景下仍然有独特价值。 核心对比：Meta-Brain 在 spatial/physical
+    上分别高出 FTM 21.7pp 和 20.3pp， 这正是 multi-type routing 的 unique value proposition。
+
+    '
+  tables:
+  - name: FTM vs Meta-Brain comparison
+    data:
+      headers:
+      - Method
+      - Params
+      - Visual (%)
+      - Spatial (%)
+      - Physical (%)
+      - Overall (%)
+      rows:
+      - - Frozen pi0
+        - '0'
+        - '50.8'
+        - '57.5'
+        - '56.2'
+        - '53.6'
+      - - FTM (reprod.)
+        - 4K
+        - '75.7'
+        - '55.8'
+        - '54.5'
+        - '65.2'
+      - - Meta-Brain
+        - 12M
+        - '81.2'
+        - '77.5'
+        - '74.8'
+        - '78.9'
+  figures_description:
+  - 'Grouped bar chart: Visual/Spatial/Physical, 3 bars each (Frozen, FTM, Meta-Brain),
+    showing FTM''s visual-only strength'
+  analysis: 'FTM 是 visual-only robustness 的 strong baseline，且参数效率极高。论文中应定位为 "single-modality
+    approach 的代表"——它证明了 visual 修正可以极其高效， 但也证明了 single-modality 无法推广到 multi-type perturbation
+    场景。 Meta-Brain 即使在 visual-only 上也优于 FTM（+5.5pp），说明 LoRA-based correction 比 feature
+    masking 更有表达力。
+
+    '
+- name: Parameter Efficiency Analysis
+  plan_id: plan_007
+  description: '计算各方法的 gain-over-frozen-baseline，按可训练参数归一化， 绘制 parameter efficiency
+    scatter plot。纯分析，无 GPU 计算。
+
+    '
+  expected_results:
+    meta_brain_gain_pp: 25.3
+    meta_brain_params_M: 12
+    meta_brain_gain_per_M: 2.11
+    universal_r16_gain_pp: 8.8
+    universal_r16_params_M: 3.7
+    universal_r16_gain_per_M: 2.38
+    universal_r48_gain_pp: 11.5
+    universal_r48_params_M: 12
+    universal_r48_gain_per_M: 0.96
+    ftm_gain_visual_pp: 24.9
+    ftm_gain_overall_pp: 11.6
+    ftm_params_M: 0.004
+    ftm_gain_per_M_visual: 6225.0
+    ftm_gain_per_M_overall: 2900.0
+    vla_gse_gain_pp: 12.0
+    vla_gse_params_M: 114
+    vla_gse_gain_per_M: 0.105
+    meta_brain_pareto_optimal: true
+    meta_brain_vs_r48_efficiency_ratio: 2.2
+  result_rationale: '参数效率分析揭示了三个 regime：(1) 极低参数区（<1M）：FTM 以 4K params 在 visual-only
+    上达到 gain_per_M=6225，但 overall gain_per_M（2900）反映了它 无法覆盖 non-visual 的局限；(2) 中等参数区（1-15M）：Meta-Brain
+    占据 Pareto 前沿——12M params, 25.3pp gain, gain_per_M=2.11。同参数量的 Universal-r48 仅 gain_per_M=0.96，效率差
+    2.2×。这 2.2× 的效率倍数就是 routing 的量化贡献； (3) 高参数区（>100M）：VLA-GSE 的 114M params 仅提供 gain_per_M=0.105
+    （不同 backbone，仅作 suggestive 对比）。即使考虑 backbone 差异，Meta-Brain 的 gain_per_M（2.11）比
+    VLA-GSE（0.105）高 20×，数量级差异足以支撑 parameter efficiency narrative。Universal r16 的 gain_per_M（2.38）看似高于
+    Meta-Brain （2.11），但绝对 gain 仅 8.8pp vs 25.3pp——在 "达到实用性能阈值" 的约束下， r16 的高效率无意义，因为
+    62.4% 可能低于部署要求。
+
+    '
+  tables:
+  - name: Parameter efficiency summary
+    data:
+      headers:
+      - Method
+      - Backbone
+      - Params
+      - Gain (pp)
+      - Gain/M
+      - Coverage
+      rows:
+      - - FTM
+        - pi0
+        - 4K
+        - +24.9 (V) / +11.6 (all)
+        - 6225 / 2900
+        - Visual only
+      - - Universal r16
+        - pi0
+        - 3.7M
+        - '+8.8'
+        - '2.38'
+        - All types
+      - - Meta-Brain (ours)
+        - pi0
+        - 12M
+        - '+25.3'
+        - '2.11'
+        - All types
+      - - Universal r48
+        - pi0
+        - 12M
+        - '+11.5'
+        - '0.96'
+        - All types
+      - - VLA-GSE †
+        - Qwen3-4B
+        - 114M
+        - '+12.0'
+        - '0.105'
+        - All types
+  figures_description:
+  - 'Scatter plot: x=trainable params (log scale), y=gain-over-frozen (pp). Meta-Brain
+    on Pareto front. FTM in ultra-low-param corner. VLA-GSE in high-param low-efficiency
+    region (dashed circle, different backbone). Isoquants of gain_per_M as diagonal
+    lines.'
+  analysis: 'Meta-Brain 是 multi-type robustness 场景下的 Pareto optimal 方法。关键 insight：
+    routing 让同等参数预算（12M）的效率提升 2.2×——这不是 architectural overhead 的代价，而是 capacity allocation
+    strategy 的收益。Parameter efficiency scatter 是 Claim 3 的 primary visual evidence。
+
+    '
+- name: Correction Memory Ablation
+  plan_id: plan_008
+  description: '对比 Meta-Brain with/without Correction Memory (CM)，量化 CM 的边际收益。 CM
+    通过 FAISS 检索相似历史扰动的 routing weight 来调制当前 routing。
+
+    '
+  expected_results:
+    meta_brain_no_cm: 78.9
+    meta_brain_with_cm: 80.1
+    cm_delta_overall: 1.2
+    cm_delta_visual: 0.8
+    cm_delta_spatial: 1.5
+    cm_delta_physical: 1.8
+    cm_additional_params: 1
+    cm_latency_overhead_ms: 2.3
+    cm_pvalue: 0.08
+  result_rationale: 'CM 提供 +1.2pp 整体提升（p=0.08, borderline significant with 5 seeds），
+    主要来自 spatial（+1.5pp）和 physical（+1.8pp）而非 visual（+0.8pp）。 这符合 CM 的设计逻辑：CM 检索与当前
+    observation 最相似的历史扰动 exemplar， 用其 routing weight 作为 contextual prior 来调制 PAR 输出。Spatial
+    和 physical 扰动的 within-type 变异更大（不同 layout randomization 的具体形态差异远大于 不同 lighting
+    condition），历史 exemplar 能提供有用的 "这种具体 layout 变化 应该如何调整 routing" 的信息。Visual 上 CM
+    收益小因为 PAR 对视觉扰动已经 足够准确（routing accuracy ~98% on visual），contextual modulation
+    的改进空间 有限。但 +1.2pp 的总收益与 1 个额外可学习参数 + 2.3ms CPU latency 相比， cost-benefit 偏低——不值得作为
+    named architectural component 推广。
+
+    '
+  tables: []
+  figures_description:
+  - 'Ablation bar chart: with/without CM, per-type Δ annotated, p-value shown'
+  analysis: 'CM 是 optional module，+1.2pp 不改变任何 claim 的结论。论文呈现策略： 一行 ablation 文字 +
+    footnote table，明确标注 "optional, borderline significant"。 Dream reviewers 一致认为 CM
+    是 padding，降级处理是正确决策。
+
+    '
+- name: Router Architecture Comparison
+  plan_id: plan_009
+  description: '对比 3 种 PAR router 变体：2-layer MLP (default), linear classifier, attention-based
+    router。均使用 PaliGemma layer 6 first-token features。
+
+    '
+  expected_results:
+    mlp_routing_accuracy: 96.8
+    mlp_downstream: 78.9
+    mlp_params_M: 0.53
+    linear_routing_accuracy: 94.2
+    linear_downstream: 76.8
+    linear_params_M: 0.01
+    attention_routing_accuracy: 97.1
+    attention_downstream: 78.5
+    attention_params_M: 1.85
+  result_rationale: 'MLP（96.8% routing, 78.9% downstream）是最优 cost-performance 均衡。Linear
+    分类器准确率低 2.6pp（94.2%），因为 3-class 边界在激活空间中有轻微非线性—— Phase 0 t-SNE 显示 Spatial/Physical
+    cluster 的边界不完全线性可分（两者都 影响 action space，共享部分特征），MLP 的一层隐藏层足以 model 这个非线性。 2.6pp
+    routing gap 转化为 2.1pp downstream gap（76.8% vs 78.9%），说明 routing accuracy 和 task
+    success 近似线性相关但有 damping（soft routing 缓冲了部分 routing error）。Attention-based router
+    routing accuracy 最高 （97.1%），但 downstream 反而略低（78.5%），因为 1.85M 额外参数在仅 5 epoch 微调下轻微
+    overfit——attention 的表达能力对 3-class routing 过剩。
+
+    '
+  tables:
+  - name: Router architecture comparison
+    data:
+      headers:
+      - Router Type
+      - Params (M)
+      - Routing Acc (%)
+      - Downstream (%)
+      rows:
+      - - Linear
+        - '0.01'
+        - '94.2'
+        - '76.8'
+      - - 2-layer MLP ★
+        - '0.53'
+        - '96.8'
+        - '78.9'
+      - - Attention
+        - '1.85'
+        - '97.1'
+        - '78.5'
+  figures_description: []
+  analysis: 'Router 架构的 downstream impact 有限（max spread 2.1pp），说明 Meta-Brain 的性能主要由
+    routing 原理和 expert 质量驱动，而非 router 实现细节。 论文中作简短 ablation paragraph 处理。
+
+    '
+- name: 6-class vs 3-class Routing
+  plan_id: plan_010
+  description: '对比 6-class 精细路由（camera/light/background/noise/layout/robot 各一个 LoRA
+    expert，6×3.7M=22.1M params）vs 3-class 粗路由（Visual/Spatial/Physical， 3×3.7M=11.1M
+    params）。
+
+    '
+  expected_results:
+    3class_overall: 78.9
+    3class_params_M: 12
+    6class_overall: 79.6
+    6class_params_M: 24
+    6class_delta: 0.7
+    6class_camera: 80.2
+    6class_light: 84.5
+    6class_background: 81.0
+    6class_noise: 83.2
+    6class_layout: 77.8
+    6class_robot: 75.1
+    marginal_gain_per_expert: 0.23
+    6class_routing_accuracy: 94.8
+  result_rationale: '6-class 仅比 3-class 高 0.7pp（79.6% vs 78.9%），参数量翻倍（24M vs 12M），
+    每额外 expert 的边际收益仅 0.23pp。这与 Phase 0 的发现一致：intra-Visual 4 个 sub-type 在激活空间中形成一个紧致
+    cluster（6-class accuracy 99.8% 但 sub-type 间 cosine similarity 高达 0.92），说明 camera/light/background/noise
+    的修正策略高度重叠——它们都影响 early-layer visual representation，差异更多是 程度而非类型。Independent camera
+    expert 比 shared LoRA-V 仅高 1.7pp（80.2% vs 78.5%），代价是独占 3.7M 参数。同时 6-class routing
+    accuracy 下降到 94.8% （vs 3-class 96.8%），因为 6-class 边界更精细，分类更困难，少量 routing error
+    部分抵消了 expert specialization 的收益。3-class 是 granularity 的 sweet spot。
+
+    '
+  tables:
+  - name: Granularity comparison
+    data:
+      headers:
+      - Granularity
+      - Experts
+      - Total Params
+      - Overall (%)
+      - Routing Acc (%)
+      - Δ
+      rows:
+      - - 3-class
+        - '3'
+        - 12M
+        - '78.9'
+        - '96.8'
+        - —
+      - - 6-class
+        - '6'
+        - 24M
+        - '79.6'
+        - '94.8'
+        - '+0.7'
+  figures_description: []
+  analysis: '0.7pp / 2× params 的 trade-off 验证了 3-class taxonomy 的合理性，回应 Reviewer C5。Phase
+    0 的 Visual cluster 紧致性是根本原因——finer granularity within Visual 增加 routing 难度但不增加修正多样性。
+
+    '
+- name: Rank-48 Parameter-Matched Universal LoRA — Existential Control
+  plan_id: plan_013
+  description: '训练 rank-48 universal LoRA（~11.1M params，精确匹配 Meta-Brain 的 3×rank-16
+    expert 参数总量）。若 rank-48 ≈ Meta-Brain → Claim 2 崩溃。
+
+    '
+  expected_results:
+    rank48_overall: 65.1
+    rank48_std: 1.3
+    rank48_visual: 67.5
+    rank48_spatial: 63.2
+    rank48_physical: 60.8
+    rank48_vs_meta_brain_gap: 13.8
+    rank48_vs_r16_improvement: 2.7
+    rank48_gain_over_frozen: 11.5
+    rank48_gain_per_M: 0.96
+    claim2_survival: true
+  result_rationale: 'Rank-48 universal LoRA 达到 65.1%（+11.5pp over frozen），仅比 rank-16
+    （62.4%）高 2.7pp，despite 3.2× 参数增长（3.7M → 11.1M）。这证实了 "universal capacity saturation"
+    假设：uniform LoRA 的收益在 rank 16-48 之间快速递减。根本原因：rank-48 的 11.1M 参数被迫在三种修正方向（visual:
+    early-layer re-projection, spatial: mid-layer trajectory adjustment, physical:
+    late-layer action re-planning）之间共享。这三种修正在 representation space 中 方向不同甚至互斥——改善
+    visual robustness 的 rank 方向可能削弱 spatial 性能。 增加 rank 只是增加了妥协的参数量，无法解决方向冲突。per-type
+    分布清晰展示了 这个困境：Visual（67.5%）的 gain over frozen（+16.7pp）远大于 Spatial（+5.7pp） 和 Physical（+4.6pp），因为
+    visual perturbation 在混合训练数据中占 4/6 sub-types， universal LoRA 被 biased toward visual
+    correction。Meta-Brain 的 3 experts 各自专注一种类型，消除了方向冲突和数据 imbalance。13.8pp gap（p<0.001）
+    是 Claim 2 的 existential validation：identical parameter budget, dramatically different
+    outcome。
+
+    '
+  tables: []
+  figures_description:
+  - 'Embedded in ablation ladder figure: rank-48 bar annotated with ''= Meta-Brain
+    params'' and 13.8pp gap arrow'
+  analysis: '全文最关键的单个实验。13.8pp gap + p<0.001 直接证明 routing 的价值不可被 parameter scaling
+    替代。如果这个 gap <5pp，整篇论文的 thesis 就需要根本性重构。 在 best 档下，gap 足够大且稳健，Claim 2 完整存活。
+
+    '
+- name: LoRA Rank Sweep (r=16/32/64)
+  plan_id: plan_014
+  description: '在 r=16/32/64 三个 expert rank 上分别训练 Meta-Brain 和 parameter-matched universal
+    LoRA，测试 routing benefit 是否随 expert capacity 增长而变化。
+
+    '
+  expected_results:
+    r16_meta_brain: 78.9
+    r16_universal_matched: 65.1
+    r16_routing_benefit: 13.8
+    r16_total_params_M: 12
+    r32_meta_brain: 81.5
+    r32_universal_matched: 67.6
+    r32_routing_benefit: 13.9
+    r32_total_params_M: 24
+    r64_meta_brain: 84.2
+    r64_universal_matched: 70.0
+    r64_routing_benefit: 14.2
+    r64_total_params_M: 48
+    benefit_trend: monotonically increasing
+    universal_diminishing_returns_r48_to_r96: 2.5
+    universal_diminishing_returns_r96_to_r192: 2.4
+  result_rationale: 'Routing benefit 单调递增（13.8→13.9→14.2pp），排除了 Dream worst-case "routing
+    benefit 仅在特定 capacity 下出现" 的顾虑。递增的机制： (1) 更高 rank 的 expert 能捕获更精细的 type-specific
+    correction（r=64 LoRA-V on visual ~86%），这些精细修正的价值在 universal setting 下被 dilute
+    掉—— universal 必须在三种修正之间分配每一个 rank component。 (2) Universal LoRA 的 scaling 呈递减：r48→r96
+    仅 +2.5pp, r96→r192 仅 +2.4pp， 因为额外 rank 被用于 refine 已有的妥协方案，而非学习新的修正维度。 (3) Meta-Brain
+    的 scaling 近似线性（78.9→81.5→84.2，每次 ~+2.6pp）， 因为每个 expert 的额外 rank 直接用于 deepen 该类型的专有修正，没有
+    cross-type interference。两条 scaling curve 的斜率差导致 benefit gap 缓慢扩大。 这个 finding 的叙事意义：routing
+    benefit 不是特定 capacity 的 artifact， 而是 fundamental architectural advantage——无论参数预算大小，routing
+    始终优于 uniform correction。如果有更多参数预算，应投入到更高 rank 的 routed experts。
+
+    '
+  tables:
+  - name: Rank sweep results
+    data:
+      headers:
+      - Expert Rank
+      - Meta-Brain (%)
+      - Matched Universal (%)
+      - Routing Benefit (pp)
+      - Total Params
+      rows:
+      - - r=16
+        - '78.9'
+        - '65.1'
+        - '13.8'
+        - 12M
+      - - r=32
+        - '81.5'
+        - '67.6'
+        - '13.9'
+        - 24M
+      - - r=64
+        - '84.2'
+        - '70.0'
+        - '14.2'
+        - 48M
+  figures_description:
+  - 'Line plot: x=rank (log scale), y=success rate. Two lines (Meta-Brain, Universal),
+    diverging gap annotated at each rank'
+  analysis: 'Monotonically increasing routing benefit 是一个 clean scaling result。 它也暗示
+    r=64 Meta-Brain（84.2%）可以 match 或超过 VLA-GSE（81.2%，不同 backbone），虽然 cross-backbone
+    对比是 indirect，但趋势线的 extrapolation 支持 Meta-Brain 在更高 capacity 下的 competitive potential。
+
+    '
+- name: Clean LIBERO Evaluation
+  plan_id: plan_015
+  description: '在标准（无扰动）LIBERO 上评估 Meta-Brain 和 baselines，验证 routing 不会 降低 nominal
+    performance。
+
+    '
+  expected_results:
+    frozen_pi0_clean: 91.2
+    universal_r16_clean: 90.8
+    universal_r48_clean: 90.5
+    meta_brain_clean: 91.5
+    clean_delta_meta_brain: 0.3
+    clean_delta_r16: -0.4
+    clean_delta_r48: -0.7
+    par_routing_entropy_on_clean: 0.85
+    par_routing_weight_distribution_clean: ≈ 0.34/0.33/0.33
+  result_rationale: 'Meta-Brain 在 clean LIBERO 上 91.5%（Δ=+0.3pp vs frozen），完全保持 nominal
+    性能。这得益于 PAR router 的一个 emergent 行为：在无扰动输入下，layer 6 first-token 激活不匹配任何已知扰动 pattern，PAR
+    输出高 entropy（0.85， 接近 max log(3)=1.10），routing weights 近似均匀（~0.33/0.33/0.33）。 三个
+    expert 的修正在 clean input 上大致方向相反（各自 tuned 为不同扰动的 correction），均匀加权后 net correction
+    ≈ 0——routing 自动 degrade to identity。微弱的 +0.3pp 正 delta 可能来自 expert LoRA 的轻微 regularization
+    效果。对比 Universal LoRA：r16 下降 0.4pp, r48 下降 0.7pp，因为 universal LoRA 始终应用 correction（无
+    "关闭" 机制），对 clean input 造成不必要的 representation perturbation。Rank 越高干扰越大（r48 的 -0.7pp），因为
+    higher-rank LoRA 的 representation 修改幅度更大。这为 deployment 增加了 重要论据：Meta-Brain 的 routing
+    机制在正常条件下安全 graceful degrade， 而 always-on universal correction 有代价。
+
+    '
+  tables:
+  - name: Clean LIBERO preservation
+    data:
+      headers:
+      - Method
+      - Clean LIBERO (%)
+      - Δ vs Frozen (pp)
+      rows:
+      - - Frozen pi0
+        - '91.2'
+        - —
+      - - Universal r16
+        - '90.8'
+        - '-0.4'
+      - - Universal r48
+        - '90.5'
+        - '-0.7'
+      - - Meta-Brain
+        - '91.5'
+        - '+0.3'
+  figures_description: []
+  analysis: 'Clean LIBERO preservation 是 practical deployment argument 的关键证据。 Meta-Brain
+    是唯一在 perturbed 和 clean 条件下都不降级的方法。PAR routing 的 high-entropy fallback 是一个 emergent
+    property（非刻意设计），可作为 "routing 自动 detect perturbation absence" 的附加 insight 呈现。
+
+    '
+- name: Cross-Backbone Validation (SmolVLA)
+  plan_id: plan_011
+  description: '在 SmolVLA 上复现 Phase 0 + Phase 1 核心 pipeline，验证 perturbation-diagnostic
+    routing 的跨架构泛化性。P2 优先级。
+
+    '
+  expected_results:
+    smolvla_phase0_3class_f1: 0.971
+    smolvla_phase0_best_layer: 4
+    smolvla_frozen_libero_plus: 49.8
+    smolvla_universal_r16: 58.2
+    smolvla_meta_brain: 72.4
+    smolvla_gain_over_frozen: 22.6
+    smolvla_routing_benefit_vs_universal: 14.2
+    smolvla_routing_accuracy: 94.5
+  result_rationale: 'SmolVLA Phase 0 F1=0.971（vs pi0 0.993），略低但仍极高，验证了 perturbation
+    diagnosability 不是 PaliGemma 架构的特有属性。Best layer 是 layer 4 （SmolVLA 共 ~12 层），深度比例
+    ~1/3 与 pi0 的 layer 6/18 一致， 暗示 perturbation information 在 VLA 中的 consolidation
+    发生在相对一致的 depth fraction。Phase 0 F1 略低的原因：SmolVLA 的 representation 维度更小， perturbation
+    cluster 间的 margin 更窄，但仍足以支撑高质量 routing。 Meta-Brain on SmolVLA 达到 72.4%（+22.6pp
+    over frozen 49.8%）， routing benefit vs universal 为 14.2pp（vs pi0 上的 13.8pp），定量吻合度很高。
+    SmolVLA 绝对性能低于 pi0（72.4% vs 78.9%）因为 backbone capacity 更小， 但 routing benefit 的相对大小几乎相同（14.2
+    vs 13.8），说明 routing 的价值不依赖于 backbone quality——无论 backbone 强弱， perturbation-type-specific
+    correction 都比 uniform correction 更高效。
+
+    '
+  tables:
+  - name: Cross-backbone comparison
+    data:
+      headers:
+      - Metric
+      - pi0 (PaliGemma)
+      - SmolVLA
+      rows:
+      - - Phase 0 3-class F1
+        - '0.993'
+        - '0.971'
+      - - Best probing layer
+        - 6 / 18
+        - 4 / 12
+      - - Frozen baseline (%)
+        - '53.6'
+        - '49.8'
+      - - Universal r16 (%)
+        - '62.4'
+        - '58.2'
+      - - Meta-Brain (%)
+        - '78.9'
+        - '72.4'
+      - - Routing benefit (pp)
+        - '13.8'
+        - '14.2'
+  figures_description:
+  - 'Paired bar chart: pi0 vs SmolVLA, routing benefit annotated, showing consistency'
+  analysis: 'Cross-backbone validation 将 contribution 从 "pi0 上有效的 technique" 提升为 "VLA
+    的通用 robustness principle"。routing benefit 在两个 backbone 上的 高度一致性（13.8 vs 14.2pp）是最有说服力的
+    generalization evidence。 直接回应 Reviewer C3。
+
+    '
+- name: LoRA Layer Placement Ablation
+  plan_id: plan_012
+  description: '对比不同 PaliGemma 层覆盖范围（early 2-6, mid 6-12, late 12-16, all 2-16） 对各
+    expert type 的影响。P2 优先级。
+
+    '
+  expected_results:
+    lora_v_early: 78.5
+    lora_v_mid: 76.2
+    lora_v_late: 72.8
+    lora_v_all: 80.2
+    lora_s_early: 73.5
+    lora_s_mid: 76.8
+    lora_s_late: 74.2
+    lora_s_all: 77.5
+    lora_p_early: 69.8
+    lora_p_mid: 72.5
+    lora_p_late: 74.5
+    lora_p_all: 74.8
+    v_best_subset: early (2-6)
+    s_best_subset: mid (6-12)
+    p_best_subset: late (12-16)
+    v_all_minus_best_subset: 1.7
+    s_all_minus_best_subset: 0.7
+    p_all_minus_best_subset: 0.3
+  result_rationale: 'Layer placement 揭示了清晰的 V→early, S→mid, P→late 偏好梯度： LoRA-V 在
+    early layers 最优 subset（78.5%），因为视觉扰动（camera/light/ background/noise）破坏 early visual
+    representation——在损坏发生处修正最高效。 Late layers（72.8%）最差（-7.4pp vs all），因为 corrupted
+    features 已经 propagate 到深层并 compound，late-layer 修正无法 undo upstream corruption。
+    LoRA-S 在 mid layers 最优（76.8%），因为 spatial perturbation（layout 变化） 影响的是 visual-to-spatial
+    reasoning 的转换阶段——mid layers 将 2D visual features 转化为 3D spatial-action representations。LoRA-P
+    在 late layers 最优（74.5%），且与 all-layer（74.8%）仅差 0.3pp，因为 physical perturbation （robot
+    初始状态变化）影响 high-level action planning，这发生在 late decision layers。但所有 expert 在 all-layer
+    覆盖下均为最优或接近最优，说明 cross-layer redundancy 有益——即使存在层偏好，拥有 all-layer coverage 可以 catch
+    residual perturbation effects at other layers。v_all_minus_best_subset 最大（1.7pp），
+    说明 visual perturbation 虽集中在 early layers 但 mid/late 仍有 residual impact。
+
+    '
+  tables:
+  - name: Layer placement ablation
+    data:
+      headers:
+      - Layers
+      - LoRA-V Visual (%)
+      - LoRA-S Spatial (%)
+      - LoRA-P Physical (%)
+      rows:
+      - - Early (2-6)
+        - 78.5 ★V
+        - '73.5'
+        - '69.8'
+      - - Mid (6-12)
+        - '76.2'
+        - 76.8 ★S
+        - '72.5'
+      - - Late (12-16)
+        - '72.8'
+        - '74.2'
+        - 74.5 ★P
+      - - All (2-16)
+        - '80.2'
+        - '77.5'
+        - '74.8'
+  figures_description:
+  - '3×4 heatmap: rows=layer range, cols=expert type, ★=best subset per expert, diagonal
+    pattern visible'
+  analysis: V→early, S→mid, P→late 的对应关系提供了 mechanistic insight，支撑 "不同扰动 影响不同处理阶段"
+    的理论框架。这个 finding 虽然不影响主要 claim（all-layer 仍是实用最优），但作为 practical insight 增加了论文的理论深度。未来工作可
+    探索 layer-specific routing（根据扰动类型动态选择 active layers）。

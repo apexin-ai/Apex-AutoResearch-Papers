@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "id": "a38a4c3bda83570ef930",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "check westd45947 status and eval",
+  "task_key": "worker_check_westd45947_status_and_eval_20260521T175510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd45947_status_and_eval_20260521T175510.log",
+    "occurrence": 1,
+    "bytes": 3776987,
+    "sha256": "f34d388377d4fcc50b33671f4651ded288d85a189398b7fbc07b91d6737541eb"
+  },
+  "statistics": {
+    "messages": 2546,
+    "user_turns": 3,
+    "tool_calls": 1027,
+    "roles": {
+      "log": 1,
+      "system": 50,
+      "record": 1,
+      "assistant": 426,
+      "tool_call": 1027,
+      "tool_result": 1027,
+      "user": 3,
+      "result": 11
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 645,
+      "chunks": [
+        {
+          "path": "a38a4c3bda83570ef930-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0004.json",
+          "message_count": 105
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 506,
+      "chunks": [
+        {
+          "path": "a38a4c3bda83570ef930-part-0004.json",
+          "message_count": 75
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0007.json",
+          "message_count": 71
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1009,
+      "chunks": [
+        {
+          "path": "a38a4c3bda83570ef930-part-0007.json",
+          "message_count": 109
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0012.json",
+          "message_count": 180
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 386,
+      "chunks": [
+        {
+          "path": "a38a4c3bda83570ef930-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "a38a4c3bda83570ef930-part-0015.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/check-westd45947-status-and-eval.md"
+}

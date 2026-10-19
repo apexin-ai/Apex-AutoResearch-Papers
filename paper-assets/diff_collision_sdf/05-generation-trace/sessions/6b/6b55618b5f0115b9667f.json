@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b55618b5f0115b9667f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check multieval eta",
+  "task_key": "worker_ops_check-multieval-eta_20260528T033453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-multieval-eta_20260528T033453_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "34703e75a0368b507199ff89c475d8a546f83f3bada461b9f77ad7dcef7294f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### westd-35807：3/3 已完成 ✓\n\n| 进程 | 完成时间 | Avg TSR | Avg CAR | 结果文件 |\n|------|---------|---------|---------|---------|\n| lora_s0_eseed42 | 11:09 | 46.0% | 56.5% | `/root/autodl-tmp/eval_results/multiseed_lora_s0_eseed42.json` |\n| lora_s0_eseed123 | 11:27 | 50.5% | 53.0% | `/root/autodl-tmp/eval_results/multiseed_lora_s0_eseed123.json` |\n| sdf_l01_s0_eseed42 | 11:09 | 52.5% | 59.0% | `/root/autodl-tmp/eval_results/multiseed_sdf_l01_s0_eseed42.json` |\n\n### westd-45947：2/2 进行中\n\n| 进程 | 进度 | 当前位置 | 预估完成 |\n|------|------|---------|---------|\n| sdf_l01_s0_eseed123 | 2/4 tasks done | Task 2 刚开始（11:35 CST） | ~11:53 CST (03:53 UTC) |\n| sdf_l01_s0_eseed256 | 1/4 tasks done | Task 1 ep 40/50（11:34 CST） | ~11:54 CST (03:54 UTC) |\n\n**速率参考**：每个 task（50 episodes）约 8-10 min。\n\n### 总体判断\n\n**能在 08:00 UTC 前完成。** 两个运行中的进程预计 ~04:00 UTC 前结束，距 DDL 有 4 小时余量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-multieval-eta.md"
+}

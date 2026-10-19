@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "7f4f0af1d2a84598998b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code comprehensive pipeline fix",
+  "task_key": "worker_code_comprehensive_pipeline_fix_20260519T210728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_comprehensive_pipeline_fix_20260519T210728_result.json",
+    "occurrence": 1,
+    "bytes": 2321528,
+    "sha256": "3223f4e52a3d3dce8c3a329829bb0f0e96af8f88ee4db266a53e3062da412a2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "7f4f0af1d2a84598998b-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-comprehensive-pipeline-fix.md"
+}

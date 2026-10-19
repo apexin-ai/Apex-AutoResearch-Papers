@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b425a2e25772ffee6a56",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "viz fig5 lambda curve multiseed fix",
+  "task_key": "worker_viz_fig5_lambda_curve_multiseed_fix_20260526T142903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig5_lambda_curve_multiseed_fix_20260526T142903_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "60cea2850f8f10a032b7a63080c120650071268a69c9c4bd0186880618d051cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成完成。验证结果：\n\n- **误差条可见**: λ=0 CAR (±2.83) 和 λ=0.005 CAR (±2.29) 的误差条清晰显示\n- **λ=0.01 空心 marker**: CAR (圆圈) 和 TSR (方块) 均为空心，n=1 标注可见\n- **λ=0.1 Pending**: 虚线矩形 + \"?\" 占位符\n- **Baseline 虚线清晰**: LoRA-only (54.5%/51.5%) 和 π₀.₅ (28.5%/71.5%) 均标注\n- **无虚假上升趋势**: CAR 在 λ=0 → 0.005 均为 54.5%，完全 flat\n\n**注**: TSR λ=0.005 显示 mean=54.0 (Director 确认的 3-seed 均值) 但无误差条，因为 registry 中 `reeval_sdf_s1_l005_30k` 和 `reeval_sdf_s2_l005_30k` 的 metrics 为空，无法计算 std。\n\n输出文件:\n- `artifacts/figures/fig5_lambda_curve.pdf`\n- `artifacts/figures/fig5_lambda_curve.png`\n- `artifacts/figures/plot_fig5.py` (已覆盖)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig5-lambda-curve-multiseed-fix.md"
+}

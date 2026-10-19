@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1ecf2c585539facf0de",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval lora baseline s0 check",
+  "task_key": "worker_ops_eval_lora_baseline_s0_check_20260526T015751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_lora_baseline_s0_check_20260526T015751_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "61e9a6b7ec70dcc9e413a521d44da62ba1ef717605d8704e6909a09f3549d578"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n1. **失败** — `KeyError: 'safelibero_object'`。模型加载成功（LoRA 注入完成），但 `libero` 包的 `BENCHMARK_MAPPING` 中没有 `safelibero_object` 这个 key，在启动 episode 前就崩溃了。无输出 JSON 文件。\n2. **原因**：westd-45947 上的 libero 包可能缺少 SafeLIBERO benchmark 注册（其他服务器上可能有自定义注册代码但这台没同步）。\n3. **Registry** 已更新：status=DONE, conclusion=failed, notes 记录了失败原因。\n4. **Cron** 不存在（可能已被删除或在其他 session 创建），无需删除。\n\n需要重跑的话，先检查 westd-45947 上 libero 包是否注册了 `safelibero_object` benchmark，或将 colliforce-vla 中的自定义 benchmark 注册代码同步过去。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-lora-baseline-s0-check.md"
+}

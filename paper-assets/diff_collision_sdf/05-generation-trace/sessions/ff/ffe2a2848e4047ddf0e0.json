@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffe2a2848e4047ddf0e0",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper writing analysis claim3",
+  "task_key": "worker_paper_writing_analysis_claim3_20260524T173905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_analysis_claim3_20260524T173905_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "6605dd26490cc4d667e46e4becb23a9b8c2cb5ce3e0c3880bedc1fc9e2f4b2fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§5.3 已写入 `artifacts/drafts/analysis_claim3.tex`，约 650 words。\n\n**结构总结：**\n- **P1** — 实验设计动机：用 GT SDF 构造 oracle，排除预测误差，测试 EE-only refinement 的理论上限\n- **Table 3** — 6 行（2 baseline + 3 oracle + A3 learned），含 TSR/CAR/Fake Safe/Refines 四列\n- **P2** — 核心发现：3 个 oracle 全部低于 baseline（最佳 76.9% vs 最差 baseline 82.0%），fake safe 率 96.7–98.3%\n- **P3** — Per-task 分析：task 1 有微弱改善，task 0/2/3 oracle 反而更差，引出 arm body 碰撞问题\n- **P4** — 机制分析：EE-only gradient 推 EE 远离障碍物但可能旋转 arm links 进入障碍物；feature-space oracle 每步都 refine（241.7/ep）但 gradient 极小（0.004–0.006），latent space 与 full-body 几何缺乏直接映射\n- **P5** — A3 learned SDF：预测值始终高于阈值，refinement 从未触发，退化为 baseline\n- **P6** — 结论：EE-only SDF 是 structural limitation，需要 full-body collision awareness"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-analysis-claim3.md"
+}

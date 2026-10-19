@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d5f2eddbd1e31eff44a",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "diagnose phase1 server status",
+  "task_key": "worker_diagnose_phase1_server_status_20260516T013131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase1_server_status_20260516T013131_result.json",
+    "occurrence": 1,
+    "bytes": 3131,
+    "sha256": "a369730fc219c5eeeb0753fc5a3d1142fa028afd50fce082251ff61e0574493a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部诊断数据已收集，汇总如下：\n\n---\n\n## Phase 1 训练服务器诊断报告\n\n### 1. GPU 状态\n\n| GPU | 型号 | 利用率 | 显存 | 状态 |\n|-----|------|--------|------|------|\n| 0 | RTX PRO 6000 Blackwell | 0% | 0/97887 MiB | **空闲** |\n| 1 | RTX PRO 6000 Blackwell | 0% | 0/97887 MiB | **空闲** |\n| 2 | RTX PRO 6000 Blackwell | 0% | 0/97887 MiB | **空闲** |\n| 3 | RTX PRO 6000 Blackwell | 0% | 0/97887 MiB | **空闲** |\n\n4 卡全部空闲，无任何 GPU 计算负载。\n\n### 2. 训练进程状态\n\n| PID | 任务 | 状态 | 原因 |\n|-----|------|------|------|\n| 359147 | phase1_lora_visual (cuda:0) | **已死亡** | ps 无输出 |\n| 358854 | phase1_lora_universal_r16 (cuda:3) | **已死亡** | ps 无输出 |\n\n全部 Python 进程列表中无任何 train 相关进程，仅有系统服务（tensorboard, jupyter, sshd 等）。\n\n### 3. 训练失败原因\n\n两个训练任务**均以相同错误崩溃**：\n\n```\nFileNotFoundError: Rollout data directory not found: /root/meta_brain_lora_routing/rollouts.\nCollect LIBERO-Plus rollout data first, or use --dry_run.\n```\n\n模型加载成功（LoRA 注入完成：3,686,400 trainable / 3.5B total），但在创建 dataloader 时因缺少 rollout 数据目录而 crash。\n\n### 4. 训练脚本支持的 perturbation_type\n\n```python\nPERTURBATION_TYPES = [\"visual\", \"spatial\", \"physical\", \"universal\"]\n```\n\n### 5. 数据就绪情况\n\n| 数据 | 状态 |\n|------|------|\n| `/root/meta_brain_lora_routing/rollouts/` | **不存在** — 所有训练的直接阻塞项 |\n| `data/expert_demos/spatial/` | 仅有 1 个 BDDL 文件（`_tmp_bddl/`），**无 rollout 数据** |\n| `data/expert_demos/physical/` | **空目录** |\n| `data/expert_demos/visual/` | **不存在** |\n| `phase1/data/` | **不存在** |\n| `demos/` | **不存在** |\n\n### 6. 现有 Checkpoint 产出\n\n| 路径 | 内容 |\n|------|------|\n| `checkpoints/phase1/visual/best/` | adapter_model.safetensors (14.7MB) + config — **来自之前某次成功训练** |\n| `checkpoints/phase1/visual/epoch_0/` | adapter + optimizer (29MB) |\n| `checkpoints/phase1/par_router/` | best_router.pt (2MB) |\n| `checkpoints/phase1/spatial/` | **不存在** |\n| `checkpoints/phase1/physical/` | **不存在** |\n| `checkpoints/phase1/universal/` | **不存在** |\n\n此外 `activations/` 和 `results/` 目录下有大量之前实验的 `.pt` 文件（activation 特征 + router 模型），属于更早阶段的产物。\n\n### 7. 阻塞项清单\n\n1. **[P0] rollouts 数据缺失** — `/root/meta_brain_lora_routing/rollouts/` 目录不存在，导致所有 4 种 perturbation type 的训练全部无法启动。需要先收集 LIBERO-Plus rollout 数据，或用 `--dry_run` 做代码验证。\n2. **[P1] expert_demos 数据不完整** — spatial 仅有 1 个 BDDL 文件，physical 空目录，visual 不存在。即使 rollouts 就绪，部分训练可能仍缺数据。\n3. **[P2] cron 监控已丢失** — 需重建监控。\n4. **[P2] registry 状态需更新** — 两个任务应从 PREPARING 标记为 FAILED。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase1-server-status.md"
+}

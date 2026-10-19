@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "id": "e7599825fa6de47ee6c6",
+  "project": "diff_collision_sdf",
+  "kind": "conversation",
+  "title": "paper update framing negative blocks",
+  "task_key": "worker_paper_update_framing_negative_blocks_20260525T091315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_update_framing_negative_blocks_20260525T091315.jsonl",
+    "occurrence": 1,
+    "bytes": 13776,
+    "sha256": "c50353c59f047bceafe8123a93fa31db2d360d71f185485a0cc2b8af8f473055"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T09:14:46.362160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T09:14:46.362507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T09:14:46.362742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "diff_collision_sdf",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T09:14:46.363146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md\\\", \\\"content\\\": \\\"# ColliForce-VLA Paper Framing\\\\n\\\\n> 维护者: Director | 最后更新: 2026-05-24 12:30 UTC | Reviewer 预审反馈：补 LoRA 中间场景叙事 + Claim 4 措辞升级\\\\n\\\\n## Core Insight\\\\n\\\\n当前 VLA safety 评估存在系统性缺陷：collision avoidance rate (CAR) 被 action collapse 严重污染，导致 \\\\\\\"安全\\\\\\\" 指标虚高。我们通过大规模实证分析（39 个实验, 5000+ episodes）揭示三个相互关联的问题，并提出 displacement-filtered CAR 作为修正指标。\\\\n\\\\n## Working Title\\\\n\\\\n\\\\\\\"The Safety Illusion: How Action Collapse Contaminates Collision Avoidance Metrics in Vision-Language-Action Models\\\\\\\"\\\\n\\\\n> 注：Title scope 已按 Reviewer Report #26 建议收窄——不再 claim 覆盖 \\\\\\\"all SDF methods\\\\\\\"，聚焦 metric contamination 这一更可防御的贡献\\\\n\\\\n## Core Claims\\\\n\\\\n### Claim 1: Fake Safety (Primary — 证据强度 ★★★★★)\\\\nCAR 指标被 action collapse 严重污染。在 SafeLIBERO benchmark 上，A1 (SDF auxiliary loss) 的 91.5% CAR 中 99.6% 是 fake safe（robot displacement < 1μm）。\\\\\\\"Collision-free\\\\\\\" ≠ \\\\\\\"collision-avoiding\\\\\\\"。\\\\n\\\\n**证据**: 800 episodes A1 per-episode displacement 分析; 200 episodes baseline 对比; Pi0.5 56/56 safe episodes displacement ≈ 0\\\\n\\\\n**贡献**: 提出 displacement-filtered CAR (real_CAR) 作为修正指标\\\\n\\\\n### Claim 2: Task Capability vs Safety Anti-correlation (Secondary — 证据强度 ★★★)\\\\n更强的 base model 完成更多任务但碰撞更多。Pi0.5 (TSR=74.7%) vs Pi0 (TSR≈0%): 能力越强 → 运动越多 → 碰撞越多。\\\\n\\\\n**证据**: Pi0.5 3-seed eval (TSR=74.7±1.5%, CAR=26.8±1.6%) vs Pi0 baseline (TSR≈0%, CAR=82%)\\\\n\\\\n**限制**: 仅 2 个 model families, Pi0 的 \\\\\\\"高 CAR\\\\\\\" 来自 action collapse 而非安全。Reviewer 建议降级为 observation, 不 claim 因果关系。\\\\n\\\\n### Claim 3: EE-only SDF Structural Limitation (Supporting — 证据强度 ★★★★)\\\\nEnd-effector-only SDF 在 action space 的碰撞避免存在结构性缺陷：SDF gradient 推 EE 远离障碍物但导致 arm body 扫过障碍物。\\\\n\\\\n**证据**: 3 组 GT SDF oracle (adaptive alpha, fixed alpha, feature-space) 均劣于 baseline; spatial vs object 碰撞部位分析; obstacle 高度/体积与碰撞率的单调关系\\\\n\\\\n**限制**: \\\\\\\"EE-only 不够\\\\\\\" 是 expected result; 缺乏 full-body SDF 对照\\\\n\\\\n### Cl\n…[truncated 6792 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T09:14:46.363486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T09:14:46.363817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# ColliForce-VLA Paper Framing\n2\t\n3\t> 维护者: Director | 最后更新: 2026-05-24 12:30 UTC | Reviewer 预审反馈：补 LoRA 中间场景叙事 + Claim 4 措辞升级\n4\t\n5\t## Core Insight\n6\t\n7\t当前 VLA safety 评估存在系统性缺陷：collision avoidance rate (CAR) 被 action collapse 严重污染，导致 \"安全\" 指标虚高。我们通过大规模实证分析（39 个实验, 5000+ episodes）揭示三个相互关联的问题，并提出 displacement-filtered CAR 作为修正指标。\n8\t\n9\t## Working Title\n10\t\n11\t\"The Safety Illusion: How Action Collapse Contaminates Collision Avoidance Metrics in Vision-Language-Action Models\"\n12\t\n13\t> 注：Title scope 已按 Reviewer Report #26 建议收窄——不再 claim 覆盖 \"all SDF methods\"，聚焦 metric contamination 这一更可防御的贡献\n14\t\n15\t## Core Claims\n16\t\n17\t### Claim 1: Fake Safety (Primary — 证据强度 ★★★★★)\n18\tCAR 指标被 action collapse 严重污染。在 SafeLIBERO benchmark 上，A1 (SDF auxiliary loss) 的 91.5% CAR 中 99.6% 是 fake safe（robot displacement < 1μm）。\"Collision-free\" ≠ \"collision-avoiding\"。\n19\t\n20\t**证据**: 800 episodes A1 per-episode displacement 分析; 200 episodes baseline 对比; Pi0.5 56/56 safe episodes displacement ≈ 0\n21\t\n22\t**贡献**: 提出 displacement-filtered CAR (real_CAR) 作为修正指标\n23\t\n24\t### Claim 2: Task Capability vs Safety Anti-correlation (Secondary — 证据强度 ★★★)\n25\t更强的 base model 完成更多任务但碰撞更多。Pi0.5 (TSR=74.7%) vs Pi0 (TSR≈0%): 能力越强 → 运动越多 → 碰撞越多。\n26\t\n27\t**证据**: Pi0.5 3-seed eval (TSR=74.7±1.5%, CAR=26.8±1.6%) vs Pi0 baseline (TSR≈0%, CAR=82%)\n28\t\n29\t**限制**: 仅 2 个 model families, Pi0 的 \"高 CAR\" 来自 action collapse 而非安全。Reviewer 建议降级为 observation, 不 claim 因果关系。\n30\t\n31\t### Claim 3: EE-only SDF Structural Limitation (Supporting — 证据强度 ★★★★)\n32\tEnd-effector-only SDF 在 action space 的碰撞避免存在结构性缺陷：SDF gradient 推 EE 远离障碍物但导致 arm body 扫过障碍物。\n33\t\n34\t**证据**: 3 组 GT SDF oracle (adaptive alpha, fixed alpha, feature-space) 均劣于 baseline; spatial vs object 碰撞部位分析; obstacle 高度/体积与碰撞率的单调关系\n35\t\n36\t**限制**: \"EE-only 不够\" 是 expected result; 缺乏 full-body SDF 对照\n37\t\n38\t### Claim 4: SDF Auxiliary Loss Effectiveness on Strong VLA (Pending — 取决于实验)\n39\t在能力充分的 VLA (Pi0.5) 上，SDF auxiliary training loss 能否产生真实的碰撞避免行为？\n40\t\n41\t**状态**: 3-seed × 2-lambda 训练中, \n…[truncated 6630 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T09:14:46.364111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md",
+              "old_string": "## Negative Results Narrative Strategy (D018 + 16 negatives)\n\n16 个阴性结果按叙事功能分为 3 层：\n\n### Tier A: 显式讨论（核心贡献，论文 §4-5 正文）\n这些 negative 本身就是 paper 的 finding：\n\n| 类别 | 实验 | 论文功能 |\n|------|------|----------|\n| Fake safety 量化 | A1-openpi 800ep (99.6% fake) | Claim 1 主证据 |\n| EE-only oracle 失败 | 3× GT oracle (adaptive/fixed/feature) | Claim 3 主证据 |\n| Gradient correction 失败 | collapsed policy 不接受修正 (D018) | Claim 3 补充机制分析 |\n| Task 3 碰撞转移 | SDF gradient 导致碰撞重分布 (D017) | Claim 3 补充（structural limitation） |\n\n### Tier B: 简要讨论（Ablation / boundary condition，论文 §5 或 Appendix）\n提供边界信息，但非核心贡献：\n\n| 类别 | 实验 | 论文功能 |\n|------|------|----------|\n| TSR-CAR tradeoff | Pi0.5+A1 10K/30K TSR 下降 | Claim 4 tradeoff 定量（Table 1 已含） |\n| Lambda sensitivity | λ=0.005 vs 0.01 差异 | Figure 5 lambda 曲线的数据点 |\n\n### Tier C: 省略（技术失败 / 与结论无关）\n不进入论文正文或 appendix：\n\n- spatial_bowl 训练失败（磁盘满 / 代码 bug → 非科学结论）\n- A3 runtime refine 早期版本（被 oracle 实验 supersede）\n- 被 kill 的实验（资源调度，无结论）\n\n### 叙事原则\n1. Tier A 的 negative 不是\"失败\"，是 **evidence for structural claims** — 用 \"we demonstrate\" 而非 \"we failed to\"\n2. 多个 Tier A negative 收敛到同一 root cause (EE-only limitation) 时，叙事集中在 insight 上，各实验作为不同角度的验证\n3. Tier B 以 1-2 句话出现在 results discussion 或 appendix，不展开\n4. Tier C 完全不提",
+              "new_string": "## Negative Results Narrative (4 Blocks)\n\n> Director 批准的 4-block 叙事结构（替代原 7 段独立叙事），每个 block 对应一个独立论点，论文 §4-5 按此顺序展开。\n\n### Block 1: Fake Safety Revelation\n- **Evidence**: eval_a1_lora_object_v11_rerun (800 episodes)\n- **Key finding**: CAR=91.5% with 99.6% fake safe (displacement < 0.1mm)\n- **Narrative**: Standard CAR metric is systematically contaminated by action collapse — \"collision-free\" episodes are actually frozen robots, not collision-avoiding ones. Proposes displacement-filtered CAR (real_CAR) as corrective metric.\n- **Supports**: Claim 1 (Primary)\n\n### Block 2: Stronger Models ≠ Safer (merged)\n- **Evidence**: eval_pi05_safelibero_object_v11 + eval_pi05_safelibero_spatial_v11\n- **Key finding**: Pi0.5 CAR=28% (object), 13% (spatial), real_safe=0.5%\n- **Narrative**: Counter-intuitive — better task capability (TSR=74.7%) leads to more collisions, not fewer. Pi0's high CAR (82%) is fake safety from action collapse; Pi0.5 actually moves and collides. Capability↑ ≠ Safety↑.\n- **Supports**: Claim 2 (Secondary)\n\n### Block 3: Oracle Upper Bound (merged triplet)\n- **Evidence**: oracle_true_gt_adaptive_alpha_v11 + oracle_true_gt_fixed_alpha_v11 + oracle_true_gt_feature_v11\n- **Key finding**: All oracles CAR 73-77% < baseline 82-83%\n- **Narrative**: Unified answer to \"does a better alpha schedule or representation fix runtime refinement?\" — No. Three oracle variants (adaptive alpha, fixed alpha, feature-space SDF) all perform worse than baseline, because gradient correction structurally fails on collapsed policies regardless of alpha/representation choice. Eliminates hyperparameter tuning as escape route.\n- **Supports**: Claim 3 (Supporting)\n- **Presentation**: Single unified table with 3 oracle rows + baseline row\n\n### Block 4: EE-only Boundary Condition\n- **Evidence**: eval_a1_lora_spatial_v11\n- **Key finding**: CAR≈0% in spatial tasks, all 6 safe episodes are frozen (displacement ≈ 0)\n- **Narrative**: EE-only SDF cannot address arm-body collisions — in spatial tasks where collisions come from the arm body sweeping through obstacles, EE-based correction has zero effect. Defines the structural scope boundary of the method.\n- **Supports**: Claim 3 (Supporting, boundary condition)\n\n### 叙事原则\n1. 每个 block 不是\"失败\"，是 **evidence for structural claims** — 用 \"we demonstrate\" / \"we find\" 而非 \"we failed to\"\n2. Block 3 的三个 oracle 合并为一段 + 一个表格，统一回答一个问题，避免重复叙事\n3. Block 间按逻辑递进排列：metric 有问题 (B1) → 强模型也不安全 (B2) → runtime 修正无法解决 (B3) → method scope 边界 (B4)"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T09:14:46.364481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T09:14:46.364720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md",
+              "old_string": "> 维护者: Director | 最后更新: 2026-05-24 12:30 UTC | Reviewer 预审反馈：补 LoRA 中间场景叙事 + Claim 4 措辞升级",
+              "new_string": "> 维护者: Director | 最后更新: 2026-05-25 UTC | Reviewer 预审反馈：补 LoRA 中间场景叙事 + Claim 4 措辞升级 | Negative results 升级为 4-block 结构"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T09:14:46.364977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T09:14:46.365216+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。paper_framing.md 的 negative results 部分从原来的 3-tier (A/B/C) 分层结构替换为 Director 批准的 4-block 叙事结构：\n\n- **Block 1**: Fake Safety — 800ep action collapse 证据\n- **Block 2**: Stronger ≠ Safer — Pi0.5 object+spatial 合并\n- **Block 3**: Oracle Upper Bound — 三个 oracle 合并为一段+一表\n- **Block 4**: EE-only Boundary — spatial CAR≈0% scope 边界\n\n其他 section（Claims、Contingency Plans、Dependencies 等）未改动。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_update_framing_negative_blocks_20260525T091315"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/paper-update-framing-negative-blocks.md"
+}

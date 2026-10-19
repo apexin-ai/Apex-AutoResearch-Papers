@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d4a3fd10e3672ffef33",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check feature oracle status",
+  "task_key": "worker_ops_check_feature_oracle_status_20260522T212157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_feature_oracle_status_20260522T212157_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "5154a01a05393d58169712e0eb01bc7faca0abcf9a4c23e4a147811c7f54568c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已完整记录。实验 `oracle_true_gt_feature_v11` 状态 DONE/negative，metrics 和 notes 均已填充。\n\n**结果汇总：**\n\n| Task | CAR | Avg Displacement | Avg Refined/ep |\n|------|-----|------------------|----------------|\n| orange_juice | 90.0% | 0.0023m | 248.5 |\n| chocolate_pudding | 47.5% | 0.0473m | 241.8 |\n| milk | 82.5% | 0.0086m | 236.7 |\n| bbq_sauce | 87.5% | 0.0097m | 240.0 |\n| **Overall** | **76.9%** | — | **241.7** |\n\n- TSR = 0%（全部任务）\n- Fake safe rate = 96.7%（119/123 safe episodes displacement < 0.1mm）\n- Feature-space oracle 每步都 refine（avg 241.7/ep vs action-space 14），gradient magnitude 极小（0.004-0.006），但 CAR 仍未超 baseline（79%）\n\n进程已正常退出，无需进一步操作。Registry 已由之前的 agent 完整更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-feature-oracle-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a883d9f87f83cae0801a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh gpu status 45947 v3",
+  "task_key": "worker_ssh_gpu_status_45947_v3_20260520T111539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_status_45947_v3_20260520T111539_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "571397ce6e26b0c6e2512e253a60ece9cfee999ebbe0b80e6a4ef96983a4c37a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 实验 | PID | Step/30000 | Loss | Speed | VRAM | 状态 |\n|-----|------|-----|-----------|------|-------|------|------|\n| cuda:0 | a3_gradient_spatial_bowl_s0 | 71494 | 2924/30000 (9.7%) | 0.2606 | ~3.06 s/it | 16.9/97.9 GB | 运行中 (util 0%*) |\n| cuda:1 | a3_gradient_object_pudding_s0 | 73165 | 5247/30000 (17.5%) | 0.0994 | ~4.20 s/it | 23.9/97.9 GB | 运行中 (util 100%) |\n\n磁盘: 49G/250G (20%)\n\n*GPU0 utilization 0% 是 nvidia-smi 采样瞬时值，进程在跑（step 在推进，已运行 ~3h09m），正常。\n\n两个进程都远超预期 step（bowl 2924 > 1400+，pudding 5247 > 3800+），训练正常推进中。pudding 的 loss 已降到 ~0.09 区间，bowl 仍在 ~0.26 区间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-status-45947-v3.md"
+}

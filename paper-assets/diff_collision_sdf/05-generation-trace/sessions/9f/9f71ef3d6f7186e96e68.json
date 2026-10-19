@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f71ef3d6f7186e96e68",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "compile paper switch scenario b final",
+  "task_key": "worker_compile_paper_switch_scenario_b_final_20260528T014026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compile_paper_switch_scenario_b_final_20260528T014026_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "2e7d322e5e80eac0762ff71199bcbfea4ab673fcd8c38bf767407a3ef7779d4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**Scenario 判定**: **B**（full redundancy）\n- s2 CAR=54.5, s2 TSR=54.5\n- 3-seed CAR = 57.00 ± 2.18, TSR = 50.2 ± 3.9\n- Permutation p_one = 0.071 ≥ 0.05 → Scenario B\n\n**paper_switch.py**: 11/11 替换成功，修改 3 个文件（abstract.tex 2 处, claim3.tex 7 处, discussion.tex 2 处）\n\n**PDF 编译**: 16 页, 575KB, 无 undefined references, 无 fatal errors\n\n**最终 PDF 路径**:\n- 本地: `/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/final_scenario_b_3seed.pdf`\n- 远程: `/root/colliforce-vla/artifacts/final_scenario_b_3seed.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compile-paper-switch-scenario-b-final.md"
+}

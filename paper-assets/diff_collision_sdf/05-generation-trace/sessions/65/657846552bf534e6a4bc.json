@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "657846552bf534e6a4bc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check reeval progress v3",
+  "task_key": "worker_ops_check_reeval_progress_v3_20260526T120330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_reeval_progress_v3_20260526T120330_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "35ced73f3e12cf985c5f585e377524922216a1db4e75cfc7827038092b90a3bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 已完成结果 (3/7)\n\n| Model | Avg TSR | Avg CAR | Frozen(EE) | 备注 |\n|-------|---------|---------|------------|------|\n| SDF l01 s0 | 52.5% | 57.0% | 0% | 已知 |\n| LoRA s1 | 51.5% | 52.5% | 0% | 已知 |\n| **SDF l005 s0** | **55.5%** | **57.0%** | **0%** | **新完成** |\n\nSDF l005 s0 per-task:\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| orange_juice | 38% | 52% |\n| chocolate_pudding | 80% | 74% |\n| milk | 38% | 74% |\n| bbq_sauce | 66% | 28% |\n\n### 当前状态\n\n- **reeval_queue tmux 已结束** — 原始 queue 只跑了 3 个 eval，已全部完成\n- **`reeval_batch2.sh` 存在但未启动**，含剩余 4 个 eval：SDF l005 s1, l005 s2, l01 s1, l01 s2\n- **cuda:1 空闲**（cuda:0 在跑 `train_pi05_lora_baseline_s2`）\n\n### ETA\n\n每个 eval 约 38-40 分钟（从 log 时间戳推算）。4 个剩余 eval 串行跑约 **2.5-3 小时**。需要手动启动 `reeval_batch2.sh`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-reeval-progress-v3.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "e2e408b8b1c54660d08e",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code fix weight loading bug3",
+  "task_key": "worker_code_fix_weight_loading_bug3_20260519T183159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_weight_loading_bug3_20260519T183159.log",
+    "occurrence": 1,
+    "bytes": 955236,
+    "sha256": "18326af2fef89eb8007da95ab04e11e0091fb9a9bfc916c2cd6168a0091be73f"
+  },
+  "statistics": {
+    "messages": 629,
+    "user_turns": 0,
+    "tool_calls": 269,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 269,
+      "tool_result": 269,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 629,
+      "chunks": [
+        {
+          "path": "e2e408b8b1c54660d08e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e2e408b8b1c54660d08e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e2e408b8b1c54660d08e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e2e408b8b1c54660d08e-part-0004.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-weight-loading-bug3.md"
+}

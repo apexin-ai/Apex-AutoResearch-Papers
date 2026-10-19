@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3aba16cea163a929697",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu status check loop3",
+  "task_key": "worker_ops_gpu_status_check_loop3_20260525T192458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_loop3_20260525T192458_result.json",
+    "occurrence": 1,
+    "bytes": 2242,
+    "sha256": "b0d75599ffd9ab364416b927c9d78c0b42154193bf4b57a6cfac6879b982bd9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## GPU 状态报告 (2026-05-26 ~03:55 UTC)\n\n### westd-35807 (4×RTX PRO 6000 97GB)\n\n| GPU | 显存 | 利用率 | 状态 | 进程 |\n|-----|------|--------|------|------|\n| cuda:0 | 27045/97887 MiB | 100% | **训练中** | `train_a1_sdf_aux_pi05.py --scene spatial_bowl --seed 0` |\n| cuda:1 | 1/97887 MiB | 0% | **空闲** | — |\n| cuda:2 | 1/97887 MiB | 0% | **空闲** | — |\n| cuda:3 | 27035/97887 MiB | 85% | **Eval 中** | `eval_pi05_a1_best_s2_l005_10k` (3 个 eval worker) |\n\n**训练进度 — spatial_bowl s0 λ=0.05:**\n- Step: **9300/30000 (31%)**，速度 4.63 s/it\n- 已运行 ~1h40m，ETA **~26h38m**\n- Loss: action=0.0169, sdf=0.0303, ee=0.0240\n\n**Eval — eval_pi05_a1_best_s2_l005_10k:**\n- 正在运行，当前处理 episode 30/200（chocolate_pudding 任务）\n\n**已完成 Eval 结果:**\n\n| Eval | TSR | CAR |\n|------|-----|-----|\n| eval_s0_l005_30k_final | **0.075** | 0.470 |\n| eval_s0_l01_30k_final | **0.055** | 0.530 |\n\n逐任务（l005）: orange_juice TSR=0.06/CAR=0.58, chocolate_pudding TSR=0.24/CAR=0.38, milk TSR=0.00/CAR=0.76, bbq_sauce TSR=0.00/CAR=0.16\n\n**磁盘:** 210/350 GB (60%)\n\n---\n\n### westd-45947 (2×RTX PRO 6000 97GB)\n\n| GPU | 显存 | 利用率 | 状态 | 进程 |\n|-----|------|--------|------|------|\n| cuda:0 | 27089/97887 MiB | 100% | **训练中** | `train_pi05_lora_baseline.py --scene object_pudding --seed 0 --resume` |\n| cuda:1 | 27089/97887 MiB | 100% | **训练中** | `train_pi05_lora_baseline.py --scene object_pudding --seed 1 --resume` |\n\n**训练进度 — LoRA baseline:**\n\n| Seed | Step | 进度 | ETA | Loss (action) |\n|------|------|------|-----|---------------|\n| s0 | 25486/30000 | **85%** | ~5h48m | 0.0148 |\n| s1 | 25487/30000 | **85%** | ~5h48m | 0.0152 |\n\n速度均为 ~4.62 s/it。\n\n**磁盘:** 198/250 GB (79%) ⚠️ 偏高\n\n---\n\n### 总结\n\n- **空闲 GPU:** westd-35807 的 **cuda:1** 和 **cuda:2** 可用\n- westd-45947 两张卡全部占满，LoRA baseline 预计 **~6h 后完成**（约 UTC 10:00）\n- westd-35807 spatial_bowl 训练还需 **~27h**，eval 正在 cuda:3 上运行\n- 30k checkpoint eval 结果偏低（TSR 5.5%~7.5%），chocolate_pudding 是唯一有成功率的任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-loop3.md"
+}

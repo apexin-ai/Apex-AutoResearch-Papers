@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb3c9dff60794066aeb3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "write dual narrative templates",
+  "task_key": "worker_write_dual_narrative_templates_20260527T170903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_dual_narrative_templates_20260527T170903_result.json",
+    "occurrence": 1,
+    "bytes": 653,
+    "sha256": "934c42aaeb054baaac01bd27cd452bb845539d3addcbe84719ae58c2c068f4de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`artifacts/dual_narrative_templates.md` 已创建并注册（`art_20260527_1afe4c`）。\n\n覆盖 12 个修改点，跨 3 个文件：\n\n| 文件 | 修改点数 |\n|------|---------|\n| `abstract.tex` | 2 (L7 λ=0.1 句, L9 结论句) |\n| `claim3.tex` | 7 (L3 开头段, L7 表标题, L20 表行, L24 脚注, L27 正文段, L32-33 dose-response ¶, L38-39 图标题) |\n| `discussion.tex` | 3 (L3 开头总结, L6 两层失败分析, L12 局限性) |\n\n所有段落留 `{mean_car}`, `{p_value}`, `{z_value}` 等占位符。底部附 switch checklist 和 permutation test 命令模板，s2 结果到后可直接填数切版。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-dual-narrative-templates.md"
+}

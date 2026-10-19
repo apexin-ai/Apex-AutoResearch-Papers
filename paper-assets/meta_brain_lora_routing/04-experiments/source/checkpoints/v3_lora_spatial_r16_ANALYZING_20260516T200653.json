@@ -1,0 +1,45 @@
+{
+  "exp_id": "v3_lora_spatial_r16",
+  "project": "meta_brain_lora_routing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:09:07.199Z",
+    "updated_at": "2026-05-16T20:06:53.616Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/meta_brain_lora_routing && python phase1/train_lora_expert.py --perturbation_type spatial --gpu_id 0 --checkpoint /root/autodl-tmp/checkpoints/pi0_libero_openpi --output_dir /root/autodl-tmp/checkpoints/v3_lora_spatial_r16 --run_prefix v3 --lora_rank 16 --batch_size 16 --num_train_steps 10000 --no_wandb\"",
+      "server": "westd-34142",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "5216",
+      "log_path": "~/runs/meta_brain_lora_routing/v3_lora_spatial_r16.log",
+      "submitted_at": "2026-05-16T17:09:46.480Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/libero_demos/libero_object_image/",
+      "data_count": 66984,
+      "model_name": "pi0_libero_finetuned (JAX→PyTorch) + LoRA-spatial r16 v3",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/pi0_libero_openpi"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T20:02:22.789Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T20:02:23.664605+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T20:06:53.653979+00:00",
+  "trigger": "update_registry"
+}

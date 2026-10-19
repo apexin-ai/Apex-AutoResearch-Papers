@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea612899765966751296",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh check status westd35807",
+  "task_key": "worker_ssh_check_status_westd35807_20260520T081942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_status_westd35807_20260520T081942_result.json",
+    "occurrence": 1,
+    "bytes": 2039,
+    "sha256": "32c121ffb6dad0c199072e098877ccf12547ae301d92015f113aa47ce3f46d46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## 训练进度\n\n| GPU | 实验 | Step/30000 | Loss | LR | Speed(s/it) | VRAM |\n|-----|------|-----------|------|----|-------------|------|\n| 0 | baseline_spatial_bowl_s0_v2 | **9588**/30000 (32%) | 0.0165 | 2.05e-05 | ~3.5 | 37367/97887 MiB |\n| 1 | baseline_spatial_bowl_s1_v2 | **9871**/30000 (33%) | 0.0138 | 2.02e-05 | ~3.5 | 37367/97887 MiB |\n| 2 | baseline_object_pudding_s0_v2 | **9940**/30000 (33%) | 0.0108 | 2.01e-05 | ~3.4 | 37367/97887 MiB |\n| 3 | a1_sdf_spatial_bowl_s0_v3 | **6816**/30000 (23%) | 0.2458 | 2.28e-05 | ~3.5 | 13385/97887 MiB |\n\n## 进程状态\n\n| PID | 运行时长 | CPU% | 状态 |\n|-----|---------|------|------|\n| 100319 | 9h44m | 125% | 存活 |\n| 94453 | 9h57m | 126% | 存活 |\n| 95429 | 9h56m | 125% | 存活 |\n| 181881 | 49m | 0% | 存活但 GPU util=0% |\n\n**a1 异常**：PID 181881 运行 49 分钟，GPU 利用率 0%，VRAM 仅 13GB（其他实验 37GB）。从 step 6000 resume 后到 6816，loss 仍在 0.23-0.28 范围无下降趋势。GPU util=0% 表明可能卡住或在做非 GPU 操作。\n\n## 磁盘\n\n```\n/dev/md127  350G  144G  207G  42%  /root/autodl-tmp\n```\n\n磁盘充裕。\n\n## Checkpoint 轮转\n\n| 实验 | 目录 | 子目录数 | 内容 | 轮转正常? |\n|------|------|---------|------|----------|\n| baseline_spatial_bowl_seed0 | `.../baseline_spatial_bowl/baseline_spatial_bowl_seed0/` | **2** | 6000, 8000 | ✅ ≤3 |\n| baseline_spatial_bowl_seed1 | `.../baseline_spatial_bowl/baseline_spatial_bowl_seed1/` | **2** | 6000, 8000 | ✅ ≤3 |\n| baseline_object_pudding_seed0 | `.../baseline_object_pudding/baseline_object_pudding_seed0/` | **2** | 6000, 8000 | ✅ ≤3 |\n| a1_sdf_spatial_bowl_seed0 | `.../a1_sdf_spatial_bowl/a1_sdf_spatial_bowl_seed0/` | **2** | 5000, 6000 | ✅ ≤3 |\n\n轮转正常，所有目录 ≤3 个 checkpoint。\n\n---\n\n**需关注**：a1 (GPU:3) 的 GPU 利用率为 0%、VRAM 远低于其他实验，且 loss 在 ~0.25 附近未下降。可能需要检查该进程是否卡住。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-status-westd35807.md"
+}

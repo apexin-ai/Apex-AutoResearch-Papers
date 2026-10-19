@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee6524b9cd8f0a97de57",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval s1 l01 cuda1",
+  "task_key": "worker_ops_eval_s1_l01_cuda1_20260525T120302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_s1_l01_cuda1_20260525T120302_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "bd6f3c99ba9cdb9fd552769615a13c75973de11e0e8bbd5b8956e40f7a2ce3bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载中，还没到 GPU 上传阶段。日志显示：\n- **PID**: 203540\n- LoRA 注入完成（PaliGemma rank=16, Expert rank=32）\n- checkpoint 和 norm_stats 加载成功\n- 正在初始化中，尚未占用 GPU 显存\n\n进程正常运行，等模型上传到 cuda:1 后显存会上涨。4轮 SSH 已用完，后续可再查 `nvidia-smi` 确认显存占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-s1-l01-cuda1.md"
+}

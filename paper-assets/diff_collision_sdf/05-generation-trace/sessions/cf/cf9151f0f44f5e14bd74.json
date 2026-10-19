@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf9151f0f44f5e14bd74",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose spatial bowl lora exit",
+  "task_key": "worker_diagnose_spatial_bowl_lora_exit_20260527T222816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_spatial_bowl_lora_exit_20260527T222816_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "bdf300846c5ba797cbd21afb0d728f660d1801c1361b331103c1d4b67e787a3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：训练成功**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | 30000/30000 步完成，无错误 |\n| 训练时长 | ~33h 50min |\n| Best loss | 0.0122 (step 30000) |\n| Checkpoint 路径 | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/pi05_lora_baseline_spatial_bowl_seed0/30000` |\n| GPU cuda:3 | 已释放 (0%, 1 MiB) |\n| Eval sentinel | 已触发，正在 GPU 0 上执行 eval |\n\nRegistry 已更新为 `DONE/success`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-spatial-bowl-lora-exit.md"
+}

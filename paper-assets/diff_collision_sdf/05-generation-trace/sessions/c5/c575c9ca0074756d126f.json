@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c575c9ca0074756d126f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check lora reeval result",
+  "task_key": "worker_ops_check_lora_reeval_result_20260526T081516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_lora_reeval_result_20260526T081516_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "b42db3190f309523f7e5cfce909aef2db6627ce959a4eb9b30370df2d33b950f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## LoRA-only s0 Re-eval 结果（180° 旋转修复后）\n\n### Overall\n| 指标 | 值 |\n|------|-----|\n| **TSR** | **51.5%** |\n| CAR | 56.5% |\n| Frozen rate | 113/200 (56%) |\n\n### Per-task\n| Task | TSR | CAR | Success | Collided | Frozen | Obj Disp (mean) | EE Disp (mean) |\n|------|-----|-----|---------|----------|--------|-----------------|----------------|\n| 0: orange_juice | 32% | 56% | 16/50 | 22/50 | 28/50 | 0.0621m | 0.4024m |\n| 1: chocolate_pudding | 74% | 74% | 37/50 | 13/50 | 37/50 | 0.0519m | 0.4208m |\n| 2: milk | 42% | 70% | 21/50 | 15/50 | 35/50 | 0.0339m | 0.3620m |\n| 3: bbq_sauce | 58% | 26% | 29/50 | 37/50 | 13/50 | 0.0971m | 0.3975m |\n\n### 关键结论\n\n**之前的 \"68pp TSR collapse\" 是 eval bug 伪影，不是真实的 catastrophic forgetting。**\n\n- 修复 180° 图像旋转后，LoRA-only s0 的 TSR 从 ~6-8% 恢复到 **51.5%**\n- 这个数字合理——LoRA fine-tune 在 safety task 上有一定性能，但 frozen rate 56% 说明仍有较多 episode 里机器人基本不动（obj displacement ≈ 0）\n- CAR 56.5% 说明碰撞率仍然较高，特别是 bbq_sauce（CAR 仅 26%，37/50 碰撞）\n- EE displacement 整体 ~0.36-0.42m，说明机械臂确实在大幅运动，不是 frozen 状态下的零运动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-lora-reeval-result.md"
+}

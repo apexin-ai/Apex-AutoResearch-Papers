@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60eea06e016f9a05bfea",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper fig5 yaxis fix",
+  "task_key": "worker_paper_fig5_yaxis_fix_20260527T022652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig5_yaxis_fix_20260527T022652_result.json",
+    "occurrence": 1,
+    "bytes": 183,
+    "sha256": "f6c85ce7c75b612a53428316f9e95a1994ebe4cb3064d84f2a3ae2ffc9ca326d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。y 轴标签已从 \"Success Rate (%)\" 改为 \"Rate (%)\"，legend 已正确标注 CAR 和 TSR，PDF/PNG 已重新生成并注册为 `fig5_lambda_curve_v2`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig5-yaxis-fix.md"
+}

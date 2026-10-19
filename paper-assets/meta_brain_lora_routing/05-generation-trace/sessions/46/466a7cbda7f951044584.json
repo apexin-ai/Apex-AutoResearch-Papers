@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "466a7cbda7f951044584",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "code phase1 assembly eval",
+  "task_key": "worker_code_phase1-assembly-eval_20260515T162251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1-assembly-eval_20260515T162251_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "112c94acd81cf6b72d4fa0996892268c921c778b3f37bbba253aa9428f353f7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 全部通过。结果摘要：\n\n- **模型加载**: PI0 on cuda:3, 6.5GB 显存\n- **路径发现**: PaliGemma layer 6 path = `paligemma_with_expert.paligemma.model.language_model.layers.6`, 72 个 LoRA target modules\n- **PAR 路由**: actions shape `(1, 50, 32)`, routing weights `[0.175, 0.224, 0.601]` (sum=1.0)\n- **5 种 routing 模式全部验证通过**:\n  - `none`: `rw=[0, 0, 0]` — 冻结 baseline，无 LoRA\n  - `random`: `rw=[0.027, 0.487, 0.486]` — Dirichlet 随机\n  - `universal`: `rw=[1/3, 1/3, 1/3]` — 均等权重\n  - `oracle`: `rw=[1, 0, 0]` — ground-truth 单专家\n  - `par`: `rw=[0.175, 0.224, 0.601]` — PAR Router 输出\n\n所有模式输出 shape 均为 `(1, 50, 32)`，Scheme C 动态 LoRA 合并 + 两阶段推理管线工作正常。\n\nStep 4 dry-run 验证完成。四步任务（研究 OpenPI 推理逻辑 → 编写 `meta_brain_assembly.py` → 编写 `evaluate_libero_plus.py` + `ablation_ladder.py` → cuda:3 dry-run 验证）全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase1-assembly-eval.md"
+}

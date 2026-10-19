@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "630f8e82a9bd35d06aeb",
+  "project": "meta_brain_lora_routing",
+  "kind": "history",
+  "title": "agent / loop_3_1778964106.md",
+  "task_key": "loop_3_1778964106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778964106.md",
+    "occurrence": 1,
+    "bytes": 5107,
+    "sha256": "e9420b363ae29778c184a5c42250373216623e948962f48cd0ced679c8b767df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-16T20:41:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34142 的 cuda:0/1/2/3（4× RTX PRO 6000 96GB）。不得用白名单外 GPU\n- `lerobot/pi0_libero` 是 **BASE MODEL**（未微调），禁止用于任何训练/eval。正确 checkpoint 是 JAX→PyTorch 转换版 `/root/autodl-tmp/checkpoints/pi0_libero_openpi/`\n- LIBERO-Plus 已包含原版 tasks，不需要单独安装原版 LIBERO\n- eval 脚本必须在入口处 disable jaxtyping（`jaxtyping_disable = True`），否则 `np.True_` image_mask 报 TypeCheckError\n- submit_training_job command 必须 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash）\n- 训练 output_dir 必须在 `/root/autodl-tmp/`（根分区只有 30GB）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-34142，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **项目代码**：`/root/meta_brain_lora_routing/`\n- **Base checkpoint（正确）**：`/root/autodl-tmp/checkpoints/pi0_libero_openpi/`（777 keys, 7GB, JAX→PT 转换，bit-exact 验证通过）\n- **v3 LoRA checkpoints**（全部完成）：\n  - visual: `/root/autodl-tmp/checkpoints/v3_lora_visual_r16/v3lora_visual_r16/final`\n  - spatial: `/root/autodl-tmp/checkpoints/v3_lora_spatial_r16/v3lora_spatial_r16/final`\n  - physical: `/root/autodl-tmp/checkpoints/v3_lora_physical_r16/v3lora_physical_r16/final`\n  - universal: `/root/autodl-tmp/checkpoints/v3_lora_universal_r16/v3lora_universal_r16/final`\n- **训练数据**：`/root/autodl-tmp/libero_demos/libero_object_image/`（66984 条）\n- **norm_stats**：`/root/autodl-tmp/checkpoints/pi0_libero/norm_stats.json`（硬编码在 data_loader.py:53）\n- **LIBERO-Plus**：`/root/LIBERO-plus/`（editable install）\n- **openpi**：`/root/openpi/`\n- **活跃进程**：\n  - `v3_lora_universal_r48` (PID 118481, tmux=v3_lora_universal_r48, cuda:1, cron 已注册) — rank-48 ablation 训练\n  - nominal 50-ep eval (PID 117988, 后台进程, cuda:1) — 进行中，~14/50 完成时 57% 成功率\n- **Worker 仍在跑**：\n  - `worker_eval_perturbation_degradation_20260516T202825` — table=50% (10/20)，开始 tb 扰动\n  - `worker_eval_v3_lora_routing_20260516T202850` — 正在加载模型准备 LoRA eval\n\n### 3. 📊 当前状态\n**刚做完**：v3 LoRA 4/4 experts 全部训练完成（visual/spatial/physical/universal, rank-16），eval pipeline 验证通过（nominal 60%），rank-48 universal 训练已启动。\n\n**v3 训练结果汇总**：\n\n| Expert | init_loss | final_loss | 耗时 |\n|--------|-----------|------------|------|\n| physical | 2.37 | 0.5876 | 170m |\n| visual | 1.98 | 0.5899 | 182m |\n| universal | 1.95 | 0.6030 | 170m |\n| spatial | 1.95 | 0.6126 | 171m |\n\n**Registry RUNNING**：`v3_lora_universal_r48`（plan_013, rank-48 parameter-matched control）\n\n**等待中**：\n- 3 个 eval Worker 回调（nominal 50ep / perturbation degradation / LoRA routing）\n- rank-48 训练 cron 回调（预计 ~3h）\n- Director 对完整 eval 结果的决策\n\n### 4. 📋 待办（条件触发式）\n- perturbation_degradation Worker 完成 → 记录各扰动类型 degradation 幅度，更新 registry，汇报 Director\n- nominal_50ep 结果到手 → 记录确切 baseline 数字（期望 ~60-70%），更新 registry\n- v3_lora_routing Worker 完成 → **关键数据点**：对比 Frozen vs Universal vs PAR 在扰动 tasks 上的 success rate。这是 Claim 2 (Targeted > Uniform) 的核心验证\n- 如果 PAR routing 未能跑通（router checkpoint 集成问题）→ 先用 universal LoRA 结果作为 intermediate 汇报，派新 Worker 修复 PAR 集成\n- rank-48 训练完成 → 与 rank-16 universal 对比 loss 和 eval，验证 Claim 3 (parameter efficiency)\n- cuda:0 空闲 → Director 说\"visual 完成后也加入 eval\"，可用于并行 eval 任务\n- 所有 eval 完成 → 构建 Director 要求的对比表 (Frozen/Universal/PAR × nominal/各扰动类型)\n\n### 5. 🎯 战略上下文\n- **目标**：CoRL 2026，Abstract DDL 2026-05-26（10天），Paper DDL 2026-05-29（13天）\n- **核心 story**：PAR (Perturbation-Adaptive LoRA Routing) — 从 π₀ 内部激活诊断扰动类型，路由到专用 LoRA expert\n- **3 Core Claims**：(1) Perturbation Diagnosability (Phase 0 ✅ F1=1.0), (2) Targeted > Uniform Correction (eval 进行中), (3) Parameter-Efficient Robustness (rank-48 control 训练中)\n- **决策链**：D010 换 base checkpoint → v3 重训 → eval pipeline 修复 → 现在做完整评估\n- **最容易判断错的事**：\n  1. LIBERO-Plus 的扰动后缀是 `_table_N/_tb_N/_add_N/_language_N`，不是 Director 提的 camera_viewpoints/light_conditions 等。Worker 需要 discover 实际 task 名\n  2. `eval_base_no_lora.py` 是可工作的 eval 路径，`evaluate_libero_plus.py` 仍有问题（MetaBrain 路径），Director 说搁置后者\n  3. step-0 loss ~2.0 是正常的（OOD 扰动数据），已验证 checkpoint bit-exact\n  4. Phase 0 的 router checkpoint 可能在 `/root/meta_brain_lora_routing/phase0/outputs/` 下，LoRA routing eval Worker 正在 discover\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778964106.md"
+}

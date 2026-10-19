@@ -1,0 +1,283 @@
+_next_id: 19
+decisions:
+- id: D001
+  date: 2026-05-15 10:32 UTC
+  summary: MVP 定义为 Phase 0 early-kill gate：验证 π₀ 内部激活能否分类 3 类扰动（>70% 准确率）
+  rationale: IDEA_BRIEF 提出的 Phase 0 方案是正确的 MVP 选择：(1) 整个方法论依赖"扰动类型可从 VLA 内部激活诊断"这一前提，若此假设不成立，后续所有工作（LoRA
+    bank、routing、CM）全部无效；(2) 仅需 ~20 H100-hrs，4 天内可得到 GO/NO-GO；(3) SAFE (NeurIPS 2025)
+    用相同架构做 binary failure detection 达到 78% ROC-AUC，3-class 粗粒度分类理应可行但需验证；(4) 有明确的
+    fallback：50-70% 增强输入，<50% pivot 到 universal LoRA+CM。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-15 10:36 UTC
+  summary: 采纳 Reviewer 4 条建议增强 Phase 0：+binary sanity check, +6-class 对照, +confusion
+    matrix, +明确 7→3 映射
+  rationale: Reviewer 指出：(1) SAFE binary detection 不能类比 3-class classification（anomaly
+    detection 是更弱假设），加 binary 作 sanity check 成本近零但能区分"激活提取有问题"vs"假设不成立"；(2) 7→3 映射未定义会导致实验不可复现且映射选择影响难度；(3)
+    70% accuracy 不够——30% 误路由可能 worse than no routing，confusion matrix 能暴露具体风险。所有增强不影响
+    Phase 0 核心设计和资源估算。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-15 10:44 UTC
+  summary: Phase 0 架构修正：层索引改为 Gemma 2B 的 18 层范围 + 排除 Language Instructions + 增加 Action
+    Expert 探针
+  rationale: Worker 调研确认 π₀ 用 PaliGemma (Gemma 2B, 18 层)，非 32 层模型。IDEA_BRIEF 的 layers
+    {4,8,12,16,20,24,28,32} 中后 4 个不存在，修正为 PaliGemma {2,4,6,8,10,12,14,16} + Action
+    Expert {2,6,10,14}。排除 Language Instructions：Meta-Brain 的 LoRA 修正作用于 visual/action
+    token representation，语言扰动（指令改写）影响的是文本输入而非表征空间，不在修正范围内。增加 Action Expert 探针：π₀ 有独立的
+    Action Expert Transformer (1024-dim, 18 layers)，physical perturbation 可能在 action
+    token 中有更强信号，低成本高信息量。
+  related_experiments: []
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-15 15:40 UTC
+  summary: Phase 0 GO — 核心假设验证通过，进入 Phase 1 LoRA expert 训练
+  rationale: Phase 0 全部 GO 条件远超阈值：3-class macro-F1=0.993 (阈值 0.70)，binary ROC-AUC=1.0
+    (阈值 0.75)，max off-diag=0.024 (阈值 0.30)。Few-shot K=1 单次前向传播 macro-F1=0.898（Visual
+    子类），paligemma_layer_6 单层 K=1=1.0。核心结论：(1) π₀ 内部激活编码了充分的扰动类型信息；(2) 单次前向传播即可路由，无需等待多步；(3)
+    PaliGemma layer 6 单层即可，路由器几乎零延迟。架构指导：router 仅挂载 PaliGemma 分支，LoRA experts 作用于
+    PaliGemma 层。残留数据缺口（objects_layout/robot_initial_states per_step + sensor_noise）不影响
+    GO 结论——episode-level 3-class 已证明三大类高度可分，Visual 子类 few-shot 是更难的任务。
+  related_experiments:
+  - exp_id: phase0_activation_collection
+    role: primary
+    result: 3-class 99.3%, binary AUC 1.0, K=1 F1 0.898, layer_6 K=1 1.0
+  depends_on:
+  - D001
+  - D002
+  - D003
+- id: D005
+  date: 2026-05-15 15:47 UTC
+  summary: 进入 Research 阶段 — 完成 paper_framing.md + experiment_plan.yaml + 启动 Dream
+    模拟
+  rationale: 'MVP Phase 0 通过 (F1=0.993, K=1=0.898)。按 post-mvp-kickoff 流程: 写完 framing
+    (3 Core Claims) + plan (12 experiments, 185 GPU-hrs) + 启动 dream_simulate(full)
+    验证整套 plan。Dream 回调后批准 P0 实验。'
+  related_experiments:
+  - exp_id: phase0_activation_collection
+    role: basis
+    result: GO — F1=0.993, K=1=0.898
+  depends_on:
+  - D004
+- id: D006
+  date: 2026-05-15 16:24 UTC
+  summary: PAR Router 改用 first-token pooling（F1 1.000 vs mean pooling 0.978）
+  rationale: 完整 3-class few-shot (151 samples, 5-fold CV) 显示 first-token pooling K=1
+    达到完美 F1=1.000，优于 mean pooling 的 0.978。PaliGemma 首 token 单独编码了足够扰动信息，无需对整个序列做 mean
+    pool。简化计算且性能更优。
+  related_experiments:
+  - exp_id: phase0_activation_collection
+    role: evidence
+    result: first-token K=1 F1=1.000, mean K=1 F1=0.978
+  depends_on:
+  - D004
+- id: D007
+  date: 2026-05-15 16:58 UTC
+  summary: Dream 审稿 4-5/10 Reject — 修复 plan 加入 rank-48 control + rank sweep + clean
+    eval，批准 plan_002 先行启动
+  rationale: Dream 三档一致 Reject (best 4-5, median 5, worst 4)。核心问题：(1) 缺 rank-48 parameter-matched
+    universal LoRA，(2) 缺 random routing，(3) bibliography 太薄，(4) VLA-GSE 跨 backbone
+    比较误导，(5) worst 建议 rank sweep 验证 capacity bottleneck。已加 plan_013 (rank-48)、plan_014
+    (rank sweep)、plan_015 (clean eval)，修复 framing (VLA-GSE 降级、contribution 合一、CM 降级)。plan_002
+    (LoRA 训练) 在所有场景中都需要——即使 routing 无效也需要 expert cross-eval 数据——因此先行批准。re-dream 稍后并行启动验证修复后的
+    plan。
+  related_experiments:
+  - exp_id: phase0_activation_collection
+    role: basis
+    result: GO
+  depends_on:
+  - D005
+- id: D008
+  date: 2026-05-16 01:14 UTC
+  summary: 数据策略转向：从 π₀ rollout success-filtering 改为标准 demo + 类型特异性增强
+  rationale: π₀ frozen rollout 在 spatial (0/624) 和 physical (0/490) 扰动下成功率为零，success-filtering
+    完全不可行。新策略：所有 LoRA 专家统一使用标准 LIBERO expert demos + 类型特异性增强（V=视觉增强, S=_add_N 环境重放,
+    P=proprioceptive noise augmentation）。消除对 π₀ 成功率的依赖，训练管线更统一，且解决了 Dream 审稿指出的 training
+    data asymmetry 问题。
+  related_experiments:
+  - exp_id: phase1_physical_demo_collection
+    role: evidence
+    result: 0/490 success rate
+  - exp_id: phase1_spatial_demo_collection
+    role: evidence
+    result: 0/624 success rate
+  depends_on:
+  - D007
+- id: D009
+  date: 2026-05-16 01:16 UTC
+  summary: 加入 compound perturbation 实验 (plan_016) + 强化方法包装定位
+  rationale: 用户指示：加 compound 实验，同时对方法进行更好的包装。Compound 实验回应 Dream 审稿"closed-set taxonomy"批评，且展示
+    soft routing 在多扰动并存场景下的天然优势。方法定位调整为"perturbation-diagnostic routing as a new principle,
+    implemented with well-understood MoE-LoRA components"——承认组件 standard，强调 principle
+    + insight 是新的。明确列出与标准 MoE-LoRA 的 4 点区分：(1) frozen self-diagnosis routing signal,
+    (2) corrective deltas, (3) compound handling via soft blend, (4) mechanistic layer
+    placement grounding.
+  related_experiments:
+  - exp_id: plan_016
+    role: new_experiment
+    result: compound perturbation evaluation added, P1, 10h
+  depends_on:
+  - D008
+- id: D010
+  date: 2026-05-16 09:34 UTC
+  summary: '换 base checkpoint: pi0_base → pi05_libero，重训所有 LoRA experts'
+  rationale: pi0_base 从未在 LIBERO 上训练，eval 0% 成功率是预期行为（非 bug）。官方 pi05_libero 在 LIBERO
+    上 96.85% 成功率。MetaBrain LoRA routing 应建立在能完成基础任务的 base policy 上，然后用 LoRA 修正扰动场景。当前所有
+    LoRA（visual/physical/spatial/universal）在 pi0_base 上训练无效。
+  related_experiments:
+  - exp_id: eval_par_v1
+    role: evidence
+    result: 0/144 episodes success
+  - exp_id: eval_univ_r16
+    role: evidence
+    result: 0/170 episodes success
+  - exp_id: eval_univ_r48
+    role: evidence
+    result: 0/160 episodes success
+  - exp_id: eval_no_routing
+    role: evidence
+    result: 0/157 episodes success
+  depends_on: []
+- id: D011
+  date: 2026-05-16 18:36 UTC
+  summary: v3 LoRA 训练确认有效：step-0 loss=2.0 是 OOD 预期行为，权重 bit-exact 验证通过
+  rationale: Reviewer 质疑 v3 step-0 loss=2.0 暗示 checkpoint 损坏。Agent 验证：v2/v3 权重 777
+    keys max_diff=0.0，loss 高因训练数据是 LIBERO-Plus（OOD for 原版 LIBERO fine-tuned model）。100步降至1.0证明
+    LoRA adaptation 正常工作。
+  related_experiments:
+  - exp_id: v3_lora_visual_r16
+    role: primary
+    result: running
+  - exp_id: v3_lora_physical_r16
+    role: primary
+    result: running
+  depends_on:
+  - D010
+- id: D012
+  date: 2026-05-16 20:54 UTC
+  summary: Language perturbation -56pp 发现：验证 universal LoRA 恢复效果，考虑扩展为 4-expert 框架
+  rationale: Frozen baseline 在 language paraphrase 上仅 10%（vs nominal 66%），降幅远超 visual
+    -21pp。原假设"语义不变不需要 LoRA"被推翻。Language ���最大脆弱点。先验证 universal LoRA 是否能恢复（低成本），再决定是否需要第
+    4 个 linguistic expert。若需要，PAR Router 天然可从 PaliGemma activations 检测语言变化（instruction
+    tokens 直接改变 layer-6 表征）。
+  related_experiments:
+  - exp_id: eval_perturbation_language
+    role: evidence
+    result: frozen baseline 10% on language perturbation (-56pp vs nominal)
+  depends_on:
+  - D011
+- id: D013
+  date: 2026-05-16 21:07 UTC
+  summary: +40pp 发现无效（eval bug），暂停 claim-level 结论，优先修复 eval 可靠性
+  rationale: openpi_metabrain_policy.py 有 checkpoint 缓存 bug，修复前 baseline 人为偏低（45%）。修复后
+    baseline=80%，universal LoRA≈baseline。同时 same-seed 15pp 方差说明 eval 本身不可靠。在 eval
+    确定性修复 + PAR routing 正式测试前，暂停所有 claim-level 结论。robot_initial_states -44pp 是唯一确认的真实降幅。
+  related_experiments:
+  - exp_id: eval_perturbation_degradation
+    role: evidence
+    result: 'corrected baseline: bg_textures 80%, nominal 70%, robot_init 26.3%'
+  - exp_id: eval_lora_v3_universal
+    role: evidence
+    result: universal LoRA ≈ baseline, no improvement, same-seed 15pp variance
+  depends_on:
+  - D012
+- id: D014
+  date: 2026-05-16 21:57 UTC
+  summary: 真实 nominal baseline 52%（非 70%），采用 3-seed×20eps 确定性评估协议
+  rationale: Noise fix 后 5 次确定性重复：50/55/50/55/50 → 均值 52%。之前 70% 是 diffusion noise
+    随机幸运结果。方差从 ±15pp 降至 ±5pp。所有之前数据无效需重测。采用 3-seed(42/123/456)×20eps=60eps/condition
+    协议替代单次运行。MuJoCo 物理非确定性导致残余 ±5pp 不可消除。
+  related_experiments:
+  - exp_id: worker_debug_p0_noise_fix
+    role: methodology
+    result: deterministic eval reveals true nominal=52%, variance ±5pp
+  - exp_id: worker_eval_baseline_full_coverage
+    role: evidence
+    result: '5 deterministic runs: 50/55/50/55/50%'
+  depends_on:
+  - D013
+- id: D015
+  date: 2026-05-16 23:04 UTC
+  summary: Router 训练改用真实 LIBERO-Plus 环境观测（非合成增强），因 PaliGemma 对合成扰动 robust
+  rationale: V3 Router F1=0.50（随机），根因是合成扰动（noise/brightness）不改变 PaliGemma layer-6
+    表征（within-class std ~19300 vs between-class dist ~1025-7680, SNR<0.4）。Phase 0
+    用真实 LIBERO 仿真观测达到 F1=0.99 因为真实环境产生根本性不同的视觉输入。修正：从 LIBERO-Plus 实际环境加载观测图像 → forward
+    pass → 收集 activations。概念区分：LoRA 训练用增强数据（教 expert 补偿），Router 训练用真实环境观测（教 router
+    识别扰动类型）。
+  related_experiments:
+  - exp_id: worker_code_par_router_train_v3
+    role: negative_evidence
+    result: F1=0.5003 with synthetic augmentation activations
+  - exp_id: phase0_activation_collection
+    role: positive_reference
+    result: F1=0.9963 with real LIBERO simulation observations
+  depends_on:
+  - D013
+- id: D016
+  date: 2026-05-17 00:33 UTC
+  summary: Paper framing 从 "Perturbation-Aware Routing" 调整为 "Scene-Adaptive Expert
+    Routing"（待 expert eval 确认）
+  rationale: Reviewer 深度审查结论：(1) 230x scale 差异说明 hook 路径不同，Phase 0 router 不可直接迁移；(2)
+    域不匹配不致命但改变叙事——Router 检测的是场景差异（真实环境观测），不是 augmentation label；(3) Option A "Scene-Adaptive
+    Expert Routing" 最诚实且最强：把"Router 需要真实环境数据"从 limitation 变成 feature（Router 学的是场景理解）。前提条件：expert
+    eval 必须支撑"routing 到对应 expert > universal"。如果 physical expert on robot_initial_states
+    显著优于 universal（+0pp），story 成立。
+  related_experiments:
+  - exp_id: worker_code_par_router_train_v3
+    role: negative_evidence
+    result: F1=0.50 on synthetic augmentation activations
+  - exp_id: phase0_activation_collection
+    role: positive_reference
+    result: F1=0.9963 on real LIBERO observations
+  - exp_id: worker_eval_baseline_3seed_v2
+    role: evidence
+    result: universal LoRA light_conditions +15pp proves cross-domain transfer exists
+  depends_on:
+  - D015
+- id: D017
+  date: 2026-05-17 01:30 UTC
+  summary: Routing 核心 claim 放弃。Pivot to universal LoRA robustness paper。
+  rationale: 三重证据否定 routing：(1) Router F1=0.685（不足以可靠路由，31.5% 误判率）；(2) Visual expert
+    63.3% < Universal 71.7% on light_conditions（oracle routing 反而损害性能）；(3) Physical
+    expert +3.8pp 在噪声范围内。即使 Router 完美，specialists 也不如 universal，因此 routing 无正向价值。根因：fine-tuned
+    pi0 对扰动更鲁棒 → 表征差异被压缩（F1 从 0.996 降至 0.685）+ diverse training data 使 universal adapter
+    优于 narrow specialist。Pivot to "Universal LoRA for VLA Robustness" paper。
+  related_experiments:
+  - exp_id: worker_code_par_router_real_env_v4
+    role: negative_evidence
+    result: Router F1=0.685 on real env activations (insufficient)
+  - exp_id: worker_eval_visual_expert_oracle
+    role: negative_evidence
+    result: visual expert 63.3% < universal 71.7% on light_conditions
+  - exp_id: worker_eval_physical_expert_oracle
+    role: weak_evidence
+    result: physical +3.8pp within noise
+  - exp_id: worker_eval_baseline_3seed_v2
+    role: positive_evidence
+    result: universal LoRA +4pp mean, +15pp light_conditions
+  depends_on:
+  - D016
+- id: D018
+  date: 2026-05-17 01:41 UTC
+  summary: Reviewer 独立验证确认 pivot。启动 rank sweep (r8/r32) + early stopping 消融
+  rationale: Reviewer 独立核实全部关键数据点：universal r16 是唯一正向干预(6/7类优于baseline)，r48全面过拟合，所有专家在目标领域仍输universal。Pivot方向(D017)被数据完全支持。下一步：完成rank曲线(r8/r32)以强化rank-scaling
+    story，r48 early stopping消融直接证明overfitting，确保统计显著性(3-seed)。
+  related_experiments:
+  - exp_id: phase1_lora_universal_r16
+    role: validated
+    result: 6/7 types better or equal to baseline
+  - exp_id: v3_lora_universal_r48
+    role: validated
+    result: all types <= baseline, overfitting confirmed
+  - exp_id: phase1_lora_visual
+    role: validated
+    result: -10pp vs universal on target domain
+  - exp_id: phase1_lora_physical
+    role: validated
+    result: only +3.8pp on robot_initial_states, -1.7pp nominal
+  depends_on:
+  - D017

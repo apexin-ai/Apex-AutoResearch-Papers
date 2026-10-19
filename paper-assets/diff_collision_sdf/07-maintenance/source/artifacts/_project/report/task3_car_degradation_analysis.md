@@ -1,0 +1,1 @@
+See Director report for summary. Full Worker output contains per-episode collision data.

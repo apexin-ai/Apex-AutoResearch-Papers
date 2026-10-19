@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c92b3cbf0d576b1fa8dc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "status westd 35807 urgent",
+  "task_key": "worker_status_westd-35807-urgent_20260527T092042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_westd-35807-urgent_20260527T092042_result.json",
+    "occurrence": 1,
+    "bytes": 1543,
+    "sha256": "81260471c928b1a8a0b04984400c21fae262eeee2d5164dacf5e29eb8d619458"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-35807 状态\n\n### nvidia-smi\n```\nGPU 0: RTX PRO 6000,  9012/97887 MiB, 46%  — PID 722752 (eval)\nGPU 1: RTX PRO 6000,     1/97887 MiB,  0%  — 空闲\nGPU 2: RTX PRO 6000, 27045/97887 MiB, 100% — PID 274407 (s1 训练)\nGPU 3: RTX PRO 6000, 27037/97887 MiB, 100% — PID 341425 (spatial_bowl)\n```\n\n### eval s0 30K (cuda:0)\n状态: **STILL_RUNNING** (PID 722752)\n已完成 3/10 tasks（~9min/task，预计还需 ~63min）:\n\n| Task | TSR | CAR | avg_max_disp |\n|------|-----|-----|-------------|\n| 0 | 30.0% | 60.0% | 0.0677m |\n| 1 | 70.0% | 74.0% | 0.0555m |\n| 2 | 24.0% | 68.0% | 0.0313m |\n\n部分均值: TSR=41.3%, CAR=67.3%\nfrozen_rate/dfCAR 待 eval 完成后出。\n\n### s1 训练 (cuda:2)\n当前步数: **20178/30000** (67%)\nETA: ~12h34m\n速度: 4.61s/it, loss=0.0114\n\n### spatial_bowl LoRA ctrl (cuda:3)\n当前步数: **20187/30000** (67%)\nETA: ~12h39m\n速度: 4.64s/it, loss=0.0168\n\n---\n\n## westd-45947 状态\n\n### nvidia-smi\n```\nGPU 0: RTX PRO 6000, 27089/97887 MiB, 100% — PID 460442 (LoRA baseline s2)\nGPU 1: RTX PRO 6000, 27097/97887 MiB, 100% — PID 425058 (λ=0.1 s2)\n```\n\n### LoRA baseline s2 (cuda:0)\n当前步数: **25817/30000** (86%)\nETA: ~5h23m\n速度: 4.63s/it, loss=0.0091\n\n### λ=0.1 s2 训练 (cuda:1)\n当前步数: **18203/30000** (61%)\nETA: ~15h05m\n速度: 4.61s/it\nLoss 分解: action=0.0111, sdf=0.0358, ee=0.0060\n\n---\n\n**注意**: westd-45947 cuda:0 实际 PID 是 460442（非预期的 460433），可能是 resume 后新进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-westd-35807-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54442cde853bff67d9ad",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper appendix evalseed update",
+  "task_key": "worker_paper_appendix-evalseed-update_20260528T033807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-evalseed-update_20260528T033807_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "e0ea0931e597e7d085cd9d4941daf95132e8ba20adcdc13a4df78a3566e4ee88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇总：\n\n**5 路 multi-eval-seed 结果汇总：**\n\n| 进程 | Avg TSR | Avg CAR | 状态 |\n|------|---------|---------|------|\n| lora_s0_eseed7 | 51.5% | 56.5% | 基准 |\n| lora_s0_eseed42 | 46.0% | 56.5% | 完成 |\n| lora_s0_eseed123 | 50.5% | 53.0% | 完成 |\n| sdf_l01_s0_eseed7 | 52.5% | 57.0% | 基准 |\n| sdf_l01_s0_eseed42 | 52.5% | 59.0% | 完成 |\n| sdf_l01_s0_eseed123 | 53.5% | 58.5% | 完成 |\n| sdf_l01_s0_eseed256 | 48.0% | 57.0% | 完成 |\n\n**关键发现：**\n- LoRA s0 CAR 跨 eval seed 稳定：55.3% ± 2.0%\n- SDF λ=0.1 s0 CAR 更稳定：57.9% ± 1.0%\n- 在 3 个匹配 seed 上 SDF 均高于 LoRA（ΔCAR = +0.5, +2.5, +5.5 pp）\n- Per-task ordering (CP highest, BBQ lowest) 在所有 seed 下保持不变\n\n**完成项：**\n- Appendix 新增 `\\section{Evaluation Seed Robustness}` 含 CAR 和 TSR 两张表\n- PDF 编译成功（17 页）\n- paper_switch.py --verify 全部 OK（Scenario B: 10/10, Scenario C: 11/11）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-evalseed-update.md"
+}

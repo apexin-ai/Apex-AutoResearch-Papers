@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecb184d3988597bb6e3f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose baseline lora spatial bowl s0 failed",
+  "task_key": "worker_diagnose_baseline_lora_spatial_bowl_s0_failed_20260522T115454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_baseline_lora_spatial_bowl_s0_failed_20260522T115454_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "d899b309c01d7300bddc5f4b29aceaa7cd5760646518b430376ab7f97a955838"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：SUCCESS — W&B 误报（假阳性），训练已正常完成。**\n\n诊断结果：\n\n| 项目 | 值 |\n|------|-----|\n| **conclusion** | **SUCCESS** |\n| **最终 step** | 30000/30000 (100%) |\n| **最终 loss** | 0.0088 (best: 0.00876 @ step 30000) |\n| **训练时长** | 33h 39m 36s (~4.04s/it) |\n| **checkpoint 路径** | `/root/autodl-tmp/checkpoints/baseline_spatial_bowl/baseline_lora_spatial_bowl_seed0/` |\n| **checkpoint 内容** | step 29999, step 30000, best (均含 model.safetensors ~6.7GB + optimizer.pt ~249MB) |\n| **失败原因** | 无。Cron 误报原因：WANDB_MODE=disabled，无 W&B metrics 可查 |\n| **磁盘** | /root/autodl-tmp 260G/350G used (75%), 91G 可用 |\n\nLoRA 参数量 33,472,512（~33.5M），loss 从 ~0.22 平稳下降到 ~0.009，训练正常收敛。无 Error/Exception/OOM。\n\n**建议下一步**：可直接进入 evaluation 阶段，使用 step 30000 或 best checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-baseline-lora-spatial-bowl-s0-failed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72e2ef777b3e4312fb16",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper r2 group b abs claim method",
+  "task_key": "worker_paper_r2-group-b-abs-claim-method_20260528T065024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r2-group-b-abs-claim-method_20260528T065024_result.json",
+    "occurrence": 1,
+    "bytes": 1648,
+    "sha256": "7ef99ca3f26b2bf7b761742542162590cfdf8f63f624a23bfe7c7767f01c8a53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "claim3.tex 中 \"20$\\times$\" 出现在 L3（保留）、L32（保留）、L46（保留），L26 已替换为 \"the tested range\"。正确。\n\n全部修改完成，汇总：\n\n| # | 优先级 | 文件 | 修改内容 |\n|---|--------|------|----------|\n| P0 #2 | P0 | abstract.tex | \"account for **all**\" → \"account for **nearly all**\" |\n| P1 #5 | P1 | claim2.tex | TSR≈70-80% caveat 不成立（Pi0 LoRA Collapsed=99.4%），改为承认 LoRA baseline 本身 action-collapsed，structural finding 应仍成立但需 functional policy 验证 |\n| P2 #6 | P2 | method.tex | 在等价性声明后补充数值：\"collapsed episodes cluster below 1 μm while active episodes exceed 200 mm\" |\n| P2 #7 | P2 | method.tex | \"velocity-based...left to future work\" → \"alternative displacement metrics...would yield equivalent classification...we adopt maximum displacement for interpretability\" |\n| P2 #8 | P2 | claim3.tex L26 | \"across a 20×range\" → \"across the tested range\"（L3/L32/L46 三处保留） |\n| P2 #8 | P2 | abstract.tex L6 | \"across a 20× loss-weight range\" → \"across the tested loss-weight range\" |\n| P2 #9 | P2 | abstract.tex 末句 | \"rather than geometric supervision\" → \"rather than EE-only geometric supervision\" |\n\n**#5 数据验证结论**：Table (claim2.tex) 明确显示 Pi0 LoRA baseline Collapsed=99.4%，原文声称 \"TSR≈70-80%\" 无数据支撑。claim3.tex 中 Pi0.5 LoRA TSR 也仅 51.5%，Pi0.5 baseline 为 71.5%——均不匹配 70-80%。已将 caveat 改为诚实承认 baseline 本身 collapsed，结构性结论应仍成立但需 future work 验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r2-group-b-abs-claim-method.md"
+}

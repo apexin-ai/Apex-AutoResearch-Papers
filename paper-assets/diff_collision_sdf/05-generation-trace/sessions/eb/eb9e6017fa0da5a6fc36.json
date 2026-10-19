@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb9e6017fa0da5a6fc36",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "figure pertask fingerprint 3seed update",
+  "task_key": "worker_figure_pertask_fingerprint_3seed_update_20260527T190728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_pertask_fingerprint_3seed_update_20260527T190728_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "00eadfe6e3fd2803f6c870d7d9b509d2cacdb8c90b71b437102223a39a415acb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已更新完成。\n\n**3-seed LoRA-only 数据确认：**\n\n| Task | s0 | s1 | s2 | 3-seed mean |\n|------|----|----|----|----|\n| CP | 74 | 68 | 76 | 72.67 |\n| Milk | 66 | 72 | 62 | 66.67 |\n| OJ | 68 | 54 | 56 | 59.33 |\n| BBQ | 20 | 16 | 26 | 20.67 |\n\n**变更：**\n- LoRA-only 从 2-seed 更新为 3-seed（加入 s2），bar 高度和 error bar 已更新，seed dots 从 2 个变为 3 个\n- 脚注已改为 \"LoRA-only: 3-seed mean\"\n- λ=0.1 保持 2-seed 不变\n- PDF/PNG 已覆盖到 `/root/autodl-tmp/artifacts/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-pertask-fingerprint-3seed-update.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bb46747c3aa25626e68",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper p0 3 4 6 scope safevla limits",
+  "task_key": "worker_paper_p0-3-4-6-scope-safevla-limits_20260528T060943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p0-3-4-6-scope-safevla-limits_20260528T060943_result.json",
+    "occurrence": 1,
+    "bytes": 1902,
+    "sha256": "4d498759ff1d0f1aa1eb26e742ec6cabf35857b0f9c1fac8e9dfb5e68c912617"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。下面是修改汇总：\n\n---\n\n### related_work.tex\n\n**新增** `\\paragraph{SDF integration pathways.}`（第12行，\"Signed Distance Functions in Robotics\" 和 \"Evaluation Metrics\" 之间）：\n- 区分三种 SDF 集成路径：(a) training-time auxiliary loss, (b) constraint-based planning (SafeVLA), (c) runtime filtering (VLSA)\n- 明确本文负面发现仅适用于 pathway (a)\n- 引用键 `zhang2025safevla` 和 `hu2025vlsa` 均已验证存在于 bib 中\n\n---\n\n### discussion.tex\n\n**4 处修改**：\n\n1. **第6行末尾新增** pathway-specific 句子：\n   > \"The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms.\"\n\n2. **第11行新增** `\\paragraph{Scope and generalizability.}`（Implications 和 Limitations 之间）：\n   - 明确列出 scope：1 benchmark, 2 model families, 4 tasks, MuJoCo simulation\n   - 区分 Claim 1 的结构通用性 vs. prevalence 的 benchmark-specificity\n   - Claim 3 限定为 EE-only auxiliary loss pathway，引用 `\\ref{sec:related}`\n\n3. **第13-14行替换** Limitations 段落：\n   - **新增**：sim-to-real gap 不确定性、sensor noise 影响、task diversity 限制、统计功效（n=3, ~5pp MDE at 80% power）\n   - **保留**：原有的 oracle frozen model、full-body SDF untested、TSR degradation 内容\n\n4. **第19-20行替换** Broader Impact 段落：\n   - **改前**：2 句（dfCAR exposes gap）\n   - **改后**：3 句——dfCAR 定位为 diagnostic complement、SDF redundancy 是 methodology insight 而非对 safety training 的否定、警告不要过度解读\n\n---\n\n### introduction.tex\n\n未修改。\"case study\" 和 \"we demonstrate\" 在当前版本中均不存在（已被前一个 Worker 处理）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p0-3-4-6-scope-safevla-limits.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53b8b685f5eb9760b921",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research ref audit A",
+  "task_key": "worker_research_ref-audit-A_20260529T064507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-A_20260529T064507_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "82a5d420fdba21d27ade2ba84cc87cf6d153f149adcad47e4209adbf9a8fdc7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果已写入 `artifacts/ref_audit_worker_A.md`。\n\n**结果：10/11 ✅，1/11 ⚠️，0 ❌**\n\n- 全部 11 条引用真实存在，元数据（标题、作者、年份、venue、arXiv ID）均正确\n- **唯一问题：** `cofreeevla2026` 在 introduction.tex 第 10 行被描述为 \"collision-free demonstrations\"，但 CoFreeVLA 的核心方法是碰撞风险估计+动作门控，非无碰撞示教数据。related_work.tex 的描述（\"collision risk gating\"）是正确的\n- 特别关注项全部通过：SafeVLA 确认 NeurIPS 2025 Spotlight，SafeDiffuser 确认 ICLR 2025，CoFreeVLA (2601.21712) 和 VLSA (2512.11891) 的 arXiv ID 均存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-a.md"
+}

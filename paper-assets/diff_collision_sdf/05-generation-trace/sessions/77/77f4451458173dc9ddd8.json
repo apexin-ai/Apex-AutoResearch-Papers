@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77f4451458173dc9ddd8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "audit claim wording",
+  "task_key": "worker_audit_claim_wording_20260527T233938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_claim_wording_20260527T233938_result.json",
+    "occurrence": 1,
+    "bytes": 1568,
+    "sha256": "4f2e978d2d7145f40a83161093dd877824d8f01d070d61a0cec6149f7284eb16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 fixes verified. Summary of changes:\n\n---\n\n##修正清单\n\n| # | 文件:行 | 原文 | 修改后 | 原因 |\n|---|--------|------|--------|------|\n| 1 | abstract.tex:5 | \"demonstrations **alone** account for **all** measured avoidance gains (~28pp)\" | \"demonstrations account for all measured avoidance gains **at $\\lambda \\leq 0.01$** (~28pp)\" | 去掉\"alone\"，限定\"all\"的scope到3-seed有统计支撑的λ范围 |\n| 2 | abstract.tex:5 | \"two-tailed permutation test)\" | \"two-tailed permutation test, **$n{=}2$**)\" | λ=0.1结果必须标注样本量 |\n| 3 | abstract.tex:6 | \"**cannot** be credited\" | \"cannot **reliably** be credited\" | λ=0.1的marginal signal不允许完全否定 |\n| 4 | discussion.tex:3 | \"account for **all** measured avoidance gains\" | \"account for **the** measured avoidance gains\" | 同fix #1，去掉绝对量词 |\n| 5 | discussion.tex:6 | \"arises **entirely** from this distributional shift\" | \"arises **primarily** from this distributional shift\" | λ=0.1有marginal increment，\"entirely\"过强 |\n| 6 | claim3.tex:27 | \"SDF gradients produce no lasting behavioral effect\" | \"**this provides preliminary evidence that** SDF gradients produce no lasting behavioral effect\" | Phase 2 ablation仅n=1，不能下确定性结论 |\n\n### λ=0.1 Provisional 状态：全部合规 ✓\n\n所有λ=0.1相关描述均使用provisional措辞（\"marginal\"/\"suggestive\"/\"inconclusive\"），且现在abstract也标注了n=2。无处使用\"significantly\"描述λ=0.1结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-claim-wording.md"
+}

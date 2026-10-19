@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccaf6927a7fda2b1d0ff",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code real checkpoint rotation",
+  "task_key": "worker_code_real_checkpoint_rotation_20260520T072623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_real_checkpoint_rotation_20260520T072623_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "caf6c9e2f8883046ebb089eade4e6585102b0238c37991ac40db35e99d7c3463"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两台服务器验证结果：\n\n### westd-35807\n```\n240:        SAVE_TOTAL_LIMIT = 3\n245:        while len(all_ckpt_steps) > SAVE_TOTAL_LIMIT:\n```\n语法检查：`SYNTAX_OK`\n\n### westd-45947\n```\n240:        SAVE_TOTAL_LIMIT = 3\n245:        while len(all_ckpt_steps) > SAVE_TOTAL_LIMIT:\n```\n语法检查：`SYNTAX_OK`\n\n### 修改说明\n\n三个训练脚本（`train_baseline.py`、`train_a1_sdf_aux.py`、`train_a3_hook.py`）本身不需要修改——它们都通过 `train_loop() -> save_checkpoint()` 调用链继承 checkpoint 管理。\n\n实际修改的文件是 `/root/autodl-tmp/openpi/scripts/train_pytorch.py`（通过 symlink `/root/colliforce-vla/openpi` 被三个脚本引用），将 `SAVE_TOTAL_LIMIT` 从 5 改为 3。轮转逻辑已存在于 `save_checkpoint` 函数末尾（line 240-250），每次保存后自动删除最旧的 checkpoint，只保留最近 3 个数字命名的 checkpoint 目录（`best/` 目录不受影响）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-real-checkpoint-rotation.md"
+}

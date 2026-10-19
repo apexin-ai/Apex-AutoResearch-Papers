@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "571b44bfaa2f63d8f147",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code cosine lambda schedule",
+  "task_key": "worker_code_cosine_lambda_schedule_20260525T094220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cosine_lambda_schedule_20260525T094220_result.json",
+    "occurrence": 1,
+    "bytes": 697,
+    "sha256": "71c285e31210be7e80123fab005a1ebd1b8fd727c7051bb80c769e523afeea71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**`--lambda_schedule` 参数已出现在 help 中**，支持 `constant`（默认）和 `cosine` 两个选项。\n\n**cosine decay 功能正确**：\n| step | constant | cosine |\n|------|----------|--------|\n| 0 | 0.005 | 0.005 |\n| 10000 | 0.005 | 0.005 |\n| 20000 | 0.005 | 0.0025 |\n| 30000 | 0.005 | 0.0000 |\n\n修改汇总：\n- `import math` 新增\n- `--lambda_schedule` 参数（`constant`/`cosine`）\n- `SdfAuxHooks.get_lambda_sdf(global_step)` 方法实现 cosine decay\n- `on_loss_computed` 中用动态 lambda 替代静态 `self.lambda_sdf`\n- `aux_info` 新增 `lambda_sdf_current` 指标用于 wandb logging\n- 顶部 docstring 补充说明"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cosine-lambda-schedule.md"
+}

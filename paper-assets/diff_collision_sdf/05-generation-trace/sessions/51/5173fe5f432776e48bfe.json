@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5173fe5f432776e48bfe",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops early signal eval l1 20k",
+  "task_key": "worker_ops_early_signal_eval_l1_20k_20260526T231812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_early_signal_eval_l1_20k_20260526T231812_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "97d799a0db656631a83dd76d6076b3fde2d3ee11b5ed9d0b1b6897df3343b103"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常加载中。\n\n```\ncheckpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/20000/ (完整性: ✅)\nmodel_type: lora_baseline\nrotation_fix: ✅ (L841, L843)\neval 已提交: eval_early_signal_s0_l1_20k, PID 399880, westd-35807, cuda:0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-early-signal-eval-l1-20k.md"
+}

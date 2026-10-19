@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9efa551f264013be8934",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh verify s1 checkpoint",
+  "task_key": "worker_ssh_verify_s1_checkpoint_20260528T195044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_s1_checkpoint_20260528T195044_result.json",
+    "occurrence": 1,
+    "bytes": 2320,
+    "sha256": "54add4a8fe72471d6929ae094151da1b54471eea1e06c83f6376033fbe3e377e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果汇总\n\n### westd-35807 — ⚠️ 确认存在损坏 checkpoint\n\n| 路径 (均在 `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/` 下) | 大小 | 修改时间 | 状态 |\n|---|---|---|---|\n| `pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors` | **1,589,248 (1.52 MB)** | May 26 09:32 | **⚠️ 损坏** |\n| `pi05_lora_baseline_object_pudding_seed0/30000/model.safetensors` | 7,540,115,784 (7.02 GB) | May 27 17:48 | ✅ 正常 |\n| `a1_sdf_pi05_object_pudding_seed1_l005/30000/model.safetensors` | 7,540,115,784 | May 24 21:24 | ✅ 正常 |\n| `a1_sdf_pi05_object_pudding_seed1_l01/30000/model.safetensors` | 7,540,115,784 | May 24 21:24 | ✅ 正常 |\n| `a1_sdf_pi05_object_pudding_seed1_l1/30000/model.safetensors` | 7,540,115,784 | May 27 17:50 | ✅ 正常 |\n\n损坏目录下**只有 model.safetensors 一个文件**（无 optimizer.pt、metadata.pt），说明这是一个不完整的拷贝/同步产物。\n\n### westd-45947 — ✅ 完好\n\n| 路径 (均在 `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/` 下) | 大小 | 修改时间 | 状态 |\n|---|---|---|---|\n| `pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors` | 7,540,115,784 (7.02 GB) | May 26 09:32 | ✅ 正常 |\n| `pi05_lora_baseline_object_pudding_seed1/best/model.safetensors` | 7,540,115,784 | May 25 08:43 | ✅ 正常 |\n\n该目录包含完整文件集（model.safetensors + optimizer.pt + metadata.pt + baseline_metadata.pt）。\n\n### 关键结论\n\n1. **损坏确认**：westd-35807 上 `pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors` 确实损坏，仅 1.52 MB（正常应为 7.02 GB），且目录不完整\n2. **完好副本存在**：westd-45947 上**同路径**的 checkpoint 完好（7.02 GB），可直接用于恢复\n3. **Table 4 eval 路径**：`/root/diff_collision_sdf/checkpoints/pi05_lora_baseline_s1/step_30000/` 在 westd-45947 上**不存在**（`/root/diff_collision_sdf/checkpoints/` 整个目录不存在）。实际 eval 用的应该是 `/root/autodl-tmp/checkpoints/...` 路径下的那个，该 checkpoint 完好\n4. **其他 seed1 变体**（l005/l01/l1）在 westd-35807 上全部正常（7.02 GB）\n\n**修复方案**：从 westd-45947 的完好副本 scp 到 westd-35807 覆盖损坏文件即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-s1-checkpoint.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da4fd3eef3ecfca247a5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "verify westd35807 gpu state",
+  "task_key": "worker_verify_westd35807_gpu_state_20260527T144902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_westd35807_gpu_state_20260527T144902_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "f8d0bbd7b7e52115323ff41171f43490b21e2ae3027d38e622dce96aca79e805"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "与期望状态**完全一致**：\n\n| GPU | 显存占用 | GPU利用率 | PID | 运行时长 | 任务 |\n|-----|---------|----------|-----|---------|------|\n| cuda:0 | 0 MiB / 97887 MiB | 0% | — | — | 空闲 ✓ |\n| cuda:1 | 19055 MiB / 97887 MiB | 100% | 856552 | 23h49m | Stage 1 seed0 λ=0.005 ✓ |\n| cuda:2 | 27045 MiB / 97887 MiB | 100% | 856471 | 23h52m | Stage 2 seed2 λ=0 (resume) ✓ |\n| cuda:3 | 27037 MiB / 97887 MiB | 92% | 341425 | 1d 2h21m | LoRA baseline seed0 ✓ |\n\n三个训练进程均在正常运行，cuda:0 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-westd35807-gpu-state.md"
+}

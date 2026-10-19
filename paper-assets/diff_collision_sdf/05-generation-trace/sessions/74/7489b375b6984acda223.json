@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7489b375b6984acda223",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "harvest eval json details",
+  "task_key": "worker_harvest_eval-json-details_20260528T101925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_eval-json-details_20260528T101925_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "d1aa663d404db64928a0664be3273c3c7090200b3b98ee597caa73fa19572110"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总（frozen_rate 字段不存在）：\n\n## LoRA Baseline (seed0)\n\n| | eseed0 | eseed99 | **平均** |\n|---|---|---|---|\n| **avg_CAR** | 0.5300 | 0.5750 | **0.5525** |\n| **avg_TSR** | 0.5550 | 0.5200 | **0.5375** |\n\nPer-task (eseed0 / eseed99):\n| Task | CAR | TSR | avg_max_ee_disp |\n|---|---|---|---|\n| orange_juice | 0.46 / 0.58 | 0.32 / 0.26 | 0.4008 / 0.3895 |\n| chocolate_pudding | 0.70 / 0.76 | 0.74 / 0.76 | 0.4166 / 0.4141 |\n| milk | 0.74 / 0.66 | 0.48 / 0.42 | 0.3538 / 0.3584 |\n| bbq_sauce | 0.22 / 0.30 | 0.68 / 0.64 | 0.3892 / 0.3999 |\n\n## SDF λ=0.1 (seed0)\n\n| | eseed0 | eseed99 | **平均** |\n|---|---|---|---|\n| **avg_CAR** | 0.5250 | 0.5700 | **0.5475** |\n| **avg_TSR** | 0.4850 | 0.4650 | **0.4750** |\n\nPer-task (eseed0 / eseed99):\n| Task | CAR | TSR | avg_max_ee_disp |\n|---|---|---|---|\n| orange_juice | 0.50 / 0.58 | 0.26 / 0.26 | 0.3975 / 0.3871 |\n| chocolate_pudding | 0.78 / 0.74 | 0.74 / 0.70 | 0.4093 / 0.4093 |\n| milk | 0.68 / 0.68 | 0.26 / 0.36 | 0.3557 / 0.3583 |\n| bbq_sauce | 0.14 / 0.28 | 0.68 / 0.54 | 0.3853 / 0.3941 |\n\n## 对比（双 seed 平均）\n\n| Model | avg_CAR | avg_TSR |\n|---|---|---|\n| LoRA Baseline | **0.5525** | **0.5375** |\n| SDF λ=0.1 | 0.5475 | 0.4750 |\n\nSDF 在 CAR 上基本持平（-0.005），TSR 下降 6.25pp。frozen_rate 字段不存在于这些 JSON 中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-json-details.md"
+}

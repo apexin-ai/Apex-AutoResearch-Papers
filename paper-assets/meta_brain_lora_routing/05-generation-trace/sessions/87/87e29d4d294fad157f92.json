@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87e29d4d294fad157f92",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "validate classifier pipeline test",
+  "task_key": "worker_validate_classifier-pipeline-test_20260515T130645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validate_classifier-pipeline-test_20260515T130645_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "8cf98ec4e858626636634d7b1ac03f882e930d2238a07a3c1cb907d4ac146d6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 端到端测试结果汇总\n\n| 步骤 | 模式 | 结果 | 耗时 |\n|------|------|------|------|\n| Step 3: train 单次 (3-class) | 3class, both, mean, 10 epochs | 5-fold CV 完成, 0.3778±0.1333 | ~8s |\n| Step 4: sweep (6-class) | 6class, 27 configs, 5 epochs | 全部完成, sweep_summary 已生成 | ~90s |\n| Step 5: eval (3-class) | 3class 模型评估 | confusion_matrix.png/csv + tsne.png + metrics.json | ~7s |\n| Step 6a: train binary | binary, both, mean, 10 epochs | 5-fold CV 完成, 0.8810±0.0337 | ~5s |\n| Step 6b: eval binary | binary 模型评估 | confusion_matrix + roc_curve + pr_curve + tsne | ~7s |\n| Step 7: 清理 | 删除 fake 数据 | 完成 | <1s |\n\n### 全部通过，0 个 bug\n\n- **3-class / 6-class / binary** 三种模式全部正常\n- **Sweep** 27 个配置 (3 pooling × 3 source × 3 lr) 全部完成，每个配置有 best_model.pt + result.json\n- **可视化**: confusion_matrix.png/csv, tsne.png, roc_curve.png, pr_curve.png 均正常生成\n- **ROC-AUC** (binary): 0.9924\n- sklearn 的 UndefinedMetricWarning (3-class eval 中某些类无预测) 是 fake 数据的预期行为，不是 bug"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/validate-classifier-pipeline-test.md"
+}

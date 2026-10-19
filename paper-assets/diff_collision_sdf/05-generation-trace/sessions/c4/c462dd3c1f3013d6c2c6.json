@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c462dd3c1f3013d6c2c6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops verify 4 jobs alive v2",
+  "task_key": "worker_ops_verify_4_jobs_alive_v2_20260525T095721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_4_jobs_alive_v2_20260525T095721_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "d5b029f0255d42f4ddb450e6c823450fac5749226e639070c482d32b92301175"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告：1 存活 / 3 已死\n\n| 任务 | 状态 | 说明 |\n|------|------|------|\n| `train_pi05_a1_spatial_bowl_s0_l005` | ✗ 已死 | `ValueError: quantile stats must be provided if use_quantile_norm is True. Key state is missing q01 or q99.` EXIT_CODE=1 |\n| `train_pi05_phase2_lambda0_s0` | ✓ 存活 | Step 7/10000, loss=0.1352, ~1.6s/it, GPU 0 占用 7.64GB/19.27GB |\n| `eval_pi05_a1_30k_s1_l005_v2` | ✗ 已死 | `unrecognized arguments: --checkpoint_path ... --scene object_pudding` EXIT_CODE=2 |\n| `eval_pi05_a1_30k_s2_l005_v2` | ✗ 已死 | 同上，参数解析错误 EXIT_CODE=2 |\n\n**GPU**: 仅 GPU 0 在用 (8%, 7819MiB/97887MiB)，GPU 1-3 空闲。\n\n**崩溃原因**:\n- **spatial_bowl 训练**: quantile normalization 配置问题 — `use_quantile_norm=True` 但缺少 q01/q99 统计量\n- **两个 eval**: `eval_safelibero.py` 不认识 `--checkpoint_path` 和 `--scene` 参数，启动脚本参数写错了"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-4-jobs-alive-v2.md"
+}

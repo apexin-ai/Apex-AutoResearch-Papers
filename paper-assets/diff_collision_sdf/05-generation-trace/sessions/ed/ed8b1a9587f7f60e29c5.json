@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "ed8b1a9587f7f60e29c5",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code integration fix and launch",
+  "task_key": "worker_code_integration_fix_and_launch_20260519T184519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_integration_fix_and_launch_20260519T184519.log",
+    "occurrence": 1,
+    "bytes": 2099606,
+    "sha256": "2e0fa4dd01c3fbddb2f95c9cf8d7392a6f5488ecac40d851613923cb367e9980"
+  },
+  "statistics": {
+    "messages": 1062,
+    "user_turns": 1,
+    "tool_calls": 397,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 260,
+      "tool_call": 397,
+      "tool_result": 397,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 475,
+      "chunks": [
+        {
+          "path": "ed8b1a9587f7f60e29c5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ed8b1a9587f7f60e29c5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ed8b1a9587f7f60e29c5-part-0003.json",
+          "message_count": 115
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 587,
+      "chunks": [
+        {
+          "path": "ed8b1a9587f7f60e29c5-part-0003.json",
+          "message_count": 65
+        },
+        {
+          "path": "ed8b1a9587f7f60e29c5-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "ed8b1a9587f7f60e29c5-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "ed8b1a9587f7f60e29c5-part-0006.json",
+          "message_count": 162
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-integration-fix-and-launch.md"
+}

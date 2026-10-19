@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1c5c25122555b9ce194",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix appendix baseline pertask tsr",
+  "task_key": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_appendix_baseline_pertask_tsr_20260528T011343_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "4786633fee8b1eb78290bc04d673547689651848349a544e7b5246d8988b2259"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，验证通过：\n\n1. Baseline per-task TSR：74.0 / 80.0 / 66.0 / 66.0 ✓\n2. Mean = 71.5 ✓\n3. Caption 已移除 \"per-task reeval data not available\"，改为 \"unified seed-7 re-evaluation\" ✓\n4. Baseline 列头从 \"(3 seeds)\" 改为 \"(seed=7)\" ✓\n5. LoRA 列不变：30.0 / 70.7 / 44.7 / 60.7 / 51.5 ✓\n6. SDF 两列未改动 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-appendix-baseline-pertask-tsr.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89cd6b039e79c8d3ba0f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code baseline training prep",
+  "task_key": "worker_code_baseline_training_prep_20260519T175659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_baseline_training_prep_20260519T175659_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "09c345290370987689f515710c44df5b719fe5c61a8cfefdde7c07286dfb38a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。总结：\n\n**已部署到服务器 (`/root/colliforce-vla/scripts/`)**：\n- `train_baseline.py` — LoRA fine-tune 脚本，支持单/多 GPU、dry-run、WandB\n- `eval_safelibero.py` — SafeLIBERO 评估脚本，输出 CAR/TSR/轨迹平滑度\n\n**已验证**：\n- openpi config 导入 ✅（5 个 LIBERO config 可用）\n- SafeLIBERO benchmark 导入 ✅（4 suite 全部有 Level I/II init_states）\n- 环境兼容性修复：datetime.UTC patch、缺失依赖补装、.safelibero 路径配置\n\n**无法 dry-run**：训练数据（Worker 2）和 pi0_base 权重（Worker 1）均未就绪。报告在 `artifacts/report_baseline_prep.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-baseline-training-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "550e216ac8925aa4d0e7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix unify reeval data",
+  "task_key": "worker_fix_unify_reeval_data_20260528T000824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_unify_reeval_data_20260528T000824_result.json",
+    "occurrence": 1,
+    "bytes": 2477,
+    "sha256": "8e4e2c6599c497f210cc301fe186ddf1c125c84d5de51c11b494d85967c4f907"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，16 页，无错误。\n\n---\n\n## 产出\n\n### 1. 最终数字表（reeval 统一值）\n\n| 条件 | Seeds | TSR (%) | CAR (%) | SSR (%) | SSR/TSR | EE Disp (m) |\n|------|-------|---------|---------|---------|---------|-------------|\n| Baseline | 1 | 71.5 | 28.5 | 28.0 | 0.39 | 0.367 |\n| LoRA-only | 3 | 51.5±0.0 | 54.83±2.25 | 27.7 | 0.54 | 0.391 |\n| λ=0.005 | 3 | 54.0±3.0 | 54.5±2.29 | 27.8 | 0.51 | 0.387 |\n| λ=0.01 | 3 | 53.8±1.5 | 56.33±1.61 | 30.2 | 0.56 | 0.389 |\n| λ=0.1† | 2 | 48.0±1.4 | 58.25±0.35 | 26.5 | 0.55 | 0.394 |\n\n### 2. 修改清单\n\n| 文件 | 旧值 → 新值 |\n|------|-------------|\n| **claim3.tex:3** | ~28 pp → ~26 pp |\n| **claim3.tex:15** | 74.7±1.5 / 26.8±1.6 / Seeds=3 → 71.5 / 28.5 / Seeds=1 |\n| **claim3.tex:17** | TSR 49.7±3.2 → 51.5±0.0 |\n| **claim3.tex:27** | 26.8%→54.83%, ~28pp → 28.5%→54.83%, ~26pp |\n| **claim3.tex:30** | ~21–25pp, 74.7%→49.7–54.0%, 0.33, 0.51–0.57 → ~18–20pp, 71.5%→51.5–54.0%, 0.39, 0.51–0.56 |\n| **claim1.tex:3** | dfCAR=26.8%±1.6 → dfCAR=28.5% |\n| **claim1.tex:19** | Pi0.5(3-seed)/600/26.8±1.6/74.7±1.5/26.8 → Pi0.5/200/28.5/71.5/28.5 |\n| **introduction.tex:16** | TSR=74.7%, CAR=26.8% → TSR=71.5%, CAR=28.5% |\n| **introduction.tex:20** | ~28 points → ~26 points |\n| **introduction.tex:27** | ~28pp → ~26pp |\n| **abstract.tex:5** | ~28 pp → ~26 pp |\n| **discussion.tex:6** | ~28pp → ~26pp |\n| **discussion.tex:12** | ~21–25pp, 0.33, 0.51–0.57 → ~18–20pp, 0.39, 0.51–0.56 |\n| **appendix.tex:128** | 0.33→0.51–0.57 → 0.39→0.51–0.56 |\n| **appendix.tex:136** | 74.7/26.8/25.0^a/0.33 → 71.5/28.5/28.0/0.39 |\n| **appendix.tex:137** | 49.7/28.3/0.57 → 51.5/27.7/0.54 |\n| **appendix.tex:144** | 移除 ^a Estimated 脚注 |\n| **appendix.tex:67** | 表注增加 baseline 使用原始 3-seed 评估说明 |\n| **method.tex:5** | 增加 eval seed=7 协议说明 |\n\n### 3. 旧值残留扫描\n\n- **74.7**: 仅存于 `archive/`（非活跃）和 `appendix.tex:81`（per-task TSR 分解表的 baseline 均值，对应 per-task 子项之和，无 per-task reeval 数据故保留，已在表注中标注）\n- **49.7**: 仅存于 `archive/`\n- **26.8**: 仅存于 `archive/`\n- **0.33**: 仅存于 `claim3.tex:27` 的 \"within 0.33\\,pp\"（CAR 差值 54.83−54.5，正确）\n\n### 4. 编译结果\n\n`latexmk -pdf main.tex` 成功，输出 16 页 PDF，无错误无警告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-unify-reeval-data.md"
+}

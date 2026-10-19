@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6bc9bfb994281fa8604",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops disk cleanup execute 35807",
+  "task_key": "worker_ops_disk-cleanup-execute-35807_20260528T232852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-execute-35807_20260528T232852_result.json",
+    "occurrence": 1,
+    "bytes": 328,
+    "sha256": "ac3a028edd3cba92af1368ebb3ad2306afc246e70fc3374154e6144990bdffa4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 346G (99%) | 268G (77%) |\n| 可用 | 4.3G | 83G |\n| 回收 | — | **78G** |\n\n15 项全部执行：4 个空/近空目录 + 11 个中间 checkpoint（各 7.2G）。每个实验的 best/ 和最高 step 均已保留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-execute-35807.md"
+}

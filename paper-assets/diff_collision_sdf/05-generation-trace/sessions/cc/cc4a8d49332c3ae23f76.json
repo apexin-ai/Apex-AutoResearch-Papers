@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc4a8d49332c3ae23f76",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops final eval prep",
+  "task_key": "worker_ops_final_eval_prep_20260524T043016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final_eval_prep_20260524T043016_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "3a0571d042a940cae8d53ec7ebdd114afac94a1ff4aac21a57ad4a663047b8eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入 `artifacts/eval_commands_d012_final.md`。\n\n## 检查结果汇总\n\n| 检查项 | 状态 | 备注 |\n|--------|------|------|\n| eval 脚本 (两台) | ✅ | `eval_pi05_safelibero.py` 和 `serve_policy.py` 均存在 |\n| Checkpoint 结构 | ✅ | 每 2000 步保存，`30000/` 会在训练结束时生成 |\n| Mid-eval JSON | ⚠️ | s0 (westd-45947) 已有 2 个 JSON；**s1/s2 无 mid-eval 结果**（训练在 mid-eval 前因磁盘满崩溃） |\n| 磁盘空间 | ✅ | 45947: 75GB free, 35807: 225GB free |\n| 输出目录 | ❌ | `d012_final/` 尚未创建，eval 前需 `mkdir -p` |\n\n## 关键发现：训练时间修正\n\n原预估严重偏早：\n\n| | 原预估 | 实际预估 | 差异 |\n|--|--------|----------|------|\n| westd-45947 s0 | 10:20 UTC | **~18:00 UTC** | +7.7h |\n| westd-35807 s1/s2 | 13:30 UTC | **~21:30 UTC** | +8h |\n\n原因：s1/s2 在 step ~22000 时因 westd-35807 磁盘满崩溃，从 22000 恢复后延迟了约 8 小时。s0 也比预估慢（可能原预估基于更早的速度）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-final-eval-prep.md"
+}

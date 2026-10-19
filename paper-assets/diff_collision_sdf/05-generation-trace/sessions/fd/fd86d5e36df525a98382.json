@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd86d5e36df525a98382",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code fix displacement metric",
+  "task_key": "worker_code_fix_displacement_metric_20260525T185321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_displacement_metric_20260525T185321_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "183ead9d602620a44906ba54b6915af57be23da1fdd65aeb1441ac2d7186e04c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，语法验证通过。变更汇总：\n\n| 行号 | 变更 |\n|------|------|\n| L933 | `initial_eef_pos = obs.get(\"robot0_eef_pos\", ...).copy()` — warmup 结束后记录 EE 初始位置 |\n| L941 | `max_ee_displacement = 0.0` — 初始化 |\n| L1025-1026 | 每 step 计算 `ee_disp = np.linalg.norm(eef_pos - initial_eef_pos)`，更新 `max_ee_displacement` |\n| L1057 | `ep_result` 新增 `\"max_ee_displacement\"` 字段 |\n| L1098 | 汇总新增 `avg_max_ee_disp` |\n| L1110 | summary dict 新增 `\"avg_max_ee_displacement\"` |\n\n原有 `max_displacement`（障碍物位移）字段完整保留。备份在 `eval_safelibero.py.bak`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-displacement-metric.md"
+}

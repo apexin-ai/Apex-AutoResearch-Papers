@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7620636e49201a6be2f1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh kill old a3 processes",
+  "task_key": "worker_ssh_kill_old_a3_processes_20260520T072830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_old_a3_processes_20260520T072830_result.json",
+    "occurrence": 1,
+    "bytes": 653,
+    "sha256": "1fd20f6f36c202d5330b038cadf2a6bec83e416c735d508944b9165a96a57e83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。总结：\n\n- **已 kill**: 旧 python 进程 38485 (GPU 0) 和 38564 (GPU 1)\n- **保留运行中**: 新进程 50328 (GPU 0, spatial_bowl) 和 50407 (GPU 1, object_pudding)，均为 `--save_interval 2000 --resume`\n- **GPU 显存**: 每卡从 ~34GB 降到 ~17GB\n- **Checkpoint 状态**:\n  - `spatial_bowl`: step 2500 (14:54) 和 3000 (15:23)\n  - `object_pudding`: step 2500 (15:04)\n  \n  这些 checkpoint 数据有效，无需删除。\n\n另外旧任务的 shell wrapper 进程（PID 33877/33881/33882/33956/33960/33961/38479/38480 等）仍残留，不占 GPU 但占少量内存，需要的话可以一并清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-old-a3-processes.md"
+}

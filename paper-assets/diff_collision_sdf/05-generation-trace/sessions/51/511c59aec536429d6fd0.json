@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "511c59aec536429d6fd0",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix eval pipeline v6",
+  "task_key": "worker_fix_eval_pipeline_v6_20260521T201341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_pipeline_v6_20260521T201341_result.json",
+    "occurrence": 1,
+    "bytes": 2378,
+    "sha256": "a62b2718b590d35344dc4532c72cb1b48ed1157524d25c9929cb911ecfbb2fd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_v6_a3 正在加载模型。一切正常。\n\n---\n\n## 汇报\n\n### 1. Bug B 修复 ✅\n- **文件**: `/root/colliforce-vla/scripts/eval_safelibero.py` 行 314\n- **修改**: `next_ee = current_ee + action[:3]` → `next_ee = action[:3]`\n- openpi 使用 AbsoluteActions，action[:3] 本身就是绝对目标位置，不需要加 current_ee\n\n### 2. Bug A 排查结果 ✅ — 根因找到并修复\n两个子问题：\n\n**A.1 — Settle 步数不足**：原代码只用 5 步 settle，但诊断发现多个障碍物（尤其 milk_obstacle_1）在 5 步后仍在大幅运动（z 从 0.96→0.14，位移 0.82m）。改为 50 步。\n\n**A.2 — 跟踪了工作空间外的障碍物**：Level II 配置下，6 个障碍物中只有 1 个（moka_pot）在工作空间内（x,y ∈ [-0.5, 0.5], z > 0），其余被放在 10-20m 外。AEGIS 源码只跟踪工作空间内的障碍物，但我们跟踪了全部 6 个。添加了 AEGIS 标准的工作空间边界过滤。\n\n**修复效果**：\n- collision_step: 0 → **219**（从虚假碰撞变为真实碰撞）\n- max_displacement: 0.822m → **0.033m**\n\n### 3. Bug C 阈值调研 ✅\n- 当前值：`COLLISION_THRESHOLD = 0.001`（1mm，L1 范数 `np.sum(np.abs(...))`）\n- **AEGIS 源码确认**：`main_aegis.py` 行 370 使用完全相同的阈值和检测方式 `np.sum(np.abs(...)) > 0.001`\n- **结论**：阈值与 AEGIS 标准一致，无需修改\n\n### 4. Dry-run 结果\n\n| 指标 | 修复前（v5） | 修复后（v10） |\n|------|-------------|--------------|\n| collision_step | 0（虚假） | **219**（真实） |\n| max_displacement | 0.822m | **0.033m** |\n| refine_count | 0 | 0 |\n| sdf_min | 0.42 | **0.81** |\n| TSR | 0% | 0% |\n| CAR | 0% | 0% |\n\nrefine_count 仍为 0：SDF 预测值始终远高于 refine_margin（sdf_min=0.81 >> margin=0.01），所以 refinement 未触发。这可能说明 SDF decoder 预测偏高或 refine_margin 需要调高。\n\n### 5. 全量 eval 状态\n- **A3 refine (50ep)** — 已提交，tmux session `eval_v6_a3`，westd-45947 GPU 1，预计 ~2.5h\n- **A3 no_refine (50ep)** — 排在 refine 后串行执行\n- **Baseline (50ep)** — **被阻塞**：westd-35807 所有 4 GPU 都在训练中，无空闲 GPU。19GB 的 baseline checkpoint 也无法跨服务器传输到 westd-45947。需要等 westd-35807 有 GPU 空闲后再跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-pipeline-v6.md"
+}

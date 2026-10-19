@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71cc7efaa38a0456e6d4",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops prep eval westd35807",
+  "task_key": "worker_ops_prep_eval_westd35807_20260523T004307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep_eval_westd35807_20260523T004307_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "bcf3c059ece2df0b7ec4324d3a20d3a5ec77d866876f30b1116b330b57062504"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/eval_readiness_westd35807.md`。\n\n**检查结果汇总**：\n\n| 检查项 | 状态 |\n|--------|------|\n| 项目代码 | ✅ `/root/colliforce-vla` |\n| eval 脚本 | ⚠️ 存在但缺少增强 metric |\n| 测试数据 (safelibero_object) | ✅ |\n| Pi0.5 base checkpoint | ✅ 6.7GB |\n| 训练 checkpoint | ⏳ 4个目录已建，文件尚未生成 |\n| GPU | ✅ 4x RTX PRO 6000 全部训练中 |\n| 依赖 (openpi_client, libero) | ✅ 在 libero conda env 中 |\n\n**P0 阻塞项**：`eval_pi05_safelibero.py` 缺少 `robot_total_displacement`、`min_ee_obstacle_distance`、`is_frozen/frozen_rate`、pass/fail gate (CAR≥33% + TSR≥50%)。需下一个 worker 修复后才能执行有效的 D012 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-eval-westd35807.md"
+}

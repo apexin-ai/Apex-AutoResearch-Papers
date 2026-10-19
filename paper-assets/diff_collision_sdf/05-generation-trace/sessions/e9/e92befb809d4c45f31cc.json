@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e92befb809d4c45f31cc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose train pi05 a1 obj s0 l01 high",
+  "task_key": "worker_diagnose_train_pi05_a1_obj_s0_l01_high_20260527T091410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_train_pi05_a1_obj_s0_l01_high_20260527T091410_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "d091cd8c298483c12d5e1149a1a9ebdeb62e68effc7677b3e93dcefb1ab02d4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已在之前的 session 中清理）。无影响。\n\n## 诊断结果\n\n**状态: 训练成功完成 ✓**\n\n| 项目 | 值 |\n|------|-----|\n| 最终步数 | 30000/30000 (100%) |\n| 最终 loss | 0.0153 (action=0.0116, sdf=0.0369, ee=0.0035) |\n| 训练时长 | ~33h 54m |\n| Checkpoint | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/30000` |\n| Checkpoint 文件 | model.safetensors, optimizer.pt, metadata.pt, sdf_decoder.pt, ee_extractor.pt, aux_metadata.pt, norm_stats.json |\n| 保留的 checkpoints | 29999, 30000, best |\n| 错误 | 无 |\n\nRegistry 已更新: status=DONE, conclusion=success, checkpoint_path 和 log_path 已设置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-train-pi05-a1-obj-s0-l01-high.md"
+}

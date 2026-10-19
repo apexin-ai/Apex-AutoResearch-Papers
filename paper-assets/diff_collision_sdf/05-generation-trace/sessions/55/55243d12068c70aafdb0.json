@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "55243d12068c70aafdb0",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "research a3 lora inference audit",
+  "task_key": "worker_research_a3_lora_inference_audit_20260522T095138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_a3_lora_inference_audit_20260522T095138.log",
+    "occurrence": 1,
+    "bytes": 651095,
+    "sha256": "2e98e117aceba7258b685aab4214b1954dc12e52c9f50c9135991d06e4850e07"
+  },
+  "statistics": {
+    "messages": 256,
+    "user_turns": 0,
+    "tool_calls": 101,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 101,
+      "tool_result": 101,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 256,
+      "chunks": [
+        {
+          "path": "55243d12068c70aafdb0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "55243d12068c70aafdb0-part-0002.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-a3-lora-inference-audit.md"
+}

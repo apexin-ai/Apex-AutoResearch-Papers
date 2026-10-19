@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ca330f8d9d9cd0b6dd3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check eval phase2 lambda0 s2 result",
+  "task_key": "worker_ops_check_eval_phase2_lambda0_s2_result_20260526T115657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_eval_phase2_lambda0_s2_result_20260526T115657_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "74854064976b69d1de4f9eb265b88d506b3c24db42288774f969a6bd6247ed9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron，可能已被清理或未创建。Registry 已更新为 DONE。\n\n## eval_phase2_lambda0_s2 结果 (Phase 2 λ=0, seed 2, 10K step)\n\n| Task | Name | TSR (%) | CAR (%) | EE Disp (m) | Frozen (%) |\n|------|------|---------|---------|-------------|------------|\n| 0 | orange_juice → basket | 30.0 | 56.0 | 0.3837 | 0.0 |\n| 1 | chocolate_pudding → basket | 76.0 | 74.0 | 0.4059 | 0.0 |\n| 2 | milk → basket | 42.0 | 74.0 | 0.3565 | 0.0 |\n| 3 | bbq_sauce → basket | 66.0 | 26.0 | 0.3903 | 0.0 |\n| **Mean** | | **53.5** | **57.5** | **0.3841** | **0.0** |\n\n- Frozen rate = 0%（所有 episode 的 max_ee_displacement 均远大于 0.0001m 阈值）\n- Registry 已更新：metrics、conclusion=success、checkpoint_path、log_path，状态转 DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-phase2-lambda0-s2-result.md"
+}

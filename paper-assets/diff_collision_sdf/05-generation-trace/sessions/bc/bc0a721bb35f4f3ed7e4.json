@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc0a721bb35f4f3ed7e4",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research related work literature",
+  "task_key": "worker_research_related_work_literature_20260519T174258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_literature_20260519T174258_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "0c2737fbcd7e9568854f21ce6ddeb49031cee94250a2a562ab7c09d7661d522c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献地图已写入 `artifacts/literature_review.md`。\n\n覆盖 26 篇论文（Cat1: 14篇, Cat2: 3篇, Cat3: 8篇, Cat4: 1篇 + 4篇补充），包含：\n- 每篇的完整信息、方法概要、关系标签、baseline判定、代码可用性\n- 6 个必须对比的 baselines（P0: AEGIS, QDepth-VLA, Vanilla VLA；P1: SafeVLA, Spatial Forcing；P2: DepthVLA），**所有 P0 baselines 代码均已开源**\n- SafeLIBERO 目前仅 AEGIS 有结果，我们将是第二个\n- 代码可用性风险评估：整体开源率约 46%，但关键 baselines 无风险"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-literature.md"
+}

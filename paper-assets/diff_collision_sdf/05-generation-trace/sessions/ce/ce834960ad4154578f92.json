@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce834960ad4154578f92",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnostic training progress check 20260526",
+  "task_key": "worker_diagnostic_training_progress_check_20260526_20260526T174713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnostic_training_progress_check_20260526_20260526T174713_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "a143b1f31d81f1dc78b6dc232445179b9438f019aec0af0f914767cbf5ee621e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| # | 实验 | 服务器 | Step | 进度 | 速度 | 预估完成 (UTC) |\n|---|------|--------|------|------|------|----------------|\n| 1 | spatial_bowl SDF s0 | 35807:0 | 26374/30000 | 88% | 4.64s/it | May 27 ~06:30 |\n| 2 | obj_s0 λ=0.1 | 35807:1 | 18100/30000 | 60% | 4.62s/it | May 27 ~17:00 |\n| 3 | obj_s1 λ=0.1 | 35807:2 | 17573/30000 | 59% | 4.63s/it | May 27 ~17:45 |\n| 4 | spatial_bowl lora baseline | 35807:3 | 7825/30000 | 26% | 4.62s/it | May 28 ~06:15 |\n| 5 | lora_baseline s2 | 45947:0 | 15497/30000 | 52% | 4.60s/it | May 27 ~20:15 |\n| 6 | obj_s2 λ=0.1 | 45947:1 | 5847/30000 | 19% | 4.60s/it | May 28 ~08:40 |\n\n**关键发现：**\n- **spatial_bowl SDF 不需要 resume**，速度从 9s/it 降到 4.64s/it，~5h 内完成\n- **λ=0.1 三个 seed**：s0/s1 进度接近（60%/59%），s2 因启动晚仅 19%\n- **所有 GPU 100% 利用率**，无 OOM/NaN/loss spike\n- 报告已写入 `artifacts/training_progress_20260527.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostic-training-progress-check-20260526.md"
+}

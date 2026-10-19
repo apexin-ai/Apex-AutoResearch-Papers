@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec160101bbd8d0a45ed2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis negative results classification",
+  "task_key": "worker_analysis_negative_results_classification_20260525T090822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_negative_results_classification_20260525T090822_result.json",
+    "occurrence": 1,
+    "bytes": 8471,
+    "sha256": "82bc59aba973b310f911150c305cf2c9b8b2205502fac1a8bc62d38f7576f586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全，开始分类。\n\n---\n\n## 16 个 Negative Results 系统分类\n\n### 完整分类表格\n\n| # | exp_id | hypothesis 摘要 | negative 原因 | 分类 | 分类理由 |\n|---|--------|----------------|---------------|------|----------|\n| 1 | `eval_a1_lora_object_v11_rerun` | A1 SDF aux loss + LoRA 在 object 上的避碰能力 | CAR=91.5% 但 99.6% fake safe (displacement<1μm)，TSR=0%。CAR 提升完全来自 action collapse 而非真实避障 | **正文讨论** | Claim 1 (fake safety) 主证据，800ep 大规模验证，揭示 CAR 指标被 action collapse 系统性污染 |\n| 2 | `eval_pi05_safelibero_object_v11` | Pi0.5 作为更强 VLA 是否隐式避碰更好 | CAR=28%（远低于 Pi0 baseline 83%），real safe rate 仅 0.5%。更强模型反而更多碰撞 | **正文讨论** | Claim 2 主证据，reviewer 必问 \"stronger model helps safety?\"，答案是反直觉的否 |\n| 3 | `eval_pi05_safelibero_spatial_v11` | Pi0.5 在 spatial 场景是否自然避开 arm-body 碰撞 | CAR=13%，几乎全来自 Task 3 (52%)，其余≈0%。更好的 base model 不能解决 arm-body 碰撞 | **正文讨论** | 支撑 Claim 2+3，spatial arm-body 碰撞即使换强模型也无法缓解，定义了 EE-only SDF 的结构性边界 |\n| 4 | `oracle_true_gt_adaptive_alpha_v11` | GT SDF + adaptive alpha refinement 是否能提升 CAR | CAR=75% < baseline 82-83%，98.3% fake safe。Refinement 主动降低 CAR | **正文讨论** | Claim 3 oracle 三重验证之一，排除 \"alpha 不对\" 的解释。SDF 梯度推 EE → arm body 扫过障碍物 |\n| 5 | `oracle_true_gt_fixed_alpha_v11` | GT SDF + conservative fixed alpha=0.005 是否改善 CAR | CAR=73.1% < baseline，与 adaptive 仅差 2pp。Alpha 大小不是关键 | **正文讨论** | Oracle 三重验证之二，控制变量排除 alpha magnitude 因素 |\n| 6 | `oracle_true_gt_feature_v11` | Feature-space oracle 是否优于 action-space oracle | CAR=76.9% < baseline 79%，96.7% fake safe。Feature-space 梯度更弱但更频繁，无改善 | **正文讨论** | Oracle 三重验证之三，排除 \"train-eval refine mismatch\" (M028) 解释，关闭 A3 最后一个可能 |\n| 7 | `eval_a1_lora_spatial_v11` | A1 SDF aux loss 在 spatial 场景是否有效 | CAR=0.8%，6 个 safe episodes 全部 displacement=0 (action collapse)。EE-only SDF 对 arm-body 碰撞无效 | **正文讨论** | 直接验证 Claim 3 的 spatial 维度，reviewer 会问 \"SDF 在 spatial 场景怎么样？\"。EE-only 的结构性限制 |\n| 8 | `eval_a3_v11_object` | A3 首次 valid eval (M019+M020+M022 修复后) | TSR=0%, CAR=74.5%, refined_count=0。SDF refinement 从未触发 | **Appendix** | A3 失败诊断链的第一环，被后续 oracle 实验彻底 supersede，但提供 \"refinement 不触发\" 的补充细节 |\n| 9 | `eval_a3_object_m024fix_v11` | M024 坐标修复后 A3 是否改善 | CAR=77.1%, refined=0。修复坐标后仍然不触发 refinement | **Appendix** | 诊断链的第二环，说明问题不在坐标转换。价值在于排除 delta→absolute 为 root cause |\n| 10 | `eval_baseline_v11_object` | Baseline v11 (action chunking 修复后) 参考 | TSR=0.5%, CAR=83%。Action chunking 未解决 TSR≈0% | **Appendix** | 基准参考数据点，非核心 finding，但论文 Table 必须包含。negative 因为 TSR≈0% |\n| 11 | `eval_lora_baseline_object_v11` | LoRA baseline 与 full-FT baseline 在 object 上的差异 | TSR=0%, CAR=82%。LoRA 与 full-FT 的 CAR 几乎一致 | **Appendix** | 公平比较基线（同参数预算），本身不是 core claim 的证据，但 Table 中必须有 |\n| 12 | `eval_lora_baseline_spatial_v11` | LoRA baseline 在 spatial 上的参考 | TSR=0%, CAR=0%。LoRA 在 spatial 也完全失败 | **Appendix** | 与 full-FT spatial baseline (CAR=0%) 一致，确认 spatial 困难不是 LoRA 容量问题 |\n| 13 | `eval_baseline_fullft_spatial_v11` | Full-FT baseline 在 spatial 是否 CAR>0% | TSR=0.4%, CAR=0%。800ep 全部碰撞 | **Appendix** | 确认 spatial 对所有方法 CAR≈0%，排除 LoRA 容量瓶颈假说。非核心 claim 但支持 spatial 难度论述 |\n| 14 | `oracle_a3_force_refine_object_v11` | Force refine 测试 SDF gradient 方向是否正确 | M027: oracle 死代码，实际用 learned decoder 而非 GT SDF。结果无效 | **省略** | Bug 导致的无效实验（M027 oracle 死代码），被 true oracle 实验完全取代，无科学信息量 |\n| 15 | `oracle_a3_m024fix_object_v11` | M024 修复后 oracle refinement 是否有效 | M027: 同上，oracle 死代码。85.6% frozen，23/23 移动 episode 100% 碰撞 | **省略** | 同 #14，M027 invalidated。结论（fake safety）在 true oracle 实验中被正确复现 |\n| 16 | `eval_a3_v10a_refine` | A3 v10a 早期 eval（无 action chunking 修复） | TSR=0%, CAR=79.5%, refined=0。缺少 M020 修复 | **省略** | 早期版本，缺少 M019/M020 关键修复，被 v11 完全取代 |\n\n---\n\n### 各档数量统计\n\n| 分类 | 数量 | 实验 |\n|------|------|------|\n| **正文讨论** | 7 | #1-7 |\n| **Appendix** | 6 | #8-13 |\n| **省略** | 3 | #14-16 |\n\n---\n\n### 与 D019 分层一致性检查\n\nD019 明确列出的 Tier A 实验:\n- `a1_sdf_object_pudding_s0` (fake safety) → 对应我的 #1 `eval_a1_lora_object_v11_rerun` → **一致** (正文讨论)\n- 3× GT oracle (adaptive/fixed/feature) → 对应我的 #4-6 → **一致** (正文讨论)\n\nD019 Tier A 还提到的叙事类别（非独立 negative 实验）:\n- \"Gradient correction failure\" → 这是从 oracle 实验得出的机制分析，不是独立实验\n- \"Task 3 collision transfer (D017)\" → 这来自 Pi0.5+A1 positive 实验，不在 16 个 negative 中\n\nD019 Tier C 提到的：\n- \"A3 runtime refine 早期版本\" → 对应我的 #14-16 → **一致** (省略)\n\n**我与 D019 的差异** (3 处，均为 D019 未显式覆盖的实验):\n\n| 实验 | D019 | 我的分类 | 理由 |\n|------|------|----------|------|\n| `eval_pi05_safelibero_object_v11` | 未显式分层 | **正文讨论** | Claim 2 主证据，reviewer 必问项。D019 漏列可能因为它同时是 Pi0.5 baseline reference |\n| `eval_pi05_safelibero_spatial_v11` | 未显式分层 | **正文讨论** | Claim 2+3 交叉验证。与 object 版构成 spatial vs object 对比组，论文需要这个维度 |\n| `eval_a1_lora_spatial_v11` | 未显式分层 | **正文讨论** | Claim 3 的 spatial 验证，直接回答 \"A1 在 spatial 有没有用？\"。6/6 safe=fake 是 EE-only limitation 的直接证据 |\n\n这 3 个实验在 D019 中没有被分层，因为 D019 主要从 paper_framing 的 Claim 结构出发分层，而这 3 个实验跨 Claim 2 和 Claim 3，属于补充验证。我认为应升级为正文讨论，因为它们回答的都是 reviewer 必然追问的问题。\n\n---\n\n### 论文叙事建议：正文讨论的 7 个 negative results 最佳叙述顺序\n\n**推荐叙事结构：从现象到机制，层层深入**\n\n1. **开篇 — Fake Safety 揭露** (Claim 1)\n   - `eval_a1_lora_object_v11_rerun`: 800ep 定量证明 CAR=91.5% 中 99.6% 是 action collapse 产生的虚假安全\n\n2. **强化 — 更强模型也不能解决** (Claim 2)\n   - `eval_pi05_safelibero_object_v11`: Pi0.5 CAR=28%（反直觉：能力↑ → 碰撞↑）\n   - `eval_pi05_safelibero_spatial_v11`: spatial 场景更差，CAR=13%\n\n3. **机制 — Oracle 上界实验** (Claim 3 核心)\n   - 三组 GT SDF oracle 一起呈现（`adaptive` / `fixed` / `feature`），统一论述：\n     - 排除 alpha 因素（adaptive 75% vs fixed 73.1%，差 2pp）\n     - 排除 train-eval mismatch（feature-space 76.9% 同样失败）\n     - 结论：EE-only SDF gradient refinement 的理论上界低于 baseline，结构性不可行\n\n4. **收尾 — EE-only 边界条件** (Claim 3 补充)\n   - `eval_a1_lora_spatial_v11`: training-time SDF 在 spatial 也无效（CAR≈0%），因为碰撞来自 arm body 而非 EE\n\n**叙事原则**：\n- 用 \"we demonstrate\" / \"our analysis reveals\" 而非 \"we failed to\"\n- 每组 negative 收敛到一个 structural insight，避免 \"negative pile-up\" 感\n- Oracle 三组实验合并为一个 subsection（\"Oracle Upper Bound Analysis\"），不分散讲\n- Claim 2 的两个 Pi0.5 实验放在 Claim 1 之后，逻辑是 \"既然 fake safety 存在，更强模型也无法真正解决\"，自然过渡到 \"那 runtime refinement 呢？\" → oracle 实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-negative-results-classification.md"
+}

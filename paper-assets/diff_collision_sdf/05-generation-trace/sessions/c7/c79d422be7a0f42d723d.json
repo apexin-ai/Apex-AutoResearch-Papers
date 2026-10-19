@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c79d422be7a0f42d723d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper run paper switch",
+  "task_key": "worker_paper_run-paper-switch_20260528T033115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_run-paper-switch_20260528T033115_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "87555c41a04fc11c45eaac56927e31af4ebd06293c48eba5b0139bf6e7e7df64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **Dry-run**: 10/10 `[ok]`，Scenario=B（full redundancy）\n- **实际替换**: 3 个 tex 文件更新（abstract.tex 2处, claim3.tex 6处, discussion.tex 2处）\n- **PDF 编译**: 成功，`docs/paper/main.pdf` 已更新（563K, 时间戳 May 28 03:31）\n\n论文文本已切换为最终版。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-run-paper-switch.md"
+}

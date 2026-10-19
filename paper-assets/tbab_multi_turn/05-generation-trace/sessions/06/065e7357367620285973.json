@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "065e7357367620285973",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "diagnose mvp c1 s42 failure",
+  "task_key": "worker_diagnose_mvp_c1_s42-failure_20260518T084716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp_c1_s42-failure_20260518T084716_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "509c8956211774d1ca44e86cdbc946fcc0ac7283912bd2301f91eeec13fea9de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"raw\": \"**诊断结论**: mvp_c1_s42 失败原因是 **W&B API key 未配置**。\\n\\n- 脚本在 `train.py:98` 的 `wandb.init()` 处崩溃，exit code 1\\n- 服务器环境变量中无 `WANDB_API_KEY`，也无本地登录缓存\\n- 训练从未开始，未进入模型加载阶段\\n\\n**修复**: 在 westb-25721 上执行 `export WANDB_API_KEY=[REDACTED]\"<key>\\\"` 后重新启动，或设置 `WANDB_MODE=offline` 跳过在线记录。\\n\\n报告已保存至 `artifacts/diagnostics/mvp_c1_s42_failure.md`。\"\n}"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp-c1-s42-failure.md"
+}

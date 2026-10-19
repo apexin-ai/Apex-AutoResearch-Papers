@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8561836d409b10f3aa98",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval resubmit multiseed lora",
+  "task_key": "worker_eval_resubmit_multiseed_lora_20260528T191032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_resubmit_multiseed_lora_20260528T191032_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "3cc9f6334493e790fe64aca44b43682b719f03c32bb2ef3f05e30ff7c348c38b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 实验已提交并在运行，registry 已更新为 RUNNING。\n\n**汇总：**\n- `eval_multiseed_lora_s1_eseed0` — tmux session `eval_eseed0`，日志 `/tmp/eval_eseed0.log`\n- `eval_multiseed_lora_s1_eseed99` — tmux session `eval_eseed99`，日志 `/tmp/eval_eseed99.log`\n- 服务器：westd-35807，均在 cuda:0 上运行（该服务器只有 1 张 RTX PRO 6000 96GB，不存在 cuda:1）\n- 两个 eval 并行跑在同一张卡上，96GB 显存应足够"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-resubmit-multiseed-lora.md"
+}

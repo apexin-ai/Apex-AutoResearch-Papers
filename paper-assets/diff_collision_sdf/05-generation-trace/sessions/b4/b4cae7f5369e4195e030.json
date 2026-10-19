@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4cae7f5369e4195e030",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops ssh restore westd35807",
+  "task_key": "worker_ops_ssh_restore_westd35807_20260525T043634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ssh_restore_westd35807_20260525T043634_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "315289c602f93a91d8f6232bb32d97d986f4f825539cc00a2fdd0dcffd8a705b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-45947 可用。但 westd-35807 认证全面失败。\n\n**结论：westd-35807 SSH 无法恢复**\n\n- 端口 35807 正确（SSH daemon 有响应）\n- 密钥认证失败（公钥未在服务器 authorized_keys 中）\n- 密码 `28fEWux4lt/4` 被拒绝（paramiko 和 sshpass 双重验证）\n- resources.yaml 中 hardware 全为 0 说明今天的自动探测也失败了\n\n**原因推测**：AutoDL 实例可能被重装/重置，导致密码变更且 authorized_keys 丢失。\n\n**需要你操作**：\n1. 登录 AutoDL 控制台 → 找到 westd-35807 实例 → 获取当前 SSH 密码\n2. 提供新密码后我可以完成密钥部署和后续 checkpoint 核实\n\n如果实例已被释放/关机，也需确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ssh-restore-westd35807.md"
+}

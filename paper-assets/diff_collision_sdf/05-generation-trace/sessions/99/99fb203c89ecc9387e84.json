@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99fb203c89ecc9387e84",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper trim limitations",
+  "task_key": "worker_paper_trim-limitations_20260528T231253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_trim-limitations_20260528T231253_result.json",
+    "occurrence": 1,
+    "bytes": 152,
+    "sha256": "06859a29eb843f65f43e75df5e20f0dc00d01e8abf4010e3b477fffbc218865e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "21/21 通过。Limitations 段落已缩减约 280 字符（5 处修剪全部应用），验证脚本的 `old` 模式也已同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-trim-limitations.md"
+}

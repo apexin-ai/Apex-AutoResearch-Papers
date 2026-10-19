@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57e0dc5a05359d55fe5a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval s0 l01 cuda2",
+  "task_key": "worker_ops_eval_s0_l01_cuda2_20260525T183310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_s0_l01_cuda2_20260525T183310_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "c615a1d3385bcf42fbbbc62be75ae8b5e859f0ce023c8368df25e980b25ff2ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正常启动，正在加载模型。\n\n- **exp_id**: `eval_pi05_a1_30k_s0_l01`\n- **GPU**: westd-35807 cuda:2\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000`\n- **Output**: `/root/autodl-tmp/eval_results/eval_s0_l01_30k_final.json`\n- **Log**: `~/runs/diff_collision_sdf/eval_pi05_a1_30k_s0_l01.log`\n\n注意：原始任务步骤中 `--checkpoint_path` 应为 `--checkpoint`，另外补加了 `--suite safelibero_object` 和 `--pi05` flag（与同项目其他 pi05 eval 一致）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-s0-l01-cuda2.md"
+}

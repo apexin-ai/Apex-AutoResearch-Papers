@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2ceffbfba9de1e40586",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix eval cuda23",
+  "task_key": "worker_ops_fix_eval_cuda23_20260525T113927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eval_cuda23_20260525T113927_result.json",
+    "occurrence": 1,
+    "bytes": 1427,
+    "sha256": "cc2831eb07664f0052dfbf8051c2c57bb08213b0416064a435349d41d1d44104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 运行正常。\n\n**总结**：\n\n**修复的 3 个问题**：\n1. **config_name**：`baseline_object_pudding` 不存在于 openpi config 注册表 → 使用 `pi05_libero`（模型架构完全匹配）\n2. **LoRA state_dict 不匹配**：A1 checkpoint 含手动 LoRA keys (`.base.weight`/`.lora_A`/`.lora_B`)，`--model_type a1` 按非 LoRA 加载 → 改用 `--model_type lora_baseline`（该路径先注入 LoRA 再加载 safetensors）\n3. **GPU 分配错误**：eval 脚本 line 1127 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)` 覆盖 shell 的 CUDA_VISIBLE_DEVICES，`--gpu 0` 导致全部跑到 GPU 0 → 改用 `--gpu 2`/`--gpu 3` 直接指定\n\n**当前状态**：\n\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| 0 | 19055 MiB | 100% | 训练 (phase2_lambda0) PID 168730 |\n| 1 | 1 MiB | 0% | 空闲 |\n| 2 | 9116 MiB | 37% | eval s1 (seed1_l005) PID 191263 |\n| 3 | 9116 MiB | 4% | eval s2 (seed2_l005) PID 191403 |\n\n**正确的 eval 命令**（供后续使用）：\n```bash\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/eval_safelibero.py \\\n  --checkpoint <CKPT_PATH> \\\n  --config_name pi05_libero \\\n  --suite safelibero_object \\\n  --model_type lora_baseline \\\n  --pi05 --seed 0 --gpu <GPU_ID>' > logs/eval_xxx.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-eval-cuda23.md"
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "542741f0767e2d01762e",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code a1 train loop hooks",
+  "task_key": "worker_code_a1_train_loop_hooks_20260519T220949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_a1_train_loop_hooks_20260519T220949.log",
+    "occurrence": 1,
+    "bytes": 2197646,
+    "sha256": "8a0f2c727d316780e6d624a7059bc5b5f3d3c2a1776999e5b43bdf1cfaf1b53a"
+  },
+  "statistics": {
+    "messages": 819,
+    "user_turns": 1,
+    "tool_calls": 313,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 186,
+      "tool_call": 313,
+      "tool_result": 313,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 248,
+      "chunks": [
+        {
+          "path": "542741f0767e2d01762e-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "542741f0767e2d01762e-part-0002.json",
+          "message_count": 116
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 571,
+      "chunks": [
+        {
+          "path": "542741f0767e2d01762e-part-0002.json",
+          "message_count": 64
+        },
+        {
+          "path": "542741f0767e2d01762e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "542741f0767e2d01762e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "542741f0767e2d01762e-part-0005.json",
+          "message_count": 147
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-a1-train-loop-hooks.md"
+}

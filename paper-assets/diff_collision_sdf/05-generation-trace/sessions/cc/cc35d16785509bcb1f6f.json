@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc35d16785509bcb1f6f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper fix all figure terms",
+  "task_key": "worker_paper_fix-all-figure-terms_20260528T075011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-all-figure-terms_20260528T075011_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "7838b3dae3569a3791c3788c58bbfb307407d4a017c919a48d7ca2ffa9b5002d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "剩余 4 处均为变量名 (`color_frozen`, `color_frozen_edge`)，不影响图片可见文字。\n\n**完成：**\n- `gen_scatter.py` — \"Fake Safety Zone\" → \"Action-Collapsed Safety Zone\"，已重新生成 `fig_tsr_car_scatter.pdf`\n- `plot_fig2.py` — \"Frozen threshold\" → \"Action-collapse threshold\"，\"Frozen zone\" → \"Action-collapse zone\"，已重新生成 `fig2_ee_displacement_distribution.pdf`\n- `fig1_teaser_v2.py` — \"(a) Fake Safety\" → \"(a) Action-Collapsed Safety\"，\"frozen\" → \"action-\\ncollapsed\"，已重新生成 `fig1_teaser_v2.pdf`\n- `gen_fig_displacement_hist.py`（额外发现）— 三处 \"frozen\" 标签文字 → \"action-collapsed\"，已重新生成 `fig_displacement_hist.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-all-figure-terms.md"
+}

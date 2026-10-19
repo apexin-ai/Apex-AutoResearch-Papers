@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7304397fea95ede73678",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper writing method reviewer fixes",
+  "task_key": "worker_paper_writing_method_reviewer_fixes_20260526T160819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_reviewer_fixes_20260526T160819_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "06ac815c46d12fd699998c6bdf42f313a383d2af307bb550f818068880768d18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four warnings fixed. Verification summary:\n\n1. **Table 1 — Pi0 Full-FT**: `~3.5B` → `~2.5B` (line 23) ✓\n2. **Table 1 — Pi0+A1**: `~34.2M` → `~658K` with `\\textsuperscript{$\\dagger$}` marker and table footnote explaining parameter-name mismatch (lines 25, 33) ✓\n3. **Table 1 — Pi0.5 (pre-trained)**: New row added with 0 trainable params (line 27) ✓\n4. **§3.3 Pi0.5 mention**: Changed to \"the pre-trained Pi0.5 (without fine-tuning)\" (line 66) ✓\n5. **§3.3 obstacle displacement footnote**: Added to the 99.6% sentence, noting obstacle-based displacement measurement and TSR=0% corroboration (line 66) ✓\n6. **§3.4 LoRA mismatch disclosure**: New paragraph \"Pi0+A1 configuration note\" explaining the mismatch, action collapse consequence, and dfCAR diagnostic value (line 84) ✓\n7. **\"six\" → \"seven\"** configurations count updated (line 11) ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method-reviewer-fixes.md"
+}

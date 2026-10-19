@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6d1ceed480327709392",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval lora baseline s0 v2 check",
+  "task_key": "worker_ops_eval_lora_baseline_s0_v2_check_20260526T022722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_lora_baseline_s0_v2_check_20260526T022722_result.json",
+    "occurrence": 1,
+    "bytes": 1217,
+    "sha256": "7571e0fefc445591a5dcee9d5f8ce07f9c0434543be37207dcddc23e2f3132b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job，无需删除（可能在之前的 session 中已清理或过期）。\n\n---\n\n## eval_lora_baseline_30k_s0_v2 完整结果\n\n**200 episodes, 4 tasks (Safety Level II), 0% frozen**\n\n| Task | n | TSR | CAR | Avg EE Disp | Median EE Disp |\n|------|---|-----|-----|-------------|----------------|\n| orange_juice → basket | 50 | **0.0%** | **62.0%** | 0.4970m | 0.4208m |\n| chocolate_pudding → basket | 50 | **34.0%** | **44.0%** | 0.5041m | 0.4251m |\n| milk → basket | 50 | **0.0%** | **94.0%** | 0.5765m | 0.5511m |\n| bbq_sauce → basket | 50 | **0.0%** | **18.0%** | 0.3772m | 0.3712m |\n\n| Metric | Value |\n|--------|-------|\n| **Avg TSR** | **8.5%** |\n| **Avg CAR** | **54.5%** |\n| **Avg EE Displacement** | **0.4887m** |\n| **Frozen (EE<100mm)** | **0.0%** |\n| **dfCAR@100mm** | **54.5%** (200/200 active) |\n\n关键发现：hypothesis 预期 CAR ≈ 27%（Pi0.5 baseline），实测 **54.5%** 高于预期。LoRA baseline 无 SDF 但仍有一定避碰能力，可能来自 LoRA 微调本身学到的隐式避碰。只有 pudding 任务有 34% TSR，其余三个任务 TSR=0%。所有 episodes 均 active（EE disp 均 >100mm），dfCAR 等于 CAR。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-lora-baseline-s0-v2-check.md"
+}

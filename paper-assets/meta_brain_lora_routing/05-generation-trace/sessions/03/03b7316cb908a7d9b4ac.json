@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03b7316cb908a7d9b4ac",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "eval perturbation degradation",
+  "task_key": "worker_eval_perturbation_degradation_20260516T202825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_perturbation_degradation_20260516T202825_result.json",
+    "occurrence": 1,
+    "bytes": 1569,
+    "sha256": "ae4b65ff6c5c7a7afe8ae40b135397914bf9f5811c92148e84ffc5bc6d0ef69d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All experiments complete. Here's the degradation table:\n\n## LIBERO-Plus Perturbation Degradation Results\n\n| Perturbation Type | Success Rate | vs Nominal (60%) | Episodes | Avg Steps |\n|-------------------|-------------|------------------|----------|-----------|\n| nominal (baseline) | 60% | — | 10 | ~150 |\n| `_table_N` (table texture) | **50%** | -10pp | 20 | 157.8 |\n| `_tb_N` (table+wall texture) | **65%** | +5pp | 20 | 145.0 |\n| `_add_N` (distractor objects) | **65%** | +5pp | 20 | 140.1 |\n| `_language_N` (paraphrased instr.) | **10%** | **-50pp** | 20 | 206.3 |\n\n**Key findings:**\n\n1. **Visual perturbations (table, tb) and spatial (add) cause minimal/no degradation** — the model is surprisingly robust to texture changes and distractor objects (50-65% vs 60% nominal).\n\n2. **Language perturbation causes catastrophic failure** — 10% success (from 60%) when instructions are paraphrased. This is a 50pp drop, nearly complete collapse.\n\n3. The language result is the strongest motivation for our research: the model is brittle to language variation but robust to visual/spatial changes. This suggests **language understanding is the primary vulnerability**, and LoRA routing for language adaptation is well-motivated.\n\nNote: `_add_N` used `env.reset()` instead of nominal init_states (state dimension mismatch due to extra objects), and `_tb_N` slightly outperformed nominal — both suggest no meaningful visual degradation. The 60% nominal baseline on only 10 episodes has inherent variance, so ±5pp is within noise."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-perturbation-degradation.md"
+}

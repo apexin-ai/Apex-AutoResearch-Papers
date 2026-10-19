@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dd0002ce11fb2e6dcba",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research safevla deep read",
+  "task_key": "worker_research_safevla_deep_read_20260520T023304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_safevla_deep_read_20260520T023304_result.json",
+    "occurrence": 1,
+    "bytes": 1386,
+    "sha256": "37fe8843071e2695a1ea80a7ea2ebe293213b0537685c94cb7d5541e4b2d9a81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。关键发现总结：\n\n**SafeVLA 不是 SafeLIBERO 上的竞品**。SafeVLA 用的是 AI2THOR 移动操作任务（Safety-CHORES），base model 是 SPOC，与 LIBERO tabletop manipulation 完全不同领域。\n\n**VLSA/AEGIS 才是 SafeLIBERO 上最直接竞品**（arXiv:2512.11891）：\n- CBF+QP training-free 安全层，接在 pi0.5/OpenVLA 输出后\n- SafeLIBERO 总体：CAR 77.85%, TSR 68.13%（pi0.5 baseline: CAR 18.69%, TSR 50.88%）\n- 我们 MVP 任务对标：Spatial-Bowl LII (AEGIS CAR 86%), Object-Pudding LI (AEGIS CAR 32%)\n- 主要弱点：依赖外部感知（GroundingDINO/VLM），仅限平移，安全修正导致分布偏移\n\n**Lan-o3dp** 与我们 A3 最相似（推理时 cost-guided denoising），但用点云欧式距离而非 SDF 梯度。\n\n**ColliForce 可声称优势**：\n1. SDF 连续可微 > 点云距离（更精确的梯度方向）\n2. 训练时+推理时双重安全网（A1+A3 互补）\n3. 不依赖外部 VLM/GroundingDINO 做障碍检测\n4. Flow matching 原生集成（vs DDPM denoising）\n\nSources:\n- [SafeVLA (arXiv)](https://arxiv.org/abs/2503.03480)\n- [SafeVLA GitHub](https://github.com/PKU-Alignment/SafeVLA)\n- [VLSA/AEGIS (arXiv)](https://arxiv.org/abs/2512.11891)\n- [SafeLIBERO Benchmark](https://vlsa-aegis.github.io/benchmark.html)\n- [Lan-o3dp (arXiv)](https://arxiv.org/abs/2407.00451)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-safevla-deep-read.md"
+}

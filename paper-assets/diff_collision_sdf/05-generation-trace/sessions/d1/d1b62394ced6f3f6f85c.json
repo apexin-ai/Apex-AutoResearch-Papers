@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0",
+  "id": "d1b62394ced6f3f6f85c",
+  "project": "diff_collision_sdf",
+  "kind": "conversation",
+  "title": "fix appendix baseline pertask tsr",
+  "task_key": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_appendix_baseline_pertask_tsr_20260528T011343.jsonl",
+    "occurrence": 1,
+    "bytes": 7859,
+    "sha256": "7939f9332770b094c9d0a1d86f83a0e7e186c75592129ae8a4304dd349dcfed1"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-28T01:14:19.453937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "offset": "60",
+              "limit": "30"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-28T01:14:19.454279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\t\n61\t\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n62\t\n63\tTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n64\t\n65\t\\begin{table}[h]\n66\t\\centering\n67\t\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\\,=\\,71.5\\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n68\t\\label{tab:per_task_tsr}\n69\t\\vspace{2pt}\n70\t\\small\n71\t\\begin{tabular}{lcccc}\n72\t\\toprule\n73\tTask & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n74\t & (3 seeds) & (3 seeds) & (3 seeds) & (3 seeds) \\\\\n75\t\\midrule\n76\tOrange Juice      & 70.7 & 30.0 & 33.3 & 24.7 \\\\\n77\tChoco.\\ Pudding   & 86.0 & 70.7 & 78.0 & 76.7 \\\\\n78\tMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\n79\tBBQ Sauce         & 76.0 & 60.7 & 69.3 & 65.3 \\\\\n80\t\\midrule\n81\tMean              & 74.7 & 51.5 & 54.0 & 53.8 \\\\\n82\t\\bottomrule\n83\t\\end{tabular}\n84\t\\end{table}\n85\t\n86\t\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n87\t\n88\tTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n89\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-28T01:14:19.454522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "old_string": "Baseline reports the original 3-seed evaluation (aggregate TSR\\,=\\,71.5\\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.",
+              "new_string": "Baseline reports the unified seed-7 re-evaluation (aggregate TSR\\,=\\,71.5\\%). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-28T01:14:19.454803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-28T01:14:19.454952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "old_string": " & (3 seeds) & (3 seeds) & (3 seeds) & (3 seeds) \\\\",
+              "new_string": " & (seed\\,=\\,7) & (3 seeds) & (3 seeds) & (3 seeds) \\\\"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T01:14:19.455159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-28T01:14:19.455296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "old_string": "Orange Juice      & 70.7 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 51.5 & 54.0 & 53.8 \\\\",
+              "new_string": "Orange Juice      & 74.0 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 80.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 66.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 71.5 & 51.5 & 54.0 & 53.8 \\\\"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T01:14:19.455513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-28T01:14:19.455683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "offset": "60",
+              "limit": "25"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-28T01:14:19.455826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\t\n61\t\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n62\t\n63\tTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n64\t\n65\t\\begin{table}[h]\n66\t\\centering\n67\t\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the unified seed-7 re-evaluation (aggregate TSR\\,=\\,71.5\\%). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n68\t\\label{tab:per_task_tsr}\n69\t\\vspace{2pt}\n70\t\\small\n71\t\\begin{tabular}{lcccc}\n72\t\\toprule\n73\tTask & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n74\t & (seed\\,=\\,7) & (3 seeds) & (3 seeds) & (3 seeds) \\\\\n75\t\\midrule\n76\tOrange Juice      & 74.0 & 30.0 & 33.3 & 24.7 \\\\\n77\tChoco.\\ Pudding   & 80.0 & 70.7 & 78.0 & 76.7 \\\\\n78\tMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\n79\tBBQ Sauce         & 66.0 & 60.7 & 69.3 & 65.3 \\\\\n80\t\\midrule\n81\tMean              & 71.5 & 51.5 & 54.0 & 53.8 \\\\\n82\t\\bottomrule\n83\t\\end{tabular}\n84\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-28T01:14:19.455998+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，验证通过：\n\n1. Baseline per-task TSR：74.0 / 80.0 / 66.0 / 66.0 ✓\n2. Mean = 71.5 ✓\n3. Caption 已移除 \"per-task reeval data not available\"，改为 \"unified seed-7 re-evaluation\" ✓\n4. Baseline 列头从 \"(3 seeds)\" 改为 \"(seed=7)\" ✓\n5. LoRA 列不变：30.0 / 70.7 / 44.7 / 60.7 / 51.5 ✓\n6. SDF 两列未改动 ✓"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix_baseline_pertask_tsr_20260528T011343"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/fix-appendix-baseline-pertask-tsr.md"
+}

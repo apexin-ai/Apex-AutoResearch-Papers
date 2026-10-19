@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f206340aeb28c6ab8806",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops close early signal s1 eval",
+  "task_key": "worker_ops_close_early_signal_s1_eval_20260527T003442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_close_early_signal_s1_eval_20260527T003442_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "effc4fa72acc7376997cd7ea566e9503b917338c932485aaa1887e9cf69d659e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE，无活跃 cron 需要清除。\n\n```\neval_early_signal_s1_l1_20k 结果:\n- 状态: success\n- CAR: 56%, TSR: 51%\n- frozen_ee: 0%\n- 硬约束: TSR≥35% ✅, frozen=0% ✅\n- A/B/C 信号: B (56% ≤ 57%)\n- Per-task:\n  - orange_juice: CAR=62%, TSR=20%\n  - task1:        CAR=76%, TSR=82%\n  - milk:         CAR=66%, TSR=42%\n  - bbq_sauce:    CAR=20%, TSR=60%\n- 2-seed 20K mean CAR: (55 + 56) / 2 = 55.5% → 场景 B 确认\n```\n\n两个 seed 在 20K 都落入 null distribution 内（mean=54.5%, σ=2.15%），2-seed mean 55.5% 距 null mean 仅 +0.47σ，A1 SDF λ=0.1 在 20K 无显著信号，场景 B 成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-close-early-signal-s1-eval.md"
+}

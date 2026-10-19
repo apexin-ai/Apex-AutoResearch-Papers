@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0874a03b2a79f3a1ccc6",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "eval universal 3seed v2",
+  "task_key": "worker_eval_universal_3seed_v2_20260516T231122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_universal_3seed_v2_20260516T231122_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "661181a45694d5c8ffa7ed3744f05daaaa6b7f423a9fd1190a00a7dd69c199a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Universal LoRA r16 eval 已在 cuda:3 上运行 (PID 287920)：\n- **配置**: 8 perturbation types × 3 seeds × 20 episodes = 480 episodes\n- **LoRA checkpoint**: `/root/autodl-tmp/checkpoints/v3_lora_universal_r16/v3lora_universal_r16/final/` (72 modules, scaling=2.0)\n- **初步观察**: nominal seed=42 前 11 episodes 中 8/11 OK (~73%)\n- **预计完成**: ~50 分钟\n- **Baseline eval** 同时在 cuda:0 上并行运行\n\n15 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-universal-3seed-v2.md"
+}

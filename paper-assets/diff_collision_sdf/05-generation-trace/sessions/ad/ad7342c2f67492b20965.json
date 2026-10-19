@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad7342c2f67492b20965",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix eval pipeline tsr zero",
+  "task_key": "worker_ops_fix_eval_pipeline_tsr_zero_20260522T023143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eval_pipeline_tsr_zero_20260522T023143_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "a2cf1a011b4524c73295b22b2e36444adab30c1e5db29dc6b4ea3089d2959147"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成，写入 `artifacts/report_eval_tsr_zero_fix.md`。\n\n---\n\n## 汇总\n\n**根因**：`eval_safelibero.py` 的 `get_action_from_policy` 构建 state 向量时，用了4维四元数+1维gripper（`[pos(3), quat(4), grip[:1]]`），但训练数据是3维旋转向量+2维gripper（`[pos(3), rotvec(3), grip(2)]`）。两者碰巧都是8维不报错，但 z-score normalization 后产生极端 OOD 输入，模型输出垃圾动作。\n\n**修复**：用 `scipy.spatial.transform.Rotation.from_quat().as_rotvec()` 将四元数转为旋转向量，gripper 取完整2维。\n\n**验证**：dry-run 中机器人从完全静止（displacement≈1e-10）恢复为正常运动（displacement=0.659m），执行了合理的 pick-and-place 动作序列。修复已部署到 westd-45947、westd-35807 和本地代码。\n\n**下一步**：需要重跑全量 eval（4 task × 20 episodes）获取真实 TSR 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-eval-pipeline-tsr-zero.md"
+}

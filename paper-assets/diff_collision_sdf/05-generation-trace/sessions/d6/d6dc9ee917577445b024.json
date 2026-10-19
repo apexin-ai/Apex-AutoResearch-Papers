@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6dc9ee917577445b024",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper update framing negative blocks",
+  "task_key": "worker_paper_update_framing_negative_blocks_20260525T091315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update_framing_negative_blocks_20260525T091315_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "15b1d763f1730e5412c7320b310ef88d9705b2506f0db7ddac21eb67af737cf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。paper_framing.md 的 negative results 部分从原来的 3-tier (A/B/C) 分层结构替换为 Director 批准的 4-block 叙事结构：\n\n- **Block 1**: Fake Safety — 800ep action collapse 证据\n- **Block 2**: Stronger ≠ Safer — Pi0.5 object+spatial 合并\n- **Block 3**: Oracle Upper Bound — 三个 oracle 合并为一段+一表\n- **Block 4**: EE-only Boundary — spatial CAR≈0% scope 边界\n\n其他 section（Claims、Contingency Plans、Dependencies 等）未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-framing-negative-blocks.md"
+}

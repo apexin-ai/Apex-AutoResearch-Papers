@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee83efab90b1054ba596",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "compile fallback 2seed pdf",
+  "task_key": "worker_compile_fallback_2seed_pdf_20260527T182712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compile_fallback_2seed_pdf_20260527T182712_result.json",
+    "occurrence": 1,
+    "bytes": 229,
+    "sha256": "9301207493173e71d2b5e9f4f4466027f3eea7e92af0654acb3e0836fee2b879"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成，artifact 已注册。\n\n**结果：**\n- PDF：15 页（CoRL 格式合理），455KB，0 LaTeX errors\n- 路径：`artifacts/_project/paper/fallback_2seed.pdf`\n- Artifact ID：`art_20260527_72c0aa`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compile-fallback-2seed-pdf.md"
+}

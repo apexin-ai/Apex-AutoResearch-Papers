@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4e20226b1a61c3877a7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "viz fig5 update l01 3seed",
+  "task_key": "worker_viz_fig5_update_l01_3seed_20260526T155932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig5_update_l01_3seed_20260526T155932_result.json",
+    "occurrence": 1,
+    "bytes": 379,
+    "sha256": "f8c89ff9c5140fc82c6d5a5744eddb1279f2a9a7777000b1236568426187f1a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n- λ=0.01：实心 marker + CAR/TSR 误差条 ✓\n- λ=0.005：TSR 新增误差条 ✓\n- λ=0：CAR 误差条（std=2.83），TSR 无误差条（std=0，两个 seed 相同）✓\n- λ=0.1：Pending 占位不变 ✓\n- 所有点均为实心，无 n=1 空心样式 ✓\n- 注释显示 n=2, n=3, n=3 ✓\n\nPDF 和 PNG 已覆盖写入原路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig5-update-l01-3seed.md"
+}

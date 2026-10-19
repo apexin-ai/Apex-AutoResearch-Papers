@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4bdc92ed54449ccafe3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops diagnose pi05 baseline reeval",
+  "task_key": "worker_ops_diagnose_pi05_baseline_reeval_20260526T065033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_pi05_baseline_reeval_20260526T065033_result.json",
+    "occurrence": 1,
+    "bytes": 2505,
+    "sha256": "148e6c000df8ab65c26130b7a797eba06ec8a3dfe4f46578d716dabf46d14af3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到根因了。\n\n## 诊断结果\n\n### 1. 进程状态\n**ALIVE** — PID 132727，正在跑 Task 3 (bbq sauce)，episode 30/200。\n\n### 2. Task 0-2 已完成，Task 2 没有挂住\n- **Task 0** (orange juice): TSR=0.0%, CAR=70.0%, Avg max disp=0.0131m\n- **Task 1** (chocolate pudding): TSR=0.0%, CAR=100.0%, Avg max disp=0.0000m\n- **Task 2** (milk): TSR=0.0%, CAR=100.0%, Avg max disp=0.0000m\n- **Task 3** (bbq sauce): 进行中，episode 30/200\n\n### 3. 模型加载 — `--default_policy` 确实被使用\n启动命令：\n```\npython scripts/eval_safelibero.py --default_policy --config_name pi05_libero --suite safelibero_object --pi05 --seed 0 --gpu 1 --n_episodes 200\n```\n\n`--default_policy` 正确传入，`load_policy()` 走了 `create_default_policy(EnvMode.LIBERO)` 分支。\n\n### 4. 根因：`model.safetensors` 导致 JAX→PyTorch 推理路径错误切换\n\n**时间线**（关键证据）：\n\n| 时间 | 事件 |\n|------|------|\n| May 22 19:48-19:50 | JAX params (`params/`) 创建 |\n| **May 23 05:40** | **之前成功的 eval** → TSR=73%, disp=0.15m ✅ |\n| **May 23 07:22** | **`model.safetensors` (7.2GB) 被创建** |\n| May 26 12:44 | 当前 eval → TSR=0%, disp=0.00m ❌ |\n\n**`create_trained_policy()` 的逻辑**（`openpi/src/openpi/policies/policy_config.py:63-69`）：\n\n```python\nweight_path = os.path.join(checkpoint_dir, \"model.safetensors\")\nis_pytorch = os.path.exists(weight_path)\n\nif is_pytorch:\n    model = train_config.model.load_pytorch(train_config, weight_path)  # ← 当前走这条\nelse:\n    model = train_config.model.load(restore_params(checkpoint_dir / \"params\", ...))  # ← 之前成功 eval 走这条\n```\n\n- **成功 eval (May 23 05:40)**：当时 `model.safetensors` 不存在 → 使用 **JAX params** → TSR=73%\n- **当前 eval (May 26)**：`model.safetensors` 存在 → 使用 **PyTorch 权重** → TSR=0%（action collapse）\n\ncheckpoint 路径：`./checkpoints/pi05_libero` → symlink → `/root/autodl-tmp/openpi_weights/pi05_libero/`\n\n### 5. 结论\n\n`model.safetensors` 是在成功 eval **之后**生成的，可能是一次有问题的 JAX→PyTorch 权重转换。这个文件的存在自动切换了推理路径从 JAX 到 PyTorch，导致模型输出近零 action（action collapse）。\n\n**修复方案**（未执行）：删除或重命名 `/root/autodl-tmp/openpi_weights/pi05_libero/model.safetensors`，让 `create_trained_policy` 回退到使用 JAX params 推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-pi05-baseline-reeval.md"
+}

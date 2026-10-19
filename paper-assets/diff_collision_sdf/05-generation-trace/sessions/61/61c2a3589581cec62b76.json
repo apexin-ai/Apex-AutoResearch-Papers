@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61c2a3589581cec62b76",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "agent / loop_3_1779855270.md",
+  "task_key": "loop_3_1779855270",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779855270.md",
+    "occurrence": 1,
+    "bytes": 4862,
+    "sha256": "81433a7a457bf87a5861ea0769c65b2c9ac8b9ac0ea79519a1523e7b1b99d740"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-26T23:08:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-35807 cuda:0/1/2/3, westd-45947 cuda:0/1。其他 GPU 绝对不能用\n- westd-45947 是 AutoDL 实例，重启后 SSH 端口会变，连接失败不要重试，提示用户查控制台\n- submit_training_job 的命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`\n- AutoDL 根分区只有 ~30GB，模型/数据/cache 全部放 `/root/autodl-tmp/`\n- GPU 编号始终从 0 开始（框架自动做 CUDA_VISIBLE_DEVICES 映射）\n- λ=0.1 实验（westd-35807 cuda:1/2）是当前最高优先级，决定 Claim 4 最终叙事，不可中断\n\n### 2. 🖥️ 基础设施快照\n- **westd-35807**: 工作目录 `/root/colliforce-vla`，Python `/root/miniconda3/bin/python`，conda base env\n  - 磁盘：系统盘 570G/879G 可用，数据盘 `/autodl-pub` 5.3T/7.3T\n  - 活跃进程：\n    - train_pi05_a1_spatial_bowl_s0_l005 (PID 3708, cuda:0)\n    - train_pi05_phase2_lambda0_s2 (PID 254634, cuda:3)\n    - train_pi05_a1_obj_s0_l01_high (PID 271266, cuda:1, log: `/root/colliforce-vla/logs/train_lambda01_s0_gpu1.log`)\n    - train_pi05_a1_obj_s1_l01_high (PID 274407, cuda:2, log: `/root/colliforce-vla/logs/train_lambda01_s1_gpu2.log`)\n- **westd-45947**: 同结构，conda base env\n  - 磁盘：系统盘 400G/439G 可用\n  - 活跃进程：train_pi05_lora_baseline_s2 (PID 78549, cuda:0)\n  - cuda:1 空闲（eval_pi05_baseline_reeval_disp 刚失败）\n- 模型路径：`/root/colliforce-vla/` 下各 checkpoint\n- eval 输出：`/root/autodl-tmp/eval_results/`\n- W&B：部分实验 disabled（eval 类），训练类走 wandb\n\n### 3. 📊 当前状态\n**刚做完**：session 初始化 + reconcile crons（4 个训练正常运行）。收到 eval_pi05_baseline_reeval_disp 失败回调（SIGTERM 143），已派 Worker `worker_diagnose_eval_pi05_baseline_reeval_disp_20260526T070553` SSH 到 westd-45947 诊断原因。\n\n**RUNNING 实验**：\n| exp_id | 服务器 | GPU | 摘要 | ETA |\n|--------|--------|-----|------|-----|\n| train_pi05_a1_spatial_bowl_s0_l005 | westd-35807 | cuda:0 | spatial_bowl SDF s0 训练 | ~18h |\n| train_pi05_a1_obj_s0_l01_high | westd-35807 | cuda:1 | λ=0.1 s0 30K 训练（最高优先级） | ~28h |\n| train_pi05_a1_obj_s1_l01_high | westd-35807 | cuda:2 | λ=0.1 s1 30K 训练（最高优先级） | ~29h |\n| train_pi05_phase2_lambda0_s2 | westd-35807 | cuda:3 | Phase 2 λ=0 s2 训练 | ~7h |\n| train_pi05_lora_baseline_s2 | westd-45947 | cuda:0 | LoRA baseline seed2 30K | ~10h |\n\n**PREPARING**：eval_pi05_a1_best_s0_l005（Pi0.5+A1 best checkpoint eval s0）\n\n**等待中**：\n- Worker 诊断回调：eval_pi05_baseline_reeval_disp 失败原因分析\n- 诊断完成后需决定是否在 westd-45947:cuda:1 上重跑 baseline re-eval\n- 4 个 cron 监控活跃训练\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 根据失败原因决定：若 OOM/可恢复错误 → 修复后在 westd-45947:cuda:1 重跑 eval_pi05_baseline_reeval_disp；若实例问题 → 汇报 Director\n- train_pi05_phase2_lambda0_s2 完成（~7h）→ spawn eval Worker 评估 Phase 2 持久效应\n- train_pi05_lora_baseline_s2 完成（~10h）→ spawn eval Worker，完成 3v3 seed 统计对比（LoRA vs SDF）\n- train_pi05_a1_obj_s0/s1_l01_high 完成（~28h）→ **最高优先级** eval，λ=0.1 结果决定 Claim 4 叙事（D026 三场景 contingency）\n- train_pi05_a1_spatial_bowl_s0_l005 完成（~18h）→ 跨场景验证 eval\n- westd-45947:cuda:1 当前空闲 → 诊断结果出来后立即安排任务（baseline re-eval 或 eval_pi05_a1_best_s0_l005）\n- 所有 eval 完成后 → 按 D026 三场景 contingency 确定最终叙事\n\n### 5. 🎯 战略上下文\n**核心发现链**：\n- D025: LoRA-only CAR ≈ Pi0.5 baseline (~27%)，SDF attribution at λ≤0.01 = 0pp → \"SDF redundant at low λ\" (provisional)\n- D026: 三场景 contingency 等 λ=0.1 数据：A) SDF 全范围 redundant → pivot to \"fake safety metric\" paper；B) λ=0.1 有效 → dose-dependent narrative；C) λ=0.1 导致 action collapse → safety-performance tradeoff\n- D027: TSR collapse 根因确认为 LoRA fine-tuning distribution shift\n- D028: Claim 结构重组——Claim 2 合并入 Claim 1，Claim 4 从 negative 转 positive framing\n\n**易错点**：\n- 不要混淆 \"30K checkpoint eval\" 和 \"best checkpoint eval\"——30K 有 TSR 退化但 best checkpoint 没有，这是两个不同的故事\n- eval 脚本曾有 bug（缺 180° 图像旋转 + 分辨率 224→256），notes 里标 \"v3 fix\" 的才是修复后版本\n- Re-Dream 评估显示新 framing (SDF redundant) 得分反而更低（median 2/4 reject），叙事方向高度依赖 λ=0.1 实验结果\n- westd-45947:cuda:1 空闲是失职状态，诊断完成后必须立即安排任务\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779855270.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c4c77027cae62849adf",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analyze eval stepwise s0 l1 26k",
+  "task_key": "worker_analyze_eval_stepwise_s0_l1_26k_20260527T050312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_stepwise_s0_l1_26k_20260527T050312_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "a974202bce87e061867c770f4bc18a5a2756fc4d89e763a2a931d314d23e4a05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，cron 已清除。\n\n**结果汇总：**\n\n- **eval_stepwise_s0_l1_26k** → **failed**\n- **原因**：26K checkpoint 的 `model.safetensors` 使用了 AdaLN 架构（`layernorm.dense.weight/bias`, `time_mlp_in/out`），但 eval 以 `--model_type lora_baseline` 加载，期望标准 LayerNorm keys（`layernorm.weight`, `action_time_mlp_in/out`）。模型加载阶段直接崩溃，无任何 eval 结果。\n- **根因**：24K→26K 之间训练代码发生了架构变更（可能 git pull 了新代码），导致 26K checkpoint 的权重格式与 24K 不兼容。\n\n**需要决定下一步：**\n1. 如果要重跑 26K eval，需要用匹配 AdaLN 架构的 model_type 或更新 eval 脚本来适配新格式\n2. 或者确认 26K checkpoint 是否为有效 checkpoint（训练代码变更后保存的权重可能本身就有问题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-stepwise-s0-l1-26k.md"
+}

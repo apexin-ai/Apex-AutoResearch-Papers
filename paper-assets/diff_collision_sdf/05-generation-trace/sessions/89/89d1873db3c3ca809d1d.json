@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89d1873db3c3ca809d1d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix eval pipeline v7 final",
+  "task_key": "worker_fix_eval_pipeline_v7_final_20260521T201444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_pipeline_v7_final_20260521T201444_result.json",
+    "occurrence": 1,
+    "bytes": 2443,
+    "sha256": "01c71722049e2c13bbbf327262d6cd65384461c21201683dd224808d0209ba04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 进程全速运行（CPU 499%, 2min elapsed）。每个 episode 约 2 分钟，Task 0 的 50 episodes 约需 100 分钟。无需继续等待。\n\n---\n\n## 汇报\n\n### Bug 修复确认\n\n| Bug | 状态 | 修改 |\n|-----|------|------|\n| **Bug 1: extra_delta_transform** | ✅ 已修 | `eval_safelibero.py` line 455-456: config 加载后强制 `extra_delta_transform=False`，并打印确认日志 |\n| **Bug 2: next_ee 坐标** | ✅ 已修（修复前已存在） | Line 314 已经是 `next_ee = action[:3]`（绝对坐标），无需额外修改 |\n| **Bug 3: 重复 no_refine 进程** | ✅ 已清理 | PID 235230, 236081 + 4 个额外残留旧 eval 进程（250563, 251373, 252143, 250971）全部 kill |\n\n### Dry-run 结果（1 episode, Task 0）\n\n- ✅ `[EVAL CONFIG] extra_delta_transform=False` — 确认生效\n- ✅ 无 error/exception/traceback\n- `collision_step=0`：初始步就碰撞 `white_storage_box_obstacle_1`（obstacle displacement 检测法，非 bug）\n- `refine_count=0`：SDF 预测 min=0.665 远高于 margin=0.01，refiner 正确地未触发\n- `smoothness=0.0045`，`max_displacement=0.822m`（obstacle 累计位移）\n\n### A1 影响分析\n\nA1 使用相同的 `eval_safelibero.py` 和 `load_policy()`。`extra_delta_transform=False` 修复在 model type 分支之前，**对 A1/baseline/A3 全部生效**。A1 checkpoint 在 westd-35807（`a1_sdf_object_pudding/`），如需 eval 需 SCP。\n\n### 三组 Eval 提交状态\n\n| 组 | 状态 | 位置 |\n|----|------|------|\n| **A3 refine (50ep×4tasks)** | 🟢 运行中 | tmux `eval_v8`, PID 256338 |\n| **A3 no_refine (50ep×4tasks)** | ⏳ 排队 | A3 refine 完成后自动启动 |\n| **Baseline (50ep×4tasks)** | ⏳ 排队 | A3 no_refine 完成后自动启动 |\n\n三组串行在 cuda:1，通过 tmux session `eval_v8` 管理。\n\n### Baseline checkpoint\n\n✅ 已从 westd-35807 SCP 到 westd-45947（6.6GB model.safetensors + metadata.pt + assets/），耗时 ~25s（内网）。\n\n### 监控命令\n\n```bash\n# 查看总体进度\ntail -30 /root/autodl-tmp/eval_results/eval_v8_master.log\n\n# 查看各组详细日志\ntail -30 /root/autodl-tmp/eval_results/a3_object_pudding_refine_v8.log\ntail -30 /root/autodl-tmp/eval_results/a3_object_pudding_no_refine_v8.log\ntail -30 /root/autodl-tmp/eval_results/baseline_object_pudding_v8.log\n\n# 预估总时长：~200 episodes/组 × 3组 × ~2min/ep ≈ 20h\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-pipeline-v7-final.md"
+}

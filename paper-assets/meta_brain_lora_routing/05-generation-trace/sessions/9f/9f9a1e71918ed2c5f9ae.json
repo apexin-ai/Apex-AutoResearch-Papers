@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9f9a1e71918ed2c5f9ae",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "eval openpi native gpu3",
+  "task_key": "worker_eval_openpi_native_gpu3_20260516T153723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_openpi_native_gpu3_20260516T153723.log",
+    "occurrence": 1,
+    "bytes": 842975,
+    "sha256": "7e648152c04320cf4626f9275392d0ccaa12b30859a6b564be15324c4c89a0ba"
+  },
+  "statistics": {
+    "messages": 343,
+    "user_turns": 0,
+    "tool_calls": 118,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 103,
+      "tool_call": 118,
+      "tool_result": 118,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 343,
+      "chunks": [
+        {
+          "path": "9f9a1e71918ed2c5f9ae-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9f9a1e71918ed2c5f9ae-part-0002.json",
+          "message_count": 163
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-openpi-native-gpu3.md"
+}

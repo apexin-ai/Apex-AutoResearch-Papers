@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f322b6ad64e0e143b325",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code phase b framework",
+  "task_key": "worker_code_phase_b_framework_20260519T174225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase_b_framework_20260519T174225_result.json",
+    "occurrence": 1,
+    "bytes": 1179,
+    "sha256": "cacca97feef783d71ba7c251236da7094925dc86c0dadebf29732462ef29c539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。文件结构：\n\n```\nartifacts/src/\n├── __init__.py\n├── sdf_decoder.py          — SDF MLP (395K params), L1 clamped loss + Eikonal\n├── sdf_gradient_refiner.py — 梯度引导 action refinement (1.05M extra params)\n├── sdf_data.py             — 多场景 SDF GT 加载 + importance sampling\n└── train_colliforce.py     — 两阶段训练骨架 + ColliForceConfig dataclass\n```\n\n关键设计决策：\n- **SDF decoder** 完全复用 KG-3 验证通过的架构（4层 MLP, hidden=256, Softplus(beta=5), skip at layer 2），增加了 cross-attention aggregation 选项\n- **Gradient refiner** 的 `GradientCorrection` 用 zero-init linear projection，确保训练初期 refinement 接近恒等映射，不干扰 backbone 收敛\n- **collision cost** 用 `Softplus(-SDF + margin)` 替代 `ReLU`，梯度更平滑\n- **EEPositionExtractor** 从 action features 学习到 3D 坐标的映射（需要后续用 FK 数据 supervise）\n- 所有 `TODO` 标注了具体需要对接 openpi 的位置\n\n需要后续补齐的部分：openpi 模型加载、suffix_out hook、LoRA 注入、tyro CLI、wandb 集成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase-b-framework.md"
+}

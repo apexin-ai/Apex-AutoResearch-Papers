@@ -1,0 +1,820 @@
+# cron hook mvp c4 s137
+
+**tbab multi turn** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/cron_hook_mvp_c4_s137.jsonl`
+- **Structured JSON:** [`9ad3d066ecb6f6da1c0d.json`](../../sessions/9a/9ad3d066ecb6f6da1c0d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+27 recorded events
+
+### User
+
+_source line 1 · 2026-05-18T17:57:10.107124+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: mvp_c4_s137
+- project: tbab_multi_turn
+- server: westb-25721
+- log_path: ~/runs/tbab_multi_turn/mvp_c4_s137.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_c4_s137",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-18T17:57:23.003731+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": "11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "max_results": "11"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-18T17:57:23.054470+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T17:57:27.472842+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "tbab_multi_turn",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "tbab_multi_turn",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T17:57:28.074548+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T17:57:28.075167+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"mvp_c4_s137\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T08:21:21.768Z\", \"updated_at\": \"2026-05-18T17:57:08.438Z\", \"hypothesis\": \"Full TBAB (bridge tokens + position reset) achieves maximal mid-frequency RoPE band restoration: bridge tokens provide cross-turn attention anchors while position reset ensures all content tokens benefit from frequency band recovery, yielding the strongest multi-turn performance (C4 > C1 by >=3% P-bar on lost_in_conversation)\", \"spec\": {\"command\": \"bash -c \\\"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition4_full_tbab.yaml --seed 137\\\"\", \"server\": \"westb-25721\", \"gpu\": [\"cuda:0\"], \"pid\": \"46199\", \"log_path\": \"~/runs/tbab_multi_turn/mvp_c4_s137.log\", \"submitted_at\": \"2026-05-18T15:04:20.728Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westb-25721\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westb-25721\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-18T08:24:36.828Z\", \"command\": \"bash -c \\\"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition4_full_tbab.yaml --seed 137\\\"\", \"finished_at\": \"2026-05-18T17:57:08.404Z\", \"training_hours\": 9.54}, \"pid\": \"46199\", \"log_path\": \"~/runs/tbab_multi_turn/mvp_c4_s137.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T17:57:09.886236+00:00\"}]}}, \"mvp_c1_s42\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T08:21:16.233Z\", \"updated_at\": \"2026-05-18T15:21:54.945Z\", \"hypothesis\": \"Standard LoRA fine-tuning without position or bridge modifications provides baseline multi-turn performance; any improvement in C2-C4 over C1 isolates the contribution of TBAB components b
+…[truncated 10154 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 602
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T17:57:28.526498+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-18T17:57:28.526930+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "tbab_multi_turn",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "tbab_multi_turn",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T17:57:28.880307+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-18T17:57:09Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 8 个实验 — ALLOCATED 4, ANALYZING 1, DONE 3\\n**DONE 分布**: success 3\\n\\n### 💾 磁盘余量\\n- **westb-25721**:\\n  - `/autodl-pub`: 8.3T/14T 可用（已用 41%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 392G/439G 可用（已用 6%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `mvp_c1_s42` [success] — 2026-05-18T15:21:54 — EXIT_CODE=1 (generic error — check log tail)\\n- `mvp_c4_s42` [success] — 2026-05-18T15:20:21\\n- `mvp_c1_s137` [success] — 2026-05-18T13:17:41\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-18\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mvp_c4_s137 | Full TBAB (bridge tokens + position reset) achieves maximal mid-frequency RoPE band restoration: bridge tokens provide cross-turn attention anchors while position reset ensures all content tokens benefit from frequency band recovery, yielding the strongest multi-turn performance (C4 > C1 by >=3% P-bar on lost_in_conversation) | — | — | — |\\n\\n## 待处理\\n- mvp_c3_s137: Bridge tokens at turn boundaries provide explicit cross-turn attention anchors that improve multi-turn performance, but without position reset the mid-frequency band restoration is limited to bridge token positions only（已分配 westb-25721 GPU:cuda:0，等待提交）\\n- mvp_c3_s42: Bridge tokens at turn boundaries provide explicit cross-turn attention anchors that improve multi-turn performance, but without position reset the mid-frequency band restoration is limited to bridge token positions only（已分配 westb-25721 GPU:cuda:0，等待提交）\\n- mvp_c2_s137: Turn-relative position reset alone partially restores mid-frequency R
+…[truncated 1672 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 353
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T17:57:28.880813+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "tbab_multi_turn"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "tbab_multi_turn"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T17:57:28.881081+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "tbab_multi_turn"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "tbab_multi_turn"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T17:57:28.981867+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/ROADMAP.md\", \"content\": \"# tbab_multi_turn — Research Dashboard\\n\\n> 最后更新: 2026-05-18 13:02 UTC | 更新原因: 更新实验进度——mvp_c1_s42 完成、mvp_c1_s137 运行中，清理过时的 P0 迁移任务\\n\\n## 核心方向\\nTBAB: turn 边界 bridge tokens + position reset，利用 RoPE 频段恢复理论改善多轮对话性能。\\n\\n## 当前阶段：MVP 验证（训练+评估进行中）\\n\\n### 模型（D002）\\nMistral-7B-Instruct-v0.1（rope_theta=10K, d_head=128）\\n\\n### MVP 设计（4 条件 × 2 seeds）\\n- C1: LoRA-only | C2: Position reset only | C3: Bridge+standard pos | C4: Full TBAB\\n- 训练: ShareGPT 1500 + UltraChat 1000 = 2500 条 ✅\\n- 评估: lost_in_conversation P̄ (code subset 91 条, N=1 Phase 1) + per-band 分析\\n- API: OpenRouter key ✅（base_url=http://47.94.22.126/v1）\\n\\n### Pass/Fail\\n- PASS: C4_mean - C1_mean ≥ 3% + P1 pattern + C4 > C3 或 C4 > C2\\n- CONDITIONAL PASS: 整体 <3% 但 shard ≥5 C4-C1 ≥ 3% + P2\\n- KILL: TBAB ≤ LoRA-only；或 <3% 且 P1/P2 均不支持\\n\\n## 实验进度\\n\\n| exp_id | 条件 | 状态 | 备注 |\\n|--------|------|------|------|\\n| mvp_c1_s42 | C1 LoRA-only seed=42 | ✅ DONE | 训练完成，eval 进行中 |\\n| mvp_c1_s137 | C1 LoRA-only seed=137 | 🔄 RUNNING | 训练中 |\\n| mvp_c4_s42 | C4 Full TBAB seed=42 | ⏳ ALLOCATED | 下一个训练 |\\n| mvp_c4_s137 | C4 Full TBAB seed=137 | ⏳ ALLOCATED | |\\n| mvp_c2_s42 | C2 Position reset seed=42 | ⏳ ALLOCATED | |\\n| mvp_c2_s137 | C2 Position reset seed=137 | ⏳ ALLOCATED | |\\n| mvp_c3_s42 | C3 Bridge only seed=42 | ⏳ ALLOCATED | |\\n| mvp_c3_s137 | C3 Bridge only seed=137 | ⏳ ALLOCATED | |\\n\\n**训练顺序**: C1_s42 ✅ → C1_s137 🔄 → C4_s42 → C4_s137 → C2_s42 → C2_s137 → C3_s42 → C3_s137\\n\\n**Phase 1 快速门控**: C1_s42 eval + C4_s42 eval 完成后立即跑 mvp_gate.py\\n\\n### 评估策略（分阶段）\\n- Phase 1: C1_s42 vs C4_s42, code subset 91 samples, N=1 (~9h)\\n- Phase 2: 全 4 条件 ablation\\n- Phase 3: N=3 统计确认\\n\\n## GPU 资源\\n| 服务器 | GPU | 当前任务 |\\n|--------|-----|---------|\\n| westb-25721 | 1×RTX PRO 6000 94GB (cuda:0) | mvp_c1_s137 训练 + C1_s42 eval 并行 |\\n\\n## 近期任务\\n- [ ]
+…[truncated 832 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T17:57:28.982355+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 0 张, 实际跑 0 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-18T17:57:58.799966+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__list_workers",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__list_workers",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T17:57:58.800294+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-18T17:57:59.652523+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T17:57:59.703406+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/.claude/sessions/agent_31ce24e7.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-18T17:58:02.765744+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T17:58:02.816262+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T17:58:05.676447+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T17:58:05.878556+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "Glob",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-18T17:58:08.337561+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T17:58:08.540940+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "Read",
+  "elapsed_ms": 203
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-18T17:58:31.550462+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:mvp_c4_s137",
+  "project": "tbab_multi_turn",
+  "task_prompt": "## 任务：分析 mvp_c4_s137 训练结果\n\n**目标**：SSH 到 westb-25721，分析 mvp_c4_s137 的训练日志，提取关键指标，判断训练是否成功。\n\n### 服务器信息\n- 服务器：westb-25721\n- 日志路径：~/runs/tbab_multi_turn/mvp_c4_s137.log\n- Checkpoint 目录：/root/tbab_multi_turn/checkpoints/（查找 c4_full_tbab_seed137 相关目录）\n- 训练配置：/root/tbab_multi_turn/scripts/configs/condition4_full_tbab.yaml\n\n### 需要提取的信息\n1. **训练指标**：final_train_loss, avg_train_loss, train_runtime_seconds, total_steps, epochs\n2. **Checkpoint**：确认 checkpoint 存在，记录路径和大小\n3. **训练是否正常完成**：检查日志末尾是否有正常退出信号（如 \"Training completed\" 或类似）\n4. **W&B run ID**：如果日志中有 W&B run 链接，提取 run ID\n\n### 对比参考\n同条件另一个 seed（mvp_c4_s42）的训练指标：\n- final_train_loss: 0.308\n- avg_train_loss: 0.5461\n- train_runtime_seconds: 6040\n- total_steps: 471, epochs: 3\n\nmvp_c4_s137 训练耗时 9.54h（比 s42 的 6.58h 长），需要检查是否有异常。\n\n### 产出\n用 update_registry 更新 mvp_c4_s137：\n1. 设 metrics 字段（包含上述提取的指标）\n2. 设 conclusion 为 \"success\"（如果训练正常完成且 loss 合理）或 \"failed\"（如果有问题）\n3. 设 checkpoint_path\n4. 设 status 为 \"DONE\"\n\n如果训练异常（loss 发散、checkpoint 缺失等），conclusion 设为 \"failed\" 并记录 failure_reason。",
+  "tool_groups": "['ssh', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:mvp_c4_s137",
+    "project": "tbab_multi_turn",
+    "task_prompt": "## 任务：分析 mvp_c4_s137 训练结果\n\n**目标**：SSH 到 westb-25721，分析 mvp_c4_s137 的训练日志，提取关键指标，判断训练是否成功。\n\n### 服务器信息\n- 服务器：westb-25721\n- 日志路径：~/runs/tbab_multi_turn/mvp_c4_s137.log\n- Checkpoint 目录：/root/tbab_multi_turn/checkpoints/（查找 c4_full_tbab_seed137 相关目录）\n- 训练配置：/root/tbab_multi_turn/scripts/configs/condition4_full_tbab.yaml\n\n### 需要提取的信息\n1. **训练指标**：final_train_loss, avg_train_loss, train_runtime_seconds, total_steps, epochs\n2. **Checkpoint**：确认 checkpoint 存在，记录路径和大小\n3. **训练是否正常完成**：检查日志末尾是否有正常退出信号（如 \"Training completed\" 或类似）\n4. **W&B run ID**：如果日志中有 W&B run 链接，提取 run ID\n\n### 对比参考\n同条件另一个 seed（mvp_c4_s42）的训练指标：\n- final_train_loss: 0.308\n- avg_train_loss: 0.5461\n- train_runtime_seconds: 6040\n- total_steps: 471, epochs: 3\n\nmvp_c4_s137 训练耗时 9.54h（比 s42 的 6.58h 长），需要检查是否有异常。\n\n### 产出\n用 update_registry 更新 mvp_c4_s137：\n1. 设 metrics 字段（包含上述提取的指标）\n2. 设 conclusion 为 \"success\"（如果训练正常完成且 loss 合理）或 \"failed\"（如果有问题）\n3. 设 checkpoint_path\n4. 设 status 为 \"DONE\"\n\n如果训练异常（loss 发散、checkpoint 缺失等），conclusion 设为 \"failed\" 并记录 failure_reason。",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T17:58:32.807128+00:00_
+
+called mcp__agent-ml-research__submit_on_allocated
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_on_allocated</summary>
+
+```json
+{
+  "exp_id": "mvp_c2_s42",
+  "command": "bash -c \"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition2_position_reset.yaml --seed 42\"",
+  "project": "tbab_multi_turn",
+  "timeout_hours": "12"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__submit_on_allocated",
+  "tool_args": {
+    "exp_id": "mvp_c2_s42",
+    "command": "bash -c \"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition2_position_reset.yaml --seed 42\"",
+    "project": "tbab_multi_turn",
+    "timeout_hours": "12"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T17:58:34.516764+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_mvp_c4_s137_20260518T175832\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/logs/workers/worker_analysis_mvp_c4_s137_20260518T175832.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_mvp_c4_s137_20260518T175832 started. Use get_worker_status('worker_analysis_mvp_c4_s137_20260518T175832') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_c4_s137",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2966
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-18T18:17:10.519399+00:00_
+
+并行执行：1) 派 Worker 分析 mvp_c4_s137 训练结果 2) 提交 C2_s42 占用空闲 GPU。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_c4_s137"
+}
+```
+
+</details>
+
+---

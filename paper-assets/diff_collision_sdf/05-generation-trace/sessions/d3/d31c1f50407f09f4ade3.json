@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d31c1f50407f09f4ade3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval pi05 official eval westd45947",
+  "task_key": "worker_eval_pi05_official_eval_westd45947_20260522T194044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pi05_official_eval_westd45947_20260522T194044_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "fc8d6c93afe5f654b81058ca798a582bcda696b51b1a5a4d3891d7aca64bfc45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 eval 已在运行，4/4 成功。总结：\n\n### 结果\n\n| 项 | 状态 |\n|---|---|\n| **Server** | `tmux: pi05_server`，cuda:1，port 8000，pi05_libero checkpoint 已加载 |\n| **Eval** | `tmux: pi05_eval`，libero_spatial，50 trials/task |\n| **Pilot TSR** | **95%**（20 episodes，仅 task 5 \"top drawer\" 失败 1 次） |\n| **每 episode 耗时** | ~6 秒 |\n| **完整 eval 预计耗时** | ~50 分钟（500 episodes） |\n| **orbax 修复** | 已 patch `/root/autodl-tmp/openpi/src/openpi/models/model.py`（`metadata.item_metadata` 兼容） |\n| **cuda:0 A3 训练** | 未受影响 |\n\n完整 eval 日志在 `/tmp/pi05_eval_full.log`，视频在 `/root/autodl-tmp/pi05_eval_videos_full/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-pi05-official-eval-westd45947.md"
+}

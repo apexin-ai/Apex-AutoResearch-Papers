@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "524ae022233f0faa461c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper p0 1 title",
+  "task_key": "worker_paper_p0-1-title_20260528T060906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p0-1-title_20260528T060906_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "eef1839bc652f685ea5c2ada133461a0a78b2be5588db44e42cf1ff55a3afa6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "标题已改为 \"How Action Collapse Creates Illusory Safety in VLA Collision Avoidance Evaluation\"，编译通过，18 页 PDF 正常输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p0-1-title.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0ff0793cfd0b65e5fb7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh a1 kill restart bs32",
+  "task_key": "worker_ssh_a1_kill_restart_bs32_20260520T002511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a1_kill_restart_bs32_20260520T002511_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "449f38e1b69234ff8d3d1aabd40db22e5cdd2fa29f060e39d0d42b4c9afe4b50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 3 目前 559 MiB，正在加载模型。等定时任务触发后再检查完整状态。\n\n当前状态汇总：\n- **Kill**: PID 117519 已终止，GPU 3 已释放\n- **重启**: 新 PID **123360**，batch_size=32 已启动\n- **GPU 3**: 559 MiB（模型加载中），等 3-4 分钟后检查 VRAM 是否达到 ≥35GB\n\n定时检查将在几分钟后自动触发，届时确认 VRAM、loss 和 GPU 利用率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a1-kill-restart-bs32.md"
+}

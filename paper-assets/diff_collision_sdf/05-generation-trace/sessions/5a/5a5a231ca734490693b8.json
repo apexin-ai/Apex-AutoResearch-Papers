@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a5a231ca734490693b8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh urgent gpu status all",
+  "task_key": "worker_ssh_urgent_gpu_status_all_20260521T081626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_gpu_status_all_20260521T081626_result.json",
+    "occurrence": 1,
+    "bytes": 1291,
+    "sha256": "822089e5c837c5ba6524b2bdfbbde19ee57f9ac906a33dbc5d57855dec54b0dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 服务器 | GPU | 预期实验 | 预期PID | alive/dead | 实际进程 | VRAM | GPU利用率 | 运行时长 |\n|--------|-----|----------|---------|------------|----------|------|-----------|----------|\n| westd-35807 | 0 | a1_lora_spatial_bowl | 299910 | **alive** | train_a1_sdf_aux --scene spatial_bowl | 16864/97887 MiB | 100% | 1h27m |\n| westd-35807 | 1 | baseline_lora_spatial_bowl | 281554 | **alive** | train_baseline --scene spatial_bowl | 23884/97887 MiB | 100% | 6h04m |\n| westd-35807 | 2 | a1_lora_object_pudding | 292258 | **alive** | train_a1_sdf_aux --scene object_pudding | 16864/97887 MiB | **0%** | 3h33m |\n| westd-35807 | 3 | baseline_lora_object_pudding | 281629 | **alive** | train_baseline --scene object_pudding | 23884/97887 MiB | 100% | 6h04m |\n| westd-45947 | 0 | a3_spatial | 143451 | **DEAD** | — | 0/97887 MiB | 0% | — |\n| westd-45947 | 1 | a3_object | 143525 | **DEAD** | — | 0/97887 MiB | 0% | — |\n\n**异常：**\n1. **westd-45947 两张卡全挂** — PID 143451 和 143525 均已不存在，GPU 完全空闲，无任何进程。\n2. **westd-35807 GPU 2 利用率 0%** — PID 292258 进程存活且占用 16.8GB VRAM，但 GPU utilization 报 0%。可能处于数据加载/checkpoint 保存阶段，或卡住。值得关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-gpu-status-all.md"
+}

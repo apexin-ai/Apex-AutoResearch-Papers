@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "155c6be9b6b51d740e7a",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "eval data confirm r48 sensor",
+  "task_key": "worker_eval_data_confirm_r48_sensor_20260517T014409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_data_confirm_r48_sensor_20260517T014409.log",
+    "occurrence": 1,
+    "bytes": 1141991,
+    "sha256": "03b5f72c28bf547c8de8e4e06edc05379aa9cb550eeb74b68e73e3a83ed7ff63"
+  },
+  "statistics": {
+    "messages": 696,
+    "user_turns": 1,
+    "tool_calls": 291,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 2,
+      "assistant": 95,
+      "tool_call": 291,
+      "tool_result": 291,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 633,
+      "chunks": [
+        {
+          "path": "155c6be9b6b51d740e7a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "155c6be9b6b51d740e7a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "155c6be9b6b51d740e7a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "155c6be9b6b51d740e7a-part-0004.json",
+          "message_count": 93
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 63,
+      "chunks": [
+        {
+          "path": "155c6be9b6b51d740e7a-part-0004.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-data-confirm-r48-sensor.md"
+}

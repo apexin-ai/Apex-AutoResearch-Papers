@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4c22a567fde0adf6c95",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh a1 alive check and fix",
+  "task_key": "worker_ssh_a1_alive_check_and_fix_20260520T011823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a1_alive_check_and_fix_20260520T011823_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "cb4cbde68148ec30e13672ea54d8e0a6f493fe28598b1408ae26b6154b5ea89b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**A1 PID 123362 存活**\n\n| 指标 | 值 |\n|------|-----|\n| PID | 123362 (运行 52m38s) |\n| Step | 876 / 30000 |\n| Loss | 0.2817 (最近波动 0.20–0.28，正常) |\n| LR | 2.19e-05 (warmup 中) |\n| GPU 3 利用率 | 0% (采样瞬间值，训练在 forward/backward 间隙) |\n| GPU 3 VRAM | 13,385 MiB |\n| 速度 | ~3.5 s/it |\n\nGPU 0/1/2 上的 baseline 正常运行（100% 利用率，各 37.4 GB VRAM）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a1-alive-check-and-fix.md"
+}

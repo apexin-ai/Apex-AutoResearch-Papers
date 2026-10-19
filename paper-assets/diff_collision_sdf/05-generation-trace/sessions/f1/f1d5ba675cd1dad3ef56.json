@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1d5ba675cd1dad3ef56",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "audit search westd 45947",
+  "task_key": "worker_audit_search-westd-45947_20260529T054029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_search-westd-45947_20260529T054029_result.json",
+    "occurrence": 1,
+    "bytes": 1773,
+    "sha256": "4d1cee6f617d3bf7d7c204efac1cf510188432d0a0b45e36be08569ad2a4ed57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 搜索结果汇报\n\n### Target 1: Pi0.5 baseline (TSR=71.5%, CAR=28.5%) — **已找到 ✓**\n\n**匹配文件: `/root/autodl-tmp/eval_results/pi05_base_reeval_safelibero_object_levelII_seed7.json`**\n| Task | TSR | CAR |\n|------|-----|-----|\n| OJ   | 0.74 | 0.16 |\n| CP   | 0.80 | 0.60 |\n| Milk | 0.66 | 0.06 |\n| BBQ  | 0.66 | 0.32 |\n| **Avg** | **0.715 ✓** | **0.285 ✓** |\n\n- seed=7, model_type=\"baseline\", config=\"pi0_libero_low_mem_finetune\"\n- 修改时间: 2026-05-26 15:35:02\n- Per-task TSR 74/80/66/66 完全吻合论文数据\n\n---\n\n### `pi05_safelibero_object_v11.json` 详细信息\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| OJ   | 0.64 | 0.06 |\n| CP   | 0.86 | 0.56 |\n| Milk | 0.66 | 0.16 |\n| BBQ  | 0.76 | 0.34 |\n| **Overall** | **0.73** | **0.28** |\n\n- seed=7, model=\"pi05_libero\", n_episodes=200 (4 tasks × 50)\n- 修改时间: 2026-05-23 05:40:44\n- 与论文目标 71.5/28.5 不匹配（这是不同的评估运行，per-task 分布完全不同）\n\n---\n\n### Target 2: LoRA s2 (CAR=55.0%, per-task OJ=56/CP=76/Milk=62/BBQ=26) — **未找到 ✗**\n\n**westd-45947 上不存在 LoRA baseline seed2 的 eval 文件。**\n\n- 训练 checkpoint 存在: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed2/30000`（创建于 2026-05-27 21:07）\n- 但没有对应的 eval JSON\n- 注意: `eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json` 文件名有误导性——实际评估的是 SDF 模型 `a1_sdf_pi05_object_pudding_seed2_l1/30000`，不是 LoRA baseline seed2\n- 遍历了服务器上所有 28 个 eval JSON，没有任何文件的 per-task CAR 匹配 56/76/62/26\n\nLoRA s2 的 eval 可能在 westd-35807 上，或尚未执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-search-westd-45947.md"
+}

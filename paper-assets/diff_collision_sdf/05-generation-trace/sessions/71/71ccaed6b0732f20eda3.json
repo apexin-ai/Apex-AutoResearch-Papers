@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71ccaed6b0732f20eda3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops kill eval launch lora",
+  "task_key": "worker_ops_kill_eval_launch_lora_20260524T112322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_eval_launch_lora_20260524T112322_result.json",
+    "occurrence": 1,
+    "bytes": 114,
+    "sha256": "beee11d122cfc5a2b435b9b33ee612b92d4be96f169898231ee5cdde949d437d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到。所有计时器已结束，两个 LoRA baseline 训练 (s0/s1) 均已确认正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-eval-launch-lora.md"
+}

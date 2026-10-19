@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "9692709b2c30ee926068",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "fix training speed optimization",
+  "task_key": "worker_fix_training_speed_optimization_20260516T032426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_training_speed_optimization_20260516T032426_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "5e378838a1b207b68cb820e3595a0db2d2420a30988234c6d2db155f0178e467"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5Z8g5utD6mYLLjtQsUt\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "This organization has been disabled."
+              },
+              "request_id": "req_011Cb5Z8g5utD6mYLLjtQsUt"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-training-speed-optimization.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5858994b2c039da33b52",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "fix assembly dryrun and cleanup",
+  "task_key": "worker_fix_assembly-dryrun-and-cleanup_20260515T164453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_assembly-dryrun-and-cleanup_20260515T164453_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "6575d23a83cc1d1629cabf68953f7fe6087a95e5bc0039021c62e17a99c02397"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n```\nP1 assembly dry-run: PASS — Router forward → LoRA merge → action generation 端到端通过\n   actions=(1,50,32), routing=[0.15, 0.58, 0.27]\n   注：需设 CUDA_VISIBLE_DEVICES 隔离（JAX 默认预分配所有 GPU 导致并行加载冲突）\n\nP2 ablation+eval dry-run: PASS — 两个脚本均通过\n   evaluate_libero_plus.py: actions=(1,50,32), routing=[0.37, 0.42, 0.21], exit=0\n   ablation_ladder.py: 5 configs 全部通过 (none/universal/random/par/oracle), exit=0\n\nP3 LoRA training dry-run: PASS — 模型加载 → LoRA 注入 → forward+backward 完成\n   3,686,400 trainable params (0.11%), 2 步 loss: 8.81→1.91, exit=0\n\nP4 first-token pooling: CONFIRMED — 两文件默认均为 \"first\"\n   par_router.py:49  → config.get(\"pooling\", \"first\")\n   train_par_router.py:465 → default=\"first\"\n   注：meta_brain_assembly.py from_dummy() 的测试 router 仍用 \"mean\"，不影响实际推理\n\nP5 代码合并: N/A — artifacts/phase1/train_lora_expert.py 已不存在，\n   仅保留规范路径 phase1/train_lora_expert.py（336 行，含 data_loader + augmentation + PEFT LoRA + flow-matching loss）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-assembly-dryrun-and-cleanup.md"
+}

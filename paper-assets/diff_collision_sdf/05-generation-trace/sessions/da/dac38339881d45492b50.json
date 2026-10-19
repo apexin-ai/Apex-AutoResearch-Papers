@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "dac38339881d45492b50",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "fix eval pipeline v6",
+  "task_key": "worker_fix_eval_pipeline_v6_20260521T201341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_pipeline_v6_20260521T201341.log",
+    "occurrence": 1,
+    "bytes": 897976,
+    "sha256": "82d028cd93f0c0943ede2449d219da9325181386c6b5bfe87285ccc2fae42868"
+  },
+  "statistics": {
+    "messages": 399,
+    "user_turns": 0,
+    "tool_calls": 141,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 113,
+      "tool_call": 141,
+      "tool_result": 141,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 399,
+      "chunks": [
+        {
+          "path": "dac38339881d45492b50-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dac38339881d45492b50-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dac38339881d45492b50-part-0003.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-eval-pipeline-v6.md"
+}

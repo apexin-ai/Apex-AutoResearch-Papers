@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2a153e260d00a12d059",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh global status 35807 v2",
+  "task_key": "worker_ssh_global_status_35807_v2_20260520T094441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_global_status_35807_v2_20260520T094441_result.json",
+    "occurrence": 1,
+    "bytes": 1575,
+    "sha256": "e6296f3db9d9b619c59b153b32e7ec4155c1b180ce079aaa1d573a13afbdcbe3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n| GPU | 实验 | PID | Step/30000 | Loss | VRAM | 状态 |\n|-----|------|-----|-----------|------|------|------|\n| cuda:0 | baseline_spatial_bowl_s0 | 100319 | 10994/30000 (37%) | 0.0102 | 37.4 GiB | **正常**，GPU util 0%（可能在 data loading） |\n| cuda:1 | baseline_spatial_bowl_s1 | 94453 | 11287/30000 (38%) | 0.0135 | 37.4 GiB | **正常**，GPU util 100% |\n| cuda:2 | baseline_object_pudding_s0 | 95429 | 11414/30000 (38%) | 0.0087 | 37.4 GiB | **正常**，GPU util 100% |\n| cuda:3 | a1_sdf_spatial_bowl_s0 | 185994 | 6499/30000 (22%) | 0.2779 | 13.4 GiB | **已死** |\n\n### 系统资源\n- **磁盘 /root/autodl-tmp**: 199G/350G (57%) — 正常\n- **根分区 /**: 29G/30G (96%) — **几乎满**\n- **系统内存**: 74Gi/1.0Ti — 正常\n\n### OOM 排查\ndmesg 不可用（read_only 限制），但 A1 死因明确：**不是 OOM，是磁盘满。**\n\n### A1 死因\nStep 6499 保存 checkpoint 时根分区空间不足：\n```\nsafetensors_rust.SafetensorError: I/O error: No space left on device (os error 28)\n```\n路径：`train_pytorch.py:190 → save_checkpoint → safetensors.torch.save_model`\n\nPID 185994 仍挂在 GPU 3（13.4 GiB），torch._inductor compile workers 在跑，但 GPU util 0%，进程可能处于挂起/恢复状态，训练未在推进。\n\n### 根因\n根分区 30G 已用 29G，checkpoint 写入失败。需要清理根分区空间后重启 A1（checkpoint 应写到 `/root/autodl-tmp/` 而非根分区）。\n\n**3 个 baseline 正常运行，A1 需要你决定如何处理。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-global-status-35807-v2.md"
+}

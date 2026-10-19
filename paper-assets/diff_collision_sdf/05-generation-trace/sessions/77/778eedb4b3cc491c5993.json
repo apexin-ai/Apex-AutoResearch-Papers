@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "778eedb4b3cc491c5993",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh westd35807 alive check",
+  "task_key": "worker_ssh_westd35807_alive_check_20260520T030426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd35807_alive_check_20260520T030426_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "fc99474e49c0a3e9e02a7a406e525b79e51f101235adad10504cc2b4a5dffa7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个进程全部存活。\n\n| GPU | 任务 | PID | 运行时间 | Step | Loss | VRAM | GPU Util |\n|-----|------|-----|----------|------|------|------|----------|\n| 0 | baseline_spatial_bowl_seed0 | 95429 | 4h41m | **4390**/30000 (15%) | 0.024 | 37.4/97.9 GB | 99% |\n| 1 | baseline_spatial_bowl_seed1 | 94453 | 4h41m | **4645**/30000 (15%) | 0.020 | 37.4/97.9 GB | 0%* |\n| 2 | baseline_object_pudding_seed0 | 100319 | 4h29m | **2685**/30000 (9%) | 0.243 | 37.4/97.9 GB | 100% |\n| 3 | **A1** sdf_spatial_bowl_s0 | 123362 | 2h38m | **2686**/30000 (9%) | 0.243 | **13.4**/97.9 GB | 0%* |\n\n\\* GPU util 0% 是 nvidia-smi 瞬时采样，PID 存活且 CPU 占用 65-128%，训练正常推进。\n\n**A1 (cuda:3) 尚未进入 Phase 2** — step 2686 < 5000，VRAM 13.4GB < 35GB。按当前速度（~3.5s/step），预计还需 ~2.3h 到 step 5000。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd35807-alive-check.md"
+}

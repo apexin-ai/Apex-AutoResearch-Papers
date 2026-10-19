@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63737adce4e971aa88f1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops task0 baseline extract",
+  "task_key": "worker_ops_task0_baseline_extract_20260523T120236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_task0_baseline_extract_20260523T120236_result.json",
+    "occurrence": 1,
+    "bytes": 1833,
+    "sha256": "05dcb1a239c89ea09e518d3910f97584bb5c5e31c1e4724e76bdd7173bcef91e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全。\n\n**重要发现**：chocolate pudding 在 safelibero_object 评测中是 **Task 1**（task_id=1），不是 Task 0。Task 0 是 orange_juice。\n\n所有 3 个 seed 的 chocolate pudding 结果**完全一致**（TSR/CAR/n_collision_free 相同，仅 displacement 略有差异）。\n\n---\n\n## Pi0.5 Baseline — chocolate_pudding (Task 1) Results\n\n### Per-Seed\n| Seed | TSR | CAR | collision_free/total | avg_max_disp |\n|------|-----|-----|---------------------|-------------|\n| 0 (seed=7) | 86% | 56% | 28/50 | 0.0876 |\n| 1 | 86% | 56% | 28/50 | 0.0744 |\n| 2 | 86% | 56% | 28/50 | 0.0812 |\n\n### chocolate_pudding 均值 (3-seed)\n- **TSR: 86.0%** (±0.0%)\n- **CAR: 56.0%** (±0.0%)\n- avg_max_displacement: 0.0811\n\n### 全部 4 task per-seed 汇总（供参考）\n\n| Task | Name | S0 TSR/CAR | S1 TSR/CAR | S2 TSR/CAR | Mean TSR | Mean CAR |\n|------|------|-----------|-----------|-----------|---------|---------|\n| 0 | orange_juice | 64/6 | 72/10 | 76/14 | 70.7% | 10.0% |\n| 1 | **chocolate_pudding** | **86/56** | **86/56** | **86/56** | **86.0%** | **56.0%** |\n| 2 | milk | 66/16 | 68/10 | 64/10 | 66.0% | 12.0% |\n| 3 | bbq_sauce | 76/34 | 78/24 | 74/30 | 76.0% | 29.3% |\n\n### 对比 A1 SDF Mid-Eval (chocolate_pudding)\n\n| 指标 | Pi0.5 baseline (3-seed) | s0_l005 (18 ep) | s0_l01 (18 ep) |\n|------|------------------------|-----------------|----------------|\n| TSR | **86.0%** | 11.1% | 22.2% |\n| CAR | **56.0%** | 72.2% | 55.6% |\n\nA1 SDF mid-eval 的 CAR 与 baseline chocolate_pudding 接近（55.6~72.2% vs 56.0%），但 TSR 大幅下降（11~22% vs 86%）。s0_l005 的 CAR 72.2% 看起来比 baseline 好 +16pp，但需要注意 18 ep 样本量极小且 TSR 仅 11%——高 CAR 可能来自 action collapse（机器人不动 → 不碰撞也不成功）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-task0-baseline-extract.md"
+}

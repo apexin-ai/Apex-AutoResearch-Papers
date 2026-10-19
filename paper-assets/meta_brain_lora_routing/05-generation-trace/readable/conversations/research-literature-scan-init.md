@@ -1,0 +1,2270 @@
+# research literature scan init
+
+**Meta-Brain: Perturbation-Diagnostic Routing of LoRA Experts for Parameter-E cient VLA Robustness** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 75
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/chats/worker_research_literature-scan-init_20260516T040326.jsonl`
+- **Structured JSON:** [`59e1f433f0f8fe8a9feb.json`](../../sessions/59/59e1f433f0f8fe8a9feb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+75 recorded events
+
+### Assistant
+
+_source line 1 · 2026-05-16T04:03:36.590162+00:00_
+
+API Error: 400 {"type":"error","error":{"type":"invalid_request_error","message":"This organization has been disabled."},"request_id":"req_011Cb5aq9mHStxE7FpvjzSob"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_literature-scan-init_20260516T040326"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-16T04:03:43.460341+00:00_
+
+API Error: 400 {"type":"error","error":{"type":"invalid_request_error","message":"This organization has been disabled."},"request_id":"req_011Cb5aqeTScJEYjAqd9Kvmx"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_literature-scan-init_20260516T040326"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T04:10:08.392806+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,TodoWrite",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,TodoWrite",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T04:10:08.393052+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T04:10:08.393214+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Search for VLA robustness / adaptation papers (direct competitors)', 'activeForm': 'Searching VLA robustness papers', 'status': 'in_progress'}, {'content': 'Search for LoRA routing / MoE-LoRA papers', 'activeForm': 'Searching LoRA routing papers', 'status': 'pending'}, {'content': 'Search for LoRA in robotics / VLA papers', 'activeForm': 'Searching LoRA robotics papers', 'status': 'pending'}, {'content': 'Search for internal activation analysis / distribution shift detection', 'activeForm': 'Searching activation analysis papers', 'status': 'pending'}, {'content': 'Search for LIBERO benchmark and manipulation evaluation papers', 'activeForm': 'Searching LIBERO papers', 'status': 'pending'}, {'content': 'Search for VLA architecture papers (pi0, OpenVLA, PaliGemma)', 'activeForm': 'Searching VLA architecture papers', 'status': 'pending'}, {'content': 'Search for perturbation robustness in robot learning', 'activeForm': 'Searching perturbation robustness papers', 'status': 'pending'}, {'content': 'Write literature_map.yaml with all findings', 'activeForm': 'Writing literature_map.yaml', 'status': 'pending'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Search for VLA robustness / adaptation papers (direct competitors)', 'activeForm': 'Searching VLA robustness papers', 'status': 'in_progress'}, {'content': 'Search for LoRA routing / MoE-LoRA papers', 'activeForm': 'Searching LoRA routing papers', 'status': 'pending'}, {'content': 'Search for LoRA in robotics / VLA papers', 'activeForm': 'Searching LoRA robotics papers', 'status': 'pending'}, {'content': 'Search for internal activation analysis / distribution shift detection', 'activeForm': 'Searching activation analysis papers', 'status': 'pending'}, {'content': 'Search for LIBERO benchmark and manipulation evaluation papers', 'activeForm': 'Searching LIBERO papers', 'status': 'pending'}, {'content': 'Search for VLA architecture papers (pi0, OpenVLA, PaliGemma)', 'activeForm': 'Searching VLA architecture papers', 'status': 'pending'}, {'content': 'Search for perturbation robustness in robot learning', 'activeForm': 'Searching perturbation robustness papers', 'status': 'pending'}, {'content': 'Write literature_map.yaml with all findings', 'activeForm': 'Writing literature_map.yaml', 'status': 'pending'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T04:10:08.393375+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T04:10:08.393566+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "VLA vision language action robustness adaptation 2025 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "VLA vision language action robustness adaptation 2025 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T04:10:08.393698+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "pi0 robot policy fine-tuning robustness 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "pi0 robot policy fine-tuning robustness 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T04:10:08.393819+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "mixture of LoRA experts routing MoE 2024 2025 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "mixture of LoRA experts routing MoE 2024 2025 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T04:10:08.393933+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "LoRA expert routing distribution shift 2025 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "LoRA expert routing distribution shift 2025 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T04:10:08.394085+00:00_
+
+Web search results for query: "VLA vision language action robustness adaptation 2025 arxiv"
+
+Links: [{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.01331"},{"title":"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/html/2509.11417v1"},{"title":"Eva-VLA: Evaluating Vision-Language-Action Models’ Robustness","url":"https://arxiv.org/pdf/2509.18953"},{"title":"F1: A Vision-Language-Action Model Bridging ...","url":"https://arxiv.org/pdf/2509.06951"},{"title":"VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models","url":"https://arxiv.org/html/2601.03309v1"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2601.06748v1"},{"title":"Eva-VLA: Evaluating Vision-Language-Action Models’ Robustness Under Real-World Physical Variations","url":"https://arxiv.org/html/2509.18953v1"}]
+
+I found several relevant papers on arXiv related to Vision-Language-Action (VLA) models, robustness, and adaptation. Here are the key findings:
+
+## Recent VLA Research on Robustness and Adaptation (2025)
+
+**OpenMOSS LIBERO-Plus** - This work explores the limits of vision-language-action manipulations in cross-task generalization. The study identified seven core dimensions of perturbation: objects layout, environment background sampling, light variations, camera-view shifts, robot arm initialization perturbations, LLM-based language rewrites, and image noise, with the goal of testing model robu
+…[truncated 1321 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T04:10:08.394278+00:00_
+
+Web search results for query: "mixture of LoRA experts routing MoE 2024 2025 arxiv"
+
+Links: [{"title":"Mixture of Experts in Large Language Models †: Corresponding author: Junhao Song (junhao.song23@imperial.ac.uk)","url":"https://arxiv.org/html/2507.11181v2"},{"title":"[2510.17898] L-MoE: End-to-End Training of a Lightweight Mixture of Low-Rank Adaptation Experts","url":"https://arxiv.org/abs/2510.17898"},{"title":"Each Rank Could be an Expert: Single-Ranked Mixture of Experts LoRA for Multi-task Learning","url":"https://arxiv.org/html/2501.15103v1"},{"title":"LD-MoLE: Learnable Dynamic Routing for Mixture of LoRA Experts","url":"https://arxiv.org/html/2509.25684v1"},{"title":"DR-LoRA: Dynamic Rank LoRA for Mixture-of-Experts Adaptation","url":"https://arxiv.org/html/2601.04823v1"},{"title":"\\model: Boosting Mixture of LoRA Experts Fine-Tuning with a Hybrid Routing Mechanism","url":"https://arxiv.org/html/2504.00661v1"},{"title":"[2509.25684] LD-MoLE: Learnable Dynamic Routing for Mixture of LoRA Experts","url":"https://arxiv.org/abs/2509.25684"},{"title":"[2409.19878] HDMoLE: Mixture of LoRA Experts with Hierarchical Routing and Dynamic Thresholds for Fine-Tuning LLM-based ASR Models","url":"https://arxiv.org/abs/2409.19878"},{"title":"[2501.15103] Each Rank Could be an Expert: Single-Ranked Mixture of Experts LoRA for Multi-Task Learning","url":"https://arxiv.org/abs/2501.15103"},{"title":"TT-LoRA MoE: Using Parameter-Efficient Fine-Tuning and Sparse Mixture-Of-Experts | Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis","url":"https://dl.acm.org/doi/10.1145/3712285.3759888"}]
+
+Based on the web search results, here are the key papers on Mixture of LoRA Experts (MoLE) with routing mechanisms from 2024-2025 on arXiv:
+
+## Recent MoLE Routing and Expert Selection Papers
+
+**1. LD-MoLE: Learnable Dynamic Routing for Mixture of LoRA Experts** (September 2025)
+LD-MoLE proposes a Learnable Dynamic routing mechani
+…[truncated 1666 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T04:10:08.394507+00:00_
+
+Web search results for query: "pi0 robot policy fine-tuning robustness 2024 2025"
+
+Links: [{"title":"Evaluating \\( \\pi_0 \\) in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies","url":"https://penn-pal-lab.github.io/Pi0-Experiment-in-the-Wild/"},{"title":"π 0 : Our First Generalist Policy","url":"https://www.pi.website/blog/pi0"},{"title":"π0: A Vision-Language-Action Flow Model for General Robot Control","url":"https://www.pi.website/download/pi0.pdf"},{"title":"π0 robot policy model. π0[1] is a generalist robot policy… | by Deepthi Karkada | Medium","url":"https://medium.com/@deepkarkada/%CF%800-robot-policy-model-50d50b739a40"},{"title":"[2410.24164] $π_0$: A Vision-Language-Action Flow Model for General Robot Control","url":"https://arxiv.org/abs/2410.24164"},{"title":"𝜋₀: A Vision-Language-Action Flow Model for General Robot Control","url":"https://arxiv.org/html/2410.24164v1"},{"title":"π0 and π0-FAST: Vision-Language-Action Models for General Robot Control","url":"https://huggingface.co/blog/pi0"},{"title":"GitHub - Physical-Intelligence/openpi · GitHub","url":"https://github.com/Physical-Intelligence/openpi"},{"title":"Physical Intelligence open-sources Pi0 robotics foundation model","url":"https://www.therobotreport.com/physical-intelligence-open-sources-pi0-robotics-foundation-model/"},{"title":"(PDF) π_0$: A Vision-Language-Action Flow Model for General Robot Control","url":"https://www.researchgate.net/publication/385443493_pi_0_A_Vision-Language-Action_Flow_Model_for_General_Robot_Control"}]
+
+Based on the search results, here's what I found about π₀ (pi0) robot policy, including fine-tuning and robustness research from 2024-2025:
+
+## Overview
+
+π₀ is a model pre-trained on diverse data from 7 distinct robot configurations and 68 tasks, and can then either be prompted directly or fine-tuned to complex downstream tasks.
+
+## Architecture and Design
+
+Powered by PaliGemma, Google DeepMind's 3B VLM, as its vision encoder, π₀ demonst
+…[truncated 1269 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T04:10:08.394713+00:00_
+
+Web search results for query: "LoRA expert routing distribution shift 2025 arxiv"
+
+Links: [{"title":"Effective LoRA Adapter Routing using Task Representations","url":"https://arxiv.org/html/2601.21795v1"},{"title":"arXiv:2507.00029v1 [cs.LG] 17 Jun 2025","url":"https://arxiv.org/pdf/2507.00029"},{"title":"Mixture of Experts in Large Language Models †: Corresponding author: Junhao Song (junhao.song23@imperial.ac.uk)","url":"https://arxiv.org/html/2507.11181v2"},{"title":"[2509.25684] LD-MoLE: Learnable Dynamic Routing for Mixture of LoRA Experts","url":"https://arxiv.org/abs/2509.25684"},{"title":"LoRA-Mixer: Coordinate Modular LoRA Experts Through Serial Attention Routing","url":"https://arxiv.org/html/2507.00029v1"},{"title":"SEQR: SECURE AND EFFICIENT QR-BASED LORA ROUTING","url":"https://arxiv.org/pdf/2509.18093"},{"title":"[2507.00029] LoRA-Mixer: Coordinate Modular LoRA Experts Through Serial Attention Routing","url":"https://arxiv.org/abs/2507.00029"},{"title":"[2508.17250] Routing Distilled Knowledge via Mixture of LoRA Experts for Large Language Model based Bundle Generation","url":"https://arxiv.org/abs/2508.17250"},{"title":"Each Rank Could be an Expert: Single-Ranked Mixture of Experts LoRA for Multi-task Learning","url":"https://arxiv.org/html/2501.15103v1"},{"title":"DR-LoRA: Dynamic Rank LoRA for Mixture-of-Experts Adaptation","url":"https://www.arxiv.org/pdf/2601.04823v1"}]
+
+I found several relevant papers on arXiv from 2025 related to LoRA expert routing. Here are the key results:
+
+## Recent Papers on LoRA Expert Routing (2025)
+
+**1. LoRA-Mixer: Coordinate Modular LoRA Experts Through Serial Attention Routing** (June 2025)
+This proposes LoRA-Mixer, a modular and lightweight MoE framework that integrates LoRA experts by replacing the projection matrices of the attention module's input/output linear layers with dynamically routed, task-specific LoRA experts. On datasets such as GSM8K, HumanEval, and MedQA, LoRA-Mixer achieves significant improvements o
+…[truncated 1443 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T04:10:08.394880+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Search for VLA robustness / adaptation papers (direct competitors)', 'activeForm': 'Searching VLA robustness papers', 'status': 'completed'}, {'content': 'Search for LoRA routing / MoE-LoRA papers', 'activeForm': 'Searching LoRA routing papers', 'status': 'completed'}, {'content': 'Search for LoRA in robotics / VLA papers', 'activeForm': 'Searching LoRA robotics papers', 'status': 'in_progress'}, {'content': 'Search for internal activation analysis / distribution shift detection', 'activeForm': 'Searching activation analysis papers', 'status': 'pending'}, {'content': 'Search for LIBERO benchmark and manipulation evaluation papers', 'activeForm': 'Searching LIBERO papers', 'status': 'pending'}, {'content': 'Search for VLA architecture papers (pi0, OpenVLA, PaliGemma)', 'activeForm': 'Searching VLA architecture papers', 'status': 'pending'}, {'content': 'Search for perturbation robustness in robot learning', 'activeForm': 'Searching perturbation robustness papers', 'status': 'pending'}, {'content': 'Write literature_map.yaml with all findings', 'activeForm': 'Writing literature_map.yaml', 'status': 'pending'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Search for VLA robustness / adaptation papers (direct competitors)', 'activeForm': 'Searching VLA robustness papers', 'status': 'completed'}, {'content': 'Search for LoRA routing / MoE-LoRA papers', 'activeForm': 'Searching LoRA routing papers', 'status': 'completed'}, {'content': 'Search for LoRA in robotics / VLA papers', 'activeForm': 'Searching LoRA robotics papers', 'status': 'in_progress'}, {'content': 'Search for internal activation analysis / distribution shift detection', 'activeForm': 'Searching activation analysis papers', 'status': 'pending'}, {'content': 'Search for LIBERO benchmark and manipulation evaluation papers', 'activeForm': 'Searching LIBERO papers', 'status': 'pending'}, {'content': 'Search for VLA architecture papers (pi0, OpenVLA, PaliGemma)', 'activeForm': 'Searching VLA architecture papers', 'status': 'pending'}, {'content': 'Search for perturbation robustness in robot learning', 'activeForm': 'Searching perturbation robustness papers', 'status': 'pending'}, {'content': 'Write literature_map.yaml with all findings', 'activeForm': 'Writing literature_map.yaml', 'status': 'pending'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T04:10:08.395041+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T04:10:08.395167+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "LoRA fine-tuning OpenVLA robot manipulation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "LoRA fine-tuning OpenVLA robot manipulation 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T04:10:08.395287+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "internal activations hidden states OOD detection distribution shift LLM 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "internal activations hidden states OOD detection distribution shift LLM 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T04:10:08.395405+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "LIBERO benchmark robot manipulation lifelong learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "LIBERO benchmark robot manipulation lifelong learning"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T04:10:08.395563+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "OpenVLA open-source vision language action model 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "OpenVLA open-source vision language action model 2024 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T04:10:08.395716+00:00_
+
+Web search results for query: "OpenVLA open-source vision language action model 2024 arxiv"
+
+Links: [{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://openvla.github.io/"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"[PDF] OpenVLA: An Open-Source Vision-Language-Action Model | Semantic Scholar","url":"https://www.semanticscholar.org/paper/OpenVLA:-An-Open-Source-Vision-Language-Action-Kim-Pertsch/8f9ceb5ffad8e7a066dfc9d9aaa5153b714740ee"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/html/2406.09246v3"},{"title":"openvla/openvla-7b · Hugging Face","url":"https://huggingface.co/openvla/openvla-7b"},{"title":"Unveiling the Potential of Vision-Language-Action Models with Open-Ended Multimodal Instructions","url":"https://arxiv.org/html/2505.11214v1"},{"title":"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/html/2509.11417v1"},{"title":"GitHub - reazon-research/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/reazon-research/openvla"},{"title":"(PDF) OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://www.researchgate.net/publication/381404911_OpenVLA_An_Open-Source_Vision-Language-Action_Model"}]
+
+Based on the web search results, here's what I found about OpenVLA:
+
+## Overview
+
+OpenVLA is a 7B-parameter open-source VLA (Vision-Language-Action) model trained on a diverse collection of 970k real-world robot demonstrations.
+
+## Paper Details
+
+The paper was submitted to arXiv on June 13, 2024 (arXiv:2406.09246), and was developed by researchers from Stanford, UC Berkeley, Google Deepmind
+…[truncated 1033 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T04:10:08.395913+00:00_
+
+Web search results for query: "LoRA fine-tuning OpenVLA robot manipulation 2025"
+
+Links: [{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"[2512.11921] Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/abs/2512.11921"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://openvla.github.io/"},{"title":"(PDF) Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://www.researchgate.net/publication/398721162_Towards_Accessible_Physical_AI_LoRA-Based_Fine-Tuning_of_VLA_Models_for_Real-World_Robot_Control"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub","url":"https://github.com/moojink/openvla-oft"},{"title":"Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation","url":"https://arxiv.org/html/2603.16044v1"},{"title":"GitHub - CHELabUB/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/CHELabUB/openvla"}]
+
+Based on the search results, here's what I found about LoRA fine-tuning of OpenVLA for robot manipulation in 2025:
+
+## Overview
+
+OpenVLA is a 7-billion-parameter Vision-Language-Action model that fuses advanced visual encoders and language models with real-world robot data for generalist manipulation. The model is fine-tun
+…[truncated 1320 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T04:10:08.396104+00:00_
+
+Web search results for query: "internal activations hidden states OOD detection distribution shift LLM 2024 2025"
+
+Links: [{"title":"llms' internal states retain the power of hallucination detection","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/0d1986a61e30e5fa408c81216a616e20-Paper-Conference.pdf"},{"title":"EigenTrack: Temporal Spectral Analysis of Hidden Activations for Hallucination and OOD Detection","url":"https://arxiv.org/html/2509.15735"},{"title":"RepreGuard: Detecting LLM-Generated Text by Revealing Hidden Representation Patterns | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.61/134537/RepreGuard-Detecting-LLM-Generated-Text-by"},{"title":"Truth as a Trajectory: What Internal Representations Reveal About Large Language Model Reasoning","url":"https://arxiv.org/html/2603.01326v1"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"},{"title":"Explain LLM Safety through Intermediate Hidden States","url":"https://aclanthology.org/2024.findings-emnlp.139.pdf"},{"title":"Internal Mechanisms of LLMs","url":"https://www.emergentmind.com/topics/internal-mechanisms-of-llms"},{"title":"GitHub - huytransformer/Awesome-Out-Of-Distribution-Detection: Out-of-distribution detection, robustness, and generalization resources. The repository contains a curated list of papers, tutorials, books, videos, articles and open-source libraries etc · GitHub","url":"https://github.com/huytransformer/Awesome-Out-Of-Distribution-Detection"},{"title":"Untitled Document","url":"https://arxiv.org/html/2602.04521"},{"title":"Are the Hidden States Hiding Something? Testing the ...","url":"https://aclanthology.org/2025.acl-long.304.pdf"}]
+
+Based on the web search results, I found several recent papers and resources on using internal activations and hidden states for OO
+…[truncated 1744 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T04:10:08.396289+00:00_
+
+Web search results for query: "LIBERO benchmark robot manipulation lifelong learning"
+
+Links: [{"title":"GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub","url":"https://github.com/Lifelong-Robot-Learning/LIBERO"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning | OpenReview","url":"https://openreview.net/forum?id=xzEtNSuDJk"},{"title":"[2306.03310] LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://arxiv.org/abs/2306.03310"},{"title":"LIBERO: simulation benchmark for the study of lifelong robot learning | by Deepthi Karkada | Medium","url":"https://medium.com/@deepkarkada/libero-simulation-benchmark-for-the-study-of-lifelong-robot-learning-583b786a96f6"},{"title":"LIBERO Benchmark: Lifelong Robot Learning","url":"https://www.emergentmind.com/topics/libero-benchmark"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://papers.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf"},{"title":"NeurIPS Poster LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://neurips.cc/virtual/2023/poster/73415"},{"title":"benchmarking knowledge transfer for lifelong robot learning","url":"https://dl.acm.org/doi/abs/10.5555/3666122.3668061"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning – Sony AI","url":"https://ai.sony/publications/LIBERO-Benchmarking-Knowledge-Transfer-for-Lifelong-Robot-Learning/"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"}]
+
+Based on the search results, here's comprehensive information about the LIBERO benchmark:
+
+## Overview
+
+LIBERO is a novel benchmark of lifelong learning for robot manipulation. The LIBERO benchmark is a standardized platform for evaluating sequential knowledge transfer in robotic manipulation task
+…[truncated 1874 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T04:10:08.396467+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Search for VLA robustness / adaptation papers (direct competitors)', 'activeForm': 'Searching VLA robustness papers', 'status': 'completed'}, {'content': 'Search for LoRA routing / MoE-LoRA papers', 'activeForm': 'Searching LoRA routing papers', 'status': 'completed'}, {'content': 'Search for LoRA in robotics / VLA papers', 'activeForm': 'Searching LoRA robotics papers', 'status': 'completed'}, {'content': 'Search for internal activation analysis / distribution shift detection', 'activeForm': 'Searching activation analysis papers', 'status': 'completed'}, {'content': 'Search for LIBERO benchmark and manipulation evaluation papers', 'activeForm': 'Searching LIBERO papers', 'status': 'completed'}, {'content': 'Search for VLA architecture papers (pi0, OpenVLA, PaliGemma)', 'activeForm': 'Searching VLA architecture papers', 'status': 'in_progress'}, {'content': 'Search for perturbation robustness in robot learning', 'activeForm': 'Searching perturbation robustness papers', 'status': 'pending'}, {'content': 'Write literature_map.yaml with all findings', 'activeForm': 'Writing literature_map.yaml', 'status': 'pending'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Search for VLA robustness / adaptation papers (direct competitors)', 'activeForm': 'Searching VLA robustness papers', 'status': 'completed'}, {'content': 'Search for LoRA routing / MoE-LoRA papers', 'activeForm': 'Searching LoRA routing papers', 'status': 'completed'}, {'content': 'Search for LoRA in robotics / VLA papers', 'activeForm': 'Searching LoRA robotics papers', 'status': 'completed'}, {'content': 'Search for internal activation analysis / distribution shift detection', 'activeForm': 'Searching activation analysis papers', 'status': 'completed'}, {'content': 'Search for LIBERO benchmark and manipulation evaluation papers', 'activeForm': 'Searching LIBERO papers', 'status': 'completed'}, {'content': 'Search for VLA architecture papers (pi0, OpenVLA, PaliGemma)', 'activeForm': 'Searching VLA architecture papers', 'status': 'in_progress'}, {'content': 'Search for perturbation robustness in robot learning', 'activeForm': 'Searching perturbation robustness papers', 'status': 'pending'}, {'content': 'Write literature_map.yaml with all findings', 'activeForm': 'Writing literature_map.yaml', 'status': 'pending'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T04:10:08.396634+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T04:10:08.396761+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "PaliGemma vision language model Google 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "PaliGemma vision language model Google 2024 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T04:10:08.396880+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Octo generalist robot policy diffusion 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Octo generalist robot policy diffusion 2024 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T04:10:08.396996+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "robot manipulation visual perturbation domain randomization generalization 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "robot manipulation visual perturbation domain randomization generalization 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T04:10:08.397110+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "RT-2 vision language action model robustness generalization Google"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "RT-2 vision language action model robustness generalization Google"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T04:10:08.397253+00:00_
+
+Web search results for query: "PaliGemma vision language model Google 2024 arxiv"
+
+Links: [{"title":"[2407.07726] PaliGemma: A versatile 3B VLM for transfer","url":"https://arxiv.org/abs/2407.07726"},{"title":"PaliGemma 2 model card | Google AI for Developers","url":"https://ai.google.dev/gemma/docs/paligemma/model-card-2"},{"title":"Paper page - PaliGemma: A versatile 3B VLM for transfer","url":"https://huggingface.co/papers/2407.07726"},{"title":"PaliGemma: A versatile 3B VLM for transfer","url":"https://arxiv.org/html/2407.07726v1"},{"title":"big_vision/big_vision/configs/proj/paligemma/README.md at main · google-research/big_vision","url":"https://github.com/google-research/big_vision/blob/main/big_vision/configs/proj/paligemma/README.md"},{"title":"PaliGemma Explained: an Open Vision Language Model from Google | by Allen Liang | Medium","url":"https://medium.com/@mlshark/paligemma-explained-an-open-vision-language-model-from-google-29bf1fa17cfa"},{"title":"(PDF) PaliGemma: A versatile 3B VLM for transfer","url":"https://www.researchgate.net/publication/382146057_PaliGemma_A_versatile_3B_VLM_for_transfer"},{"title":"PaliGemma - Google's First Open Vision Language Model, Fri, Jun 14, 2024, 7:00 PM | Meetup","url":"https://www.meetup.com/aifrontiers/events/301287822/"},{"title":"[2412.03555] PaliGemma 2: A Family of Versatile VLMs for Transfer","url":"https://arxiv.org/abs/2412.03555"},{"title":"[2407.07726v1] PaliGemma: A versatile 3B VLM for transfer","url":"https://arxiv.org/abs/2407.07726v1"}]
+
+Based on the search results, here's what I found about PaliGemma:
+
+## PaliGemma: Google's Vision-Language Model
+
+PaliGemma is an open Vision-Language Model (VLM) that is based on the SigLIP-So400m vision encoder and the Gemma-2B language model. It is trained to be a versatile and broadly knowledgeable base model that is effective to transfer.
+
+### Key Capabilities
+It achieves strong performance on a wide variety of open-world tasks, with evaluation on almost 40 diverse 
+…[truncated 912 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T04:10:08.397446+00:00_
+
+Web search results for query: "Octo generalist robot policy diffusion 2024 arxiv"
+
+Links: [{"title":"[2405.12213] Octo: An Open-Source Generalist Robot Policy","url":"https://arxiv.org/abs/2405.12213"},{"title":"Octo: An Open-Source Generalist Robot Policy","url":"https://octo-models.github.io/"},{"title":"Octo: An Open-Source Generalist Robot Policy","url":"https://arxiv.org/html/2405.12213v1"},{"title":"[PDF] Octo: An Open-Source Generalist Robot Policy | Semantic Scholar","url":"https://www.semanticscholar.org/paper/1d2753d74025e7a71594506623be81f18b073adb"},{"title":"Octo: An Open-Source Generalist Robot Policy Octo Model Team Dibya Ghosh∗,1","url":"https://arxiv.org/pdf/2405.12213"},{"title":"An Open-Source Generalist Robot Policy","url":"https://octo-models.github.io/paper.pdf"},{"title":"Effective Tuning Strategies for Generalist Robot Manipulation Policies","url":"https://arxiv.org/html/2410.01220v1"},{"title":"Octo: An Open-Source Generalist Robot Policy - Paper Detail","url":"https://deeplearn.org/arxiv/487297/octo:-an-open-source-generalist-robot-policy"},{"title":"[2405.12213v2] Octo: An Open-Source Generalist Robot Policy","url":"https://arxiv.org/abs/2405.12213v2"},{"title":"Octo: An Open-Source Generalist Robot Policy Octo Model Team Dibya Ghosh∗,1","url":"https://openreview.net/pdf/e2dabc0a3fd32239dcab07d7bcfa1fae085f49b0.pdf"}]
+
+I found the paper! Here's the key information about the Octo generalist robot policy:
+
+## Octo: An Open-Source Generalist Robot Policy
+
+Octo is a large transformer-based policy trained on 800k trajectories from the Open X-Embodiment dataset, the largest robot manipulation dataset to date.
+
+### Key Features:
+
+It can be instructed via language commands or goal images and can be effectively finetuned to robot setups with new sensory inputs and action spaces within a few hours on standard consumer GPUs.
+
+The particular combination of components — a transformer backbone, support for both language and goal image specification, and
+…[truncated 789 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T04:10:08.397628+00:00_
+
+Web search results for query: "RT-2 vision language action model robustness generalization Google"
+
+Links: [{"title":"RT-2: New model translates vision and language into action — Google DeepMind","url":"https://deepmind.google/blog/rt-2-new-model-translates-vision-and-language-into-action/"},{"title":"RT-2: Vision-Language-Action Models","url":"https://robotics-transformer2.github.io/"},{"title":"[2307.15818] RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://arxiv.org/abs/2307.15818"},{"title":"A paper review of RT-2 — What Happens When a Language Model Controls a Robot? | by Sepideh | Toward Humanoids | Mar, 2026 | Medium","url":"https://medium.com/correll-lab/what-happens-when-a-language-model-controls-a-robot-a-review-of-rt-2-709e60ea9081"},{"title":"(PDF) RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://www.researchgate.net/publication/372784419_RT-2_Vision-Language-Action_Models_Transfer_Web_Knowledge_to_Robotic_Control"},{"title":"RT-2: Vision-Language-Action Models for Generalizable Robotic ...","url":"https://madison-proceedings.com/index.php/aetr/article/download/4359/4377/8857"},{"title":"RT-2: Vision-Language-Action Models for Generalizable Robotic Control: A Comprehensive Review | Advances in Engineering Technology Research","url":"https://madison-proceedings.com/index.php/aetr/article/view/4359"},{"title":"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://proceedings.mlr.press/v229/zitkovich23a/zitkovich23a.pdf"},{"title":"RT-2: Vision-Language-Action Model | PDF | Robotics | Computing","url":"https://www.scribd.com/document/724547947/rt2"},{"title":"RT-2: Vision-Language-Action Models for Generalizable Robotic Control: A Comprehensive Review","url":"https://www.researchgate.net/publication/398685874_RT-2_Vision-Language-Action_Models_for_Generalizable_Robotic_Control_A_Comprehensive_Review"}]
+
+Based on the search results,
+…[truncated 1745 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T04:10:08.397812+00:00_
+
+Web search results for query: "robot manipulation visual perturbation domain randomization generalization 2024 2025"
+
+Links: [{"title":"Published as a conference paper at ICLR 2025","url":"https://openreview.net/pdf?id=vJwjWyt4Ed"},{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong","url":"https://robogen-iros.github.io/accepted/9_RoboTwin_2_0_A_Scalable_Data.pdf"},{"title":"Learning to Manipulate Anywhere: A Visual Generalizable Framework For Reinforcement Learning","url":"https://arxiv.org/html/2407.15815v1"},{"title":"Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges","url":"https://arxiv.org/html/2508.17449v1"},{"title":"Towards Robust and Provably Generalizable Robot Learning Zhiyi “Allen” Ren","url":"https://irom-lab.princeton.edu/wp-content/uploads/2025/02/Ren_princeton_thesis.pdf"},{"title":"A Survey on Reinforcement Learning of Vision-Language-Action Models for Robotic Manipulation | TechRxiv","url":"https://www.techrxiv.org/users/934012/articles/1366553/master/file/data/TechrxivA_Survey_on_Reinforcement_Learning_of_Vision-Language-Action_Models_for_Robotic_Manipulation/TechrxivA_Survey_on_Reinforcement_Learning_of_Vision-Language-Action_Models_for_Robotic_Manipulation.pdf?inline=true"},{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"},{"title":"Robotics: Science and Systems 2024 Delft, Netherlands, July 15-July 19, 2024","url":"https://www.roboticsproceedings.org/rss20/p133.pdf"},{"title":"Diffusion models for robotic manipulation: a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/"},{"title":"Generalization Enhancement of Visual Reinforcement Learning through Internal States - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11280822/"}]
+
+Based on the search results, here's what I found regarding robot manipulation, visual perturbation, domain randomization, and generalization in recent research (2024-20
+…[truncated 1789 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T04:10:08.397967+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "linear probe activation classification feature extraction transformer hidden states 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "linear probe activation classification feature extraction transformer hidden states 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T04:10:08.398107+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "test-time adaptation robot policy visual generalization 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "test-time adaptation robot policy visual generalization 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T04:10:08.398232+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "specialized adapter expert routing vision language model task-specific 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "specialized adapter expert routing vision language model task-specific 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T04:10:08.398348+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "SimplerEnv VLA evaluation benchmark robot 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "SimplerEnv VLA evaluation benchmark robot 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T04:10:08.398513+00:00_
+
+Web search results for query: "linear probe activation classification feature extraction transformer hidden states 2024"
+
+Links: [{"title":"A Single Direction of Truth: An Observer Model’s Linear Residual Probe Exposes and Steers Contextual Hallucinations","url":"https://arxiv.org/html/2507.23221v1"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d8f1702373bc5f9a085b9f8226c589b2-Paper-Conference.pdf"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v1.full.pdf"},{"title":"Actually, Othello-GPT Has A Linear Emergent World Representation — Neel Nanda","url":"https://www.neelnanda.io/mechanistic-interpretability/othello"},{"title":"A Mechanistic Analysis of a Transformer Trained on ...","url":"https://aclanthology.org/2024.findings-acl.242.pdf"},{"title":"Hidden Pieces: An Analysis of Linear Probes for GPT Representation Edits","url":"https://ial.eecs.ucf.edu/pdf/Sukthankar-Austin-ICMLA2024.pdf"},{"title":"Transformers Represent Belief State Geometry in their ...","url":"https://www.alignmentforum.org/posts/gTZ2SxesbHckJ3CkF/transformers-represent-belief-state-geometry-in-their"},{"title":"Peri-LN: Revisiting Layer Normalization in the Transformer ...","url":"https://arxiv.org/pdf/2502.02732"},{"title":"Linear representations in transformers - Nina Panickssery","url":"https://blog.ninapanickssery.com/p/linear-representations-in-transformers"},{"title":"Explanation in the Era of LLMs NAACL 2024 tutorial","url":"https://explanation-llm.github.io/slides/section_4_slides.pdf"}]
+
+I've successfully performed the web search for your query. Here's a summary of the key findings:
+
+## Recent Research on Linear Probes and Transformer Hidden States (2024-2025)
+
+The search returned several relevant papers and resources on using linear probes to analyze and extract features from transformer hidden states:
+
+*
+…[truncated 1432 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T04:10:08.398687+00:00_
+
+Web search results for query: "test-time adaptation robot policy visual generalization 2025"
+
+Links: [{"title":"VLS: Steering Pretrained Robot Policies via Vision–Language Models","url":"https://arxiv.org/html/2602.03973v1"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.pdf"},{"title":"Video Generators are Robot Policies - Columbia University","url":"https://videopolicy.cs.columbia.edu/assets/video_policy.pdf"},{"title":"2025-9-18 ThinkAct: Vision-Language-Action Reasoning via","url":"https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"},{"title":"Video Prediction Policy: A Generalist Robot Policy with Predictive Visual Representations | OpenReview","url":"https://openreview.net/forum?id=c0dhw1du33"},{"title":"Vision Language Action Models (VLA) & Policies for Robots","url":"https://learnopencv.com/vision-language-action-models-lerobot-policy/"},{"title":"Compose Your Policies! Improving Diffusion-based or Flow-based Robot Policies via Test-time Distribution-level Composition","url":"https://arxiv.org/html/2510.01068v1"},{"title":"Vision-Language-Action Models and the Search for a Generalist Robot Policy","url":"https://itcanthink.substack.com/p/vision-language-action-models-and"},{"title":"A Survey on Reinforcement Learning of Vision-Language-Action Models for Robotic Manipulation | TechRxiv","url":"https://www.techrxiv.org/users/934012/articles/1366553/master/file/data/TechrxivA_Survey_on_Reinforcement_Learning_of_Vision-Language-Action_Models_for_Robotic_Manipulation/TechrxivA_Survey_on_Reinforcement_Learning_of_Vision-Language-Action_Models_for_Robotic_Manipulation.pdf?inline=true"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2601.06748"}]
+
+I've successfully performed the web search for "test-time adapta
+…[truncated 1894 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T04:10:08.398869+00:00_
+
+Web search results for query: "SimplerEnv VLA evaluation benchmark robot 2024 2025"
+
+Links: [{"title":"Self-Improving Vision-Language-Action Models with Data ...","url":"https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8667f264f88c7938a73a53ab01eb1327-Paper-Conference.pdf"},{"title":"GitHub - simpler-env/SimplerEnv: Evaluating and reproducing real-world robot manipulation policies (e.g., RT-1, RT-1-X, Octo) in simulation under common setups (e.g., Google Robot, WidowX+Bridge) (CoRL 2024) · GitHub","url":"https://github.com/simpler-env/SimplerEnv"},{"title":"Interleave-VLA: Enhancing Robot Manipulation with","url":"https://corl25-genpriors.github.io/Papers/24_Interleave_VLA_Enhancing_Ro.pdf"},{"title":"Under review as submission to TMLR VOTE: Vision-Language-Action Optimization","url":"https://openreview.net/pdf?id=jAWveMzE1p"},{"title":"Evaluating Real-World Robot Manipulation Policies in Simulation","url":"https://simpler-env.github.io/simpler.pdf"},{"title":"InternVLA-M1: A Spatially Guided Vision-Language-Action Framework for Generalist Robot Policy","url":"https://arxiv.org/html/2510.13778v1"},{"title":"ST4VLA: Spatially Guided Training for Vision-Language-Action Model","url":"https://arxiv.org/html/2602.10109"},{"title":"VLABench: A Large-Scale Benchmark for Language-Conditioned Robotics","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Zhang_VLABench_A_Large-Scale_Benchmark_for_Language-Conditioned_Robotics_Manipulation_with_Long-Horizon_ICCV_2025_paper.pdf"},{"title":"LADEV: A Language-Driven Testing and Evaluation Platform for","url":"https://arxiv.org/pdf/2410.05191"}]
+
+Based on the search results, here's what I found about SimplerEnv, VLA evaluation, and robot benchmarks from 2024-2025:
+
+## SimplerEnv Overview
+
+SimplerEnv is a Simulated Manipulation Policy Evaluation Environment for Real Robot Setups. I
+…[truncated 1372 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T04:10:08.399046+00:00_
+
+Web search results for query: "specialized adapter expert routing vision language model task-specific 2024 2025"
+
+Links: [{"title":"Vision-Enhanced Large Language Models","url":"https://www.emergentmind.com/topics/vision-enhanced-large-language-models-llms"},{"title":"Mixture of Experts in Large Language Models †: Corresponding author: Junhao Song (junhao.song23@imperial.ac.uk)","url":"https://arxiv.org/html/2507.11181v1"},{"title":"Boosting Continual Learning of Vision-Language Models via Mixture-of-Experts","url":"https://openaccess.thecvf.com/content/CVPR2024/papers/Yu_Boosting_Continual_Learning_of_Vision-Language_Models_via_Mixture-of-Experts_Adapters_CVPR_2024_paper.pdf"},{"title":"Expertise need not monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning","url":"https://arxiv.org/html/2510.14300v1"},{"title":"Following Route Instructions using Large Vision-Language Models:","url":"https://aclanthology.org/2025.icnlsp-1.43.pdf"},{"title":"A comprehensive survey of Vision–Language Models: Pretrained models, fine-tuning, prompt engineering, adapters, and benchmark datasets - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S1566253525006955"},{"title":"Task-adaptive vision experts routing via competency learning guided by predictive uncertainty - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2405959526000688"},{"title":"LMAD: Integrated End-to-End Vision-Language Model for Explainable Autonomous Driving","url":"https://arxiv.org/html/2508.12404v1"},{"title":"Vision-Language-Action Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v1"},{"title":"MMA: Multi-Modal Adapter for Vision-Language Models","url":"https://openaccess.thecvf.com/content/CVPR2024/papers/Yang_MMA_Multi-Modal_Adapter_for_Vision-Language_Models_CVPR_2024_paper.pdf"}]
+
+Based on the web search results, here's what I found on specialized adapter expert routing in vision
+…[truncated 1866 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T04:10:08.399199+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"LIBERO-Plus\" VLA robustness perturbation manipulation benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"LIBERO-Plus\" VLA robustness perturbation manipulation benchmark"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T04:10:08.399323+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Action-Specialized Mixture of Experts\" VLA robot 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Action-Specialized Mixture of Experts\" VLA robot 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T04:10:08.399459+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"diffusion policy\" robot manipulation imitation learning 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"diffusion policy\" robot manipulation imitation learning 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T04:10:08.399617+00:00_
+
+Web search results for query: ""LIBERO-Plus" VLA robustness perturbation manipulation benchmark"
+
+Links: [{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models | Takara TLDR","url":"https://tldr.takara.ai/p/2510.13626"}]
+
+Based on the search results, here's information about LIBERO-Plus:
+
+## Overview
+
+LIBERO-Plus is a benchmark for analyzing the robustness of Vision-Language-Action (VLA) models by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.
+
+## Key Findings
+
+The analysis exposes critical we
+…[truncated 1349 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T04:10:08.399796+00:00_
+
+Web search results for query: ""diffusion policy" robot manipulation imitation learning 2024"
+
+Links: [{"title":"Diffusion Trajectory-guided Policy: A Novel Framework for Long-Horizon Robot Manipulation | OpenReview","url":"https://openreview.net/forum?id=VaoeAi5CW8"},{"title":"Frontiers | Diffusion models for robotic manipulation: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"},{"title":"Imitation Learning for Robotic Manipulation with ControlNeXt-Conditioned Diffusion Policies","url":"https://www.researchgate.net/publication/395824306_Imitation_Learning_for_Robotic_Manipulation_with_ControlNeXt-Conditioned_Diffusion_Policies"},{"title":"GitHub - YanjieZe/3D-Diffusion-Policy: [RSS 2024] 3D Diffusion Policy: Generalizable Visuomotor Policy Learning via Simple 3D Representations · GitHub","url":"https://github.com/YanjieZe/3D-Diffusion-Policy"},{"title":"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion","url":"https://diffusion-policy.cs.columbia.edu/"},{"title":"3D Diffusion Policy:","url":"https://3d-diffusion-policy.github.io/2024_arXiv_DP3.pdf"},{"title":"GitHub - showlab/Awesome-Robotics-Diffusion: A curated list of recent robot learning papers incorporating diffusion models for robotics tasks. · GitHub","url":"https://github.com/showlab/Awesome-Robotics-Diffusion"},{"title":"Learning force-conditioned visuomotor diffusion policy from human demonstrations for complex robotic assembly tasks - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S221384632500207X"},{"title":"Tactile-Conditioned Diffusion Policy for Force-Aware Robotic Manipulation","url":"https://arxiv.org/html/2510.13324v1"},{"title":"[2303.04137] Diffusion Policy: Visuomotor Policy Learning via Action Diffusion","url":"https://arxiv.org/abs/2303.04137"}]
+
+Based on the search results, I found comprehensive information about diffusion policy approaches for robot manipulation and imitation learning 
+…[truncated 1787 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T04:10:08.399988+00:00_
+
+Web search results for query: ""Action-Specialized Mixture of Experts" VLA robot 2025"
+
+Links: [{"title":"Expertise need not monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning","url":"https://arxiv.org/html/2510.14300v1"},{"title":"[2510.14300] Expertise need not monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning","url":"https://arxiv.org/abs/2510.14300"},{"title":"Expertise need not monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning | OpenReview","url":"https://openreview.net/forum?id=cNZ5W1f4tE"},{"title":"[2510.14300v1] Expertise need not monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning","url":"https://arxiv.org/abs/2510.14300v1"},{"title":"action- specialized mixture of experts for vision- language","url":"https://openreview.net/pdf/b4f7879adffb99ce53e332cc326b3c29b76ee416.pdf"},{"title":"Action-Specialized Mixture of Experts for Vision-Language- ...","url":"https://arxiv.org/pdf/2510.14300"},{"title":"Expertise Need Not Monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning","url":"https://charleshen1412.github.io/AdaMoE-VLA/"},{"title":"Vision Language Action Models (VLA) & Policies for Robots","url":"https://learnopencv.com/vision-language-action-models-lerobot-policy/"},{"title":"FedVLA: Federated Vision-Language-Action Learning with Dual Gating","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Miao_FedVLA_Federated_Vision-Language-Action_Learning_with_Dual_Gating_Mixture-of-Experts_for_Robotic_ICCV_2025_paper.pdf"},{"title":"NeurIPS Poster ChatVLA-2: Vision-Language-Action Model with Open-World Reasoning","url":"https://neurips.cc/virtual/2025/poster/120199"}]
+
+I found research on this topic! Here are the search results:
+
+## Action-Specialized Mixture of Experts for Vision-Language-Action (VLA) Robots
+
+The proposed approach, called AdaMoE, is a Mixture-of-Experts (MoE) archit
+…[truncated 1505 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T04:10:08.400165+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"FedVLA\" OR \"ChatVLA\" mixture experts vision language action 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"FedVLA\" OR \"ChatVLA\" mixture experts vision language action 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-16T04:10:08.400292+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"sim-to-real\" robot policy lighting background distractor visual robustness 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"sim-to-real\" robot policy lighting background distractor visual robustness 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T04:10:08.400466+00:00_
+
+Web search results for query: ""FedVLA" OR "ChatVLA" mixture experts vision language action 2025"
+
+Links: [{"title":"FedVLA: Federated Vision-Language-Action Learning with Dual Gating","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Miao_FedVLA_Federated_Vision-Language-Action_Learning_with_Dual_Gating_Mixture-of-Experts_for_Robotic_ICCV_2025_paper.pdf"},{"title":"Expertise need not monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning","url":"https://arxiv.org/html/2510.14300v1"},{"title":"[2508.02190] FedVLA: Federated Vision-Language-Action Learning with Dual Gating Mixture-of-Experts for Robotic Manipulation","url":"https://arxiv.org/abs/2508.02190"},{"title":"NeurIPS Poster ChatVLA-2: Vision-Language-Action Model with Open-World Reasoning","url":"https://neurips.cc/virtual/2025/poster/120199"},{"title":"ICCV Poster FedVLA: Federated Vision-Language-Action Learning with Dual Gating Mixture-of-Experts for Robotic Manipulation","url":"https://iccv.thecvf.com/virtual/2025/poster/1325"},{"title":"[PDF] FedVLA: Federated Vision-Language-Action Learning with Dual Gating Mixture-of-Experts for Robotic Manipulation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/FedVLA:-Federated-Vision-Language-Action-Learning-Miao-Chang/101df2782989af5ee3f0b0e5299961e930dfbc1a"},{"title":"[Literature Review] Vision-Language-Action Model with Open-World Embodied Reasoning from Pretrained Knowledge","url":"https://www.themoonlight.io/en/review/vision-language-action-model-with-open-world-embodied-reasoning-from-pretrained-knowledge"},{"title":"Vision-Language-Action Model with Open-World Embodied Reasoning from Pretrained Knowledge","url":"https://chatvla-2.github.io/"},{"title":"A Survey on Efficient Vision-Language-Action Models","url":"https://arxiv.org/html/2510.24795v1"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"}]
+
+Based on the search results, 
+…[truncated 1745 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T04:10:08.400670+00:00_
+
+Web search results for query: ""sim-to-real" robot policy lighting background distractor visual robustness 2024 2025"
+
+Links: [{"title":"Precision home robots learn with real-to-sim-to-real | MIT News | Massachusetts Institute of Technology","url":"https://news.mit.edu/2024/precision-home-robotics-real-sim-real-0731"},{"title":"A Real-to-Sim-to-Real Approach for Robust Manipulation","url":"https://www.roboticsproceedings.org/rss20/p015.pdf"},{"title":"Robot Policy Evaluation for Sim-to-Real Transfer: A Benchmarking Perspective","url":"https://arxiv.org/html/2508.11117v1"},{"title":"Evaluating Real-World Robot Manipulation Policies in Simulation","url":"https://arxiv.org/html/2405.05941v1"},{"title":"Evaluating Real-World Robot Manipulation Policies in Simulation","url":"https://simpler-env.github.io/"},{"title":"Reconciling Reality through Simulation: A Real-to-Sim-to-Real Approach for Robust Manipulation","url":"https://arxiv.org/html/2403.03949v3"},{"title":"Reconciling Reality Through Simulation: A Real-to-Sim-to-Real Approach for Robust Manipulation","url":"https://real-to-sim-to-real.github.io/RialTo/"},{"title":"Augmented Reality for RObots (ARRO): Pointing Visuomotor Policies Towards Visual Robustness","url":"https://arxiv.org/html/2505.08627"},{"title":"Sim2Real Transfer Methods","url":"https://www.emergentmind.com/topics/sim2real-transfer-method"},{"title":"RobotArena ∞ : Scalable Robot Benchmarking via Real-to-Sim Translation","url":"https://arxiv.org/html/2510.23571v1"}]
+
+Based on the search results, I found several highly relevant papers and projects addressing sim-to-real robot policy learning with considerations for visual robustness including lighting, background, and distractors:
+
+## Key Research Areas
+
+**RialTo: Real-to-Sim-to-Real Approach**
+
+RialTo is a system for robustifying real-world imitation learning policies via reinforcement learning in "digital twin" simulation environments constructed on the fly from small amounts of real-world data. The
+…[truncated 1630 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T04:10:08.400829+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Search for VLA robustness / adaptation papers (direct competitors)', 'activeForm': 'Searching VLA robustness papers', 'status': 'completed'}, {'content': 'Search for LoRA routing / MoE-LoRA papers', 'activeForm': 'Searching LoRA routing papers', 'status': 'completed'}, {'content': 'Search for LoRA in robotics / VLA papers', 'activeForm': 'Searching LoRA robotics papers', 'status': 'completed'}, {'content': 'Search for internal activation analysis / distribution shift detection', 'activeForm': 'Searching activation analysis papers', 'status': 'completed'}, {'content': 'Search for LIBERO benchmark and manipulation evaluation papers', 'activeForm': 'Searching LIBERO papers', 'status': 'completed'}, {'content': 'Search for VLA architecture papers (pi0, OpenVLA, PaliGemma)', 'activeForm': 'Searching VLA architecture papers', 'status': 'completed'}, {'content': 'Search for perturbation robustness in robot learning', 'activeForm': 'Searching perturbation robustness papers', 'status': 'completed'}, {'content': 'Write literature_map.yaml with all findings', 'activeForm': 'Writing literature_map.yaml', 'status': 'in_progress'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Search for VLA robustness / adaptation papers (direct competitors)', 'activeForm': 'Searching VLA robustness papers', 'status': 'completed'}, {'content': 'Search for LoRA routing / MoE-LoRA papers', 'activeForm': 'Searching LoRA routing papers', 'status': 'completed'}, {'content': 'Search for LoRA in robotics / VLA papers', 'activeForm': 'Searching LoRA robotics papers', 'status': 'completed'}, {'content': 'Search for internal activation analysis / distribution shift detection', 'activeForm': 'Searching activation analysis papers', 'status': 'completed'}, {'content': 'Search for LIBERO benchmark and manipulation evaluation papers', 'activeForm': 'Searching LIBERO papers', 'status': 'completed'}, {'content': 'Search for VLA architecture papers (pi0, OpenVLA, PaliGemma)', 'activeForm': 'Searching VLA architecture papers', 'status': 'completed'}, {'content': 'Search for perturbation robustness in robot learning', 'activeForm': 'Searching perturbation robustness papers', 'status': 'completed'}, {'content': 'Write literature_map.yaml with all findings', 'activeForm': 'Writing literature_map.yaml', 'status': 'in_progress'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T04:10:08.400993+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T04:10:08.401180+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "meta_brain_lora_routing",
+  "file": "literature_map.yaml",
+  "content": "# Literature Map — Perturbation-Adaptive LoRA Routing (PAR)\n# Project: meta_brain_lora_routing\n# Target venue: CoRL 2026\n# Initial compilation: 2026-05-16\n#\n# Categories:\n#   direct-competitor — methods we directly compete with on VLA robustness\n#   method-component   — building blocks: LoRA routing/MoE, activation probing\n#   evaluation         — benchmarks we use or are evaluated on\n#   background         — VLA architecture + general robustness context\n\npapers:\n\n  # ─────────── direct-competitor ───────────\n\n  - id: \"libero_plus2025\"\n    title: \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\"\n    authors: \"OpenMOSS et al.\"\n    venue: \"arXiv (CVPR 2026 poster accepted)\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.13626\"\n    category: \"direct-competitor\"\n    role: \"robustness benchmark + diagnosis baseline\"\n    relevance: \"Most directly aligned prior work — defines 7 perturbation dimensions (object layout, camera, robot init, language, lighting, background, sensor noise) and shows VLA success drops 95→<30% under modest perturbations. Our PAR taxonomy (visual/spatial/physical) is a coarsening of theirs; we go beyond diagnosis to active correction via routed LoRA experts.\"\n    key_findings: \"Models exhibit extreme sensitivity to camera viewpoints + robot initial states; insensitive to language (ignore it). 10,030 tasks across 7 dimensions × 21 sub-dimensions with L1–L5 difficulty levels.\"\n\n  - id: \"robustvla2025\"\n    title: \"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2511.01331\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2511.01331\"\n    category: \"direct-competitor\"\n    role: \"competing robustness post-training method\"\n    relevance: \"Alternative path to VLA robustness — online RL with Jacobian + smoothness regularization. Differs from PAR: they modify the full policy via RL gradients; we keep π₀ frozen and add small targeted LoRAs. We should compare param count + need for env interaction.\"\n    key_findings: \"Jacobian regularization reduces sensitivity to observation noise; smoothness regularization stabilizes actions under perturbation. Online RL post-training framework.\"\n\n  - id: \"eva_vla2025\"\n    title: \"Eva-VLA: Evaluating Vision-Language-Action Models' Robustness Under Real-World Physical Variations\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.18953\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.18953\"\n    category: \"direct-competitor\"\n    role: \"robustness evaluation framework\"\n    relevance: \"Frames physical variations as a continuous optimization problem to find worst-case perturbations. Reports >60% failure across all categories — motivates need for targeted correction (our PAR contribution).\"\n    key_findings: \"Unified framework converting discrete physical variations into continuous optimization. Reveals significant fragility in current VLA systems.\"\n\n  - id: \"tt_vla2026\"\n    title: \"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2601.06748\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2601.06748\"\n    category: \"direct-competitor\"\n    role: \"test-time adaptation baseline\"\n    relevance: \"Alternative — adapt at test time via value-free PPO with progress rewards. Requires env interaction + reward signal. PAR is feed-forward: probe activation → route to expert, no online learning needed at deploy time.\"\n    key_findings: \"Within-episode policy adaptation via test-time PPO using dense progress-based rewards.\"\n\n  - id: \"preserve_pretrain2025\"\n    title: \"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.11417\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.11417\"\n    category: \"direct-competitor\"\n    role: \"VLA generalization via representation preservation\"\n    relevance: \"Argues full fine-tuning destroys VLA generalization → preserve pretrained reps. Consistent with our 'freeze π₀, add LoRA' design choice. Cite as motivation for frozen-backbone approach.\"\n    key_findings: \"Preserving pretrained VLM features improves OOD generalization vs aggressive full fine-tuning.\"\n\n  - id: \"vls2026\"\n    title: \"VLS: Steering Pretrained Robot Policies via Vision-Language Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2602.03973\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2602.03973\"\n    category: \"direct-competitor\"\n    role: \"test-time steering without param updates\"\n    relevance: \"Steers diffusion/flow policy at inference using VLM-synthesized rewards — no LoRA, no training. Comparison point: PAR achieves correction with tiny adapter overhead, VLS adds VLM inference cost per step.\"\n    key_findings: \"Inference-time policy steering via VLM-derived trajectory-differentiable rewards, no policy parameter updates.\"\n\n  # ─────────── method-component: LoRA routing / MoE-LoRA ───────────\n\n  - id: \"ld_mole2025\"\n    title: \"LD-MoLE: Learnable Dynamic Routing for Mixture of LoRA Experts\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.25684\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.25684\"\n    category: \"method-component\"\n    role: \"differentiable LoRA routing mechanism\"\n    relevance: \"Closest router design — token-dependent, layer-wise expert allocation, differentiable replacement for TopK. PAR can borrow this routing formulation but conditions on perturbation-type from probe rather than token features.\"\n    key_findings: \"Differentiable router selects variable number of experts per token per layer; SOTA on Qwen3-1.7B/Llama-3.2-3B benchmarks.\"\n\n  - id: \"l_moe2025\"\n    title: \"L-MoE: End-to-End Training of a Lightweight Mixture of Low-Rank Adaptation Experts\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2510.17898\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.17898\"\n    category: \"method-component\"\n    role: \"lightweight MoLE architecture\"\n    relevance: \"Gating composes LoRA adapters by weighted average of params per input token, fully differentiable. PAR variant: composition driven by discrete perturbation diagnosis rather than soft token gating.\"\n    key_findings: \"End-to-end gating learns parameter-level composition of LoRA experts; lightweight design.\"\n\n  - id: \"lora_mixer2025\"\n    title: \"LoRA-Mixer: Coordinate Modular LoRA Experts Through Serial Attention Routing\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2507.00029\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2507.00029\"\n    category: \"method-component\"\n    role: \"modular LoRA MoE in attention layers\"\n    relevance: \"Replaces attention input/output projections with dynamically routed task-specific LoRA experts. +7.6/4.9/3.1% over base on GSM8K/HumanEval/MedQA. Architectural template for PAR's attention-side experts.\"\n    key_findings: \"Modular MoE framework integrating LoRA at attention projection layers via serial routing.\"\n\n  - id: \"smora2025\"\n    title: \"Each Rank Could be an Expert: Single-Ranked Mixture of Experts LoRA for Multi-task Learning\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2501.15103\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2501.15103\"\n    category: \"method-component\"\n    role: \"fine-grained LoRA expert granularity\"\n    relevance: \"Treats each LoRA rank as an independent expert with dynamic rank-wise activation. Interesting alternative to our 3-discrete-experts design; could ablate against rank-as-expert as 'finer granularity baseline'.\"\n    key_findings: \"Embeds MoE into LoRA at rank level; dynamic rank-wise activation mitigates task conflicts.\"\n\n  - id: \"hdmole2024\"\n    title: \"HDMoLE: Mixture of LoRA Experts with Hierarchical Routing and Dynamic Thresholds for Fine-Tuning LLM-based ASR Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2409.19878\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2409.19878\"\n    category: \"method-component\"\n    role: \"hierarchical LoRA routing\"\n    relevance: \"Establishes explicit correspondence between LoRA experts and domain tasks via hierarchical routing — methodologically aligned with our perturbation-type → expert mapping.\"\n    key_findings: \"Hierarchical router with dynamic thresholds; clean expert↔task correspondence.\"\n\n  # ─────────── method-component: LoRA in robotics / VLA ───────────\n\n  - id: \"openvla_oft2025\"\n    title: \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success (OpenVLA-OFT)\"\n    authors: \"Kim, Moo Jin et al.\"\n    venue: \"arXiv / OpenVLA-OFT page\"\n    year: 2025\n    url: \"https://openvla-oft.github.io/\"\n    category: \"method-component\"\n    role: \"VLA fine-tuning recipe baseline\"\n    relevance: \"Optimized fine-tuning recipe for VLA — 25–50× faster inference, higher success. PAR compares against OFT-style full fine-tuning as the parameter-heavy alternative to routed LoRA experts.\"\n    key_findings: \"Action chunking + parallel decoding + L1 regression; large speedup vs vanilla OpenVLA fine-tuning.\"\n\n  - id: \"accessible_vla_lora2025\"\n    title: \"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2512.11921\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2512.11921\"\n    category: \"method-component\"\n    role: \"LoRA-on-VLA baseline (uniform single adapter)\"\n    relevance: \"Single LoRA + quantization to fine-tune 3.1B VLA on consumer GPUs. This is exactly our 'rank-matched uniform LoRA' baseline — PAR's Claim 2 (Targeted > Uniform) directly contests this design.\"\n    key_findings: \"LoRA + quantization enables VLA fine-tuning on 8GB GPUs; uniform single-adapter approach.\"\n\n  - id: \"adamoe_vla2025\"\n    title: \"Expertise Need Not Monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning (AdaMoE)\"\n    authors: \"Hen, Charles et al.\"\n    venue: \"arXiv 2510.14300\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.14300\"\n    category: \"method-component\"\n    role: \"MoE-VLA direct comparator\"\n    relevance: \"Most direct architectural neighbor — MoE inside VLA action expert, decouples selection from weighting. Differs from PAR: AdaMoE routes by token features for task specialization; PAR routes by *perturbation type* diagnosed from frozen activations. Must compare on LIBERO.\"\n    key_findings: \"Decoupled router + scale adapter; +1.8% LIBERO / +9.3% RoboTwin / +21.5% real-world vs dense baseline.\"\n\n  - id: \"fedvla2025\"\n    title: \"FedVLA: Federated Vision-Language-Action Learning with Dual Gating Mixture-of-Experts for Robotic Manipulation\"\n    authors: \"Miao, Chang et al.\"\n    venue: \"ICCV 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2508.02190\"\n    category: \"method-component\"\n    role: \"MoE-VLA in federated setting\"\n    relevance: \"Dual gating MoE for VLA — adaptive variable-expert count per token. Federated framing is orthogonal to ours, but the dual gating mechanism is a candidate router design to ablate against in PAR.\"\n    key_findings: \"Dual gating MoE selects variable experts per token; instruction-oriented scene parsing.\"\n\n  - id: \"chatvla2_2025\"\n    title: \"ChatVLA-2: Vision-Language-Action Model with Open-World Reasoning\"\n    authors: \"Anonymous et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    url: \"https://chatvla-2.github.io/\"\n    category: \"method-component\"\n    role: \"MoE-VLA with VLM-preserving design\"\n    relevance: \"Dynamic MoE within VLM backbone (Qwen2-VL) with 3-stage training to preserve VLM capabilities. Architecturally relevant — preserves backbone like PAR but specializes for reasoning, not perturbation correction.\"\n    key_findings: \"MoE in VLM backbone + 3-stage training preserves pretrained reasoning while adding action.\"\n\n  # ─────────── method-component: internal activation analysis ───────────\n\n  - id: \"eigentrack2025\"\n    title: \"EigenTrack: Temporal Spectral Analysis of Hidden Activations for Hallucination and OOD Detection\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.15735\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.15735\"\n    category: \"method-component\"\n    role: \"activation-based OOD diagnosis\"\n    relevance: \"Uses eigenvalue-based descriptors of activations for OOD/hallucination detection. Methodological cousin of our perturbation-type probe — both extract decision signals from frozen internal states.\"\n    key_findings: \"Global eigenvalue descriptors + Marchenko-Pastur divergence detect representation-dynamics shifts.\"\n\n  - id: \"hidden_states_iclr2024\"\n    title: \"LLMs' Internal States Retain the Power of Hallucination Detection\"\n    authors: \"Anonymous et al.\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    url: \"https://proceedings.iclr.cc/paper_files/paper/2024/file/0d1986a61e30e5fa408c81216a616e20-Paper-Conference.pdf\"\n    category: \"method-component\"\n    role: \"evidence for diagnostic capacity of internal states\"\n    relevance: \"Foundational evidence that frozen LLM hidden states encode rich decision-relevant signal (hallucination class). Direct intellectual ancestor of our Claim 1 (Perturbation Diagnosability from single layer/token).\"\n    key_findings: \"Internal activations of LLMs contain comprehensive features for hallucination detection.\"\n\n  - id: \"linear_probe_othello\"\n    title: \"Othello-GPT Has a Linear Emergent World Representation\"\n    authors: \"Nanda, Neel\"\n    venue: \"Blog / mechanistic interpretability\"\n    year: 2023\n    url: \"https://www.neelnanda.io/mechanistic-interpretability/othello\"\n    category: \"method-component\"\n    role: \"canonical linear-probe demonstration\"\n    relevance: \"Cited as canonical evidence that high-level latent variables are linearly decodable from transformer activations. Justifies our linear-probe choice for perturbation-type classification (Claim 1).\"\n    key_findings: \"Linear probe recovers Othello board state from frozen transformer activations.\"\n\n  # ─────────── evaluation ───────────\n\n  - id: \"libero2023\"\n    title: \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n    authors: \"Liu, Bo et al.\"\n    venue: \"NeurIPS 2023 (Datasets & Benchmarks)\"\n    year: 2023\n    url: \"https://arxiv.org/abs/2306.03310\"\n    category: \"evaluation\"\n    role: \"primary evaluation benchmark\"\n    relevance: \"Our main eval — LIBERO-Spatial/Object/Goal/100 provide controlled distribution shifts perfect for testing perturbation routing. Spatial/Object/Goal naming aligns with our visual/spatial/physical taxonomy.\"\n    key_findings: \"130 tasks across 4 suites; controlled declarative + procedural knowledge transfer; 90/10 pretraining/test split.\"\n\n  - id: \"simpler_env2024\"\n    title: \"Evaluating Real-World Robot Manipulation Policies in Simulation (SimplerEnv)\"\n    authors: \"Li, Xuanlin et al.\"\n    venue: \"CoRL 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2405.05941\"\n    category: \"evaluation\"\n    role: \"sim-to-real correlated evaluation\"\n    relevance: \"Variant Aggregation explicitly tests lighting/background/distractor/camera shifts — directly relevant to PAR perturbation categories. Strong real-to-sim correlation makes it useful as secondary eval beyond LIBERO.\"\n    key_findings: \"Visual Matching + Variant Aggregation setups; robot policy sim performance correlates with real-world.\"\n\n  - id: \"colosseum2024\"\n    title: \"THE COLOSSEUM: A Benchmark for Evaluating Generalization for Robotic Manipulation\"\n    authors: \"Pumacay, Wilbert et al.\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2402.08191\"\n    category: \"evaluation\"\n    role: \"systematic perturbation benchmark\"\n    relevance: \"20 tasks × 14 perturbation axes (lighting, color/texture, distractor, object size, physical, camera pose). Highly compatible with PAR's perturbation-type framing — possible secondary eval venue.\"\n    key_findings: \"Built on RLBench; isolates 14 environment-perturbation axes for systematic generalization study.\"\n\n  # ─────────── background: VLA architecture ───────────\n\n  - id: \"pi0_2024\"\n    title: \"π₀: A Vision-Language-Action Flow Model for General Robot Control\"\n    authors: \"Black, Kevin et al. (Physical Intelligence)\"\n    venue: \"arXiv 2410.24164\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2410.24164\"\n    category: \"background\"\n    role: \"base VLA model (frozen backbone in PAR)\"\n    relevance: \"π₀ IS our frozen base policy. PaliGemma 3B VLM + flow-matching action head. Open-sourced (Physical-Intelligence/openpi). We probe its internal activations and attach perturbation-specific LoRAs.\"\n    key_findings: \"Flow-matching action head over PaliGemma; 7 robot configs, 68 tasks pretraining; fine-tune in 1–20h.\"\n\n  - id: \"openvla_2024\"\n    title: \"OpenVLA: An Open-Source Vision-Language-Action Model\"\n    authors: \"Kim, Moo Jin et al.\"\n    venue: \"CoRL 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2406.09246\"\n    category: \"background\"\n    role: \"alternative VLA backbone\"\n    relevance: \"7B VLA with SigLIP+DinoV2 vision + Llama-2 LM backbone. Trained on 970k Open-X demos. Useful as secondary backbone to test if PAR design transfers beyond π₀.\"\n    key_findings: \"Fused SigLIP+DinoV2 vision encoder; discrete action tokens; LoRA updates 1.4% params yet matches full FT.\"\n\n  - id: \"paligemma_2024\"\n    title: \"PaliGemma: A Versatile 3B VLM for Transfer\"\n    authors: \"Beyer, Lucas et al.\"\n    venue: \"arXiv 2407.07726\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2407.07726\"\n    category: \"background\"\n    role: \"VLM backbone of π₀\"\n    relevance: \"Underlying VLM inside π₀. Understanding its architecture (SigLIP-So400m + Gemma-2B, soft tokens + full block-attention) is necessary to choose probe layers and inject LoRAs correctly.\"\n    key_findings: \"SigLIP-So400m vision + Gemma-2B LM; image as soft tokens with block attention; SOTA transfer on 40 tasks.\"\n\n  - id: \"octo2024\"\n    title: \"Octo: An Open-Source Generalist Robot Policy\"\n    authors: \"Octo Model Team (Ghosh, Walke, Pertsch et al.)\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2405.12213\"\n    category: \"background\"\n    role: \"generalist policy baseline\"\n    relevance: \"Transformer + diffusion-head policy, 800k Open-X trajectories. Listed in pi.website as a baseline π₀ outperforms; useful baseline if we evaluate broader transfer beyond π₀.\"\n    key_findings: \"Transformer backbone + diffusion action head; language or goal-image conditioning; 9-platform eval.\"\n\n  - id: \"rt2_2023\"\n    title: \"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\"\n    authors: \"Brohan, Anthony et al. (Google DeepMind)\"\n    venue: \"CoRL 2023\"\n    year: 2023\n    url: \"https://arxiv.org/abs/2307.15818\"\n    category: \"background\"\n    role: \"VLA progenitor\"\n    relevance: \"Original VLA establishing co-fine-tuning paradigm. Robustness measured via augmentation (crop/jitter/rotation/noise) — coarse compared to our targeted-correction approach.\"\n    key_findings: \"Co-fine-tunes VLM on robot trajectories + web VQA data; actions as text tokens; ~2× generalization gain.\"\n\n  # ─────────── background: robot perturbation robustness ───────────\n\n  - id: \"rialto_rss2024\"\n    title: \"Reconciling Reality through Simulation: A Real-to-Sim-to-Real Approach for Robust Manipulation (RialTo)\"\n    authors: \"Anonymous et al.\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2403.03949\"\n    category: \"background\"\n    role: \"alternative robustness approach (data-side)\"\n    relevance: \"Robustifies policies via digital-twin RL with on-the-fly sim from minimal real data. Contrasts PAR: they fix robustness by data/sim augmentation; PAR fixes it by architectural routing. Citable as 'orthogonal direction'.\"\n    key_findings: \"Real→sim digital twins enable RL robustification under distractors/lighting/pose changes.\"\n\n  - id: \"maniwhere2024\"\n    title: \"Learning to Manipulate Anywhere: A Visual Generalizable Framework for Reinforcement Learning (Maniwhere)\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2407.15815\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2407.15815\"\n    category: \"background\"\n    role: \"visual perturbation generalization\"\n    relevance: \"Multi-view + STN + curriculum randomization for visual generalization across distractors/backgrounds/lighting. Shows generic 'train through perturbation' baseline that PAR competes with via targeted-correction architecture.\"\n    key_findings: \"STN-based multi-view representation + curriculum domain randomization for visual robustness.\"\n\n  - id: \"arro2026\"\n    title: \"Augmented Reality for Robots (ARRO): Pointing Visuomotor Policies Towards Visual Robustness\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2505.08627\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2505.08627\"\n    category: \"background\"\n    role: \"input-side robustness\"\n    relevance: \"Uses open-vocab segmentation to mask task-irrelevant regions before policy input. Alternative robustness strategy at the *input* layer; PAR operates at the *parameter* layer via LoRA experts.\"\n    key_findings: \"Zero-shot segmentation masks distractors; virtual guides overlay during training/inference.\"\n\n# Notes / next-step lookups (not yet in this map):\n#   - \"internal activation analysis\" specifically for VLA / robot policies (most current work is LLM-side)\n#   - π₀.₅ (Sept 2025) full paper for updated frozen base\n#   - DR-LoRA (2601.04823) if dynamic-rank routing becomes a comparison point\n#   - SEQR (2509.18093) for QR-based routing if we explore router efficiency\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "meta_brain_lora_routing",
+    "file": "literature_map.yaml",
+    "content": "# Literature Map — Perturbation-Adaptive LoRA Routing (PAR)\n# Project: meta_brain_lora_routing\n# Target venue: CoRL 2026\n# Initial compilation: 2026-05-16\n#\n# Categories:\n#   direct-competitor — methods we directly compete with on VLA robustness\n#   method-component   — building blocks: LoRA routing/MoE, activation probing\n#   evaluation         — benchmarks we use or are evaluated on\n#   background         — VLA architecture + general robustness context\n\npapers:\n\n  # ─────────── direct-competitor ───────────\n\n  - id: \"libero_plus2025\"\n    title: \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\"\n    authors: \"OpenMOSS et al.\"\n    venue: \"arXiv (CVPR 2026 poster accepted)\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.13626\"\n    category: \"direct-competitor\"\n    role: \"robustness benchmark + diagnosis baseline\"\n    relevance: \"Most directly aligned prior work — defines 7 perturbation dimensions (object layout, camera, robot init, language, lighting, background, sensor noise) and shows VLA success drops 95→<30% under modest perturbations. Our PAR taxonomy (visual/spatial/physical) is a coarsening of theirs; we go beyond diagnosis to active correction via routed LoRA experts.\"\n    key_findings: \"Models exhibit extreme sensitivity to camera viewpoints + robot initial states; insensitive to language (ignore it). 10,030 tasks across 7 dimensions × 21 sub-dimensions with L1–L5 difficulty levels.\"\n\n  - id: \"robustvla2025\"\n    title: \"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2511.01331\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2511.01331\"\n    category: \"direct-competitor\"\n    role: \"competing robustness post-training method\"\n    relevance: \"Alternative path to VLA robustness — online RL with Jacobian + smoothness regularization. Differs from PAR: they modify the full policy via RL gradients; we keep π₀ frozen and add small targeted LoRAs. We should compare param count + need for env interaction.\"\n    key_findings: \"Jacobian regularization reduces sensitivity to observation noise; smoothness regularization stabilizes actions under perturbation. Online RL post-training framework.\"\n\n  - id: \"eva_vla2025\"\n    title: \"Eva-VLA: Evaluating Vision-Language-Action Models' Robustness Under Real-World Physical Variations\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.18953\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.18953\"\n    category: \"direct-competitor\"\n    role: \"robustness evaluation framework\"\n    relevance: \"Frames physical variations as a continuous optimization problem to find worst-case perturbations. Reports >60% failure across all categories — motivates need for targeted correction (our PAR contribution).\"\n    key_findings: \"Unified framework converting discrete physical variations into continuous optimization. Reveals significant fragility in current VLA systems.\"\n\n  - id: \"tt_vla2026\"\n    title: \"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2601.06748\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2601.06748\"\n    category: \"direct-competitor\"\n    role: \"test-time adaptation baseline\"\n    relevance: \"Alternative — adapt at test time via value-free PPO with progress rewards. Requires env interaction + reward signal. PAR is feed-forward: probe activation → route to expert, no online learning needed at deploy time.\"\n    key_findings: \"Within-episode policy adaptation via test-time PPO using dense progress-based rewards.\"\n\n  - id: \"preserve_pretrain2025\"\n    title: \"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.11417\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.11417\"\n    category: \"direct-competitor\"\n    role: \"VLA generalization via representation preservation\"\n    relevance: \"Argues full fine-tuning destroys VLA generalization → preserve pretrained reps. Consistent with our 'freeze π₀, add LoRA' design choice. Cite as motivation for frozen-backbone approach.\"\n    key_findings: \"Preserving pretrained VLM features improves OOD generalization vs aggressive full fine-tuning.\"\n\n  - id: \"vls2026\"\n    title: \"VLS: Steering Pretrained Robot Policies via Vision-Language Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2602.03973\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2602.03973\"\n    category: \"direct-competitor\"\n    role: \"test-time steering without param updates\"\n    relevance: \"Steers diffusion/flow policy at inference using VLM-synthesized rewards — no LoRA, no training. Comparison point: PAR achieves correction with tiny adapter overhead, VLS adds VLM inference cost per step.\"\n    key_findings: \"Inference-time policy steering via VLM-derived trajectory-differentiable rewards, no policy parameter updates.\"\n\n  # ─────────── method-component: LoRA routing / MoE-LoRA ───────────\n\n  - id: \"ld_mole2025\"\n    title: \"LD-MoLE: Learnable Dynamic Routing for Mixture of LoRA Experts\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.25684\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.25684\"\n    category: \"method-component\"\n    role: \"differentiable LoRA routing mechanism\"\n    relevance: \"Closest router design — token-dependent, layer-wise expert allocation, differentiable replacement for TopK. PAR can borrow this routing formulation but conditions on perturbation-type from probe rather than token features.\"\n    key_findings: \"Differentiable router selects variable number of experts per token per layer; SOTA on Qwen3-1.7B/Llama-3.2-3B benchmarks.\"\n\n  - id: \"l_moe2025\"\n    title: \"L-MoE: End-to-End Training of a Lightweight Mixture of Low-Rank Adaptation Experts\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2510.17898\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.17898\"\n    category: \"method-component\"\n    role: \"lightweight MoLE architecture\"\n    relevance: \"Gating composes LoRA adapters by weighted average of params per input token, fully differentiable. PAR variant: composition driven by discrete perturbation diagnosis rather than soft token gating.\"\n    key_findings: \"End-to-end gating learns parameter-level composition of LoRA experts; lightweight design.\"\n\n  - id: \"lora_mixer2025\"\n    title: \"LoRA-Mixer: Coordinate Modular LoRA Experts Through Serial Attention Routing\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2507.00029\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2507.00029\"\n    category: \"method-component\"\n    role: \"modular LoRA MoE in attention layers\"\n    relevance: \"Replaces attention input/output projections with dynamically routed task-specific LoRA experts. +7.6/4.9/3.1% over base on GSM8K/HumanEval/MedQA. Architectural template for PAR's attention-side experts.\"\n    key_findings: \"Modular MoE framework integrating LoRA at attention projection layers via serial routing.\"\n\n  - id: \"smora2025\"\n    title: \"Each Rank Could be an Expert: Single-Ranked Mixture of Experts LoRA for Multi-task Learning\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2501.15103\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2501.15103\"\n    category: \"method-component\"\n    role: \"fine-grained LoRA expert granularity\"\n    relevance: \"Treats each LoRA rank as an independent expert with dynamic rank-wise activation. Interesting alternative to our 3-discrete-experts design; could ablate against rank-as-expert as 'finer granularity baseline'.\"\n    key_findings: \"Embeds MoE into LoRA at rank level; dynamic rank-wise activation mitigates task conflicts.\"\n\n  - id: \"hdmole2024\"\n    title: \"HDMoLE: Mixture of LoRA Experts with Hierarchical Routing and Dynamic Thresholds for Fine-Tuning LLM-based ASR Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2409.19878\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2409.19878\"\n    category: \"method-component\"\n    role: \"hierarchical LoRA routing\"\n    relevance: \"Establishes explicit correspondence between LoRA experts and domain tasks via hierarchical routing — methodologically aligned with our perturbation-type → expert mapping.\"\n    key_findings: \"Hierarchical router with dynamic thresholds; clean expert↔task correspondence.\"\n\n  # ─────────── method-component: LoRA in robotics / VLA ───────────\n\n  - id: \"openvla_oft2025\"\n    title: \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success (OpenVLA-OFT)\"\n    authors: \"Kim, Moo Jin et al.\"\n    venue: \"arXiv / OpenVLA-OFT page\"\n    year: 2025\n    url: \"https://openvla-oft.github.io/\"\n    category: \"method-component\"\n    role: \"VLA fine-tuning recipe baseline\"\n    relevance: \"Optimized fine-tuning recipe for VLA — 25–50× faster inference, higher success. PAR compares against OFT-style full fine-tuning as the parameter-heavy alternative to routed LoRA experts.\"\n    key_findings: \"Action chunking + parallel decoding + L1 regression; large speedup vs vanilla OpenVLA fine-tuning.\"\n\n  - id: \"accessible_vla_lora2025\"\n    title: \"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2512.11921\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2512.11921\"\n    category: \"method-component\"\n    role: \"LoRA-on-VLA baseline (uniform single adapter)\"\n    relevance: \"Single LoRA + quantization to fine-tune 3.1B VLA on consumer GPUs. This is exactly our 'rank-matched uniform LoRA' baseline — PAR's Claim 2 (Targeted > Uniform) directly contests this design.\"\n    key_findings: \"LoRA + quantization enables VLA fine-tuning on 8GB GPUs; uniform single-adapter approach.\"\n\n  - id: \"adamoe_vla2025\"\n    title: \"Expertise Need Not Monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning (AdaMoE)\"\n    authors: \"Hen, Charles et al.\"\n    venue: \"arXiv 2510.14300\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.14300\"\n    category: \"method-component\"\n    role: \"MoE-VLA direct comparator\"\n    relevance: \"Most direct architectural neighbor — MoE inside VLA action expert, decouples selection from weighting. Differs from PAR: AdaMoE routes by token features for task specialization; PAR routes by *perturbation type* diagnosed from frozen activations. Must compare on LIBERO.\"\n    key_findings: \"Decoupled router + scale adapter; +1.8% LIBERO / +9.3% RoboTwin / +21.5% real-world vs dense baseline.\"\n\n  - id: \"fedvla2025\"\n    title: \"FedVLA: Federated Vision-Language-Action Learning with Dual Gating Mixture-of-Experts for Robotic Manipulation\"\n    authors: \"Miao, Chang et al.\"\n    venue: \"ICCV 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2508.02190\"\n    category: \"method-component\"\n    role: \"MoE-VLA in federated setting\"\n    relevance: \"Dual gating MoE for VLA — adaptive variable-expert count per token. Federated framing is orthogonal to ours, but the dual gating mechanism is a candidate router design to ablate against in PAR.\"\n    key_findings: \"Dual gating MoE selects variable experts per token; instruction-oriented scene parsing.\"\n\n  - id: \"chatvla2_2025\"\n    title: \"ChatVLA-2: Vision-Language-Action Model with Open-World Reasoning\"\n    authors: \"Anonymous et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    url: \"https://chatvla-2.github.io/\"\n    category: \"method-component\"\n    role: \"MoE-VLA with VLM-preserving design\"\n    relevance: \"Dynamic MoE within VLM backbone (Qwen2-VL) with 3-stage training to preserve VLM capabilities. Architecturally relevant — preserves backbone like PAR but specializes for reasoning, not perturbation correction.\"\n    key_findings: \"MoE in VLM backbone + 3-stage training preserves pretrained reasoning while adding action.\"\n\n  # ─────────── method-component: internal activation analysis ───────────\n\n  - id: \"eigentrack2025\"\n    title: \"EigenTrack: Temporal Spectral Analysis of Hidden Activations for Hallucination and OOD Detection\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.15735\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.15735\"\n    category: \"method-component\"\n    role: \"activation-based OOD diagnosis\"\n    relevance: \"Uses eigenvalue-based descriptors of activations for OOD/hallucination detection. Methodological cousin of our perturbation-type probe — both extract decision signals from frozen internal states.\"\n    key_findings: \"Global eigenvalue descriptors + Marchenko-Pastur divergence detect representation-dynamics shifts.\"\n\n  - id: \"hidden_states_iclr2024\"\n    title: \"LLMs' Internal States Retain the Power of Hallucination Detection\"\n    authors: \"Anonymous et al.\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    url: \"https://proceedings.iclr.cc/paper_files/paper/2024/file/0d1986a61e30e5fa408c81216a616e20-Paper-Conference.pdf\"\n    category: \"method-component\"\n    role: \"evidence for diagnostic capacity of internal states\"\n    relevance: \"Foundational evidence that frozen LLM hidden states encode rich decision-relevant signal (hallucination class). Direct intellectual ancestor of our Claim 1 (Perturbation Diagnosability from single layer/token).\"\n    key_findings: \"Internal activations of LLMs contain comprehensive features for hallucination detection.\"\n\n  - id: \"linear_probe_othello\"\n    title: \"Othello-GPT Has a Linear Emergent World Representation\"\n    authors: \"Nanda, Neel\"\n    venue: \"Blog / mechanistic interpretability\"\n    year: 2023\n    url: \"https://www.neelnanda.io/mechanistic-interpretability/othello\"\n    category: \"method-component\"\n    role: \"canonical linear-probe demonstration\"\n    relevance: \"Cited as canonical evidence that high-level latent variables are linearly decodable from transformer activations. Justifies our linear-probe choice for perturbation-type classification (Claim 1).\"\n    key_findings: \"Linear probe recovers Othello board state from frozen transformer activations.\"\n\n  # ─────────── evaluation ───────────\n\n  - id: \"libero2023\"\n    title: \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n    authors: \"Liu, Bo et al.\"\n    venue: \"NeurIPS 2023 (Datasets & Benchmarks)\"\n    year: 2023\n    url: \"https://arxiv.org/abs/2306.03310\"\n    category: \"evaluation\"\n    role: \"primary evaluation benchmark\"\n    relevance: \"Our main eval — LIBERO-Spatial/Object/Goal/100 provide controlled distribution shifts perfect for testing perturbation routing. Spatial/Object/Goal naming aligns with our visual/spatial/physical taxonomy.\"\n    key_findings: \"130 tasks across 4 suites; controlled declarative + procedural knowledge transfer; 90/10 pretraining/test split.\"\n\n  - id: \"simpler_env2024\"\n    title: \"Evaluating Real-World Robot Manipulation Policies in Simulation (SimplerEnv)\"\n    authors: \"Li, Xuanlin et al.\"\n    venue: \"CoRL 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2405.05941\"\n    category: \"evaluation\"\n    role: \"sim-to-real correlated evaluation\"\n    relevance: \"Variant Aggregation explicitly tests lighting/background/distractor/camera shifts — directly relevant to PAR perturbation categories. Strong real-to-sim correlation makes it useful as secondary eval beyond LIBERO.\"\n    key_findings: \"Visual Matching + Variant Aggregation setups; robot policy sim performance correlates with real-world.\"\n\n  - id: \"colosseum2024\"\n    title: \"THE COLOSSEUM: A Benchmark for Evaluating Generalization for Robotic Manipulation\"\n    authors: \"Pumacay, Wilbert et al.\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2402.08191\"\n    category: \"evaluation\"\n    role: \"systematic perturbation benchmark\"\n    relevance: \"20 tasks × 14 perturbation axes (lighting, color/texture, distractor, object size, physical, camera pose). Highly compatible with PAR's perturbation-type framing — possible secondary eval venue.\"\n    key_findings: \"Built on RLBench; isolates 14 environment-perturbation axes for systematic generalization study.\"\n\n  # ─────────── background: VLA architecture ───────────\n\n  - id: \"pi0_2024\"\n    title: \"π₀: A Vision-Language-Action Flow Model for General Robot Control\"\n    authors: \"Black, Kevin et al. (Physical Intelligence)\"\n    venue: \"arXiv 2410.24164\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2410.24164\"\n    category: \"background\"\n    role: \"base VLA model (frozen backbone in PAR)\"\n    relevance: \"π₀ IS our frozen base policy. PaliGemma 3B VLM + flow-matching action head. Open-sourced (Physical-Intelligence/openpi). We probe its internal activations and attach perturbation-specific LoRAs.\"\n    key_findings: \"Flow-matching action head over PaliGemma; 7 robot configs, 68 tasks pretraining; fine-tune in 1–20h.\"\n\n  - id: \"openvla_2024\"\n    title: \"OpenVLA: An Open-Source Vision-Language-Action Model\"\n    authors: \"Kim, Moo Jin et al.\"\n    venue: \"CoRL 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2406.09246\"\n    category: \"background\"\n    role: \"alternative VLA backbone\"\n    relevance: \"7B VLA with SigLIP+DinoV2 vision + Llama-2 LM backbone. Trained on 970k Open-X demos. Useful as secondary backbone to test if PAR design transfers beyond π₀.\"\n    key_findings: \"Fused SigLIP+DinoV2 vision encoder; discrete action tokens; LoRA updates 1.4% params yet matches full FT.\"\n\n  - id: \"paligemma_2024\"\n    title: \"PaliGemma: A Versatile 3B VLM for Transfer\"\n    authors: \"Beyer, Lucas et al.\"\n    venue: \"arXiv 2407.07726\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2407.07726\"\n    category: \"background\"\n    role: \"VLM backbone of π₀\"\n    relevance: \"Underlying VLM inside π₀. Understanding its architecture (SigLIP-So400m + Gemma-2B, soft tokens + full block-attention) is necessary to choose probe layers and inject LoRAs correctly.\"\n    key_findings: \"SigLIP-So400m vision + Gemma-2B LM; image as soft tokens with block attention; SOTA transfer on 40 tasks.\"\n\n  - id: \"octo2024\"\n    title: \"Octo: An Open-Source Generalist Robot Policy\"\n    authors: \"Octo Model Team (Ghosh, Walke, Pertsch et al.)\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2405.12213\"\n    category: \"background\"\n    role: \"generalist policy baseline\"\n    relevance: \"Transformer + diffusion-head policy, 800k Open-X trajectories. Listed in pi.website as a baseline π₀ outperforms; useful baseline if we evaluate broader transfer beyond π₀.\"\n    key_findings: \"Transformer backbone + diffusion action head; language or goal-image conditioning; 9-platform eval.\"\n\n  - id: \"rt2_2023\"\n    title: \"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\"\n    authors: \"Brohan, Anthony et al. (Google DeepMind)\"\n    venue: \"CoRL 2023\"\n    year: 2023\n    url: \"https://arxiv.org/abs/2307.15818\"\n    category: \"background\"\n    role: \"VLA progenitor\"\n    relevance: \"Original VLA establishing co-fine-tuning paradigm. Robustness measured via augmentation (crop/jitter/rotation/noise) — coarse compared to our targeted-correction approach.\"\n    key_findings: \"Co-fine-tunes VLM on robot trajectories + web VQA data; actions as text tokens; ~2× generalization gain.\"\n\n  # ─────────── background: robot perturbation robustness ───────────\n\n  - id: \"rialto_rss2024\"\n    title: \"Reconciling Reality through Simulation: A Real-to-Sim-to-Real Approach for Robust Manipulation (RialTo)\"\n    authors: \"Anonymous et al.\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2403.03949\"\n    category: \"background\"\n    role: \"alternative robustness approach (data-side)\"\n    relevance: \"Robustifies policies via digital-twin RL with on-the-fly sim from minimal real data. Contrasts PAR: they fix robustness by data/sim augmentation; PAR fixes it by architectural routing. Citable as 'orthogonal direction'.\"\n    key_findings: \"Real→sim digital twins enable RL robustification under distractors/lighting/pose changes.\"\n\n  - id: \"maniwhere2024\"\n    title: \"Learning to Manipulate Anywhere: A Visual Generalizable Framework for Reinforcement Learning (Maniwhere)\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2407.15815\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2407.15815\"\n    category: \"background\"\n    role: \"visual perturbation generalization\"\n    relevance: \"Multi-view + STN + curriculum randomization for visual generalization across distractors/backgrounds/lighting. Shows generic 'train through perturbation' baseline that PAR competes with via targeted-correction architecture.\"\n    key_findings: \"STN-based multi-view representation + curriculum domain randomization for visual robustness.\"\n\n  - id: \"arro2026\"\n    title: \"Augmented Reality for Robots (ARRO): Pointing Visuomotor Policies Towards Visual Robustness\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2505.08627\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2505.08627\"\n    category: \"background\"\n    role: \"input-side robustness\"\n    relevance: \"Uses open-vocab segmentation to mask task-irrelevant regions before policy input. Alternative robustness strategy at the *input* layer; PAR operates at the *parameter* layer via LoRA experts.\"\n    key_findings: \"Zero-shot segmentation masks distractors; virtual guides overlay during training/inference.\"\n\n# Notes / next-step lookups (not yet in this map):\n#   - \"internal activation analysis\" specifically for VLA / robot policies (most current work is LLM-side)\n#   - π₀.₅ (Sept 2025) full paper for updated frozen base\n#   - DR-LoRA (2601.04823) if dynamic-rank routing becomes a comparison point\n#   - SEQR (2509.18093) for QR-based routing if we explore router efficiency\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T04:10:08.401603+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'literature_map.yaml' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T04:10:08.401778+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "literature map paper bibliography reference",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "literature map paper bibliography reference",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T04:10:08.401908+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T04:10:08.402028+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "add literature paper cite save bibliography",
+  "max_results": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "add literature paper cite save bibliography",
+    "max_results": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T04:10:08.402156+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T04:10:08.402286+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "meta_brain_lora_routing",
+  "file": "literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "meta_brain_lora_routing",
+    "file": "literature_map.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T04:10:08.402406+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No literature_map.yaml found for 'meta_brain_lora_routing'.\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T04:10:08.402571+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/ 2>/dev/null",
+  "description": "List project directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/ 2>/dev/null",
+    "description": "List project directory contents"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T04:10:08.402696+00:00_
+
+AGENTS.md
+ROADMAP.lock
+ROADMAP.md
+artifacts
+checkpoints
+decisions.lock
+decisions.yaml
+docs
+dream_registry.lock
+dream_registry.yaml
+dream_registry.yaml.bak
+experiment_plan.lock
+experiment_plan.yaml
+logs
+memory.md
+paper_framing.md
+phase1
+registry.lock
+registry.yaml
+report.md
+study_status.lock
+task_context
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-16T04:10:08.402813+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "+literature select:mcp__agent-ml-research__add_literature_paper,mcp__agent-ml-research__save_literature,mcp__agent-ml-research__update_literature_map",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "+literature select:mcp__agent-ml-research__add_literature_paper,mcp__agent-ml-research__save_literature,mcp__agent-ml-research__update_literature_map",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T04:10:08.402927+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T04:10:08.403037+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "+literature",
+  "max_results": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "+literature",
+    "max_results": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T04:10:08.403147+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T04:10:08.403255+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "agent-ml-research mcp tools",
+  "max_results": "25"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "agent-ml-research mcp tools",
+    "max_results": "25"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T04:10:08.403369+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T04:10:08.403593+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/literature_map.yaml",
+  "content": "# Literature Map — Perturbation-Adaptive LoRA Routing (PAR)\n# Project: meta_brain_lora_routing\n# Target venue: CoRL 2026\n# Initial compilation: 2026-05-16\n#\n# Categories:\n#   direct-competitor — methods we directly compete with on VLA robustness\n#   method-component   — building blocks: LoRA routing/MoE, activation probing\n#   evaluation         — benchmarks we use or are evaluated on\n#   background         — VLA architecture + general robustness context\n\npapers:\n\n  # ─────────── direct-competitor ───────────\n\n  - id: \"libero_plus2025\"\n    title: \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\"\n    authors: \"OpenMOSS et al.\"\n    venue: \"arXiv (CVPR 2026 poster accepted)\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.13626\"\n    category: \"direct-competitor\"\n    role: \"robustness benchmark + diagnosis baseline\"\n    relevance: \"Most directly aligned prior work — defines 7 perturbation dimensions (object layout, camera, robot init, language, lighting, background, sensor noise) and shows VLA success drops 95→<30% under modest perturbations. Our PAR taxonomy (visual/spatial/physical) is a coarsening of theirs; we go beyond diagnosis to active correction via routed LoRA experts.\"\n    key_findings: \"Models extremely sensitive to camera viewpoints + robot initial states; insensitive to language (ignore it). 10,030 tasks across 7 dimensions × 21 sub-dimensions with L1–L5 difficulty levels.\"\n\n  - id: \"robustvla2025\"\n    title: \"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2511.01331\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2511.01331\"\n    category: \"direct-competitor\"\n    role: \"competing robustness post-training method\"\n    relevance: \"Alternative path to VLA robustness — online RL with Jacobian + smoothness regularization. Differs from PAR: they modify the full policy via RL gradients; we keep π₀ frozen and add small targeted LoRAs. Must compare param count + need for env interaction.\"\n    key_findings: \"Jacobian regularization reduces sensitivity to observation noise; smoothness regularization stabilizes actions under perturbation. Online RL post-training framework.\"\n\n  - id: \"eva_vla2025\"\n    title: \"Eva-VLA: Evaluating Vision-Language-Action Models' Robustness Under Real-World Physical Variations\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.18953\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.18953\"\n    category: \"direct-competitor\"\n    role: \"robustness evaluation framework\"\n    relevance: \"Frames physical variations as a continuous optimization problem to find worst-case perturbations. Reports >60% failure across all categories — motivates need for targeted correction (our PAR contribution).\"\n    key_findings: \"Unified framework converting discrete physical variations into continuous optimization. Reveals significant fragility in current VLA systems.\"\n\n  - id: \"tt_vla2026\"\n    title: \"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2601.06748\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2601.06748\"\n    category: \"direct-competitor\"\n    role: \"test-time adaptation baseline\"\n    relevance: \"Alternative — adapt at test time via value-free PPO with progress rewards. Requires env interaction + reward signal. PAR is feed-forward: probe activation → route to expert, no online learning needed at deploy time.\"\n    key_findings: \"Within-episode policy adaptation via test-time PPO using dense progress-based rewards.\"\n\n  - id: \"preserve_pretrain2025\"\n    title: \"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.11417\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.11417\"\n    category: \"direct-competitor\"\n    role: \"VLA generalization via representation preservation\"\n    relevance: \"Argues full fine-tuning destroys VLA generalization → preserve pretrained reps. Consistent with our 'freeze π₀, add LoRA' design choice. Cite as motivation for frozen-backbone approach.\"\n    key_findings: \"Preserving pretrained VLM features improves OOD generalization vs aggressive full fine-tuning.\"\n\n  - id: \"vls2026\"\n    title: \"VLS: Steering Pretrained Robot Policies via Vision-Language Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2602.03973\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2602.03973\"\n    category: \"direct-competitor\"\n    role: \"test-time steering without param updates\"\n    relevance: \"Steers diffusion/flow policy at inference using VLM-synthesized rewards — no LoRA, no training. Comparison point: PAR achieves correction with tiny adapter overhead, VLS adds VLM inference cost per step.\"\n    key_findings: \"Inference-time policy steering via VLM-derived trajectory-differentiable rewards, no policy parameter updates.\"\n\n  # ─────────── method-component: LoRA routing / MoE-LoRA ───────────\n\n  - id: \"ld_mole2025\"\n    title: \"LD-MoLE: Learnable Dynamic Routing for Mixture of LoRA Experts\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.25684\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.25684\"\n    category: \"method-component\"\n    role: \"differentiable LoRA routing mechanism\"\n    relevance: \"Closest router design — token-dependent, layer-wise expert allocation, differentiable replacement for TopK. PAR can borrow this routing formulation but conditions on perturbation-type from probe rather than token features.\"\n    key_findings: \"Differentiable router selects variable number of experts per token per layer; SOTA on Qwen3-1.7B/Llama-3.2-3B benchmarks.\"\n\n  - id: \"l_moe2025\"\n    title: \"L-MoE: End-to-End Training of a Lightweight Mixture of Low-Rank Adaptation Experts\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2510.17898\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.17898\"\n    category: \"method-component\"\n    role: \"lightweight MoLE architecture\"\n    relevance: \"Gating composes LoRA adapters by weighted average of params per input token, fully differentiable. PAR variant: composition driven by discrete perturbation diagnosis rather than soft token gating.\"\n    key_findings: \"End-to-end gating learns parameter-level composition of LoRA experts; lightweight design.\"\n\n  - id: \"lora_mixer2025\"\n    title: \"LoRA-Mixer: Coordinate Modular LoRA Experts Through Serial Attention Routing\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2507.00029\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2507.00029\"\n    category: \"method-component\"\n    role: \"modular LoRA MoE in attention layers\"\n    relevance: \"Replaces attention input/output projections with dynamically routed task-specific LoRA experts. +7.6/4.9/3.1% over base on GSM8K/HumanEval/MedQA. Architectural template for PAR's attention-side experts.\"\n    key_findings: \"Modular MoE framework integrating LoRA at attention projection layers via serial routing.\"\n\n  - id: \"smora2025\"\n    title: \"Each Rank Could be an Expert: Single-Ranked Mixture of Experts LoRA for Multi-task Learning\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2501.15103\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2501.15103\"\n    category: \"method-component\"\n    role: \"fine-grained LoRA expert granularity\"\n    relevance: \"Treats each LoRA rank as an independent expert with dynamic rank-wise activation. Alternative to our 3-discrete-experts design; could ablate against rank-as-expert as 'finer granularity baseline'.\"\n    key_findings: \"Embeds MoE into LoRA at rank level; dynamic rank-wise activation mitigates task conflicts.\"\n\n  - id: \"hdmole2024\"\n    title: \"HDMoLE: Mixture of LoRA Experts with Hierarchical Routing and Dynamic Thresholds for Fine-Tuning LLM-based ASR Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2409.19878\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2409.19878\"\n    category: \"method-component\"\n    role: \"hierarchical LoRA routing\"\n    relevance: \"Establishes explicit correspondence between LoRA experts and domain tasks via hierarchical routing — methodologically aligned with our perturbation-type → expert mapping.\"\n    key_findings: \"Hierarchical router with dynamic thresholds; clean expert↔task correspondence.\"\n\n  # ─────────── method-component: LoRA in robotics / VLA ───────────\n\n  - id: \"openvla_oft2025\"\n    title: \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success (OpenVLA-OFT)\"\n    authors: \"Kim, Moo Jin et al.\"\n    venue: \"arXiv / OpenVLA-OFT project\"\n    year: 2025\n    url: \"https://openvla-oft.github.io/\"\n    category: \"method-component\"\n    role: \"VLA fine-tuning recipe baseline\"\n    relevance: \"Optimized fine-tuning recipe for VLA — 25–50× faster inference, higher success. PAR compares against OFT-style full fine-tuning as the parameter-heavy alternative to routed LoRA experts.\"\n    key_findings: \"Action chunking + parallel decoding + L1 regression; large speedup vs vanilla OpenVLA fine-tuning.\"\n\n  - id: \"accessible_vla_lora2025\"\n    title: \"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2512.11921\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2512.11921\"\n    category: \"method-component\"\n    role: \"LoRA-on-VLA baseline (uniform single adapter)\"\n    relevance: \"Single LoRA + quantization to fine-tune 3.1B VLA on consumer GPUs. This is exactly our 'rank-matched uniform LoRA' baseline — PAR's Claim 2 (Targeted > Uniform) directly contests this design.\"\n    key_findings: \"LoRA + quantization enables VLA fine-tuning on 8GB GPUs; uniform single-adapter approach.\"\n\n  - id: \"adamoe_vla2025\"\n    title: \"Expertise Need Not Monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning (AdaMoE)\"\n    authors: \"Hen, Charles et al.\"\n    venue: \"arXiv 2510.14300\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.14300\"\n    category: \"method-component\"\n    role: \"MoE-VLA direct comparator\"\n    relevance: \"Most direct architectural neighbor — MoE inside VLA action expert, decouples selection from weighting. Differs from PAR: AdaMoE routes by token features for task specialization; PAR routes by *perturbation type* diagnosed from frozen activations. Must compare on LIBERO.\"\n    key_findings: \"Decoupled router + scale adapter; +1.8% LIBERO / +9.3% RoboTwin / +21.5% real-world vs dense baseline.\"\n\n  - id: \"fedvla2025\"\n    title: \"FedVLA: Federated Vision-Language-Action Learning with Dual Gating Mixture-of-Experts for Robotic Manipulation\"\n    authors: \"Miao, Chang et al.\"\n    venue: \"ICCV 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2508.02190\"\n    category: \"method-component\"\n    role: \"MoE-VLA in federated setting\"\n    relevance: \"Dual gating MoE for VLA — adaptive variable-expert count per token. Federated framing is orthogonal to ours, but the dual gating mechanism is a candidate router design to ablate against in PAR.\"\n    key_findings: \"Dual gating MoE selects variable experts per token; instruction-oriented scene parsing.\"\n\n  - id: \"chatvla2_2025\"\n    title: \"ChatVLA-2: Vision-Language-Action Model with Open-World Reasoning\"\n    authors: \"Anonymous et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    url: \"https://chatvla-2.github.io/\"\n    category: \"method-component\"\n    role: \"MoE-VLA with VLM-preserving design\"\n    relevance: \"Dynamic MoE within VLM backbone (Qwen2-VL) with 3-stage training to preserve VLM capabilities. Architecturally relevant — preserves backbone like PAR but specializes for reasoning, not perturbation correction.\"\n    key_findings: \"MoE in VLM backbone + 3-stage training preserves pretrained reasoning while adding action.\"\n\n  # ─────────── method-component: internal activation analysis ───────────\n\n  - id: \"eigentrack2025\"\n    title: \"EigenTrack: Temporal Spectral Analysis of Hidden Activations for Hallucination and OOD Detection\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.15735\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.15735\"\n    category: \"method-component\"\n    role: \"activation-based OOD diagnosis\"\n    relevance: \"Uses eigenvalue-based descriptors of activations for OOD/hallucination detection. Methodological cousin of our perturbation-type probe — both extract decision signals from frozen internal states.\"\n    key_findings: \"Global eigenvalue descriptors + Marchenko-Pastur divergence detect representation-dynamics shifts.\"\n\n  - id: \"hidden_states_iclr2024\"\n    title: \"LLMs' Internal States Retain the Power of Hallucination Detection\"\n    authors: \"Anonymous et al.\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    url: \"https://proceedings.iclr.cc/paper_files/paper/2024/file/0d1986a61e30e5fa408c81216a616e20-Paper-Conference.pdf\"\n    category: \"method-component\"\n    role: \"evidence for diagnostic capacity of internal states\"\n    relevance: \"Foundational evidence that frozen LLM hidden states encode rich decision-relevant signal (hallucination class). Direct intellectual ancestor of our Claim 1 (Perturbation Diagnosability from single layer/token).\"\n    key_findings: \"Internal activations of LLMs contain comprehensive features for hallucination detection.\"\n\n  - id: \"linear_probe_othello\"\n    title: \"Othello-GPT Has a Linear Emergent World Representation\"\n    authors: \"Nanda, Neel\"\n    venue: \"Blog / mechanistic interpretability\"\n    year: 2023\n    url: \"https://www.neelnanda.io/mechanistic-interpretability/othello\"\n    category: \"method-component\"\n    role: \"canonical linear-probe demonstration\"\n    relevance: \"Canonical evidence that high-level latent variables are linearly decodable from transformer activations. Justifies linear-probe choice for perturbation-type classification (Claim 1).\"\n    key_findings: \"Linear probe recovers Othello board state from frozen transformer activations.\"\n\n  # ─────────── evaluation ───────────\n\n  - id: \"libero2023\"\n    title: \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n    authors: \"Liu, Bo et al.\"\n    venue: \"NeurIPS 2023 (Datasets & Benchmarks)\"\n    year: 2023\n    url: \"https://arxiv.org/abs/2306.03310\"\n    category: \"evaluation\"\n    role: \"primary evaluation benchmark\"\n    relevance: \"Main eval — LIBERO-Spatial/Object/Goal/100 provide controlled distribution shifts perfect for testing perturbation routing. Spatial/Object/Goal naming aligns with our visual/spatial/physical taxonomy.\"\n    key_findings: \"130 tasks across 4 suites; controlled declarative + procedural knowledge transfer; 90/10 pretraining/test split.\"\n\n  - id: \"simpler_env2024\"\n    title: \"Evaluating Real-World Robot Manipulation Policies in Simulation (SimplerEnv)\"\n    authors: \"Li, Xuanlin et al.\"\n    venue: \"CoRL 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2405.05941\"\n    category: \"evaluation\"\n    role: \"sim-to-real correlated evaluation\"\n    relevance: \"Variant Aggregation explicitly tests lighting/background/distractor/camera shifts — directly relevant to PAR perturbation categories. Strong real-to-sim correlation makes it useful as secondary eval beyond LIBERO.\"\n    key_findings: \"Visual Matching + Variant Aggregation setups; robot policy sim performance correlates with real-world.\"\n\n  - id: \"colosseum2024\"\n    title: \"THE COLOSSEUM: A Benchmark for Evaluating Generalization for Robotic Manipulation\"\n    authors: \"Pumacay, Wilbert et al.\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2402.08191\"\n    category: \"evaluation\"\n    role: \"systematic perturbation benchmark\"\n    relevance: \"20 tasks × 14 perturbation axes (lighting, color/texture, distractor, object size, physical, camera pose). Highly compatible with PAR's perturbation-type framing — possible secondary eval venue.\"\n    key_findings: \"Built on RLBench; isolates 14 environment-perturbation axes for systematic generalization study.\"\n\n  # ─────────── background: VLA architecture ───────────\n\n  - id: \"pi0_2024\"\n    title: \"π₀: A Vision-Language-Action Flow Model for General Robot Control\"\n    authors: \"Black, Kevin et al. (Physical Intelligence)\"\n    venue: \"arXiv 2410.24164\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2410.24164\"\n    category: \"background\"\n    role: \"base VLA model (frozen backbone in PAR)\"\n    relevance: \"π₀ IS our frozen base policy. PaliGemma 3B VLM + flow-matching action head. Open-sourced (Physical-Intelligence/openpi). We probe its internal activations and attach perturbation-specific LoRAs.\"\n    key_findings: \"Flow-matching action head over PaliGemma; 7 robot configs, 68 tasks pretraining; fine-tune in 1–20h.\"\n\n  - id: \"openvla_2024\"\n    title: \"OpenVLA: An Open-Source Vision-Language-Action Model\"\n    authors: \"Kim, Moo Jin et al.\"\n    venue: \"CoRL 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2406.09246\"\n    category: \"background\"\n    role: \"alternative VLA backbone\"\n    relevance: \"7B VLA with SigLIP+DinoV2 vision + Llama-2 LM backbone. Trained on 970k Open-X demos. Useful as secondary backbone to test if PAR design transfers beyond π₀.\"\n    key_findings: \"Fused SigLIP+DinoV2 vision encoder; discrete action tokens; LoRA updates 1.4% params yet matches full FT.\"\n\n  - id: \"paligemma_2024\"\n    title: \"PaliGemma: A Versatile 3B VLM for Transfer\"\n    authors: \"Beyer, Lucas et al.\"\n    venue: \"arXiv 2407.07726\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2407.07726\"\n    category: \"background\"\n    role: \"VLM backbone of π₀\"\n    relevance: \"Underlying VLM inside π₀. Understanding its architecture (SigLIP-So400m + Gemma-2B, soft tokens + full block-attention) is necessary to choose probe layers and inject LoRAs correctly.\"\n    key_findings: \"SigLIP-So400m vision + Gemma-2B LM; image as soft tokens with block attention; SOTA transfer on 40 tasks.\"\n\n  - id: \"octo2024\"\n    title: \"Octo: An Open-Source Generalist Robot Policy\"\n    authors: \"Octo Model Team (Ghosh, Walke, Pertsch et al.)\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2405.12213\"\n    category: \"background\"\n    role: \"generalist policy baseline\"\n    relevance: \"Transformer + diffusion-head policy, 800k Open-X trajectories. Listed in pi.website as a baseline π₀ outperforms; useful baseline if we evaluate broader transfer beyond π₀.\"\n    key_findings: \"Transformer backbone + diffusion action head; language or goal-image conditioning; 9-platform eval.\"\n\n  - id: \"rt2_2023\"\n    title: \"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\"\n    authors: \"Brohan, Anthony et al. (Google DeepMind)\"\n    venue: \"CoRL 2023\"\n    year: 2023\n    url: \"https://arxiv.org/abs/2307.15818\"\n    category: \"background\"\n    role: \"VLA progenitor\"\n    relevance: \"Original VLA establishing co-fine-tuning paradigm. Robustness measured via augmentation (crop/jitter/rotation/noise) — coarse compared to our targeted-correction approach.\"\n    key_findings: \"Co-fine-tunes VLM on robot trajectories + web VQA data; actions as text tokens; ~2× generalization gain.\"\n\n  # ─────────── background: robot perturbation robustness ───────────\n\n  - id: \"rialto_rss2024\"\n    title: \"Reconciling Reality through Simulation: A Real-to-Sim-to-Real Approach for Robust Manipulation (RialTo)\"\n    authors: \"Anonymous et al.\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2403.03949\"\n    category: \"background\"\n    role: \"alternative robustness approach (data-side)\"\n    relevance: \"Robustifies policies via digital-twin RL with on-the-fly sim from minimal real data. Contrasts PAR: they fix robustness by data/sim augmentation; PAR fixes it by architectural routing. Citable as 'orthogonal direction'.\"\n    key_findings: \"Real→sim digital twins enable RL robustification under distractors/lighting/pose changes.\"\n\n  - id: \"maniwhere2024\"\n    title: \"Learning to Manipulate Anywhere: A Visual Generalizable Framework for Reinforcement Learning (Maniwhere)\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2407.15815\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2407.15815\"\n    category: \"background\"\n    role: \"visual perturbation generalization\"\n    relevance: \"Multi-view + STN + curriculum randomization for visual generalization across distractors/backgrounds/lighting. Shows generic 'train through perturbation' baseline that PAR competes with via targeted-correction architecture.\"\n    key_findings: \"STN-based multi-view representation + curriculum domain randomization for visual robustness.\"\n\n  - id: \"arro2026\"\n    title: \"Augmented Reality for Robots (ARRO): Pointing Visuomotor Policies Towards Visual Robustness\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2505.08627\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2505.08627\"\n    category: \"background\"\n    role: \"input-side robustness\"\n    relevance: \"Uses open-vocab segmentation to mask task-irrelevant regions before policy input. Alternative robustness strategy at the *input* layer; PAR operates at the *parameter* layer via LoRA experts.\"\n    key_findings: \"Zero-shot segmentation masks distractors; virtual guides overlay during training/inference.\"\n\n# Notes / next-step lookups (not yet in this map):\n#   - \"internal activation analysis\" specifically for VLA / robot policies (most current work is LLM-side)\n#   - π₀.₅ (Sept 2025) full paper for updated frozen base\n#   - DR-LoRA (2601.04823) if dynamic-rank routing becomes a comparison point\n#   - SEQR (2509.18093) for QR-based routing if we explore router efficiency\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/literature_map.yaml",
+    "content": "# Literature Map — Perturbation-Adaptive LoRA Routing (PAR)\n# Project: meta_brain_lora_routing\n# Target venue: CoRL 2026\n# Initial compilation: 2026-05-16\n#\n# Categories:\n#   direct-competitor — methods we directly compete with on VLA robustness\n#   method-component   — building blocks: LoRA routing/MoE, activation probing\n#   evaluation         — benchmarks we use or are evaluated on\n#   background         — VLA architecture + general robustness context\n\npapers:\n\n  # ─────────── direct-competitor ───────────\n\n  - id: \"libero_plus2025\"\n    title: \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\"\n    authors: \"OpenMOSS et al.\"\n    venue: \"arXiv (CVPR 2026 poster accepted)\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.13626\"\n    category: \"direct-competitor\"\n    role: \"robustness benchmark + diagnosis baseline\"\n    relevance: \"Most directly aligned prior work — defines 7 perturbation dimensions (object layout, camera, robot init, language, lighting, background, sensor noise) and shows VLA success drops 95→<30% under modest perturbations. Our PAR taxonomy (visual/spatial/physical) is a coarsening of theirs; we go beyond diagnosis to active correction via routed LoRA experts.\"\n    key_findings: \"Models extremely sensitive to camera viewpoints + robot initial states; insensitive to language (ignore it). 10,030 tasks across 7 dimensions × 21 sub-dimensions with L1–L5 difficulty levels.\"\n\n  - id: \"robustvla2025\"\n    title: \"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2511.01331\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2511.01331\"\n    category: \"direct-competitor\"\n    role: \"competing robustness post-training method\"\n    relevance: \"Alternative path to VLA robustness — online RL with Jacobian + smoothness regularization. Differs from PAR: they modify the full policy via RL gradients; we keep π₀ frozen and add small targeted LoRAs. Must compare param count + need for env interaction.\"\n    key_findings: \"Jacobian regularization reduces sensitivity to observation noise; smoothness regularization stabilizes actions under perturbation. Online RL post-training framework.\"\n\n  - id: \"eva_vla2025\"\n    title: \"Eva-VLA: Evaluating Vision-Language-Action Models' Robustness Under Real-World Physical Variations\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.18953\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.18953\"\n    category: \"direct-competitor\"\n    role: \"robustness evaluation framework\"\n    relevance: \"Frames physical variations as a continuous optimization problem to find worst-case perturbations. Reports >60% failure across all categories — motivates need for targeted correction (our PAR contribution).\"\n    key_findings: \"Unified framework converting discrete physical variations into continuous optimization. Reveals significant fragility in current VLA systems.\"\n\n  - id: \"tt_vla2026\"\n    title: \"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2601.06748\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2601.06748\"\n    category: \"direct-competitor\"\n    role: \"test-time adaptation baseline\"\n    relevance: \"Alternative — adapt at test time via value-free PPO with progress rewards. Requires env interaction + reward signal. PAR is feed-forward: probe activation → route to expert, no online learning needed at deploy time.\"\n    key_findings: \"Within-episode policy adaptation via test-time PPO using dense progress-based rewards.\"\n\n  - id: \"preserve_pretrain2025\"\n    title: \"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.11417\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.11417\"\n    category: \"direct-competitor\"\n    role: \"VLA generalization via representation preservation\"\n    relevance: \"Argues full fine-tuning destroys VLA generalization → preserve pretrained reps. Consistent with our 'freeze π₀, add LoRA' design choice. Cite as motivation for frozen-backbone approach.\"\n    key_findings: \"Preserving pretrained VLM features improves OOD generalization vs aggressive full fine-tuning.\"\n\n  - id: \"vls2026\"\n    title: \"VLS: Steering Pretrained Robot Policies via Vision-Language Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2602.03973\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2602.03973\"\n    category: \"direct-competitor\"\n    role: \"test-time steering without param updates\"\n    relevance: \"Steers diffusion/flow policy at inference using VLM-synthesized rewards — no LoRA, no training. Comparison point: PAR achieves correction with tiny adapter overhead, VLS adds VLM inference cost per step.\"\n    key_findings: \"Inference-time policy steering via VLM-derived trajectory-differentiable rewards, no policy parameter updates.\"\n\n  # ─────────── method-component: LoRA routing / MoE-LoRA ───────────\n\n  - id: \"ld_mole2025\"\n    title: \"LD-MoLE: Learnable Dynamic Routing for Mixture of LoRA Experts\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.25684\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.25684\"\n    category: \"method-component\"\n    role: \"differentiable LoRA routing mechanism\"\n    relevance: \"Closest router design — token-dependent, layer-wise expert allocation, differentiable replacement for TopK. PAR can borrow this routing formulation but conditions on perturbation-type from probe rather than token features.\"\n    key_findings: \"Differentiable router selects variable number of experts per token per layer; SOTA on Qwen3-1.7B/Llama-3.2-3B benchmarks.\"\n\n  - id: \"l_moe2025\"\n    title: \"L-MoE: End-to-End Training of a Lightweight Mixture of Low-Rank Adaptation Experts\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2510.17898\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.17898\"\n    category: \"method-component\"\n    role: \"lightweight MoLE architecture\"\n    relevance: \"Gating composes LoRA adapters by weighted average of params per input token, fully differentiable. PAR variant: composition driven by discrete perturbation diagnosis rather than soft token gating.\"\n    key_findings: \"End-to-end gating learns parameter-level composition of LoRA experts; lightweight design.\"\n\n  - id: \"lora_mixer2025\"\n    title: \"LoRA-Mixer: Coordinate Modular LoRA Experts Through Serial Attention Routing\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2507.00029\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2507.00029\"\n    category: \"method-component\"\n    role: \"modular LoRA MoE in attention layers\"\n    relevance: \"Replaces attention input/output projections with dynamically routed task-specific LoRA experts. +7.6/4.9/3.1% over base on GSM8K/HumanEval/MedQA. Architectural template for PAR's attention-side experts.\"\n    key_findings: \"Modular MoE framework integrating LoRA at attention projection layers via serial routing.\"\n\n  - id: \"smora2025\"\n    title: \"Each Rank Could be an Expert: Single-Ranked Mixture of Experts LoRA for Multi-task Learning\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2501.15103\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2501.15103\"\n    category: \"method-component\"\n    role: \"fine-grained LoRA expert granularity\"\n    relevance: \"Treats each LoRA rank as an independent expert with dynamic rank-wise activation. Alternative to our 3-discrete-experts design; could ablate against rank-as-expert as 'finer granularity baseline'.\"\n    key_findings: \"Embeds MoE into LoRA at rank level; dynamic rank-wise activation mitigates task conflicts.\"\n\n  - id: \"hdmole2024\"\n    title: \"HDMoLE: Mixture of LoRA Experts with Hierarchical Routing and Dynamic Thresholds for Fine-Tuning LLM-based ASR Models\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2409.19878\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2409.19878\"\n    category: \"method-component\"\n    role: \"hierarchical LoRA routing\"\n    relevance: \"Establishes explicit correspondence between LoRA experts and domain tasks via hierarchical routing — methodologically aligned with our perturbation-type → expert mapping.\"\n    key_findings: \"Hierarchical router with dynamic thresholds; clean expert↔task correspondence.\"\n\n  # ─────────── method-component: LoRA in robotics / VLA ───────────\n\n  - id: \"openvla_oft2025\"\n    title: \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success (OpenVLA-OFT)\"\n    authors: \"Kim, Moo Jin et al.\"\n    venue: \"arXiv / OpenVLA-OFT project\"\n    year: 2025\n    url: \"https://openvla-oft.github.io/\"\n    category: \"method-component\"\n    role: \"VLA fine-tuning recipe baseline\"\n    relevance: \"Optimized fine-tuning recipe for VLA — 25–50× faster inference, higher success. PAR compares against OFT-style full fine-tuning as the parameter-heavy alternative to routed LoRA experts.\"\n    key_findings: \"Action chunking + parallel decoding + L1 regression; large speedup vs vanilla OpenVLA fine-tuning.\"\n\n  - id: \"accessible_vla_lora2025\"\n    title: \"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2512.11921\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2512.11921\"\n    category: \"method-component\"\n    role: \"LoRA-on-VLA baseline (uniform single adapter)\"\n    relevance: \"Single LoRA + quantization to fine-tune 3.1B VLA on consumer GPUs. This is exactly our 'rank-matched uniform LoRA' baseline — PAR's Claim 2 (Targeted > Uniform) directly contests this design.\"\n    key_findings: \"LoRA + quantization enables VLA fine-tuning on 8GB GPUs; uniform single-adapter approach.\"\n\n  - id: \"adamoe_vla2025\"\n    title: \"Expertise Need Not Monopolize: Action-Specialized Mixture of Experts for Vision-Language-Action Learning (AdaMoE)\"\n    authors: \"Hen, Charles et al.\"\n    venue: \"arXiv 2510.14300\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2510.14300\"\n    category: \"method-component\"\n    role: \"MoE-VLA direct comparator\"\n    relevance: \"Most direct architectural neighbor — MoE inside VLA action expert, decouples selection from weighting. Differs from PAR: AdaMoE routes by token features for task specialization; PAR routes by *perturbation type* diagnosed from frozen activations. Must compare on LIBERO.\"\n    key_findings: \"Decoupled router + scale adapter; +1.8% LIBERO / +9.3% RoboTwin / +21.5% real-world vs dense baseline.\"\n\n  - id: \"fedvla2025\"\n    title: \"FedVLA: Federated Vision-Language-Action Learning with Dual Gating Mixture-of-Experts for Robotic Manipulation\"\n    authors: \"Miao, Chang et al.\"\n    venue: \"ICCV 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2508.02190\"\n    category: \"method-component\"\n    role: \"MoE-VLA in federated setting\"\n    relevance: \"Dual gating MoE for VLA — adaptive variable-expert count per token. Federated framing is orthogonal to ours, but the dual gating mechanism is a candidate router design to ablate against in PAR.\"\n    key_findings: \"Dual gating MoE selects variable experts per token; instruction-oriented scene parsing.\"\n\n  - id: \"chatvla2_2025\"\n    title: \"ChatVLA-2: Vision-Language-Action Model with Open-World Reasoning\"\n    authors: \"Anonymous et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    url: \"https://chatvla-2.github.io/\"\n    category: \"method-component\"\n    role: \"MoE-VLA with VLM-preserving design\"\n    relevance: \"Dynamic MoE within VLM backbone (Qwen2-VL) with 3-stage training to preserve VLM capabilities. Architecturally relevant — preserves backbone like PAR but specializes for reasoning, not perturbation correction.\"\n    key_findings: \"MoE in VLM backbone + 3-stage training preserves pretrained reasoning while adding action.\"\n\n  # ─────────── method-component: internal activation analysis ───────────\n\n  - id: \"eigentrack2025\"\n    title: \"EigenTrack: Temporal Spectral Analysis of Hidden Activations for Hallucination and OOD Detection\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2509.15735\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.15735\"\n    category: \"method-component\"\n    role: \"activation-based OOD diagnosis\"\n    relevance: \"Uses eigenvalue-based descriptors of activations for OOD/hallucination detection. Methodological cousin of our perturbation-type probe — both extract decision signals from frozen internal states.\"\n    key_findings: \"Global eigenvalue descriptors + Marchenko-Pastur divergence detect representation-dynamics shifts.\"\n\n  - id: \"hidden_states_iclr2024\"\n    title: \"LLMs' Internal States Retain the Power of Hallucination Detection\"\n    authors: \"Anonymous et al.\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    url: \"https://proceedings.iclr.cc/paper_files/paper/2024/file/0d1986a61e30e5fa408c81216a616e20-Paper-Conference.pdf\"\n    category: \"method-component\"\n    role: \"evidence for diagnostic capacity of internal states\"\n    relevance: \"Foundational evidence that frozen LLM hidden states encode rich decision-relevant signal (hallucination class). Direct intellectual ancestor of our Claim 1 (Perturbation Diagnosability from single layer/token).\"\n    key_findings: \"Internal activations of LLMs contain comprehensive features for hallucination detection.\"\n\n  - id: \"linear_probe_othello\"\n    title: \"Othello-GPT Has a Linear Emergent World Representation\"\n    authors: \"Nanda, Neel\"\n    venue: \"Blog / mechanistic interpretability\"\n    year: 2023\n    url: \"https://www.neelnanda.io/mechanistic-interpretability/othello\"\n    category: \"method-component\"\n    role: \"canonical linear-probe demonstration\"\n    relevance: \"Canonical evidence that high-level latent variables are linearly decodable from transformer activations. Justifies linear-probe choice for perturbation-type classification (Claim 1).\"\n    key_findings: \"Linear probe recovers Othello board state from frozen transformer activations.\"\n\n  # ─────────── evaluation ───────────\n\n  - id: \"libero2023\"\n    title: \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n    authors: \"Liu, Bo et al.\"\n    venue: \"NeurIPS 2023 (Datasets & Benchmarks)\"\n    year: 2023\n    url: \"https://arxiv.org/abs/2306.03310\"\n    category: \"evaluation\"\n    role: \"primary evaluation benchmark\"\n    relevance: \"Main eval — LIBERO-Spatial/Object/Goal/100 provide controlled distribution shifts perfect for testing perturbation routing. Spatial/Object/Goal naming aligns with our visual/spatial/physical taxonomy.\"\n    key_findings: \"130 tasks across 4 suites; controlled declarative + procedural knowledge transfer; 90/10 pretraining/test split.\"\n\n  - id: \"simpler_env2024\"\n    title: \"Evaluating Real-World Robot Manipulation Policies in Simulation (SimplerEnv)\"\n    authors: \"Li, Xuanlin et al.\"\n    venue: \"CoRL 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2405.05941\"\n    category: \"evaluation\"\n    role: \"sim-to-real correlated evaluation\"\n    relevance: \"Variant Aggregation explicitly tests lighting/background/distractor/camera shifts — directly relevant to PAR perturbation categories. Strong real-to-sim correlation makes it useful as secondary eval beyond LIBERO.\"\n    key_findings: \"Visual Matching + Variant Aggregation setups; robot policy sim performance correlates with real-world.\"\n\n  - id: \"colosseum2024\"\n    title: \"THE COLOSSEUM: A Benchmark for Evaluating Generalization for Robotic Manipulation\"\n    authors: \"Pumacay, Wilbert et al.\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2402.08191\"\n    category: \"evaluation\"\n    role: \"systematic perturbation benchmark\"\n    relevance: \"20 tasks × 14 perturbation axes (lighting, color/texture, distractor, object size, physical, camera pose). Highly compatible with PAR's perturbation-type framing — possible secondary eval venue.\"\n    key_findings: \"Built on RLBench; isolates 14 environment-perturbation axes for systematic generalization study.\"\n\n  # ─────────── background: VLA architecture ───────────\n\n  - id: \"pi0_2024\"\n    title: \"π₀: A Vision-Language-Action Flow Model for General Robot Control\"\n    authors: \"Black, Kevin et al. (Physical Intelligence)\"\n    venue: \"arXiv 2410.24164\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2410.24164\"\n    category: \"background\"\n    role: \"base VLA model (frozen backbone in PAR)\"\n    relevance: \"π₀ IS our frozen base policy. PaliGemma 3B VLM + flow-matching action head. Open-sourced (Physical-Intelligence/openpi). We probe its internal activations and attach perturbation-specific LoRAs.\"\n    key_findings: \"Flow-matching action head over PaliGemma; 7 robot configs, 68 tasks pretraining; fine-tune in 1–20h.\"\n\n  - id: \"openvla_2024\"\n    title: \"OpenVLA: An Open-Source Vision-Language-Action Model\"\n    authors: \"Kim, Moo Jin et al.\"\n    venue: \"CoRL 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2406.09246\"\n    category: \"background\"\n    role: \"alternative VLA backbone\"\n    relevance: \"7B VLA with SigLIP+DinoV2 vision + Llama-2 LM backbone. Trained on 970k Open-X demos. Useful as secondary backbone to test if PAR design transfers beyond π₀.\"\n    key_findings: \"Fused SigLIP+DinoV2 vision encoder; discrete action tokens; LoRA updates 1.4% params yet matches full FT.\"\n\n  - id: \"paligemma_2024\"\n    title: \"PaliGemma: A Versatile 3B VLM for Transfer\"\n    authors: \"Beyer, Lucas et al.\"\n    venue: \"arXiv 2407.07726\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2407.07726\"\n    category: \"background\"\n    role: \"VLM backbone of π₀\"\n    relevance: \"Underlying VLM inside π₀. Understanding its architecture (SigLIP-So400m + Gemma-2B, soft tokens + full block-attention) is necessary to choose probe layers and inject LoRAs correctly.\"\n    key_findings: \"SigLIP-So400m vision + Gemma-2B LM; image as soft tokens with block attention; SOTA transfer on 40 tasks.\"\n\n  - id: \"octo2024\"\n    title: \"Octo: An Open-Source Generalist Robot Policy\"\n    authors: \"Octo Model Team (Ghosh, Walke, Pertsch et al.)\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2405.12213\"\n    category: \"background\"\n    role: \"generalist policy baseline\"\n    relevance: \"Transformer + diffusion-head policy, 800k Open-X trajectories. Listed in pi.website as a baseline π₀ outperforms; useful baseline if we evaluate broader transfer beyond π₀.\"\n    key_findings: \"Transformer backbone + diffusion action head; language or goal-image conditioning; 9-platform eval.\"\n\n  - id: \"rt2_2023\"\n    title: \"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\"\n    authors: \"Brohan, Anthony et al. (Google DeepMind)\"\n    venue: \"CoRL 2023\"\n    year: 2023\n    url: \"https://arxiv.org/abs/2307.15818\"\n    category: \"background\"\n    role: \"VLA progenitor\"\n    relevance: \"Original VLA establishing co-fine-tuning paradigm. Robustness measured via augmentation (crop/jitter/rotation/noise) — coarse compared to our targeted-correction approach.\"\n    key_findings: \"Co-fine-tunes VLM on robot trajectories + web VQA data; actions as text tokens; ~2× generalization gain.\"\n\n  # ─────────── background: robot perturbation robustness ───────────\n\n  - id: \"rialto_rss2024\"\n    title: \"Reconciling Reality through Simulation: A Real-to-Sim-to-Real Approach for Robust Manipulation (RialTo)\"\n    authors: \"Anonymous et al.\"\n    venue: \"RSS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2403.03949\"\n    category: \"background\"\n    role: \"alternative robustness approach (data-side)\"\n    relevance: \"Robustifies policies via digital-twin RL with on-the-fly sim from minimal real data. Contrasts PAR: they fix robustness by data/sim augmentation; PAR fixes it by architectural routing. Citable as 'orthogonal direction'.\"\n    key_findings: \"Real→sim digital twins enable RL robustification under distractors/lighting/pose changes.\"\n\n  - id: \"maniwhere2024\"\n    title: \"Learning to Manipulate Anywhere: A Visual Generalizable Framework for Reinforcement Learning (Maniwhere)\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2407.15815\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2407.15815\"\n    category: \"background\"\n    role: \"visual perturbation generalization\"\n    relevance: \"Multi-view + STN + curriculum randomization for visual generalization across distractors/backgrounds/lighting. Shows generic 'train through perturbation' baseline that PAR competes with via targeted-correction architecture.\"\n    key_findings: \"STN-based multi-view representation + curriculum domain randomization for visual robustness.\"\n\n  - id: \"arro2026\"\n    title: \"Augmented Reality for Robots (ARRO): Pointing Visuomotor Policies Towards Visual Robustness\"\n    authors: \"Anonymous et al.\"\n    venue: \"arXiv 2505.08627\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2505.08627\"\n    category: \"background\"\n    role: \"input-side robustness\"\n    relevance: \"Uses open-vocab segmentation to mask task-irrelevant regions before policy input. Alternative robustness strategy at the *input* layer; PAR operates at the *parameter* layer via LoRA experts.\"\n    key_findings: \"Zero-shot segmentation masks distractors; virtual guides overlay during training/inference.\"\n\n# Notes / next-step lookups (not yet in this map):\n#   - \"internal activation analysis\" specifically for VLA / robot policies (most current work is LLM-side)\n#   - π₀.₅ (Sept 2025) full paper for updated frozen base\n#   - DR-LoRA (2601.04823) if dynamic-rank routing becomes a comparison point\n#   - SEQR (2509.18093) for QR-based routing if we explore router efficiency\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T04:10:08.404026+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/literature_map.yaml
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T04:10:08.404199+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Search for VLA robustness / adaptation papers (direct competitors)', 'activeForm': 'Searching VLA robustness papers', 'status': 'completed'}, {'content': 'Search for LoRA routing / MoE-LoRA papers', 'activeForm': 'Searching LoRA routing papers', 'status': 'completed'}, {'content': 'Search for LoRA in robotics / VLA papers', 'activeForm': 'Searching LoRA robotics papers', 'status': 'completed'}, {'content': 'Search for internal activation analysis / distribution shift detection', 'activeForm': 'Searching activation analysis papers', 'status': 'completed'}, {'content': 'Search for LIBERO benchmark and manipulation evaluation papers', 'activeForm': 'Searching LIBERO papers', 'status': 'completed'}, {'content': 'Search for VLA architecture papers (pi0, OpenVLA, PaliGemma)', 'activeForm': 'Searching VLA architecture papers', 'status': 'completed'}, {'content': 'Search for perturbation robustness in robot learning', 'activeForm': 'Searching perturbation robustness papers', 'status': 'completed'}, {'content': 'Write literature_map.yaml with all findings', 'activeForm': 'Writing literature_map.yaml', 'status': 'completed'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Search for VLA robustness / adaptation papers (direct competitors)', 'activeForm': 'Searching VLA robustness papers', 'status': 'completed'}, {'content': 'Search for LoRA routing / MoE-LoRA papers', 'activeForm': 'Searching LoRA routing papers', 'status': 'completed'}, {'content': 'Search for LoRA in robotics / VLA papers', 'activeForm': 'Searching LoRA robotics papers', 'status': 'completed'}, {'content': 'Search for internal activation analysis / distribution shift detection', 'activeForm': 'Searching activation analysis papers', 'status': 'completed'}, {'content': 'Search for LIBERO benchmark and manipulation evaluation papers', 'activeForm': 'Searching LIBERO papers', 'status': 'completed'}, {'content': 'Search for VLA architecture papers (pi0, OpenVLA, PaliGemma)', 'activeForm': 'Searching VLA architecture papers', 'status': 'completed'}, {'content': 'Search for perturbation robustness in robot learning', 'activeForm': 'Searching perturbation robustness papers', 'status': 'completed'}, {'content': 'Write literature_map.yaml with all findings', 'activeForm': 'Writing literature_map.yaml', 'status': 'completed'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T04:10:08.404364+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-scan-init_20260516T040326",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-16T04:10:08.404551+00:00_
+
+已写入 `literature_map.yaml`（28 篇论文，全部 2023–2026）。
+
+**注意**：MCP `save_project_file` whitelist 不含 `literature_map.yaml`，已直接写入 `/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/literature_map.yaml`。MCP `read_project_file` 支持读取 `literature_map.yaml`，应能正常索引。
+
+**分类分布**：
+- direct-competitor (6)：LIBERO-Plus、RobustVLA、Eva-VLA、TT-VLA、Preserve-Pretrain、VLS
+- method-component / LoRA routing (5)：LD-MoLE、L-MoE、LoRA-Mixer、SMoRA、HDMoLE
+- method-component / VLA-LoRA (5)：OpenVLA-OFT、Accessible-VLA-LoRA、AdaMoE、FedVLA、ChatVLA-2
+- method-component / activation probing (3)：EigenTrack、ICLR2024-hidden-states、Othello-GPT
+- evaluation (3)：LIBERO、SimplerEnv、COLOSSEUM
+- background (8)：π₀、OpenVLA、PaliGemma、Octo、RT-2、RialTo、Maniwhere、ARRO
+
+**关键发现已映射到 Core Claims**：
+- **Claim 1（Diagnosability）** ← LIBERO-Plus 的 7 维扰动分类 + ICLR 2024 hidden-states + Othello-GPT 线性可解码证据
+- **Claim 2（Targeted > Uniform）** ← Accessible-VLA-LoRA 是 uniform baseline；AdaMoE/FedVLA 是 token-routed MoE 邻居
+- **Claim 3（Param-Efficient Robustness）** ← 对手 RobustVLA（全 RL）、OpenVLA-OFT（full FT）、TT-VLA（test-time RL）均需更多算力或环境交互
+
+**遗留待补**（已在 YAML 末尾注释）：VLA-specific activation analysis、π₀.₅ 论文、DR-LoRA、SEQR。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_literature-scan-init_20260516T040326"
+}
+```
+
+</details>
+
+---

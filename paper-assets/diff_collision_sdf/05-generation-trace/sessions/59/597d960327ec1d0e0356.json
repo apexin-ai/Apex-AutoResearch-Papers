@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "597d960327ec1d0e0356",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval eval stepwise s1 l1 22k",
+  "task_key": "worker_eval_eval_stepwise_s1_l1_22k_20260527T022643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_eval_stepwise_s1_l1_22k_20260527T022643_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "5a15e7e407c9038d69590ea309a5468d3740922c185ecb2d7fa4a2c5ef362d3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **Checkpoint** `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed1_l1/22000/` 存在\n- **Eval job** 已提交到 westd-35807 cuda:0，PID 549068，tmux session `eval_stepwise_s1_l1_22k`\n- **Registry** 状态已推进到 RUNNING，spec 已填充完整\n\n日志路径：`~/runs/diff_collision_sdf/eval_stepwise_s1_l1_22k.log`，结果输出到 `/root/autodl-tmp/eval_results/eval_s1_l1_22k_seed7.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-eval-stepwise-s1-l1-22k.md"
+}

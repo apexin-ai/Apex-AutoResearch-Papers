@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad2b25d015e54f926e6c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops prepare eval pipeline",
+  "task_key": "worker_ops_prepare_eval_pipeline_20260523T015023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare_eval_pipeline_20260523T015023_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "a83e39c6f0c06a0d3d41193b94a4950d0bd9ece22de988194819ddfd7005c032"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件：\n\n1. **`artifacts/eval_commands_d012.md`** — 6 个模型的完整 eval 命令模板\n   - westd-45947: s0_l005 (GPU0:8000), s0_l01 (GPU1:8001)\n   - westd-35807: s1_l005~s2_l01 (GPU0-3:8000-8003)\n   - 每个包含：环境激活 → serve_policy 启动 → eval 执行 → 清理\n   - `<STEP>` 占位符待训练完成后替换（`best` 或具体 step）\n\n2. **`artifacts/analyze_d012_results.py`** — 独立分析脚本\n   - 读取 6 个 JSON，输出 per-task/overall metrics\n   - D012 pass/fail 判定（CAR≥33%, TSR≥50%, frozen_rate≤baseline）\n   - vs Pi0.5 baseline 的 Welch t-test + Cohen's d\n   - 按 λ=0.005/0.01 分组聚合 + 组间对比\n   - 生成 Markdown 对比表\n   - 用法：`python analyze_d012_results.py --scan_dir /root/autodl-tmp/eval_results/d012`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-eval-pipeline.md"
+}

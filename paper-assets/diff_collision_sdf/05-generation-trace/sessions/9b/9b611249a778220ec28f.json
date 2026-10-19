@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b611249a778220ec28f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh urgent gpu check 35807",
+  "task_key": "worker_ssh_urgent_gpu_check_35807_20260520T105514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_gpu_check_35807_20260520T105514_result.json",
+    "occurrence": 1,
+    "bytes": 1551,
+    "sha256": "7612002488d1038ca2a3e519ee345f0ac1e4c8cc12afa6079c81266178cc093d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**系统误报，4 卡均在跑。**\n\n| GPU | 实验 | PID | Uptime | Step | Loss | Speed | VRAM | 状态 |\n|-----|------|-----|--------|------|------|-------|------|------|\n| 0 | baseline_spatial_bowl_seed0_v3 | 100319 | 12h40m | 12487/30000 (42%) | 0.0151 | ~3.6s/it | 37358/97887 MiB | ✅ 正常 |\n| 1 | baseline_spatial_bowl_seed1_v3 | 94453 | 12h52m | 12782/30000 (43%) | 0.0070 | ~3.5s/it | 37358/97887 MiB | ✅ 正常 |\n| 2 | baseline_object_pudding_seed0_v3 | 95429 | 12h52m | 12990/30000 (43%) | 0.0058 | ~3.3s/it | 37358/97887 MiB | ✅ 正常 |\n| 3 | a1_sdf_spatial_bowl_s0_v3 | 185994 | 2h50m | 8850/30000 (30%) | 0.2146 | ~3.5s/it | 13376/97887 MiB | ✅ 正常 |\n\n**磁盘:**\n- `/` : 15G / 30G (50%)\n- `/root/autodl-tmp` : 267G / 350G (77%)\n\n**分析:**\n- GPU 0-2 满载 100% util，3 个 baseline 进度一致 (~42-43%)，loss 已降到 0.005-0.015 区间\n- GPU 3 (PID 185994 A1 训练) nvidia-smi 瞬时读数 0% util，但进程活跃（CPU 68%，有大量 torch._inductor compile workers），日志持续推进。**瞬时采样偶尔会抓到 GPU idle 间隙，不代表空闲。** 该实验从 step 6000 resume，已跑到 8850\n- A1 的 loss (0.21) 明显高于 baseline (0.005-0.015)，因为 A1 才跑到 30%，且从 step 6000 resume 后 loss 还在下降中\n- 系统误报原因：很可能是监控采样恰好命中 GPU 3 的计算间隙，加上 GPU 3 VRAM 占用（13GB）远低于其他卡（37GB），被判定为\"空闲\"\n\n**结论：4 个实验全部正常运行，无需干预。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-gpu-check-35807.md"
+}

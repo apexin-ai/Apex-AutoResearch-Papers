@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc8a162e59caef3a251b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval v10a status and v11 dryrun",
+  "task_key": "worker_ops_eval_v10a_status_and_v11_dryrun_20260522T101016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_v10a_status_and_v11_dryrun_20260522T101016_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "1d489f8b791ddae9407fe5bee298e9d08044024f2c9902c5325c8ed27ad2c85b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### A3 eval v10a — 仍在运行\n\nPID 343880，已运行 ~4h，当前在 **Task 3 (bbq sauce) episode 20/50**。预计还需 ~40 min 完成。\n\n**已完成 3/4 tasks 的结果：**\n\n| Task | Object | TSR | CAR | Avg Smoothness | Avg Max Disp |\n|------|--------|-----|-----|----------------|-------------|\n| 0 | orange juice | 0.0% (0/50) | 90.0% (45/50) | 0.004492 | 0.0009m |\n| 1 | chocolate pudding | 0.0% (0/50) | 88.0% (44/50) | 0.006804 | 0.0108m |\n| 2 | milk | 0.0% (0/50) | 64.0% (32/50) | 0.004336 | 0.0168m |\n| 3 | bbq sauce | *running* | — | — | — |\n\nTSR 全 0%（未完成任何 pick-and-place），CAR 64-90%，displacement 极低（0.0009-0.0168m）。\n\n### baseline v11 dry-run — 跳过\n\n**cuda:1 仍被 v10a eval 占用，无法启动。** 需等 Task 3 完成（约 40 min）后 cuda:1 释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-v10a-status-and-v11-dryrun.md"
+}

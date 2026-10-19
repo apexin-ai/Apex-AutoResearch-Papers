@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d424e50b5aed6f45c1ba",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose ssh failure westd45947",
+  "task_key": "worker_diagnose_ssh_failure_westd45947_20260525T042100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ssh_failure_westd45947_20260525T042100_result.json",
+    "occurrence": 1,
+    "bytes": 1975,
+    "sha256": "220bb3b8a57b044cef37a86bea7b8458c7b80365b8ef780c880bdde04b1cb079"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### SSH 连接状态\n- **westd-45947**: ❌ 连接失败 — `Unable to connect to port 45947 on 36.103.198.204`\n- **westd-35807**: ❌ 同样不可达（同一 IP `36.103.198.204`，不同端口）\n- **原因**: SeetaCloud (connect.westd.seetacloud.com) 实例关机或端口变更。两台实例共用同一 HostName，说明是同一提供商，可能是账户级别的网络问题或实例过期。\n\n### 训练完成状态：**大概率已完成，但无法确认**\n\n| 实验 | 启动时间 | 墙钟时间 | GPU 时间 | 目标 |\n|------|---------|---------|---------|------|\n| s0 (seed 0, cuda:0) | 05-24 11:25 | 16.9h (60,860s) | 16.91h | 30K steps |\n| s1 (seed 1, cuda:1) | 05-24 11:25 | 16.9h (60,865s) | 16.91h | 30K steps |\n\n**推算**: 根据 M034 记录，LoRA baseline 无 Phase 2 解冻，全程 ~1.3s/step，30K steps 理论需 ~10.8h。17h 墙钟时间 > 理论完成时间，训练极可能已跑完 30K steps。但因 `WANDB_MODE=offline`，无远程指标可验证。\n\n### 失败根因\n不是训练失败，是**监控基础设施断连**：\n1. 实例在训练期间或训练完成后 SSH 端口变更/实例关机\n2. Cron 5 次 SSH 重试均失败 → 标记 `conclusion: failed`\n3. 已有 cron hook 更新了 registry notes 说明此情况\n\n### 建议恢复方案\n\n1. **去 SeetaCloud 控制台** 检查两台实例状态：\n   - 如果关机 → 开机后获取新端口 → 更新 `~/.ssh/config`\n   - 如果已到期/释放 → 数据可能丢失\n\n2. **SSH 恢复后立即执行**：\n   ```bash\n   # 检查训练日志确认完成\n   tail -20 /root/runs/diff_collision_sdf/train_pi05_lora_baseline_s0.log\n   tail -20 /root/runs/diff_collision_sdf/train_pi05_lora_baseline_s1.log\n   # 检查 checkpoint\n   find /root/colliforce-vla/checkpoints -name \"*lora_baseline*\" -type d\n   ```\n\n3. 如果训练确认完成 → 更新 registry `conclusion` 为 `success` → 进入 eval 流程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ssh-failure-westd45947.md"
+}

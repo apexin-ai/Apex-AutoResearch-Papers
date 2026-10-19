@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a47361b3eadb6dcef95d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper writing claim3",
+  "task_key": "worker_paper_writing_claim3_20260526T161705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_claim3_20260526T161705_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "4d4fdc3a59d176840f4344c7476ce0fd707dd9b0b1e385c490940ea39ba118f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入完成。主要变更：\n\n1. **标题和结构**：`\\section{Avoidance Source Diagnosis}` + 两个 subsection (TSR Collapse Mechanism, Dose-Response at Higher Loss Weights)\n2. **Block 1**: 更新 CAR 数据 (54.5/54.5/56.3)，新增 null distribution 分析 (mean=55.3%, std=2.13%, λ=0.01 在 0.5σ 内)，新增 Phase 2 λ=0 ablation (CAR=57.5%)，归因至 collision-free demo data (+28pp)\n3. **Block 2**: TSR 崩塌 74.7%→6.3-6.8%，三条证据诊断 catastrophic forgetting (EE motion retained, obstacle disp 0.143→0.059m, safe failure rate 100× 增加)，SDF TSR 仅高 0.2-0.5pp (within noise，未 claim improvement)\n4. **Block 3**: `\\placeholder` 标记 λ=0.1 pending，三种 scenario (a/b/c)，Lambda-CAR figure fbox placeholder\n5. **措辞约束**: 全文用 \"does not improve beyond LoRA-only (p>0.1)\"，无 em-dash，无 -ing phrase 结尾，SDF01 seeds 更新为 3"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-claim3.md"
+}

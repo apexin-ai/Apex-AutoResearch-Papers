@@ -1,0 +1,675 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig3_scatter_and_oracle' which does not exist",
+          "location": "claim1.tex:26"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig2_ee_displacement_distribution' which does not exist",
+          "location": "claim1.tex:36"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig5_lambda_and_fingerprint' which does not exist",
+          "location": "claim3.tex:30"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig_overview_pb' which does not exist",
+          "location": "introduction.tex:5"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig1_teaser' which does not exist",
+          "location": "introduction.tex:26"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{fig:lambda_car} has no matching \\label",
+          "location": "contingency_claim3.tex:19"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix_multiseed} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:intro} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:benchmark} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix_ssr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:limitations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix_eval_seed} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix_tsr_pertask} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix_stepwise} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:sdf_aux} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix_pertask_car} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:tsr_collapse} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix_tsr_collapse} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:total_loss} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix_pertask} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:overview} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:lambda_high} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:metrics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:anticorrelation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix_spatial_bowl} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:framework} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix_displacement} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:car_f} is never referenced",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "6 critical, 23 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "claim1.tex",
+          "role": "other",
+          "num_numbers": 17,
+          "num_cites": 0
+        },
+        {
+          "file": "claim2.tex",
+          "role": "other",
+          "num_numbers": 26,
+          "num_cites": 0
+        },
+        {
+          "file": "claim3.tex",
+          "role": "other",
+          "num_numbers": 95,
+          "num_cites": 0
+        },
+        {
+          "file": "contingency_claim3.tex",
+          "role": "other",
+          "num_numbers": 15,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "experimental_framework.tex",
+          "role": "other",
+          "num_numbers": 5,
+          "num_cites": 4
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 18,
+          "num_cites": 7
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 5
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 28
+        }
+      ],
+      "critical": [],
+      "warning": [],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "claim1": [
+              "\\approx",
+              "\\mu",
+              "\\sim",
+              "\\tau"
+            ],
+            "claim2": [
+              "\\alpha",
+              "\\times"
+            ],
+            "claim3": [
+              "\\Delta",
+              "\\approx",
+              "\\cap",
+              "\\geq",
+              "\\in",
+              "\\lambda",
+              "\\pm",
+              "\\sigma",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "contingency_claim3": [
+              "\\in",
+              "\\lambda",
+              "\\sigma",
+              "\\times"
+            ],
+            "discussion": [
+              "\\approx"
+            ],
+            "experimental_framework": [
+              "\\alpha",
+              "\\cap",
+              "\\in",
+              "\\lambda",
+              "\\max",
+              "\\mu",
+              "\\sim",
+              "\\tau",
+              "\\times"
+            ],
+            "introduction": [
+              "\\approx",
+              "\\geq",
+              "\\in",
+              "\\lambda",
+              "\\sim",
+              "\\tau"
+            ],
+            "method": [
+              "\\delta",
+              "\\in",
+              "\\lambda",
+              "\\max",
+              "\\mu",
+              "\\pm",
+              "\\sim",
+              "\\tau",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 0,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/_audit_compile_4qe60u6l",
+        "main_tex": "main.tex",
+        "log_tail": "\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nUnderfull \\vbox (badness 1005) has occurred while \\output is active []\n\n [11\n\n]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[12]\nUnderfull \\vbox (badness 2856) has occurred while \\output is active []\n\n [13]\nUnderfull \\hbox (badness 2261) in paragraph at lines 207--208\n[]\\OT1/ptm/m/n/10 The per-mu-ta-tion test makes no dis-tri-bu-tional as-sump-ti\nons. Pool-ing the six null val-ues\n []\n\n[14]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[15]\nLaTeX Font Info:    Trying to load font information for OMS+ptm on input line 3\n47.\n (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd\nFile: omsptm.fd \n)\nLaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available\n(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 347.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[16]) [17] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 56799AB1D946835244A066DAB37917CF;4810.\n ) \nHere is how much of TeX's memory you used:\n 13476 strings out of 469438\n 212812 string characters out of 5468411\n 643935 words of memory out of 5000000\n 41811 multiletter control sequences out of 15000+600000\n 652881 words of font info for 96 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,12n,93p,1128b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p\nublic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a\nmsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1\n0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/te\nxlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type\n1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm\nri8a.pfb>\nOutput written on main.pdf (17 pages, 792126 bytes).\nPDF statistics:\n 633 PDF objects out of 1000 (max. 8388607)\n 470 compressed objects within 5 object streams\n 118 named destinations out of 1000 (max. 500000)\n 226 words of extra memory for PDF output out of 10000 (max. 10000000)\n",
+        "error": "",
+        "pages": 17,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 17,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\vbox (badness 6725) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 6141) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 5939) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 5970) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 1005) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 2856) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2261) in paragraph at lines 207--208"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract→Intro→Method→Results→Conclusion 主线高度一致：三个 finding（action collapse / EE-only SDF failure / demo sufficiency）在每章均有对应展开和支撑。无跨章叙事漂移。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "Introduction 列出三个 findings 但 contribution 列表只有两条——Finding 2（EE-only SDF）和 Finding 3（demo sufficiency）合并为 Contribution (2)。审稿人可能疑惑三个发现为何只有两条贡献。建议将 Contribution 拆分为三条与 findings 一一对应，或在 contribution 列表前加一句说明合并逻辑。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Conclusion 第一句中 \"dfCAR corrects this using only EE position logging\" 与 method.tex:34 的实现细节略有张力——Pi0+A1 因 EE 参考系不一致实际使用了 obstacle displacement。建议 Conclusion 加限定语或脚注说明这是 Pi0+A1 的 workaround。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 回答了四个必答问题（问题/重要性/方法/结果）✓。约 100 words，在 150-250 word 推荐范围偏下但可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Introduction 结构完整：背景→问题→gap→方法→三个 findings→贡献列表。符合 5 段结构规范。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 采用主题归纳式（5 个 \\paragraph），非 \"A did X. B did Y.\" 堆砌。✓"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "Conclusion（discussion.tex:1-3）仅 3 句话约 70 words，显著偏短。缺乏更高层面的 implications 讨论（例如对 VLA 安全评估范式的启示、对其他 embodied AI 安全问题的推广意义）。审稿人可能认为 discussion 不够深入。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "写作规则",
+      "message": "Limitations 段（discussion.tex:7-8）约 90 words，低于建议的 ≥150 words。CoRL 2026 要求 \"explicitly describing limiting assumptions, failure modes, and other limitations... and how these might be addressed in the future\"。当前版本缺少两项必要内容：(1) 未讨论 failure modes（如 dfCAR 在何种条件下可能失效）；(2) 未说明 \"how these might be addressed in the future\"（三条 limitation 都没有给出应对方向）。这是 CoRL 合规硬约束违反。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献对齐",
+      "message": "Contribution (1)（dfCAR + action collapse diagnosis）→ Section 3.2 + Section 4 + Table 1 + Figure 2,3 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献对齐",
+      "message": "Contribution (2)（EE-only SDF + demo sufficiency）→ Section 5 + Section 6 + Tables 2-6 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献对齐",
+      "message": "无孤儿章节——所有 section 均有 contribution 覆盖。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献对齐",
+      "message": "Title \"Diffusion-Based VLA\" 中 \"diffusion\" 是对 flow matching 的上位概括，技术上可接受但审稿人可能 nitpick（Pi0 使用 flow matching 而非经典 DDPM）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"over 99% of safe episodes... are action-collapse artifacts\"——Table 1 显示 99.4%, ~99%, 99.6%，数字吻合 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"no statistically significant benefit (p ≥ 0.155)\"——Appendix Sec. A.6 详细报告置换检验，含 alternative null construction，证据充分 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"~26 pp\" CAR gain——28.5% → 54.83% = 26.33 pp，数字吻合 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "未使用 \"state-of-the-art\"/\"significantly outperforms\" 等过强表述。Claim 强度与证据匹配良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨",
+      "message": "主结果表（Table 3）有 ± 标准差（3 seeds）✓"
+    },
+    {
+      "severity": "warning",
+      "dimension": "实验严谨",
+      "message": "Oracle 实验（Table 2）仅 single seed + 160 episodes，无 error bars。虽在 caption 中注明了 episode 数差异，但 single-seed oracle 结果的 5-10 pp 差异可能在 seed 方差内。建议在 Limitations 中显式承认 oracle 实验的 single-seed 局限。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨",
+      "message": "Ablation 覆盖：SDF loss weight（0.005/0.01/0.1）、oracle 变体（3 种）、cross-scene validation、eval-seed robustness、Phase-2 ablation。消融维度与方法组件数大致匹配。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨",
+      "message": "SSR 表（Table 4）3-seed 条件未报告 ± 值，但作为辅助分析表影响较小。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "超参列表完整（Appendix Table 7）✓、GPU 型号（RTX PRO 6000 96GB）✓、训练时间（Phase1 ~6h, Phase2 ~32h）✓、总 GPU-hours（~700）✓、数据预处理（64³ voxel grid）✓"
+    },
+    {
+      "severity": "warning",
+      "dimension": "可复现性",
+      "message": "未提及是否计划开源代码/数据。CoRL reviewers 通常期望 reproducibility statement。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "dfCAR、$\\tau_d$、$\\lambda$、$d_{\\max}(e)$、CAR、TSR、SSR 全文定义一致、使用一致 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "\"action collapse\" / \"action-collapsed\" 术语全文一致 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "缩写 VLA、SDF、EE、CAR、TSR、SSR 首次出现时均有展开 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "过渡",
+      "message": "Section 3→4→5→6 遵循 \"setup → finding 1 → finding 2 → finding 3\" 逻辑链，每节标题直接陈述 finding 内容，过渡自然。"
+    },
+    {
+      "severity": "info",
+      "dimension": "过渡",
+      "message": "Conclusion 未重复 Results 数字（仅用 \"5-10 pp\" \"~26 pp\" 概括），有更高层解读（\"dfCAR offers a lightweight diagnostic\"）✓"
+    },
+    {
+      "severity": "critical",
+      "dimension": "Limitations",
+      "message": "段落约 90 words，低于 ≥150 words 基准。虽有 3 个 distinct limitations（simulation-only / pathway-specific / statistical power），但每条仅 1 句，缺乏深度。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Limitations",
+      "message": "缺少对 dfCAR 自身局限性的讨论：例如当 action collapse 不是二元分布而是连续谱时 $\\tau_d$ 选择的鲁棒性、dfCAR 在非 manipulation 任务中的适用性。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Limitations",
+      "message": "Oracle 实验 single-seed 局限未在 Limitations 中提及，只在 Table 2 caption 隐式注明。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "introduction.tex:10 \"invalidate a task---making reliable safety metrics essential\"——解释性 em-dash，应改为逗号或拆分两句。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "claim1.tex:27 (Figure 3 caption) \"illusory safety---Pi0-family models show\"——解释性 em-dash，应改为句号或分号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "appendix.tex:374 \"full motor capability---0\\% action-collapse rate\"——解释性 em-dash，应改为逗号加括号。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "related_work.tex:10 \"Notably, all successful SDF applications operate on full-body...\"——filler word \"Notably\"，应直接删除，改为 \"All successful SDF applications...\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "内部信息",
+      "message": "contingency_claim3.tex 存在于 paper/ 目录但未编译，含 {MEAN}、{S0}、{S1} 占位符和场景选择逻辑注释，暴露了内部实验决策流程。提交时必须从源码包中排除。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "内部信息",
+      "message": "experimental_framework.tex 存在于 paper/ 目录但未编译，与 method.tex 内容部分重叠但 Level 标注不同（Level I vs Level II），暴露了草稿迭代历史。提交时应排除。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "archive/ 和 _archive/ 目录含废弃草稿（有 \\placeholder{} 和 [TODO] 标记）。提交时应排除整个目录。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "appendix.tex:212 提到 \"full 30K training did not complete due to disk constraints\"——这是实际实验约束的诚实披露，不算内部信息泄露，但措辞暴露了基础设施限制（disk constraints），建议改为 \"did not reach the full 30K-step budget\" 或类似中性表述。"
+    },
+    {
+      "severity": "info",
+      "dimension": "结构",
+      "message": "paper 目录中 experimental_framework.tex（未编译）与 method.tex（已编译）功能重叠。建议清理，避免提交时混淆。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Baseline",
+      "message": "Baseline 来源：Pi0/Pi0.5 (2024)、SafeLIBERO/VLSA (2025)、SafeVLA (2025)、CAPE (2025)——均为近 1-2 年工作 ✓"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 2",
+      "message": "Figure 1 overview figure 信息密度过高——三个子面板 (a)(b)(c) 各含条形图、机器人场景截图、饼图，底部条形图的 axis label 和 legend 字号明显偏小（估计 <6pt），作为论文第一个 display item 会让审稿人产生\"拥挤\"的第一印象。建议拆分为两个 figure 或增大子面板尺寸"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 caption 内容自包含且信息丰富（含具体数值和 p 值），质量好"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 3",
+      "message": "Figure 2 四个子面板 (a)-(d) 的 axis label、tick label、legend 字号过小（估计 ~5-6pt），折线图中不同曲线仅靠颜色区分，无 marker shape 或 line style 差异辅助——灰度打印时不同条件难以区分"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 2 caption 自包含，解释了 dCAR 过滤机制和三种模型对比，质量好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Table 1 使用 booktabs 风格，无竖线，格式规范"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "公式 (1)(2) 渲染正确，行距正常，无 overfull hbox"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 2 booktabs 风格，精度一致（百分比保留 1 位小数）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 3 双面板设计清晰：实心/空心圆点区分 reported CAR vs dCAR，caption 自包含"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 4 violin/box plot 展示 displacement 分布，颜色区分明确，caption 解释充分"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Table 3 booktabs 风格，最优结果已加粗标注，Collapsed(%) 和 dCAR(%) 列精度一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 4 avoidance source attribution，格式规范，最优加粗"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 7",
+      "message": "Figure 5 左右面板的 y 轴 label 字号偏小；左面板 legend 中多条曲线仅靠颜色区分，建议增加 marker/linestyle 差异"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Table 5、Table 6 booktabs 风格，精度一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Section 7 Conclusion 与 Section 8 Limitations 均在主体 8 页内，排版紧凑但无溢出"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "主体 8 页含 5 figure + 6 table = 11 个 display items（1.375/页），密度与实证型论文匹配，每页至少有一个 display item，无连续纯文本页"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "所有 float 位置合理——figure/table 出现在首次引用的同页或下一页，无 float 漂移到论文末尾"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "无异常大面积空白（>1/4 页），margin 无内容溢出"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "无 section heading 孤悬页底——所有 section/subsection 标题后至少有 2-3 行正文"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 9-10",
+      "message": "References 格式统一（author 缩写、venue、年份一致），编号连续 [1]-[29]，无 [?] 未解析引用"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 11-17",
+      "message": "Appendix Tables 7-17 全部使用 booktabs 风格，格式与主体一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 17",
+      "message": "最后一页内容占 ~75-80%，但为 appendix 最后页，可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页 Title/Author/Abstract 排版整洁，footer 正确显示 CoRL 2026 匿名提交声明"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "CoRL 2026 要求的 Limitations section 存在于 page 8（Section 8），覆盖了三类限制：(1) 仿真环境+两个 VLA 家族+四个 pick-and-place 任务的范围限制；(2) EE-only SDF 结论仅适用于 auxiliary loss 集成方式；(3) 统计功效受 ≤5 seeds 限制（MDE=5.0pp at 80% power）。满足\"limiting assumptions, failure modes, and other limitations\"要求"
+    }
+  ],
+  "counts": {
+    "critical": 8,
+    "warning": 50,
+    "info": 46
+  },
+  "error": "",
+  "timestamp": "2026-05-29T10:23:27.576657+00:00"
+}

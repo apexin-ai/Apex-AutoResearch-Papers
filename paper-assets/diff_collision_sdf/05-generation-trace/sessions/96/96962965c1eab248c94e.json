@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96962965c1eab248c94e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "writing figure1 teaser design",
+  "task_key": "worker_writing_figure1_teaser_design_20260527T082825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_figure1_teaser_design_20260527T082825_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "813f6eae1cd4677960d2366722fb13456bbed4f764676f4800cdaae0b3632edd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "设计方案已写入 `artifacts/figure1_teaser_design.md` 并注册。\n\n**推荐方案：2-panel \"Illusion Revealed\"**\n\n- **Panel (a) \"Decomposing CAR\"**：100%-stacked 水平条形图，4 个 model 各一条 bar，分为 frozen-safe (hatched gray) / genuine-safe (blue) / collision (coral) 三段。Pi0 系列 bar 几乎全灰，Pi0.5 系列无灰，一眼看出 \"safety 是假的\"。\n\n- **Panel (b) \"Raw CAR vs dfCAR\"**：grouped 垂直条形图，每个 model 一对 bars (raw vs filtered)。核心视觉焦点：红色大箭头标注 Pi0+A1 从 91.5% 暴跌到 ≈0%，Pi0.5 系列不变。\n\n**放弃 v1 (robot-arm schematic) 的原因**：matplotlib schematic 实现质量难保证，3-panel 信息密度过高，3 秒内难以 parse。新方案用标准 chart 可靠实现，读者沿 \"左看 stacked bar → 右看 drop arrow\" 路径即可 get message。\n\n尺寸 5.5 × 2.3 inches（CoRL 单栏），CORAL/BLUE 双色系与全文统一。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-figure1-teaser-design.md"
+}

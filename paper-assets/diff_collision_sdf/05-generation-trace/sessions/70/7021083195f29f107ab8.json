@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7021083195f29f107ab8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix baseline eval norm stats",
+  "task_key": "worker_ops_fix_baseline_eval_norm_stats_20260522T020252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_baseline_eval_norm_stats_20260522T020252_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "437341b4ef9680a8cdd4df1217ca89568970b3c7c294aba17cdce9b4473bf6cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Log 最后停在 Task 0 初始化（Safety level: II），环境还在渲染/初始化阶段，这对 LIBERO 的 MuJoCo 环境是正常的。进程在跑，GPU 在占用，没有报错。\n\n**汇报：**\n\n1. **norm_stats.json** — 复制成功，1126 bytes，路径 `/root/autodl-tmp/checkpoints/baseline_object_pudding_eval/best/assets/physical-intelligence/libero/norm_stats.json`\n2. **baseline eval PID** — 300495（GPU 1 上的新进程）；GPU 0 的 PID 191747 是其他已有任务\n3. **GPU 1 使用** — 已占用 8271 MiB（PID 300495）\n4. **Log 状态** — 正常。norm_stats 从新路径成功加载（`Loaded norm stats from .../baseline_object_pudding_eval/best/assets/...`），已进入 Task 0 环境初始化，无报错。SafeLIBERO object suite level II 已开始。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-baseline-eval-norm-stats.md"
+}

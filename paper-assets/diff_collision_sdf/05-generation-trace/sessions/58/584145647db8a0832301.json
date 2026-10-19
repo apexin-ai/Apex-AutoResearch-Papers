@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "584145647db8a0832301",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper supplementary pack",
+  "task_key": "worker_paper_supplementary-pack_20260529T140408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_supplementary-pack_20260529T140408_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "54b090797085258add66e0cee53de659cc2fbc909f8dc95d5a43a12158664fd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "打包完成。\n\n**产出**: `artifacts/supplementary/supplementary.zip` (76KB)，已注册为 `art_20260529_db582d`。\n\n**内容**:\n- `README.md` — 复现指南（依赖、数据集、训练/评估命令、超参、图表脚本映射）\n- `code/src/` — 4 个核心 ColliForce 模块（SDF decoder, gradient refiner, data loader, training pipeline）\n- `code/training/` — 4 个训练脚本（A1 hook, A1 pi0.5, LoRA baseline, full-FT baseline）\n- `code/eval/` — 3 个评估脚本（pi0, pi0.5, OpenVLA zero-shot）\n- `code/analysis/` — 3 个分析脚本（dfCAR, 跨 seed 聚合, permutation test）\n- `code/figures/` — 7 个图表脚本 + 1 个 CSV 数据文件（Fig 1/2/3/5 + appendix threshold sensitivity）\n\n**已确认**:\n- 无作者信息、无 `.git`、无 `__pycache__`/`.pyc`\n- 所有硬编码路径已替换为相对路径\n- 附录在 main.pdf 中，无需单独 appendix PDF"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-supplementary-pack.md"
+}

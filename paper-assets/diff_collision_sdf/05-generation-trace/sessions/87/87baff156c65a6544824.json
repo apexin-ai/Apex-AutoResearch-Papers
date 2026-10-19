@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87baff156c65a6544824",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "viz fig2 ee displacement distribution",
+  "task_key": "worker_viz_fig2_ee_displacement_distribution_20260526T132558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig2_ee_displacement_distribution_20260526T132558_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "07cf802276e4d7d90b4f47e5402678eb4be9b74726ec533133dd371f8f45f17c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 2 完成。\n\n**输出文件**：\n- PDF: `artifacts/figures/fig2_ee_displacement_distribution.pdf`\n- PNG: `artifacts/figures/fig2_ee_displacement_distribution.png`\n- 绘图脚本: `artifacts/figures/plot_fig2.py`\n\n**数据摘要**（200 episodes/model）：\n| 模型 | μ (m) | 范围 (m) |\n|------|-------|----------|\n| Pi0.5 Baseline | 0.367 | 0.27–0.46 |\n| LoRA-only s1 | 0.388 | 0.29–0.82 |\n| SDF λ=0.005 s0 | 0.386 | 0.30–0.64 |\n| SDF λ=0.01 s0 | 0.395 | 0.31–0.87 |\n\n所有 800 个 episode 的 max EE displacement 均在 0.27–0.87m，远高于 frozen threshold τ\\_d=0.1mm（~3000× gap），确认无 action collapse。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig2-ee-displacement-distribution.md"
+}

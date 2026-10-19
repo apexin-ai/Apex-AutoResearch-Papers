@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96cfe4a1670678dd566f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analyze eval s2 l01 high results",
+  "task_key": "worker_analyze_eval_s2_l01_high_results_20260528T013450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_s2_l01_high_results_20260528T013450_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "6b3f9fbda6764232e5240c8aed7fd9c5ee03511f8ea20b09f1d3c3aec1db9dab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== λ=0.1 s2 Eval Results ===\nStatus: SUCCESS\ns2 CAR: 54.5%\ns2 TSR: 54.5%\n\nPer-task:\n  orange_juice:        TSR=30.0%, CAR=56.0%\n  chocolate_pudding:   TSR=72.0%, CAR=76.0%\n  milk:                TSR=48.0%, CAR=70.0%\n  bbq_sauce:           TSR=68.0%, CAR=16.0%\n\nScenario: B（s2 CAR=54.5% ≤ 55）\n\n3-seed mean (λ=0.1):\n  s0: TSR=52.5%, CAR=57.0%\n  s1: TSR=55.5%, CAR=57.5%\n  s2: TSR=54.5%, CAR=54.5%\n  ────────────────────────────\n  mean TSR = 54.2%\n  mean CAR = 56.3%\n```\n\ns2 CAR=54.5%，刚好卡在 55 的分界线以下 → **Scenario B**。\n\n注意 bbq_sauce 的 CAR=16.0% 拖了后腿（s0=34%，s1=22%，s2=16%，三个 seed 都很低）。其余三个 task 的 CAR 都在 56-76% 区间。3-seed 均值 CAR=56.3% 刚过 56 的门槛，但 s2 单 seed 是最弱的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-s2-l01-high-results.md"
+}

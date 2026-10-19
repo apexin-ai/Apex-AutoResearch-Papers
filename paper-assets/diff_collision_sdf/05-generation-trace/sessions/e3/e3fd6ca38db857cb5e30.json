@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3fd6ca38db857cb5e30",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops emergency disk cleanup 35807",
+  "task_key": "worker_ops_emergency_disk_cleanup_35807_20260523T061808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_emergency_disk_cleanup_35807_20260523T061808_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "c75d88a0f807b3eb67548a23ed00598ec657ea31e47f04ba3e42cc86f0264639"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**Step 1 — 磁盘清理 ✅**：删除 baseline_object_pudding (76GB) + baseline_spatial_bowl (76GB)，可用空间从 54GB → **204GB**。\n\n**Step 2 — 训练健康检查**：\n- 4 个训练进程全部存活，step ~6850-6868，速度 1.20 s/it\n- GPU 利用率 100%，loss 正常下降\n\n**🔴 异常：Phase 2 转换未生效。** 4 个 GPU 均为 19GB（Phase 1），而非预期的 ~27GB（Phase 2）。Resume 从 step 6000 开始，跳过了 step 5000 的 Phase 2 触发点。当前仅 SDF decoder + EE extractor (~660K 参数) 在训练，33.47M LoRA 参数仍冻结 — **主策略网络没有在 fine-tune**。\n\n**建议 P0 操作**：修复 Phase 2 激活逻辑（`step >= phase1_warmup_steps` 而非 `==`），从 step 6000 checkpoint 重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-emergency-disk-cleanup-35807.md"
+}

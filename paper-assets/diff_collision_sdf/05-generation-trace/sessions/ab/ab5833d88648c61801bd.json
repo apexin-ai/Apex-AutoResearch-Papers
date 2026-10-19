@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "ab5833d88648c61801bd",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper verify final pdf",
+  "task_key": "worker_paper_verify-final-pdf_20260528T033443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_verify-final-pdf_20260528T033443_result.json",
+    "occurrence": 1,
+    "bytes": 2100616,
+    "sha256": "c25eb6c0535fb842785b15dc8f82e394fc71b301ef573e169300794d7119c035"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "ab5833d88648c61801bd-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-verify-final-pdf.md"
+}

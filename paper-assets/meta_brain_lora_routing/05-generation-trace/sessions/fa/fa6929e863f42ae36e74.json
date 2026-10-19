@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa6929e863f42ae36e74",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "bugfix eval pipeline systematic",
+  "task_key": "worker_bugfix_eval_pipeline_systematic_20260516T082810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_eval_pipeline_systematic_20260516T082810_result.json",
+    "occurrence": 1,
+    "bytes": 3787,
+    "sha256": "fc6748dd03972b960260f8e786fce9143d2f58b14a2afb59b777217d9e504d03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两路评估均已进入推理阶段，GPU 使用正常：\n- **GPU 1** (eval_univ_r16): 35% utilization, 9094 MiB — 正在跑 LIBERO env\n- **GPU 2** (spatial 训练): 99%, 12713 MiB — 不受影响\n- **GPU 3** (eval_univ_r48): 58% utilization, 9182 MiB — 正在跑 LIBERO env\n\n---\n\n## 最终输出\n\n### 1. API 调查发现\n\n| 项目 | 发现 |\n|------|------|\n| **Tokenizer** | `PaligemmaTokenizer(max_len=48)` from `openpi.models.tokenizer`; `.tokenize(prompt, state=None)` → `(tokens[48] int64, mask[48] bool)`; PI0 模式用 `state=None` |\n| **Observation.from_dict** | 处理 uint8→float32[-1,1] 归一化; 不做 BHWC→BCHW 转换; 期望 `tokenized_prompt` + `tokenized_prompt_mask`（不是 `prompt` 字符串） |\n| **STATE_DIM** | `STATE_DIM=32`, `LIBERO_STATE_DIM_RAW=8`; 在 `data_loader.py:43` 定义 |\n| **SigLIP** | `get_image_features(pixel_values)` 期望 BCHW `(batch, channels, height, width)` |\n\n### 2. 代码修改 Diff\n\n**5 处修改**：\n\n```diff\n # Import\n from openpi.models.model import Observation\n+from openpi.models.tokenizer import PaligemmaTokenizer\n\n # Constant\n PALIGEMMA_HIDDEN_DIM = 2048\n+PI0_STATE_DIM = 32\n\n # __init__\n         self.routing_history: list[np.ndarray] = []\n+        self._tokenizer = PaligemmaTokenizer(max_len=48)\n\n # New method (before infer)\n+    def _preprocess_real_obs(self, inputs: dict) -> dict:\n+        \"\"\"Transform LIBERO env observations to PI0 model input format.\"\"\"\n+        import torch.nn.functional as F\n+\n+        # Tokenize prompt string → tokenized_prompt + tokenized_prompt_mask\n+        prompt_str = inputs.pop(\"prompt\", None)\n+        if prompt_str is not None:\n+            tokens_np, mask_np = self._tokenizer.tokenize(prompt_str)\n+            inputs[\"tokenized_prompt\"] = (\n+                torch.from_numpy(tokens_np).to(self.device)[None, ...]\n+            )\n+            inputs[\"tokenized_prompt_mask\"] = (\n+                torch.from_numpy(mask_np).to(self.device)[None, ...]\n+            )\n+\n+        # Zero-pad state from LIBERO 8-dim to PI0 32-dim\n+        state = inputs[\"state\"]\n+        if state.shape[-1] < PI0_STATE_DIM:\n+            inputs[\"state\"] = F.pad(state, (0, PI0_STATE_DIM - state.shape[-1]))\n+        inputs[\"state\"] = inputs[\"state\"].float()\n+\n+        # Permute images BHWC → BCHW (SigLIP vision tower expects channels-first)\n+        for key in inputs[\"image\"]:\n+            img = inputs[\"image\"][key]\n+            if img.ndim == 4 and img.shape[-1] in (1, 3):\n+                inputs[\"image\"][key] = img.permute(0, 3, 1, 2)\n+\n+        return inputs\n\n # infer() call site\n         )\n+        inputs = self._preprocess_real_obs(inputs)\n         observation = Observation.from_dict(inputs)\n```\n\n### 3. Dry Run DEBUG 输出\n\n```\n[DEBUG] image.base_0_rgb: dtype=torch.uint8, shape=[1, 3, 224, 224], min=3.000, max=189.000    ← BCHW ✓\n[DEBUG] image.left_wrist_0_rgb: dtype=torch.uint8, shape=[1, 3, 224, 224], min=13.000, max=122.000 ← BCHW ✓\n[DEBUG] image.right_wrist_0_rgb: dtype=torch.uint8, shape=[1, 3, 224, 224], min=0.000, max=0.000\n[DEBUG] image_mask.*: dtype=torch.bool, shape=[1]\n[DEBUG] state: dtype=torch.float32, shape=[1, 32]       ← 32-dim padded ✓\n[DEBUG] tokenized_prompt: dtype=torch.int64, shape=[1, 48]  ← tokenized ✓\n[DEBUG] tokenized_prompt_mask: dtype=torch.bool, shape=[1, 48]\n```\n\n7/7 perturbation 类型全部完成，每个 220 步，零错误零崩溃。\n\n### 4. 结论：**通过**\n\n### 5. 2 路评估 PID\n\n| 评估 | GPU | PID | tmux session |\n|------|-----|-----|---|\n| Universal r16 (50 ep) | cuda:1 | **579770** | eval_univ_r16 |\n| Universal r48 (50 ep) | cuda:3 | **579847** | eval_univ_r48 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-eval-pipeline-systematic.md"
+}

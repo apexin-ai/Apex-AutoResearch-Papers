@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce1b0804f653055e08b1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper writing claim2 reviewer fixes",
+  "task_key": "worker_paper_writing_claim2_reviewer_fixes_20260526T161530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_claim2_reviewer_fixes_20260526T161530_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "d9aedd6643ac4c95b4b3575d6df314e3e9e28980153321859de3871b7dc67cd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修复均已完成，验证通过：\n\n1. **Table caption** (line 7): 区分了 \"160 episodes (4 tasks × 40)\" 用于 oracle variants，\"200 episodes (4 tasks × 50)\" 用于 baselines 和 A3\n2. **Fake Safe displacement 说明** (line 7 末尾): 添加了 \"Fake safe rate computed using obstacle displacement threshold; see Table~\\ref{tab:fake_safety} footnote for measurement protocol details.\"\n3. **Per-task 下降指明变体** (line 36): \"drops from\" 改为 \"Oracle-adaptive reduces Task~0 ... from 96.0\\% to 82.5\\% and Task~2 ... from 98.0\\% to 77.5\\%\"\n\n无 LaTeX 语法错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-claim2-reviewer-fixes.md"
+}

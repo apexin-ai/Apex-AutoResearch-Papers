@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc6ccf1ce606b060275e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix eval gpu assignment urgent",
+  "task_key": "worker_ops_fix_eval_gpu_assignment_urgent_20260522T154305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eval_gpu_assignment_urgent_20260522T154305_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "9187aae451e2bb373c1c2cfd5562151bd09dc858da25740864d0d1ea5e03a94a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 分配全部正确。\n\n**最终状态：**\n\n| GPU | 进程 | PID | 显存 |\n|-----|------|-----|------|\n| cuda:0 | a1_lora_spatial 训练 | 299910 | 23892 MiB |\n| cuda:1 | baseline fullft spatial eval | 697980 | 8163 MiB |\n| cuda:2 | oracle A3 force_refine eval | 697903 | 8625 MiB |\n| cuda:3 | a1 lora object eval | 660998 | 8527 MiB |\n\n- 3 个错误进程 (686035, 688244, 690045) 已 kill\n- PID 660998 原本就在 cuda:3，未受影响\n- 两个新 eval 已在正确 GPU 上运行，tmux session: `oracle_a3_force_refine` (pts/7) 和 `eval_baseline_fullft_spatial_v11` (pts/8)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-eval-gpu-assignment-urgent.md"
+}

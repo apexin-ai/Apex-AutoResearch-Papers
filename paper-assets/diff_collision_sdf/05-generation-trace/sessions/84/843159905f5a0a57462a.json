@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "843159905f5a0a57462a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu status check all",
+  "task_key": "worker_ops_gpu_status_check_all_20260525T191845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_all_20260525T191845_result.json",
+    "occurrence": 1,
+    "bytes": 1208,
+    "sha256": "f53cab5227663429d6972fb2b60cd669f9a5d6ed50377b372d813483bc674a4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-35807\n\n| GPU | 显存占用 | 利用率 | 进程/实验 |\n|-----|---------|--------|----------|\n| 0   | 27045/97887 MiB | 100% | PID 3717 — `train_a1_sdf_aux_pi05.py --scene spatial_bowl --seed 0 --resume` |\n| 1   | 9128/97887 MiB | 14% | PID 6667 — `eval_safelibero.py` s0_l005 30k final |\n| 2   | 9142/97887 MiB | 37% | PID 7094 — `eval_safelibero.py` s0_l01 30k final |\n| 3   | 27011/97887 MiB | 69% | PID 35423+72605+75123 — 3 个 `eval_safelibero.py` s2_l005 best 10k（n_episodes=200 + 2个默认） |\n\n## westd-45947\n\n| GPU | 显存占用 | 利用率 | 进程/实验 | 当前 step |\n|-----|---------|--------|----------|-----------|\n| 0   | 27089/97887 MiB | 100% | LoRA baseline s0 resume2 | 25158/30000 (84%), ~4.62s/it |\n| 1   | 27089/97887 MiB | 100% | LoRA baseline s1 resume2 | 25158/30000 (84%), ~4.62s/it |\n\n**状态总结：**\n- 6 张卡全部在工作，GPU 利用率正常\n- westd-45947 两个 LoRA baseline 稳步推进中，step 已到 25158，预计剩余 ~6h13m\n- westd-35807 GPU 0 spatial_bowl 训练继续；GPU 1-3 在跑 eval，其中 GPU 3 同时跑了 3 个 eval 进程（都是 s2_l005 best checkpoint，可能有重复提交）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-all.md"
+}

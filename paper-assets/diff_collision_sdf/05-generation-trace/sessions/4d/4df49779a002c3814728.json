@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4df49779a002c3814728",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper spatial bowl appendix",
+  "task_key": "worker_paper_spatial-bowl-appendix_20260528T023032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_spatial-bowl-appendix_20260528T023032_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "c7eb4aa781331b527f4db232774feaa9452196a6bee56550df96a9843993635d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`paper_switch.py` 不存在，跳过验证步骤。\n\n已完成。在 `appendix.tex` 的 Oracle SDF Refinement Details 和 Training Details 之间插入了 `\\section{Cross-Scene Validation: spatial\\_bowl}`（第 223–246 行），包含：\n\n- 说明 spatial\\_bowl 用于跨场景一致性验证\n- 表格：LoRA-only CAR=15.5%/TSR=50.0% vs SDF λ=0.005 CAR=17.0%/TSR=53.0%\n- 结论：+1.5 pp 差异在 seed 噪声范围内（σ≈1.9 pp），SDF 冗余在跨场景设置下复现\n- 简要说明 CAR 整体较低的原因（场景更复杂，5 个密集障碍物）\n\n数据来源：registry 条目 `eval_spatial_bowl_lora_ctrl_s0` 和 `eval_spatial_bowl_sdf_s0_l005_30k`，均为单 seed（train s0, eval seed=7）、200 episodes、30K checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-spatial-bowl-appendix.md"
+}

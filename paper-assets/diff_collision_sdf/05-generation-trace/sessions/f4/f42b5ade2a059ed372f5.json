@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f42b5ade2a059ed372f5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose train pi05 lora baseline s2",
+  "task_key": "worker_diagnose_train_pi05_lora_baseline_s2_20260527T024030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_train_pi05_lora_baseline_s2_20260527T024030_result.json",
+    "occurrence": 1,
+    "bytes": 1647,
+    "sha256": "e6e32b924d81a9401e35372cae0ca8bac66ebc24531fa4ff3b9eaaff9e8f63ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全了，汇总报告如下：\n\n---\n\n## 诊断报告：train_pi05_lora_baseline_s2\n\n### 训练进度\n- **停止步数**：22364 / 30000（74.5%）\n- **最后 loss**：~0.0090–0.0165（正常范围，无异常）\n- **最后 lr**：6.14e-06\n- **grad_norm**：0.10（正常，无 OOM / 梯度爆炸迹象）\n\n### Checkpoint 情况\n路径：`/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed2/`\n\n| Checkpoint | 说明 |\n|-----------|------|\n| `20000/` | 中间 checkpoint |\n| `22000/` | 最后一个保存的 checkpoint |\n| `best/` | best loss = 0.00963 @ step 18000 |\n\ncheckpoint 包含完整文件（model.safetensors, optimizer.pt, metadata.pt），**可用于恢复训练**。\n\n### 失败根因\n**纯粹是 timeout 不够，训练本身无任何异常。**\n\n- Phase 1（前 5000 步，LoRA 冻结）：~1.2s/step → 约 1.7 小时\n- Phase 2（5001-30000 步，LoRA 解冻）：~4.60s/step → 约 31.9 小时\n- **30K 步总需约 33.6 小时**，24h timeout 只够跑到 ~22K 步\n\ns0 和 s1 都成功完成了 30K 步（checkpoint 目录有 `30000/`），s0 的 30K checkpoint 时间戳 `2026-05-26 09:32`，说明它们也跑了类似时长，应该是通过 tmux 或更长 timeout 提交的（它们的日志几乎为空，只有 EXIT_CODE=0）。\n\n三个 seed 的 Phase 2 训练速度一致（~4.60s/it），s2 没有变慢。\n\n### 建议\n**从 step 22000 checkpoint 恢复继续训练**，只需跑剩余 8000 步（约 10.2 小时）。必须用 tmux 启动（符合 C002 约束），不要再用 submit_training_job 的 24h timeout。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-train-pi05-lora-baseline-s2.md"
+}

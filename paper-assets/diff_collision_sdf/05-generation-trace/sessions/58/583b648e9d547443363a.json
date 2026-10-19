@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "583b648e9d547443363a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check westd45947 experiments",
+  "task_key": "worker_ops_check-westd45947-experiments_20260528T231130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-westd45947-experiments_20260528T231130_result.json",
+    "occurrence": 1,
+    "bytes": 1877,
+    "sha256": "18ab7567a1e0764cefd92a263b8e3091959cbe3022b26ea2805122ea62839c03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-45947 状态报告\n\n### GPU 状态\n| GPU | 型号 | 显存使用 | 利用率 | 温度 |\n|-----|------|---------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | 0 / 97887 MiB | 0% | 33°C |\n\n只有 1 张 GPU 可见。**空闲，无训练/eval 进程运行。**\n\n### 已完成的 Eval 结果\n\n**1. eval_lora_baseline_s0** (May 26, seed0, 50eps, checkpoint: lora_baseline_seed0/30000)\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| orange juice | 0.0% | 62.0% |\n| chocolate pudding | 34.0% | 44.0% |\n| milk | 0.0% | 94.0% |\n| bbq sauce | 0.0% | 18.0% |\n| **Avg** | **8.5%** | **54.5%** |\n\n**2. eval_lora_baseline_s1** (May 26, seed1, 50eps, checkpoint: lora_baseline_seed1/30000)\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| orange juice | 2.0% | 58.0% |\n| chocolate pudding | 14.0% | 50.0% |\n| milk | 0.0% | 90.0% |\n| bbq sauce | 0.0% | 26.0% |\n| **Avg** | **4.0%** | **56.0%** |\n\n**3. eval_sdf_s2_l1_30k** (May 28 今天, seed7, 50eps, checkpoint: sdf_seed2_l1/30000)\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| orange juice | 30.0% | 56.0% |\n| chocolate pudding | 72.0% | 76.0% |\n| milk | 48.0% | 70.0% |\n| bbq sauce | 68.0% | 16.0% |\n| **Avg** | **54.5%** | **54.5%** |\n\n**4. eval_pi05_baseline_reeval_disp** — **未完成，进程已死**。最后修改 May 26 12:22，停在 task 2 (milk) 开头。已完成的 2 个 task（200 eps each）：\n- Task 0: TSR=0.0%, CAR=65.5%\n- Task 1: TSR=0.0%, CAR=100.0%（模型完全不动，max_disp=0.0000m）\n\n### 磁盘使用\n| 分区 | 使用 | 总容量 | 使用率 |\n|------|------|--------|--------|\n| / (root) | 17G | 30G | 57% |\n| /root/autodl-tmp | **240G** | **250G** | **96%** ⚠️ |\n\n**autodl-tmp 几乎满了，仅剩 11G。**\n\n### Checkpoint 完好性\n`pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors` = **7.1G** ✓ 完好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd45947-experiments-copy-2.md"
+}

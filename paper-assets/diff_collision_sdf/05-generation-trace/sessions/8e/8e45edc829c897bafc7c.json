@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e45edc829c897bafc7c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research safelibero env",
+  "task_key": "worker_research_safelibero_env_20260519T160654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_safelibero_env_20260519T160654_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "57c8186300f95e0117ab186832eb688d8c73ca36c64c96ad07e0b32c44e50133"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/report_safelibero.md`。核心结论：\n\n**可行性: 完全可行，无 blocker。**\n\n关键发现：\n1. **数据**: SafeLIBERO 在 HuggingFace 免费获取 (MIT, 638MB)，含 `.bddl` 场景定义 + `.pruned_init` 初始化状态，32 场景×50 episodes\n2. **Mesh 可访问**: MuJoCo API 直接暴露 `model.mesh_vert/mesh_face`，可通过 `data.geom_xpos/xmat` 变换到世界坐标。Visual mesh 在 `group=1`，collision 用 primitive 近似在 `group=0`。SDF 应基于 visual mesh 构建\n3. **环境安装**: LIBERO 基于 robosuite 1.4.0 + MuJoCo ≥2.3.0，支持 EGL headless 渲染。注意 Python 需 3.8-3.10，robosuite 必须精确 1.4.0\n4. **MVP 场景推荐**:\n   - **主力**: Spatial \"bowl between plate and ramekin\" Level II — 碰撞率 100%，AEGIS 达 86% CAR，测试轨迹级 SDF 引导\n   - **进阶**: Object \"chocolate pudding to basket\" Level I — 碰撞率 100%，AEGIS 仅 32% CAR，测试抓取点精细引导\n\n主要风险是 Python 3.8 与现代 VLA 框架的版本冲突，可能需要分离环境。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-safelibero-env.md"
+}

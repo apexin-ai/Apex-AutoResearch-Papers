@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c245d2885542bc6027e0",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval launch a3 object m024fix v11",
+  "task_key": "worker_eval_launch_a3_object_m024fix_v11_20260522T165502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_launch_a3_object_m024fix_v11_20260522T165502_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "97e85666eb5cc188530f8f840e86b267d13e86f3c70ad01a9a0c91ea3ccf12b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n1. **M024 修复验证**：已确认 `next_ee = current_ee + action[:3]` 在 eval_safelibero.py 中部署\n\n2. **Eval 启动确认**：\n   - PID: 780772\n   - tmux session: `eval_a3_m024fix`\n   - GPU 2: 已占用 8580 MiB\n   - 日志正常，已加载 Task 0（pick up the orange juice and place it in the basket），safety level II\n\n3. **日志前几行**：模型加载成功（a3_grad_refine_object_pudding），norm stats 正确加载（safelibero_object），已开始 eval 第一个 task\n\n4. **Registry**: `eval_a3_object_m024fix_v11` → RUNNING，cron 监控已注册（120s 间隔）\n\n注意：任务描述中的 CLI 参数有误（`--scene`/`--level`/`--checkpoint_dir`/`--ckpt_step`/`--output_path` 均不存在），已修正为脚本实际支持的参数（`--suite`/`--safety_level`/`--checkpoint`/`--output_prefix`/`--save_dir`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-launch-a3-object-m024fix-v11.md"
+}

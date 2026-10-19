@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "cb087f38856a51213d26",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "code norm fix phase a",
+  "task_key": "worker_code_norm_fix_phase_a_20260516T101700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_norm_fix_phase_a_20260516T101700.log",
+    "occurrence": 1,
+    "bytes": 1397783,
+    "sha256": "8b1c6842eb7a68cf4adfa8f016790d0d847ca0b79fb9e5b03e3db6d223ab4746"
+  },
+  "statistics": {
+    "messages": 453,
+    "user_turns": 1,
+    "tool_calls": 171,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 103,
+      "tool_call": 171,
+      "tool_result": 171,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 238,
+      "chunks": [
+        {
+          "path": "cb087f38856a51213d26-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "cb087f38856a51213d26-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 215,
+      "chunks": [
+        {
+          "path": "cb087f38856a51213d26-part-0002.json",
+          "message_count": 53
+        },
+        {
+          "path": "cb087f38856a51213d26-part-0003.json",
+          "message_count": 162
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-norm-fix-phase-a.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "785e3a653882adf14018",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check westd45947 status",
+  "task_key": "worker_ops_check_westd45947_status_20260522T165142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_westd45947_status_20260522T165142_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "905e465792ebb38f6b2fc143b7a4c3fb98494f111bf288a975bf44c3176b8a2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. A3 spatial 训练 — **进行中**\n- **进度**: step 26765 / 30000 (89.2%)\n- **当前 loss**: 0.0182, lr=3.18e-06\n- **速度**: ~4.01s/step\n- **预计剩余**: ~3.6h\n- **最新 checkpoint**: step 26000 (`/root/autodl-tmp/checkpoints/a3_grad_refine_spatial_bowl/a3_grad_refine_spatial_bowl_seed0/26000/`)\n- **best loss**: 0.01608 @ step 26000\n\n### 2. Pi0.5 下载 — **未运行**\n- `/root/autodl-tmp/models/` 目录不存在\n- `/root/autodl-tmp/.hf_cache/` 目录不存在\n- 未检测到下载进程\n\n### 3. GPU 状态\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| cuda:0 | RTX PRO 6000 | 23.9 / 95.6 GB | 100% |\n| cuda:1 | RTX PRO 6000 | 0 / 95.6 GB | 0% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd45947-status-copy-2.md"
+}

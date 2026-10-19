@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7e740e0c443a43aa0f9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis s2 best 10k full ee disp",
+  "task_key": "worker_analysis_s2_best_10k_full_ee_disp_20260525T201225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s2_best_10k_full_ee_disp_20260525T201225_result.json",
+    "occurrence": 1,
+    "bytes": 959,
+    "sha256": "5294826b52f36fbe329528d45b8f0e2d4a51ed05b4a1f1f6470fee7c086f11a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| Task | n | avg_ee_disp | safe_ee_disp (n) | col_ee_disp (n) | real_safe_pct | fake_safe_pct |\n|------|---|-------------|------------------|-----------------|---------------|---------------|\n| orange_juice | 50 | 0.5256 | 0.4979 (34) | 0.5845 (16) | 68.0% | 0.0% |\n| chocolate_pudding | 50 | 0.5288 | 0.5115 (22) | 0.5424 (28) | 44.0% | 0.0% |\n| milk | 50 | 0.5779 | 0.5883 (46) | 0.4576 (4) | 92.0% | 0.0% |\n| bbq_sauce | 50 | 0.3863 | 0.3609 (9) | 0.3918 (41) | 18.0% | 0.0% |\n| **Overall** | **200** | **0.5046** | — | — | — | — |\n\n所有 episode 的 EE displacement 都远超 0.1m，fake_safe 为 0——不存在\"机器人不动就不碰撞\"的情况。\n\nbbq_sauce 碰撞率最高（82%），但 EE displacement 反而最低（0.3863），说明这个 task 的障碍物空间约束更紧，机器人还没怎么动就碰了。milk 碰撞率最低（8%），EE displacement 最高（0.5779），活动空间最充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s2-best-10k-full-ee-disp.md"
+}

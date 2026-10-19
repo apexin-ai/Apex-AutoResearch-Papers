@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a032dc35f27afff3a603",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh emergency disk cleanup 35807",
+  "task_key": "worker_ssh_emergency_disk_cleanup_35807_20260520T143427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_emergency_disk_cleanup_35807_20260520T143427_result.json",
+    "occurrence": 1,
+    "bytes": 1684,
+    "sha256": "360f4fc8e92c8825f00bc1f0c2a0e8d608ae320ab94ca9e4ff9ba0a60703c5f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。汇总：\n\n---\n\n## 结果\n\n### 1. 磁盘清理前后对比\n\n| | Used | Avail | Use% |\n|---|---|---|---|\n| 清理前 | 350G | 248K | **100%** |\n| 清理后 | 248G | **103G** | 71% |\n\n**释放空间：~102GB**\n\n### 2. SAVE_TOTAL_LIMIT 修改确认\n- **westd-35807**: `SAVE_TOTAL_LIMIT = 2` ✓\n- **westd-45947**: `SAVE_TOTAL_LIMIT = 2` ✓\n\n运行中的进程不受影响（常量已加载到内存），下次重启生效。\n\n### 3. 三个实验存活确认\n\n| PID | 运行时间 | CPU% | GPU 显存 |\n|---|---|---|---|\n| 95429 | 16h12m | 127% | 37358 MiB |\n| 100319 | 16h00m | 124% | 37358 MiB |\n| 185994 | 6h10m | 68% | 13376 MiB |\n\n全部存活，GPU 正常占用。\n\n### 4. 当前 checkpoint 占用\n\n| 实验 | 占用 |\n|---|---|\n| a1_sdf_spatial_bowl_seed0 | 27G |\n| baseline_object_pudding_seed0 | 110G |\n| baseline_spatial_bowl_seed0 | 92G |\n| **合计** | **229G** |\n\n### 5. 剩余空间评估\n\n- 可用空间：**103G**\n- SAVE_TOTAL_LIMIT 改为 2 后，每个实验最多保留 2 个 checkpoint（~22G），但对运行中进程不生效\n- 当前 baseline_object_pudding 已占 110G（约 10 个 checkpoint），baseline_spatial_bowl 占 92G — 这两个实验下次保存新 checkpoint 时磁盘会继续增长\n- **风险**：运行中的进程仍用 SAVE_TOTAL_LIMIT=3，每次新保存 ~11G checkpoint，3 个实验同时保存一轮就是 ~33G，103G 可用空间大约撑 3 轮保存\n\n**建议**：手动清理 baseline_object_pudding_seed0 和 baseline_spatial_bowl_seed0 中的旧 checkpoint（只保留最新 2 个），可再释放 ~150G，彻底消除磁盘风险。是否执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-emergency-disk-cleanup-35807.md"
+}

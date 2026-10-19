@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc6f61711f0695ee4018",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check eval and launch baseline",
+  "task_key": "worker_ops_check_eval_and_launch_baseline_20260522T015837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_eval_and_launch_baseline_20260522T015837_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "8165b52be5a9802fbaffa75d0f3aea688a7347d7e041bb6d760078a21adf70b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Eval v9 (A3 refine) — 已完成\n\n```\nTask 0 (pick up the orange juice):          CAR=96.0%, TSR=0.0%\nTask 1 (pick up the chocolate pudding):     CAR=22.0%, TSR=0.0%\nTask 2 (pick up the milk):                  CAR=66.0%, TSR=0.0%\nTask 3 (pick up the bbq sauce):             CAR=42.0%, TSR=0.0%\nAverage:                                    CAR=56.5%, TSR=0.0%\n```\n\n### 2. Baseline eval — 已启动\n\n- tmux session: `eval_baseline`\n- PID: **299952**\n- 命令: `python scripts/eval_safelibero.py --model_type baseline --checkpoint .../baseline_object_pudding_eval/best --suite safelibero_object --n_episodes 50 --gpu 1`\n- Log: `/root/autodl-tmp/eval_results/eval_v9_baseline.log`\n\n### 3. 注意\n\nwestd-45947 当前 GPU 占用：\n- GPU 0: PID 191747 (a3_spatial 训练，23.9GB)\n- GPU 1: PID 299952 (baseline eval，刚启动加载中)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-and-launch-baseline.md"
+}

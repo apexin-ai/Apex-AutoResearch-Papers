@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1678cd7baf7f5f66d76f",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "eval c1 s42 code n1",
+  "task_key": "worker_eval_c1-s42-code-n1_20260518T105110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_c1-s42-code-n1_20260518T105110_result.json",
+    "occurrence": 1,
+    "bytes": 1507,
+    "sha256": "3c29f5033cc0dfe7dfcade8780a2603fedf2491f6cd88d3b0365d4ab2c896200"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sample 3 done: wrong (score=0, turns=10). Now 4/91. All 3 samples so far are wrong. ~6 min per sample consistent. Process is progressing normally.\n\nLet me let this run and provide a status summary. The eval is running steadily in background.\n\n**Current Status:**\n1. **Checkpoint**: `/root/tbab_multi_turn/checkpoints/c1_lora_only_seed42/` (final adapter, 320MB)\n2. **Process**: PID 25961, running on westb-25721, `CUDA_VISIBLE_DEVICES=0`\n3. **Progress**: 3/91 completed, all wrong (score=0) so far\n4. **Rate**: ~6 min/sample\n5. **Estimated completion**: ~9 hours from start (~18:55 start → ~03:55 May 19)\n6. **GPU memory**: 44GB/98GB (training 28GB + eval 16GB)\n7. **Log file**: `/root/tbab_multi_turn/eval/results/c1_s42_code_n1_eval.log`\n8. **Results**: will be saved to `/root/tbab_multi_turn/eval/results/c1_s42_code_n1/`\n9. **Results so far**: \n   - Sample 1 (HumanEval/105, 8 shards): wrong, score=0, 8 turns\n   - Sample 2 (HumanEval/106, 7 shards): wrong, score=0, 7 turns  \n   - Sample 3 (HumanEval/109, 10 shards): wrong, score=0, 10 turns\n\nAll samples getting score=0 so far is expected for a LoRA-only baseline on code tasks — the model needs to track information across many conversation turns without any special attention mechanism.\n\nThe eval will continue running in background and write final metrics (P̄, A90, U10-90) to `summary_lora_only.json` when done. To monitor:\n```bash\ntail -5 /root/tbab_multi_turn/eval/results/c1_s42_code_n1_eval.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-c1-s42-code-n1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9f317121aabde809ee7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops baseline ckpt prep",
+  "task_key": "worker_ops_baseline_ckpt_prep_20260521T234039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_baseline_ckpt_prep_20260521T234039_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "c6bb77c6a16d7f6c19ce630d8c69082db79df641d62397273b9c4dc29143fa51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SCP 完成。文件大小与源完全一致：\n- model.safetensors: 7,011,543,960 bytes ✓\n- optimizer.pt: 12,550,741,381 bytes ✓\n- metadata.pt: 3,187 bytes ✓\n- assets/ 目录 ✓\n\n---\n\n## 汇报\n\n**1. Baseline checkpoint 状态：已 scp 完成**\n- 路径：`/root/autodl-tmp/checkpoints/baseline_object_pudding_eval/best/`\n- 来源：westd-35807 的 `baseline_object_pudding_seed0/best/`\n- 文件完整（model.safetensors 6.5GB + optimizer.pt 11.7GB + metadata.pt + assets/）\n\n**2. --model_type 可选值：`{baseline, a1, a3}`**\n- baseline: 纯基线模型\n- a1: SDF auxiliary loss\n- a3: gradient refiner\n\n**3. Eval 当前进度（eval_v9_a3_refine）**\n- PID 263983 仍存活，已运行 2h48m\n- 已完成：Task 0（TSR 0%，CAR 8%）、Task 1（TSR 0%，CAR 22%）\n- 正在执行：Task 2（pick up the milk），已到 Episode 20/50\n- 全部 50 episodes 均走满 300 steps，success=False"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-baseline-ckpt-prep.md"
+}

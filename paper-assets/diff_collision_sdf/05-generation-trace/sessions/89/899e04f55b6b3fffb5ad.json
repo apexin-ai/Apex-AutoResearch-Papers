@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "899e04f55b6b3fffb5ad",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval extract baseline pertask results",
+  "task_key": "worker_eval_extract_baseline_pertask_results_20260528T010705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_extract_baseline_pertask_results_20260528T010705_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "84ecab854e8149393c60955dbdd13403bc61a587fb114dab3cd0ebad550c487e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Status: **DONE**\n\n## Baseline Per-task Reeval (seed=7, 50 episodes/task, 200 total)\n\n| Task | TSR (%) | CAR (%) |\n|------|---------|---------|\n| orange_juice | 74 | 18 |\n| chocolate_pudding | 74 | 56 |\n| milk | 72 | 14 |\n| bbq_sauce | 80 | 32 |\n| **Overall** | **75.0** | **30.0** |\n\n对比 appendix 当前值 Mean TSR = 74.7%：reeval 得到 75.0%，基本一致（+0.3pp），确认 baseline 数据可靠。\n\nCAR 整体 30.0%，各 task 差异大：chocolate_pudding 最高 56%，milk 最低 14%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-extract-baseline-pertask-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1efb452dabf8c9a9a67",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh submit a1 object pudding s0",
+  "task_key": "worker_ssh_submit_a1_object_pudding_s0_20260520T144435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_a1_object_pudding_s0_20260520T144435_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "27fb399d211fcd5c578edf131c21f2b35dac66e1c4c49c4e4aacdf4b20e567d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并在 GPU 1 上运行。\n\n**状态汇总：**\n- **exp_id**: a1_sdf_object_pudding_s0\n- **GPU**: cuda:1 (bus 5A:00.0), 13376 MiB 显存占用\n- **PID**: 227389\n- **tmux**: `a1_sdf_object_pudding_s0`\n- **进度**: step 4/30000, loss ~0.22, ~4.7s/it\n- **日志**: `~/runs/diff_collision_sdf/a1_sdf_object_pudding_s0.log`\n\n注意：脚本内部 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)`（第284行）会覆盖外部环境变量，所以必须用 `--gpu 1` 而非 `CUDA_VISIBLE_DEVICES=1 --gpu 0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-a1-object-pudding-s0.md"
+}

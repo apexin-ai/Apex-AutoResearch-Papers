@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e769d169ae62cc046c37",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh gpu status 35807 v3",
+  "task_key": "worker_ssh_gpu_status_35807_v3_20260520T111534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_status_35807_v3_20260520T111534_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "4f4433506b06c24714fdb8f451e32f209a9fd03ed1bc18d81f8e45be828ab388"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部存活，无异常。\n\n| GPU | 实验 | PID | Step/30000 | Loss | VRAM | GPU Util | 状态 |\n|-----|------|-----|------------|------|------|----------|------|\n| 0 | baseline_spatial_bowl_s0 | 100319 | 12496 (42%) | 0.0109 | 37358/97887 MiB | 100% | 正常 |\n| 1 | baseline_spatial_bowl_s1 | 94453 | 12790 (43%) | 0.0102 | 37358/97887 MiB | 100% | 正常 |\n| 2 | baseline_object_pudding_s0 | 95429 | 12999 (43%) | 0.0054 | 37358/97887 MiB | 18% | 正常 |\n| 3 | a1_sdf_spatial_bowl_s0 | 185994 | 8858 (30%) | 0.2873 | 13376/97887 MiB | 0% | 正常* |\n\n**磁盘：**\n- `/root/autodl-tmp`: 267G/350G (77%), 84G 可用\n- `/`: 15G/30G (50%), 16G 可用\n\n**备注：**\n- GPU 3 (a1) 瞬时 util=0%、VRAM 仅 13.4G，但日志持续推进到 step 8858，进程存活。可能是采样间隙或 I/O 阶段。\n- a1 从 step 6000 恢复续训，loss ~0.28 显著高于同期 baseline（~0.01）——但这是 SDF 实验，loss scale 不同，属预期。\n- 3 个 baseline 进度一致（42-43%），速度 ~3.4-3.7s/it。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-status-35807-v3.md"
+}

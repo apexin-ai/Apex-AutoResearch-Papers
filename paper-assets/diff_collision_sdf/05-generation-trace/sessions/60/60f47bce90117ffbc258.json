@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60f47bce90117ffbc258",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260526T155500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260526T155500_result.json",
+    "occurrence": 1,
+    "bytes": 1221,
+    "sha256": "403c735c07a2b8ff1e16edea66120aeb21df54996f0660d1be3d7e1bcb795399"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All forward references (`\\ref{sec:fake_safety}`, `\\ref{sec:ee_only}`, `\\ref{sec:avoidance_source}`, `\\ref{sec:appendix_threshold}`) resolve to labels defined in the analysis and appendix files. The `\\label{eq:car_f}` in method.tex replaces the one previously in experimental_framework.tex, which is no longer included by main.tex.\n\nmethod.tex is complete. 5 subsections as specified:\n\n- **§3.1 Benchmark and Models**: SafeLIBERO object_pudding suite, Pi0/Pi0.5 architectures, 6 training configurations in a booktabs table, evaluation protocol (200 episodes)\n- **§3.2 Standard Metrics**: CAR and TSR with formal definitions (Eq. 1, 2)\n- **§3.3 Displacement-Filtered CAR**: action collapse definition, CAR_f formula (Eq. 3), threshold robustness argument (bimodal distribution, 5 orders of magnitude gap, τ_d ∈ [2, 200] mm invariance), dual diagnostic capability\n- **§3.4 SDF Auxiliary Training**: f_SDF (4-layer MLP, 395K), f_EE (2-layer MLP, 263K), total loss with λ, GT SDF computation, optimization details (AdamW, cosine decay, 30K steps, batch 32)\n- **§3.5 Oracle SDF Refinement**: 3 variants (adaptive, fixed, feature-space), 160 episodes, purpose as theoretical upper bound test"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method-copy-2.md"
+}

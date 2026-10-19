@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17f636fe13e1d2e2beef",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "collect gpu0 visual a",
+  "task_key": "worker_collect_gpu0-visual-a_20260515T131723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_gpu0-visual-a_20260515T131723_result.json",
+    "occurrence": 1,
+    "bytes": 151,
+    "sha256": "73dfe7a8cb1f3b25190ec65f43b71cdd0ec9febcf1ca636b56fe1b6f80b48d81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "camera_viewpoints 收集正在进行中（4/80 episodes, ~10s/episode）。预计 ~13 分钟后完成。4 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-gpu0-visual-a.md"
+}

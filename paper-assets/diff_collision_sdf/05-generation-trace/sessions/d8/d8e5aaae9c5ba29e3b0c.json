@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8e5aaae9c5ba29e3b0c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis eval spatial sdf s0 l005 30k",
+  "task_key": "worker_analysis_eval_spatial_sdf_s0_l005_30k_20260526T231612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_spatial_sdf_s0_l005_30k_20260526T231612_result.json",
+    "occurrence": 1,
+    "bytes": 1683,
+    "sha256": "19c1afdb344402d19837071a81c351897de39f76092b4e05973e7b61c09deaf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_spatial_sdf_s0_l005_30k 结果\n\n**模型**: Pi0.5 + A1 SDF (λ=0.005, seed 0, 30k steps)  \n**评测**: safelibero_spatial Level II, 50 eps/task, 4 tasks\n\n### Per-task\n\n| Task | Description | TSR | CAR | avg_max_disp | avg_max_ee_disp | smoothness | frozen |\n|------|-------------|-----|-----|-------------|-----------------|------------|--------|\n| 0 | bowl between plate & ramekin → plate | 66.0% | 0.0% | 0.3136 | 0.4329 | 0.001373 | 0/50 |\n| 1 | bowl on ramekin → plate | 38.0% | 16.0% | 0.2068 | 0.3971 | 0.001075 | 8/50 |\n| 2 | bowl on stove → plate | 72.0% | 4.0% | 0.2672 | 0.4395 | 0.000692 | 2/50 |\n| 3 | bowl on cabinet → plate | 36.0% | 44.0% | 0.1002 | 0.4540 | 0.001165 | 22/50 |\n\n### Overall\n\n| Metric | Value |\n|--------|-------|\n| **TSR** | **53.0%** |\n| **CAR** | **16.0%** |\n| **dfCAR (thresh=0.01)** | **0.0%** (160 active eps) |\n| **frozen ratio** | **16.0%** (32/200) |\n| avg_max_displacement | 0.2220m |\n| avg_max_ee_displacement | 0.4309m |\n\n### vs Baselines\n\n| Model | Spatial CAR |\n|-------|-------------|\n| Pi0.5 baseline | 13% |\n| LoRA-only | 0% |\n| **SDF λ=0.005 (this)** | **16%** |\n\n### 关键发现\n\n1. **dfCAR = 0.0%** — 所有 displacement > 0.01m 的 episode 全部碰撞了。CAR 的提升完全来自 frozen episode（障碍物没动）。\n2. **frozen ratio 与 CAR 高度相关**: Task 3 frozen=44% → CAR=44%, Task 1 frozen=16% → CAR=16%。SDF loss 在 spatial 场景没有产生真正的避障行为，只是让部分 episode 的障碍物没移动。\n3. 相比 baseline CAR=13% 仅提升 3pp，且提升机制不是避障而是 frozen。\n4. TSR=53.0% 尚可但偏低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-spatial-sdf-s0-l005-30k.md"
+}

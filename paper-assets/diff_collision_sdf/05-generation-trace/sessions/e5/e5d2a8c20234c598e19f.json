@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5d2a8c20234c598e19f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval oracle pi05 collect",
+  "task_key": "worker_eval_oracle-pi05-collect_20260529T012738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_oracle-pi05-collect_20260529T012738_result.json",
+    "occurrence": 1,
+    "bytes": 65,
+    "sha256": "36d57c2da26eb8202f60dcd94e4031d140b297afc8a00df1f22000f194c9be9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待 ~2.5 分钟后再次检查 Task 3 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-oracle-pi05-collect.md"
+}

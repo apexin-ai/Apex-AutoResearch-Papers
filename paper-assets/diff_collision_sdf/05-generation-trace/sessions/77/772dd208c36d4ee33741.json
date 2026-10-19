@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "772dd208c36d4ee33741",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu2 lambda01 s1 training",
+  "task_key": "worker_ops_gpu2_lambda01_s1_training_20260525T233051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu2_lambda01_s1_training_20260525T233051_result.json",
+    "occurrence": 1,
+    "bytes": 419,
+    "sha256": "b89b0f00173889bc264b8b1b7b5c59f4a0d9d33a52b9b9b91813fc8329444baa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。\n\n**汇报：**\n- **PID**: 274407（实际 Python 进程，父 bash 为 274406）\n- **GPU 2 显存**: 7885 MiB，正常加载\n- **状态**: 训练进度条已出现，`Training: 0%| | 0/30000`，正在编译/预热中\n- **配置**: object_pudding, seed=1, lambda_sdf=0.1, 30000 steps, bfloat16, lr=2.5e-5\n- **日志**: `/root/colliforce-vla/logs/train_lambda01_s1_gpu2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu2-lambda01-s1-training.md"
+}

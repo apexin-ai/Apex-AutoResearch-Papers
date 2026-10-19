@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b438d9161094157219c2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops diagnose westd45947 training exit",
+  "task_key": "worker_ops_diagnose_westd45947_training_exit_20260523T003046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_westd45947_training_exit_20260523T003046_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "56465433e0f3b827c0fbc8ec9b84e87741469e2426033ccfcf3e34e0dac5ca82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个训练都正常运行中，Cron 报告为误报。**\n\n| 实验 | tmux session | 进程 | GPU | 当前 step | 状态 |\n|------|-------------|------|-----|-----------|------|\n| train_pi05_a1_obj_l005 | 存活 | 运行中 | cuda:0 (19.1/97.9 GB, 100%) | ~717/30000 | RUNNING |\n| train_pi05_a1_obj_l01 | 存活 | 运行中 | cuda:1 (19.1/97.9 GB, 51%) | ~716/30000 | RUNNING |\n\n- 训练于 08:14 启动，已运行约 14 分钟，~1.21s/step\n- 预计总时长 ~10h（不是之前估的 15h，速度比预期快）\n- 尚无 checkpoint（save_interval=2000，首个 checkpoint 在 step 2000）\n- loss 正常下降：action ~0.14, sdf ~0.035, ee ~0.10\n\n两个实验状态保持 RUNNING 不变，无需更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-westd45947-training-exit.md"
+}

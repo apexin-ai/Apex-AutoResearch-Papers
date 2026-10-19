@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "id": "2b99b9ee4f87805f8fc1",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "eval v3 lora routing",
+  "task_key": "worker_eval_v3_lora_routing_20260516T202850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_v3_lora_routing_20260516T202850.log",
+    "occurrence": 1,
+    "bytes": 1729227,
+    "sha256": "b12c27ad84a5ea816c62497033f9f624f84a9c78d2cf2e1028e706c8587a26ec"
+  },
+  "statistics": {
+    "messages": 616,
+    "user_turns": 2,
+    "tool_calls": 219,
+    "roles": {
+      "log": 1,
+      "system": 53,
+      "record": 1,
+      "assistant": 121,
+      "tool_call": 219,
+      "user": 2,
+      "tool_result": 219
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "2b99b9ee4f87805f8fc1-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 407,
+      "chunks": [
+        {
+          "path": "2b99b9ee4f87805f8fc1-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "2b99b9ee4f87805f8fc1-part-0002.json",
+          "message_count": 163
+        },
+        {
+          "path": "2b99b9ee4f87805f8fc1-part-0003.json",
+          "message_count": 71
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 202,
+      "chunks": [
+        {
+          "path": "2b99b9ee4f87805f8fc1-part-0003.json",
+          "message_count": 93
+        },
+        {
+          "path": "2b99b9ee4f87805f8fc1-part-0004.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-v3-lora-routing.md"
+}

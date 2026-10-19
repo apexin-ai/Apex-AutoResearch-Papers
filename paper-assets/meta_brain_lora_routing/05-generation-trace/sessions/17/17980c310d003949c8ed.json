@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17980c310d003949c8ed",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "research literature scan init",
+  "task_key": "worker_research_literature-scan-init_20260516T040326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan-init_20260516T040326_result.json",
+    "occurrence": 1,
+    "bytes": 1521,
+    "sha256": "405224a35e3885a376da7c234a17a81db3cfceab4542bbd109bee3a1574f1c54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `literature_map.yaml`（28 篇论文，全部 2023–2026）。\n\n**注意**：MCP `save_project_file` whitelist 不含 `literature_map.yaml`，已直接写入 `/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/literature_map.yaml`。MCP `read_project_file` 支持读取 `literature_map.yaml`，应能正常索引。\n\n**分类分布**：\n- direct-competitor (6)：LIBERO-Plus、RobustVLA、Eva-VLA、TT-VLA、Preserve-Pretrain、VLS\n- method-component / LoRA routing (5)：LD-MoLE、L-MoE、LoRA-Mixer、SMoRA、HDMoLE\n- method-component / VLA-LoRA (5)：OpenVLA-OFT、Accessible-VLA-LoRA、AdaMoE、FedVLA、ChatVLA-2\n- method-component / activation probing (3)：EigenTrack、ICLR2024-hidden-states、Othello-GPT\n- evaluation (3)：LIBERO、SimplerEnv、COLOSSEUM\n- background (8)：π₀、OpenVLA、PaliGemma、Octo、RT-2、RialTo、Maniwhere、ARRO\n\n**关键发现已映射到 Core Claims**：\n- **Claim 1（Diagnosability）** ← LIBERO-Plus 的 7 维扰动分类 + ICLR 2024 hidden-states + Othello-GPT 线性可解码证据\n- **Claim 2（Targeted > Uniform）** ← Accessible-VLA-LoRA 是 uniform baseline；AdaMoE/FedVLA 是 token-routed MoE 邻居\n- **Claim 3（Param-Efficient Robustness）** ← 对手 RobustVLA（全 RL）、OpenVLA-OFT（full FT）、TT-VLA（test-time RL）均需更多算力或环境交互\n\n**遗留待补**（已在 YAML 末尾注释）：VLA-specific activation analysis、π₀.₅ 论文、DR-LoRA、SEQR。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan-init.md"
+}

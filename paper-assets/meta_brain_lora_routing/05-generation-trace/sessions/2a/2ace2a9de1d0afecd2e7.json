@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ace2a9de1d0afecd2e7",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "research bibliography expansion",
+  "task_key": "worker_research_bibliography-expansion_20260516T063928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bibliography-expansion_20260516T063928_result.json",
+    "occurrence": 1,
+    "bytes": 1661,
+    "sha256": "f5685cf282a46a7285f5f00d5b7148596e657af9b126ea06e0ecc5440405b136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已更新。总结：\n\n## 新增 13 篇论文（28 → 41）\n\n### 方向 1: LoRA routing / MoE for adaptation（4 篇）\n| ID | 论文 | 会议 |\n|---|---|---|\n| `mole_iclr2024` | Mixture of LoRA Experts | ICLR 2024 |\n| `hmora_iclr2025` | HMoRA: Hierarchical Mixture of LoRA Experts | ICLR 2025 |\n| `dynmole2025` | DynMoLE: Hybrid Routing with Tsallis Entropy | arXiv 2025 |\n| `hilora2025` | HiLoRA: Training-Free Hierarchical LoRA Routing | arXiv 2025 |\n\n### 方向 2: Task-specific adapter selection（3 篇）\n| ID | 论文 | 会议 |\n|---|---|---|\n| `adapterfusion2021` | AdapterFusion: Non-Destructive Task Composition | EACL 2021 |\n| `lorahub2024` | LoRAHub: Dynamic LoRA Composition | COLM 2024 |\n| `mlore_cvpr2024` | MLoRE: Mixture of Low-Rank Experts | CVPR 2024 |\n\n### 方向 3: Brain-inspired neural routing（3 篇）\n| ID | 论文 | 会议 |\n|---|---|---|\n| `more_brain2025` | MoRE-Brain: Brain-Inspired Hierarchical MoE | arXiv 2025 |\n| `mixture_pathways2025` | Brain-Like Pathways in Heterogeneous Experts | NeurIPS 2025 |\n| `micro2025` | MiCRo: Modular Reasoning with Brain-Like Specialization | arXiv 2025 |\n\n### 方向 4: Multi-modal LoRA composition（3 篇）\n| ID | 论文 | 会议 |\n|---|---|---|\n| `mocle2024` | MoCLE: Cluster-conditional LoRA for VL Tuning | arXiv 2023 |\n| `dmole_icml2025` | D-MoLE: Dynamic MoLE for Continual Multimodal | ICML 2025 |\n| `lora_soups2024` | LoRA Soups: Merging LoRAs for Skill Composition | arXiv 2024 |\n\n顶会覆盖：ICLR×2, ICML×1, NeurIPS×1, CVPR×1, EACL×1, COLM×1。年份集中在 2024-2025，符合 CoRL 2026 投稿的时效性要求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bibliography-expansion.md"
+}

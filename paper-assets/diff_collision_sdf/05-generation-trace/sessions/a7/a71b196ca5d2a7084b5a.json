@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a71b196ca5d2a7084b5a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect pi05 object final and launch spatial",
+  "task_key": "worker_ops_collect_pi05_object_final_and_launch_spatial_20260522T213424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_pi05_object_final_and_launch_spatial_20260522T213424_result.json",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "6eb087c2a78a621d4cac664aaf911c2556dc5276f89de41f166ffb76128eb5a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时了，不过 object eval 已经完成、spatial eval 也已在运行中，无需重新启动 monitor。Cron 会每 8 分钟自动检查 spatial eval 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-pi05-object-final-and-launch-spatial.md"
+}

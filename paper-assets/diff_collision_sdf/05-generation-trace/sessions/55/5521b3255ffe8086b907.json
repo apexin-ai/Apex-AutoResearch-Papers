@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5521b3255ffe8086b907",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "results catalog westd 35807",
+  "task_key": "worker_results-catalog_westd-35807_20260529T050549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_results-catalog_westd-35807_20260529T050549_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "73dc79b405d13a027455e7d6187aa4c8ba7292c05d38afb82ad31781bc97e95c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计文件已写入 `artifacts/eval_results_audit_20260529.md`。\n\n**汇总**：\n\n- **57 个 eval JSON 文件**：56 个在 `/root/autodl-tmp/eval_results/`，1 个在 `/root/colliforce-vla/eval_results/`\n- **覆盖范围**：\n  - **Object suite (safelibero_object)**: 53 个文件，4 tasks (orange_juice, chocolate_pudding, milk, bbq_sauce)\n  - **Spatial suite (safelibero_spatial)**: 4 个文件，4 tasks (bowl variants)\n- **模型类型**：lora_baseline (LoRA), baseline (full-ft/pretrained pi05), a3 (gradient refine), pi05_libero (pretrained)\n- **lambda 变体**：l0 (no SDF), l005 (λ=0.005), l01 (λ=0.01), l1 (λ=0.1)\n- **训练种子**：seed0, seed1, seed2\n- **评估种子**：seed 0/1/2/3/7/42/99/123\n- **Collision threshold**: 统一 0.001\n- **37 个训练/eval 日志**在 `logs/`\n- **16 个 checkpoint 子目录**跨 object_pudding 和 spatial_bowl\n\n所有 per-task TSR/CAR/smoothness/max_displacement/max_ee_displacement 指标已完整记录在审计文件中，可用于论文数字对账。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/results-catalog-westd-35807.md"
+}

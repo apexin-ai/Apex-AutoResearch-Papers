@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65ebb6a01871a156d043",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops diagnose baseline training westd45947",
+  "task_key": "worker_ops_diagnose_baseline_training_westd45947_20260525T174351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_baseline_training_westd45947_20260525T174351_result.json",
+    "occurrence": 1,
+    "bytes": 1313,
+    "sha256": "c712efba188811c08d9fb4c61cf44997ddc330dc2c4d736bad45fc65f35150f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**两个实验均已崩溃**，原因是 tmux 服务器终止。\n\n### 证据\n\n| | s0 | s1 |\n|---|---|---|\n| **状态** | 崩溃 | 崩溃 |\n| **日志最后 step** | 25695 (86%) | 25705 (86%) |\n| **最后 checkpoint** | 24000 | 24000 |\n| **best_loss** | 0.01025 @ step 24000 | 0.01130 @ step 14000 |\n| **日志停写时间** | 2026-05-26 01:10:05 +0800 | 2026-05-26 01:10:01 +0800 |\n| **sentinel 文件** | 不存在 | 不存在 |\n\n### 根因分析\n\n- 两个进程在同一秒停止写日志，且日志中无任何 error/traceback/killed 信息 → 非程序错误\n- `tmux ls` → \"no server running\" — tmux 服务器本身已死\n- 服务器 uptime 59 天，未重启\n- `dmesg` 无权限，无法确认是否 OOM kill\n- GPU 当前完全空闲（0 MiB / 0% utilization）\n- 无训练 python 进程存活\n\n**结论**：tmux 服务器异常终止导致两个训练会话同时被杀。\n\n### 恢复建议\n\n两个实验需从 step 24000 checkpoint resume，剩余约 6000 步（~7.7h @ 4.62s/step）。\n\nCheckpoint 路径：\n- `s0`: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/24000/`\n- `s1`: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/24000/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-baseline-training-westd45947.md"
+}

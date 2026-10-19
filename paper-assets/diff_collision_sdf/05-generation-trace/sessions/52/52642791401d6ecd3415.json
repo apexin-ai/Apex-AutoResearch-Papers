@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52642791401d6ecd3415",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval check 28k and fill cuda0",
+  "task_key": "worker_eval_check_28k_and_fill_cuda0_20260527T071340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check_28k_and_fill_cuda0_20260527T071340_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "c837e18a51160aa220e5b0d392e95d3ba6d60a8510463aa343b598689985a548"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "命令行参数确认正确，`--pi05` 存在。\n\n汇总：\n\n**28K eval 已启动（cuda:0）**\n- PID: 694475（主进程），父进程 694470\n- Checkpoint: `.../a1_sdf_pi05_object_pudding_seed0_l1/28000`\n- 日志: `/tmp/eval_28k_s0_l1.log`\n- 参数已确认含 `--pi05`\n\n**注意**：任务给的 checkpoint 路径有误——实际目录是 `seed0_l1`（不是 `seed0_l01_high`）。`seed0_l01` 目录下的 30000 是 5月24日旧 run 的产物。\n\n**训练进度**\n| 任务 | 当前 step | 进度 | 预计剩余 |\n|------|----------|------|---------|\n| λ=0.1 s0 (cuda:1) | 28530/30000 | 95% | ~1h54m |\n| λ=0.1 s1 (cuda:2) | 27984/30000 | 93% | ~2h37m |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-28k-and-fill-cuda0.md"
+}

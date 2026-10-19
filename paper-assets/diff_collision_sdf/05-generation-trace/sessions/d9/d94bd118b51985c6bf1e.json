@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d94bd118b51985c6bf1e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis a1 800ep ee displacement recovery",
+  "task_key": "worker_analysis_a1_800ep_ee_displacement_recovery_20260526T011251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a1_800ep_ee_displacement_recovery_20260526T011251_result.json",
+    "occurrence": 1,
+    "bytes": 3078,
+    "sha256": "17e9a6d214c82860f1e2d2a7badf170e6f118a8765e62513aa15b9ec9ab0d77a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在我有了完整的分析。让我写出最终报告。\n\n## 汇报\n\n### 1. 数据文件路径和格式\n\n**文件**: `/root/autodl-tmp/eval_results/a1_rerun_v11_eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json` (239K)\n\n**格式**: \n- 4 tasks × 200 episodes = 800 total\n- 每个 episode 字段: `episode`, `success`, `collided`, `collision_step`, `collision_obstacle`, `max_displacement`, `total_steps`, `smoothness`\n- `max_displacement` 是 **obstacle displacement**（障碍物位移），不是 EE displacement\n\n### 2. EE displacement 数据不可恢复\n\n**不可行**，三个原因：\n\n1. **旧版 eval 脚本**：800ep 数据由旧版 `eval_safelibero.py` 生成，不含 `max_ee_displacement` 字段（当前版本已添加但在此之后）\n2. **无 per-step 轨迹数据**：JSON 中没有 trajectory / EE position，smoothness 是 mean jerk 无法反推位移\n3. **Checkpoint 已删除**：`/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/` 目录不存在，无法重跑 eval\n\n### 3. 现有数据分析（最佳间接证据）\n\n| 指标 | 值 |\n|------|-----|\n| Total episodes | 800 |\n| TSR | **0.0%**（全部 task，action collapse 确认）|\n| CAR | **91.5%** (732/800 safe) |\n| Collided episodes | 68/800 (8.5%) |\n| Obstacle disp median | **0.000005mm** |\n| Safe episodes obs disp | **全部 < 1mm** |\n| Collided episodes obs disp | mean=45.9mm, max=286.5mm |\n\n**关键发现**：所有 732 个 safe episodes 的 obstacle displacement 都 < 1mm。\n\n**但需要注意**：对比 pi05 A1 (SDF-trained) 模型，safe episodes 也是 obstacle displacement < 0.5mm，但 EE displacement 全部 > 238mm。所以 obstacle displacement < 1mm **不能** 直接证明 EE < 100mm——只能证明机器人没碰到障碍物。\n\n**关键区别在于 TSR**：\n- Pi05 A1：TSR=4-9%，机器人活跃移动，EE 全部 > 238mm\n- A1 baseline：**TSR=0%**，完全 action collapse，smoothness 比活跃模型高 4.5×（更 jerky、更无意义的抖动）\n\n### 4. dfCAR 估计与替代方案\n\n**定性推断**：TSR=0% + action collapse → 大部分 episode EE << 100mm → dfCAR@100mm ≈ 0%。但缺乏精确数据。\n\n**替代方案（按可行性排序）**：\n\n1. **恢复 checkpoint 后重跑**：如果能从 wandb/backup 恢复 `a1_lora_object_pudding_seed0/best/model.safetensors`，用当前 eval 脚本重跑即可得到 `max_ee_displacement`。当前所有 6 张 GPU 都满，最快预计 10 小时后有空闲。\n\n2. **用 pi05 A1 lambda=0 模型替代**：正在训练中的 `a1_sdf_pi05_object_pudding_seed2_l0`（lambda_sdf=0，无 SDF loss）可能也会展现 action collapse。训练完成后可 eval 获取带 EE displacement 的数据。但 pi05 基础模型不同，不一定复现 TSR=0%。\n\n3. **在论文中用 obstacle displacement 代替**：定义 displacement-filtered CAR 时使用 obstacle displacement（已有数据）作为 proxy metric。优点是不需要重跑；缺点是物理含义不同（测量的是碰撞力度不是机器人移动距离）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a1-800ep-ee-displacement-recovery.md"
+}

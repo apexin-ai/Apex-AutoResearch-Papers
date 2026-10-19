@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9347d6a902478f9a9240",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops launch plan015 spatial bowl lora",
+  "task_key": "worker_ops_launch_plan015_spatial_bowl_lora_20260526T122724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_plan015_spatial_bowl_lora_20260526T122724_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "f25c5122e5520cd6eb84438021d38bf92fbefa9f1c8b5d34d0da135d6395c253"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 015 已启动，registry 已更新为 RUNNING。\n\n**状态汇总：**\n- **服务器**: westd-35807, cuda:3\n- **tmux session**: `plan015`\n- **训练**: 30000 steps, ~5.5s/it, 已正常出 step 0-1（loss=0.1257→0.1136）\n- **日志**: `/root/runs/diff_collision_sdf/plan015_lora_baseline_spatial_bowl_s0.log`\n- **Checkpoint 目录**: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/pi05_lora_baseline_spatial_bowl_seed0`\n- **预估完成**: ~46h（按当前 5.5s/it），比预估略长\n- **注意**: 用 tmux 启动（符合 C002 约束，>24h 训练禁用 submit_training_job）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-plan015-spatial-bowl-lora.md"
+}

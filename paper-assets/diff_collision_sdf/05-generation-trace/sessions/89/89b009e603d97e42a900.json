@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "89b009e603d97e42a900",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "setup env and killgates kg1 kg2",
+  "task_key": "worker_setup_env_and_killgates_kg1_kg2_20260519T163039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_env_and_killgates_kg1_kg2_20260519T163039.log",
+    "occurrence": 1,
+    "bytes": 1623186,
+    "sha256": "b4d1034e1ccfc2b5be3158eb169428cb78c96aedec769d9935cffe39493ea653"
+  },
+  "statistics": {
+    "messages": 1226,
+    "user_turns": 1,
+    "tool_calls": 514,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 191,
+      "tool_call": 514,
+      "tool_result": 514,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 829,
+      "chunks": [
+        {
+          "path": "89b009e603d97e42a900-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "89b009e603d97e42a900-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "89b009e603d97e42a900-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "89b009e603d97e42a900-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "89b009e603d97e42a900-part-0005.json",
+          "message_count": 109
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 397,
+      "chunks": [
+        {
+          "path": "89b009e603d97e42a900-part-0005.json",
+          "message_count": 71
+        },
+        {
+          "path": "89b009e603d97e42a900-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "89b009e603d97e42a900-part-0007.json",
+          "message_count": 146
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/setup-env-and-killgates-kg1-kg2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "602697d8086c874d84a7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops spatial bowl prep and analysis scripts",
+  "task_key": "worker_ops_spatial_bowl_prep_and_analysis_scripts_20260525T151925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_spatial_bowl_prep_and_analysis_scripts_20260525T151925_result.json",
+    "occurrence": 1,
+    "bytes": 2650,
+    "sha256": "eab3319ddc1be4fc162ef45384998fdcc2aed7afc2270f958319ab417e098a88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。以下是结果：\n\n---\n\n## Part A: spatial_bowl 训练\n\n**训练已在运行，无需额外准备。**\n\n`train_pi05_a1_spatial_bowl_s0_l005` 就是 PID 168730：\n\n| 项目 | 值 |\n|------|-----|\n| 进程 | PID 168730, tmux session `train_pi05_a1_spatial_bowl_s0_l005` |\n| 命令 | `python scripts/train_a1_sdf_aux_pi05.py --scene spatial_bowl --seed 0 --gpu 0` |\n| lambda_sdf | 0.005（脚本默认值，与目标一致） |\n| 进度 | **7063/30000 (24%)**, 已跑 ~5h17m |\n| 速度 | ~4.63 s/it |\n| 预估剩余 | **~29.5h** |\n| Checkpoint | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/a1_sdf_pi05_spatial_bowl_seed0_l005/` |\n| Conda env | `libero` |\n| WANDB | disabled |\n\n**SDF 数据**：就位（`/root/colliforce-vla/data/sdf_gt_spatial_bowl.npz`，脚本 SCENE_CONFIG 已配置）。\n\n**GPU 状态**：\n- cuda:0 — 训练中 (27GB/98GB, 100% util)\n- cuda:1-3 — 空闲 (~9GB/98GB)\n\n如果需要额外启动另一个训练（不同 seed 或不同参数），可用模板：\n```bash\ntmux new-session -d -s train_spatial_bowl_s1_l005 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_a1_sdf_aux_pi05.py --scene spatial_bowl --seed 1 --gpu <GPU_ID> --lambda_sdf 0.005 --batch_size 32 --num_train_steps 30000 --save_interval 2000 --log_interval 100 2>&1 | tee logs/train_spatial_bowl_s1_l005.log'\n```\n\n---\n\n## Part B: 30K Displacement-Filtered CAR 分析脚本\n\n**状态：不存在，需要编写。**\n\n现有情况：\n- `eval_pi05_safelibero.py` 已在 JSON 中保存 per-episode 粒度的数据：\n  - `max_displacement`, `collided`, `collision_step`, `collision_obstacle`\n  - `per_obstacle_displacement` (每障碍物独立)\n  - `per_obstacle_min_ee_distance`, `all_collided_obstacles`\n- JSON 格式示例（来自 `pi05_safelibero_object_v11_s1.json`）：每 task 下 `episodes` 数组，每个 episode 有 `max_displacement` 和 `collided`\n- **没有** 独立的 displacement-filtered CAR 分析脚本\n\n**需要编写的内容**：一个 post-processing 脚本，读取 eval JSON，计算 displacement-filtered CAR（即：只把 displacement > threshold 的碰撞计为 \"真碰撞\"，排除微小 displacement 的 false positive）。大约 50-80 行 Python。\n\n输入：eval JSON 路径 + displacement threshold（默认 0.001 是当前 `COLLISION_THRESHOLD`，可设更高阈值如 0.005/0.01 做 sensitivity 分析）\n\n输出：不同 threshold 下的 filtered CAR + per-task breakdown\n\n需要我现在写这个分析脚本吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-spatial-bowl-prep-and-analysis-scripts.md"
+}

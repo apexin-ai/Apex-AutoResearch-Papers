@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61bdc535709fec226e0e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops baseline v10 sanity check",
+  "task_key": "worker_ops_baseline_v10_sanity_check_20260522T031808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_baseline_v10_sanity_check_20260522T031808_result.json",
+    "occurrence": 1,
+    "bytes": 1540,
+    "sha256": "309558eb2be59f52a0ef2b2e568cb54962ae6d3340002cbf0b421f635f6d4190"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Sanity Check 中间报告\n\n### 当前状态\n- **PID 313305**: 存活，已运行 21 分钟\n- **进度**: 20/50 episodes 完成，预计 ~11:44 结束（还需 ~25 分钟）\n- **Task 0**: `pick_up_the_orange_juice_and_place_it_in_the_basket` (safelibero_object, level II)\n\n### 已知结果（log 输出）\n| Episodes | success | collided | steps |\n|----------|---------|----------|-------|\n| 1-10     | False   | False    | 300   |\n| 11-20    | False   | False    | 300   |\n\n### 问题：Displacement 数据不可用\n\neval 代码（`eval_safelibero.py:719`）**每 10 episodes 只 log success/collided/steps**，displacement 仅在以下时间点输出：\n1. 全部 50 episodes 完成后的 task summary（line 750: `Avg max displacement = %.4fm`）\n2. 最终 JSON 结果文件\n\n### 早期信号（不乐观）\n\n对比 v9 baseline（同一 checkpoint）：\n- v9 在 episode 20 时已有 `collided=True`\n- v10 前 20 episodes 全部 `collided=False`，且全部跑满 300 步（timeout），`success=False`\n\n参考之前的 A3 refine 完整 eval（task 0 同 task）：\n- avg_max_displacement = **0.0006m**（50 episodes 大多 displacement ~1e-6 到 1e-9）\n- 仅少数 episode 有显著 displacement（0.028m, 0.25m）\n\n**baseline 模型在此 task 上 displacement > 0.1m 的概率较低**——这个 task 的 obstacle 摆放可能本身就不太容易被碰到。\n\n### 建议\n\n等 ~25 分钟让 eval 跑完，看 `Avg max displacement` 和 JSON。要不要我到时候再检查一次？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-baseline-v10-sanity-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "711204a4047808760cbb",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "eval phase1 3way",
+  "task_key": "worker_eval_phase1_3way_20260516T074213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_phase1_3way_20260516T074213_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "faaa66eeb2b7ee0241f0a8fef2456cb131fefa22142a51a3e08d47cedfa20ee2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| exp_id | GPU | PID | 状态 |\n|--------|-----|-----|------|\n| eval_par_v1 | cuda:0 | 411042 | RUNNING |\n| eval_univ_r16 | cuda:1 | 411121 | RUNNING |\n| eval_univ_r48 | cuda:3 | 411431 | RUNNING |\n\n**验证阶段输出**：`2026-05-16 15:43:13,095 [INFO] Loading PI0 model...` — 模型成功加载，无 crash、无参数错误。\n\n**无异常**。3 个评估均已在 tmux 后台运行，timeout 6 小时，日志分别在 `~/runs/meta_brain_lora_routing/eval_{par_v1,univ_r16,univ_r48}.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-phase1-3way.md"
+}

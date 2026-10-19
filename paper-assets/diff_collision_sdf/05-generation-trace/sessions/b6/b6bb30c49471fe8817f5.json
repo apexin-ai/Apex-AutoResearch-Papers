@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6bb30c49471fe8817f5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research pi05 a1 sdf integration feasibility",
+  "task_key": "worker_research_pi05_a1_sdf_integration_feasibility_20260522T212707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_pi05_a1_sdf_integration_feasibility_20260522T212707_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "271bdd0ce153e111fd272973d93d489350723756e98cad19ec3b71100a868908"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/pi05_a1_sdf_feasibility_report.md`。\n\n**核心结论：Go。集成工作量极小（~6-9 worker-hours）。**\n\n关键发现：\n- Pi0 和 Pi0.5 **共用同一个 `PI0Pytorch` 类**，仅通过 `pi05=True` 切换\n- Action Expert 完全一致（gemma_300m, width=1024）→ `action_out_proj` hook 挂载点相同 → SDFDecoder/EEExtractor 无需改动\n- `TrainHooks` 接口已被 A1 使用，pi0.5 训练流程完全兼容\n- LoRA 注入 (`inject_lora_pi0`) 目标层不受 AdaRMSNorm 影响\n- 核心修改仅 3 行 config 代码：`Pi0Config(pi05=True, action_horizon=10, discrete_state_input=False)` + 权重路径\n- Pi0.5 LIBERO 权重已在 westd-45947 上可用\n\n唯一需要关注的点：action_horizon 从 50 降到 10 后 mean pooling 信息密度变化（可能需微调 lambda_sdf），以及显存可能增加（max_token_len 200 vs 48）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-pi05-a1-sdf-integration-feasibility.md"
+}

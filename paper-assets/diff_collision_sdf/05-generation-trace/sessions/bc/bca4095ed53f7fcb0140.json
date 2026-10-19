@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "bca4095ed53f7fcb0140",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "diagnose a3 checkpoint loading",
+  "task_key": "worker_diagnose_a3_checkpoint_loading_20260521T195231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_a3_checkpoint_loading_20260521T195231.log",
+    "occurrence": 1,
+    "bytes": 701075,
+    "sha256": "b1db7d6cc8ecaae4cf9f3ce553e82880fe5dddbe3204de854d78c5a3c77cd674"
+  },
+  "statistics": {
+    "messages": 222,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 222,
+      "chunks": [
+        {
+          "path": "bca4095ed53f7fcb0140-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bca4095ed53f7fcb0140-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-a3-checkpoint-loading.md"
+}

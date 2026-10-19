@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75b10e8ca18af722eba2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose eval a3 object pudding no refine",
+  "task_key": "worker_diagnose_eval_a3_object_pudding_no_refine_20260521T202157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_a3_object_pudding_no_refine_20260521T202157_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "9260b148cd3e4c140a9e074cfb2f87985e5f73b01105ece991fdd11c563a0728"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**失败根因**：Eval进程未在tmux中运行，SSH会话超时后进程被SIGHUP静默杀死。训练任务 `a3_spatial_bowl` 正确地在tmux session中，但所有eval重试都是裸SSH启动，无持久化保护。dmesg无OOM记录，日志无任何错误——纯粹是进程管理问题。\n\n**次要问题**：eval默认跑GPU 0（与训练争抢），GPU 1完全空闲。\n\n**修复**：用tmux启动eval + `CUDA_VISIBLE_DEVICES=1` 指向空闲GPU。产出已写入 `artifacts/worker_output.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-a3-object-pudding-no-refine.md"
+}

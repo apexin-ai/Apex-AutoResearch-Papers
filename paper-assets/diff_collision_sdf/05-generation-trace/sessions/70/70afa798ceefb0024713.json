@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70afa798ceefb0024713",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "director / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_1.md",
+    "occurrence": 1,
+    "bytes": 5025,
+    "sha256": "2d62b81156108b14586132407dd992175055b0f4016d3c49cef1386a216043dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-21T17:32:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单（C001）：仅 westd-35807:cuda:0-3 + westd-45947:cuda:0-1，共 6 张\n- A3 训练必须用 tmux 启动（C002）：禁止 submit_training_job，默认 24h timeout 不够（M013/M014，已三次超时失败）\n- Checkpoint 目录隔离：不同实验配置必须用 --exp_name 区分，否则 SAVE_TOTAL_LIMIT=2 会互删 checkpoint（M015）\n- 碰撞检测用 L1 norm（`np.sum(np.abs(delta))`），不是 L2，与 AEGIS/SafeLIBERO 标准一致\n- eval_safelibero.py 参数名：--checkpoint（不是 --ckpt），--n_episodes（不是 --num_episodes），--suite（不是 --task）\n\n### 2. 🖥️ 基础设施快照\n- **westd-35807**（4× RTX PRO 6000 96GB）：工作目录 /root/colliforce-vla，Python /root/miniconda3/bin/python，conda base\n  - Checkpoints: /root/autodl-tmp/checkpoints/\n  - Eval results: /root/autodl-tmp/eval_results/\n  - Eval scripts ready: /root/colliforce-vla/scripts/eval_batch.sh, sweep_lambda.sh\n  - Full-FT baseline checkpoints（已完成）: baseline_spatial_bowl/…/best, baseline_object_pudding/…/best\n- **westd-45947**（2× RTX PRO 6000 96GB）：同上路径结构\n  - A3 spatial_bowl: PID 191747, tmux session（名称未知，可能是 a3_spatial），cuda:0，从 step 6000 resume，**registry 未更新**（仍显示 DONE/failed）\n  - A3 object_pudding: PID 165984, cuda:1，step ~29500/30000，日志 /tmp/object_pudding.log，**即将完成**\n  - A3 object_pudding checkpoint: /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\n- 共享 LoRA 模块：/root/colliforce-vla/colliforce/lora_utils.py（所有方法统一使用）\n- 文献 map：19 篇已填充，distill 待用户触发\n\n### 3. 📊 当前状态\n我刚处理完 Reviewer warning（registry 不一致 + A3 超时风险），添加了 C001/C002 约束，批准了 RESET_BOTH。\n\n**RUNNING 实验（5 个）：**\n| 实验 | 服务器:GPU | 进度 | ETA |\n|------|-----------|------|-----|\n| a3_gradient_object_pudding_s0 | westd-45947:cuda:1 | ~29500/30K (98%) | **<30 min** |\n| a3_gradient_spatial_bowl_s0 | westd-45947:cuda:0 | ~8000/30K (27%)，tmux，**registry 未追踪** | ~24h |\n| baseline_lora_spatial_bowl_s0 | westd-35807:cuda:1 | 13447/30K (45%) | ~18h |\n| baseline_lora_object_pudding_s0 | westd-35807:cuda:3 | 13421/30K (45%) | ~18h |\n| a1_lora_spatial_bowl_s0 | westd-35807:cuda:0 | 9935/30K (33%) | ~22h |\n| a1_lora_object_pudding_s0 | westd-35807:cuda:2 | 11812/30K (39%) | ~20h |\n\n**等待中：**\n- A3 object_pudding 完成回调 → 第一次 MVP eval\n- Agent 刚被 RESET，新 Agent 需要接手 eval 任务\n\n### 4. 📋 待办（条件触发式）\n- A3 object_pudding 完成（<30min）→ 在 westd-45947 cuda:1 跑 eval：先 A3 with refinement（50 ep），再 A3 no_refine（50 ep）；同时在 westd-35807 跑 full-FT baseline eval on object_pudding → 对比 CAR/TSR，做 MVP gate check\n- MVP gate check 结果出来 → CAR ≥15% reduction + TSR <10% loss = PASS → complete_mvp() → 进入 post-MVP kickoff（paper_framing.md → experiment_plan.yaml → dream_simulate）\n- MVP CONDITIONAL（CAR ≥15% 但 TSR 10-20%）→ 等更多数据点（spatial_bowl A3 + LoRA baselines）再判断\n- MVP FAIL → 诊断原因，考虑 lambda_refine 调参或方法改进\n- A3 spatial_bowl registry 未追踪 → 新 Agent 需要重新注册 PID 191747 或手动监控 tmux，确保完成时能触发 eval\n- LoRA baselines / A1 LoRA 完成（~18-22h）→ 正式 MVP 全矩阵 eval（eval_batch.sh）\n\n### 5. 🎯 战略上下文\n- **项目核心**：ColliForce-VLA，将可微分 SDF 梯度注入 VLA 训练，让机器人生成碰撞感知动作。目标 CoRL 2026。\n- **决策链**：D001 锁定 π0/openpi → D002 否决 OpenVLA-OFT → D003 接受非 watertight SDF → D004 Phase B 启动 → D005 MVP 只需 1 seed → D006 统一 LoRA（lora_utils.py），杀旧 A1 释放 GPU 给 LoRA baseline\n- **方法三变体**：π0-LoRA（baseline，33.5M params）、ColliForce-Aux（A1，SDF auxiliary loss）、ColliForce（A3，SDF gradient refinement + aux loss）\n- **竞品 AEGIS**：SafeLIBERO 上 CAR=77.85% avg（CBF+QP training-free）。我们的方法是 training-time 集成，论文 framing 走 Pareto front（lambda_refine sweep 展示可控 collision-success trade-off）\n- **最容易判错的事**：A3 object_pudding eval 出来后，**不要只看 CAR 绝对值**，要看 A3 vs baseline 的 relative improvement（≥15% CAR reduction）。也不要忘记跑 --no_refine 版本——它隔离训练效果 vs 推理时修正效果，对论文 story 至关重要\n- **易踩的坑**：(1) eval 参数名容易搞错（见红线），(2) westd-35807 上 4 个训练占满 GPU，baseline eval 要等有 GPU 空出或用 eval 和 training time-share（eval 短，可以临时抢），(3) A3 spatial_bowl 的 tmux 进程不在 registry 里，完成时不会自动触发回调，必须手动监控\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caef44d6ee6e70c99649",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops restart pi05 download",
+  "task_key": "worker_ops_restart_pi05_download_20260522T171532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart_pi05_download_20260522T171532_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "3ada3ec2ab67696568a0dae6bd49c96f4f966e3bf01d8e7fbcad5ed52b637a47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行中。gsutil 正在以 ~16 MiB/s 从 GCS 下载 11.6 GiB 的 pi05_base，预估 ~12 分钟完成。\n\n结果汇总：\n\n1. **模型 repo**: `gs://openpi-assets/checkpoints/pi05_base/params`（GCS，非 HuggingFace）+ `gs://openpi-assets/checkpoints/pi05_base/assets`\n2. **下载 PID**: `417255`，日志路径 `/root/autodl-tmp/pi05_download.log`\n3. **初始状态**: gsutil 正在下载，已完成 ~500MB / 11.6GB（~4%），速度 ~16 MiB/s，ETA ~12 分钟\n4. **磁盘空间**: 数据盘 159G 可用（250G 总，92G 已用），充足。缓存目标 `/root/autodl-tmp/.cache/openpi/openpi-assets/checkpoints/pi05_base/`\n5. **缓存位置**: 设置了 `OPENPI_DATA_HOME=/root/autodl-tmp/.cache/openpi` 避免写根分区（仅 14G 可用）\n\n下载完成后 openpi 训练时会自动找到缓存的权重。params 下载完会继续下载 assets（norm_stats 等）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-pi05-download.md"
+}

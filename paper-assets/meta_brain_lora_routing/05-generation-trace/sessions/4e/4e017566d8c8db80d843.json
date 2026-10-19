@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e017566d8c8db80d843",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "fix universal r16 restart",
+  "task_key": "worker_fix_universal_r16_restart_20260516T011710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_universal_r16_restart_20260516T011710_result.json",
+    "occurrence": 1,
+    "bytes": 51,
+    "sha256": "25aaff971a6406b89f6c7fca43c9c19c676310813e4b9dba57bac781c7796f31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认，训练正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-universal-r16-restart.md"
+}

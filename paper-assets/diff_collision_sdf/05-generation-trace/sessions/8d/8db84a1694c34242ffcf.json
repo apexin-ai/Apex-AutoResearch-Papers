@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8db84a1694c34242ffcf",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops cuda3 checkpoint and eval",
+  "task_key": "worker_ops_cuda3_checkpoint_and_eval_20260525T140252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda3_checkpoint_and_eval_20260525T140252_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "c07e57744bb743ab6657f1f6cafcfd969ed343aa86fa3aaa7c454f1ef39624ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果汇总**\n\n- **优先级 C**：seed0_l005 和 seed0_l01 均只有 `30000/`，无中间 checkpoint。启动 s0_l01 30k 重跑。\n- **PID**: 349448\n- **GPU 占用**：\n  | GPU | 显存占用 | 利用率 |\n  |-----|---------|--------|\n  | 0 | 27045 MiB | 100% (spatial_bowl 训练) |\n  | 1 | 8365 MiB | 0% (eval v3) |\n  | 2 | 9014 MiB | 15% (eval v3) |\n  | 3 | 3835 MiB | 4% (模型加载中) |\n\n- **日志确认**：模型加载正常，LoRA 注入完成（PaliGemma rank=16, Expert rank=32），checkpoint 和 norm stats 加载成功。cuda:3 显存 3.8GB 表明模型刚加载，后续推理时会继续上升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda3-checkpoint-and-eval.md"
+}

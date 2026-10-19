@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cedb2d543b5c5d08f41",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops spatial bowl a1 prep",
+  "task_key": "worker_ops_spatial_bowl_a1_prep_20260524T122346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_spatial_bowl_a1_prep_20260524T122346_result.json",
+    "occurrence": 1,
+    "bytes": 1940,
+    "sha256": "d984c658c330b405ef3d12a72e44efdc68bdd04b4e93ed45dc88fa596a8ff384"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**昨天（2026-05-23）已完成过一轮完整的准备验证。** 以下是汇报：\n\n---\n\n### 1. SDF GT 数据：已就绪\n\n- 路径：`/root/colliforce-vla/data/sdf_gt_spatial_bowl.npz`\n- 两台服务器（westd-35807、westd-45947）均已有，114,658 bytes，4076 个查询点\n- **无需预计算**\n\n### 2. 训练脚本适配：直接可用\n\n`scripts/train_a1_sdf_aux_pi05.py` 的 `SCENE_CONFIG` 已包含 `spatial_bowl`，`--scene spatial_bowl` 直接工作，无需修改。\n\n### 3. 训练数据：已就绪\n\n- 路径：`/root/autodl-tmp/colliforce_data/safelibero_spatial/`\n- 50 episodes，~434MB，两台服务器均有\n\n### 4. Checkpoint 路径\n\n不会与现有 object_pudding checkpoints 冲突（按 scene 名区分目录）。\n\n### 5. 双 lambda 启动命令\n\n```bash\n# λ=0.005, GPU 0\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/colliforce-vla && \\\nWANDB_MODE=offline PYTHONUNBUFFERED=1 python scripts/train_a1_sdf_aux_pi05.py \\\n  --scene spatial_bowl --seed 0 --gpu 0 --batch_size 32 \\\n  --num_train_steps 30000 --lambda_sdf 0.005 --lambda_ee 0.01 \\\n  --lr 2.5e-5 --save_interval 2000\n\n# λ=0.01, GPU 1\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/colliforce-vla && \\\nWANDB_MODE=offline PYTHONUNBUFFERED=1 python scripts/train_a1_sdf_aux_pi05.py \\\n  --scene spatial_bowl --seed 0 --gpu 1 --batch_size 32 \\\n  --num_train_steps 30000 --lambda_sdf 0.01 --lambda_ee 0.01 \\\n  --lr 2.5e-5 --save_interval 2000\n```\n\n### 6. 阻塞项\n\n**两台服务器当前都 SSH 认证失败**。AutoDL 实例可能重启导致端口变了，需要去 AutoDL 控制台查看新端口并更新 `resources.yaml` 中 westd-35807（当前 port: 35807）和 westd-45947（当前 port: 45947）的配置。\n\n其余（代码、数据、SDF GT、配置）全部就绪，端口更新后即可启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-spatial-bowl-a1-prep.md"
+}

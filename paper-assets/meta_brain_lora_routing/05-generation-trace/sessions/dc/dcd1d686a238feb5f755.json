@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcd1d686a238feb5f755",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "check server status",
+  "task_key": "worker_check_server-status_20260516T011322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_server-status_20260516T011322_result.json",
+    "occurrence": 1,
+    "bytes": 2340,
+    "sha256": "a2606a0eb855dff1bde884f7b4e30df1f506a898b2a1e53d26a510b115525748"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 1 状态汇总\n\n### 所有 PID 均已死亡，GPU 全部空闲\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| 0-3 | RTX PRO 6000 Blackwell (98GB) | 0 MiB | 0% |\n\n---\n\n### 1. LoRA Visual Training (`phase1_lora_visual.log`)\n- **状态**: ❌ **失败**\n- **错误**: `wandb.errors.UsageError: No API key configured`\n- 启动时在 `wandb.init()` 就崩了，没有进行训练\n- **但**: `checkpoints/phase1/visual/` 有之前的 checkpoint（时间戳 00:17-00:24），含 `best/` 和 `epoch_0/`（adapter 14MB，val_loss=6.237，仅跑了 5 step）——这应该是更早一次运行的产物\n- **修复**: 加 `--no_wandb` 或先 `wandb login`\n\n### 2. LoRA Universal r16 (`phase1_lora_universal_r16.log`)\n- **状态**: ❌ **失败**\n- **错误**: `unrecognized arguments: --run_name universal_r16_visual_bootstrap`\n- 参数名错误，脚本不支持 `--run_name`\n- **无 checkpoint 产出**\n\n### 3. Physical Demo Collection (`phase1_physical_demo_collection.log`)\n- **状态**: ✅ 完成，但 **0% 成功率**\n- 490 episodes，0 成功，0 文件保存\n- 耗时 55.9 min\n- 输出目录 `data/expert_demos/physical/` 为空\n\n### 4. Spatial Demo Collection (`phase1_spatial_demo_collection.log`)\n- **状态**: ✅ 完成，但 **0% 成功率**\n- 624 episodes，0 成功，0 文件保存\n- 耗时 89.9 min\n- 输出目录 `data/expert_demos/spatial/` 只有 `_tmp_bddl/`，无实际 demo\n\n### 5. Sensor Noise (PID 182966)\n- **状态**: 进程已死\n- **无日志文件**（`phase1_sensor_noise.log` 不存在）\n\n---\n\n### 已有 Checkpoint\n| 路径 | 大小 | 说明 |\n|------|------|------|\n| `checkpoints/phase1/par_router/best_router.pt` | 2MB | 之前训好的 |\n| `checkpoints/phase1/visual/best/adapter_model.safetensors` | 14MB | val_loss=6.237, step=5, rank=16 |\n\n### 结论\n- 4 个任务全部结束，0 个成功产出有用结果\n- 两个 LoRA 训练因配置问题（wandb key / 参数名错误）启动即失败\n- 两个 demo collection 跑完但成功率 0%——baseline 模型在 physical/spatial 扰动下完全无法完成任务，这说明 demo 收集策略可能需要调整（或者这就是预期的——baseline 本身就不该能应对这些扰动）\n- 4 张 98GB GPU 全部空闲，可立即重新利用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-server-status.md"
+}

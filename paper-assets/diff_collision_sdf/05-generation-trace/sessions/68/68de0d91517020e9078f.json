@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68de0d91517020e9078f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu visibility check",
+  "task_key": "worker_ops_gpu-visibility-check_20260528T231617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-visibility-check_20260528T231617_result.json",
+    "occurrence": 1,
+    "bytes": 1196,
+    "sha256": "f0d4bc5e5d7d23c5278846d07dc45723768ea99572375333ec904fc0a6bdde0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：实例被缩容，不是环境变量问题\n\n### westd-35807\n| 项目 | 结果 |\n|------|------|\n| GPU 数量 | **1 张**（应有 4 张） |\n| GPU 型号 | NVIDIA RTX PRO 6000 Black (96GB) |\n| Driver/CUDA | 580.95.05 / CUDA 13.0 |\n| CUDA_VISIBLE_DEVICES | 未设置（空） |\n| /dev/nvidia* | 仅 `/dev/nvidia5`（注意编号是 5，不是 0） |\n\n### westd-45947\n| 项目 | 结果 |\n|------|------|\n| GPU 数量 | **1 张**（应有 2 张） |\n| GPU 型号 | NVIDIA RTX PRO 6000 Black (96GB) |\n| Driver/CUDA | 595.58.03 / CUDA 13.2 |\n| CUDA_VISIBLE_DEVICES | 未设置（空） |\n| /dev/nvidia* | 仅 `/dev/nvidia1`（编号是 1，不是 0） |\n\n### 判定\n- **不是 CUDA_VISIBLE_DEVICES 问题**：两台服务器该变量均为空。\n- **是实例缩容**：两台服务器 `/dev/` 下各只有 1 个 nvidia 设备文件（westd-35807 只有 nvidia5，westd-45947 只有 nvidia1），物理上就只挂载了 1 张卡。设备编号不连续（5 和 1 而非 0）说明原来有多张卡，现在只保留了其中一张。\n- 需要联系实例提供方恢复 GPU 配额：westd-35807 应恢复到 4 张，westd-45947 应恢复到 2 张。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-visibility-check.md"
+}

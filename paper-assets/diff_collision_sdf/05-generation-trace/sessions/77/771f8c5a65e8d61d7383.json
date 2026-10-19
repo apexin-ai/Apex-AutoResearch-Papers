@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "771f8c5a65e8d61d7383",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect oracle m024fix results",
+  "task_key": "worker_ops_collect_oracle_m024fix_results_20260522T183426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_oracle_m024fix_results_20260522T183426_result.json",
+    "occurrence": 1,
+    "bytes": 1348,
+    "sha256": "851cb969655d29f06745b4cdfa5bf3c58d752d0b500ac9d0c006c0005b9b9359"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整结果：\n\n## Oracle A3 M024fix 结果 (force_refine, 40 episodes/task)\n\n| Task | CAR (M024fix) | CAR (Buggy) | Δ | avg_max_disp |\n|------|:---:|:---:|:---:|:---:|\n| task0 pick_orange_juice | **97.5%** | 95.0% | +2.5 | 0.0028m |\n| task1 put_wine_on_rack | **65.0%** | 57.5% | +7.5 | 0.0381m |\n| task2 put_cream_in_area | **97.5%** | 92.5% | +5.0 | 0.0000m |\n| task3 pick_bbq_sauce | **82.5%** | 80.0% | +2.5 | 0.0134m |\n| **Overall** | **85.6%** | 81.2% | **+4.4** | — |\n\n- **TSR = 0%**（所有 task），force_refine 每步都 refine（refine_count=300/episode），完全牺牲了 task completion\n- **CAR = 85.6% > LoRA baseline 82%** → conclusion = **success**\n- M024 坐标修复后，所有 task 的 CAR 均有提升，验证了 delta→absolute 修复的有效性\n\n## A1 Rerun 状态\n\n**已自动启动**，PID 931014，GPU 3，tmux session `eval_a1_obj_rerun`，02:30 启动（oracle 完成后立即触发）。\n\n## 服务器当前负载（4 GPU 全部在用）\n\n| GPU | 任务 | PID |\n|-----|------|-----|\n| cuda:0 | A1 lora spatial eval (a1_lora_v11) | 727358 |\n| cuda:1 | Baseline fullft spatial eval (baseline_fullft_v11) | 697980 |\n| cuda:2 | A3 m024fix object eval 200ep (a3_m024fix_v11) | 780772 |\n| cuda:3 | A1 object rerun (a1_rerun_v11) | 931014 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-oracle-m024fix-results.md"
+}

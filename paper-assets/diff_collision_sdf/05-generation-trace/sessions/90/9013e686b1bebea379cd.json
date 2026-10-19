@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9013e686b1bebea379cd",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh a3 restart westd45947",
+  "task_key": "worker_ssh_a3_restart_westd45947_20260520T035343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a3_restart_westd45947_20260520T035343_result.json",
+    "occurrence": 1,
+    "bytes": 340,
+    "sha256": "9799540018292d4bfa04d56cddeb6940976bbad94bd51bbfdd3b76ca519c70b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三步全部完成：\n\n- **a3_gradient_spatial_bowl_s0** → RUNNING，PID 38475，cuda:0，westd-45947\n- **a3_gradient_object_pudding_s0** → RUNNING，PID 38554，cuda:1，westd-45947\n\n两个实验的 registry 已更新，包含 PID、server、GPU、data_path、data_count、model_name、seed 等完整 spec 信息。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a3-restart-westd45947.md"
+}

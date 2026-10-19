@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2fee7c5a8a4f21a65ef",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops registry health check",
+  "task_key": "worker_ops_registry_health_check_20260526T002722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_health_check_20260526T002722_result.json",
+    "occurrence": 1,
+    "bytes": 1532,
+    "sha256": "25c97b83f34b08b8044dddcdc6839e6a9790a3d8719b2fcfdbef24e8fdd46d23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Registry 健康检查结果\n\n### 1. PID 状态\n\n| 实验 | 服务器 | PID | 状态 |\n|------|--------|-----|------|\n| train_pi05_a1_spatial_bowl_s0_l005 | westd-35807 | 3708 | **ALIVE** |\n| train_pi05_phase2_lambda0_s2 | westd-35807 | 254634 | **ALIVE** |\n| train_pi05_a1_obj_s0_l01_high | westd-35807 | 271266 | **ALIVE** |\n| train_pi05_a1_obj_s1_l01_high | westd-35807 | 274407 | **ALIVE** |\n| train_pi05_lora_baseline_s0 | westd-45947 | 3622 | **ALIVE** |\n| train_pi05_lora_baseline_s1 | westd-45947 | 3712 | **ALIVE** |\n\n### 2. GPU 占用\n\n**westd-35807** (4 GPU, 全部 100% 利用率):\n\n| GPU | 显存占用 | 对应 PID | 实验 |\n|-----|----------|----------|------|\n| 0 | 27045 MiB | 3717 (子进程 of 3708) | spatial_bowl_s0 |\n| 1 | 19055 MiB | 271266 | a1_obj_s0_l01_high |\n| 2 | 19055 MiB | 274407 | a1_obj_s1_l01_high |\n| 3 | 27045 MiB | 254639 (子进程 of 254634) | phase2_lambda0_s2 |\n\n**westd-45947** (2 GPU, 全部 100% 利用率):\n\n| GPU | 显存占用 | 对应 PID | 实验 |\n|-----|----------|----------|------|\n| 0 | 27089 MiB | 3634 (子进程 of 3622) | lora_baseline_s0 |\n| 1 | 27089 MiB | 3724 (子进程 of 3712) | lora_baseline_s1 |\n\n### 3. Stale 实验\n\n无。所有 RUNNING 实验的进程均存活。\n\n### 4. 非追踪进程\n\n无。所有 GPU 上的进程均可追溯到 registry 中的实验（GPU 上的 PID 是 registry 中 wrapper PID 的子进程）。\n\n**结论：6/6 实验健康运行，6 张 GPU 全部满载 (100% utilization)。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-health-check.md"
+}

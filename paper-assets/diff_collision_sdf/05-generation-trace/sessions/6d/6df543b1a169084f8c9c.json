@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6df543b1a169084f8c9c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code a3 gradient guided",
+  "task_key": "worker_code_a3_gradient_guided_20260519T224253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_a3_gradient_guided_20260519T224253_result.json",
+    "occurrence": 1,
+    "bytes": 2091,
+    "sha256": "b8e6863eb541a08863783ff4d92ef77e015fe7a7c3d7af1b58e42dfefe85ac06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass: imports, class structure, TrainHooks interface, and end-to-end gradient flow (CPU smoke test).\n\n## 产出报告\n\n### 文件\n| 文件 | 路径 |\n|------|------|\n| Gradient Refiner 模块 | `/root/colliforce-vla/colliforce/sdf_gradient_refiner.py` |\n| A3 训练脚本 | `/root/colliforce-vla/scripts/train_a3_hook.py` |\n\n### 架构设计\n\n**SDFGradientRefiner** (无参数，纯计算模块)：\n1. 从 suffix_out 均值池化 → EE 位置预测 → SDF 值\n2. SDF < margin 的样本触发梯度修正\n3. 计算 ∂SDF/∂suffix_out → 沿梯度方向偏移 suffix features (远离碰撞)\n4. 原始 v_t 和修正后的 v_t_refined 通过 action_out_proj 计算\n5. refine_loss = MSE(v_t, v_t_refined.detach()) — 训练模型直接输出安全动作\n\n**Loss 构成 (Phase 2)**：\n```\ntotal = action_loss + 0.1 × sdf_loss + 0.01 × ee_loss + 0.1 × refine_loss\n```\n\n### 与 A1 的差异\n\n| 维度 | A1 | A3 |\n|------|----|----|\n| SDF 角色 | 辅助任务，提升特征质量 | 梯度直接修正 action 预测 |\n| 额外组件 | 无 | SDFGradientRefiner |\n| Phase 2 Loss | action + sdf + ee | action + sdf + ee + **refine** |\n| 新增参数 | 0 | 0 (refiner 无参数) |\n| 新增超参 | 0 | alpha, margin, lambda_refine, grad_clip |\n\n### 预期显存增量 (相对 A1)\n\n- **Phase 1**: 零增量（refiner 不激活）\n- **Phase 2**: ~200-500MB 额外\n  - 每步额外前向：1次 SDF decoder (EE query) + 1次 action_out_proj (suffix_refined)\n  - autograd.grad 用 `create_graph=False` → 不构建二阶计算图\n  - 额外激活：suffix_refined [B, 50, 1024]、v_t [B, 50, 32]、v_t_refined [B, 50, 32]\n  - 仅 near-collision 样本触发（非全 batch），实际开销视 refine_ratio 而定\n\n### 使用方式\n```bash\n# Dry run (不占 GPU)\nCUDA_VISIBLE_DEVICES=3 python scripts/train_a3_hook.py --scene spatial_bowl --dry_run\n\n# 正式训练\nCUDA_VISIBLE_DEVICES=3 python scripts/train_a3_hook.py --scene spatial_bowl --seed 0 \\\n    --refine_alpha 0.1 --refine_margin 0.01 --lambda_refine 0.1\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-a3-gradient-guided.md"
+}

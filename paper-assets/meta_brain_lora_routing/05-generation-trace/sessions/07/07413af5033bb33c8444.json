@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07413af5033bb33c8444",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "eval no routing baseline",
+  "task_key": "worker_eval_no_routing_baseline_20260516T084736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_no_routing_baseline_20260516T084736_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "69c86091e1024ff1bd12947bf9561614fa9b484b549825bfab4cab35020ccb7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果汇总：**\n\n1. **submit_training_job**: 成功，PID 587800，tmux session `eval_no_routing`\n2. **验证（60s 后）**:\n   - GPU 0 显存：8522 MiB / 97887 MiB — 模型已加载\n   - 日志：正在评估 `camera_viewpoints` perturbation，无 traceback/error\n3. **Registry**: hypothesis 和 parent 已更新\n\n**结论：启动成功**，`eval_no_routing` 在 GPU 0 上正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-no-routing-baseline.md"
+}

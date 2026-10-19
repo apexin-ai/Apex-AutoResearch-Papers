@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "id": "cbb325fb761c6f8ff999",
+  "project": "diff_collision_sdf",
+  "kind": "conversation",
+  "title": "writing claim3 draft",
+  "task_key": "worker_writing_claim3_draft_20260527T080803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_claim3_draft_20260527T080803.jsonl",
+    "occurrence": 1,
+    "bytes": 14587,
+    "sha256": "a12aac50a74a1be92df984cc56a902332cc0ed3a9875b7ea8bbfe85f775ccc75"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T08:10:17.373159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T08:10:17.373512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T08:10:17.373687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "diff_collision_sdf",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T08:10:17.373963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md\\\", \\\"content\\\": \\\"# ColliForce-VLA Paper Framing\\\\n\\\\n> 维护者: Director | 最后更新: 2026-05-27 01:15 UTC | D035: Scenario B 双 seed 确认，Core Insight 修正 | Post-MVP research phase\\\\n\\\\n## Core Insight\\\\n\\\\nVLA safety 评估存在系统性缺陷：collision avoidance rate (CAR) 被 action collapse 和几何路径安全严重污染，导致 \\\\\\\"安全\\\\\\\" 指标虚高。我们通过大规模实证分析（90+ 实验, 6000+ episodes）揭示这一系统性缺陷，提出 EE displacement-filtered CAR 作为修正指标，并证明碰撞避免能力隐式来自 collision-free demonstration data，而非显式几何监督——SDF auxiliary loss 在全测试范围 λ∈[0.005, 0.1] 完全冗余，binding constraint 是 EE-only 的结构性不匹配。\\\\n\\\\n## Working Title\\\\n\\\\n\\\\\\\"Rethinking VLA Safety Evaluation: When 98% of Collision Avoidance is an Illusion\\\\\\\"\\\\n\\\\n> 聚焦评估方法论贡献（影响面广、scope-proof），SDF 作为验证工具而非主贡献\\\\n\\\\n## Target Venue\\\\n\\\\n**Primary**: CoRL 2026 Main / ICRA 2027 (用户明确要求主会)\\\\n**定位**: Diagnostic/evaluation methodology paper with positive method contribution\\\\n**Fit**: Robotics safety track — \\\\\\\"VLA safety metrics are fundamentally broken\\\\\\\" 对社区有直接影响\\\\n\\\\n## Core Claims (D028 重组: 4→3 claims)\\\\n\\\\n### Claim 1: CAR Metric Contaminated by Fake Safety (Primary — 证据强度 ★★★★★)\\\\n\\\\nStandard CAR metric is systematically contaminated by two distinct mechanisms: (a) action collapse producing frozen robots falsely counted as \\\\\\\"safe\\\\\\\", and (b) geometric path safety where capable robots happen to avoid obstacles without any avoidance behavior. \\\\\\\"Collision-free\\\\\\\" ≠ \\\\\\\"collision-avoiding.\\\\\\\"\\\\n\\\\n**Primary evidence — Action collapse (fake safety)**:\\\\n- 800 episodes A1 per-episode analysis: CAR=91.5%, but 99.6% of safe episodes show obstacle displacement < 0.1mm (~5nm median) — robot is frozen\\\\n- TSR=0% 独立确认 action collapse\\\\n- 术语修正 (D023): fake safety 判定以 TSR=0% + obstacle displacement < 0.1mm 双证据链为主\\\\n\\\\n**Supporting evidence — Capability-safety anti-correlation (原 Claim 2)**:\\\\n- Pi0.5 3-seed eval: TSR=74.7±1.5%, CAR=26.8±1.6% — 更强模型完成更多任务\n…[truncated 9749 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T08:10:17.374141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/claim3.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-27T08:10:17.374270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/claim3.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-27T08:10:17.374404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-27T08:10:17.374608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}\n2\t\n3\tFine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$28 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only, LoRA+SDF ($\\lambda = 0.005$), and LoRA+SDF ($\\lambda = 0.01$) on Pi0.5, all evaluated at the 30K-step checkpoint.\n4\t\n5\t\\begin{table}[t]\n6\t\\centering\n7\t\\caption{Avoidance source attribution on SafeLIBERO. SDF adds no measurable CAR beyond LoRA-only across $\\lambda \\in [0.005, 0.1]$ ($p > 0.1$). All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\n8\t\\label{tab:avoidance_source}\n9\t\\vspace{2pt}\n10\t\\small\n11\t\\begin{tabular}{lcccc}\n12\t\\toprule\n13\tMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n14\t\\midrule\n15\tPi0.5 baseline & 3 & 74.7\\,$\\pm$\\,1.5 & 26.8\\,$\\pm$\\,1.6 & 0.367 \\\\\n16\t\\midrule\n17\tLoRA-only (no SDF) & 2 & 51.5 & 54.5\\,$\\pm$\\,2.8 & 0.392 \\\\\n18\tLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.3 & 0.387 \\\\\n19\tLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.3\\,$\\pm$\\,1.6 & 0.389 \\\\\n20\tLoRA+SDF $\\lambda{=}0.1$\\textsuperscript{$\\dagger$} & 2 & 52.5 & 55.5 & -- \\\\\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\vspace{1pt}\n24\t{\\footnotesize \\textsuperscript{$\\dagger$}20K-step checkpoint, 2 seeds; 30K results pending.}\n25\t\\end{table}\n26\t\n27\tTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$28 percentage points (26.8\\% $\\to$ 54.5\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance rather than action collapse. Adding SDF supervision produces no measurable benefit: LoRA-only CAR (54.5\\%) is identical to $\\lambda = 0.005$ and statistically indistinguishable from $\\lambda = 0.01$ (56.3\\%, $p > 0.1$; null distribution details in Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lamb\n…[truncated 2745 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-27T08:10:17.374840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "old_string": "\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nIncreasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,55.5\\% (seeds: 55\\%, 56\\%; 20K-step checkpoint), within the null distribution (mean 54.5\\%, $\\sigma = 2.15$, $z = 0.47$). Step-wise evaluation shows CAR remains flat across training steps (dual-seed means: 55.5\\% at 16K, 55.5\\% at 20K, 58.5\\% at 22K), all within the null range (per-seed details in Appendix~\\ref{sec:appendix_stepwise}). EE-only SDF supervision is redundant with the demonstration signal across the full tested range $\\lambda \\in [0.005, 0.1]$ (Figure~\\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\\ref{sec:conclusion}): because even a 20$\\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude but the structural mismatch between end-effector monitoring and full-body collision surfaces. Per-task CAR ordering is identical across all conditions (chocolate\\_pudding $>$ milk $>$ orange\\_juice $>$ bbq\\_sauce), indicating that the avoidance pattern reflects demonstration distribution characteristics, not geometric supervision.",
+              "new_string": "\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nIncreasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,55.5\\% at the 20K checkpoint (2-seed mean; seeds: 55.0\\%, 56.0\\%), within the null distribution (mean 54.5\\%, $\\sigma = 2.15$, $z = 0.47$). The seed-0 stepwise curve spans six checkpoints from 16K to 28K: 55.5\\%, 55.0\\%, 60.5\\%, 52.5\\%, 53.5\\%, 54.5\\% (mean 55.3\\%), fluctuating around the LoRA-only baseline of 54.5\\% with no upward trend (per-seed details in Appendix~\\ref{sec:appendix_stepwise}). The 22K checkpoint reaches 60.5\\% ($z = 2.79$ against the curve mean), but three observations identify this as single-seed noise: (i)~seed-1 records only 56.5\\% at the same step; (ii)~the three subsequent checkpoints (24K, 26K, 28K) all revert to 52.5--54.5\\%; (iii)~the six-point mean of 55.3\\% falls within 0.4$\\sigma$ of the null. \\placeholder{$\\lambda{=}0.1$ 30K three-seed mean pending.}\n\nAcross the full tested range $\\lambda \\in [0.005, 0.1]$---a 20$\\times$ span---no condition exceeds the null: $\\lambda = 0.005$ yields 54.5\\%\\,$\\pm$\\,2.3 (3 seeds, 30K), $\\lambda = 0.01$ yields 56.3\\%\\,$\\pm$\\,1.6 ($p \\approx 0.12$, 3 seeds, 30K), $\\lambda = 0.1$ yields 55.5\\% (2 seeds, 20K). EE-only SDF supervision exhibits no dose-response relationship with CAR (Figure~\\ref{fig:lambda_car}). This disambiguates the two-level failure: because a 20$\\times$ increase in loss weight fails to produce additional avoidance, the binding constraint is the structural mismatch between end-effector monitoring and full-body collision surfaces, not training signal magnitude. Per-task CAR ordering remains identical across all conditions (chocolate\\_pudding $>$ milk $>$ orange\\_juice $>$ bbq\\_sauce), confirming that avoidance patterns reflect demonstration distribution characteristics rather than geometric supervision."
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-27T08:10:17.375049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-27T08:10:17.375195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "old_string": "{\\footnotesize \\textsuperscript{$\\dagger$}20K-step checkpoint, 2 seeds; 30K results pending.}",
+              "new_string": "{\\footnotesize \\textsuperscript{$\\dagger$}20K-step checkpoint, 2 seeds. Stepwise curve (16K--28K) available for seed-0; 30K three-seed mean pending.}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-27T08:10:17.375351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-27T08:10:17.375508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-27T08:10:17.375681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}\n2\t\n3\tFine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$28 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only, LoRA+SDF ($\\lambda = 0.005$), and LoRA+SDF ($\\lambda = 0.01$) on Pi0.5, all evaluated at the 30K-step checkpoint.\n4\t\n5\t\\begin{table}[t]\n6\t\\centering\n7\t\\caption{Avoidance source attribution on SafeLIBERO. SDF adds no measurable CAR beyond LoRA-only across $\\lambda \\in [0.005, 0.1]$ ($p > 0.1$). All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\n8\t\\label{tab:avoidance_source}\n9\t\\vspace{2pt}\n10\t\\small\n11\t\\begin{tabular}{lcccc}\n12\t\\toprule\n13\tMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n14\t\\midrule\n15\tPi0.5 baseline & 3 & 74.7\\,$\\pm$\\,1.5 & 26.8\\,$\\pm$\\,1.6 & 0.367 \\\\\n16\t\\midrule\n17\tLoRA-only (no SDF) & 2 & 51.5 & 54.5\\,$\\pm$\\,2.8 & 0.392 \\\\\n18\tLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.3 & 0.387 \\\\\n19\tLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.3\\,$\\pm$\\,1.6 & 0.389 \\\\\n20\tLoRA+SDF $\\lambda{=}0.1$\\textsuperscript{$\\dagger$} & 2 & 52.5 & 55.5 & -- \\\\\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\vspace{1pt}\n24\t{\\footnotesize \\textsuperscript{$\\dagger$}20K-step checkpoint, 2 seeds. Stepwise curve (16K--28K) available for seed-0; 30K three-seed mean pending.}\n25\t\\end{table}\n26\t\n27\tTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$28 percentage points (26.8\\% $\\to$ 54.5\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance rather than action collapse. Adding SDF supervision produces no measurable benefit: LoRA-only CAR (54.5\\%) is identical to $\\lambda = 0.005$ and statistically indistinguishable from $\\lambda = 0.01$ (56.3\\%, $p > 0.1$; null distribution details in Appen\n…[truncated 3453 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-27T08:10:17.375894+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`docs/paper/claim3.tex` 已更新：\n\n**表格脚注** (L24): 补充了 stepwise curve 可用范围和 30K pending 说明。\n\n**Dose-response 段落** (L34-37): 重写为两段结构：\n1. **λ=0.1 stepwise 分析** — seed-0 六点曲线 (16K-28K, mean 55.3%) + 22K outlier 三证据排除 (cross-seed 56.5%, 24K-28K 回落, curve mean within 0.4σ) + `\\placeholder` 标注 30K pending\n2. **全域总结** — λ∈[0.005, 0.1] 三个条件的 CAR 数值汇总，无 dose-response，binding constraint 归因于 EE-only 结构性不匹配\n\n注意：`\\placeholder` 宏需要在 preamble 中定义（如 `\\newcommand{\\placeholder}[1]{\\textcolor{red}{[#1]}}`），否则编译会报错。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_claim3_draft_20260527T080803"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/writing-claim3-draft.md"
+}

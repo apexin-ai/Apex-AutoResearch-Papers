@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d68475796e2bab8a3069",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops emergency status check 35807",
+  "task_key": "worker_ops_emergency_status_check_35807_20260523T135001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_emergency_status_check_35807_20260523T135001_result.json",
+    "occurrence": 1,
+    "bytes": 1534,
+    "sha256": "e9cbd815ec94edbf1b8b4aaa01d7fcd4cc66abda24abd44252e933d416317258"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-35807 状态\n\n### 训练进程\n| 实验 | PID | GPU | 存活 | 当前 step | 进度 | loss | 异常 |\n|------|-----|-----|------|----------|------|------|------|\n| s1_l005 | 349005 | cuda:0 | ✓ | 11710/30000 | 39% | 0.0122 | 无 |\n| s1_l01 | 349007 | cuda:1 | ✓ | 11705/30000 | 39% | 0.0200 | 无 |\n| s2_l005 | 349009 | cuda:2 | ✓ | 11686/30000 | 39% | 0.0153 | 无 |\n| s2_l01 | 349011 | cuda:3 | ✓ | 11680/30000 | 39% | 0.0126 | 无 |\n\n**s1_l005 (PID 349005) 正常运行**，进度甚至略领先其它 3 路。overview 只显示 3 路 running 应为监控侧误报。\n\n### Checkpoint\n| 实验 | 最新 ckpt | 时间 |\n|------|----------|------|\n| s1_l005 | step 10000 | May 23 19:38 |\n| s1_l01 | step 10000 | May 23 19:38 |\n| s2_l005 | step 10000 | May 23 19:39 |\n| s2_l01 | step 10000 | May 23 19:40 |\n\n### GPU\n| GPU | 型号 | 显存占用 | 温度 | 功耗 | 利用率 |\n|-----|------|---------|------|------|--------|\n| 0 | RTX PRO 6000 | 27036/97887 MiB | 69°C | 474/600W | 100% |\n| 1 | RTX PRO 6000 | 27036/97887 MiB | 62°C | 405/600W | 63% |\n| 2 | RTX PRO 6000 | 27036/97887 MiB | 68°C | 459/600W | 100% |\n| 3 | RTX PRO 6000 | 27036/97887 MiB | 68°C | 470/600W | 100% |\n\n### 磁盘\n| 挂载点 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| / | 30G | 21G | 9.3G | 70% |\n| /root/autodl-tmp | 350G | 126G | 225G | 36% |\n\n**结论：4 路训练全部正常，s1_l005 无异常。ETA 约 23-24 小时完成剩余 61%。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-emergency-status-check-35807.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b86a74bdba7ca43be01",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "analysis few shot full 3class",
+  "task_key": "worker_analysis_few-shot-full-3class_20260515T155258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_few-shot-full-3class_20260515T155258_result.json",
+    "occurrence": 1,
+    "bytes": 1980,
+    "sha256": "caaf44447c14898a3b2b16b1be2c9c7b2ba977ef1202e2bdd2079719c71a9375"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are in. Here's the full analysis:\n\n## 3-class Few-shot Results (Visual / Spatial / Physical)\n\n**Class distribution**: Visual=89, Spatial=32, Physical=30\n\n### K-step Sweep (paligemma_only, mean pooling)\n\n| K | macro-F1 | accuracy | Visual | Spatial | Physical |\n|---|----------|----------|--------|---------|----------|\n| 1 | 0.978 ± 0.018 | 0.980 | 0.983 | 1.000 | 0.951 |\n| 3 | 0.972 ± 0.025 | 0.974 | 0.977 | 1.000 | 0.941 |\n| 5 | 0.979 ± 0.017 | 0.980 | 0.983 | 1.000 | 0.954 |\n| 10 | 0.958 ± 0.034 | 0.960 | 0.965 | 0.969 | 0.941 |\n| all(44) | 0.959 ± 0.039 | 0.960 | 0.965 | 0.967 | 0.945 |\n\n### K=1 Per-layer Breakdown\n\n| Layer | F1 |\n|-------|-----|\n| paligemma_layer_4 | **0.993** (best) |\n| paligemma_layer_6 | 0.993 |\n| paligemma_layer_8 | 0.993 |\n| paligemma_layer_12 | 0.993 |\n| paligemma_layer_14 | 0.986 |\n| paligemma_layer_10 | 0.985 |\n| paligemma_layer_2 | 0.979 |\n| paligemma_layer_16 | 0.978 |\n| expert_layer_2 | 0.570 |\n| expert_layer_6 | 0.541 |\n| expert_layer_14 | 0.506 |\n| expert_layer_10 | 0.464 |\n\n### Pooling Strategy (K=1, paligemma_only)\n\n| Pooling | macro-F1 |\n|---------|----------|\n| **first** | **1.000 ± 0.000** |\n| **first_last** | **1.000 ± 0.000** |\n| mean | 0.978 ± 0.018 |\n| last | 0.979 ± 0.017 |\n\n### ROUTING VERDICT: **GO** — K=1 macro-F1 = 0.978 >> 70% threshold\n\nKey findings:\n- **3-class is near-perfectly separable** from just the first replan step's paligemma activations (K=1 F1=0.978). \"first\" token pooling achieves perfect 1.000 F1.\n- **Paligemma layers carry all the signal** (F1=0.979–0.993). Expert layers are near-chance (0.46–0.57), confirming the perturbation type is encoded in the vision backbone, not the action expert.\n- **Spatial is the easiest class** (perfect F1 across all K), Physical slightly harder (~0.95).\n- More steps don't help — K=1 is best or tied-best, meaning the signal is present from the very first replan point."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-few-shot-full-3class.md"
+}

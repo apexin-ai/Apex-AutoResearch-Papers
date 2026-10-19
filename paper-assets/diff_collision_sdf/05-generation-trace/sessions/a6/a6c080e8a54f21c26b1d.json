@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6c080e8a54f21c26b1d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops start s0 l005 r4 gpu3",
+  "task_key": "worker_ops_start_s0_l005_r4_gpu3_20260525T200748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_start_s0_l005_r4_gpu3_20260525T200748_result.json",
+    "occurrence": 1,
+    "bytes": 340,
+    "sha256": "6107dc17a207561f234f89876091f5171ab7cd6731a9eb8afb319203694e0e9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认启动成功。\n\n| 项目 | 值 |\n|------|-----|\n| tmux session | `eval_pi05_a1_30k_s0_l005_r4` |\n| GPU | 3 |\n| 主进程 PID | 151915 |\n| 显存占用 | 8986 MiB |\n| 日志 | `~/runs/diff_collision_sdf/eval_pi05_a1_30k_s0_l005_r4.log` |\n| 输出 | `/root/autodl-tmp/eval_results/eval_s0_l005_30k_r4.json` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-start-s0-l005-r4-gpu3.md"
+}

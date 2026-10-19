@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee7c309e0f2400024595",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check all evals 35807",
+  "task_key": "worker_ops_check_all_evals_35807_20260525T164438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_all_evals_35807_20260525T164438_result.json",
+    "occurrence": 1,
+    "bytes": 1948,
+    "sha256": "665980a666a40ebe74d91c6b1cc6f3392aad71994bfce48800cb5c752cc253ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总报告：\n\n## GPU 状态\n\n| GPU | 显存占用 | 利用率 | 任务 | 状态 |\n|-----|---------|--------|------|------|\n| cuda:0 | 27045 MiB | 100% | spatial_bowl 训练 (PID 168730) | **运行中** |\n| cuda:1 | 9014 MiB | 47% | s0_l005 eval (PID 478653) | **运行中** — Task 0, 30/50 eps |\n| cuda:2 | 9014 MiB | 39% | s0_l01 eval (PID 478930) | **运行中** — Task 0, 30/50 eps |\n| cuda:3 | 1 MiB | 0% | 空闲 | s2_l005_best eval **已崩溃** |\n\n## s2_l005_best eval 崩溃原因\n\nPID 483300 加载 checkpoint 时报 `RuntimeError: Missing key(s) in state_dict`。`best/` 目录下有两个模型文件：\n- `model.safetensors` (7.4GB) — 非 LoRA 格式的 merged weights\n- `model_lora.safetensors` (7.5GB) — LoRA 格式\n\neval 脚本用 `model_type=lora_baseline` 加载了 `model.safetensors`，key 不匹配。需要改为加载 `model_lora.safetensors`。\n\n## 已完成 eval 结果（之前跑完的）\n\n| 配置 | Task 0 (orange juice) | Task 1 (pudding) | Task 2 (milk) | Task 3 (bbq sauce) | **Overall** |\n|------|----------------------|------------------|---------------|--------------------|----|\n| **s2_l005_30k** | TSR=4% CAR=60% d=0.047 | TSR=32% CAR=46% d=0.098 | TSR=0% CAR=86% d=0.016 | TSR=0% CAR=20% d=0.073 | **TSR=9.0% CAR=53.0%** |\n| **s2_l01_30k** | TSR=0% CAR=62% d=0.027 | TSR=30% CAR=42% d=0.080 | TSR=0% CAR=88% d=0.010 | TSR=0% CAR=20% d=0.089 | **TSR=7.5% CAR=53.0%** |\n| **s1_l005_30k** | TSR=0% CAR=54% d=0.056 | TSR=16% CAR=48% d=0.098 | TSR=0% CAR=88% d=0.009 | TSR=0% CAR=16% d=0.101 | **TSR=4.0% CAR=51.5%** |\n\ns0_l005 和 s0_l01 的 eval 刚启动约 7 分钟，都在 Task 0（共 4 tasks × 50 eps = 200 eps），预计还需 ~3-4 小时完成。\n\n## spatial_bowl 训练进度\n\n- **Step**: 8172 / 30000 (**27.2%**)\n- **已运行**: ~6h43m\n- **ETA**: ~28h（按 4.65s/it）\n- **Loss**: action≈0.022, sdf≈0.033, ee≈0.011\n- **LR**: 2.18e-05"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-evals-35807.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eac0477b0bc69f5dd8a5",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "agent / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4885,
+    "sha256": "0da498cf2d938c6bdbdcc29e900552099d5cea599288b833e89a8852e60298a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-26T17:43:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-45947 只有 cuda:0, cuda:1**；**westd-35807 只有 cuda:0-3**——gpu_ids 白名单外的 GPU 绝对不碰\n- LoRA baseline 实验用 `WANDB_MODE=offline`，不要试图从 W&B cloud 拉指标，必须 SSH 读日志/checkpoint\n- Checkpoint 路径固定在 `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/` 下，不要写到根分区\n- `train_pi05_lora_baseline` 脚本用 `--resume` 自动找最新 checkpoint，不需要手动指定 step\n- Phase 2 实验的 resume checkpoint 来自 SDF 训练的 best checkpoint（非 LoRA baseline），不要搞混\n\n### 2. 🖥️ 基础设施快照\n- **westd-35807**: 工作目录 `/root/colliforce-vla`，conda base (`/root/miniconda3/bin/python`)\n  - cuda:0 → `train_pi05_a1_spatial_bowl_s0_l005` (PID 3708)\n  - cuda:1 → `train_pi05_a1_obj_s0_l01_high` (PID 271266, log: `/root/colliforce-vla/logs/train_lambda01_s0_gpu1.log`)\n  - cuda:2 → `train_pi05_a1_obj_s1_l01_high` (PID 274407, log: `/root/colliforce-vla/logs/train_lambda01_s1_gpu2.log`)\n  - cuda:3 → `train_pi05_phase2_lambda0_s2` (PID 254634)\n- **westd-45947**: 工作目录 `/root/colliforce-vla`，conda base\n  - cuda:0, cuda:1 → LoRA baseline s0/s1 刚完成，GPU 空闲\n  - LoRA baseline checkpoints: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed{0,1}/`\n  - 日志: `/tmp/train_pi05_lora_baseline_s{0,1}_resume2.log`\n- 数据集: `safelibero_object_pudding` (200 episodes), `safelibero_spatial_bowl`\n- W&B: SDF 训练用 online mode (project `colliforce-vla`)，LoRA baseline 用 offline mode\n- HF cache: `/root/autodl-tmp/.hf_cache`\n\n### 3. 📊 当前状态\n**刚发生**: 两个 LoRA baseline 训练 (s0, s1) 进程正常退出，cron 回调触发。我已派 Worker `worker_analyze_lora_baseline_s0_s1_20260526T013600` 去 SSH 读日志 + 更新 registry（turn_count=14，正在 update_registry）。**等 Worker 回调后需要向 Director 汇报 + 立即启动 LoRA baseline eval (plan_003)**。\n\n**RUNNING (4)**:\n- `train_pi05_a1_spatial_bowl_s0_l005` — 跨场景泛化 (westd-35807:cuda:0, ~24h remaining)\n- `train_pi05_a1_obj_s0_l01_high` — lambda=0.1 seed0 (westd-35807:cuda:1, ~22h)\n- `train_pi05_a1_obj_s1_l01_high` — lambda=0.1 seed1 (westd-35807:cuda:2, ~22h)\n- `train_pi05_phase2_lambda0_s2` — Phase 2 λ=0 ablation (westd-35807:cuda:3, ~20h)\n\n**ANALYZING (2)**: `train_pi05_lora_baseline_s0`, `train_pi05_lora_baseline_s1` — Worker 正在处理\n\n**等待中**: Worker 回调 → 汇报 Director + 启动 plan_003 eval\n\n### 4. 📋 待办（条件触发式）\n- **Worker 回调 (lora_baseline 分析完成)** → 向 Director 汇报 LoRA baseline 训练结果 + 立即在 westd-45947 启动 plan_003 LoRA baseline eval (2 seeds, 用刚训练好的 30K checkpoint)\n- **plan_003 eval 完成** → 对比 LoRA-only CAR vs SDF CAR，确定 SDF 归因强度；如果 LoRA-only CAR ≈ Pi0.5 base (~27%)，则 SDF 归因 confirmed → 更新 paper_framing claim 4 强度\n- **plan_014 (dfCAR threshold sensitivity)** → CPU-only，不依赖 GPU，可随时派 Worker 做（从已有 eval JSON 提取 EE displacement）。ROADMAP 标为 P0，应尽快启动\n- **spatial_bowl 完成 (plan_007)** → eval (plan_008) + 启动 spatial_bowl LoRA control (plan_015)\n- **lambda=0.1 完成 (plan_009)** → eval (plan_010)，构建 4-point lambda 曲线\n- **Phase 2 完成 (plan_005)** → eval (plan_006)，Phase 2 seed2 确认方向后启动 plan_012 (additional seed)\n\n### 5. 🎯 战略上下文\n- **核心论文 framing**: VLA safety 评估的系统性缺陷（CAR 被 action collapse + geometric path safety 污染）→ dfCAR 修正指标 → SDF auxiliary loss 产生真实避障但代价极端\n- **Dream D024 评分 borderline (4.5-6/10)**，已识别 5 个结构性弱点：引用太少(5→25+)、Phase 2 single seed、LoRA 2-seed 统计不够、threshold sensitivity 缺失、cross-model framing\n- **LoRA baseline 是关键归因实验**——如果 LoRA-only CAR 显著高于 Pi0.5 base，则 SDF 归因被削弱，Claim 4 需降级。预期 LoRA-only CAR ≈ base (~27%)，但必须用数据说话\n- **易错点**: (1) LoRA baseline 的 W&B 是 offline 的，别去 cloud 找 (2) 不要把 LoRA baseline eval 和 SDF eval 的 checkpoint 搞混——LoRA baseline checkpoint 在 `pi05_lora_baseline_object_pudding_seed*/` 下 (3) plan_013 (LoRA seed2) 依赖 plan_004 完成，现在可以启动了但优先级低于 plan_003 eval (4) westd-45947 的两张 GPU 现在空闲，是宝贵资源——LoRA eval 不需要长时间训练，eval 完后应立即安排下一个任务（plan_013 或 plan_015 的 LoRA control）\n- **决策链**: D018(16个阴性结果分析) → D019(叙事分层) → D020-D023(30K退化/displacement修复) → D024(Dream评估+plan扩展)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-2.md"
+}

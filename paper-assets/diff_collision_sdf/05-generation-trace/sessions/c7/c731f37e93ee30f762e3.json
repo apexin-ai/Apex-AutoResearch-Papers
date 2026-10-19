@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c731f37e93ee30f762e3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research literature expansion",
+  "task_key": "worker_research_literature_expansion_20260520T022639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_expansion_20260520T022639_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "7bcda2301bba761e9f1e3f546cac0a9adef82e899881752413f8c4eeb8e4e36c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成 literature_map.yaml 更新。新增 10 篇论文，总计 17 篇，覆盖 4 个方向：\n\n**P0 碰撞感知操纵（+4 篇）**\n- **SafeVLA** (NeurIPS 2025 Spotlight) — CMDP 约束 VLA 安全对齐，最直接竞品\n- **Lan-o3dp** (ICRA 2025) — 推理阶段 cost-guided denoising 碰撞回避\n- **CAPE** — context-aware diffusion policy 碰撞回避，cluttered 场景 +26-80%\n- **iKinQP-RL** — 运行时 QP 安全修正层\n\n**P1 SDF/距离场机器人应用（+3 篇）**\n- **iSDF** (RSS 2022) — 实时神经 SDF 机器人感知\n- **RAMP** (IROS 2023) — SDF 用于层次化反应式运动规划\n- **DiffCo** (T-RO) — 可微碰撞检测，梯度传播\n\n**P2 VLA 基座模型（+3 篇）**\n- **RT-2** — VLA 范式奠基，动作→文本 token\n- **OpenVLA** — 7B 开源 VLA baseline\n- **Octo** — 轻量级通用策略 baseline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-expansion.md"
+}

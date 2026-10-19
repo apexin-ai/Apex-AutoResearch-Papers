@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a59ca22548831f715fd4",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh fix method draft params",
+  "task_key": "worker_ssh_fix_method_draft_params_20260520T202853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_method_draft_params_20260520T202853_result.json",
+    "occurrence": 1,
+    "bytes": 2093,
+    "sha256": "286b653bc75148d78a78de073121ffcb09a1f1a1bb5f4e29cbe29cc752f907a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成，无残留旧值。汇报：\n\n---\n\n### 1. 参数量修正 ✅\n- SDF decoder: 658K → **395K**（实际 395,777）\n- EE extractor: ~1K → **~263K**（实际 263,171）\n- 总辅助模块: 658,948 ≈ 659K（和之前总数一致，只是分配比例修正了）\n\n### 2. action 维度 ✅\n- `action_dim = 32`（模型内部 token 维度，默认值，`pi0_config.py:25`）\n- 物理 action 维度 = 7（$\\Delta x, \\Delta y, \\Delta z, \\Delta q_1, \\Delta q_2, \\Delta q_3$, gripper），数据管道会 pad 到 32\n- 文稿中 `W_out ∈ R^{1024 × 32}` 正确，32 是 action token space 的维度\n\n### 3. LoRA 参数量 — **文稿有误**\n从 JAX 配置分析计算（`gemma.py` 中的实际 LoRA shape）：\n- PaliGemma (rank=16, 18 layers): **27.87M**\n- Action Expert (rank=32, 18 layers): **22.12M**  \n- **总计 ~50.0M**，不是文稿中的 ~26M\n\n~26M 大致等于 PaliGemma 单独的 LoRA 量，可能是漏算了 action expert 的 LoRA。\n\n### 4. 其他需修正的问题 — **重大发现**\n\n**PyTorch 实现中实际没有 LoRA 参数。** 这是结构性问题：\n\n- `gemma_pytorch.py` 使用 HuggingFace 标准 `PaliGemmaForConditionalGeneration` + `GemmaForCausalLM`，完全不读取 JAX 的 `lora_configs`\n- 基础权重 (`pi0_base/model.safetensors`) 777 个 key，0 个 lora key\n- `train_a1_sdf_aux.py` Phase 2 尝试 `if \"lora\" in name.lower(): p.requires_grad = True`，但找不到任何 lora 参数 → **backbone 在整个训练过程中始终冻结**\n- Baseline (`train_pytorch.py`) 则训练全部参数（无 LoRA、无冻结）\n\n**实际行为 vs 文稿描述：**\n\n| | 文稿描述 | 实际实现 |\n|---|---|---|\n| Baseline (A0) | LoRA ~26M 参数 fine-tune | 全参数 fine-tune (~3.5B) |\n| A1 Phase 1 | 冻结 backbone + LoRA，训 SDF+EE | 冻结全部 backbone，训 SDF+EE ✅ |\n| A1 Phase 2 | 解冻 LoRA，端到端训练 | LoRA 不存在，backbone 保持冻结 ❌ |\n\n建议：要么在 PyTorch 实现中加入 HuggingFace PEFT LoRA，要么修正文稿描述与实际实现一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-method-draft-params.md"
+}

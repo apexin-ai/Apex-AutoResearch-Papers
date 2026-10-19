@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "759caf7318b467e8d395",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix baseline script sync verify",
+  "task_key": "worker_ops_fix_baseline_script_sync_verify_20260523T034647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_baseline_script_sync_verify_20260523T034647_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "887039cd1d20963c6e3722f547c71a74c4881887c8b047490cf8c62c35d93f2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部完成。**\n\n- 脚本已同步到两台服务器，md5sum 一致：`3809d1a0a56748a86552c4d09aa572ac`\n- **westd-45947**: dry_run PASS — Phase 1 (step 0) backward 成功，Phase 2 (step 1) 解冻 33,472,512 LoRA params，2/2 steps 完成无 error\n- **westd-35807**: dry_run PASS — 结果与 45947 完全一致\n- 报告已写入 `artifacts/report_baseline_fix.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-baseline-script-sync-verify.md"
+}

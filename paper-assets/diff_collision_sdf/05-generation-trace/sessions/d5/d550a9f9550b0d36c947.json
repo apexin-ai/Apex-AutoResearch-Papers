@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d550a9f9550b0d36c947",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code openvla eval script",
+  "task_key": "worker_code_openvla_eval_script_20260525T061547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_openvla_eval_script_20260525T061547_result.json",
+    "occurrence": 1,
+    "bytes": 1927,
+    "sha256": "4217fed981ef7336d1ac2a80a186f830b8f3e1a4153d48376e77c692eebe4a9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本结构完整。下面总结产出。\n\n---\n\n## 产出\n\n**脚本**: `artifacts/eval_safelibero_openvla.py`\n\n### 与旧版本的关键修改\n\n| 项目 | 旧版 | 新版 |\n|------|------|------|\n| 图像预处理 | 无旋转 | 180° 旋转 (`[::-1, ::-1]`) |\n| unnorm_key | `bridge_orig` | `libero_object` |\n| 旋转格式 | Euler→axis-angle 转换 | 直接使用（LIBERO 数据已是 axis-angle） |\n| gripper 后处理 | 两步（normalize + invert） | `action[-1] = -np.sign(2*action[-1]-1)` |\n| warmup | 10 步 dummy | 50 zero-steps + 10 gripper-closed（与 pi0 eval 一致） |\n| 成功检测 | `done` flag | `env.check_success()` |\n| env 分辨率 | 256 | 224 |\n| frozen 定义 | total EE disp < 1mm | max EE disp from initial < 0.1mm |\n| CLI | `--suite` only | `--scene object_pudding` + `--suite` |\n| 新增指标 | — | smoothness, displacement 分布（all/safe episodes）, real_safe_rate |\n\n### 安装依赖\n\n```bash\npip install torch torchvision transformers timm tokenizers pillow scipy\npip install flash-attn --no-build-isolation  # 可选，加速推理\n# prismatic 通过 trust_remote_code=True 自动加载\n```\n\n### 启动命令\n\n```bash\n# 全部 4 tasks, 800 episodes\npython scripts/eval_safelibero_openvla.py \\\n    --model_path openvla/openvla-7b \\\n    --scene object_pudding \\\n    --gpu 1 \\\n    --n_episodes 200 \\\n    --output_dir /root/autodl-tmp/eval_results/openvla_base/\n\n# 单 task 测试\npython scripts/eval_safelibero_openvla.py \\\n    --model_path openvla/openvla-7b \\\n    --scene object_pudding \\\n    --task_id 0 \\\n    --n_episodes 2 \\\n    --max_steps 50 \\\n    --gpu 0\n```\n\n### 预估资源\n\n- **显存**: ~16GB (bf16), ~10GB (int8), ~7GB (int4)\n- **速度**: ~0.3s/step → ~90s/episode → ~5h per task (200 eps) → ~20h total (800 eps, 1 GPU)\n- 可用 4 GPU 并行（每 GPU 跑 1 task），缩短到 ~5h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-openvla-eval-script.md"
+}

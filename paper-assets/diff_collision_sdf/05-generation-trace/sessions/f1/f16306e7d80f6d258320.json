@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f16306e7d80f6d258320",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh a1 resume step6000",
+  "task_key": "worker_ssh_a1_resume_step6000_20260520T071817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a1_resume_step6000_20260520T071817_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "085f554a6ded25fbe4281dff83dc05f3a5d947f88153dc4569d10ce89988f6a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**A1 恢复训练已成功启动**\n- **PID**: 181881 | **tmux**: `a1_sdf_spatial_bowl_s0_v3`\n- **GPU**: cuda:3（13.4GB VRAM 占用中）\n- **Step**: 从 6001 正确接续，当前 ~6072，loss ~0.27\n- **Phase 2 已激活**: lr=2.33e-05，LoRA 已解冻\n- **save_interval**: 2000（原 500）\n- **Registry**: RUNNING | **Cron**: 已注册（120s 轮询）\n\n排障过程中修复了 3 个问题：\n1. tmux 未安装 → 已装\n2. wandb API key 缺失 → 设 `WANDB_MODE=disabled`（与其他实验一致）\n3. conda env 错误（`base` 缺依赖）→ 改用 `libero` 环境 + `source /etc/network_turbo` 启用网络代理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a1-resume-step6000.md"
+}

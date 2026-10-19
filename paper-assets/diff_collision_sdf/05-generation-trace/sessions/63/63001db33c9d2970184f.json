@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63001db33c9d2970184f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops post restart status check",
+  "task_key": "worker_ops_post_restart_status_check_20260522T020901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post_restart_status_check_20260522T020901_result.json",
+    "occurrence": 1,
+    "bytes": 1273,
+    "sha256": "b89489bfbb570031b5a83d82e29b9a93f4060daeaec39da339a3f1da20a0869e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### westd-45947\n\n| 实验 | 状态 | 进度 | 备注 |\n|------|------|------|------|\n| **Baseline eval** (PID 300495) | ✅ 存活 | 刚启动 ~6min，正在加载 task 0 (safelibero_object level II) | GPU 1 占用 8271 MiB |\n| **A3 spatial_bowl** (PID 191747) | ✅ 存活 | **13,756 / 30K (45.9%)** | 运行 ~9h，GPU 0 占用 23926 MiB，loss ~0.03，~4s/it |\n\n### westd-35807\n\n| 实验 | PID | 进度 | 运行时间 |\n|------|-----|------|----------|\n| **baseline_lora_spa_s0** | 281554 | **21,340 / 30K (71.1%)** | ~24h |\n| **baseline_lora_obj_s0** | 281629 | **21,297 / 30K (71.0%)** | ~24h |\n| **a1_lora_obj_s0** | 292258 | **19,699 / 30K (65.7%)** | ~21h |\n| **a1_lora_spa_s0** | 299910 | **17,807 / 30K (59.4%)** | ~19h |\n\n4 张 GPU 全部 100% 利用率，每张 ~23.9 GiB 显存。\n\n### 磁盘\n`/root/autodl-tmp`: 260G / 350G (**75%**)\n\n### 异常\n无异常。所有 6 个进程正常运行，loss 曲线正常下降。baseline eval 刚启动正在初始化环境。\n\n### ETA 估算（~4s/step）\n- baseline_lora_*: 剩余 ~8.7K steps → **~9.7h**\n- a1_lora_obj: 剩余 ~10.3K steps → **~11.5h**\n- a1_lora_spa: 剩余 ~12.2K steps → **~13.6h**\n- A3 spatial_bowl: 剩余 ~16.2K steps → **~18h**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-status-check.md"
+}

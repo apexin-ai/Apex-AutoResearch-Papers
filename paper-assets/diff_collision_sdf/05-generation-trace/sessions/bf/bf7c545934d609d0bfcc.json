@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf7c545934d609d0bfcc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper appendix skeleton",
+  "task_key": "worker_paper_appendix_skeleton_20260524T233623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_skeleton_20260524T233623_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "e2e3069452eab096e530e8f629512be0af1415cecea4ffb3bb9b8a0c93a775da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，0 errors，15 页。\n\n剩余 warnings 均为预期项：\n- `hu2022lora` 未在 `references.bib` 中定义（需后续补充 bib 条目）\n- `app:threshold_sensitivity` 是旧 label，被 body 中其他文件引用但新 appendix 改为 `sec:appendix_threshold`（需同步更新引用处或恢复旧 label）\n\nappendix.tex 已创建，main.tex 已更新，`\\input{appendix}` 放在 `\\bibliography{references}` 之后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-skeleton.md"
+}

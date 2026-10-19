@@ -1,0 +1,1771 @@
+{
+  "schema_version": "1.0",
+  "id": "4e0c8bf36a999ba42b79",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "paper writing related work reviewer fixes",
+  "task_key": "worker_paper_writing_related_work_reviewer_fixes_20260526T162005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_reviewer_fixes_20260526T162005.log",
+    "occurrence": 1,
+    "bytes": 131544,
+    "sha256": "dfde805001fcdfecc6660114a2eba28c974097d6b8a7fafffa3c88b85a629a9c"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+                "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "e4225123-1ecd-42b2-b14b-e722817c9f4a",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779828000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "7bf054f8-6d57-4ecc-80b3-659ee61d46f5",
+                "session_id": "8840976c-3587-44ab-9069-de48249a9b17"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the two files and then verify all 6 citations in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "3a495333-15ba-42d4-93e2-1c31b3e6b821",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012D2nJyFhnryZ48agiwbVRu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12004,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12004
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018oKmJkdyv9GNPvpUsr33EX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "7b21da32-7ebe-461b-8786-485fc905adc3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012D2nJyFhnryZ48agiwbVRu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12004,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12004
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T16:20:19.271Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018oKmJkdyv9GNPvpUsr33EX",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\\label{sec:related}\n2\t\n3\t\\paragraph{Vision-Language-Action Models for Manipulation.}\n4\tVision-language-action (VLA) models combine pretrained vision-language backbones with action prediction to produce generalist manipulation policies.\n5\tRT-2~\\cite{brohan2023rt2} first demonstrated that VLM pretraining transfers to robotic control through action tokenization.\n6\t$\\pi_0$~\\cite{black2024pi0} introduced flow matching~\\cite{lipman2023flow} for continuous action generation, and Diffusion Policy~\\cite{chi2023diffusionpolicy} showed that diffusion-based prediction handles multimodal demonstration distributions.\n7\tOpenVLA~\\cite{kim2024openvla} provided an open-source 7B-parameter alternative trained on 970k real demonstrations.\n8\tThese models share a common paradigm: pretrain a VLM, then fine-tune on demonstration data with parameter-efficient methods such as LoRA~\\cite{hu2022lora}.\n9\tRecent work has enhanced VLA spatial reasoning through auxiliary 3D supervision.\n10\tSpatial Forcing~\\cite{li2025spatialforcing} aligns intermediate visual embeddings with 3D geometry features; QDepth-VLA~\\cite{li2025qdepth} and DepthVLA~\\cite{depthvla2025} incorporate depth prediction as auxiliary tasks.\n11\tDespite this progress, safety considerations remain largely absent from VLA training and evaluation.\n12\tMost VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance behavior from incidental collision-free trajectories.\n13\tThis paper examines whether standard collision avoidance metrics reliably capture safety behavior in VLA policies.\n14\t\n15\t\\paragraph{Safety in Robot Learning.}\n16\tSafety-aware robot learning spans training-time and test-time approaches.\n17\tAt training time, constrained reinforcement learning methods optimize policies under explicit cost limits; SafeVLA~\\cite{zhang2025safevla} applies this framework to VLA policies through constrained MDP formulation, reducing safety violations by over 80\\%.\n18\tAt test time, several methods apply external safety filters to learned policies.\n19\tVLSA~\\cite{hu2025vlsa} attaches a control barrier function (CBF) layer to VLA outputs, overriding unsafe actions at inference.\n20\tCoFreeVLA~\\cite{cofreeevla2026} uses a short-horizon collision risk estimator to gate dangerous dual-arm actions.\n21\tiKinQP-RL~\\cite{spalter2024ikinqp} corrects policy outputs through inverse kinematics quadratic programming.\n22\tIn the diffusion policy setting, \\citet{li2024langguided} and CAPE~\\cite{yang2025cape} inject collision costs during the denoising process to steer trajectories away from obstacles.\n23\tA recent survey~\\cite{li2026vlasafety} categorizes these methods into runtime shields, constrained optimization, and representation-based approaches.\n24\tCommon to most is that safety is imposed through external mechanisms rather than learned within the policy's internal representations.\n25\tThe end-to-end nature of VLAs, which map pixels and language directly to actions, makes it difficult to inject geometric constraints into learned features.\n26\tThis work tests whether auxiliary SDF supervision during VLA training can produce intrinsic collision awareness.\n27\t\n28\t\\paragraph{Signed Distance Functions in Robotics.}\n29\tSigned distance functions (SDFs) encode the minimum distance from any query point to the nearest surface, with sign indicating free space or penetration.\n30\tDeepSDF~\\cite{park2019deepsdf} showed that neural networks can represent continuous SDFs of 3D shapes.\n31\tIn robotics, SDFs serve perception, planning, and control.\n32\tiSDF~\\cite{ortiz2022isdf} builds real-time neural distance fields from streaming depth images for scene understanding.\n33\tVoxPoser~\\cite{huang2023voxposer} composes 3D value maps, including obstacle avoidance fields, to guide manipulation through language.\n34\tFor motion planning, RAMP~\\cite{vasilopoulos2023ramp} uses implicit SDFs within reactive controllers, and DiffCo~\\cite{zhi2021diffco} provides fully differentiable collision detection for gradient-based trajectory optimization.\n35\tRecent work extends SDFs beyond task space: CSSDF-Net~\\cite{chen2026cssdfnet} estimates configuration-space distance fields for whole-body collision checking, and Neural NMPC~\\cite{jacquet2025neuralnmpc} encodes SDF constraints directly into model predictive control.\n36\tThese works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.\n37\tWe evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions.\n38\t\n39\t\\paragraph{Evaluation Metrics for Safe Manipulation.}\n40\tEvaluation of manipulation safety requires metrics beyond binary task success.\n41\tLIBERO~\\cite{liu2023libero} established a standardized benchmark for lifelong robot learning with four task suites.\n42\tSafeLIBERO, introduced by \\citet{hu2025vlsa}, extends LIBERO with obstacle-augmented environments and a collision avoidance rate (CAR) metric, defined as the fraction of episodes without any collision.\n43\tTask success rate (TSR) and CAR together aim to capture the safety-capability tradeoff.\n44\tHowever, CAR treats all collision-free episodes identically regardless of the robot's behavior: a frozen robot that never moves scores perfect CAR, and a capable robot whose trajectory happens to miss obstacles also registers high CAR.\n45\tNeither case reflects learned avoidance behavior.\n46\tThis failure mode echoes broader concerns about metric reliability.\n47\tGoodhart's law in RL~\\cite{karwowski2024goodhart} shows that optimizing a proxy metric can diverge from the true objective, and annotation artifacts~\\cite{gururangan2018annotation} demonstrate how superficial correlations inflate benchmark scores.\n48\tRecent work on statistically rigorous robot evaluation~\\cite{snyder2026beyond} further highlights the fragility of binary success metrics under limited sample sizes.\n49\tWe propose displacement-filtered CAR ($\\dfCAR$, \\S\\ref{sec:dfcar}), which excludes episodes where end-effector displacement falls below a motion threshold, to remove action collapse artifacts and isolate genuine avoidance behavior.\n50\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "6acd8995-2924-4927-81a5-771f63ef5fad",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Vision-Language-Action Models for Manipulation.}\nVision-language-action (VLA) models combine pretrained vision-language backbones with action prediction to produce generalist manipulation policies.\nRT-2~\\cite{brohan2023rt2} first demonstrated that VLM pretraining transfers to robotic control through action tokenization.\n$\\pi_0$~\\cite{black2024pi0} introduced flow matching~\\cite{lipman2023flow} for continuous action generation, and Diffusion Policy~\\cite{chi2023diffusionpolicy} showed that diffusion-based prediction handles multimodal demonstration distributions.\nOpenVLA~\\cite{kim2024openvla} provided an open-source 7B-parameter alternative trained on 970k real demonstrations.\nThese models share a common paradigm: pretrain a VLM, then fine-tune on demonstration data with parameter-efficient methods such as LoRA~\\cite{hu2022lora}.\nRecent work has enhanced VLA spatial reasoning through auxiliary 3D supervision.\nSpatial Forcing~\\cite{li2025spatialforcing} aligns intermediate visual embeddings with 3D geometry features; QDepth-VLA~\\cite{li2025qdepth} and DepthVLA~\\cite{depthvla2025} incorporate depth prediction as auxiliary tasks.\nDespite this progress, safety considerations remain largely absent from VLA training and evaluation.\nMost VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance behavior from incidental collision-free trajectories.\nThis paper examines whether standard collision avoidance metrics reliably capture safety behavior in VLA policies.\n\n\\paragraph{Safety in Robot Learning.}\nSafety-aware robot learning spans training-time and test-time approaches.\nAt training time, constrained reinforcement learning methods optimize policies under explicit cost limits; SafeVLA~\\cite{zhang2025safevla} applies this framework to VLA policies through constrained MDP formulation, reducing safety violations by over 80\\%.\nAt test time, several methods apply external safety filters to learned policies.\nVLSA~\\cite{hu2025vlsa} attaches a control barrier function (CBF) layer to VLA outputs, overriding unsafe actions at inference.\nCoFreeVLA~\\cite{cofreeevla2026} uses a short-horizon collision risk estimator to gate dangerous dual-arm actions.\niKinQP-RL~\\cite{spalter2024ikinqp} corrects policy outputs through inverse kinematics quadratic programming.\nIn the diffusion policy setting, \\citet{li2024langguided} and CAPE~\\cite{yang2025cape} inject collision costs during the denoising process to steer trajectories away from obstacles.\nA recent survey~\\cite{li2026vlasafety} categorizes these methods into runtime shields, constrained optimization, and representation-based approaches.\nCommon to most is that safety is imposed through external mechanisms rather than learned within the policy's internal representations.\nThe end-to-end nature of VLAs, which map pixels and language directly to actions, makes it difficult to inject geometric constraints into learned features.\nThis work tests whether auxiliary SDF supervision during VLA training can produce intrinsic collision awareness.\n\n\\paragraph{Signed Distance Functions in Robotics.}\nSigned distance functions (SDFs) encode the minimum distance from any query point to the nearest surface, with sign indicating free space or penetration.\nDeepSDF~\\cite{park2019deepsdf} showed that neural networks can represent continuous SDFs of 3D shapes.\nIn robotics, SDFs serve perception, planning, and control.\niSDF~\\cite{ortiz2022isdf} builds real-time neural distance fields from streaming depth images for scene understanding.\nVoxPoser~\\cite{huang2023voxposer} composes 3D value maps, including obstacle avoidance fields, to guide manipulation through language.\nFor motion planning, RAMP~\\cite{vasilopoulos2023ramp} uses implicit SDFs within reactive controllers, and DiffCo~\\cite{zhi2021diffco} provides fully differentiable collision detection for gradient-based trajectory optimization.\nRecent work extends SDFs beyond task space: CSSDF-Net~\\cite{chen2026cssdfnet} estimates configuration-space distance fields for whole-body collision checking, and Neural NMPC~\\cite{jacquet2025neuralnmpc} encodes SDF constraints directly into model predictive control.\nThese works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.\nWe evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}\nEvaluation of manipulation safety requires metrics beyond binary task success.\nLIBERO~\\cite{liu2023libero} established a standardized benchmark for lifelong robot learning with four task suites.\nSafeLIBERO, introduced by \\citet{hu2025vlsa}, extends LIBERO with obstacle-augmented environments and a collision avoidance rate (CAR) metric, defined as the fraction of episodes without any collision.\nTask success rate (TSR) and CAR together aim to capture the safety-capability tradeoff.\nHowever, CAR treats all collision-free episodes identically regardless of the robot's behavior: a frozen robot that never moves scores perfect CAR, and a capable robot whose trajectory happens to miss obstacles also registers high CAR.\nNeither case reflects learned avoidance behavior.\nThis failure mode echoes broader concerns about metric reliability.\nGoodhart's law in RL~\\cite{karwowski2024goodhart} shows that optimizing a proxy metric can diverge from the true objective, and annotation artifacts~\\cite{gururangan2018annotation} demonstrate how superficial correlations inflate benchmark scores.\nRecent work on statistically rigorous robot evaluation~\\cite{snyder2026beyond} further highlights the fragility of binary success metrics under limited sample sizes.\nWe propose displacement-filtered CAR ($\\dfCAR$, \\S\\ref{sec:dfcar}), which excludes episodes where end-effector displacement falls below a motion threshold, to remove action collapse artifacts and isolate genuine avoidance behavior.\n",
+                "numLines": 50,
+                "startLine": 1,
+                "totalLines": 50
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014A295SGE3ZVLgmcVt9jmmv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "527c1973-49f3-4bd0-9086-63e031b1fc95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012D2nJyFhnryZ48agiwbVRu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12004,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12004
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T16:20:19.622Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014A295SGE3ZVLgmcVt9jmmv",
+              "type": "tool_result",
+              "content": "1\t% The Safety Illusion — References\n2\t% Analysis paper on fake safety in VLA collision avoidance evaluation\n3\t% Generated: 2026-05-24\n4\t\n5\t% ===== VLA Foundation Models =====\n6\t\n7\t@article{black2024pi0,\n8\t  title={$\\pi_0$: A Vision-Language-Action Flow Model for General Robot Control},\n9\t  author={Black, Kevin and Brown, Noah and Driess, Danny and Esmail, Adnan and Equi, Michael and Finn, Chelsea and Fusai, Niccolo and Groom, Lachy and Hausman, Karol and Ichter, Brian and others},\n10\t  journal={arXiv preprint arXiv:2410.24164},\n11\t  year={2024}\n12\t}\n13\t\n14\t@inproceedings{kim2024openvla,\n15\t  title={{OpenVLA}: An Open-Source Vision-Language-Action Model},\n16\t  author={Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Nasiriany, Mohan and others},\n17\t  booktitle={Conference on Robot Learning (CoRL)},\n18\t  year={2024}\n19\t}\n20\t\n21\t@inproceedings{brohan2023rt2,\n22\t  title={{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n23\t  author={Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},\n24\t  booktitle={Conference on Robot Learning (CoRL)},\n25\t  year={2023}\n26\t}\n27\t\n28\t% ===== Collision-Aware VLA Methods =====\n29\t\n30\t@article{hu2025vlsa,\n31\t  title={{VLSA}: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer},\n32\t  author={Hu, Songqiao and Liu, Zeyi and Liu, Shuang and Cen, Jun and Meng, Zihan and He, Xiao},\n33\t  journal={arXiv preprint arXiv:2512.11891},\n34\t  year={2025}\n35\t}\n36\t\n37\t@inproceedings{zhang2025safevla,\n38\t  title={{SafeVLA}: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning},\n39\t  author={Zhang, Borong and Zhang, Yuhao and Ji, Jiaming and Lei, Yingshan and Dai, Josef and Chen, Yuanpei and Yang, Yaodong},\n40\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n41\t  year={2025}\n42\t}\n43\t\n44\t@article{cofreeevla2026,\n45\t  title={{CoFreeVLA}: Collision-Free Dual-Arm Manipulation via Vision-Language-Action Model and Risk Estimation},\n46\t  author={Zhai, Xuanran and Ou, Binkai and Yu, Qiaojun and Hao, Ce and Liu, Yaohua},\n47\t  journal={arXiv preprint arXiv:2601.21712},\n48\t  year={2026}\n49\t}\n50\t\n51\t@article{spalter2024ikinqp,\n52\t  title={Towards Online Safety Corrections for Robotic Manipulation Policies},\n53\t  author={Spalter, Ariana and Roberts, Mark and Hiatt, Laura M.},\n54\t  journal={arXiv preprint arXiv:2409.08233},\n55\t  year={2024}\n56\t}\n57\t\n58\t@inproceedings{li2024langguided,\n59\t  title={Language-Guided Object-Centric Diffusion Policy for Collision-Aware Robotic Manipulation},\n60\t  author={Li, Hang and Feng, Qian and Zheng, Zhi and Feng, Jianxiang and Chen, Zhaopeng and Knoll, Alois},\n61\t  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},\n62\t  year={2025}\n63\t}\n64\t\n65\t@article{yang2025cape,\n66\t  title={{CAPE}: Context-Aware Diffusion Policy Via Proximal Mode Expansion for Collision Avoidance},\n67\t  author={Yang, Rui Heng and Zhao, Xuan and Brunswic, Leo Maxime and Alban, Montgomery and Clemente, Mateo and Cao, Tongtong and Jin, Jun and Rasouli, Amir},\n68\t  journal={arXiv preprint arXiv:2511.22773},\n69\t  year={2025}\n70\t}\n71\t\n72\t% ===== SDF in Robotics =====\n73\t\n74\t@inproceedings{park2019deepsdf,\n75\t  title={{DeepSDF}: Learning Continuous Signed Distance Functions for Shape Representation},\n76\t  author={Park, Jeong Joon and Florence, Peter and Straub, Julian and Newcombe, Richard and Lovegrove, Steven},\n77\t  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n78\t  year={2019}\n79\t}\n80\t\n81\t@inproceedings{ortiz2022isdf,\n82\t  title={{iSDF}: Real-Time Neural Signed Distance Fields for Robot Perception},\n83\t  author={Ortiz, Joseph and Clegg, Alexander and Dong, Jing and Sucar, Edgar and Novotny, David and Zollh{\\\"o}fer, Michael and Mukadam, Mustafa},\n84\t  booktitle={Robotics: Science and Systems (RSS)},\n85\t  year={2022}\n86\t}\n87\t\n88\t@article{zhi2021diffco,\n89\t  title={{DiffCo}: Auto-Differentiable Proxy Collision Detection with Multi-class Labels for Safety-Aware Trajectory Optimization},\n90\t  author={Zhi, Yuheng and Das, Nikhil and Yip, Michael},\n91\t  journal={IEEE Transactions on Robotics},\n92\t  volume={38},\n93\t  number={5},\n94\t  pages={2668--2685},\n95\t  year={2022}\n96\t}\n97\t\n98\t@inproceedings{huang2023voxposer,\n99\t  title={{VoxPoser}: Composable {3D} Value Maps for Robotic Manipulation with Language Models},\n100\t  author={Huang, Wenlong and Wang, Chen and Zhang, Ruohan and Li, Yunzhu and Wu, Jiajun and Fei-Fei, Li},\n101\t  booktitle={Conference on Robot Learning (CoRL)},\n102\t  year={2023}\n103\t}\n104\t\n105\t% ===== Benchmarks and Training =====\n106\t\n107\t@inproceedings{liu2023libero,\n108\t  title={{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n109\t  author={Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n110\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n111\t  year={2023}\n112\t}\n113\t\n114\t@inproceedings{lipman2023flow,\n115\t  title={Flow Matching for Generative Modeling},\n116\t  author={Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt},\n117\t  booktitle={International Conference on Learning Representations (ICLR)},\n118\t  year={2023}\n119\t}\n120\t\n121\t% ===== Evaluation Reliability =====\n122\t\n123\t@inproceedings{gururangan2018annotation,\n124\t  title={Annotation Artifacts in Natural Language Inference Data},\n125\t  author={Gururangan, Suchin and Swayamdipta, Swabha and Levy, Omer and Schwartz, Roy and Bowman, Samuel and Smith, Noah A.},\n126\t  booktitle={Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n127\t  year={2018}\n128\t}\n129\t\n130\t@inproceedings{karwowski2024goodhart,\n131\t  title={Goodhart's Law in Reinforcement Learning},\n132\t  author={Karwowski, Jacek and Hayman, Oliver and Bai, Xingjian and Kiendlhofer, Klaus and Griffin, Charlie and Sherburn, Joar},\n133\t  booktitle={International Conference on Learning Representations (ICLR)},\n134\t  year={2024}\n135\t}\n136\t\n137\t% ===== Diffusion Policy =====\n138\t\n139\t@inproceedings{chi2023diffusionpolicy,\n140\t  title={Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},\n141\t  author={Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran},\n142\t  booktitle={Robotics: Science and Systems (RSS)},\n143\t  year={2023}\n144\t}\n145\t\n146\t% ===== SDF in Robotics (additional) =====\n147\t\n148\t@inproceedings{vasilopoulos2023ramp,\n149\t  title={{RAMP}: Hierarchical Reactive Motion Planning for Manipulation Tasks Using Implicit Signed Distance Functions},\n150\t  author={Vasilopoulos, Vasileios and Garg, Suveer and Piacenza, Pedro and Huh, Jinwook and Isler, Volkan},\n151\t  booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},\n152\t  year={2023}\n153\t}\n154\t\n155\t@article{chen2026cssdfnet,\n156\t  title={{CSSDF-Net}: Safe Motion Planning Based on Neural Implicit Representations of Configuration Space Distance Field},\n157\t  author={Chen, Haohua and Zhou, Yixuan and Zhou, Yifan and Wang, Hesheng},\n158\t  journal={arXiv preprint arXiv:2603.18669},\n159\t  year={2026}\n160\t}\n161\t\n162\t@article{jacquet2025neuralnmpc,\n163\t  title={Neural {NMPC} through Signed Distance Field Encoding for Collision Avoidance},\n164\t  author={Jacquet, Martin and Harms, Marvin and Alexis, Kostas},\n165\t  journal={The International Journal of Robotics Research},\n166\t  year={2025}\n167\t}\n168\t\n169\t@article{chen2025samp,\n170\t  title={{SAMP}: Spatial Anchor-based Motion Policy for Collision-Aware Robotic Manipulators},\n171\t  author={Chen, Kai and Bi, Zhihai and Zhao, Guoyang and Zheng, Chunxin and Li, Yulin and Zhao, Hang and Ma, Jun},\n172\t  journal={arXiv preprint arXiv:2509.11185},\n173\t  year={2025}\n174\t}\n175\t\n176\t@inproceedings{ruan2025profrobot,\n177\t  title={Prof. Robot: Differentiable Robot Rendering Without Static and Self-Collisions},\n178\t  author={Ruan, Quanyuan and Lei, Jiabao and Yuan, Wenhao and Zhang, Yanglin and Lu, Dekun and Liu, Guiliang and Jia, Kui},\n179\t  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n180\t  year={2025}\n181\t}\n182\t\n183\t% ===== 3D-Aware VLA Methods =====\n184\t\n185\t@article{depthvla2025,\n186\t  title={{DepthVLA}: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning},\n187\t  author={Yuan, Tianyuan and Liu, Yicheng and Lu, Chenhao and Chen, Zhuoguang and Jiang, Tao and Zhao, Hang},\n188\t  journal={arXiv preprint arXiv:2510.13375},\n189\t  year={2025}\n190\t}\n191\t\n192\t@article{li2025qdepth,\n193\t  title={{QDepth-VLA}: Quantized Depth Prediction as Auxiliary Supervision for Vision-Language-Action Models},\n194\t  author={Li, Yixuan and Chen, Yuhui and Zhou, Mingcai and Li, Haoran and Zhang, Zhengtao and Zhao, Dongbin},\n195\t  journal={arXiv preprint arXiv:2510.14836},\n196\t  year={2025}\n197\t}\n198\t\n199\t@article{li2025spatialforcing,\n200\t  title={Spatial Forcing: Implicit Spatial Representation Alignment for Vision-Language-Action Model},\n201\t  author={Li, Fuhao and Song, Wenxuan and Zhao, Han and Wang, Jingbo and Ding, Pengxiang and Wang, Donglin and Zeng, Long and Li, Haoang},\n202\t  journal={arXiv preprint arXiv:2510.12276},\n203\t  year={2025}\n204\t}\n205\t\n206\t@article{3dcavla2025,\n207\t  title={{3D CAVLA}: Leveraging Depth and {3D} Context to Generalize Vision Language Action Models for Unseen Tasks},\n208\t  author={Bhat, Vineet and Lan, Yu-Hsiang and Krishnamurthy, Prashanth and Karri, Ramesh and Khorrami, Farshad},\n209\t  journal={arXiv preprint arXiv:2505.05800},\n210\t  year={2025}\n211\t}\n212\t\n213\t@article{geoaware2025,\n214\t  title={{GeoAware-VLA}: Implicit Geometry Aware Vision-Language-Action Model},\n215\t  author={Abouzeid, Ali and Mansour, Malak and Sun, Qinbo and Sun, Zezhou and Song, Dezhen},\n216\t  journal={arXiv preprint arXiv:2509.14117},\n217\t  year={2025}\n218\t}\n219\t\n220\t@inproceedings{spatialvla2025,\n221\t  title={{SpatialVLA}: Exploring Spatial Representations for Visual-Language-Action Model},\n222\t  author={Qu, Delin and Song, Haoming and Chen, Qizhi and Yao, Yuanqi and Ye, Xinyi and Gu, Jiayuan and Wang, Zhigang and Ding, Yan and Zhao, Bin and Wang, Dong and Li, Xuelong},\n223\t  booktitle={Robotics: Science and Systems (RSS)},\n224\t  year={2025}\n225\t}\n226\t\n227\t@article{gstvla2026,\n228\t  title={{GST-VLA}: Structured Gaussian Spatial Tokens for {3D} Depth-Aware Vision-Language-Action Models},\n229\t  author={Sarowar, Md Selim and Tariq, Omer and Kim, Sungho},\n230\t  journal={arXiv preprint arXiv:2603.09079},\n231\t  year={2026}\n232\t}\n233\t\n234\t@article{stemvla2026,\n235\t  title={{StemVLA}: An Open-Source Vision-Language-Action Model with Future {3D} Spatial Geometry Knowledge and {4D} Historical Representation},\n236\t  author={Xiao, Jiasong and She, Yutao and Li, Kai and Sha, Yuyang and Cheng, Ziang and Tong, Ziang},\n237\t  journal={arXiv preprint arXiv:2602.23721},\n238\t  year={2026}\n239\t}\n240\t\n241\t@article{stvla2026,\n242\t  title={{ST-VLA}: Enabling {4D}-Aware Spatiotemporal Understanding for General Robot Manipulation},\n243\t  author={Wu, You and Chen, Zixuan and Ou, Cunxu and Wang, Wenxuan and Huang, Wenbo and Cao, Lin and Chen, Yangtao and Qiu, Weichao and Quan, Xingyue and Shi, Jieqi and Huo, Jing and Gao, Yang},\n244\t  journal={arXiv preprint arXiv:2603.13788},\n245\t  year={2026}\n246\t}\n247\t\n248\t@article{evo02025,\n249\t  title={{Evo-0}: Vision-Language-Action Model with Implicit Spatial Understanding},\n250\t  author={Lin, Tao and Li, Gen and Zhong, Yilei and Zou, Yanwen and Du, Yuxin and Liu, Jiting and Gu, Encheng and Zhao, Bo},\n251\t  journal={arXiv preprint arXiv:2507.00416},\n252\t  year={2025}\n253\t}\n254\t\n255\t@article{savla2026,\n256\t  title={{SA-VLA}: Spatially-Aware Flow-Matching for Vision-Language-Action Reinforcement Learning},\n257\t  author={Pan, Xu and Wan, Zhenglin and Yu, Xingrui and Zheng, Xianwei and Ke, Youkai and Sun, Ming and Wang, Rui and Wang, Ziwei and Tsang, Ivor},\n258\t  journal={arXiv preprint arXiv:2602.00743},\n259\t  year={2026}\n260\t}\n261\t\n262\t@article{augvla3d2026,\n263\t  title={{AugVLA-3D}: Depth-Driven Feature Augmentation for Vision-Language-Action Models},\n264\t  author={Rao, Zhifeng and Chen, Wenlong and Xie, Lei and Hua, Xia and Yin, Dongfu and Tian, Zhen and Yu, F. Richard},\n265\t  journal={arXiv preprint arXiv:2602.10698},\n266\t  year={2026}\n267\t}\n268\t\n269\t@article{evodepth2026,\n270\t  title={{Evo-Depth}: A Lightweight Depth-Enhanced Vision-Language-Action Model},\n271\t  author={Lin, Tao and Du, Yuxin and Liu, Jiting and Zhu, Nuobei and Li, Yunhe and Fu, Yuqian and Chen, Yinxinyu and Cai, Hongyi and Ye, Zewei and Cheng, Bing and others},\n272\t  journal={arXiv preprint arXiv:2605.14950},\n273\t  year={2026}\n274\t}\n275\t\n276\t% ===== Action Refinement =====\n277\t\n278\t@article{chen2026dfmvla,\n279\t  title={{DFM-VLA}: Iterative Action Refinement for Robot Manipulation via Discrete Flow Matching},\n280\t  author={Chen, Jiayi and Song, Wenxuan and Chen, Shuai and Wang, Jingbo and Li, Zhijun and Li, Haoang},\n281\t  journal={arXiv preprint arXiv:2603.26320},\n282\t  year={2026}\n283\t}\n284\t\n285\t% ===== Parameter-Efficient Fine-Tuning =====\n286\t\n287\t@inproceedings{hu2022lora,\n288\t  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n289\t  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},\n290\t  booktitle = {International Conference on Learning Representations (ICLR)},\n291\t  year      = {2022},\n292\t}\n293\t\n294\t% ===== VLA Safety Survey =====\n295\t\n296\t@article{li2026vlasafety,\n297\t  title={Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms},\n298\t  author={Li, Qi and Yin, Bo and Huang, Weiqi and Liu, Ruhao and Zou, Bojun and Yu, Runpeng and Ye, Jingwen and Yu, Weihao and Wang, Xinchao},\n299\t  journal={arXiv preprint arXiv:2604.23775},\n300\t  year={2026}\n301\t}\n302\t\n303\t% ===== Evaluation Methodology =====\n304\t\n305\t@article{snyder2026beyond,\n306\t  title={Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison},\n307\t  author={Snyder, David and Badithela, Apurva and Matni, Nikolai and Pappas, George and Majumdar, Anirudha and Itkina, Masha and Nishimura, Haruki},\n308\t  journal={arXiv preprint arXiv:2603.13616},\n309\t  year={2026}\n310\t}\n311\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "3b3db5c7-b77c-4e45-a3af-36f483989c56",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/references.bib",
+                "content": "% The Safety Illusion — References\n% Analysis paper on fake safety in VLA collision avoidance evaluation\n% Generated: 2026-05-24\n\n% ===== VLA Foundation Models =====\n\n@article{black2024pi0,\n  title={$\\pi_0$: A Vision-Language-Action Flow Model for General Robot Control},\n  author={Black, Kevin and Brown, Noah and Driess, Danny and Esmail, Adnan and Equi, Michael and Finn, Chelsea and Fusai, Niccolo and Groom, Lachy and Hausman, Karol and Ichter, Brian and others},\n  journal={arXiv preprint arXiv:2410.24164},\n  year={2024}\n}\n\n@inproceedings{kim2024openvla,\n  title={{OpenVLA}: An Open-Source Vision-Language-Action Model},\n  author={Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Nasiriany, Mohan and others},\n  booktitle={Conference on Robot Learning (CoRL)},\n  year={2024}\n}\n\n@inproceedings{brohan2023rt2,\n  title={{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n  author={Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},\n  booktitle={Conference on Robot Learning (CoRL)},\n  year={2023}\n}\n\n% ===== Collision-Aware VLA Methods =====\n\n@article{hu2025vlsa,\n  title={{VLSA}: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer},\n  author={Hu, Songqiao and Liu, Zeyi and Liu, Shuang and Cen, Jun and Meng, Zihan and He, Xiao},\n  journal={arXiv preprint arXiv:2512.11891},\n  year={2025}\n}\n\n@inproceedings{zhang2025safevla,\n  title={{SafeVLA}: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning},\n  author={Zhang, Borong and Zhang, Yuhao and Ji, Jiaming and Lei, Yingshan and Dai, Josef and Chen, Yuanpei and Yang, Yaodong},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2025}\n}\n\n@article{cofreeevla2026,\n  title={{CoFreeVLA}: Collision-Free Dual-Arm Manipulation via Vision-Language-Action Model and Risk Estimation},\n  author={Zhai, Xuanran and Ou, Binkai and Yu, Qiaojun and Hao, Ce and Liu, Yaohua},\n  journal={arXiv preprint arXiv:2601.21712},\n  year={2026}\n}\n\n@article{spalter2024ikinqp,\n  title={Towards Online Safety Corrections for Robotic Manipulation Policies},\n  author={Spalter, Ariana and Roberts, Mark and Hiatt, Laura M.},\n  journal={arXiv preprint arXiv:2409.08233},\n  year={2024}\n}\n\n@inproceedings{li2024langguided,\n  title={Language-Guided Object-Centric Diffusion Policy for Collision-Aware Robotic Manipulation},\n  author={Li, Hang and Feng, Qian and Zheng, Zhi and Feng, Jianxiang and Chen, Zhaopeng and Knoll, Alois},\n  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},\n  year={2025}\n}\n\n@article{yang2025cape,\n  title={{CAPE}: Context-Aware Diffusion Policy Via Proximal Mode Expansion for Collision Avoidance},\n  author={Yang, Rui Heng and Zhao, Xuan and Brunswic, Leo Maxime and Alban, Montgomery and Clemente, Mateo and Cao, Tongtong and Jin, Jun and Rasouli, Amir},\n  journal={arXiv preprint arXiv:2511.22773},\n  year={2025}\n}\n\n% ===== SDF in Robotics =====\n\n@inproceedings{park2019deepsdf,\n  title={{DeepSDF}: Learning Continuous Signed Distance Functions for Shape Representation},\n  author={Park, Jeong Joon and Florence, Peter and Straub, Julian and Newcombe, Richard and Lovegrove, Steven},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2019}\n}\n\n@inproceedings{ortiz2022isdf,\n  title={{iSDF}: Real-Time Neural Signed Distance Fields for Robot Perception},\n  author={Ortiz, Joseph and Clegg, Alexander and Dong, Jing and Sucar, Edgar and Novotny, David and Zollh{\\\"o}fer, Michael and Mukadam, Mustafa},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2022}\n}\n\n@article{zhi2021diffco,\n  title={{DiffCo}: Auto-Differentiable Proxy Collision Detection with Multi-class Labels for Safety-Aware Trajectory Optimization},\n  author={Zhi, Yuheng and Das, Nikhil and Yip, Michael},\n  journal={IEEE Transactions on Robotics},\n  volume={38},\n  number={5},\n  pages={2668--2685},\n  year={2022}\n}\n\n@inproceedings{huang2023voxposer,\n  title={{VoxPoser}: Composable {3D} Value Maps for Robotic Manipulation with Language Models},\n  author={Huang, Wenlong and Wang, Chen and Zhang, Ruohan and Li, Yunzhu and Wu, Jiajun and Fei-Fei, Li},\n  booktitle={Conference on Robot Learning (CoRL)},\n  year={2023}\n}\n\n% ===== Benchmarks and Training =====\n\n@inproceedings{liu2023libero,\n  title={{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n  author={Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n@inproceedings{lipman2023flow,\n  title={Flow Matching for Generative Modeling},\n  author={Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2023}\n}\n\n% ===== Evaluation Reliability =====\n\n@inproceedings{gururangan2018annotation,\n  title={Annotation Artifacts in Natural Language Inference Data},\n  author={Gururangan, Suchin and Swayamdipta, Swabha and Levy, Omer and Schwartz, Roy and Bowman, Samuel and Smith, Noah A.},\n  booktitle={Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n  year={2018}\n}\n\n@inproceedings{karwowski2024goodhart,\n  title={Goodhart's Law in Reinforcement Learning},\n  author={Karwowski, Jacek and Hayman, Oliver and Bai, Xingjian and Kiendlhofer, Klaus and Griffin, Charlie and Sherburn, Joar},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2024}\n}\n\n% ===== Diffusion Policy =====\n\n@inproceedings{chi2023diffusionpolicy,\n  title={Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},\n  author={Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2023}\n}\n\n% ===== SDF in Robotics (additional) =====\n\n@inproceedings{vasilopoulos2023ramp,\n  title={{RAMP}: Hierarchical Reactive Motion Planning for Manipulation Tasks Using Implicit Signed Distance Functions},\n  author={Vasilopoulos, Vasileios and Garg, Suveer and Piacenza, Pedro and Huh, Jinwook and Isler, Volkan},\n  booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},\n  year={2023}\n}\n\n@article{chen2026cssdfnet,\n  title={{CSSDF-Net}: Safe Motion Planning Based on Neural Implicit Representations of Configuration Space Distance Field},\n  author={Chen, Haohua and Zhou, Yixuan and Zhou, Yifan and Wang, Hesheng},\n  journal={arXiv preprint arXiv:2603.18669},\n  year={2026}\n}\n\n@article{jacquet2025neuralnmpc,\n  title={Neural {NMPC} through Signed Distance Field Encoding for Collision Avoidance},\n  author={Jacquet, Martin and Harms, Marvin and Alexis, Kostas},\n  journal={The International Journal of Robotics Research},\n  year={2025}\n}\n\n@article{chen2025samp,\n  title={{SAMP}: Spatial Anchor-based Motion Policy for Collision-Aware Robotic Manipulators},\n  author={Chen, Kai and Bi, Zhihai and Zhao, Guoyang and Zheng, Chunxin and Li, Yulin and Zhao, Hang and Ma, Jun},\n  journal={arXiv preprint arXiv:2509.11185},\n  year={2025}\n}\n\n@inproceedings{ruan2025profrobot,\n  title={Prof. Robot: Differentiable Robot Rendering Without Static and Self-Collisions},\n  author={Ruan, Quanyuan and Lei, Jiabao and Yuan, Wenhao and Zhang, Yanglin and Lu, Dekun and Liu, Guiliang and Jia, Kui},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2025}\n}\n\n% ===== 3D-Aware VLA Methods =====\n\n@article{depthvla2025,\n  title={{DepthVLA}: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning},\n  author={Yuan, Tianyuan and Liu, Yicheng and Lu, Chenhao and Chen, Zhuoguang and Jiang, Tao and Zhao, Hang},\n  journal={arXiv preprint arXiv:2510.13375},\n  year={2025}\n}\n\n@article{li2025qdepth,\n  title={{QDepth-VLA}: Quantized Depth Prediction as Auxiliary Supervision for Vision-Language-Action Models},\n  author={Li, Yixuan and Chen, Yuhui and Zhou, Mingcai and Li, Haoran and Zhang, Zhengtao and Zhao, Dongbin},\n  journal={arXiv preprint arXiv:2510.14836},\n  year={2025}\n}\n\n@article{li2025spatialforcing,\n  title={Spatial Forcing: Implicit Spatial Representation Alignment for Vision-Language-Action Model},\n  author={Li, Fuhao and Song, Wenxuan and Zhao, Han and Wang, Jingbo and Ding, Pengxiang and Wang, Donglin and Zeng, Long and Li, Haoang},\n  journal={arXiv preprint arXiv:2510.12276},\n  year={2025}\n}\n\n@article{3dcavla2025,\n  title={{3D CAVLA}: Leveraging Depth and {3D} Context to Generalize Vision Language Action Models for Unseen Tasks},\n  author={Bhat, Vineet and Lan, Yu-Hsiang and Krishnamurthy, Prashanth and Karri, Ramesh and Khorrami, Farshad},\n  journal={arXiv preprint arXiv:2505.05800},\n  year={2025}\n}\n\n@article{geoaware2025,\n  title={{GeoAware-VLA}: Implicit Geometry Aware Vision-Language-Action Model},\n  author={Abouzeid, Ali and Mansour, Malak and Sun, Qinbo and Sun, Zezhou and Song, Dezhen},\n  journal={arXiv preprint arXiv:2509.14117},\n  year={2025}\n}\n\n@inproceedings{spatialvla2025,\n  title={{SpatialVLA}: Exploring Spatial Representations for Visual-Language-Action Model},\n  author={Qu, Delin and Song, Haoming and Chen, Qizhi and Yao, Yuanqi and Ye, Xinyi and Gu, Jiayuan and Wang, Zhigang and Ding, Yan and Zhao, Bin and Wang, Dong and Li, Xuelong},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2025}\n}\n\n@article{gstvla2026,\n  title={{GST-VLA}: Structured Gaussian Spatial Tokens for {3D} Depth-Aware Vision-Language-Action Models},\n  author={Sarowar, Md Selim and Tariq, Omer and Kim, Sungho},\n  journal={arXiv preprint arXiv:2603.09079},\n  year={2026}\n}\n\n@article{stemvla2026,\n  title={{StemVLA}: An Open-Source Vision-Language-Action Model with Future {3D} Spatial Geometry Knowledge and {4D} Historical Representation},\n  author={Xiao, Jiasong and She, Yutao and Li, Kai and Sha, Yuyang and Cheng, Ziang and Tong, Ziang},\n  journal={arXiv preprint arXiv:2602.23721},\n  year={2026}\n}\n\n@article{stvla2026,\n  title={{ST-VLA}: Enabling {4D}-Aware Spatiotemporal Understanding for General Robot Manipulation},\n  author={Wu, You and Chen, Zixuan and Ou, Cunxu and Wang, Wenxuan and Huang, Wenbo and Cao, Lin and Chen, Yangtao and Qiu, Weichao and Quan, Xingyue and Shi, Jieqi and Huo, Jing and Gao, Yang},\n  journal={arXiv preprint arXiv:2603.13788},\n  year={2026}\n}\n\n@article{evo02025,\n  title={{Evo-0}: Vision-Language-Action Model with Implicit Spatial Understanding},\n  author={Lin, Tao and Li, Gen and Zhong, Yilei and Zou, Yanwen and Du, Yuxin and Liu, Jiting and Gu, Encheng and Zhao, Bo},\n  journal={arXiv preprint arXiv:2507.00416},\n  year={2025}\n}\n\n@article{savla2026,\n  title={{SA-VLA}: Spatially-Aware Flow-Matching for Vision-Language-Action Reinforcement Learning},\n  author={Pan, Xu and Wan, Zhenglin and Yu, Xingrui and Zheng, Xianwei and Ke, Youkai and Sun, Ming and Wang, Rui and Wang, Ziwei and Tsang, Ivor},\n  journal={arXiv preprint arXiv:2602.00743},\n  year={2026}\n}\n\n@article{augvla3d2026,\n  title={{AugVLA-3D}: Depth-Driven Feature Augmentation for Vision-Language-Action Models},\n  author={Rao, Zhifeng and Chen, Wenlong and Xie, Lei and Hua, Xia and Yin, Dongfu and Tian, Zhen and Yu, F. Richard},\n  journal={arXiv preprint arXiv:2602.10698},\n  year={2026}\n}\n\n@article{evodepth2026,\n  title={{Evo-Depth}: A Lightweight Depth-Enhanced Vision-Language-Action Model},\n  author={Lin, Tao and Du, Yuxin and Liu, Jiting and Zhu, Nuobei and Li, Yunhe and Fu, Yuqian and Chen, Yinxinyu and Cai, Hongyi and Ye, Zewei and Cheng, Bing and others},\n  journal={arXiv preprint arXiv:2605.14950},\n  year={2026}\n}\n\n% ===== Action Refinement =====\n\n@article{chen2026dfmvla,\n  title={{DFM-VLA}: Iterative Action Refinement for Robot Manipulation via Discrete Flow Matching},\n  author={Chen, Jiayi and Song, Wenxuan and Chen, Shuai and Wang, Jingbo and Li, Zhijun and Li, Haoang},\n  journal={arXiv preprint arXiv:2603.26320},\n  year={2026}\n}\n\n% ===== Parameter-Efficient Fine-Tuning =====\n\n@inproceedings{hu2022lora,\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2022},\n}\n\n% ===== VLA Safety Survey =====\n\n@article{li2026vlasafety,\n  title={Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms},\n  author={Li, Qi and Yin, Bo and Huang, Weiqi and Liu, Ruhao and Zou, Bojun and Yu, Runpeng and Ye, Jingwen and Yu, Weihao and Wang, Xinchao},\n  journal={arXiv preprint arXiv:2604.23775},\n  year={2026}\n}\n\n% ===== Evaluation Methodology =====\n\n@article{snyder2026beyond,\n  title={Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison},\n  author={Snyder, David and Badithela, Apurva and Matni, Nikolai and Pappas, George and Majumdar, Anirudha and Itkina, Masha and Nishimura, Haruki},\n  journal={arXiv preprint arXiv:2603.13616},\n  year={2026}\n}\n",
+                "numLines": 311,
+                "startLine": 1,
+                "totalLines": 311
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to verify 6 citations via WebSearch. Let me load the WebSearch tool first, then search for all 6 in parallel.",
+              "signature": "Er4CCmMIDhgCKkDj4h1lnEI91dpVNdhibOr8pIwEYlc9jofHUiQCGrP0xv3y56LQY8K56xPy/o1JmniecJ+X7fYhBV1YEnCKa4RxMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDGoOntN9VO5V/QTW5hoMc0GpTCYxWbHoulEtIjA1d0XKMwGF44D2NUAznLUpggMecRj39rjK4k2Ws6yS8uqO8Z8r0DYUf9QAumTwzW0qiAGXOWfzXvxosUbhohOyJOotA3aF91PyTSWOp6AM+ezihxgkjRrU6WEaE4GkWx49mbh1zXk3gwM4OQoPArqYoTvWWxDUI0h53oifBJDwStDJ2cUr7jE6B1HhBLdR4uiUpEHCmFxXo2CF34Rf/CX5/6ARomKhzWPZsmmYHxa0fpCUBFWKZm6BAERWGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "15889d0c-1159-4b5b-904b-4c378ea47141",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kr6minQKgDfctD23PMjTTG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7447,
+                "cache_read_input_tokens": 23845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7447
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me load the WebSearch tool and verify all 6 citations."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "0697f6ee-7656-4dfb-8b7f-f0c67f25d33b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kr6minQKgDfctD23PMjTTG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7447,
+                "cache_read_input_tokens": 23845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7447
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CMEHhMiGJKXSUDDwbXk4SM",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "1592bace-bc20-4d2c-b5e2-b068cb24ed76",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kr6minQKgDfctD23PMjTTG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7447,
+                "cache_read_input_tokens": 23845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7447
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T16:20:25.193Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01CMEHhMiGJKXSUDDwbXk4SM",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "87671f80-bdee-4161-9887-f2009a70b4bd",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me search for all 6 citations in parallel.",
+              "signature": "EvcBCmMIDhgCKkCyiXIqZOg6tr3FBv6W5qXbzTLJM30fSgqpgGaCoUme1yHocElgb866FFQZpRXl6Z9Fxoe6shIOVcjOzZcteUDqMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDJG8oynycISNZnr6JRoMTjdeK+zvG8kqt5S5IjBKBZ8FxqIYVFdbJiuDg+x0DSY3nb3ekncNaa1bDCBf+MWDWKdF1Jx4Gr/bYo5pIF4qQkTP/mKaosLtNCTAvbIdJpDo5GNIHLwAUc70twpABdiLL+wIvtMGlVmM7U166PDahePUJdUJuWMuyKsW2lI7GAFdlhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "283322a5-4214-4602-9167-c1d380fbf1fb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQnVUFsB1rFCApcuUS9L8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 666,
+                "cache_read_input_tokens": 31292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 666
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verifying all 6 citations in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "be9b14aa-5293-4aca-a1dc-a4dec793b5ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQnVUFsB1rFCApcuUS9L8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 666,
+                "cache_read_input_tokens": 31292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 666
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DugAvXSqd42BLnRk1sZUhU",
+              "name": "WebSearch",
+              "input": {
+                "query": "CoFreeVLA Collision-Free Dual-Arm Manipulation Vision-Language-Action arXiv 2601.21712"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "a0d2f357-4d6d-4a8c-928d-b39c2a5aea53",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQnVUFsB1rFCApcuUS9L8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 666,
+                "cache_read_input_tokens": 31292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 666
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KjoYXbSkFKqa93jv7EGEwc",
+              "name": "WebSearch",
+              "input": {
+                "query": "CSSDF-Net Safe Motion Planning Neural Implicit Configuration Space Distance Field arXiv 2603.18669"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "6afaefa6-25d8-4363-ad94-3b9f138b7bea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQnVUFsB1rFCApcuUS9L8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 666,
+                "cache_read_input_tokens": 31292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 666
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CtafZsHnHVMZb6mbw5hLv2",
+              "name": "WebSearch",
+              "input": {
+                "query": "Vision-Language-Action Safety Threats Challenges Evaluations Mechanisms arXiv 2604.23775"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "6f28286f-bb14-4932-ab48-60fe27868902",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQnVUFsB1rFCApcuUS9L8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 666,
+                "cache_read_input_tokens": 31292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 666
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Soh6ForJ1GJ49JNNiwrQx",
+              "name": "WebSearch",
+              "input": {
+                "query": "Beyond Binary Success Sample-Efficient Statistically Rigorous Robot Policy Comparison arXiv 2603.13616"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "af554d28-f3d6-40bf-9c31-83a9e74f8d8a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQnVUFsB1rFCApcuUS9L8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 666,
+                "cache_read_input_tokens": 31292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 666
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XGp3xu37nh5Dcd3BP3NkPX",
+              "name": "WebSearch",
+              "input": {
+                "query": "Jacquet \"Neural NMPC\" Signed Distance Field Encoding Collision Avoidance IJRR 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "ee4cd13b-06ef-483a-b6c6-298a2ced6e06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQnVUFsB1rFCApcuUS9L8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 666,
+                "cache_read_input_tokens": 31292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 666
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015FjMzSe3oENADSG4GBqd18",
+              "name": "WebSearch",
+              "input": {
+                "query": "DepthVLA Enhancing Vision-Language-Action Models Depth-Aware Spatial Reasoning arXiv 2510.13375"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "8d51d963-99f0-4dc7-9da2-5369738bb755",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQnVUFsB1rFCApcuUS9L8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 666,
+                "cache_read_input_tokens": 31292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 666
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T16:20:37.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KjoYXbSkFKqa93jv7EGEwc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CSSDF-Net Safe Motion Planning Neural Implicit Configuration Space Distance Field arXiv 2603.18669\"\n\nLinks: [{\"title\":\"[2603.18669] CSSDF-Net: Safe Motion Planning Based on Neural Implicit Representations of Configuration Space Distance Field\",\"url\":\"https://arxiv.org/abs/2603.18669\"},{\"title\":\"CSSDF-Net: Safe Motion Planning Based on Neural Implicit Representations of Configuration Space Distance Field\",\"url\":\"https://arxiv.org/pdf/2603.18669\"},{\"title\":\"CSSDF-Net: Safe Motion Planning Based on Neural Implicit Representations of Configuration Space Distance Field\",\"url\":\"https://arxiv.org/html/2603.18669\"},{\"title\":\"Fast and Safe Trajectory Optimization for Mobile Manipulators With Neural Configuration Space Distance Field\",\"url\":\"https://arxiv.org/html/2601.18548v1\"},{\"title\":\"Neural Configuration-Space Barriers for Manipulation Planning and   Control\",\"url\":\"https://arxiv.org/pdf/2503.04929\"}]\n\nI found the paper you're looking for. Here's what the search revealed:\n\nCSSDF-Net (Configuration-Space Signed Distance Field-Net) learns a continuous signed distance field directly in configuration space to provide joint-space distance and gradient queries under a unified geometric notion of safety.\n\nThe work addresses the challenge that high-dimensional manipulator operation in unstructured environments requires a differentiable, scene-agnostic distance query mechanism, as existing geometric collision checkers are typically non-differentiable, and workspace-based implicit distance models are hindered by the highly nonlinear workspace-configuration mapping.\n\nThe approach uses a spatial-hashing-based data generation pipeline that encodes robot-centric geometric priors and supports efficient retrieval of risk configurations for arbitrary obstacle point sets. The learned distance field is integrated into safety-constrained trajectory optimization and receding-horizon MPC, enabling both offline planning and online reactive avoidance.\n\nThe experiments demonstrate stable gradients, effective collision avoidance in static and dynamic scenes, and practical inference latency for large-scale pointcloud queries.\n\nThe paper was published on arXiv on March 19, 2026, with authors Haohua Chen, Yixuan Zhou, Yifan Zhou, and Hesheng Wang from Shanghai Jiao Tong University.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "7b18a037-faac-4ece-b1ad-4983282d2b5b",
+            "tool_use_result": {
+              "query": "CSSDF-Net Safe Motion Planning Neural Implicit Configuration Space Distance Field arXiv 2603.18669",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_013EWa5rxYr8gbE1YYh6ALXL",
+                  "content": [
+                    {
+                      "title": "[2603.18669] CSSDF-Net: Safe Motion Planning Based on Neural Implicit Representations of Configuration Space Distance Field",
+                      "url": "https://arxiv.org/abs/2603.18669"
+                    },
+                    {
+                      "title": "CSSDF-Net: Safe Motion Planning Based on Neural Implicit Representations of Configuration Space Distance Field",
+                      "url": "https://arxiv.org/pdf/2603.18669"
+                    },
+                    {
+                      "title": "CSSDF-Net: Safe Motion Planning Based on Neural Implicit Representations of Configuration Space Distance Field",
+                      "url": "https://arxiv.org/html/2603.18669"
+                    },
+                    {
+                      "title": "Fast and Safe Trajectory Optimization for Mobile Manipulators With Neural Configuration Space Distance Field",
+                      "url": "https://arxiv.org/html/2601.18548v1"
+                    },
+                    {
+                      "title": "Neural Configuration-Space Barriers for Manipulation Planning and   Control",
+                      "url": "https://arxiv.org/pdf/2503.04929"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for. Here's what the search revealed:\n\nCSSDF-Net (Configuration-Space Signed Distance Field-Net) learns a continuous signed distance field directly in configuration space to provide joint-space distance and gradient queries under a unified geometric notion of safety.\n\nThe work addresses the challenge that high-dimensional manipulator operation in unstructured environments requires a differentiable, scene-agnostic distance query mechanism, as existing geometric collision checkers are typically non-differentiable, and workspace-based implicit distance models are hindered by the highly nonlinear workspace-configuration mapping.\n\nThe approach uses a spatial-hashing-based data generation pipeline that encodes robot-centric geometric priors and supports efficient retrieval of risk configurations for arbitrary obstacle point sets. The learned distance field is integrated into safety-constrained trajectory optimization and receding-horizon MPC, enabling both offline planning and online reactive avoidance.\n\nThe experiments demonstrate stable gradients, effective collision avoidance in static and dynamic scenes, and practical inference latency for large-scale pointcloud queries.\n\nThe paper was published on arXiv on March 19, 2026, with authors Haohua Chen, Yixuan Zhou, Yifan Zhou, and Hesheng Wang from Shanghai Jiao Tong University."
+              ],
+              "durationSeconds": 6.929303848
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T16:20:38.202Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CtafZsHnHVMZb6mbw5hLv2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Vision-Language-Action Safety Threats Challenges Evaluations Mechanisms arXiv 2604.23775\"\n\nLinks: [{\"title\":\"[2604.23775] Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms\",\"url\":\"https://arxiv.org/abs/2604.23775\"},{\"title\":\"Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms\",\"url\":\"https://arxiv.org/html/2604.23775v1\"},{\"title\":\"Paper page - Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms\",\"url\":\"https://huggingface.co/papers/2604.23775\"},{\"title\":\"[Literature Review] Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms\",\"url\":\"https://www.themoonlight.io/en/review/vision-language-action-safety-threats-challenges-evaluations-and-mechanisms\"},{\"title\":\"GitHub - LiQiiiii/Awesome-VLA-Safety: [Arxiv] Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms · GitHub\",\"url\":\"https://github.com/LiQiiiii/Awesome-VLA-Safety\"},{\"title\":\"Manipulation Facing Threats: Evaluating Physical Vulnerabilities in End-to-End Vision Language Action Models\",\"url\":\"https://arxiv.org/pdf/2409.13174\"},{\"title\":\"ETA: Evaluating Then Aligning Safety of Vision Language Models at   Inference Time\",\"url\":\"https://arxiv.org/pdf/2410.06625\"},{\"title\":\"Seeing the Threat: Vulnerabilities in Vision-Language Models to Adversarial Attack\",\"url\":\"https://arxiv.org/pdf/2505.21967\"},{\"title\":\"Exploring the Adversarial Vulnerabilities of Vision-Language-Action Models in Robotics\",\"url\":\"https://arxiv.org/pdf/2411.13587\"}]\n\nI found the paper you're looking for! Here's what I found:\n\n## Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms (arXiv 2604.23775)\n\nVision-Language-Action (VLA) models are emerging as a unified substrate for embodied intelligence. This shift raises a new class of safety challenges, stemming from the embodied nature of VLA systems, including irreversible physical consequences, a multimodal attack surface across vision, language, and state, real-time latency constraints on defense, error propagation over long-horizon trajectories, and vulnerabilities in the data supply chain.\n\nThe survey provides a unified and up-to-date overview of safety in Vision-Language-Action models. The field is organized along two parallel timing axes: attack timing (training-time vs. inference-time) and defense timing (training-time vs. inference-time), linking each class of threat to the stage at which it can be mitigated.\n\n**Authors:** Qi Li, Bo Yin, Weiqi Huang, Ruhao Liu, Bojun Zou, Runpeng Yu, Jingwen Ye, Weihao Yu, and Xinchao Wang\n\n**Paper Location:** https://arxiv.org/abs/2604.23775\n\nThere's also an associated GitHub repository: https://github.com/LiQiiiii/Awesome-VLA-Safety with additional resources and citations.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "e10fdd49-7d2e-4dc3-8705-6fc6a556f4f9",
+            "tool_use_result": {
+              "query": "Vision-Language-Action Safety Threats Challenges Evaluations Mechanisms arXiv 2604.23775",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01TiEqYavLXwdebwJ3kpPCpc",
+                  "content": [
+                    {
+                      "title": "[2604.23775] Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms",
+                      "url": "https://arxiv.org/abs/2604.23775"
+                    },
+                    {
+                      "title": "Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms",
+                      "url": "https://arxiv.org/html/2604.23775v1"
+                    },
+                    {
+                      "title": "Paper page - Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms",
+                      "url": "https://huggingface.co/papers/2604.23775"
+                    },
+                    {
+                      "title": "[Literature Review] Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms",
+                      "url": "https://www.themoonlight.io/en/review/vision-language-action-safety-threats-challenges-evaluations-and-mechanisms"
+                    },
+                    {
+                      "title": "GitHub - LiQiiiii/Awesome-VLA-Safety: [Arxiv] Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms · GitHub",
+                      "url": "https://github.com/LiQiiiii/Awesome-VLA-Safety"
+                    },
+                    {
+                      "title": "Manipulation Facing Threats: Evaluating Physical Vulnerabilities in End-to-End Vision Language Action Models",
+                      "url": "https://arxiv.org/pdf/2409.13174"
+                    },
+                    {
+                      "title": "ETA: Evaluating Then Aligning Safety of Vision Language Models at   Inference Time",
+                      "url": "https://arxiv.org/pdf/2410.06625"
+                    },
+                    {
+                      "title": "Seeing the Threat: Vulnerabilities in Vision-Language Models to Adversarial Attack",
+                      "url": "https://arxiv.org/pdf/2505.21967"
+                    },
+                    {
+                      "title": "Exploring the Adversarial Vulnerabilities of Vision-Language-Action Models in Robotics",
+                      "url": "https://arxiv.org/pdf/2411.13587"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here's what I found:\n\n## Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms (arXiv 2604.23775)\n\nVision-Language-Action (VLA) models are emerging as a unified substrate for embodied intelligence. This shift raises a new class of safety challenges, stemming from the embodied nature of VLA systems, including irreversible physical consequences, a multimodal attack surface across vision, language, and state, real-time latency constraints on defense, error propagation over long-horizon trajectories, and vulnerabilities in the data supply chain.\n\nThe survey provides a unified and up-to-date overview of safety in Vision-Language-Action models. The field is organized along two parallel timing axes: attack timing (training-time vs. inference-time) and defense timing (training-time vs. inference-time), linking each class of threat to the stage at which it can be mitigated.\n\n**Authors:** Qi Li, Bo Yin, Weiqi Huang, Ruhao Liu, Bojun Zou, Runpeng Yu, Jingwen Ye, Weihao Yu, and Xinchao Wang\n\n**Paper Location:** https://arxiv.org/abs/2604.23775\n\nThere's also an associated GitHub repository: https://github.com/LiQiiiii/Awesome-VLA-Safety with additional resources and citations."
+              ],
+              "durationSeconds": 7.427897098000002
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T16:20:38.398Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Soh6ForJ1GJ49JNNiwrQx",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Beyond Binary Success Sample-Efficient Statistically Rigorous Robot Policy Comparison arXiv 2603.13616\"\n\nLinks: [{\"title\":\"[2603.13616] Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison\",\"url\":\"https://arxiv.org/abs/2603.13616\"},{\"title\":\"Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison\",\"url\":\"https://arxiv.org/pdf/2603.13616\"},{\"title\":\"Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison\",\"url\":\"https://arxiv.org/html/2603.13616\"},{\"title\":\"Is Your Imitation Learning Policy Better than Mine? Policy Comparison with Near-Optimal Stopping\",\"url\":\"https://arxiv.org/pdf/2503.10966\"},{\"title\":\"Reliable and Scalable Robot Policy Evaluation with Imperfect Simulators\",\"url\":\"https://arxiv.org/html/2510.04354v1\"}]\n\nI found the paper! Here's what the search revealed:\n\n\"Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison\" is authored by David Snyder, Apurva Badithela, Nikolai Matni, George Pappas, Anirudha Majumdar, Masha Itkina, and Haruki Nishimura, affiliated with the University of Pennsylvania, Toyota Research Institute, and Princeton University.\n\nThe paper addresses the challenge that generalist robot manipulation policies are limited in evaluation to a small number of hardware rollouts, necessitating both more informative performance measures and reliable evaluation procedures.\n\nThe work presents a novel framework for robot policy comparison that is sample-efficient and statistically rigorous, based on safe, anytime-valid inference (SAVI), with a sequential test procedure that allows evaluators to stop early when sufficient statistical evidence has accumulated.\n\nUnlike previous work focused on binary success, their unified approach addresses a wide range of metrics: from discrete partial credit task progress to continuous measures like episodic reward or trajectory smoothness.\n\nThe paper demonstrates up to 70% reduction in evaluation burden compared to standard batch methods and up to 50% reduction compared to state-of-the-art sequential procedures for binary outcomes.\n\nThe paper was published on arXiv on March 13, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "77a41299-6d67-4570-8f05-9dff76b44bd5",
+            "tool_use_result": {
+              "query": "Beyond Binary Success Sample-Efficient Statistically Rigorous Robot Policy Comparison arXiv 2603.13616",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01UoKggZBDBbdH38RgWgEqcT",
+                  "content": [
+                    {
+                      "title": "[2603.13616] Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison",
+                      "url": "https://arxiv.org/abs/2603.13616"
+                    },
+                    {
+                      "title": "Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison",
+                      "url": "https://arxiv.org/pdf/2603.13616"
+                    },
+                    {
+                      "title": "Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison",
+                      "url": "https://arxiv.org/html/2603.13616"
+                    },
+                    {
+                      "title": "Is Your Imitation Learning Policy Better than Mine? Policy Comparison with Near-Optimal Stopping",
+                      "url": "https://arxiv.org/pdf/2503.10966"
+                    },
+                    {
+                      "title": "Reliable and Scalable Robot Policy Evaluation with Imperfect Simulators",
+                      "url": "https://arxiv.org/html/2510.04354v1"
+                    }
+                  ]
+                },
+                "I found the paper! Here's what the search revealed:\n\n\"Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison\" is authored by David Snyder, Apurva Badithela, Nikolai Matni, George Pappas, Anirudha Majumdar, Masha Itkina, and Haruki Nishimura, affiliated with the University of Pennsylvania, Toyota Research Institute, and Princeton University.\n\nThe paper addresses the challenge that generalist robot manipulation policies are limited in evaluation to a small number of hardware rollouts, necessitating both more informative performance measures and reliable evaluation procedures.\n\nThe work presents a novel framework for robot policy comparison that is sample-efficient and statistically rigorous, based on safe, anytime-valid inference (SAVI), with a sequential test procedure that allows evaluators to stop early when sufficient statistical evidence has accumulated.\n\nUnlike previous work focused on binary success, their unified approach addresses a wide range of metrics: from discrete partial credit task progress to continuous measures like episodic reward or trajectory smoothness.\n\nThe paper demonstrates up to 70% reduction in evaluation burden compared to standard batch methods and up to 50% reduction compared to state-of-the-art sequential procedures for binary outcomes.\n\nThe paper was published on arXiv on March 13, 2026."
+              ],
+              "durationSeconds": 7.145177857999999
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T16:20:40.206Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015FjMzSe3oENADSG4GBqd18",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DepthVLA Enhancing Vision-Language-Action Models Depth-Aware Spatial Reasoning arXiv 2510.13375\"\n\nLinks: [{\"title\":\"[2510.13375] DepthVLA: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning\",\"url\":\"https://arxiv.org/abs/2510.13375\"},{\"title\":\"DepthVLA: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning\",\"url\":\"https://arxiv.org/html/2510.13375v1\"},{\"title\":\"DepthVLA: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning\",\"url\":\"https://www.researchgate.net/publication/396516974_DepthVLA_Enhancing_Vision-Language-Action_Models_with_Depth-Aware_Spatial_Reasoning\"},{\"title\":\"DepthVLA: Enhancing Vision-Language-Action Models with\",\"url\":\"https://arxiv.org/pdf/2510.13375\"},{\"title\":\"UniLACT: Depth-Aware RGB Latent Action Learning for Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2602.20231v1\"}]\n\nI found the paper you're looking for. Here's a summary of DepthVLA based on the search results:\n\n## DepthVLA: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning\n\nDepthVLA is a simple yet effective VLA architecture that explicitly incorporates spatial awareness through a pretrained depth prediction module. The motivation for this work is that Vision-Language-Action models show performance degradation on tasks requiring precise spatial reasoning due to limited spatial reasoning inherited from Vision-Language Models (VLMs).\n\n**Architecture:** DepthVLA adopts a mixture-of-transformers design that unifies a VLM, a depth transformer, and an action expert with fully shared attentions, forming an end-to-end model with enhanced spatial reasoning.\n\n**Performance:** Extensive evaluations in both real-world and simulated environments show that DepthVLA outperforms state-of-the-art approaches, achieving 78.5% vs. 65.0% progress in real-world tasks, 94.9% vs. 93.6% in the LIBERO simulator, and 74.8% vs. 58.8% in the Simpler simulator.\n\nThe paper was published on October 15, 2025, on arXiv. You can access the full paper at https://arxiv.org/abs/2510.13375.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "a8060e8f-9df7-40f7-b827-ddaccefde940",
+            "tool_use_result": {
+              "query": "DepthVLA Enhancing Vision-Language-Action Models Depth-Aware Spatial Reasoning arXiv 2510.13375",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01VjTbxBCQCe1P5yuMezEFNa",
+                  "content": [
+                    {
+                      "title": "[2510.13375] DepthVLA: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning",
+                      "url": "https://arxiv.org/abs/2510.13375"
+                    },
+                    {
+                      "title": "DepthVLA: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning",
+                      "url": "https://arxiv.org/html/2510.13375v1"
+                    },
+                    {
+                      "title": "DepthVLA: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning",
+                      "url": "https://www.researchgate.net/publication/396516974_DepthVLA_Enhancing_Vision-Language-Action_Models_with_Depth-Aware_Spatial_Reasoning"
+                    },
+                    {
+                      "title": "DepthVLA: Enhancing Vision-Language-Action Models with",
+                      "url": "https://arxiv.org/pdf/2510.13375"
+                    },
+                    {
+                      "title": "UniLACT: Depth-Aware RGB Latent Action Learning for Vision-Language-Action Models",
+                      "url": "https://arxiv.org/html/2602.20231v1"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for. Here's a summary of DepthVLA based on the search results:\n\n## DepthVLA: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning\n\nDepthVLA is a simple yet effective VLA architecture that explicitly incorporates spatial awareness through a pretrained depth prediction module. The motivation for this work is that Vision-Language-Action models show performance degradation on tasks requiring precise spatial reasoning due to limited spatial reasoning inherited from Vision-Language Models (VLMs).\n\n**Architecture:** DepthVLA adopts a mixture-of-transformers design that unifies a VLM, a depth transformer, and an action expert with fully shared attentions, forming an end-to-end model with enhanced spatial reasoning.\n\n**Performance:** Extensive evaluations in both real-world and simulated environments show that DepthVLA outperforms state-of-the-art approaches, achieving 78.5% vs. 65.0% progress in real-world tasks, 94.9% vs. 93.6% in the LIBERO simulator, and 74.8% vs. 58.8% in the Simpler simulator.\n\nThe paper was published on October 15, 2025, on arXiv. You can access the full paper at https://arxiv.org/abs/2510.13375."
+              ],
+              "durationSeconds": 7.165978669
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T16:20:40.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XGp3xu37nh5Dcd3BP3NkPX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Jacquet \"Neural NMPC\" Signed Distance Field Encoding Collision Avoidance IJRR 2025\"\n\nLinks: [{\"title\":\"GitHub - ntnu-arl/sdf-nmpc\",\"url\":\"https://github.com/ntnu-arl/sdf-nmpc\"},{\"title\":\"[2511.21312] Neural NMPC through Signed Distance Field Encoding for Collision Avoidance\",\"url\":\"https://arxiv.org/abs/2511.21312\"},{\"title\":\"Neural NMPC through Signed Distance Field Encoding for Collision Avoidance\",\"url\":\"https://arxiv.org/html/2511.21312v1\"},{\"title\":\"Neural NMPC through signed distance field encoding for collision avoidance - Martin Jacquet, Marvin Harms, Kostas Alexis, 2025\",\"url\":\"https://journals.sagepub.com/doi/10.1177/02783649251401223\"},{\"title\":\"Neural SDF-MPC (NMPC) - Unified Autonomy Stack\",\"url\":\"https://ntnu-arl.github.io/unified_autonomy_stack/nmpc/\"},{\"title\":\"Neural NMPC through Signed Distance Field Encoding for Collision Avoidance\",\"url\":\"https://arxiv.org/pdf/2511.21312\"},{\"title\":\"N-MPC for Deep Neural Network-Based Collision Avoidance exploiting Depth Images | Request PDF\",\"url\":\"https://www.researchgate.net/publication/382984469_N-MPC_for_Deep_Neural_Network-Based_Collision_Avoidance_exploiting_Depth_Images\"},{\"title\":\"(PDF) Neural NMPC through Signed Distance Field Encoding for Collision Avoidance\",\"url\":\"https://www.researchgate.net/publication/398025684_Neural_NMPC_through_Signed_Distance_Field_Encoding_for_Collision_Avoidance\"}]\n\nI found the paper you were searching for! Here's what I found:\n\n\"Neural NMPC through Signed Distance Field Encoding for Collision Avoidance\" is an article by Martin Jacquet, Marvin Harms, and Kostas Alexis published in The International Journal of Robotics Research in 2025.\n\n**Overview:**\nThe paper introduces a neural nonlinear model predictive control (NMPC) framework for mapless, collision-free navigation in unknown environments with Aerial Robots, using onboard range sensing.\n\n**Technical Approach:**\nDeep neural networks encode a single range image into a signed distance function (SDF), using a neural architecture consisting of two cascaded networks: a convolutional encoder that compresses the input image into a low-dimensional latent vector, and a Multi-Layer Perceptron that approximates the corresponding spatial SDF. This latter network parametrizes an explicit position constraint used for collision avoidance, which is embedded in a velocity-tracking NMPC that outputs thrust and attitude commands to the robot.\n\n**Real-World Validation:**\nReal-world experiments are conducted in forest environments, demonstrating that the neural NMPC effectively performs collision avoidance in cluttered settings against an adversarial reference velocity input and drifting position estimates.\n\nThe paper's official DOI is 10.1177/02783649251401223, and there's also an associated GitHub repository (ntnu-arl/sdf-nmpc) containing the framework implementation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "87feaf96-08e8-4518-88e5-e7b484de61cb",
+            "tool_use_result": {
+              "query": "Jacquet \"Neural NMPC\" Signed Distance Field Encoding Collision Avoidance IJRR 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01BdFUesMUDTcrrLFsNjEEu9",
+                  "content": [
+                    {
+                      "title": "GitHub - ntnu-arl/sdf-nmpc",
+                      "url": "https://github.com/ntnu-arl/sdf-nmpc"
+                    },
+                    {
+                      "title": "[2511.21312] Neural NMPC through Signed Distance Field Encoding for Collision Avoidance",
+                      "url": "https://arxiv.org/abs/2511.21312"
+                    },
+                    {
+                      "title": "Neural NMPC through Signed Distance Field Encoding for Collision Avoidance",
+                      "url": "https://arxiv.org/html/2511.21312v1"
+                    },
+                    {
+                      "title": "Neural NMPC through signed distance field encoding for collision avoidance - Martin Jacquet, Marvin Harms, Kostas Alexis, 2025",
+                      "url": "https://journals.sagepub.com/doi/10.1177/02783649251401223"
+                    },
+                    {
+                      "title": "Neural SDF-MPC (NMPC) - Unified Autonomy Stack",
+                      "url": "https://ntnu-arl.github.io/unified_autonomy_stack/nmpc/"
+                    },
+                    {
+                      "title": "Neural NMPC through Signed Distance Field Encoding for Collision Avoidance",
+                      "url": "https://arxiv.org/pdf/2511.21312"
+                    },
+                    {
+                      "title": "N-MPC for Deep Neural Network-Based Collision Avoidance exploiting Depth Images | Request PDF",
+                      "url": "https://www.researchgate.net/publication/382984469_N-MPC_for_Deep_Neural_Network-Based_Collision_Avoidance_exploiting_Depth_Images"
+                    },
+                    {
+                      "title": "(PDF) Neural NMPC through Signed Distance Field Encoding for Collision Avoidance",
+                      "url": "https://www.researchgate.net/publication/398025684_Neural_NMPC_through_Signed_Distance_Field_Encoding_for_Collision_Avoidance"
+                    }
+                  ]
+                },
+                "I found the paper you were searching for! Here's what I found:\n\n\"Neural NMPC through Signed Distance Field Encoding for Collision Avoidance\" is an article by Martin Jacquet, Marvin Harms, and Kostas Alexis published in The International Journal of Robotics Research in 2025.\n\n**Overview:**\nThe paper introduces a neural nonlinear model predictive control (NMPC) framework for mapless, collision-free navigation in unknown environments with Aerial Robots, using onboard range sensing.\n\n**Technical Approach:**\nDeep neural networks encode a single range image into a signed distance function (SDF), using a neural architecture consisting of two cascaded networks: a convolutional encoder that compresses the input image into a low-dimensional latent vector, and a Multi-Layer Perceptron that approximates the corresponding spatial SDF. This latter network parametrizes an explicit position constraint used for collision avoidance, which is embedded in a velocity-tracking NMPC that outputs thrust and attitude commands to the robot.\n\n**Real-World Validation:**\nReal-world experiments are conducted in forest environments, demonstrating that the neural NMPC effectively performs collision avoidance in cluttered settings against an adversarial reference velocity input and drifting position estimates.\n\nThe paper's official DOI is 10.1177/02783649251401223, and there's also an associated GitHub repository (ntnu-arl/sdf-nmpc) containing the framework implementation."
+              ],
+              "durationSeconds": 8.49760696
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-26T16:20:45.284Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DugAvXSqd42BLnRk1sZUhU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CoFreeVLA Collision-Free Dual-Arm Manipulation Vision-Language-Action arXiv 2601.21712\"\n\nLinks: [{\"title\":\"CoFreeVLA: Collision-Free Dual-Arm Manipulation via Vision-Language-Action Model and Risk Estimation\",\"url\":\"https://arxiv.org/pdf/2601.21712\"},{\"title\":\"CoFreeVLA: Collision-Free Dual-Arm Manipulation via Vision-Language-Action Model and Risk Estimation\",\"url\":\"https://arxiv.org/html/2601.21712v2\"},{\"title\":\"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance\",\"url\":\"https://arxiv.org/pdf/2412.20451\"},{\"title\":\"SkillVLA: Tackling Combinatorial Diversity in Dual-Arm Manipulation via Skill Reuse\",\"url\":\"https://arxiv.org/pdf/2603.03836\"},{\"title\":\"iAPF: an improved artificial potential field framework for asymmetric dual-arm manipulation with real-time inter-arm collision avoidance\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12602476/\"}]\n\nI found the paper you were looking for! Here's what I found:\n\n## CoFreeVLA: Collision-Free Dual-Arm Manipulation\n\nCoFreeVLA augments an end-to-end Vision-Language-Action (VLA) model with a short-horizon self-collision risk estimator that predicts collision likelihood from proprioception, visual embeddings, and planned actions.\n\n**Key Features:**\n- The estimator gates risky commands, recovers to safe states via risk-guided adjustments, and shapes policy refinement for safer rollouts\n- It is pre-trained with model-based collision labels and post-trained on real-robot rollouts for calibration\n\n**Results:**\nOn five bimanual tasks with the PiPER robot arm, CoFreeVLA reduces self-collisions and improves success rates versus RDT and APEX.\n\nThe paper is authored by Xuanran Zhai, Binkai Ou, Qiaojun Yu, Ce Hao, and Yaohua Liu, and addresses the critical challenge of self-collisions between dual-arm manipulators during instruction-following manipulation tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "b6133b95-092d-48da-8af2-5a2356aa8cac",
+            "tool_use_result": {
+              "query": "CoFreeVLA Collision-Free Dual-Arm Manipulation Vision-Language-Action arXiv 2601.21712",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01JhCKXeBKyqZ22ubGsqMeU1",
+                  "content": [
+                    {
+                      "title": "CoFreeVLA: Collision-Free Dual-Arm Manipulation via Vision-Language-Action Model and Risk Estimation",
+                      "url": "https://arxiv.org/pdf/2601.21712"
+                    },
+                    {
+                      "title": "CoFreeVLA: Collision-Free Dual-Arm Manipulation via Vision-Language-Action Model and Risk Estimation",
+                      "url": "https://arxiv.org/html/2601.21712v2"
+                    },
+                    {
+                      "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+                      "url": "https://arxiv.org/pdf/2412.20451"
+                    },
+                    {
+                      "title": "SkillVLA: Tackling Combinatorial Diversity in Dual-Arm Manipulation via Skill Reuse",
+                      "url": "https://arxiv.org/pdf/2603.03836"
+                    },
+                    {
+                      "title": "iAPF: an improved artificial potential field framework for asymmetric dual-arm manipulation with real-time inter-arm collision avoidance",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12602476/"
+                    }
+                  ]
+                },
+                "I found the paper you were looking for! Here's what I found:\n\n## CoFreeVLA: Collision-Free Dual-Arm Manipulation\n\nCoFreeVLA augments an end-to-end Vision-Language-Action (VLA) model with a short-horizon self-collision risk estimator that predicts collision likelihood from proprioception, visual embeddings, and planned actions.\n\n**Key Features:**\n- The estimator gates risky commands, recovers to safe states via risk-guided adjustments, and shapes policy refinement for safer rollouts\n- It is pre-trained with model-based collision labels and post-trained on real-robot rollouts for calibration\n\n**Results:**\nOn five bimanual tasks with the PiPER robot arm, CoFreeVLA reduces self-collisions and improves success rates versus RDT and APEX.\n\nThe paper is authored by Xuanran Zhai, Binkai Ou, Qiaojun Yu, Ce Hao, and Yaohua Liu, and addresses the critical challenge of self-collisions between dual-arm manipulators during instruction-following manipulation tasks."
+              ],
+              "durationSeconds": 16.440044582
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 6 citations verified as real. Let me also check the IJRR reference - the bib entry says no arXiv but the search found arXiv:2511.21312. The bib entry is fine though since it lists the IJRR journal. Let me now summarize the verification results and make the required edits.\n\nVerification results:\n1. cofreeevla2026 - ✅ exists, arXiv:2601.21712, authors match\n2. chen2026cssdfnet - ✅ exists, arXiv:2603.18669, authors match\n\n\n3. li2026vlasafety - ✅ exists, arXiv:2604.23775, authors match\n4. snyder2026beyond - ✅ exists, arXiv:2603.13616, authors match\n5. jacquet2025neuralnmpc - ✅ exists in IJRR 2025, authors match (also has arXiv:2511.21312)\n6. depthvla2025 - ✅ exists, arXiv:2510.13375, authors match\n\nAll citations check out. Now I need to proceed with the required edits.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "37ff35b4-a3bf-4706-806e-5e78399853f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D3dPUeLBJk3iuG447ArFCC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3528,
+                "cache_creation_input_tokens": 1141,
+                "cache_read_input_tokens": 31958,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1141
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 篇引用验证通过，均为真实论文。现在执行两个 Info 修改。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "ca01aeb5-a3ef-4596-aa00-d7b81af4ed2f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D3dPUeLBJk3iuG447ArFCC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3528,
+                "cache_creation_input_tokens": 1141,
+                "cache_read_input_tokens": 31958,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1141
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GuSCpBcB9k9kUnYcCBtViM",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+                "old_string": "These works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.\nWe evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions.",
+                "new_string": "These works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.\nCritically, these methods typically query the SDF at the end-effector or a small set of control points, leaving full-body collision awareness as an open problem.\nWe evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "bb02f622-ba27-4476-bfa5-214b77f6eaec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D3dPUeLBJk3iuG447ArFCC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3528,
+                "cache_creation_input_tokens": 1141,
+                "cache_read_input_tokens": 31958,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1141
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-26T16:21:03.601Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GuSCpBcB9k9kUnYcCBtViM",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "16cd2043-4ad5-4b84-a524-a7478ccdfd19",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+              "oldString": "These works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.\nWe evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions.",
+              "newString": "These works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.\nCritically, these methods typically query the SDF at the end-effector or a small set of control points, leaving full-body collision awareness as an open problem.\nWe evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions.",
+              "originalFile": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Vision-Language-Action Models for Manipulation.}\nVision-language-action (VLA) models combine pretrained vision-language backbones with action prediction to produce generalist manipulation policies.\nRT-2~\\cite{brohan2023rt2} first demonstrated that VLM pretraining transfers to robotic control through action tokenization.\n$\\pi_0$~\\cite{black2024pi0} introduced flow matching~\\cite{lipman2023flow} for continuous action generation, and Diffusion Policy~\\cite{chi2023diffusionpolicy} showed that diffusion-based prediction handles multimodal demonstration distributions.\nOpenVLA~\\cite{kim2024openvla} provided an open-source 7B-parameter alternative trained on 970k real demonstrations.\nThese models share a common paradigm: pretrain a VLM, then fine-tune on demonstration data with parameter-efficient methods such as LoRA~\\cite{hu2022lora}.\nRecent work has enhanced VLA spatial reasoning through auxiliary 3D supervision.\nSpatial Forcing~\\cite{li2025spatialforcing} aligns intermediate visual embeddings with 3D geometry features; QDepth-VLA~\\cite{li2025qdepth} and DepthVLA~\\cite{depthvla2025} incorporate depth prediction as auxiliary tasks.\nDespite this progress, safety considerations remain largely absent from VLA training and evaluation.\nMost VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance behavior from incidental collision-free trajectories.\nThis paper examines whether standard collision avoidance metrics reliably capture safety behavior in VLA policies.\n\n\\paragraph{Safety in Robot Learning.}\nSafety-aware robot learning spans training-time and test-time approaches.\nAt training time, constrained reinforcement learning methods optimize policies under explicit cost limits; SafeVLA~\\cite{zhang2025safevla} applies this framework to VLA policies through constrained MDP formulation, reducing safety violations by over 80\\%.\nAt test time, several methods apply external safety filters to learned policies.\nVLSA~\\cite{hu2025vlsa} attaches a control barrier function (CBF) layer to VLA outputs, overriding unsafe actions at inference.\nCoFreeVLA~\\cite{cofreeevla2026} uses a short-horizon collision risk estimator to gate dangerous dual-arm actions.\niKinQP-RL~\\cite{spalter2024ikinqp} corrects policy outputs through inverse kinematics quadratic programming.\nIn the diffusion policy setting, \\citet{li2024langguided} and CAPE~\\cite{yang2025cape} inject collision costs during the denoising process to steer trajectories away from obstacles.\nA recent survey~\\cite{li2026vlasafety} categorizes these methods into runtime shields, constrained optimization, and representation-based approaches.\nCommon to most is that safety is imposed through external mechanisms rather than learned within the policy's internal representations.\nThe end-to-end nature of VLAs, which map pixels and language directly to actions, makes it difficult to inject geometric constraints into learned features.\nThis work tests whether auxiliary SDF supervision during VLA training can produce intrinsic collision awareness.\n\n\\paragraph{Signed Distance Functions in Robotics.}\nSigned distance functions (SDFs) encode the minimum distance from any query point to the nearest surface, with sign indicating free space or penetration.\nDeepSDF~\\cite{park2019deepsdf} showed that neural networks can represent continuous SDFs of 3D shapes.\nIn robotics, SDFs serve perception, planning, and control.\niSDF~\\cite{ortiz2022isdf} builds real-time neural distance fields from streaming depth images for scene understanding.\nVoxPoser~\\cite{huang2023voxposer} composes 3D value maps, including obstacle avoidance fields, to guide manipulation through language.\nFor motion planning, RAMP~\\cite{vasilopoulos2023ramp} uses implicit SDFs within reactive controllers, and DiffCo~\\cite{zhi2021diffco} provides fully differentiable collision detection for gradient-based trajectory optimization.\nRecent work extends SDFs beyond task space: CSSDF-Net~\\cite{chen2026cssdfnet} estimates configuration-space distance fields for whole-body collision checking, and Neural NMPC~\\cite{jacquet2025neuralnmpc} encodes SDF constraints directly into model predictive control.\nThese works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.\nWe evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}\nEvaluation of manipulation safety requires metrics beyond binary task success.\nLIBERO~\\cite{liu2023libero} established a standardized benchmark for lifelong robot learning with four task suites.\nSafeLIBERO, introduced by \\citet{hu2025vlsa}, extends LIBERO with obstacle-augmented environments and a collision avoidance rate (CAR) metric, defined as the fraction of episodes without any collision.\nTask success rate (TSR) and CAR together aim to capture the safety-capability tradeoff.\nHowever, CAR treats all collision-free episodes identically regardless of the robot's behavior: a frozen robot that never moves scores perfect CAR, and a capable robot whose trajectory happens to miss obstacles also registers high CAR.\nNeither case reflects learned avoidance behavior.\nThis failure mode echoes broader concerns about metric reliability.\nGoodhart's law in RL~\\cite{karwowski2024goodhart} shows that optimizing a proxy metric can diverge from the true objective, and annotation artifacts~\\cite{gururangan2018annotation} demonstrate how superficial correlations inflate benchmark scores.\nRecent work on statistically rigorous robot evaluation~\\cite{snyder2026beyond} further highlights the fragility of binary success metrics under limited sample sizes.\nWe propose displacement-filtered CAR ($\\dfCAR$, \\S\\ref{sec:dfcar}), which excludes episodes where end-effector displacement falls below a motion threshold, to remove action collapse artifacts and isolate genuine avoidance behavior.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 34,
+                  "oldLines": 6,
+                  "newStart": 34,
+                  "newLines": 7,
+                  "lines": [
+                    " For motion planning, RAMP~\\cite{vasilopoulos2023ramp} uses implicit SDFs within reactive controllers, and DiffCo~\\cite{zhi2021diffco} provides fully differentiable collision detection for gradient-based trajectory optimization.",
+                    " Recent work extends SDFs beyond task space: CSSDF-Net~\\cite{chen2026cssdfnet} estimates configuration-space distance fields for whole-body collision checking, and Neural NMPC~\\cite{jacquet2025neuralnmpc} encodes SDF constraints directly into model predictive control.",
+                    " These works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.",
+                    "+Critically, these methods typically query the SDF at the end-effector or a small set of control points, leaving full-body collision awareness as an open problem.",
+                    " We evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions.",
+                    " ",
+                    " \\paragraph{Evaluation Metrics for Safe Manipulation.}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LD93gYGKDuYekTFSAhyYWG",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+                "old_string": "a frozen robot that never moves scores perfect CAR",
+                "new_string": "a frozen robot that never moves scores near-perfect CAR"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "ad7b5279-48df-4adb-b47d-b33023481057",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D3dPUeLBJk3iuG447ArFCC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3528,
+                "cache_creation_input_tokens": 1141,
+                "cache_read_input_tokens": 31958,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1141
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-26T16:21:04.687Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LD93gYGKDuYekTFSAhyYWG",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "9a017d35-f060-4b3a-84f0-d3d0d769d703",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+              "oldString": "a frozen robot that never moves scores perfect CAR",
+              "newString": "a frozen robot that never moves scores near-perfect CAR",
+              "originalFile": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Vision-Language-Action Models for Manipulation.}\nVision-language-action (VLA) models combine pretrained vision-language backbones with action prediction to produce generalist manipulation policies.\nRT-2~\\cite{brohan2023rt2} first demonstrated that VLM pretraining transfers to robotic control through action tokenization.\n$\\pi_0$~\\cite{black2024pi0} introduced flow matching~\\cite{lipman2023flow} for continuous action generation, and Diffusion Policy~\\cite{chi2023diffusionpolicy} showed that diffusion-based prediction handles multimodal demonstration distributions.\nOpenVLA~\\cite{kim2024openvla} provided an open-source 7B-parameter alternative trained on 970k real demonstrations.\nThese models share a common paradigm: pretrain a VLM, then fine-tune on demonstration data with parameter-efficient methods such as LoRA~\\cite{hu2022lora}.\nRecent work has enhanced VLA spatial reasoning through auxiliary 3D supervision.\nSpatial Forcing~\\cite{li2025spatialforcing} aligns intermediate visual embeddings with 3D geometry features; QDepth-VLA~\\cite{li2025qdepth} and DepthVLA~\\cite{depthvla2025} incorporate depth prediction as auxiliary tasks.\nDespite this progress, safety considerations remain largely absent from VLA training and evaluation.\nMost VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance behavior from incidental collision-free trajectories.\nThis paper examines whether standard collision avoidance metrics reliably capture safety behavior in VLA policies.\n\n\\paragraph{Safety in Robot Learning.}\nSafety-aware robot learning spans training-time and test-time approaches.\nAt training time, constrained reinforcement learning methods optimize policies under explicit cost limits; SafeVLA~\\cite{zhang2025safevla} applies this framework to VLA policies through constrained MDP formulation, reducing safety violations by over 80\\%.\nAt test time, several methods apply external safety filters to learned policies.\nVLSA~\\cite{hu2025vlsa} attaches a control barrier function (CBF) layer to VLA outputs, overriding unsafe actions at inference.\nCoFreeVLA~\\cite{cofreeevla2026} uses a short-horizon collision risk estimator to gate dangerous dual-arm actions.\niKinQP-RL~\\cite{spalter2024ikinqp} corrects policy outputs through inverse kinematics quadratic programming.\nIn the diffusion policy setting, \\citet{li2024langguided} and CAPE~\\cite{yang2025cape} inject collision costs during the denoising process to steer trajectories away from obstacles.\nA recent survey~\\cite{li2026vlasafety} categorizes these methods into runtime shields, constrained optimization, and representation-based approaches.\nCommon to most is that safety is imposed through external mechanisms rather than learned within the policy's internal representations.\nThe end-to-end nature of VLAs, which map pixels and language directly to actions, makes it difficult to inject geometric constraints into learned features.\nThis work tests whether auxiliary SDF supervision during VLA training can produce intrinsic collision awareness.\n\n\\paragraph{Signed Distance Functions in Robotics.}\nSigned distance functions (SDFs) encode the minimum distance from any query point to the nearest surface, with sign indicating free space or penetration.\nDeepSDF~\\cite{park2019deepsdf} showed that neural networks can represent continuous SDFs of 3D shapes.\nIn robotics, SDFs serve perception, planning, and control.\niSDF~\\cite{ortiz2022isdf} builds real-time neural distance fields from streaming depth images for scene understanding.\nVoxPoser~\\cite{huang2023voxposer} composes 3D value maps, including obstacle avoidance fields, to guide manipulation through language.\nFor motion planning, RAMP~\\cite{vasilopoulos2023ramp} uses implicit SDFs within reactive controllers, and DiffCo~\\cite{zhi2021diffco} provides fully differentiable collision detection for gradient-based trajectory optimization.\nRecent work extends SDFs beyond task space: CSSDF-Net~\\cite{chen2026cssdfnet} estimates configuration-space distance fields for whole-body collision checking, and Neural NMPC~\\cite{jacquet2025neuralnmpc} encodes SDF constraints directly into model predictive control.\nThese works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.\nCritically, these methods typically query the SDF at the end-effector or a small set of control points, leaving full-body collision awareness as an open problem.\nWe evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}\nEvaluation of manipulation safety requires metrics beyond binary task success.\nLIBERO~\\cite{liu2023libero} established a standardized benchmark for lifelong robot learning with four task suites.\nSafeLIBERO, introduced by \\citet{hu2025vlsa}, extends LIBERO with obstacle-augmented environments and a collision avoidance rate (CAR) metric, defined as the fraction of episodes without any collision.\nTask success rate (TSR) and CAR together aim to capture the safety-capability tradeoff.\nHowever, CAR treats all collision-free episodes identically regardless of the robot's behavior: a frozen robot that never moves scores perfect CAR, and a capable robot whose trajectory happens to miss obstacles also registers high CAR.\nNeither case reflects learned avoidance behavior.\nThis failure mode echoes broader concerns about metric reliability.\nGoodhart's law in RL~\\cite{karwowski2024goodhart} shows that optimizing a proxy metric can diverge from the true objective, and annotation artifacts~\\cite{gururangan2018annotation} demonstrate how superficial correlations inflate benchmark scores.\nRecent work on statistically rigorous robot evaluation~\\cite{snyder2026beyond} further highlights the fragility of binary success metrics under limited sample sizes.\nWe propose displacement-filtered CAR ($\\dfCAR$, \\S\\ref{sec:dfcar}), which excludes episodes where end-effector displacement falls below a motion threshold, to remove action collapse artifacts and isolate genuine avoidance behavior.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 42,
+                  "oldLines": 7,
+                  "newStart": 42,
+                  "newLines": 7,
+                  "lines": [
+                    " LIBERO~\\cite{liu2023libero} established a standardized benchmark for lifelong robot learning with four task suites.",
+                    " SafeLIBERO, introduced by \\citet{hu2025vlsa}, extends LIBERO with obstacle-augmented environments and a collision avoidance rate (CAR) metric, defined as the fraction of episodes without any collision.",
+                    " Task success rate (TSR) and CAR together aim to capture the safety-capability tradeoff.",
+                    "-However, CAR treats all collision-free episodes identically regardless of the robot's behavior: a frozen robot that never moves scores perfect CAR, and a capable robot whose trajectory happens to miss obstacles also registers high CAR.",
+                    "+However, CAR treats all collision-free episodes identically regardless of the robot's behavior: a frozen robot that never moves scores near-perfect CAR, and a capable robot whose trajectory happens to miss obstacles also registers high CAR.",
+                    " Neither case reflects learned avoidance behavior.",
+                    " This failure mode echoes broader concerns about metric reliability.",
+                    " Goodhart's law in RL~\\cite{karwowski2024goodhart} shows that optimizing a proxy metric can diverge from the true objective, and annotation artifacts~\\cite{gururangan2018annotation} demonstrate how superficial correlations inflate benchmark scores."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证修改结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "5a8564db-a644-440c-883f-6fdfaebdf7da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UXDvCxkcLotn5qKUiBvHhX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4520,
+                "cache_read_input_tokens": 33099,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4520
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QQknFXuSDNFkN9eB1CVAuN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "54cc6f3d-a340-4907-bbdd-f7c75903f9ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UXDvCxkcLotn5qKUiBvHhX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4520,
+                "cache_read_input_tokens": 33099,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4520
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-26T16:21:07.421Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QQknFXuSDNFkN9eB1CVAuN",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\\label{sec:related}\n2\t\n3\t\\paragraph{Vision-Language-Action Models for Manipulation.}\n4\tVision-language-action (VLA) models combine pretrained vision-language backbones with action prediction to produce generalist manipulation policies.\n5\tRT-2~\\cite{brohan2023rt2} first demonstrated that VLM pretraining transfers to robotic control through action tokenization.\n6\t$\\pi_0$~\\cite{black2024pi0} introduced flow matching~\\cite{lipman2023flow} for continuous action generation, and Diffusion Policy~\\cite{chi2023diffusionpolicy} showed that diffusion-based prediction handles multimodal demonstration distributions.\n7\tOpenVLA~\\cite{kim2024openvla} provided an open-source 7B-parameter alternative trained on 970k real demonstrations.\n8\tThese models share a common paradigm: pretrain a VLM, then fine-tune on demonstration data with parameter-efficient methods such as LoRA~\\cite{hu2022lora}.\n9\tRecent work has enhanced VLA spatial reasoning through auxiliary 3D supervision.\n10\tSpatial Forcing~\\cite{li2025spatialforcing} aligns intermediate visual embeddings with 3D geometry features; QDepth-VLA~\\cite{li2025qdepth} and DepthVLA~\\cite{depthvla2025} incorporate depth prediction as auxiliary tasks.\n11\tDespite this progress, safety considerations remain largely absent from VLA training and evaluation.\n12\tMost VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance behavior from incidental collision-free trajectories.\n13\tThis paper examines whether standard collision avoidance metrics reliably capture safety behavior in VLA policies.\n14\t\n15\t\\paragraph{Safety in Robot Learning.}\n16\tSafety-aware robot learning spans training-time and test-time approaches.\n17\tAt training time, constrained reinforcement learning methods optimize policies under explicit cost limits; SafeVLA~\\cite{zhang2025safevla} applies this framework to VLA policies through constrained MDP formulation, reducing safety violations by over 80\\%.\n18\tAt test time, several methods apply external safety filters to learned policies.\n19\tVLSA~\\cite{hu2025vlsa} attaches a control barrier function (CBF) layer to VLA outputs, overriding unsafe actions at inference.\n20\tCoFreeVLA~\\cite{cofreeevla2026} uses a short-horizon collision risk estimator to gate dangerous dual-arm actions.\n21\tiKinQP-RL~\\cite{spalter2024ikinqp} corrects policy outputs through inverse kinematics quadratic programming.\n22\tIn the diffusion policy setting, \\citet{li2024langguided} and CAPE~\\cite{yang2025cape} inject collision costs during the denoising process to steer trajectories away from obstacles.\n23\tA recent survey~\\cite{li2026vlasafety} categorizes these methods into runtime shields, constrained optimization, and representation-based approaches.\n24\tCommon to most is that safety is imposed through external mechanisms rather than learned within the policy's internal representations.\n25\tThe end-to-end nature of VLAs, which map pixels and language directly to actions, makes it difficult to inject geometric constraints into learned features.\n26\tThis work tests whether auxiliary SDF supervision during VLA training can produce intrinsic collision awareness.\n27\t\n28\t\\paragraph{Signed Distance Functions in Robotics.}\n29\tSigned distance functions (SDFs) encode the minimum distance from any query point to the nearest surface, with sign indicating free space or penetration.\n30\tDeepSDF~\\cite{park2019deepsdf} showed that neural networks can represent continuous SDFs of 3D shapes.\n31\tIn robotics, SDFs serve perception, planning, and control.\n32\tiSDF~\\cite{ortiz2022isdf} builds real-time neural distance fields from streaming depth images for scene understanding.\n33\tVoxPoser~\\cite{huang2023voxposer} composes 3D value maps, including obstacle avoidance fields, to guide manipulation through language.\n34\tFor motion planning, RAMP~\\cite{vasilopoulos2023ramp} uses implicit SDFs within reactive controllers, and DiffCo~\\cite{zhi2021diffco} provides fully differentiable collision detection for gradient-based trajectory optimization.\n35\tRecent work extends SDFs beyond task space: CSSDF-Net~\\cite{chen2026cssdfnet} estimates configuration-space distance fields for whole-body collision checking, and Neural NMPC~\\cite{jacquet2025neuralnmpc} encodes SDF constraints directly into model predictive control.\n36\tThese works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.\n37\tCritically, these methods typically query the SDF at the end-effector or a small set of control points, leaving full-body collision awareness as an open problem.\n38\tWe evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions.\n39\t\n40\t\\paragraph{Evaluation Metrics for Safe Manipulation.}\n41\tEvaluation of manipulation safety requires metrics beyond binary task success.\n42\tLIBERO~\\cite{liu2023libero} established a standardized benchmark for lifelong robot learning with four task suites.\n43\tSafeLIBERO, introduced by \\citet{hu2025vlsa}, extends LIBERO with obstacle-augmented environments and a collision avoidance rate (CAR) metric, defined as the fraction of episodes without any collision.\n44\tTask success rate (TSR) and CAR together aim to capture the safety-capability tradeoff.\n45\tHowever, CAR treats all collision-free episodes identically regardless of the robot's behavior: a frozen robot that never moves scores near-perfect CAR, and a capable robot whose trajectory happens to miss obstacles also registers high CAR.\n46\tNeither case reflects learned avoidance behavior.\n47\tThis failure mode echoes broader concerns about metric reliability.\n48\tGoodhart's law in RL~\\cite{karwowski2024goodhart} shows that optimizing a proxy metric can diverge from the true objective, and annotation artifacts~\\cite{gururangan2018annotation} demonstrate how superficial correlations inflate benchmark scores.\n49\tRecent work on statistically rigorous robot evaluation~\\cite{snyder2026beyond} further highlights the fragility of binary success metrics under limited sample sizes.\n50\tWe propose displacement-filtered CAR ($\\dfCAR$, \\S\\ref{sec:dfcar}), which excludes episodes where end-effector displacement falls below a motion threshold, to remove action collapse artifacts and isolate genuine avoidance behavior.\n51\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "5a92fe54-6c59-4075-b7c7-f009dd19cfd3",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Vision-Language-Action Models for Manipulation.}\nVision-language-action (VLA) models combine pretrained vision-language backbones with action prediction to produce generalist manipulation policies.\nRT-2~\\cite{brohan2023rt2} first demonstrated that VLM pretraining transfers to robotic control through action tokenization.\n$\\pi_0$~\\cite{black2024pi0} introduced flow matching~\\cite{lipman2023flow} for continuous action generation, and Diffusion Policy~\\cite{chi2023diffusionpolicy} showed that diffusion-based prediction handles multimodal demonstration distributions.\nOpenVLA~\\cite{kim2024openvla} provided an open-source 7B-parameter alternative trained on 970k real demonstrations.\nThese models share a common paradigm: pretrain a VLM, then fine-tune on demonstration data with parameter-efficient methods such as LoRA~\\cite{hu2022lora}.\nRecent work has enhanced VLA spatial reasoning through auxiliary 3D supervision.\nSpatial Forcing~\\cite{li2025spatialforcing} aligns intermediate visual embeddings with 3D geometry features; QDepth-VLA~\\cite{li2025qdepth} and DepthVLA~\\cite{depthvla2025} incorporate depth prediction as auxiliary tasks.\nDespite this progress, safety considerations remain largely absent from VLA training and evaluation.\nMost VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance behavior from incidental collision-free trajectories.\nThis paper examines whether standard collision avoidance metrics reliably capture safety behavior in VLA policies.\n\n\\paragraph{Safety in Robot Learning.}\nSafety-aware robot learning spans training-time and test-time approaches.\nAt training time, constrained reinforcement learning methods optimize policies under explicit cost limits; SafeVLA~\\cite{zhang2025safevla} applies this framework to VLA policies through constrained MDP formulation, reducing safety violations by over 80\\%.\nAt test time, several methods apply external safety filters to learned policies.\nVLSA~\\cite{hu2025vlsa} attaches a control barrier function (CBF) layer to VLA outputs, overriding unsafe actions at inference.\nCoFreeVLA~\\cite{cofreeevla2026} uses a short-horizon collision risk estimator to gate dangerous dual-arm actions.\niKinQP-RL~\\cite{spalter2024ikinqp} corrects policy outputs through inverse kinematics quadratic programming.\nIn the diffusion policy setting, \\citet{li2024langguided} and CAPE~\\cite{yang2025cape} inject collision costs during the denoising process to steer trajectories away from obstacles.\nA recent survey~\\cite{li2026vlasafety} categorizes these methods into runtime shields, constrained optimization, and representation-based approaches.\nCommon to most is that safety is imposed through external mechanisms rather than learned within the policy's internal representations.\nThe end-to-end nature of VLAs, which map pixels and language directly to actions, makes it difficult to inject geometric constraints into learned features.\nThis work tests whether auxiliary SDF supervision during VLA training can produce intrinsic collision awareness.\n\n\\paragraph{Signed Distance Functions in Robotics.}\nSigned distance functions (SDFs) encode the minimum distance from any query point to the nearest surface, with sign indicating free space or penetration.\nDeepSDF~\\cite{park2019deepsdf} showed that neural networks can represent continuous SDFs of 3D shapes.\nIn robotics, SDFs serve perception, planning, and control.\niSDF~\\cite{ortiz2022isdf} builds real-time neural distance fields from streaming depth images for scene understanding.\nVoxPoser~\\cite{huang2023voxposer} composes 3D value maps, including obstacle avoidance fields, to guide manipulation through language.\nFor motion planning, RAMP~\\cite{vasilopoulos2023ramp} uses implicit SDFs within reactive controllers, and DiffCo~\\cite{zhi2021diffco} provides fully differentiable collision detection for gradient-based trajectory optimization.\nRecent work extends SDFs beyond task space: CSSDF-Net~\\cite{chen2026cssdfnet} estimates configuration-space distance fields for whole-body collision checking, and Neural NMPC~\\cite{jacquet2025neuralnmpc} encodes SDF constraints directly into model predictive control.\nThese works demonstrate the effectiveness of distance fields in classical planning and control pipelines, but their integration into end-to-end learned policies remains unexplored.\nCritically, these methods typically query the SDF at the end-effector or a small set of control points, leaving full-body collision awareness as an open problem.\nWe evaluate SDF as an auxiliary training loss during VLA fine-tuning to determine whether geometric distance supervision can teach flow-matching policies to avoid collisions.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}\nEvaluation of manipulation safety requires metrics beyond binary task success.\nLIBERO~\\cite{liu2023libero} established a standardized benchmark for lifelong robot learning with four task suites.\nSafeLIBERO, introduced by \\citet{hu2025vlsa}, extends LIBERO with obstacle-augmented environments and a collision avoidance rate (CAR) metric, defined as the fraction of episodes without any collision.\nTask success rate (TSR) and CAR together aim to capture the safety-capability tradeoff.\nHowever, CAR treats all collision-free episodes identically regardless of the robot's behavior: a frozen robot that never moves scores near-perfect CAR, and a capable robot whose trajectory happens to miss obstacles also registers high CAR.\nNeither case reflects learned avoidance behavior.\nThis failure mode echoes broader concerns about metric reliability.\nGoodhart's law in RL~\\cite{karwowski2024goodhart} shows that optimizing a proxy metric can diverge from the true objective, and annotation artifacts~\\cite{gururangan2018annotation} demonstrate how superficial correlations inflate benchmark scores.\nRecent work on statistically rigorous robot evaluation~\\cite{snyder2026beyond} further highlights the fragility of binary success metrics under limited sample sizes.\nWe propose displacement-filtered CAR ($\\dfCAR$, \\S\\ref{sec:dfcar}), which excludes episodes where end-effector displacement falls below a motion threshold, to remove action collapse artifacts and isolate genuine avoidance behavior.\n",
+                "numLines": 51,
+                "startLine": 1,
+                "totalLines": 51
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### 引用验证\n\n| bib key | 验证结果 | 处理 |\n|---------|---------|------|\n| cofreeevla2026 | ✅ 存在，arXiv:2601.21712，标题/作者/年份匹配 | 保留 |\n| chen2026cssdfnet | ✅ 存在，arXiv:2603.18669，标题/作者/年份匹配 | 保留 |\n| li2026vlasafety | ✅ 存在，arXiv:2604.23775，标题/作者/年份匹配 | 保留 |\n| snyder2026beyond | ✅ 存在，arXiv:2603.13616，标题/作者/年份匹配 | 保留 |\n| jacquet2025neuralnmpc | ✅ 存在，IJRR 2025 (DOI: 10.1177/02783649251401223)，标题/作者匹配 | 保留 |\n| depthvla2025 | ✅ 存在，arXiv:2510.13375，标题/作者/年份匹配 | 保留 |\n\n### 修改确认\n\n1. **EE-only gap 句子** — 已插入 line 37，SDF 段末尾（\"Critically, these methods typically query the SDF at the end-effector...\"）\n2. **\"near-perfect CAR\"** — 已修改，line 45\n3. 无引用需要删除，所有 `\\cite{}` key 均为真实论文\n\nSources:\n- [CoFreeVLA (arXiv:2601.21712)](https://arxiv.org/abs/2601.21712)\n- [CSSDF-Net (arXiv:2603.18669)](https://arxiv.org/abs/2603.18669)\n- [VLA Safety Survey (arXiv:2604.23775)](https://arxiv.org/abs/2604.23775)\n- [Beyond Binary Success (arXiv:2603.13616)](https://arxiv.org/abs/2603.13616)\n- [Neural NMPC (IJRR 2025)](https://journals.sagepub.com/doi/10.1177/02783649251401223)\n- [DepthVLA (arXiv:2510.13375)](https://arxiv.org/abs/2510.13375)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "uuid": "3745b0e5-c622-4ee3-91dd-d8b24105a843",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3UqPqkZfe1N9ZTjmkixY4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1724,
+                "cache_read_input_tokens": 37619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1724
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### 引用验证\n\n| bib key | 验证结果 | 处理 |\n|---------|---------|------|\n| cofreeevla2026 | ✅ 存在，arXiv:2601.21712，标题/作者/年份匹配 | 保留 |\n| chen2026cssdfnet | ✅ 存在，arXiv:2603.18669，标题/作者/年份匹配 | 保留 |\n| li2026vlasafety | ✅ 存在，arXiv:2604.23775，标题/作者/年份匹配 | 保留 |\n| snyder2026beyond | ✅ 存在，arXiv:2603.13616，标题/作者/年份匹配 | 保留 |\n| jacquet2025neuralnmpc | ✅ 存在，IJRR 2025 (DOI: 10.1177/02783649251401223)，标题/作者匹配 | 保留 |\n| depthvla2025 | ✅ 存在，arXiv:2510.13375，标题/作者/年份匹配 | 保留 |\n\n### 修改确认\n\n1. **EE-only gap 句子** — 已插入 line 37，SDF 段末尾（\"Critically, these methods typically query the SDF at the end-effector...\"）\n2. **\"near-perfect CAR\"** — 已修改，line 45\n3. 无引用需要删除，所有 `\\cite{}` key 均为真实论文\n\nSources:\n- [CoFreeVLA (arXiv:2601.21712)](https://arxiv.org/abs/2601.21712)\n- [CSSDF-Net (arXiv:2603.18669)](https://arxiv.org/abs/2603.18669)\n- [VLA Safety Survey (arXiv:2604.23775)](https://arxiv.org/abs/2604.23775)\n- [Beyond Binary Success (arXiv:2603.13616)](https://arxiv.org/abs/2603.13616)\n- [Neural NMPC (IJRR 2025)](https://journals.sagepub.com/doi/10.1177/02783649251401223)\n- [DepthVLA (arXiv:2510.13375)](https://arxiv.org/abs/2510.13375)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 66144,
+            "duration_api_ms": 108759,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "8840976c-3587-44ab-9069-de48249a9b17",
+            "total_cost_usd": 0.4593284999999999,
+            "usage": {
+              "input_tokens": 3536,
+              "cache_creation_input_tokens": 27502,
+              "cache_read_input_tokens": 169654,
+              "output_tokens": 2304,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27502,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 650,
+                  "cache_read_input_tokens": 37619,
+                  "cache_creation_input_tokens": 1724,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1724
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 54119,
+                "outputTokens": 2643,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 6,
+                "costUSD": 0.12733400000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 3536,
+                "outputTokens": 2304,
+                "cacheReadInputTokens": 169654,
+                "cacheCreationInputTokens": 27502,
+                "webSearchRequests": 0,
+                "costUSD": 0.3319944999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "510b87b9-bf64-48a9-bf65-b1c15274b1c8"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-related-work-reviewer-fixes.md"
+}

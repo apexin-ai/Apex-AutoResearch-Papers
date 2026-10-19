@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91bb816531a2d523aba8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code prep spatial a1 training",
+  "task_key": "worker_code_prep_spatial_a1_training_20260523T051216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_spatial_a1_training_20260523T051216_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "69586727eca2d909a92632ebb27e485227f78e72b3e23dca3f552fe28aa94a3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：**spatial_bowl A1 SDF 训练全部就绪，零缺失项。**\n\n| 检查项 | 状态 |\n|--------|------|\n| 脚本 `SCENE_CONFIG` 含 `spatial_bowl` | 已支持，无需改动 |\n| SDF GT (`sdf_gt_spatial_bowl.npz`) | 两台服务器均有，4076 点，114KB |\n| 训练数据 (`safelibero_spatial`) | 两台均有，50 episodes，~434MB |\n| Eval assets (`baseline_spatial_bowl/norm_stats.json`) | 就绪 |\n\n启动命令模板已写入 `artifacts/prep_spatial_a1.md`，`{LAMBDA}` 和 `{GPU}` 待填。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-spatial-a1-training.md"
+}

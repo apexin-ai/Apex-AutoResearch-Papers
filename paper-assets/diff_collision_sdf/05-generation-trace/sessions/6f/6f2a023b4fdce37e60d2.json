@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f2a023b4fdce37e60d2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis pi0 baseline fake rate",
+  "task_key": "worker_analysis_pi0_baseline_fake_rate_20260525T080316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pi0_baseline_fake_rate_20260525T080316_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "05c108d5fe2e6bf307c822af4b46dc63f278d32a0ab6a70dccc4eaa030204f62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n## 结果\n\n| 模型 | Suite | Fake Safe% | 非碰撞中冻结比例 |\n|------|-------|-----------|----------------|\n| **Pi0 Full-FT** | object | **82.5%** | 99.4% |\n| **Pi0 LoRA** | object | **89.0%** | 98.9% |\n| A1 LoRA | object | 91.1% | 99.6% |\n| A3 | object | 76.4% | 99.0% |\n| Pi0 Full-FT | spatial | 0% (100%碰撞) | N/A |\n| Pi0 LoRA | spatial | 0% (100%碰撞) | N/A |\n\n**关键发现**：\n1. **Fake safety 是 Pi0 自身的行为**，不是 A1/A3 引入的。Pi0 baseline Full-FT 82.5%、LoRA 89.0% 的 episode 都是 frozen（<0.1mm displacement），与 A1 的 91.1% 在同一量级。\n2. 非碰撞 episode 中 **98.9%~99.6% 都是冻结的**——中位 displacement 仅 ~5 纳米。冻结和真正运动之间差 6 个数量级，阈值很稳健。\n3. Spatial suite 所有 baseline 100% 碰撞，无法计算 fake rate。\n\n报告已写入 `artifacts/report_pi0_baseline_fake_rate.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pi0-baseline-fake-rate.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbb52bc3e6a59b688125",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "figure fig1 teaser generate",
+  "task_key": "worker_figure_fig1_teaser_generate_20260527T083441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig1_teaser_generate_20260527T083441_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "aab72cd14dec395955fe692748392aca859260b8c26ea46dd42dd7b7a7f2e3ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 teaser 完成，经过 5 轮迭代。\n\n**产出文件**：\n- PDF: `/root/colliforce-vla/figures/fig1_teaser.pdf` (服务器) + 本地 artifacts\n- PNG: `/root/colliforce-vla/figures/fig1_teaser.png` (服务器) + 本地 artifacts\n- 脚本: `/root/colliforce-vla/plot_fig1_teaser.py`\n- Artifact ID: `art_20260527_d60106`\n\n**设计要点**：\n- Panel (a): π₀ bars 几乎全灰（82.5%/89.0% frozen），π₀.₅ bars 无灰 — 一眼可见 frozen 污染\n- Panel (b): π₀ raw CAR 91.5% 暴跌到 dfCAR 9.0%/2.5%（红色大箭头标注 82pp drop），π₀.₅ raw=dfCAR 不变\n- 5 轮迭代：V1 基础布局 → V2 insight 标题+外部标注 → V3 清理重叠+居中标签 → V4 LoRA 89pp 标注 → V5 hatching 精调+间距优化"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-teaser-generate.md"
+}

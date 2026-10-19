@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "62b99e3441789afd6f3d",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops eval 30k 4models westd35807",
+  "task_key": "worker_ops_eval_30k_4models_westd35807_20260525T045506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_30k_4models_westd35807_20260525T045506.log",
+    "occurrence": 1,
+    "bytes": 1316019,
+    "sha256": "6bfbccb561cc9af3259cc09de811a2a3b70001de8c2ab193fad8d944f4fddf8f"
+  },
+  "statistics": {
+    "messages": 679,
+    "user_turns": 1,
+    "tool_calls": 232,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 207,
+      "tool_call": 232,
+      "tool_result": 232,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 582,
+      "chunks": [
+        {
+          "path": "62b99e3441789afd6f3d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "62b99e3441789afd6f3d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "62b99e3441789afd6f3d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "62b99e3441789afd6f3d-part-0004.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 97,
+      "chunks": [
+        {
+          "path": "62b99e3441789afd6f3d-part-0004.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-eval-30k-4models-westd35807.md"
+}

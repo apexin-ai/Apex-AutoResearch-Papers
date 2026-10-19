@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d032187926644abf47cf",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect a3 object m024fix v11",
+  "task_key": "worker_ops_collect_a3_object_m024fix_v11_20260522T195214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_a3_object_m024fix_v11_20260522T195214_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "ff40ef8b484d60e416c69d52f647c3794236f25c31c5f25b9e885aba2e66dfdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### eval_a3_object_m024fix_v11 — Negative\n\n| Task | TSR | CAR | Avg Max Disp | refined_count |\n|------|-----|-----|-------------|---------------|\n| Task 0 | 0.0% | 88.5% | 0.0066m | 0 |\n| Task 1 | 0.0% | 46.0% | 0.0492m | 0 |\n| Task 2 | 0.0% | 86.0% | 0.0044m | 0 |\n| Task 3 | 0.0% | 88.0% | 0.0074m | 0 |\n| **Overall** | **0.0%** | **77.1%** | — | **0** |\n\n- **refined_count = 0** 全部 800 episodes，确认 M026（decoder 失标）导致 refinement 从未触发，M024 fix 实质未生效\n- **GPU 2 已释放**：1 MiB / 0%（GPU 0-2 均空闲，仅 GPU 3 占用 8550 MiB / 17%）\n- Registry 已更新：status=DONE, conclusion=negative, metrics 已写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-a3-object-m024fix-v11.md"
+}

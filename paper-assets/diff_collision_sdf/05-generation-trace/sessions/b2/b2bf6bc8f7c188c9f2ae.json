@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2bf6bc8f7c188c9f2ae",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "figure fig5 lambda car curve",
+  "task_key": "worker_figure_fig5_lambda_car_curve_20260527T162755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig5_lambda_car_curve_20260527T162755_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "ed53c536c6a179d58dc9f55c8160d8865f0cef0d3463e5a8e63210795f219760"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 5 已完成（V4，4 轮迭代）。\n\n**输出文件：**\n- PDF: `westd-35807:/root/autodl-tmp/artifacts/fig5_lambda_car.pdf`\n- PNG: `westd-35807:/root/autodl-tmp/artifacts/fig5_lambda_car.png`\n- Artifact 已注册: `art_20260527_8aeb35`\n- CSV 数据已更新（λ=0 改为 3-seed: 54.83±2.26%）\n\n**图表要素：**\n- CAR 上升趋势：54.83% → 58.25%（λ=0 → 0.1）\n- TSR 先升后降：48.75% → 54.0% → 48.0%\n- 空心 marker 标识 <3 seeds 的数据点（λ=0 TSR、λ=0.1 CAR/TSR）\n- π₀.₅ baseline 26.8% 参考线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig5-lambda-car-curve.md"
+}

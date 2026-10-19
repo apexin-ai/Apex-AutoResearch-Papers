@@ -1,0 +1,678 @@
+{
+  "schema_version": "1.0",
+  "id": "6fc9fcdc2c38c4e889f7",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "paper p0 1 title",
+  "task_key": "worker_paper_p0-1-title_20260528T060906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p0-1-title_20260528T060906.log",
+    "occurrence": 1,
+    "bytes": 13318,
+    "sha256": "058534e19df139b03bc8640e756bd92a6cae4e4254fa8dd313af42028eec1c96"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+                "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "7e7e9da5-7ed5-4394-aa84-28de3c34ac1a",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779964200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "46a24d46-f74d-40b4-9218-a17336d09a35",
+                "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me find and modify the title in the paper's main.tex file.",
+              "signature": "EoQCCmMIDhgCKkBT30tt/8sYoFQmI4u9vhpf6oHmYDQcDiaVk8/kFWhHurpqawedZoC26MDjLXVLexoL7jZywUQxLycrB9uV5A0VMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDNFUOZpIMtrP5gb1YxoMhm2nJRHj5H1hesaaIjCZCJdzdSivtbylkGMY3pUI/5RwJNOnkwrJ0cKn4nHMABHcn+te9PZpgP0tDlRSb/kqT0rzZPEVlLrFi8kjHj16FsYz382Lv191mlKy6QLV1+nTWgfzf+bTYUbt9BrJu2N8PEiQ+HoXvclMZU1TagNKMDyHu5opAZ749GSiyKey5QkYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "uuid": "994e73e7-207c-463b-8235-ec3fdb2ff230",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DhC9YfwYGtneXARUhQL1Lr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11797,
+                "cache_read_input_tokens": 11451,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11797
+                },
+                "output_tokens": 51,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JZaWCHQ1FqtvZ3pFytTsMG",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\title",
+                "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "uuid": "bb1bfe94-9fed-4ea5-9292-6f3a22e3bf65",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DhC9YfwYGtneXARUhQL1Lr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11797,
+                "cache_read_input_tokens": 11451,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11797
+                },
+                "output_tokens": 51,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T06:09:19.014Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JZaWCHQ1FqtvZ3pFytTsMG",
+              "type": "tool_result",
+              "content": "13:\\title{Rethinking VLA Safety Evaluation:\\\\When 98\\% of Collision Avoidance is an Illusion}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "uuid": "8ba9e406-041e-4404-b703-d8fa72777417",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "13:\\title{Rethinking VLA Safety Evaluation:\\\\When 98\\% of Collision Avoidance is an Illusion}",
+              "numLines": 1
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QYsEH3kH4pg83WjpCc4Azs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.tex",
+                "offset": 12,
+                "limit": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "uuid": "806b6c20-909e-4287-8ec6-a9015db18fb8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KiwHDs55h42dkmvUfzpoaS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 200,
+                "cache_read_input_tokens": 23248,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 200
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T06:09:21.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QYsEH3kH4pg83WjpCc4Azs",
+              "type": "tool_result",
+              "content": "12\t\n13\t\\title{Rethinking VLA Safety Evaluation:\\\\When 98\\% of Collision Avoidance is an Illusion}\n14\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "uuid": "9331eb34-d0ed-4f8a-9ce6-a35104c7a5e0",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.tex",
+                "content": "\n\\title{Rethinking VLA Safety Evaluation:\\\\When 98\\% of Collision Avoidance is an Illusion}\n",
+                "numLines": 3,
+                "startLine": 12,
+                "totalLines": 47
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YBKtkT3giFdxa2ohqnB4Nb",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.tex",
+                "old_string": "\\title{Rethinking VLA Safety Evaluation:\\\\When 98\\% of Collision Avoidance is an Illusion}",
+                "new_string": "\\title{How Action Collapse Creates Illusory Safety in VLA Collision Avoidance Evaluation}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "uuid": "202ce0e8-345a-4de2-8cf5-3aa9163d0f18",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LhxcQtCbZS34yf7uqjyk2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 173,
+                "cache_read_input_tokens": 23448,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 173
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-28T06:09:25.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YBKtkT3giFdxa2ohqnB4Nb",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "uuid": "ef1c926f-074b-4b57-b8d3-bb4b7cc8742e",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.tex",
+              "oldString": "\\title{Rethinking VLA Safety Evaluation:\\\\When 98\\% of Collision Avoidance is an Illusion}",
+              "newString": "\\title{How Action Collapse Creates Illusory Safety in VLA Collision Avoidance Evaluation}",
+              "originalFile": "\\documentclass{article}\n\n\\PassOptionsToPackage{dvipsnames}{xcolor}\n\\usepackage{corl_2026}\n\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{graphicx}\n\\usepackage{multirow}\n\\usepackage{subcaption}\n\\graphicspath{{../../artifacts/figures/}}\n\n\\title{Rethinking VLA Safety Evaluation:\\\\When 98\\% of Collision Avoidance is an Illusion}\n\n\\author{\n  Anonymous Authors\n}\n\n\\begin{document}\n\n\\maketitle\n\n\\input{abstract}\n\n\\keywords{VLA safety, collision avoidance, action collapse, signed distance fields}\n\n\\input{introduction}\n\n\\input{related_work}\n\n\\input{method}\n\n\\input{claim1}\n\n\\input{claim2}\n\n\\input{claim3}\n\n\\input{discussion}\n\n\\bibliography{references}\n\n\\appendix\n\\input{appendix}\n\n\\end{document}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 10,
+                  "oldLines": 7,
+                  "newStart": 10,
+                  "newLines": 7,
+                  "lines": [
+                    " \\usepackage{subcaption}",
+                    " \\graphicspath{{../../artifacts/figures/}}",
+                    " ",
+                    "-\\title{Rethinking VLA Safety Evaluation:\\\\When 98\\% of Collision Avoidance is an Illusion}",
+                    "+\\title{How Action Collapse Creates Illusory Safety in VLA Collision Avoidance Evaluation}",
+                    " ",
+                    " \\author{",
+                    "   Anonymous Authors"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015DbcrSxDwRh4sqoREJAbKA",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+                "description": "Compile LaTeX to verify no errors",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "uuid": "ff8b171a-5278-421e-aaee-c73932c1324a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D2F4sKhM1ATCk59Q31s9X2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 251,
+                "cache_read_input_tokens": 23621,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 251
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-28T06:09:29.148Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015DbcrSxDwRh4sqoREJAbKA",
+              "type": "tool_result",
+              "content": "es/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (18 pages, 581549 bytes).\nTranscript written on main.log.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "uuid": "c33faa7d-0dab-4a02-a73d-e65a8c6b55ca",
+            "tool_use_result": {
+              "stdout": "es/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (18 pages, 581549 bytes).\nTranscript written on main.log.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "标题已改为 \"How Action Collapse Creates Illusory Safety in VLA Collision Avoidance Evaluation\"，编译通过，18 页 PDF 正常输出。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "uuid": "6abe9ac4-9654-4864-861c-57b03e70be41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019SUdXhEzDV4oscDkPbQnkX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 232,
+                "cache_read_input_tokens": 23872,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 232
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "标题已改为 \"How Action Collapse Creates Illusory Safety in VLA Collision Avoidance Evaluation\"，编译通过，18 页 PDF 正常输出。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 16540,
+            "duration_api_ms": 16921,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "f7b404cf-0814-4430-b742-2c1a2cbe0087",
+            "total_cost_usd": 0.14956224999999998,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 12653,
+              "cache_read_input_tokens": 105640,
+              "output_tokens": 655,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 12653,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 49,
+                  "cache_read_input_tokens": 23872,
+                  "cache_creation_input_tokens": 232,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 232
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1171,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001251,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 655,
+                "cacheReadInputTokens": 105640,
+                "cacheCreationInputTokens": 12653,
+                "webSearchRequests": 0,
+                "costUSD": 0.14831124999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "80ee1506-8762-4dd7-bf13-1acde595dc49"
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-p0-1-title.md"
+}

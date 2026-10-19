@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be540e68fef2beb33024",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check reeval progress v2",
+  "task_key": "worker_ops_check_reeval_progress_v2_20260526T095527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_reeval_progress_v2_20260526T095527_result.json",
+    "occurrence": 1,
+    "bytes": 1415,
+    "sha256": "55c8e5fc7ba0c62fbf309d1184aaeec202e9cfef21f710c4f723d27f0e220d48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Reeval Queue Status (as of ~17:55 UTC)\n\n### Completed Results\n\n**1. SDF l01 s0** (`reeval_sdf_s0_l01_30k.json`, done 17:03)\n\n| Task | TSR | CAR | EE disp (mean) |\n|------|-----|-----|----------------|\n| T0 (orange juice) | 28% | 48% | 0.4110 |\n| T1 (choc pudding) | 78% | 74% | 0.4144 |\n| T2 (cream cheese) | 44% | 72% | 0.3598 |\n| T3 (bbq sauce) | 60% | 34% | 0.3934 |\n| **Avg** | **52.5%** | **57.0%** | **0.3947** |\n\n**2. LoRA s1** (`reeval_lora_s1_30k.json`, done 17:42)\n\n| Task | TSR | CAR | EE disp (mean) |\n|------|-----|-----|----------------|\n| T0 (orange juice) | 34% | 54% | 0.3896 |\n| T1 (choc pudding) | 62% | 68% | 0.4111 |\n| T2 (cream cheese) | 50% | 72% | 0.3560 |\n| T3 (bbq sauce) | 60% | 16% | 0.3960 |\n| **Avg** | **51.5%** | **52.5%** | **0.3882** |\n\n### Currently Running\n\n**3. SDF l005 s0** — Task 1 (choc pudding), ep 10/50 at 17:55 UTC\n- Task 0 done: TSR=38%, CAR=52%\n- ETA this eval: ~18:23 UTC\n\n### Remaining Queue (batch2, 4 evals)\n\n| # | Experiment | Output file |\n|---|-----------|-------------|\n| 4 | SDF l005 s1 | `reeval_sdf_s1_l005_30k.json` |\n| 5 | SDF l005 s2 | `reeval_sdf_s2_l005_30k.json` |\n| 6 | SDF l01 s1 | `reeval_sdf_s1_l01_30k.json` |\n| 7 | SDF l01 s2 | `reeval_sdf_s2_l01_30k.json` |\n\n### ETA\n\n- Current eval (#3) finishes: ~18:23 UTC\n- 4 remaining × ~40 min = ~2h40m\n- **All 7 evals complete: ~21:03 UTC**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-reeval-progress-v2.md"
+}

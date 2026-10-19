@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb575a5caec129fd434d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect baseline v11 results",
+  "task_key": "worker_ops_collect_baseline_v11_results_20260522T133404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_baseline_v11_results_20260522T133404_result.json",
+    "occurrence": 1,
+    "bytes": 1652,
+    "sha256": "c4828ba10a39e330c5bbc7fa29fad65b2d8503bfcc93508988b345874c007867"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Baseline v11 Eval 结果\n\n**状态：成功完成**，4 个 task × 50 episodes，无 error/exception。进程正常退出。\n\n### Per-task 指标\n\n| Task | Name | TSR | CAR | Avg Max Disp | Smoothness |\n|------|------|-----|-----|-------------|------------|\n| 0 | pick up orange juice → basket | 0.0% (0/50) | 76.0% (38/50) | 0.0380m | 0.002138 |\n| 1 | pick up chocolate pudding → basket | **2.0%** (1/50) | 90.0% (45/50) | 0.0103m | 0.001271 |\n| 2 | pick up milk → basket | 0.0% (0/50) | 88.0% (44/50) | 0.0163m | 0.001957 |\n| 3 | pick up bbq sauce → basket | 0.0% (0/50) | 78.0% (39/50) | 0.0438m | 0.003069 |\n| **Avg** | | **0.5%** | **83.0%** | **0.0271m** | 0.002109 |\n\n### 与 v10 Baseline 对比\n\n| 指标 | v10 | v11 | 变化 |\n|------|-----|-----|------|\n| Avg TSR | 0% | **0.5%** | +0.5pp（1/200 episodes 成功） |\n| Avg CAR | 79% | **83.0%** | **+4pp 改善** |\n| Avg Max Disp | 0.03m | 0.0271m | 略有改善 |\n\n### 关键发现\n\n- **Action chunking (M020, replan_steps=5) 效果极其微弱**：TSR 从 0% → 0.5%（仅 task 1 chocolate pudding 成功 1 次），几乎没有实质改善。\n- **CAR 有一定改善**（79% → 83%），说明 action chunking 让动作更平滑、碰撞略少。\n- **Displacement 略有改善**（0.03m → 0.027m），与 smoothness 改善一致。\n- **核心问题未解决**：baseline 模型在 object suite 上几乎无法完成任务，action chunking 不足以弥补 policy 本身的不足。TSR 仍然接近 0%。\n\n结果 JSON 已保存在 `/root/autodl-tmp/eval_results/baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-baseline-v11-results.md"
+}

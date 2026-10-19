@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdcfa9b1201250c24eaa",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper r2 consistency scan",
+  "task_key": "worker_paper_r2-consistency-scan_20260528T065433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r2-consistency-scan_20260528T065433_result.json",
+    "occurrence": 1,
+    "bytes": 2883,
+    "sha256": "f47aacfda1bc19c2454b8ea891bad64a850b2b30b34f8f3ea58802cb488a6c0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fix verified. Here's the full scan report:\n\n---\n\n### 1. 术语一致性 — **PASS**\n- \"frozen episodes\" / \"frozen rate\": 仅存在于 `archive/` 目录（不参与编译）和 `main.aux`（上次编译残留）。所有活跃 .tex 文件已统一使用 \"action-collapsed episodes\" 和 \"action-collapse rate\"。\n- \"fake safety\": 仅在 `introduction.tex:12` 首次引入时出现一次（`colloquially, ``fake safety''`），其后全文不再出现。`\\label{sec:fake_safety}` 标识符保持不变。\n\n### 2. SafeVLA 分类一致性 — **FAIL → FIXED**\n- `related_work.tex:12`: \"Constrained optimization\" ✓\n- `discussion.tex:6`: \"Constrained-optimization approaches (e.g., SafeVLA)\" ✓\n- ~~`introduction.tex:3`: SafeVLA 被标记为 \"SDF-augmented training\"（应为 \"constrained optimization\"），CAPE 被标记为 \"constraint-based planning\"~~\n- **已修复**: 改为 `constrained optimization~\\cite{zhang2025safevla}, diffusion-process collision costs~\\cite{yang2025cape}`，与 related_work.tex 一致。\n\n### 3. \"redundant\" 用词 — **PASS**\n- `related_work.tex:12`: \"redundant **at the tested scale**\" ✓\n- `discussion.tex:20`: \"redundant **at the tested scale** with demonstration data\" ✓\n- 两处均有适当限定。\n\n### 4. Scope 限定 — **PASS**\n- `discussion.tex:3` 首句: \"**CAR-based** VLA safety evaluation, **as currently practiced on SafeLIBERO**\" ✓\n- `abstract.tex:6` 末句: \"**EE-only geometric supervision**\" ✓\n- Claim 3 多处: \"**at the tested scale**\" / \"**across the tested range**\" ✓\n\n### 5. \"20×\" 使用 — **PASS**\n活跃文件中恰好 3 处（均在 `claim3.tex`）：\n- L3: 首次定义 \"a 20$\\times$ range of loss weights\"\n- L32: 关键论证 \"a 20$\\times$ increase in SDF loss weight\"\n- L46: figure caption \"a 20$\\times$ loss-weight range\"\n\n### 6. 引用完整性 — **PASS**\n- `related_work.tex:15`: HazardArena (`chen2026hazardarena`) 和 VLA-Risk (`vlariskanon2026`) 均已引用 ✓\n- `references.bib`: 两者 bib 条目均存在 ✓\n- 所有 33 个 `\\cite`/`\\citep` 引用键均有对应 bib 条目，无悬空引用。\n\n### 7. Oracle caveat 准确性 — **PASS**\n`claim2.tex` 末段诚实承认: \"the Pi0+A1 baseline (TSR$\\,\\approx\\,$0%) is already fully action-collapsed\" 和 \"The LoRA baseline is itself largely action-collapsed (99.4% collapsed episodes)\"。无 TSR≈70-80% 的错误声称。\n\n### 8. 数值一致性 — **PASS**\n- `abstract.tex:5`: \"**nearly all** measured avoidance gains\" ✓\n- bimodal gap: `method.tex:36`, `experimental_framework.tex:23`, `appendix.tex:7` 均为 \"below 1\\,$\\mu$m ... above 200\\,mm\" ✓\n\n---\n\n**总结**: 8 项检查中 7 项直接 PASS，1 项 FAIL 已修复（introduction.tex 中 SafeVLA 和 CAPE 的分类描述与 related_work.tex 不一致）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r2-consistency-scan.md"
+}

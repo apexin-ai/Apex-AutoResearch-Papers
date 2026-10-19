@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "7952c54d1bfbc9cb2a1a",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code data pipeline",
+  "task_key": "worker_code_data_pipeline_20260519T175625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data_pipeline_20260519T175625.log",
+    "occurrence": 1,
+    "bytes": 1726970,
+    "sha256": "f97f88fb78d4b56d52fefbb8002ee5d3cdc83f9d43b1140a4a328448d7103ce7"
+  },
+  "statistics": {
+    "messages": 968,
+    "user_turns": 1,
+    "tool_calls": 374,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 212,
+      "tool_call": 374,
+      "tool_result": 374,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 520,
+      "chunks": [
+        {
+          "path": "7952c54d1bfbc9cb2a1a-part-0001.json",
+          "message_count": 177
+        },
+        {
+          "path": "7952c54d1bfbc9cb2a1a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7952c54d1bfbc9cb2a1a-part-0003.json",
+          "message_count": 163
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 448,
+      "chunks": [
+        {
+          "path": "7952c54d1bfbc9cb2a1a-part-0003.json",
+          "message_count": 17
+        },
+        {
+          "path": "7952c54d1bfbc9cb2a1a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7952c54d1bfbc9cb2a1a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7952c54d1bfbc9cb2a1a-part-0006.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-data-pipeline.md"
+}

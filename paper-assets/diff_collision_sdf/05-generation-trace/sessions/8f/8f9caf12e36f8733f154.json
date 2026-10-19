@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f9caf12e36f8733f154",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check step10k eval feasibility",
+  "task_key": "worker_ops_check_step10k_eval_feasibility_20260523T021155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_step10k_eval_feasibility_20260523T021155_result.json",
+    "occurrence": 1,
+    "bytes": 2376,
+    "sha256": "df160927d5948889ff00b5a31c85737f2b7b74046edf06d7345865440b74428e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息已收齐。以下是报告：\n\n---\n\n## Mid-point Eval GPU 共存可行性报告\n\n### 1. 当前 GPU 显存使用\n\n| GPU | 已用 | 总量 | 剩余 | 利用率 |\n|-----|------|------|------|--------|\n| 0 | 27,045 MiB | 97,887 MiB | **70,206 MiB (~68.6 GB)** | 100% |\n| 1 | 27,045 MiB | 97,887 MiB | **70,206 MiB** | 100% |\n| 2 | 27,045 MiB | 97,887 MiB | **70,206 MiB** | 100% |\n| 3 | 27,045 MiB | 97,887 MiB | **70,206 MiB** | 100% |\n\n每个训练进程占 ~27 GB（比预估的 19 GB 高）。\n\n### 2. 训练进度 & 到达 10K 估算\n\n| Session | 当前 Step | 速度 | 预计到达 10K |\n|---------|-----------|------|-------------|\n| s1_l005 | 5168 | 4.61 s/step | ~6.2h 后 |\n| s1_l01 | 5164 | 4.62 s/step | ~6.2h 后 |\n| s2_l005 | 5158 | 4.62 s/step | ~6.2h 后 |\n| s2_l01 | 5152 | 4.64 s/step | ~6.2h 后 |\n\n4 个训练进度接近，全部约 **6 小时后** 到达 step 10K。\n\n### 3. serve_policy 能否与训练共存\n\n**Y — 可以共存。**\n\n- 模型权重文件 7.1 GB（bf16/fp16），加载到 GPU 约占 ~8-10 GB（含推理 buffer）\n- 每张 GPU 剩余 ~68.6 GB，远超 serve_policy 需求\n- `policy_config.py` 支持 `pytorch_device` 参数，可指定 `\"cuda:X\"` 将 serve_policy 绑定到特定 GPU\n- 启动时设 `CUDA_VISIBLE_DEVICES=0` 即可限定到某张 GPU，不会干扰其他 GPU 上的训练\n- GPU 利用率虽然 100%，但这只是计算利用率，显存充裕才是关键约束——共存无压力\n\n### 4. 训练脚本 Resume 支持\n\n**支持。** 训练脚本有 `--resume` flag（line 84），传递到训练函数（line 314）。如需暂停训练腾出 GPU 也可安全恢复，但无需这样做。\n\n### 5. Checkpoint 目录格式\n\n路径模式：`/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/{run_name}/{step}/`\n\n- 命名：`a1_sdf_pi05_object_pudding_seed{1,2}_l{005,01}`\n- Step 目录：`2000/`, `4000/`, `best/`\n- 每个 step 目录包含：`model.safetensors`, `optimizer.pt`, `metadata.pt`, `aux_metadata.pt`, `ee_extractor.pt`, `sdf_decoder.pt`, `assets/`\n- save_interval=2000 确认，下一个 checkpoint 将在 step 6000\n\n### 结论\n\nserve_policy 可以安全地与训练共存在同一张 GPU 上（68.6 GB 剩余 vs ~10 GB 需求）。建议通过 `CUDA_VISIBLE_DEVICES` 指定 GPU，避免默认选到 `cuda:0` 后占用多卡。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-step10k-eval-feasibility.md"
+}

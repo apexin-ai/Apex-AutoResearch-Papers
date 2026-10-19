@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c928097fc2df6f51cead",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code a1 sdf decoder integration",
+  "task_key": "worker_code_a1_sdf_decoder_integration_20260519T203309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_a1_sdf_decoder_integration_20260519T203309_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "b7f99bfd1fd859c3d8f003a01f3ba9d71887f01cbb7666d20be9832231dadd2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A1 SDF Decoder integration complete. **37/37 verification checks passed** on cuda:3.\n\n### Deployed files on server (`/root/colliforce-vla/`):\n\n| File | Description |\n|------|-------------|\n| `colliforce/sdf_decoder.py` | 4-layer MLP (395K params), Softplus(β=5), skip@L2 |\n| `colliforce/ee_extractor.py` | 2-layer MLP (263K params) → EE xyz |\n| `scripts/train_a1_sdf_aux.py` | Full A1 training script with two-phase training |\n| `scripts/verify_a1.py` | 37-check verification suite |\n| `data/a1_integration_report.txt` | Verification report |\n\n### Key findings during integration:\n1. **No LoRA in PyTorch pi0** — all 3.5B params are full-rank; Phase 2 unfreezes everything\n2. **action_dim=32** — pi0_base pads LIBERO's 7-dim actions/8-dim state to 32\n3. **state[:,:3] = normalized EE position** — confirmed by cross-referencing with HDF5 ee_positions\n4. **Peak memory: 62.93 GB** for B=2 end-to-end step (sufficient on 95GB GPU)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-a1-sdf-decoder-integration.md"
+}

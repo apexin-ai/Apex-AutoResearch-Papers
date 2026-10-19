@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd90d821e2efb9106f67",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "sync paper switch to remote",
+  "task_key": "worker_sync_paper_switch_to_remote_20260527T212807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_paper_switch_to_remote_20260527T212807_result.json",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "e8f72177284f67c85a2686a448e1c50dbb56beb3df48bd20ab81b25d1485829c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 dry-run 均通过：\n\n- `--s2-car 58 --s2-tsr 48` → Scenario C，**12/12 matched**\n- `--s2-car 55 --s2-tsr 45` → Scenario B，**11/11 matched**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-paper-switch-to-remote.md"
+}

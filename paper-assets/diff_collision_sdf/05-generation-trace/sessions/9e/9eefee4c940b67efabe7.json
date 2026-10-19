@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "9eefee4c940b67efabe7",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code lora baseline eval adapt",
+  "task_key": "worker_code_lora_baseline_eval_adapt_20260522T135625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lora_baseline_eval_adapt_20260522T135625.log",
+    "occurrence": 1,
+    "bytes": 824468,
+    "sha256": "1993c7e1a50e75bbe635b732eaa03c508ad94491801b81bc46de3f9ab6dee294"
+  },
+  "statistics": {
+    "messages": 382,
+    "user_turns": 0,
+    "tool_calls": 157,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 157,
+      "tool_result": 157,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 382,
+      "chunks": [
+        {
+          "path": "9eefee4c940b67efabe7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9eefee4c940b67efabe7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9eefee4c940b67efabe7-part-0003.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-lora-baseline-eval-adapt.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5c15f3ed4c0b0c99507",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "code phase1 par router",
+  "task_key": "worker_code_phase1-par-router_20260515T160424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1-par-router_20260515T160424_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "4c6e7dc7eaff6cac9d1301b28600fdd477f2f63fa0c39550ef6775069dd322d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。结果汇总：\n\n**已创建文件：**\n- `/root/meta_brain_lora_routing/phase1/train_par_router.py` — PAR Router 训练脚本\n- `/root/meta_brain_lora_routing/phase1/par_router.py` — Router 推理模块\n\n**Dry-run 验证（cuda:2）：**\n- 数据加载：5 类扰动各 20 steps，共 100 samples（class 分布 60:20:20）\n- 5-fold CV macro-F1：**0.9878 ± 0.0244**（4 折完美 1.0，1 折 0.939）\n- Checkpoint 保存成功 → `checkpoints/phase1/par_router/best_router.pt`\n- 训练曲线 + confusion matrix → `phase1/outputs/`\n- Router 推理模块加载 checkpoint 并完成 forward pass，softmax 输出 sum=1.0\n\n**sensor_noise 数据为空**，已自动跳过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase1-par-router.md"
+}

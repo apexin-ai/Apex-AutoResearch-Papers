@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60c0eea67738ea3dde96",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval eval lora s2 30k v2",
+  "task_key": "worker_eval_eval_lora_s2_30k_v2_20260527T135937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_eval_lora_s2_30k_v2_20260527T135937_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "8f2827e91b181c119e8cb0ceaa1390bb8397ae2baafe7234ef2cc2ba5cb6c665"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**发现 GPU 冲突**：旧作业 `eval_lora_baseline_30k_s2` (PID 512147) 已在 cuda:0 上运行相同 eval，已完成 10/50 episodes。新提交的 `eval_lora_s2_30k_v2` 刚开始加载模型，两者在同一 GPU 上会互相干扰。\n\n两个作业参数完全一致（同 checkpoint、同 config、同 seed 7、同 50 episodes）。\n\n**建议**：kill 新作业 `eval_lora_s2_30k_v2`，让已经跑到 10/50 的旧作业继续完成。需要 kill 新作业吗？还是你希望反过来 kill 旧作业？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-eval-lora-s2-30k-v2.md"
+}

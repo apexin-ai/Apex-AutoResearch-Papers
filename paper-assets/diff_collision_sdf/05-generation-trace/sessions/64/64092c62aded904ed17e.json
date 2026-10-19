@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64092c62aded904ed17e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check norm stats consistency",
+  "task_key": "worker_ops_check_norm_stats_consistency_20260522T061218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_norm_stats_consistency_20260522T061218_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "f18f10cc01e57edd09dfc7f1d9c8fb7afb0fcadd553bd6384c922ced375e3b2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n1. **两个文件完全一致。** baseline_object_pudding_eval 和 pi0_base 的 norm_stats.json 内容相同（文件大小均为 1126 bytes，所有 key/value 完全匹配）。\n\n2. **无差异。** 两者的 `state`（8 维 mean/std）和 `actions`（7 维 mean/std）数值完全相同，q01/q99 均为 null。\n\n3. **A3 checkpoint 目录下没有自己的 norm_stats.json**（路径 `/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/assets/physical-intelligence/libero/norm_stats.json` 不存在）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-norm-stats-consistency.md"
+}

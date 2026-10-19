@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "cbe859d68127c556f4ba",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ssh a3 fix and resume now",
+  "task_key": "worker_ssh_a3_fix_and_resume_now_20260521T081851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a3_fix_and_resume_now_20260521T081851.log",
+    "occurrence": 1,
+    "bytes": 1170880,
+    "sha256": "cb96b5855a60cb99f0635f037935dbbca35d617a429768c369d5cf086cd6f01b"
+  },
+  "statistics": {
+    "messages": 414,
+    "user_turns": 2,
+    "tool_calls": 141,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "record": 1,
+      "assistant": 113,
+      "tool_call": 141,
+      "tool_result": 141,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "cbe859d68127c556f4ba-part-0001.json",
+          "message_count": 129
+        },
+        {
+          "path": "cbe859d68127c556f4ba-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "cbe859d68127c556f4ba-part-0002.json",
+          "message_count": 172
+        },
+        {
+          "path": "cbe859d68127c556f4ba-part-0003.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 76,
+      "chunks": [
+        {
+          "path": "cbe859d68127c556f4ba-part-0003.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-a3-fix-and-resume-now.md"
+}

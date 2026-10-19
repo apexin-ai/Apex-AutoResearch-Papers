@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "bacae6d2a9797e124b7a",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops westd35807 training env prep and launch",
+  "task_key": "worker_ops_westd35807_training_env_prep_and_launch_20260523T000711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd35807_training_env_prep_and_launch_20260523T000711.log",
+    "occurrence": 1,
+    "bytes": 583882,
+    "sha256": "fa2dbcea574ff5c4b91513588c48b7f706389c97dbdb6305ad8d936ceb6b53da"
+  },
+  "statistics": {
+    "messages": 369,
+    "user_turns": 0,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 99,
+      "tool_call": 133,
+      "tool_result": 133,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 369,
+      "chunks": [
+        {
+          "path": "bacae6d2a9797e124b7a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bacae6d2a9797e124b7a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bacae6d2a9797e124b7a-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westd35807-training-env-prep-and-launch.md"
+}

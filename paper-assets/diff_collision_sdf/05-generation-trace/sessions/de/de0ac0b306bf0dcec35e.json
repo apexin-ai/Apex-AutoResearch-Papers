@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de0ac0b306bf0dcec35e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops sync a3 and launch eval v11",
+  "task_key": "worker_ops_sync_a3_and_launch_eval_v11_20260522T130245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_a3_and_launch_eval_v11_20260522T130245_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "f87b859a05ba9dbbdfa8d8f56826c611eafab69c3030eb9e33b24f9582b62b06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A3 eval 进程健康运行中，32 个 torch.compile worker 在编译中（首次推理需 5-10 分钟）。GPU 3 占用 8939 MiB。\n\n---\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| M022 norm_stats 修复 | 已确认（eval_safelibero.py lines 511-526，A3 norm_stats 从 checkpoint assets 加载） |\n| A3 checkpoint 路径 | `/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best`（best at step 26000, loss=0.01439） |\n| Checkpoint 大小 | best/ 7.1GB（含 model.safetensors 7.1GB + lora_params.pt 134MB + sdf_decoder.pt 1.6MB） |\n| SCP 同步 | 完成，文件大小一致 |\n| norm_stats | 存在 `best/assets/safelibero_object/norm_stats.json` |\n| SafeLIBERO 环境 | libero/robosuite 可用（通过 sys.path 导入） |\n| 磁盘 westd-35807 | 50% (173G/350G)，空间充足 |\n| A3 eval v11 | tmux session `eval_a3_v11` 已启动，PID 564007 |\n| GPU | cuda:3，当前 8939 MiB，torch.compile 进行中 |\n| 日志 | `/tmp/eval_a3_v11.log` |\n| 参数 | `--model_type a3 --suite safelibero_object --n_episodes 50 --max_steps 300 --replan_steps 5 --gpu 3 --refine_alpha 0.1 --refine_margin 0.01 --sdf_gt_path sdf_gt_object_chocolate.npz --output_prefix v11` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-a3-and-launch-eval-v11.md"
+}

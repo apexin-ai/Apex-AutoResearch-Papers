@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5780d3ed62609d3c9386",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh gpu audit westd35807",
+  "task_key": "worker_ssh_gpu_audit_westd35807_20260520T202033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_audit_westd35807_20260520T202033_result.json",
+    "occurrence": 1,
+    "bytes": 1984,
+    "sha256": "6b8c371e46fa0ca20c0ae8413d3d3e4e3b362342332b218b941b1863ddbcb829"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 全面核查报告\n\n```\ncuda:0 → PID 222903 / baseline_spatial_bowl_s0_v2 / step 19716/30000 (66%) / alive (5h44m) / 35738 MiB / 100% util / 69°C\ncuda:1 → PID 227389 / a1_sdf_object_pudding_s0   / step 5689/30000  (19%) / alive (5h34m) / 13376 MiB / 100% util / 49°C\ncuda:2 → PID 222982 / baseline_object_pudding_s0_v2 / step 21729/30000 (72%) / alive (5h44m) / 35738 MiB / 0% util* / 60°C\ncuda:3 → PID 185994 / a1_sdf_spatial_bowl_s0_v3   / step 17960/30000 (60%) / alive (11h57m) / 13376 MiB / 0% util* / 39°C\n```\n\n\\* GPU 2/3 util=0% 是 nvidia-smi 瞬时采样，进程活着且日志在推进，正常。\n\n### 磁盘\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / | 30G | 17G | 14G | 54% |\n| /root/autodl-tmp | 350G | 177G | 174G | 51% |\n\n### 最新 Checkpoint\n| 实验 | 最新 ckpt | 时间 | 路径 |\n|------|-----------|------|------|\n| baseline_spatial_bowl | step 18000 | May 21 02:38 | `/root/autodl-tmp/checkpoints/baseline_spatial_bowl/baseline_spatial_bowl_seed0/18000/` |\n| baseline_object_pudding | step 20000 | May 21 02:37 | `/root/autodl-tmp/checkpoints/baseline_object_pudding/baseline_object_pudding_seed0/20000/` |\n| a1_sdf_spatial_bowl | step 16000 | May 21 02:23 | `/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_sdf_spatial_bowl_seed0/16000/` |\n| a1_sdf_object_pudding | step 4000 | May 21 02:43 | `/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_sdf_object_pudding_seed0/4000/` |\n\n### 训练速度 & Loss\n| 实验 | 当前 step | speed | loss | lr |\n|------|-----------|-------|------|----|\n| baseline_spatial_bowl | 19716 | ~3.5s/it | 0.0034 | 8.79e-06 |\n| baseline_object_pudding | 21729 | ~3.5s/it | 0.0060 | 6.72e-06 |\n| a1_sdf_spatial_bowl | 17960 | ~3.1s/it | 0.2732 | 1.08e-05 |\n| a1_sdf_object_pudding | 5689 | ~3.0s/it | 0.2023 | 2.36e-05 |\n\n**4 卡全部在用，无空闲 GPU。所有进程存活，训练正常推进。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-audit-westd35807.md"
+}

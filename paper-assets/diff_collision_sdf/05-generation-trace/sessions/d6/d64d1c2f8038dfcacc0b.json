@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d64d1c2f8038dfcacc0b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research vla codebase survey",
+  "task_key": "worker_research_vla_codebase_survey_20260519T160639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_vla_codebase_survey_20260519T160639_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "ad193df507848ce730c41afcbdc82e0302166e8eeae840f56c1403f8b38b84ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/report_vla_codebase.md`。核心结论：\n\n**推荐 OpenVLA-OFT 作为 MVP 基座**，主要理由：\n- Action Head 已是独立 `nn.Module`，添加 SDF decoder 遵循现有 pattern，改动最小\n- Hidden states 访问开箱即用（`output_hidden_states=True`），32 层 × 4096 维全序列可提取\n- 单次前向 + L1 回归，梯度可直接回传——不像 openpi 需要处理 10 步 ODE solver 的梯度\n- 纯 PyTorch 生态\n\n**openpi 作为备选**——模型更小 (2.5B vs 7B)、社区更活跃、预训练数据量更大，但 JAX 为主框架 + flow matching ODE 梯度处理增加集成复杂度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-vla-codebase-survey.md"
+}

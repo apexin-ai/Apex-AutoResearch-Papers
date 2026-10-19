@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "776337515a50be966da1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "verify paper switch after reeval unification",
+  "task_key": "worker_verify_paper_switch_after_reeval_unification_20260528T002355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_paper_switch_after_reeval_unification_20260528T002355_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "a1d22f9dfc83fd6873d75a6dc62d572d5b87e0c96ab039bc4fe83ee8313bc1a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PASS — 23/23 replacements verified (0 failures).**\n\n修复了 4 个条目：\n\n| 条目 | 文件 | 变更 |\n|------|------|------|\n| abstract L5 training | abstract.tex | 移除 `alone`；添加 `at $\\lambda \\leq 0.01$`；添加 `, $n{=}2$` |\n| abstract L6 conclusion | abstract.tex | `cannot be credited` → `cannot reliably be credited` |\n| claim3 L27 body | claim3.tex | `}; SDF gradients` → `}; this provides preliminary evidence that SDF gradients` |\n| discussion L3 scope | discussion.tex | `for all measured` → `for the measured` |\n\n修复后的 paper_switch.py 已 scp 回本地 artifacts 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-paper-switch-after-reeval-unification.md"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "mvp_c1_s137",
+  "project": "tbab_multi_turn",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:21:17.238Z",
+    "updated_at": "2026-05-18T13:14:49.182Z",
+    "hypothesis": "Standard LoRA fine-tuning without position or bridge modifications provides baseline multi-turn performance; any improvement in C2-C4 over C1 isolates the contribution of TBAB components beyond LoRA adaptation alone",
+    "spec": {
+      "command": "bash -c \"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition1_lora_only.yaml --seed 137\"",
+      "server": "westb-25721",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "24980",
+      "log_path": "~/runs/tbab_multi_turn/mvp_c1_s137.log",
+      "submitted_at": "2026-05-18T10:50:28.930Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westb-25721",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-25721",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T08:24:31.453Z",
+      "command": "bash -c \"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition1_lora_only.yaml --seed 137\"",
+      "finished_at": "2026-05-18T13:14:49.152Z",
+      "training_hours": 4.84
+    },
+    "pid": "24980",
+    "log_path": "~/runs/tbab_multi_turn/mvp_c1_s137.log"
+  },
+  "timestamp": "2026-05-18T13:14:49.198825+00:00",
+  "trigger": "update_registry"
+}

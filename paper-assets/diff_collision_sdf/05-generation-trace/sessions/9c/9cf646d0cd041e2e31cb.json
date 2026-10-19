@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "9cf646d0cd041e2e31cb",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code eval script adapt",
+  "task_key": "worker_code_eval_script_adapt_20260520T013841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_script_adapt_20260520T013841.log",
+    "occurrence": 1,
+    "bytes": 806883,
+    "sha256": "618d1fb7e1df8e02c3b44ba8cfe2228999412f3d87f7a7a19a526d4ea33ee471"
+  },
+  "statistics": {
+    "messages": 155,
+    "user_turns": 1,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 58,
+      "tool_result": 58,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 143,
+      "chunks": [
+        {
+          "path": "9cf646d0cd041e2e31cb-part-0001.json",
+          "message_count": 111
+        },
+        {
+          "path": "9cf646d0cd041e2e31cb-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "9cf646d0cd041e2e31cb-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-eval-script-adapt.md"
+}

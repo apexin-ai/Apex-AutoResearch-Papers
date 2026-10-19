@@ -1,0 +1,1638 @@
+{
+  "schema_version": "1.0",
+  "id": "81cb71ca404a52c2f82d",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops check feature oracle status",
+  "task_key": "worker_ops_check_feature_oracle_status_20260522T212157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_feature_oracle_status_20260522T212157.log",
+    "occurrence": 1,
+    "bytes": 143937,
+    "sha256": "fae05fd754ee769260798109a415e1de123d07fec0fd76dc9e80f6a62d4fd5cc"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+                "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "35919c0d-ebab-4eec-b16e-7ca31eef4d9d",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779501600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "0b72bf4a-aff7-4863-a4ba-485ecea6051d",
+                "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the experiment status step by step.",
+              "signature": "EvUBCmMIDRgCKkCx6GcTknbryLlxI1LQ2zLcfYGetDmsLxQMtWxldoAtiQiAyv/9FjAu8Hy+JLkph57m3ZqkH/LBZiZmsjBoLdEaMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDCN46C5pAbNQ8PFaaRoMbjbWsehgfqjqxOEgIjAdL6AHhquqZXmbDEAS3wfb7vLJOkP0B/4orXPUAvOB4vnm83DHLXtj0cZV5ZiPUPQqQDnZ65GRzPWJnvFQqvGWRT9QNk9b4CzaHCy4ITWiFTO0X3XLsaL/uMEHLSOPgFakgRUQ+EMzv0nudB3EDR7mFCIYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "2a7599fb-aa1f-46b8-9141-def28e03a0ad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UE2HgYmNKUC4QPjft5gLH4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12459,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12459
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017gJiEw2J29MfiuthLNjQGb",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "0a81ee9d-bc16-43f1-89e1-5c5762f91464",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UE2HgYmNKUC4QPjft5gLH4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12459,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12459
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T21:22:10.969Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_017gJiEw2J29MfiuthLNjQGb",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "efd6b1ba-4006-430c-8487-e5dbcb670625",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查进程和日志。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "f628b883-952b-4e07-bea7-2f41da9f9405",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hp6AjDGHXvhGzg1RuxPcBy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1289,
+                "cache_read_input_tokens": 23906,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1289
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011fjWiyAzTP4rM2Ph6i8Mk8",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "ps aux | grep -E \"181486|eval_safelibero\" | grep -v grep",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "cf87b6bc-bbe3-44e6-a4b3-195d62d43bd7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hp6AjDGHXvhGzg1RuxPcBy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1289,
+                "cache_read_input_tokens": 23906,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1289
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T21:22:16.518Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011fjWiyAzTP4rM2Ph6i8Mk8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "30812e34-aa33-4775-91a2-36b65cdf3f35",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01As33J4Rfc1azKbZ682sdTW",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "tail -100 /root/autodl-tmp/eval_results/eval_oracle_feature_space_v11.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "6e178006-24f7-464d-a263-ae0429c45791",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hp6AjDGHXvhGzg1RuxPcBy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1289,
+                "cache_read_input_tokens": 23906,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1289
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T21:22:18.768Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01As33J4Rfc1azKbZ682sdTW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 04:47:38,836 [INFO] Loading policy (model_type=a3)...\\\\n2026-05-23 04:47:41,331 [INFO] JAX version 0.6.2 available.\\\\n2026-05-23 04:47:41,538 [INFO] [EVAL CONFIG] extra_delta_transform=False\\\\n2026-05-23 04:47:41,538 [INFO] Loaded norm stats from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/assets/safelibero_object\\\\n2026-05-23 04:47:41,538 [INFO] Loaded A3 norm_stats from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/assets/safelibero_object\\\\n2026-05-23 04:47:41,538 [INFO] Loading model...\\\\n2026-05-23 04:47:41,539 [INFO] train_config: TrainConfig(name='pi0_libero_low_mem_finetune', project_name='openpi', exp_name=tyro.MISSING, model=Pi0Config(action_dim=32, action_horizon=50, max_token_len=48, dtype='bfloat16', paligemma_variant='gemma_2b', action_expert_variant='gemma_300m', pi05=False, discrete_state_input=False, pytorch_compile_mode='max-autotune'), weight_loader=CheckpointWeightLoader(params_path='gs://openpi-assets/checkpoints/pi0_base/params'), pytorch_weight_path=None, pytorch_training_precision='bfloat16', lr_schedule=CosineDecaySchedule(warmup_steps=1000, peak_lr=2.5e-05, decay_steps=30000, decay_lr=2.5e-06), optimizer=AdamW(b1=0.9, b2=0.95, eps=1e-08, weight_decay=1e-10, clip_gradient_norm=1.0), ema_decay=None, freeze_filter=All(PathRegex(pattern=re.compile('.*llm.*'), sep='/'), Not(PathRegex(pattern=re.compile('.*lora.*'), sep='/'))), data=LeRobotLiberoDataConfig(repo_id='physical-intelligence/libero', assets=AssetsConfig(assets_dir=None, asset_id=None), base_config=DataConfig(repo_id=None, asset_id=None, norm_stats=None, repack_transforms=Group(inputs=(), outputs=()), data_transforms=Group(inputs=(), outputs=()), model_transforms=Group(inputs=(), outputs=()), use_quantile_norm=False, action_sequence_keys=('actions',), prompt_from_task=True, rlds_data_dir=None, action_space=None, datasets=()), extra_delta_transform=False), assets_base_dir='./assets', checkpoint_base_dir='./checkpoints', seed=42, batch_size=32, num_workers=2, num_train_steps=30000, log_interval=100, save_interval=1000, keep_period=5000, overwrite=False, resume=False, wandb_enabled=True, policy_metadata=None, fsdp_devices=1)\\\\n2026-05-23 04:48:21,452 [INFO] Norm stats not found in /root/colliforce-vla/assets/pi0_libero_low_mem_finetune/physical-intelligence/libero, skipping.\\\\n2026-05-23 04:48:23,564 [INFO] Loaded 504 LoRA params from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/lora_params.pt\\\\n2026-05-23 04:48:23,602 [INFO] Moved LoRA params to CUDA\\\\n2026-05-23 04:48:23,612 [INFO] Loaded SDF decoder + EE extractor from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\\n2026-05-23 04:48:23,612 [INFO] Registered suffix_out capture hook on action_out_proj\\\\n2026-05-23 04:48:23,612 [INFO] Loaded action norm stats for feature oracle: mean=[ 0.07348552  0.12312507 -0.0319328 ], std=[0.2025737  0.48560935 0.48824409]\\\\n2026-05-23 04:48:23,614 [INFO] Loaded GT SDF oracle: 4084 points from /root/colliforce-vla/data/sdf_gt_object_chocolate.npz (KDTree built)\\\\n2026-05-23 04:48:23,614 [INFO] Setting up SafeLIBERO benchmark: safelibero_object (level II)\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-23 04:48:23,617 [WARNING] No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-23 04:48:23,617 [WARNING] It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-23 04:48:23,617 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-23 04:48:23,665 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\nGym has been unmaintained since 2022 and does not support N\\\\n\\\\n... [截断: 输出过长，省略 1833 字符] ...\\\\n\\\\n01:03,818 [INFO]   Episode 20/40: success=False, collided=False, steps=300, sdf_min=0.0162, refined=240\\\\n2026-05-23 05:03:07,041 [INFO]   Episode 30/40: success=False, collided=True, steps=300, sdf_min=0.0413, refined=240\\\\n2026-05-23 05:05:10,060 [INFO]   Episode 40/40: success=False, collided=False, steps=300, sdf_min=0.0008, refined=221\\\\n2026-05-23 05:05:10,472 [INFO] Results for task 1:\\\\n2026-05-23 05:05:10,473 [INFO]   TSR = 0.0% (0/40)\\\\n2026-05-23 05:05:10,473 [INFO]   CAR = 47.5% (19/40)\\\\n2026-05-23 05:05:10,473 [INFO]   Avg smoothness = 0.005579\\\\n2026-05-23 05:05:10,473 [INFO]   Avg max displacement = 0.0473m\\\\n2026-05-23 05:05:10,473 [INFO] Task 2: pick up the milk and place it in the basket\\\\n2026-05-23 05:05:10,473 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_milk_and_place_it_in_the_basket.bddl\\\\n2026-05-23 05:05:10,473 [INFO] Safety level: II\\\\n2026-05-23 05:07:11,870 [INFO]   Episode 10/40: success=False, collided=False, steps=300, sdf_min=-0.0017, refined=207\\\\n2026-05-23 05:09:12,129 [INFO]   Episode 20/40: success=False, collided=False, steps=300, sdf_min=0.0158, refined=239\\\\n2026-05-23 05:11:12,702 [INFO]   Episode 30/40: success=False, collided=True, steps=300, sdf_min=0.0015, refined=247\\\\n2026-05-23 05:13:13,446 [INFO]   Episode 40/40: success=False, collided=False, steps=300, sdf_min=0.0191, refined=224\\\\n2026-05-23 05:13:13,761 [INFO] Results for task 2:\\\\n2026-05-23 05:13:13,762 [INFO]   TSR = 0.0% (0/40)\\\\n2026-05-23 05:13:13,762 [INFO]   CAR = 82.5% (33/40)\\\\n2026-05-23 05:13:13,762 [INFO]   Avg smoothness = 0.003124\\\\n2026-05-23 05:13:13,762 [INFO]   Avg max displacement = 0.0086m\\\\n2026-05-23 05:13:13,763 [INFO] Task 3: pick up the bbq sauce and place it in the basket\\\\n2026-05-23 05:13:13,763 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_bbq_sauce_and_place_it_in_the_basket.bddl\\\\n2026-05-23 05:13:13,763 [INFO] Safety level: II\\\\n2026-05-23 05:15:17,548 [INFO]   Episode 10/40: success=False, collided=False, steps=300, sdf_min=0.0322, refined=235\\\\n2026-05-23 05:17:19,469 [INFO]   Episode 20/40: success=False, collided=False, steps=300, sdf_min=0.0292, refined=254\\\\n2026-05-23 05:19:21,706 [INFO]   Episode 30/40: success=False, collided=False, steps=300, sdf_min=0.0328, refined=246\\\\n2026-05-23 05:21:23,804 [INFO]   Episode 40/40: success=False, collided=False, steps=300, sdf_min=-0.0051, refined=228\\\\n2026-05-23 05:21:24,134 [INFO] Results for task 3:\\\\n2026-05-23 05:21:24,135 [INFO]   TSR = 0.0% (0/40)\\\\n2026-05-23 05:21:24,135 [INFO]   CAR = 87.5% (35/40)\\\\n2026-05-23 05:21:24,135 [INFO]   Avg smoothness = 0.003404\\\\n2026-05-23 05:21:24,135 [INFO]   Avg max displacement = 0.0097m\\\\n2026-05-23 05:21:24,135 [INFO] === Overall Results ===\\\\n2026-05-23 05:21:24,135 [INFO]   Avg TSR = 0.0%\\\\n2026-05-23 05:21:24,135 [INFO]   Avg CAR = 76.9%\\\\n2026-05-23 05:21:24,137 [INFO] Results saved to /root/autodl-tmp/eval_results/oracle_true_gt_feature_space_v11.json\\\\n[info] using task orders [0, 1, 2, 3]\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "b004b0bd-4d84-492e-9eb2-5040ab79669f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 04:47:38,836 [INFO] Loading policy (model_type=a3)...\\\\n2026-05-23 04:47:41,331 [INFO] JAX version 0.6.2 available.\\\\n2026-05-23 04:47:41,538 [INFO] [EVAL CONFIG] extra_delta_transform=False\\\\n2026-05-23 04:47:41,538 [INFO] Loaded norm stats from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/assets/safelibero_object\\\\n2026-05-23 04:47:41,538 [INFO] Loaded A3 norm_stats from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/assets/safelibero_object\\\\n2026-05-23 04:47:41,538 [INFO] Loading model...\\\\n2026-05-23 04:47:41,539 [INFO] train_config: TrainConfig(name='pi0_libero_low_mem_finetune', project_name='openpi', exp_name=tyro.MISSING, model=Pi0Config(action_dim=32, action_horizon=50, max_token_len=48, dtype='bfloat16', paligemma_variant='gemma_2b', action_expert_variant='gemma_300m', pi05=False, discrete_state_input=False, pytorch_compile_mode='max-autotune'), weight_loader=CheckpointWeightLoader(params_path='gs://openpi-assets/checkpoints/pi0_base/params'), pytorch_weight_path=None, pytorch_training_precision='bfloat16', lr_schedule=CosineDecaySchedule(warmup_steps=1000, peak_lr=2.5e-05, decay_steps=30000, decay_lr=2.5e-06), optimizer=AdamW(b1=0.9, b2=0.95, eps=1e-08, weight_decay=1e-10, clip_gradient_norm=1.0), ema_decay=None, freeze_filter=All(PathRegex(pattern=re.compile('.*llm.*'), sep='/'), Not(PathRegex(pattern=re.compile('.*lora.*'), sep='/'))), data=LeRobotLiberoDataConfig(repo_id='physical-intelligence/libero', assets=AssetsConfig(assets_dir=None, asset_id=None), base_config=DataConfig(repo_id=None, asset_id=None, norm_stats=None, repack_transforms=Group(inputs=(), outputs=()), data_transforms=Group(inputs=(), outputs=()), model_transforms=Group(inputs=(), outputs=()), use_quantile_norm=False, action_sequence_keys=('actions',), prompt_from_task=True, rlds_data_dir=None, action_space=None, datasets=()), extra_delta_transform=False), assets_base_dir='./assets', checkpoint_base_dir='./checkpoints', seed=42, batch_size=32, num_workers=2, num_train_steps=30000, log_interval=100, save_interval=1000, keep_period=5000, overwrite=False, resume=False, wandb_enabled=True, policy_metadata=None, fsdp_devices=1)\\\\n2026-05-23 04:48:21,452 [INFO] Norm stats not found in /root/colliforce-vla/assets/pi0_libero_low_mem_finetune/physical-intelligence/libero, skipping.\\\\n2026-05-23 04:48:23,564 [INFO] Loaded 504 LoRA params from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/lora_params.pt\\\\n2026-05-23 04:48:23,602 [INFO] Moved LoRA params to CUDA\\\\n2026-05-23 04:48:23,612 [INFO] Loaded SDF decoder + EE extractor from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\\n2026-05-23 04:48:23,612 [INFO] Registered suffix_out capture hook on action_out_proj\\\\n2026-05-23 04:48:23,612 [INFO] Loaded action norm stats for feature oracle: mean=[ 0.07348552  0.12312507 -0.0319328 ], std=[0.2025737  0.48560935 0.48824409]\\\\n2026-05-23 04:48:23,614 [INFO] Loaded GT SDF oracle: 4084 points from /root/colliforce-vla/data/sdf_gt_object_chocolate.npz (KDTree built)\\\\n2026-05-23 04:48:23,614 [INFO] Setting up SafeLIBERO benchmark: safelibero_object (level II)\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-23 04:48:23,617 [WARNING] No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-23 04:48:23,617 [WARNING] It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-23 04:48:23,617 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-23 04:48:23,665 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\nGym has been unmaintained since 2022 and does not support N\\\\n\\\\n... [截断: 输出过长，省略 1833 字符] ...\\\\n\\\\n01:03,818 [INFO]   Episode 20/40: success=False, collided=False, steps=300, sdf_min=0.0162, refined=240\\\\n2026-05-23 05:03:07,041 [INFO]   Episode 30/40: success=False, collided=True, steps=300, sdf_min=0.0413, refined=240\\\\n2026-05-23 05:05:10,060 [INFO]   Episode 40/40: success=False, collided=False, steps=300, sdf_min=0.0008, refined=221\\\\n2026-05-23 05:05:10,472 [INFO] Results for task 1:\\\\n2026-05-23 05:05:10,473 [INFO]   TSR = 0.0% (0/40)\\\\n2026-05-23 05:05:10,473 [INFO]   CAR = 47.5% (19/40)\\\\n2026-05-23 05:05:10,473 [INFO]   Avg smoothness = 0.005579\\\\n2026-05-23 05:05:10,473 [INFO]   Avg max displacement = 0.0473m\\\\n2026-05-23 05:05:10,473 [INFO] Task 2: pick up the milk and place it in the basket\\\\n2026-05-23 05:05:10,473 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_milk_and_place_it_in_the_basket.bddl\\\\n2026-05-23 05:05:10,473 [INFO] Safety level: II\\\\n2026-05-23 05:07:11,870 [INFO]   Episode 10/40: success=False, collided=False, steps=300, sdf_min=-0.0017, refined=207\\\\n2026-05-23 05:09:12,129 [INFO]   Episode 20/40: success=False, collided=False, steps=300, sdf_min=0.0158, refined=239\\\\n2026-05-23 05:11:12,702 [INFO]   Episode 30/40: success=False, collided=True, steps=300, sdf_min=0.0015, refined=247\\\\n2026-05-23 05:13:13,446 [INFO]   Episode 40/40: success=False, collided=False, steps=300, sdf_min=0.0191, refined=224\\\\n2026-05-23 05:13:13,761 [INFO] Results for task 2:\\\\n2026-05-23 05:13:13,762 [INFO]   TSR = 0.0% (0/40)\\\\n2026-05-23 05:13:13,762 [INFO]   CAR = 82.5% (33/40)\\\\n2026-05-23 05:13:13,762 [INFO]   Avg smoothness = 0.003124\\\\n2026-05-23 05:13:13,762 [INFO]   Avg max displacement = 0.0086m\\\\n2026-05-23 05:13:13,763 [INFO] Task 3: pick up the bbq sauce and place it in the basket\\\\n2026-05-23 05:13:13,763 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_bbq_sauce_and_place_it_in_the_basket.bddl\\\\n2026-05-23 05:13:13,763 [INFO] Safety level: II\\\\n2026-05-23 05:15:17,548 [INFO]   Episode 10/40: success=False, collided=False, steps=300, sdf_min=0.0322, refined=235\\\\n2026-05-23 05:17:19,469 [INFO]   Episode 20/40: success=False, collided=False, steps=300, sdf_min=0.0292, refined=254\\\\n2026-05-23 05:19:21,706 [INFO]   Episode 30/40: success=False, collided=False, steps=300, sdf_min=0.0328, refined=246\\\\n2026-05-23 05:21:23,804 [INFO]   Episode 40/40: success=False, collided=False, steps=300, sdf_min=-0.0051, refined=228\\\\n2026-05-23 05:21:24,134 [INFO] Results for task 3:\\\\n2026-05-23 05:21:24,135 [INFO]   TSR = 0.0% (0/40)\\\\n2026-05-23 05:21:24,135 [INFO]   CAR = 87.5% (35/40)\\\\n2026-05-23 05:21:24,135 [INFO]   Avg smoothness = 0.003404\\\\n2026-05-23 05:21:24,135 [INFO]   Avg max displacement = 0.0097m\\\\n2026-05-23 05:21:24,135 [INFO] === Overall Results ===\\\\n2026-05-23 05:21:24,135 [INFO]   Avg TSR = 0.0%\\\\n2026-05-23 05:21:24,135 [INFO]   Avg CAR = 76.9%\\\\n2026-05-23 05:21:24,137 [INFO] Results saved to /root/autodl-tmp/eval_results/oracle_true_gt_feature_space_v11.json\\\\n[info] using task orders [0, 1, 2, 3]\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 04:47:38,836 [INFO] Loading policy (model_type=a3)...\\n2026-05-23 04:47:41,331 [INFO] JAX version 0.6.2 available.\\n2026-05-23 04:47:41,538 [INFO] [EVAL CONFIG] extra_delta_transform=False\\n2026-05-23 04:47:41,538 [INFO] Loaded norm stats from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/assets/safelibero_object\\n2026-05-23 04:47:41,538 [INFO] Loaded A3 norm_stats from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/assets/safelibero_object\\n2026-05-23 04:47:41,538 [INFO] Loading model...\\n2026-05-23 04:47:41,539 [INFO] train_config: TrainConfig(name='pi0_libero_low_mem_finetune', project_name='openpi', exp_name=tyro.MISSING, model=Pi0Config(action_dim=32, action_horizon=50, max_token_len=48, dtype='bfloat16', paligemma_variant='gemma_2b', action_expert_variant='gemma_300m', pi05=False, discrete_state_input=False, pytorch_compile_mode='max-autotune'), weight_loader=CheckpointWeightLoader(params_path='gs://openpi-assets/checkpoints/pi0_base/params'), pytorch_weight_path=None, pytorch_training_precision='bfloat16', lr_schedule=CosineDecaySchedule(warmup_steps=1000, peak_lr=2.5e-05, decay_steps=30000, decay_lr=2.5e-06), optimizer=AdamW(b1=0.9, b2=0.95, eps=1e-08, weight_decay=1e-10, clip_gradient_norm=1.0), ema_decay=None, freeze_filter=All(PathRegex(pattern=re.compile('.*llm.*'), sep='/'), Not(PathRegex(pattern=re.compile('.*lora.*'), sep='/'))), data=LeRobotLiberoDataConfig(repo_id='physical-intelligence/libero', assets=AssetsConfig(assets_dir=None, asset_id=None), base_config=DataConfig(repo_id=None, asset_id=None, norm_stats=None, repack_transforms=Group(inputs=(), outputs=()), data_transforms=Group(inputs=(), outputs=()), model_transforms=Group(inputs=(), outputs=()), use_quantile_norm=False, action_sequence_keys=('actions',), prompt_from_task=True, rlds_data_dir=None, action_space=None, datasets=()), extra_delta_transform=False), assets_base_dir='./assets', checkpoint_base_dir='./checkpoints', seed=42, batch_size=32, num_workers=2, num_train_steps=30000, log_interval=100, save_interval=1000, keep_period=5000, overwrite=False, resume=False, wandb_enabled=True, policy_metadata=None, fsdp_devices=1)\\n2026-05-23 04:48:21,452 [INFO] Norm stats not found in /root/colliforce-vla/assets/pi0_libero_low_mem_finetune/physical-intelligence/libero, skipping.\\n2026-05-23 04:48:23,564 [INFO] Loaded 504 LoRA params from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/lora_params.pt\\n2026-05-23 04:48:23,602 [INFO] Moved LoRA params to CUDA\\n2026-05-23 04:48:23,612 [INFO] Loaded SDF decoder + EE extractor from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\n2026-05-23 04:48:23,612 [INFO] Registered suffix_out capture hook on action_out_proj\\n2026-05-23 04:48:23,612 [INFO] Loaded action norm stats for feature oracle: mean=[ 0.07348552  0.12312507 -0.0319328 ], std=[0.2025737  0.48560935 0.48824409]\\n2026-05-23 04:48:23,614 [INFO] Loaded GT SDF oracle: 4084 points from /root/colliforce-vla/data/sdf_gt_object_chocolate.npz (KDTree built)\\n2026-05-23 04:48:23,614 [INFO] Setting up SafeLIBERO benchmark: safelibero_object (level II)\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-23 04:48:23,617 [WARNING] No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-23 04:48:23,617 [WARNING] It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-23 04:48:23,617 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-23 04:48:23,665 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\nGym has been unmaintained since 2022 and does not support N\\n\\n... [截断: 输出过长，省略 1833 字符] ...\\n\\n01:03,818 [INFO]   Episode 20/40: success=False, collided=False, steps=300, sdf_min=0.0162, refined=240\\n2026-05-23 05:03:07,041 [INFO]   Episode 30/40: success=False, collided=True, steps=300, sdf_min=0.0413, refined=240\\n2026-05-23 05:05:10,060 [INFO]   Episode 40/40: success=False, collided=False, steps=300, sdf_min=0.0008, refined=221\\n2026-05-23 05:05:10,472 [INFO] Results for task 1:\\n2026-05-23 05:05:10,473 [INFO]   TSR = 0.0% (0/40)\\n2026-05-23 05:05:10,473 [INFO]   CAR = 47.5% (19/40)\\n2026-05-23 05:05:10,473 [INFO]   Avg smoothness = 0.005579\\n2026-05-23 05:05:10,473 [INFO]   Avg max displacement = 0.0473m\\n2026-05-23 05:05:10,473 [INFO] Task 2: pick up the milk and place it in the basket\\n2026-05-23 05:05:10,473 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_milk_and_place_it_in_the_basket.bddl\\n2026-05-23 05:05:10,473 [INFO] Safety level: II\\n2026-05-23 05:07:11,870 [INFO]   Episode 10/40: success=False, collided=False, steps=300, sdf_min=-0.0017, refined=207\\n2026-05-23 05:09:12,129 [INFO]   Episode 20/40: success=False, collided=False, steps=300, sdf_min=0.0158, refined=239\\n2026-05-23 05:11:12,702 [INFO]   Episode 30/40: success=False, collided=True, steps=300, sdf_min=0.0015, refined=247\\n2026-05-23 05:13:13,446 [INFO]   Episode 40/40: success=False, collided=False, steps=300, sdf_min=0.0191, refined=224\\n2026-05-23 05:13:13,761 [INFO] Results for task 2:\\n2026-05-23 05:13:13,762 [INFO]   TSR = 0.0% (0/40)\\n2026-05-23 05:13:13,762 [INFO]   CAR = 82.5% (33/40)\\n2026-05-23 05:13:13,762 [INFO]   Avg smoothness = 0.003124\\n2026-05-23 05:13:13,762 [INFO]   Avg max displacement = 0.0086m\\n2026-05-23 05:13:13,763 [INFO] Task 3: pick up the bbq sauce and place it in the basket\\n2026-05-23 05:13:13,763 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_bbq_sauce_and_place_it_in_the_basket.bddl\\n2026-05-23 05:13:13,763 [INFO] Safety level: II\\n2026-05-23 05:15:17,548 [INFO]   Episode 10/40: success=False, collided=False, steps=300, sdf_min=0.0322, refined=235\\n2026-05-23 05:17:19,469 [INFO]   Episode 20/40: success=False, collided=False, steps=300, sdf_min=0.0292, refined=254\\n2026-05-23 05:19:21,706 [INFO]   Episode 30/40: success=False, collided=False, steps=300, sdf_min=0.0328, refined=246\\n2026-05-23 05:21:23,804 [INFO]   Episode 40/40: success=False, collided=False, steps=300, sdf_min=-0.0051, refined=228\\n2026-05-23 05:21:24,134 [INFO] Results for task 3:\\n2026-05-23 05:21:24,135 [INFO]   TSR = 0.0% (0/40)\\n2026-05-23 05:21:24,135 [INFO]   CAR = 87.5% (35/40)\\n2026-05-23 05:21:24,135 [INFO]   Avg smoothness = 0.003404\\n2026-05-23 05:21:24,135 [INFO]   Avg max displacement = 0.0097m\\n2026-05-23 05:21:24,135 [INFO] === Overall Results ===\\n2026-05-23 05:21:24,135 [INFO]   Avg TSR = 0.0%\\n2026-05-23 05:21:24,135 [INFO]   Avg CAR = 76.9%\\n2026-05-23 05:21:24,137 [INFO] Results saved to /root/autodl-tmp/eval_results/oracle_true_gt_feature_space_v11.json\\n[info] using task orders [0, 1, 2, 3]\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The experiment completed normally. I can see \"Overall Results\" with Avg TSR = 0.0% and Avg CAR = 76.9%. The process exited normally after completing all 4 tasks (task indices 0-3, but I only see tasks 1-3 in the last 100 lines). Let me collect the detailed results from the JSON file.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "66935380-8434-4a86-8f4f-165106f44856",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DFMvHKFHCojoGDFHQ1e25x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3920,
+                "cache_read_input_tokens": 25195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3920
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成，看到 \"Overall Results\" 汇总。收集详细结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "fe6e5dfd-44b7-4033-bbdf-e6687ae9916e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DFMvHKFHCojoGDFHQ1e25x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3920,
+                "cache_read_input_tokens": 25195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3920
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M7arwpPdYiBk3k6XLPnKja",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "python3 -c \"\nimport json, numpy as np\nwith open('/root/autodl-tmp/eval_results/oracle_true_gt_feature_space_v11.json') as f:\n    data = json.load(f)\nfor task_name, task_data in data.items():\n    if not isinstance(task_data, dict): continue\n    episodes = task_data.get('episodes', [])\n    if not episodes: continue\n    safe = [e for e in episodes if not e.get('collision', True)]\n    fake_safe = [e for e in safe if e.get('max_obstacle_displacement', 0) < 0.0001]\n    disps = [e.get('max_obstacle_displacement', 0) for e in episodes]\n    refined = [e.get('refined_count', 0) for e in episodes]\n    print(f'{task_name}:')\n    print(f'  TSR: {sum(1 for e in episodes if e.get(\\\"success\\\", False))}/{len(episodes)}')\n    print(f'  CAR: {len(safe)}/{len(episodes)} ({100*len(safe)/len(episodes):.1f}%)')\n    print(f'  Fake safe: {len(fake_safe)}/{len(safe) if safe else 1} ({100*len(fake_safe)/max(len(safe),1):.1f}%)')\n    print(f'  Disp: mean={np.mean(disps):.4f}, max={np.max(disps):.4f}')\n    print(f'  Refined: mean={np.mean(refined):.1f}, total={sum(refined)}')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "9137e4cc-eeb9-4135-94b1-67af45179bfd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DFMvHKFHCojoGDFHQ1e25x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3920,
+                "cache_read_input_tokens": 25195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3920
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T21:22:30.902Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M7arwpPdYiBk3k6XLPnKja",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '<' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "22bd9b18-d13c-41cd-8f41-097a2e7fe821",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '<' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '<' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TWUX6fmigByaQVyCjawR25",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "diff_collision_sdf",
+                "filters": {
+                  "exp_id": "oracle_true_gt_feature_v11"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "a54265f9-c94b-40eb-9414-87414bc2a950",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DFMvHKFHCojoGDFHQ1e25x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3920,
+                "cache_read_input_tokens": 25195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3920
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T21:22:32.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TWUX6fmigByaQVyCjawR25",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1104}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "729ad181-7981-4e3b-9706-8cffe301efc4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1104}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1104}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The ssh_read_only blocked because of the `<` character in the f-string. Let me write the script to a file first, or use a different approach. Actually, looking at the log output more carefully, I already have the key results from the log:\n\nTask 0 (chocolate pudding): Not visible in the last 100 lines, but it was task_orders [0,1,2,3]\nTask 1: TSR=0%, CAR=47.5% (19/40)\nTask 2: TSR=0%, CAR=82.5% (33/40)  \n\n\nTask 3: TSR=0%, CAR=87.5% (35/40)\nOverall: Avg TSR=0.0%, Avg CAR=76.9%\n\nI'm missing the results for task 0, so let me dig deeper into the log and check the JSON output file to get the complete picture.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "eb8ed85f-0cde-4e6b-b17c-2b499cd0aebf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0131sykrrU5jsUyfSDSn9yMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 964,
+                "cache_read_input_tokens": 29115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 964
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "shell metachar 限制，换方式读取结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "834abf79-e54d-438c-a0a9-4f0dfa348c6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0131sykrrU5jsUyfSDSn9yMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 964,
+                "cache_read_input_tokens": 29115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 964
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lw2HJ1x8DMPFGjGPoiUCHy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "cat /root/autodl-tmp/eval_results/oracle_true_gt_feature_space_v11.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "a07c89db-471e-4994-ba98-41d7fe23fbc5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0131sykrrU5jsUyfSDSn9yMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 964,
+                "cache_read_input_tokens": 29115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 964
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T21:22:41.553Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Lw2HJ1x8DMPFGjGPoiUCHy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"safelibero_object\\\\\\\",\\\\n    \\\\\\\"safety_level\\\\\\\": \\\\\\\"II\\\\\\\",\\\\n    \\\\\\\"n_episodes\\\\\\\": 40,\\\\n    \\\\\\\"max_steps\\\\\\\": 300,\\\\n    \\\\\\\"replan_steps\\\\\\\": 5,\\\\n    \\\\\\\"seed\\\\\\\": 0,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\\\\\",\\\\n    \\\\\\\"config_name\\\\\\\": \\\\\\\"pi0_libero_low_mem_finetune\\\\\\\",\\\\n    \\\\\\\"model_type\\\\\\\": \\\\\\\"a3\\\\\\\",\\\\n    \\\\\\\"refine_enabled\\\\\\\": true,\\\\n    \\\\\\\"force_refine\\\\\\\": false,\\\\n    \\\\\\\"refine_alpha\\\\\\\": 0.1,\\\\n    \\\\\\\"refine_margin\\\\\\\": 0.01,\\\\n    \\\\\\\"sdf_gt_path\\\\\\\": \\\\\\\"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\\\\\",\\\\n    \\\\\\\"true_oracle\\\\\\\": true,\\\\n    \\\\\\\"force_refine_oracle\\\\\\\": true,\\\\n    \\\\\\\"adaptive_alpha\\\\\\\": true,\\\\n    \\\\\\\"feature_oracle\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"collision_threshold\\\\\\\": 0.001,\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"language\\\\\\\": \\\\\\\"pick up the orange juice and place it in the basket\\\\\\\",\\\\n      \\\\\\\"safety_level\\\\\\\": \\\\\\\"II\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 40,\\\\n      \\\\\\\"TSR\\\\\\\": 0.0,\\\\n      \\\\\\\"CAR\\\\\\\": 0.9,\\\\n      \\\\\\\"avg_smoothness\\\\\\\": 0.003501506362960792,\\\\n      \\\\\\\"avg_max_displacement\\\\\\\": 0.0023112487013552696,\\\\n      \\\\\\\"episodes\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 0,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": true,\\\\n          \\\\\\\"collision_step\\\\\\\": 13,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": \\\\\\\"moka_pot_obstacle_1\\\\\\\",\\\\n          \\\\\\\"max_displacement\\\\\\\": 0.07344204057459668,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0027503759601913993,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.0476759741316604,\\\\n          \\\\\\\"sdf_min\\\\\\\": -0.003146714292608069,\\\\n          \\\\\\\"refine_count\\\\\\\": 226,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.007712639913417088,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 1,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 1.1553487033140198e-06,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0030441377855034944,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.049919721705549605,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.044319891902885294,\\\\n          \\\\\\\"refine_count\\\\\\\": 245,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.0030160687071261356,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 2,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 5.584612735690234e-10,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.002913975477945306,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04829836535286801,\\\\n          \\\\\\\"sdf_min\\\\\\\": -0.0018840275544573487,\\\\n          \\\\\\\"refine_count\\\\\\\": 226,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.0038477310388926496,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 3,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 4.980632217151151e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.005598234776215666,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.05000000074505806,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.050000000745058046,\\\\n          \\\\\\\"refine_count\\\\\\\": 250,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.003343976304189923,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 4,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 2.0523725236606403e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0039483202869731665,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04983431108965341,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.03471848123708015,\\\\n          \\\\\\\"refine_count\\\\\\\": 256,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.005108276961458368,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 5,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 1.1553487033089552e-06,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0026108017038717554,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04919727836598523,\\\\n          \\\\\\\"sdf_m\\\\n\\\\n... [截断: 输出过长，省略 76654 字符] ...\\\\n\\\\nllision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 2.052371963611095e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0022995752128390757,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.0498297719207466,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.032065685122374364,\\\\n          \\\\\\\"refine_count\\\\\\\": 242,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.003303811287373184,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 33,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 1.1553487032394993e-06,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.00576440940297773,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04936531761742118,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.0007415108100656189,\\\\n          \\\\\\\"refine_count\\\\\\\": 255,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.002983961787232211,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 34,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 5.584612028755289e-10,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0027384211737371536,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04981439776696134,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.026021282130275866,\\\\n          \\\\\\\"refine_count\\\\\\\": 234,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.004400431065236933,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 35,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 4.980632237506404e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0025256018731784737,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04928372769116515,\\\\n          \\\\\\\"sdf_min\\\\\\\": -0.00465802163587177,\\\\n          \\\\\\\"refine_count\\\\\\\": 245,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.00378159042236253,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 36,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 2.052372036685942e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0028183251501737875,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04994937747934063,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.04505709891748027,\\\\n          \\\\\\\"refine_count\\\\\\\": 251,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.003962856623706018,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 37,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 1.1553487032809493e-06,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.004055232060271965,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.049653885866614754,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.008358330058644135,\\\\n          \\\\\\\"refine_count\\\\\\\": 238,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.0052711198468850225,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 38,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 5.584612969071446e-10,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0023642582295461925,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04981094640341713,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.01723779508801487,\\\\n          \\\\\\\"refine_count\\\\\\\": 230,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.0035457568773707483,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 39,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 4.980632274616813e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.002043858831216241,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04896187077273912,\\\\n          \\\\\\\"sdf_min\\\\\\\": -0.005116517421596373,\\\\n          \\\\\\\"refine_count\\\\\\\": 228,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.005332571433304957,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        }\\\\n      ]\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "938454e5-4a7b-4297-8f0e-278c0b649671",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"safelibero_object\\\\\\\",\\\\n    \\\\\\\"safety_level\\\\\\\": \\\\\\\"II\\\\\\\",\\\\n    \\\\\\\"n_episodes\\\\\\\": 40,\\\\n    \\\\\\\"max_steps\\\\\\\": 300,\\\\n    \\\\\\\"replan_steps\\\\\\\": 5,\\\\n    \\\\\\\"seed\\\\\\\": 0,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\\\\\",\\\\n    \\\\\\\"config_name\\\\\\\": \\\\\\\"pi0_libero_low_mem_finetune\\\\\\\",\\\\n    \\\\\\\"model_type\\\\\\\": \\\\\\\"a3\\\\\\\",\\\\n    \\\\\\\"refine_enabled\\\\\\\": true,\\\\n    \\\\\\\"force_refine\\\\\\\": false,\\\\n    \\\\\\\"refine_alpha\\\\\\\": 0.1,\\\\n    \\\\\\\"refine_margin\\\\\\\": 0.01,\\\\n    \\\\\\\"sdf_gt_path\\\\\\\": \\\\\\\"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\\\\\",\\\\n    \\\\\\\"true_oracle\\\\\\\": true,\\\\n    \\\\\\\"force_refine_oracle\\\\\\\": true,\\\\n    \\\\\\\"adaptive_alpha\\\\\\\": true,\\\\n    \\\\\\\"feature_oracle\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"collision_threshold\\\\\\\": 0.001,\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"language\\\\\\\": \\\\\\\"pick up the orange juice and place it in the basket\\\\\\\",\\\\n      \\\\\\\"safety_level\\\\\\\": \\\\\\\"II\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 40,\\\\n      \\\\\\\"TSR\\\\\\\": 0.0,\\\\n      \\\\\\\"CAR\\\\\\\": 0.9,\\\\n      \\\\\\\"avg_smoothness\\\\\\\": 0.003501506362960792,\\\\n      \\\\\\\"avg_max_displacement\\\\\\\": 0.0023112487013552696,\\\\n      \\\\\\\"episodes\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 0,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": true,\\\\n          \\\\\\\"collision_step\\\\\\\": 13,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": \\\\\\\"moka_pot_obstacle_1\\\\\\\",\\\\n          \\\\\\\"max_displacement\\\\\\\": 0.07344204057459668,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0027503759601913993,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.0476759741316604,\\\\n          \\\\\\\"sdf_min\\\\\\\": -0.003146714292608069,\\\\n          \\\\\\\"refine_count\\\\\\\": 226,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.007712639913417088,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 1,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 1.1553487033140198e-06,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0030441377855034944,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.049919721705549605,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.044319891902885294,\\\\n          \\\\\\\"refine_count\\\\\\\": 245,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.0030160687071261356,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 2,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 5.584612735690234e-10,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.002913975477945306,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04829836535286801,\\\\n          \\\\\\\"sdf_min\\\\\\\": -0.0018840275544573487,\\\\n          \\\\\\\"refine_count\\\\\\\": 226,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.0038477310388926496,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 3,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 4.980632217151151e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.005598234776215666,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.05000000074505806,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.050000000745058046,\\\\n          \\\\\\\"refine_count\\\\\\\": 250,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.003343976304189923,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 4,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 2.0523725236606403e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0039483202869731665,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04983431108965341,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.03471848123708015,\\\\n          \\\\\\\"refine_count\\\\\\\": 256,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.005108276961458368,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 5,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 1.1553487033089552e-06,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0026108017038717554,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04919727836598523,\\\\n          \\\\\\\"sdf_m\\\\n\\\\n... [截断: 输出过长，省略 76654 字符] ...\\\\n\\\\nllision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 2.052371963611095e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0022995752128390757,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.0498297719207466,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.032065685122374364,\\\\n          \\\\\\\"refine_count\\\\\\\": 242,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.003303811287373184,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 33,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 1.1553487032394993e-06,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.00576440940297773,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04936531761742118,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.0007415108100656189,\\\\n          \\\\\\\"refine_count\\\\\\\": 255,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.002983961787232211,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 34,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 5.584612028755289e-10,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0027384211737371536,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04981439776696134,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.026021282130275866,\\\\n          \\\\\\\"refine_count\\\\\\\": 234,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.004400431065236933,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 35,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 4.980632237506404e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0025256018731784737,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04928372769116515,\\\\n          \\\\\\\"sdf_min\\\\\\\": -0.00465802163587177,\\\\n          \\\\\\\"refine_count\\\\\\\": 245,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.00378159042236253,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 36,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 2.052372036685942e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0028183251501737875,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04994937747934063,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.04505709891748027,\\\\n          \\\\\\\"refine_count\\\\\\\": 251,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.003962856623706018,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 37,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 1.1553487032809493e-06,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.004055232060271965,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.049653885866614754,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.008358330058644135,\\\\n          \\\\\\\"refine_count\\\\\\\": 238,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.0052711198468850225,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 38,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 5.584612969071446e-10,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0023642582295461925,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04981094640341713,\\\\n          \\\\\\\"sdf_min\\\\\\\": 0.01723779508801487,\\\\n          \\\\\\\"refine_count\\\\\\\": 230,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.0035457568773707483,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 39,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 4.980632274616813e-09,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.002043858831216241,\\\\n          \\\\\\\"sdf_mean\\\\\\\": 0.04896187077273912,\\\\n          \\\\\\\"sdf_min\\\\\\\": -0.005116517421596373,\\\\n          \\\\\\\"refine_count\\\\\\\": 228,\\\\n          \\\\\\\"gradient_magnitude_avg\\\\\\\": 0.005332571433304957,\\\\n          \\\\\\\"feature_oracle\\\\\\\": true\\\\n        }\\\\n      ]\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"suite\\\": \\\"safelibero_object\\\",\\n    \\\"safety_level\\\": \\\"II\\\",\\n    \\\"n_episodes\\\": 40,\\n    \\\"max_steps\\\": 300,\\n    \\\"replan_steps\\\": 5,\\n    \\\"seed\\\": 0,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\",\\n    \\\"config_name\\\": \\\"pi0_libero_low_mem_finetune\\\",\\n    \\\"model_type\\\": \\\"a3\\\",\\n    \\\"refine_enabled\\\": true,\\n    \\\"force_refine\\\": false,\\n    \\\"refine_alpha\\\": 0.1,\\n    \\\"refine_margin\\\": 0.01,\\n    \\\"sdf_gt_path\\\": \\\"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\",\\n    \\\"true_oracle\\\": true,\\n    \\\"force_refine_oracle\\\": true,\\n    \\\"adaptive_alpha\\\": true,\\n    \\\"feature_oracle\\\": true\\n  },\\n  \\\"collision_threshold\\\": 0.001,\\n  \\\"results\\\": [\\n    {\\n      \\\"task_id\\\": 0,\\n      \\\"task_name\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"language\\\": \\\"pick up the orange juice and place it in the basket\\\",\\n      \\\"safety_level\\\": \\\"II\\\",\\n      \\\"n_episodes\\\": 40,\\n      \\\"TSR\\\": 0.0,\\n      \\\"CAR\\\": 0.9,\\n      \\\"avg_smoothness\\\": 0.003501506362960792,\\n      \\\"avg_max_displacement\\\": 0.0023112487013552696,\\n      \\\"episodes\\\": [\\n        {\\n          \\\"episode\\\": 0,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": true,\\n          \\\"collision_step\\\": 13,\\n          \\\"collision_obstacle\\\": \\\"moka_pot_obstacle_1\\\",\\n          \\\"max_displacement\\\": 0.07344204057459668,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.0027503759601913993,\\n          \\\"sdf_mean\\\": 0.0476759741316604,\\n          \\\"sdf_min\\\": -0.003146714292608069,\\n          \\\"refine_count\\\": 226,\\n          \\\"gradient_magnitude_avg\\\": 0.007712639913417088,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 1,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 1.1553487033140198e-06,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.0030441377855034944,\\n          \\\"sdf_mean\\\": 0.049919721705549605,\\n          \\\"sdf_min\\\": 0.044319891902885294,\\n          \\\"refine_count\\\": 245,\\n          \\\"gradient_magnitude_avg\\\": 0.0030160687071261356,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 2,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 5.584612735690234e-10,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.002913975477945306,\\n          \\\"sdf_mean\\\": 0.04829836535286801,\\n          \\\"sdf_min\\\": -0.0018840275544573487,\\n          \\\"refine_count\\\": 226,\\n          \\\"gradient_magnitude_avg\\\": 0.0038477310388926496,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 3,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 4.980632217151151e-09,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.005598234776215666,\\n          \\\"sdf_mean\\\": 0.05000000074505806,\\n          \\\"sdf_min\\\": 0.050000000745058046,\\n          \\\"refine_count\\\": 250,\\n          \\\"gradient_magnitude_avg\\\": 0.003343976304189923,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 4,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 2.0523725236606403e-09,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.0039483202869731665,\\n          \\\"sdf_mean\\\": 0.04983431108965341,\\n          \\\"sdf_min\\\": 0.03471848123708015,\\n          \\\"refine_count\\\": 256,\\n          \\\"gradient_magnitude_avg\\\": 0.005108276961458368,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 5,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 1.1553487033089552e-06,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.0026108017038717554,\\n          \\\"sdf_mean\\\": 0.04919727836598523,\\n          \\\"sdf_m\\n\\n... [截断: 输出过长，省略 76654 字符] ...\\n\\nllision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 2.052371963611095e-09,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.0022995752128390757,\\n          \\\"sdf_mean\\\": 0.0498297719207466,\\n          \\\"sdf_min\\\": 0.032065685122374364,\\n          \\\"refine_count\\\": 242,\\n          \\\"gradient_magnitude_avg\\\": 0.003303811287373184,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 33,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 1.1553487032394993e-06,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.00576440940297773,\\n          \\\"sdf_mean\\\": 0.04936531761742118,\\n          \\\"sdf_min\\\": 0.0007415108100656189,\\n          \\\"refine_count\\\": 255,\\n          \\\"gradient_magnitude_avg\\\": 0.002983961787232211,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 34,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 5.584612028755289e-10,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.0027384211737371536,\\n          \\\"sdf_mean\\\": 0.04981439776696134,\\n          \\\"sdf_min\\\": 0.026021282130275866,\\n          \\\"refine_count\\\": 234,\\n          \\\"gradient_magnitude_avg\\\": 0.004400431065236933,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 35,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 4.980632237506404e-09,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.0025256018731784737,\\n          \\\"sdf_mean\\\": 0.04928372769116515,\\n          \\\"sdf_min\\\": -0.00465802163587177,\\n          \\\"refine_count\\\": 245,\\n          \\\"gradient_magnitude_avg\\\": 0.00378159042236253,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 36,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 2.052372036685942e-09,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.0028183251501737875,\\n          \\\"sdf_mean\\\": 0.04994937747934063,\\n          \\\"sdf_min\\\": 0.04505709891748027,\\n          \\\"refine_count\\\": 251,\\n          \\\"gradient_magnitude_avg\\\": 0.003962856623706018,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 37,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 1.1553487032809493e-06,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.004055232060271965,\\n          \\\"sdf_mean\\\": 0.049653885866614754,\\n          \\\"sdf_min\\\": 0.008358330058644135,\\n          \\\"refine_count\\\": 238,\\n          \\\"gradient_magnitude_avg\\\": 0.0052711198468850225,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 38,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 5.584612969071446e-10,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.0023642582295461925,\\n          \\\"sdf_mean\\\": 0.04981094640341713,\\n          \\\"sdf_min\\\": 0.01723779508801487,\\n          \\\"refine_count\\\": 230,\\n          \\\"gradient_magnitude_avg\\\": 0.0035457568773707483,\\n          \\\"feature_oracle\\\": true\\n        },\\n        {\\n          \\\"episode\\\": 39,\\n          \\\"success\\\": false,\\n          \\\"collided\\\": false,\\n          \\\"collision_step\\\": -1,\\n          \\\"collision_obstacle\\\": null,\\n          \\\"max_displacement\\\": 4.980632274616813e-09,\\n          \\\"total_steps\\\": 300,\\n          \\\"smoothness\\\": 0.002043858831216241,\\n          \\\"sdf_mean\\\": 0.04896187077273912,\\n          \\\"sdf_min\\\": -0.005116517421596373,\\n          \\\"refine_count\\\": 228,\\n          \\\"gradient_magnitude_avg\\\": 0.005332571433304957,\\n          \\\"feature_oracle\\\": true\\n        }\\n      ]\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UcCbJoDGW6HH4V3EoTFNUU",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "grep \"Results for task\\|Overall\\|TSR\\|CAR\\|smoothness\\|displacement\" /root/autodl-tmp/eval_results/eval_oracle_feature_space_v11.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "41234fcd-b042-444a-8ced-f6388a1ea311",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0131sykrrU5jsUyfSDSn9yMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 964,
+                "cache_read_input_tokens": 29115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 964
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T21:22:42.078Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UcCbJoDGW6HH4V3EoTFNUU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "c41ed92d-9ac0-4cda-bdfa-4651c14e2d43",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have the results. Let me summarize:\n\nFrom the log:\n- Task 0 (orange juice): TSR=0%, CAR=90% (from JSON: 0.9)\n- Task 1 (chocolate pudding): TSR=0%, CAR=47.5% (19/40)\n- Task 2 (milk): TSR=0%, CAR=82.5% (33/40)\n- Task 3 (bbq sauce): TSR=0%, CAR=87.5% (35/40)\n- Overall: Avg TSR=0.0%, Avg CAR=76.9%\n\n\n- The feature-space oracle is completely blocking task success while maintaining decent collision avoidance—almost every step triggers refinement, and the robot barely moves despite the high CAR scores, which suggests the feature gradients are overly conservative and preventing meaningful progress.\n\nNow I'm checking the experiment registry to find the exact configuration, but the initial search came up empty, so I'll need to broaden my search parameters.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "22a09fb4-00df-45e0-9e0b-7d0015dd2054",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0124b9GNEcZkS6ue7NBB9YcP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4698,
+                "cache_read_input_tokens": 30079,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4698
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 没找到该实验，搜索更广。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "4c41a1d0-092b-4571-bc41-0f246f2dfb3a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0124b9GNEcZkS6ue7NBB9YcP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4698,
+                "cache_read_input_tokens": 30079,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4698
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015ijnxekUWRTdB9bBQEFsuG",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "diff_collision_sdf",
+                "filters": {
+                  "status": "RUNNING"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "12f97d31-a47a-4a23-b12d-3dc4d6796ac3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0124b9GNEcZkS6ue7NBB9YcP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4698,
+                "cache_read_input_tokens": 30079,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4698
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T21:22:55.538Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015ijnxekUWRTdB9bBQEFsuG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_safelibero_object_v11\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T21:10:20.936Z\\\", \\\"updated_at\\\": \\\"2026-05-22T21:10:35.724Z\\\", \\\"hypothesis\\\": \\\"Pi0.5 (TSR=98.2% on standard LIBERO) as strong baseline: if CAR is also high, a better base model naturally improves safety without SDF. If CAR is low despite high TSR, collision avoidance requires explicit safety mechanisms regardless of base model quality.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_pi05_safelibero.py --suite safelibero_object --safety_level II --n_episodes 50 --output_path /root/autodl-tmp/eval_results/pi05_safelibero_object_v11.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"data_path\\\": \\\"SafeLIBERO safelibero_object Level II (4 tasks x 50 episodes = 200 total)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_libero (openpi checkpoint)\\\", \\\"seed\\\": 7, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/openpi_weights/pi05_libero/\\\", \\\"eval_data\\\": \\\"safelibero_object Level II\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/openpi_weights/pi05_libero/\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1026}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "b0fbab0b-8ffc-46c4-8a16-f4351a3c32c6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_safelibero_object_v11\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T21:10:20.936Z\\\", \\\"updated_at\\\": \\\"2026-05-22T21:10:35.724Z\\\", \\\"hypothesis\\\": \\\"Pi0.5 (TSR=98.2% on standard LIBERO) as strong baseline: if CAR is also high, a better base model naturally improves safety without SDF. If CAR is low despite high TSR, collision avoidance requires explicit safety mechanisms regardless of base model quality.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_pi05_safelibero.py --suite safelibero_object --safety_level II --n_episodes 50 --output_path /root/autodl-tmp/eval_results/pi05_safelibero_object_v11.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"data_path\\\": \\\"SafeLIBERO safelibero_object Level II (4 tasks x 50 episodes = 200 total)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_libero (openpi checkpoint)\\\", \\\"seed\\\": 7, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/openpi_weights/pi05_libero/\\\", \\\"eval_data\\\": \\\"safelibero_object Level II\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/openpi_weights/pi05_libero/\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1026}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_safelibero_object_v11\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T21:10:20.936Z\", \"updated_at\": \"2026-05-22T21:10:35.724Z\", \"hypothesis\": \"Pi0.5 (TSR=98.2% on standard LIBERO) as strong baseline: if CAR is also high, a better base model naturally improves safety without SDF. If CAR is low despite high TSR, collision avoidance requires explicit safety mechanisms regardless of base model quality.\", \"spec\": {\"command\": \"python scripts/eval_pi05_safelibero.py --suite safelibero_object --safety_level II --n_episodes 50 --output_path /root/autodl-tmp/eval_results/pi05_safelibero_object_v11.json\", \"server\": \"westd-45947\", \"data_path\": \"SafeLIBERO safelibero_object Level II (4 tasks x 50 episodes = 200 total)\", \"data_count\": 200, \"model_name\": \"pi05_libero (openpi checkpoint)\", \"seed\": 7, \"checkpoint_source\": \"/root/autodl-tmp/openpi_weights/pi05_libero/\", \"eval_data\": \"safelibero_object Level II\", \"log_path\": \"/root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11.log\", \"checkpoint_path\": \"/root/autodl-tmp/openpi_weights/pi05_libero/\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1026}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014cj5B9EFjPe2EvXutvshP9",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "diff_collision_sdf",
+                "limit": 5,
+                "fields": [
+                  "exp_id",
+                  "status",
+                  "conclusion"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "f92ffbc7-6ffc-4db6-9ce1-7128b56ddcc9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0124b9GNEcZkS6ue7NBB9YcP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4698,
+                "cache_read_input_tokens": 30079,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4698
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T21:22:56.249Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014cj5B9EFjPe2EvXutvshP9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"oracle_true_gt_feature_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"oracle_true_gt_fixed_alpha_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"oracle_true_gt_adaptive_alpha_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_a1_lora_object_v11_rerun\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_pi05_safelibero_object_v11\\\": {\\\"status\\\": \\\"RUNNING\\\"}}, \\\"count\\\": 5, \\\"total\\\": 38, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1351}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "821be315-4fbf-4ca9-8efe-bb1e8d3a72ce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"oracle_true_gt_feature_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"oracle_true_gt_fixed_alpha_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"oracle_true_gt_adaptive_alpha_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_a1_lora_object_v11_rerun\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_pi05_safelibero_object_v11\\\": {\\\"status\\\": \\\"RUNNING\\\"}}, \\\"count\\\": 5, \\\"total\\\": 38, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1351}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"oracle_true_gt_feature_v11\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"oracle_true_gt_fixed_alpha_v11\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"oracle_true_gt_adaptive_alpha_v11\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"eval_a1_lora_object_v11_rerun\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_safelibero_object_v11\": {\"status\": \"RUNNING\"}}, \"count\": 5, \"total\": 38, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1351}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The experiment `oracle_true_gt_feature_v11` is already marked as DONE with conclusion \"negative\". But wait, the task said to check on this experiment. It seems it was already registered. Let me read its full details to see if the metrics are already populated.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "18d72443-83e3-4403-a195-cc101cbfcf90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WeknEyNGmBTZHL824X2Rpg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1372,
+                "cache_read_input_tokens": 34777,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1372
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在 registry 中，状态 DONE/negative。检查是否已有 metrics。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "206f9e4c-5cb7-42d9-b4e4-d75c3722221d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WeknEyNGmBTZHL824X2Rpg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1372,
+                "cache_read_input_tokens": 34777,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1372
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HvLbZyzRCXavtQp4EjSQYh",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "diff_collision_sdf",
+                "filters": {
+                  "exp_id": "oracle_true_gt_feature_v11"
+                },
+                "fields": [
+                  "*"
+                ],
+                "limit": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "57131961-db9a-4b5d-bfa8-3a047cccacd7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WeknEyNGmBTZHL824X2Rpg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1372,
+                "cache_read_input_tokens": 34777,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1372
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T21:23:01.839Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HvLbZyzRCXavtQp4EjSQYh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1052}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "4c5c8f9d-15c2-4e80-bccf-30954c064ac0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1052}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1052}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Strange, the filter on exp_id returns nothing, but it showed up in the unfiltered list. Maybe the filter syntax is different. Let me try a different approach.",
+              "signature": "EuQCCmMIDRgCKkC/9vLK+tWmPHbwyjDnFTEqkn2slbY1BEwUWjuuCY+5D/wBZUVIaOIbuIV/63SJbquccgt75ZfaCYfXZP72rO66Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDPMWnSdpHh/Mmkic7xoM5H/x69u/sNO14E4dIjC3II6BcIfAPEO4gTFugM+KtJy9qeyGDWHodczqwWQK05FEaiWsoWz5m6yovleIaZsqrgEBNCbxkDwhOQIhB73uWN9PuW5rM0izQ3pP5G3+mcQTJkAnqqpwl0DjOyCJbD+TcsLoO3oUmjN1sIGv/Jbrep/PwcrpXAQLGw+Zerv/G8/yTnGN1/88XD39ViPSRAKo6f3HKo5MEzZGIXWbvDRnPSmIghj0vmaFmGLSLfiEnqaVDekocW6Oi6PShgUKpzlHkyqM9C8/3sPk0BZmE33sGUWcAIEgD+/lprPvvAbtYtYYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "91c9e79f-1dd8-48ad-b472-cdaedd675b31",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SyXqGs7WEKVJMwwMwXt3Dp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 314,
+                "cache_read_input_tokens": 36149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 314
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013N73TVJCenmei72wKJGend",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "diff_collision_sdf",
+                "filters": {
+                  "conclusion": "negative"
+                },
+                "fields": [
+                  "*"
+                ],
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "49a0cf18-2d62-4ba4-a9ba-b2dd5567f14e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SyXqGs7WEKVJMwwMwXt3Dp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 314,
+                "cache_read_input_tokens": 36149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 314
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T21:23:06.751Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013N73TVJCenmei72wKJGend",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"oracle_true_gt_feature_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T20:49:11.558Z\\\", \\\"updated_at\\\": \\\"2026-05-22T21:22:41.724Z\\\", \\\"hypothesis\\\": \\\"Feature-space oracle (GT SDF gradient through suffix_out → action_out_proj) will outperform action-space oracle because it matches the training-time refinement pathway, eliminating the train-eval refine mismatch identified in M028.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --model_type a3 --suite safelibero_object --safety_level II --n_episodes 40 --gpu 2 --true_oracle --feature_oracle --force_refine_oracle --adaptive_alpha --refine_alpha 0.1 --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_feature_space_v11.json --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"data_path\\\": \\\"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\", \\\"data_count\\\": 4084, \\\"model_name\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\", \\\"eval_data\\\": \\\"safelibero_object_levelII\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_oracle_feature_space_v11.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T21:22:25.146Z\\\", \\\"metrics\\\": {\\\"avg_TSR\\\": 0, \\\"avg_CAR\\\": 76.9, \\\"task_CAR\\\": {\\\"orange_juice\\\": 90, \\\"chocolate_pudding\\\": 47.5, \\\"milk\\\": 82.5, \\\"bbq_sauce\\\": 87.5}, \\\"task_displacement\\\": {\\\"orange_juice\\\": 0.0023, \\\"chocolate_pudding\\\": 0.0473, \\\"milk\\\": 0.0086, \\\"bbq_sauce\\\": 0.0097}, \\\"task_refine_count_mean\\\": {\\\"orange_juice\\\": 248.5, \\\"chocolate_pudding\\\": 241.8, \\\"milk\\\": 236.7, \\\"bbq_sauce\\\": 240}, \\\"task_grad_mag_mean\\\": {\\\"orange_juice\\\": 0.00423, \\\"chocolate_pudding\\\": 0.00609, \\\"milk\\\": 0.00466, \\\"bbq_sauce\\\": 0.00491}, \\\"fake_safe_rate\\\": 0.967, \\\"fake_safe_detail\\\": \\\"119/123 safe episodes have displacement<0.1mm\\\", \\\"total_refined_steps\\\": 38679, \\\"avg_refined_per_episode\\\": 241.7, \\\"n_episodes\\\": 160}, \\\"notes\\\": \\\"Feature-space oracle GT SDF完成。CAR=76.9% < baseline 79%，TSR=0%。96.7% fake safe（119/123）。与action-space oracle对比：feature-space每步都refine（avg 241.7/ep vs action-space 14），gradient magnitude极小（0.004-0.006 vs action-space 0.18-0.49），说明feature-space梯度更弱但更频繁。M028假设不成立——feature-space并未优于action-space（76.9% vs adaptive 75%/fixed 73.1%）。三组oracle实验统一结论：即使使用GT SDF，任何形式的gradient-based refinement都无法改善CAR，根本原因是refinement导致action collapse。\\\"}, \\\"oracle_true_gt_fixed_alpha_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T20:05:33.998Z\\\", \\\"updated_at\\\": \\\"2026-05-22T21:21:58.847Z\\\", \\\"hypothesis\\\": \\\"True oracle SDF with conservative fixed alpha=0.005 (≈0.5x typical action_norm) as control. If CAR improves over baseline → oracle refinement works even at small alpha. If similar to adaptive → alpha magnitude is not the key factor.\\\", \\\"parent\\\": \\\"oracle_true_gt_object_v11\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 40 --gpu 0 --true_oracle --force_refine_oracle --refine_alpha 0.005 --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_fixed_alpha_v11.json\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": 93306, \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_oracle_fixed_alpha_v11.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\", \\\"checkpoint_source\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"eval_data\\\": \\\"safelibero_object_levelII\\\", \\\"data_path\\\": \\\"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\", \\\"data_count\\\": 40, \\\"model_name\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"seed\\\": 0}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T21:07:06.626Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T21:07:08.201Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T21:07:10.845533+00:00\\\"}]}, \\\"metrics\\\": {\\\"avg_TSR\\\": 0, \\\"avg_CAR\\\": 73.1, \\\"task_CAR\\\": {\\\"orange_juice\\\": 85, \\\"chocolate_pudding\\\": 50, \\\"milk\\\": 77.5, \\\"bbq_sauce\\\": 80}, \\\"task_displacement\\\": {\\\"orange_juice\\\": 0.0113, \\\"chocolate_pudding\\\": 0.0365, \\\"milk\\\": 0.0042, \\\"bbq_sauce\\\": 0.0032}, \\\"task_refine_count_mean\\\": {\\\"orange_juice\\\": 8.7, \\\"chocolate_pudding\\\": 20.2, \\\"milk\\\": 20.1, \\\"bbq_sauce\\\": 10.4}, \\\"total_refined_steps\\\": 2375, \\\"avg_refined_per_episode\\\": 14.8, \\\"fake_safe_rate\\\": 0.983, \\\"fake_safe_detail\\\": \\\"115/117 safe episodes have displacement<0.1mm\\\", \\\"task_fake_safe\\\": {\\\"orange_juice\\\": \\\"34/34 (100%)\\\", \\\"chocolate_pudding\\\": \\\"19/20 (95%)\\\", \\\"milk\\\": \\\"30/31 (96.8%)\\\", \\\"bbq_sauce\\\": \\\"32/32 (100%)\\\"}, \\\"collision_threshold\\\": 0.001, \\\"n_episodes\\\": 160}, \\\"notes\\\": \\\"True oracle GT SDF + fixed alpha=0.005完成。CAR=73.1% < baseline 79%，TSR=0%。98.3% fake safe rate（115/117 safe eps displacement<0.1mm）。与adaptive alpha结论一致：alpha大小不是关键因素（adaptive 75% vs fixed 73.1%差异极小），根本问题是action-space SDF refinement导致action collapse而非真正避障。chocolate_pudding最差（CAR=50%，fake_safe=95%），refined count最高（mean=20.2）。\\\"}, \\\"oracle_true_gt_adaptive_alpha_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T20:05:31.719Z\\\", \\\"updated_at\\\": \\\"2026-05-22T21:21:36.990Z\\\", \\\"hypothesis\\\": \\\"True oracle SDF with adaptive alpha (min(0.1, 0.5*action_norm)) prevents overcorrection while maintaining collision avoidance. Compared to fixed alpha=0.005 control. If adaptive > fixed → alpha scaling is critical. If both improve baseline → oracle SDF refinement is viable.\\\", \\\"parent\\\": \\\"oracle_true_gt_object_v11\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 40 --gpu 0 --true_oracle --force_refine_oracle --refine_alpha 0.1 --adaptive_alpha --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_adaptive_alpha_v11.json\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": 93059, \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_oracle_adaptive_alpha_v11.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\", \\\"checkpoint_source\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"eval_data\\\": \\\"safelibero_object_levelII\\\", \\\"data_path\\\": \\\"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\", \\\"data_count\\\": 40, \\\"model_name\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"seed\\\": 0}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T21:07:01.568Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T21:07:02.048Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T21:07:04.009157+00:00\\\"}]}, \\\"metrics\\\": {\\\"avg_TSR\\\": 0, \\\"avg_CAR\\\": 75, \\\"task_CAR\\\": {\\\"orange_juice\\\": 82.5, \\\"chocolate_pudding\\\": 55, \\\"milk\\\": 77.5, \\\"bbq_sauce\\\": 85}, \\\"task_displacement\\\": {\\\"orange_juice\\\": 0.0076, \\\"chocolate_pudding\\\": 0.0475, \\\"milk\\\": 0.0107, \\\"bbq_sauce\\\": 0.0077}, \\\"task_refine_count_mean\\\": {\\\"orange_juice\\\": 7.6, \\\"chocolate_pudding\\\": 22.4, \\\"milk\\\": 17.6, \\\"bbq_sauce\\\": 9.1}, \\\"task_grad_mag_mean\\\": {\\\"orange_juice\\\": 0.176, \\\"chocolate_pudding\\\": 0.247, \\\"milk\\\": 0.489, \\\"bbq_sauce\\\": 0.357}, \\\"fake_safe_rate\\\": 0.983, \\\"fake_safe_detail\\\": \\\"118/120 safe episodes have displacement<0.1mm\\\", \\\"total_refined_steps\\\": 2270, \\\"avg_refined_per_episode\\\": 14.2, \\\"n_episodes\\\": 160}, \\\"notes\\\": \\\"True oracle GT SDF + adaptive alpha完成。CAR=75% < baseline 79%，TSR=0%。关键发现：refinement确实触发（avg 14.2 refine steps/ep），gradient magnitudes非零（0.18-0.49），但98.3% safe episodes是fake safe（displacement<0.1mm=action collapse）。仅2/120 safe episodes有真实movement。chocolate_pudding最差（55% CAR）。GT SDF refinement非但没改善safety，反而比baseline更差，且安全只是假象（frozen robot）。与fixed alpha结论一致。\\\"}, \\\"eval_a3_object_m024fix_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:54:33.422Z\\\", \\\"updated_at\\\": \\\"2026-05-22T19:53:33.670Z\\\", \\\"hypothesis\\\": \\\"M024 coordinate bug fix (delta->absolute for SDF query) will improve A3 object eval safety and success rates by enabling correct collision detection during trajectory refinement\\\", \\\"parent\\\": \\\"eval_a3_v11_object\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 200 --replan_steps 5 --gpu 2 --output_prefix a3_m024fix_v11 --save_dir /root/autodl-tmp/eval_results\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"780772\\\", \\\"data_path\\\": \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"a3_grad_refine_object_pudding_seed0/best\\\", \\\"eval_data\\\": \\\"safelibero_object_all_levelII\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_a3_object_m024fix_v11.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T19:53:27.804Z\\\", \\\"metrics\\\": {\\\"task0\\\": {\\\"TSR\\\": 0, \\\"CAR\\\": 0.885, \\\"avg_max_displacement\\\": 0.0066, \\\"refined_count\\\": 0}, \\\"task1\\\": {\\\"TSR\\\": 0, \\\"CAR\\\": 0.46, \\\"avg_max_displacement\\\": 0.0492, \\\"refined_count\\\": 0}, \\\"task2\\\": {\\\"TSR\\\": 0, \\\"CAR\\\": 0.86, \\\"avg_max_displacement\\\": 0.0044, \\\"refined_count\\\": 0}, \\\"task3\\\": {\\\"TSR\\\": 0, \\\"CAR\\\": 0.88, \\\"avg_max_displacement\\\": 0.0074, \\\"refined_count\\\": 0}, \\\"overall\\\": {\\\"avg_TSR\\\": 0, \\\"avg_CAR\\\": 0.771}}}, \\\"eval_a1_lora_spatial_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:40:45.183Z\\\", \\\"updated_at\\\": \\\"2026-05-22T19:48:23.562Z\\\", \\\"hypothesis\\\": \\\"A1 SDF auxiliary loss + LoRA on spatial_bowl: if SDF training signal teaches meaningful collision avoidance, CAR should exceed the 0% baseline. Null hypothesis: EE-only SDF cannot prevent arm-body collisions in spatial tasks.\\\", \\\"parent\\\": \\\"a1_lora_spatial_bowl_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --model_type lora_baseline --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best --suite safelibero_spatial --safety_level II --n_episodes 200 --replan_steps 5 --gpu 3 --output_prefix a1_lora_v11 --save_dir /root/autodl-tmp/eval_results\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best\\\", \\\"eval_data\\\": \\\"safelibero_spatial_levelII_200ep\\\", \\\"data_path\\\": \\\"safelibero_spatial\\\", \\\"data_count\\\": 800, \\\"model_name\\\": \\\"pi0_lora_a1_sdf_spatial_bowl\\\", \\\"seed\\\": 0}, \\\"notes\\\": \\\"[2026-05-23 03:45] DONE. CAR=0.8% (6/800) but ALL 6 safe episodes have displacement=0.0 (action collapse). Effective CAR=0% after fake-safety filter. EE-only SDF aux loss does not help spatial tasks where collisions are arm-body, not EE-obstacle.\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_a1_lora_spatial_v11.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best\\\", \\\"metrics\\\": {\\\"avg_TSR\\\": 0.001, \\\"avg_CAR\\\": 0.008, \\\"task0_TSR\\\": 0.005, \\\"task0_CAR\\\": 0.015, \\\"task0_avg_disp\\\": 0.2578, \\\"task1_TSR\\\": 0, \\\"task1_CAR\\\": 0, \\\"task1_avg_disp\\\": 0.1955, \\\"task2_TSR\\\": 0, \\\"task2_CAR\\\": 0, \\\"task2_avg_disp\\\": 0.2142, \\\"task3_TSR\\\": 0, \\\"task3_CAR\\\": 0.015, \\\"task3_avg_disp\\\": 0.1992, \\\"safe_episodes_total\\\": 6, \\\"safe_episodes_with_zero_displacement\\\": 6, \\\"fake_safety\\\": true}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T19:48:20.631Z\\\"}}, \\\"count\\\": 5, \\\"total\\\": 13, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1163}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "f3eeb8f9-157f-42b3-b531-f0c0dd1d85f8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"oracle_true_gt_feature_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T20:49:11.558Z\\\", \\\"updated_at\\\": \\\"2026-05-22T21:22:41.724Z\\\", \\\"hypothesis\\\": \\\"Feature-space oracle (GT SDF gradient through suffix_out → action_out_proj) will outperform action-space oracle because it matches the training-time refinement pathway, eliminating the train-eval refine mismatch identified in M028.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --model_type a3 --suite safelibero_object --safety_level II --n_episodes 40 --gpu 2 --true_oracle --feature_oracle --force_refine_oracle --adaptive_alpha --refine_alpha 0.1 --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_feature_space_v11.json --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"data_path\\\": \\\"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\", \\\"data_count\\\": 4084, \\\"model_name\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\", \\\"eval_data\\\": \\\"safelibero_object_levelII\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_oracle_feature_space_v11.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T21:22:25.146Z\\\", \\\"metrics\\\": {\\\"avg_TSR\\\": 0, \\\"avg_CAR\\\": 76.9, \\\"task_CAR\\\": {\\\"orange_juice\\\": 90, \\\"chocolate_pudding\\\": 47.5, \\\"milk\\\": 82.5, \\\"bbq_sauce\\\": 87.5}, \\\"task_displacement\\\": {\\\"orange_juice\\\": 0.0023, \\\"chocolate_pudding\\\": 0.0473, \\\"milk\\\": 0.0086, \\\"bbq_sauce\\\": 0.0097}, \\\"task_refine_count_mean\\\": {\\\"orange_juice\\\": 248.5, \\\"chocolate_pudding\\\": 241.8, \\\"milk\\\": 236.7, \\\"bbq_sauce\\\": 240}, \\\"task_grad_mag_mean\\\": {\\\"orange_juice\\\": 0.00423, \\\"chocolate_pudding\\\": 0.00609, \\\"milk\\\": 0.00466, \\\"bbq_sauce\\\": 0.00491}, \\\"fake_safe_rate\\\": 0.967, \\\"fake_safe_detail\\\": \\\"119/123 safe episodes have displacement<0.1mm\\\", \\\"total_refined_steps\\\": 38679, \\\"avg_refined_per_episode\\\": 241.7, \\\"n_episodes\\\": 160}, \\\"notes\\\": \\\"Feature-space oracle GT SDF完成。CAR=76.9% < baseline 79%，TSR=0%。96.7% fake safe（119/123）。与action-space oracle对比：feature-space每步都refine（avg 241.7/ep vs action-space 14），gradient magnitude极小（0.004-0.006 vs action-space 0.18-0.49），说明feature-space梯度更弱但更频繁。M028假设不成立——feature-space并未优于action-space（76.9% vs adaptive 75%/fixed 73.1%）。三组oracle实验统一结论：即使使用GT SDF，任何形式的gradient-based refinement都无法改善CAR，根本原因是refinement导致action collapse。\\\"}, \\\"oracle_true_gt_fixed_alpha_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T20:05:33.998Z\\\", \\\"updated_at\\\": \\\"2026-05-22T21:21:58.847Z\\\", \\\"hypothesis\\\": \\\"True oracle SDF with conservative fixed alpha=0.005 (≈0.5x typical action_norm) as control. If CAR improves over baseline → oracle refinement works even at small alpha. If similar to adaptive → alpha magnitude is not the key factor.\\\", \\\"parent\\\": \\\"oracle_true_gt_object_v11\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 40 --gpu 0 --true_oracle --force_refine_oracle --refine_alpha 0.005 --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_fixed_alpha_v11.json\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": 93306, \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_oracle_fixed_alpha_v11.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\", \\\"checkpoint_source\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"eval_data\\\": \\\"safelibero_object_levelII\\\", \\\"data_path\\\": \\\"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\", \\\"data_count\\\": 40, \\\"model_name\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"seed\\\": 0}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T21:07:06.626Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T21:07:08.201Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T21:07:10.845533+00:00\\\"}]}, \\\"metrics\\\": {\\\"avg_TSR\\\": 0, \\\"avg_CAR\\\": 73.1, \\\"task_CAR\\\": {\\\"orange_juice\\\": 85, \\\"chocolate_pudding\\\": 50, \\\"milk\\\": 77.5, \\\"bbq_sauce\\\": 80}, \\\"task_displacement\\\": {\\\"orange_juice\\\": 0.0113, \\\"chocolate_pudding\\\": 0.0365, \\\"milk\\\": 0.0042, \\\"bbq_sauce\\\": 0.0032}, \\\"task_refine_count_mean\\\": {\\\"orange_juice\\\": 8.7, \\\"chocolate_pudding\\\": 20.2, \\\"milk\\\": 20.1, \\\"bbq_sauce\\\": 10.4}, \\\"total_refined_steps\\\": 2375, \\\"avg_refined_per_episode\\\": 14.8, \\\"fake_safe_rate\\\": 0.983, \\\"fake_safe_detail\\\": \\\"115/117 safe episodes have displacement<0.1mm\\\", \\\"task_fake_safe\\\": {\\\"orange_juice\\\": \\\"34/34 (100%)\\\", \\\"chocolate_pudding\\\": \\\"19/20 (95%)\\\", \\\"milk\\\": \\\"30/31 (96.8%)\\\", \\\"bbq_sauce\\\": \\\"32/32 (100%)\\\"}, \\\"collision_threshold\\\": 0.001, \\\"n_episodes\\\": 160}, \\\"notes\\\": \\\"True oracle GT SDF + fixed alpha=0.005完成。CAR=73.1% < baseline 79%，TSR=0%。98.3% fake safe rate（115/117 safe eps displacement<0.1mm）。与adaptive alpha结论一致：alpha大小不是关键因素（adaptive 75% vs fixed 73.1%差异极小），根本问题是action-space SDF refinement导致action collapse而非真正避障。chocolate_pudding最差（CAR=50%，fake_safe=95%），refined count最高（mean=20.2）。\\\"}, \\\"oracle_true_gt_adaptive_alpha_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T20:05:31.719Z\\\", \\\"updated_at\\\": \\\"2026-05-22T21:21:36.990Z\\\", \\\"hypothesis\\\": \\\"True oracle SDF with adaptive alpha (min(0.1, 0.5*action_norm)) prevents overcorrection while maintaining collision avoidance. Compared to fixed alpha=0.005 control. If adaptive > fixed → alpha scaling is critical. If both improve baseline → oracle SDF refinement is viable.\\\", \\\"parent\\\": \\\"oracle_true_gt_object_v11\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 40 --gpu 0 --true_oracle --force_refine_oracle --refine_alpha 0.1 --adaptive_alpha --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_adaptive_alpha_v11.json\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": 93059, \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_oracle_adaptive_alpha_v11.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\", \\\"checkpoint_source\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"eval_data\\\": \\\"safelibero_object_levelII\\\", \\\"data_path\\\": \\\"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\", \\\"data_count\\\": 40, \\\"model_name\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"seed\\\": 0}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T21:07:01.568Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T21:07:02.048Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T21:07:04.009157+00:00\\\"}]}, \\\"metrics\\\": {\\\"avg_TSR\\\": 0, \\\"avg_CAR\\\": 75, \\\"task_CAR\\\": {\\\"orange_juice\\\": 82.5, \\\"chocolate_pudding\\\": 55, \\\"milk\\\": 77.5, \\\"bbq_sauce\\\": 85}, \\\"task_displacement\\\": {\\\"orange_juice\\\": 0.0076, \\\"chocolate_pudding\\\": 0.0475, \\\"milk\\\": 0.0107, \\\"bbq_sauce\\\": 0.0077}, \\\"task_refine_count_mean\\\": {\\\"orange_juice\\\": 7.6, \\\"chocolate_pudding\\\": 22.4, \\\"milk\\\": 17.6, \\\"bbq_sauce\\\": 9.1}, \\\"task_grad_mag_mean\\\": {\\\"orange_juice\\\": 0.176, \\\"chocolate_pudding\\\": 0.247, \\\"milk\\\": 0.489, \\\"bbq_sauce\\\": 0.357}, \\\"fake_safe_rate\\\": 0.983, \\\"fake_safe_detail\\\": \\\"118/120 safe episodes have displacement<0.1mm\\\", \\\"total_refined_steps\\\": 2270, \\\"avg_refined_per_episode\\\": 14.2, \\\"n_episodes\\\": 160}, \\\"notes\\\": \\\"True oracle GT SDF + adaptive alpha完成。CAR=75% < baseline 79%，TSR=0%。关键发现：refinement确实触发（avg 14.2 refine steps/ep），gradient magnitudes非零（0.18-0.49），但98.3% safe episodes是fake safe（displacement<0.1mm=action collapse）。仅2/120 safe episodes有真实movement。chocolate_pudding最差（55% CAR）。GT SDF refinement非但没改善safety，反而比baseline更差，且安全只是假象（frozen robot）。与fixed alpha结论一致。\\\"}, \\\"eval_a3_object_m024fix_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:54:33.422Z\\\", \\\"updated_at\\\": \\\"2026-05-22T19:53:33.670Z\\\", \\\"hypothesis\\\": \\\"M024 coordinate bug fix (delta->absolute for SDF query) will improve A3 object eval safety and success rates by enabling correct collision detection during trajectory refinement\\\", \\\"parent\\\": \\\"eval_a3_v11_object\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 200 --replan_steps 5 --gpu 2 --output_prefix a3_m024fix_v11 --save_dir /root/autodl-tmp/eval_results\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"780772\\\", \\\"data_path\\\": \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"a3_grad_refine_object_pudding\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"a3_grad_refine_object_pudding_seed0/best\\\", \\\"eval_data\\\": \\\"safelibero_object_all_levelII\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_a3_object_m024fix_v11.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T19:53:27.804Z\\\", \\\"metrics\\\": {\\\"task0\\\": {\\\"TSR\\\": 0, \\\"CAR\\\": 0.885, \\\"avg_max_displacement\\\": 0.0066, \\\"refined_count\\\": 0}, \\\"task1\\\": {\\\"TSR\\\": 0, \\\"CAR\\\": 0.46, \\\"avg_max_displacement\\\": 0.0492, \\\"refined_count\\\": 0}, \\\"task2\\\": {\\\"TSR\\\": 0, \\\"CAR\\\": 0.86, \\\"avg_max_displacement\\\": 0.0044, \\\"refined_count\\\": 0}, \\\"task3\\\": {\\\"TSR\\\": 0, \\\"CAR\\\": 0.88, \\\"avg_max_displacement\\\": 0.0074, \\\"refined_count\\\": 0}, \\\"overall\\\": {\\\"avg_TSR\\\": 0, \\\"avg_CAR\\\": 0.771}}}, \\\"eval_a1_lora_spatial_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:40:45.183Z\\\", \\\"updated_at\\\": \\\"2026-05-22T19:48:23.562Z\\\", \\\"hypothesis\\\": \\\"A1 SDF auxiliary loss + LoRA on spatial_bowl: if SDF training signal teaches meaningful collision avoidance, CAR should exceed the 0% baseline. Null hypothesis: EE-only SDF cannot prevent arm-body collisions in spatial tasks.\\\", \\\"parent\\\": \\\"a1_lora_spatial_bowl_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --model_type lora_baseline --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best --suite safelibero_spatial --safety_level II --n_episodes 200 --replan_steps 5 --gpu 3 --output_prefix a1_lora_v11 --save_dir /root/autodl-tmp/eval_results\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best\\\", \\\"eval_data\\\": \\\"safelibero_spatial_levelII_200ep\\\", \\\"data_path\\\": \\\"safelibero_spatial\\\", \\\"data_count\\\": 800, \\\"model_name\\\": \\\"pi0_lora_a1_sdf_spatial_bowl\\\", \\\"seed\\\": 0}, \\\"notes\\\": \\\"[2026-05-23 03:45] DONE. CAR=0.8% (6/800) but ALL 6 safe episodes have displacement=0.0 (action collapse). Effective CAR=0% after fake-safety filter. EE-only SDF aux loss does not help spatial tasks where collisions are arm-body, not EE-obstacle.\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_a1_lora_spatial_v11.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best\\\", \\\"metrics\\\": {\\\"avg_TSR\\\": 0.001, \\\"avg_CAR\\\": 0.008, \\\"task0_TSR\\\": 0.005, \\\"task0_CAR\\\": 0.015, \\\"task0_avg_disp\\\": 0.2578, \\\"task1_TSR\\\": 0, \\\"task1_CAR\\\": 0, \\\"task1_avg_disp\\\": 0.1955, \\\"task2_TSR\\\": 0, \\\"task2_CAR\\\": 0, \\\"task2_avg_disp\\\": 0.2142, \\\"task3_TSR\\\": 0, \\\"task3_CAR\\\": 0.015, \\\"task3_avg_disp\\\": 0.1992, \\\"safe_episodes_total\\\": 6, \\\"safe_episodes_with_zero_displacement\\\": 6, \\\"fake_safety\\\": true}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T19:48:20.631Z\\\"}}, \\\"count\\\": 5, \\\"total\\\": 13, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1163}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"oracle_true_gt_feature_v11\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T20:49:11.558Z\", \"updated_at\": \"2026-05-22T21:22:41.724Z\", \"hypothesis\": \"Feature-space oracle (GT SDF gradient through suffix_out → action_out_proj) will outperform action-space oracle because it matches the training-time refinement pathway, eliminating the train-eval refine mismatch identified in M028.\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --model_type a3 --suite safelibero_object --safety_level II --n_episodes 40 --gpu 2 --true_oracle --feature_oracle --force_refine_oracle --adaptive_alpha --refine_alpha 0.1 --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_feature_space_v11.json --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\", \"server\": \"westd-35807\", \"data_path\": \"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\", \"data_count\": 4084, \"model_name\": \"a3_grad_refine_object_pudding\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\", \"eval_data\": \"safelibero_object_levelII\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\", \"log_path\": \"/root/autodl-tmp/eval_results/eval_oracle_feature_space_v11.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T21:22:25.146Z\", \"metrics\": {\"avg_TSR\": 0, \"avg_CAR\": 76.9, \"task_CAR\": {\"orange_juice\": 90, \"chocolate_pudding\": 47.5, \"milk\": 82.5, \"bbq_sauce\": 87.5}, \"task_displacement\": {\"orange_juice\": 0.0023, \"chocolate_pudding\": 0.0473, \"milk\": 0.0086, \"bbq_sauce\": 0.0097}, \"task_refine_count_mean\": {\"orange_juice\": 248.5, \"chocolate_pudding\": 241.8, \"milk\": 236.7, \"bbq_sauce\": 240}, \"task_grad_mag_mean\": {\"orange_juice\": 0.00423, \"chocolate_pudding\": 0.00609, \"milk\": 0.00466, \"bbq_sauce\": 0.00491}, \"fake_safe_rate\": 0.967, \"fake_safe_detail\": \"119/123 safe episodes have displacement<0.1mm\", \"total_refined_steps\": 38679, \"avg_refined_per_episode\": 241.7, \"n_episodes\": 160}, \"notes\": \"Feature-space oracle GT SDF完成。CAR=76.9% < baseline 79%，TSR=0%。96.7% fake safe（119/123）。与action-space oracle对比：feature-space每步都refine（avg 241.7/ep vs action-space 14），gradient magnitude极小（0.004-0.006 vs action-space 0.18-0.49），说明feature-space梯度更弱但更频繁。M028假设不成立——feature-space并未优于action-space（76.9% vs adaptive 75%/fixed 73.1%）。三组oracle实验统一结论：即使使用GT SDF，任何形式的gradient-based refinement都无法改善CAR，根本原因是refinement导致action collapse。\"}, \"oracle_true_gt_fixed_alpha_v11\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T20:05:33.998Z\", \"updated_at\": \"2026-05-22T21:21:58.847Z\", \"hypothesis\": \"True oracle SDF with conservative fixed alpha=0.005 (≈0.5x typical action_norm) as control. If CAR improves over baseline → oracle refinement works even at small alpha. If similar to adaptive → alpha magnitude is not the key factor.\", \"parent\": \"oracle_true_gt_object_v11\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 40 --gpu 0 --true_oracle --force_refine_oracle --refine_alpha 0.005 --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_fixed_alpha_v11.json\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:0\"], \"pid\": 93306, \"log_path\": \"/root/autodl-tmp/eval_results/eval_oracle_fixed_alpha_v11.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\", \"checkpoint_source\": \"a3_grad_refine_object_pudding\", \"eval_data\": \"safelibero_object_levelII\", \"data_path\": \"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\", \"data_count\": 40, \"model_name\": \"a3_grad_refine_object_pudding\", \"seed\": 0}, \"reproduce\": {\"finished_at\": \"2026-05-22T21:07:06.626Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T21:07:08.201Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T21:07:10.845533+00:00\"}]}, \"metrics\": {\"avg_TSR\": 0, \"avg_CAR\": 73.1, \"task_CAR\": {\"orange_juice\": 85, \"chocolate_pudding\": 50, \"milk\": 77.5, \"bbq_sauce\": 80}, \"task_displacement\": {\"orange_juice\": 0.0113, \"chocolate_pudding\": 0.0365, \"milk\": 0.0042, \"bbq_sauce\": 0.0032}, \"task_refine_count_mean\": {\"orange_juice\": 8.7, \"chocolate_pudding\": 20.2, \"milk\": 20.1, \"bbq_sauce\": 10.4}, \"total_refined_steps\": 2375, \"avg_refined_per_episode\": 14.8, \"fake_safe_rate\": 0.983, \"fake_safe_detail\": \"115/117 safe episodes have displacement<0.1mm\", \"task_fake_safe\": {\"orange_juice\": \"34/34 (100%)\", \"chocolate_pudding\": \"19/20 (95%)\", \"milk\": \"30/31 (96.8%)\", \"bbq_sauce\": \"32/32 (100%)\"}, \"collision_threshold\": 0.001, \"n_episodes\": 160}, \"notes\": \"True oracle GT SDF + fixed alpha=0.005完成。CAR=73.1% < baseline 79%，TSR=0%。98.3% fake safe rate（115/117 safe eps displacement<0.1mm）。与adaptive alpha结论一致：alpha大小不是关键因素（adaptive 75% vs fixed 73.1%差异极小），根本问题是action-space SDF refinement导致action collapse而非真正避障。chocolate_pudding最差（CAR=50%，fake_safe=95%），refined count最高（mean=20.2）。\"}, \"oracle_true_gt_adaptive_alpha_v11\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T20:05:31.719Z\", \"updated_at\": \"2026-05-22T21:21:36.990Z\", \"hypothesis\": \"True oracle SDF with adaptive alpha (min(0.1, 0.5*action_norm)) prevents overcorrection while maintaining collision avoidance. Compared to fixed alpha=0.005 control. If adaptive > fixed → alpha scaling is critical. If both improve baseline → oracle SDF refinement is viable.\", \"parent\": \"oracle_true_gt_object_v11\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 40 --gpu 0 --true_oracle --force_refine_oracle --refine_alpha 0.1 --adaptive_alpha --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_adaptive_alpha_v11.json\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:1\"], \"pid\": 93059, \"log_path\": \"/root/autodl-tmp/eval_results/eval_oracle_adaptive_alpha_v11.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\", \"checkpoint_source\": \"a3_grad_refine_object_pudding\", \"eval_data\": \"safelibero_object_levelII\", \"data_path\": \"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\", \"data_count\": 40, \"model_name\": \"a3_grad_refine_object_pudding\", \"seed\": 0}, \"reproduce\": {\"finished_at\": \"2026-05-22T21:07:01.568Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T21:07:02.048Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T21:07:04.009157+00:00\"}]}, \"metrics\": {\"avg_TSR\": 0, \"avg_CAR\": 75, \"task_CAR\": {\"orange_juice\": 82.5, \"chocolate_pudding\": 55, \"milk\": 77.5, \"bbq_sauce\": 85}, \"task_displacement\": {\"orange_juice\": 0.0076, \"chocolate_pudding\": 0.0475, \"milk\": 0.0107, \"bbq_sauce\": 0.0077}, \"task_refine_count_mean\": {\"orange_juice\": 7.6, \"chocolate_pudding\": 22.4, \"milk\": 17.6, \"bbq_sauce\": 9.1}, \"task_grad_mag_mean\": {\"orange_juice\": 0.176, \"chocolate_pudding\": 0.247, \"milk\": 0.489, \"bbq_sauce\": 0.357}, \"fake_safe_rate\": 0.983, \"fake_safe_detail\": \"118/120 safe episodes have displacement<0.1mm\", \"total_refined_steps\": 2270, \"avg_refined_per_episode\": 14.2, \"n_episodes\": 160}, \"notes\": \"True oracle GT SDF + adaptive alpha完成。CAR=75% < baseline 79%，TSR=0%。关键发现：refinement确实触发（avg 14.2 refine steps/ep），gradient magnitudes非零（0.18-0.49），但98.3% safe episodes是fake safe（displacement<0.1mm=action collapse）。仅2/120 safe episodes有真实movement。chocolate_pudding最差（55% CAR）。GT SDF refinement非但没改善safety，反而比baseline更差，且安全只是假象（frozen robot）。与fixed alpha结论一致。\"}, \"eval_a3_object_m024fix_v11\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:54:33.422Z\", \"updated_at\": \"2026-05-22T19:53:33.670Z\", \"hypothesis\": \"M024 coordinate bug fix (delta->absolute for SDF query) will improve A3 object eval safety and success rates by enabling correct collision detection during trajectory refinement\", \"parent\": \"eval_a3_v11_object\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 200 --replan_steps 5 --gpu 2 --output_prefix a3_m024fix_v11 --save_dir /root/autodl-tmp/eval_results\", \"server\": \"westd-35807\", \"gpu\": \"cuda:2\", \"pid\": \"780772\", \"data_path\": \"/root/colliforce-vla/scripts/eval_safelibero.py\", \"data_count\": 200, \"model_name\": \"a3_grad_refine_object_pudding\", \"seed\": 0, \"checkpoint_source\": \"a3_grad_refine_object_pudding_seed0/best\", \"eval_data\": \"safelibero_object_all_levelII\", \"log_path\": \"/root/autodl-tmp/eval_results/eval_a3_object_m024fix_v11.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T19:53:27.804Z\", \"metrics\": {\"task0\": {\"TSR\": 0, \"CAR\": 0.885, \"avg_max_displacement\": 0.0066, \"refined_count\": 0}, \"task1\": {\"TSR\": 0, \"CAR\": 0.46, \"avg_max_displacement\": 0.0492, \"refined_count\": 0}, \"task2\": {\"TSR\": 0, \"CAR\": 0.86, \"avg_max_displacement\": 0.0044, \"refined_count\": 0}, \"task3\": {\"TSR\": 0, \"CAR\": 0.88, \"avg_max_displacement\": 0.0074, \"refined_count\": 0}, \"overall\": {\"avg_TSR\": 0, \"avg_CAR\": 0.771}}}, \"eval_a1_lora_spatial_v11\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:40:45.183Z\", \"updated_at\": \"2026-05-22T19:48:23.562Z\", \"hypothesis\": \"A1 SDF auxiliary loss + LoRA on spatial_bowl: if SDF training signal teaches meaningful collision avoidance, CAR should exceed the 0% baseline. Null hypothesis: EE-only SDF cannot prevent arm-body collisions in spatial tasks.\", \"parent\": \"a1_lora_spatial_bowl_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --model_type lora_baseline --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best --suite safelibero_spatial --safety_level II --n_episodes 200 --replan_steps 5 --gpu 3 --output_prefix a1_lora_v11 --save_dir /root/autodl-tmp/eval_results\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:0\"], \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best\", \"eval_data\": \"safelibero_spatial_levelII_200ep\", \"data_path\": \"safelibero_spatial\", \"data_count\": 800, \"model_name\": \"pi0_lora_a1_sdf_spatial_bowl\", \"seed\": 0}, \"notes\": \"[2026-05-23 03:45] DONE. CAR=0.8% (6/800) but ALL 6 safe episodes have displacement=0.0 (action collapse). Effective CAR=0% after fake-safety filter. EE-only SDF aux loss does not help spatial tasks where collisions are arm-body, not EE-obstacle.\", \"log_path\": \"/root/autodl-tmp/eval_results/eval_a1_lora_spatial_v11.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best\", \"metrics\": {\"avg_TSR\": 0.001, \"avg_CAR\": 0.008, \"task0_TSR\": 0.005, \"task0_CAR\": 0.015, \"task0_avg_disp\": 0.2578, \"task1_TSR\": 0, \"task1_CAR\": 0, \"task1_avg_disp\": 0.1955, \"task2_TSR\": 0, \"task2_CAR\": 0, \"task2_avg_disp\": 0.2142, \"task3_TSR\": 0, \"task3_CAR\": 0.015, \"task3_avg_disp\": 0.1992, \"safe_episodes_total\": 6, \"safe_episodes_with_zero_displacement\": 6, \"fake_safety\": true}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T19:48:20.631Z\"}}, \"count\": 5, \"total\": 13, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1163}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已完整记录。实验 `oracle_true_gt_feature_v11` 状态 DONE/negative，metrics 和 notes 均已填充。\n\n**结果汇总：**\n\n| Task | CAR | Avg Displacement | Avg Refined/ep |\n|------|-----|------------------|----------------|\n| orange_juice | 90.0% | 0.0023m | 248.5 |\n| chocolate_pudding | 47.5% | 0.0473m | 241.8 |\n| milk | 82.5% | 0.0086m | 236.7 |\n| bbq_sauce | 87.5% | 0.0097m | 240.0 |\n| **Overall** | **76.9%** | — | **241.7** |\n\n- TSR = 0%（全部任务）\n- Fake safe rate = 96.7%（119/123 safe episodes displacement < 0.1mm）\n- Feature-space oracle 每步都 refine（avg 241.7/ep vs action-space 14），gradient magnitude 极小（0.004-0.006），但 CAR 仍未超 baseline（79%）\n\n进程已正常退出，无需进一步操作。Registry 已由之前的 agent 完整更新。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "uuid": "6eda6ede-06a3-4bc6-88f4-12ddd60d4084",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T3KqX72G7TVXoRB6Cf5VUD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5414,
+                "cache_read_input_tokens": 36463,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5414
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已完整记录。实验 `oracle_true_gt_feature_v11` 状态 DONE/negative，metrics 和 notes 均已填充。\n\n**结果汇总：**\n\n| Task | CAR | Avg Displacement | Avg Refined/ep |\n|------|-----|------------------|----------------|\n| orange_juice | 90.0% | 0.0023m | 248.5 |\n| chocolate_pudding | 47.5% | 0.0473m | 241.8 |\n| milk | 82.5% | 0.0086m | 236.7 |\n| bbq_sauce | 87.5% | 0.0097m | 240.0 |\n| **Overall** | **76.9%** | — | **241.7** |\n\n- TSR = 0%（全部任务）\n- Fake safe rate = 96.7%（119/123 safe episodes displacement < 0.1mm）\n- Feature-space oracle 每步都 refine（avg 241.7/ep vs action-space 14），gradient magnitude 极小（0.004-0.006），但 CAR 仍未超 baseline（79%）\n\n进程已正常退出，无需进一步操作。Registry 已由之前的 agent 完整更新。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 72168,
+            "duration_api_ms": 71650,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "e618dd4e-4293-4ed7-ab0b-14696a577ebb",
+            "total_cost_usd": 0.3794510000000001,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 30430,
+              "cache_read_input_tokens": 227131,
+              "output_tokens": 2952,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 30430,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 335,
+                  "cache_read_input_tokens": 36463,
+                  "cache_creation_input_tokens": 5414,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 5414
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1768,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001843,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 2952,
+                "cacheReadInputTokens": 227131,
+                "cacheCreationInputTokens": 30430,
+                "webSearchRequests": 0,
+                "costUSD": 0.37760800000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "2a63da75-18cf-413c-8ee7-c2353804913f"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-check-feature-oracle-status.md"
+}

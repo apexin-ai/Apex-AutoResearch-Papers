@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "aaea674f455996a1c318",
+  "project": "meta_brain_lora_routing",
+  "kind": "conversation",
+  "title": "code data loader fix",
+  "task_key": "worker_code_data_loader_fix_20260516T013736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_data_loader_fix_20260516T013736.jsonl",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "e9d395da7633c7d187526d2d720c12c5a6a300c9c4172c84ddf070997248c22b"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T01:37:45.678789+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5Pi5ED4SZf3W5ivwpfy\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_loader_fix_20260516T013736"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T01:37:52.484070+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5PiaP9cvpRFDrRZCaas\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_data_loader_fix_20260516T013736"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/code-data-loader-fix.md"
+}

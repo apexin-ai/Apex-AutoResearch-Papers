@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e8e7a3b91710f3f294c1",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "diag action horizon mismatch",
+  "task_key": "worker_diag_action_horizon_mismatch_20260516T124705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_action_horizon_mismatch_20260516T124705.log",
+    "occurrence": 1,
+    "bytes": 698550,
+    "sha256": "ad94b695c64a6e003d6e32b442a430169744f793053deab2f0eb1f70651b6038"
+  },
+  "statistics": {
+    "messages": 197,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 48,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 197,
+      "chunks": [
+        {
+          "path": "e8e7a3b91710f3f294c1-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "e8e7a3b91710f3f294c1-part-0002.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-action-horizon-mismatch.md"
+}

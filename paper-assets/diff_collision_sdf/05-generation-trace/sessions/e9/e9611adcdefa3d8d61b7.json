@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9611adcdefa3d8d61b7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check s1 l01 json",
+  "task_key": "worker_ops_check_s1_l01_json_20260525T151902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_s1_l01_json_20260525T151902_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "9909cd83c4c0be8d16ffc60e1bbd579b901f7a13cd7857ff3e0ee2c7d9c25e85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整，结论如下：\n\n**JSON 包含完整的 per-episode displacement 数据。**\n\n| 项目 | 结果 |\n|------|------|\n| 文件大小 | 64KB, 2067 行 |\n| 修改时间 | **May 25 20:41**（今天） |\n| Checkpoint | `a1_sdf_pi05_object_pudding_seed1_l01/30000/` — 确认是 s1_l01 |\n| Task 数 | **4** 个 task |\n| Episode 总数 | **200**（4 × 50），完整 |\n| Per-episode 字段 | 每个 episode 均含 `max_displacement`, `collision_step`, `collision_obstacle`, `success`, `collided`, `total_steps`, `smoothness` |\n\n**4 个 task 汇总指标：**\n\n| Task | TSR | CAR | avg_max_displacement |\n|------|-----|-----|---------------------|\n| orange_juice | 0.04 | 0.54 | 0.0462 |\n| chocolate_pudding | 0.26 | 0.48 | 0.0619 |\n| milk | 0.00 | 0.94 | 0.0040 |\n| bbq_sauce | 0.00 | 0.14 | 0.0962 |\n\n第一轮 eval 的 200 episode per-episode displacement 数据完整保存，无需重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-s1-l01-json.md"
+}

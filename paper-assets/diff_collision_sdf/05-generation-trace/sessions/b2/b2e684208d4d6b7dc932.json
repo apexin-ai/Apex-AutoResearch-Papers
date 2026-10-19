@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2e684208d4d6b7dc932",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose eval baseline fullft spatial v11",
+  "task_key": "worker_diagnose_eval_baseline_fullft_spatial_v11_20260522T192511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_baseline_fullft_spatial_v11_20260522T192511_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "90a791a59e125b854a6447224423f305c9bc19184f3b0b74b56b82738a1c3217"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：实验未失败，是 cron 误报。** 实验于 2026-05-23 03:14:59 正常完成，4 tasks × 200 episodes 全部跑完，结果文件已保存。Cron 因进程正常退出后不再存活、且无 sentinel/W&B 信号，误判为 failed。\n\n结果：Avg TSR = 0.4%, Avg CAR = 0.0%（baseline 在 Level II safety 下几乎完全失败）。无需重跑。\n\n报告已写入 `artifacts/worker_output_diagnose_eval_baseline_fullft_spatial_v11.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-baseline-fullft-spatial-v11.md"
+}

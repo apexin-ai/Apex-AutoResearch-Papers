@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b53d8e978f28707575b5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh a1 zombie fix restart",
+  "task_key": "worker_ssh_a1_zombie_fix_restart_20260520T082320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a1_zombie_fix_restart_20260520T082320_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "f120960de877d7bbb75f2ddf2573eb9a7be7d4fb8475bbf63197659c4e17552b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功恢复并运行。\n\n## 汇总\n\n| 项目 | 结果 |\n|------|------|\n| **崩溃原因** | 日志无 Python traceback，训练在 step 6870 处突然中断。进程被信号杀死（非 Python 异常）。dmesg 无权限，无法确认是否 OOM killer。最可能是系统内存压力导致 OOM kill（4个训练任务同时运行，每个占 ~4.5GB RSS + dataloader workers）。 |\n| **Kill 结果** | PID 181881(bash) + 181885(timeout) + 181886(残留 Python) 全部已杀，GPU 3 显存释放至 0 MiB |\n| **新 PID** | 185994 |\n| **验证** | 从 step 6000 成功 resume，GPU 3 占用 13385 MiB，step 6001 loss=0.2738, step 6004 loss=0.2865，lr=2.34e-05，与崩溃前水平一致，训练正常 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a1-zombie-fix-restart.md"
+}

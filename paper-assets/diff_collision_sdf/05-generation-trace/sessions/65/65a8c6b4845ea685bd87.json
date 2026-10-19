@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65a8c6b4845ea685bd87",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check eval status and act",
+  "task_key": "worker_ops_check_eval_status_and_act_20260525T124538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_eval_status_and_act_20260525T124538_result.json",
+    "occurrence": 1,
+    "bytes": 2076,
+    "sha256": "31f9fce658656e0334d0ef516c22ade9230e0ddd29549bb7639e08e7dcd62645"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 全部正常完成，无需重启。用了 3 轮 SSH。\n\n## 汇总\n\n### 进程状态\n\n| GPU | 任务 | PID | 状态 |\n|-----|------|-----|------|\n| cuda:0 | spatial_bowl 训练 | 168730 | **ALIVE** (运行 2h44m, 27GB VRAM, 100% util) |\n| cuda:1 | eval s1_l01 | 203540 | **COMPLETED** (结束 20:41) |\n| cuda:2 | eval s1_l005 | 191263 | **COMPLETED** (结束 20:32) |\n| cuda:3 | eval s2_l005 | 191403 | **COMPLETED** (结束 20:31) |\n\n### Eval 结果（safelibero_object, level II, 50 episodes/task）\n\n| 指标 | s1_l01 | s1_l005 | s2_l005 |\n|------|--------|---------|---------|\n| **Avg TSR** | **7.5%** | **5.5%** | **9.5%** |\n| **Avg CAR** | **52.5%** | **52.5%** | **54.5%** |\n\n### Per-task breakdown\n\n**s1_l01** (seed1, λ=0.1):\n| Task | TSR | CAR |\n|------|-----|-----|\n| 0 (orange juice) | 4% | 54% |\n| 1 | 26% | 48% |\n| 2 (milk) | 0% | 94% |\n| 3 (bbq sauce) | 0% | 14% |\n\n**s1_l005** (seed1, λ=0.05):\n| Task | TSR | CAR |\n|------|-----|-----|\n| 0 (orange juice) | 4%* | 58%* |\n| 1 | 18% | 40% |\n| 2 (milk) | 0% | 94% |\n| 3 (bbq sauce) | 0% | 18% |\n\n**s2_l005** (seed2, λ=0.05):\n| Task | TSR | CAR |\n|------|-----|-----|\n| 0 (orange juice) | 2%* | 62%* |\n| 1 | 36% | 44% |\n| 2 (milk) | 0% | 90% |\n| 3 (bbq sauce) | 0% | 22% |\n\n*\\*Task 0 由 Overall avg 反推计算*\n\n### ⚠️ 注意事项\n\n1. **JSON 被覆盖**：3 个 eval 都写入同一文件 `eval_safelibero_object_all_levelII__lora_baseline_seed0.json`，当前文件只保留 s1_l01 的结果（最后完成）。s1_l005 和 s2_l005 的详细 episode 数据丢失，但 per-task 指标已从日志完整提取。\n\n2. **frozen_rate**：日志未输出此指标。从 s1_l01 的 JSON 可见大量 episode `max_displacement ≈ 0`（agent 冻死不动），这是 Task 2/3 TSR=0% 的主因。\n\n3. **模式一致**：三组实验都是 Task 2 (milk) 和 Task 3 (bbq sauce) 完全失败（TSR=0%），但 milk 的 CAR 极高（90-94%），说明 agent 没碰障碍物但也不动。bbq sauce 则是大量碰撞（CAR 14-22%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-status-and-act.md"
+}

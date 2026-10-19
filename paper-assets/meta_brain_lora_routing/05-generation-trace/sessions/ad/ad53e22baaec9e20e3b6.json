@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "ad53e22baaec9e20e3b6",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "code data loader fix 20260516T013736 retry1 retry2",
+  "task_key": "worker_code_data_loader_fix_20260516T013736_retry1_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data_loader_fix_20260516T013736_retry1_retry2.log",
+    "occurrence": 1,
+    "bytes": 762277,
+    "sha256": "acdbd56e8c363a16638214b0df3c06ca4767eee163802df20b5a9d5da05e1b30"
+  },
+  "statistics": {
+    "messages": 260,
+    "user_turns": 0,
+    "tool_calls": 111,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 111,
+      "tool_result": 111,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 260,
+      "chunks": [
+        {
+          "path": "ad53e22baaec9e20e3b6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ad53e22baaec9e20e3b6-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-data-loader-fix-20260516t013736-retry1-retry2.md"
+}

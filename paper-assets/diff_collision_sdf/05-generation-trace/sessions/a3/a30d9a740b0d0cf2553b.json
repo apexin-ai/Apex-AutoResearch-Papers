@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a30d9a740b0d0cf2553b",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "verify r2 final sync verify compile",
+  "task_key": "worker_verify_r2-final-sync-verify-compile_20260528T065924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_r2-final-sync-verify-compile_20260528T065924.log",
+    "occurrence": 1,
+    "bytes": 641206,
+    "sha256": "88b44b2a6bf8d3b4c04570c29fb1410c494bcfc83ec190bc03ff139dc0212d2f"
+  },
+  "statistics": {
+    "messages": 114,
+    "user_turns": 0,
+    "tool_calls": 41,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 41,
+      "tool_result": 41,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 114,
+      "chunks": [
+        {
+          "path": "a30d9a740b0d0cf2553b-part-0001.json",
+          "message_count": 103
+        },
+        {
+          "path": "a30d9a740b0d0cf2553b-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/verify-r2-final-sync-verify-compile.md"
+}

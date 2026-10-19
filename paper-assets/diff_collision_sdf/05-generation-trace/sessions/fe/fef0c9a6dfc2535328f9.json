@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fef0c9a6dfc2535328f9",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "eval pi05 safelibero object westd45947",
+  "task_key": "worker_eval_pi05_safelibero_object_westd45947_20260522T205932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pi05_safelibero_object_westd45947_20260522T205932.log",
+    "occurrence": 1,
+    "bytes": 534923,
+    "sha256": "455f5fe8f9842de50444c88d178a97730af9cb121cbfb766c48f60a2e71d79f6"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 55,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "fef0c9a6dfc2535328f9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fef0c9a6dfc2535328f9-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-pi05-safelibero-object-westd45947.md"
+}

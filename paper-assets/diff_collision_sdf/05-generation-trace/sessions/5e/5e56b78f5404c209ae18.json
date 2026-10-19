@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e56b78f5404c209ae18",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose train pi05 a1 obj s2 l005",
+  "task_key": "worker_diagnose_train_pi05_a1_obj_s2_l005_20260524T133327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_train_pi05_a1_obj_s2_l005_20260524T133327_result.json",
+    "occurrence": 1,
+    "bytes": 421,
+    "sha256": "3d79fa2b832eb7fe7a5a40450b132ad7cff05ec2e865ea7e0d9087e7f56eccba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被删除或未在当前 session 创建）。\n\n**诊断结果：**\n- westd-35807 SSH 认证失败，与近期其他实验（s1_l005/s1_l01）一致\n- 无法读取日志和 checkpoint，无法确认训练是否完成\n- Registry 已更新：status=DONE, conclusion=failed, notes 记录了 SSH 失败原因\n- 需要用户手动检查服务器或更新 SSH 密钥后重新诊断"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-train-pi05-a1-obj-s2-l005.md"
+}

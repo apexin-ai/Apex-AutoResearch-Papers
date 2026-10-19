@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f1eb4c96d276f62a62b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval s0 30k train done and eval",
+  "task_key": "worker_eval_s0_30k_train_done_and_eval_20260527T090910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s0_30k_train_done_and_eval_20260527T090910_result.json",
+    "occurrence": 1,
+    "bytes": 697,
+    "sha256": "317fc346ebe1cf92c2f98852f7a20fc01635bde80d86dd9a8818506e53671639"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕。\n\n## 汇报\n\n### s0 训练 ✅ 完成\n- 30000/30000 steps，总耗时 33h54m\n- Final loss: 0.0153 (action=0.0116, sdf=0.0369, ee=0.0035)\n- Checkpoint: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/30000`\n- Registry `train_pi05_a1_obj_s0_l01` → DONE(success)\n\n### 30K eval ✅ 已启动\n- **PID: 722752** (实际 python 进程)，cuda:0\n- **`--pi05` 已确认存在** ✔\n- Checkpoint 路径: `seed0_l1/30000` ✔\n- 日志: `/tmp/eval_30k_s0_l1.log`\n- 预计 ~30-40min 完成\n\n### s1 训练进度\n- Step 29476/30000 (98%)，ETA ~40min\n- Loss 正常: 0.0200, action=0.0166, sdf=0.0335, ee=0.0038"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s0-30k-train-done-and-eval.md"
+}

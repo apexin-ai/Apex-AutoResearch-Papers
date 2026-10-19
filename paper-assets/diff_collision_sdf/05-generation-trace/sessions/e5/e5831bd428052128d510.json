@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5831bd428052128d510",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops diagnose s2 l005 exit",
+  "task_key": "worker_ops_diagnose_s2_l005_exit_20260523T055424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_s2_l005_exit_20260523T055424_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "2321c7a833a5cf03c7bedbcbdbdc52c3e54fcd132d19d56224ff24a8fe0a3104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。总结：\n\n- **根因**：磁盘满（`ENOSPC`），在 step 8000 保存 checkpoint 时触发 `OSError: No space left on device`\n- **最终 step**：7999/30000（27%），运行约 5h33m\n- **最后 checkpoint**：step 6000（best_loss=0.02684），step 4000 也保存了\n- **最终 loss**（step 7999）：action≈0.024, sdf≈0.040, ee≈0.014\n- **s2_l01 (cuda:3, PID 292370)**：也已死，确认是服务器级磁盘满事件，4 个实验全部阵亡\n- **Registry**：已更新为 DONE/killed，notes 已写入诊断详情\n- **Cron**：不存在，无需清除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-s2-l005-exit.md"
+}

@@ -1,0 +1,66 @@
+_next_id: 5
+decisions:
+- id: D001
+  date: 2026-05-18 05:23 UTC
+  summary: MVP 主模型从 Qwen2.5-7B (base=1M) 切换到 base≈10K 模型，Qwen2.5-7B 降为跨 base 验证
+  rationale: IDEA_BRIEF 误报 Qwen2.5-7B 的 rope_theta=10K，实际为 1M（100 倍差距）。base=1M 下频段恢复比例仅
+    17-25%（vs. 预测 40-47%），理论动机在该模型上大幅弱化。MVP 应在理论预测最强的 base≈10K 模型上验证核心机制，避免 confound。跨
+    base 验证（base=10K vs 1M）反而成为论文的 falsifiable prediction：效果应随 base 增大而减弱。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-18 05:35 UTC
+  summary: MVP 主模型确定为 Mistral-7B-Instruct-v0.1（rope_theta=10K, d_head=128）
+  rationale: Agent 选型调研确认：所有 7B 级模型中仅 Mistral-7B-v0.1 和 Llama-2-7B 保留 base=10K。Mistral
+    更新（2023.09 vs 2023.07）、性能更好、32K context window。Gemma-2-9B (d_head=256) 不匹配、Phi-3-mini
+    (3.8B) 太小、OLMo (无 Instruct) 排除。注意 sliding_window=4096 需验证训练时行为，但 MVP 数据（2-8 turn,
+    <4096 tokens）大概率不触发。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-18 19:43 UTC
+  summary: Phase 1 gate KILL 确认，等 C2 结果做最终项目去留判定；跳过 C3 实验
+  rationale: C4_s42 P̄=5.49% vs C1_s42 P̄=7.69%，diff=-2.20%，远低于 gate ≥3% 阈值。三个 bug
+    假设全部排除（merge_and_unload / position_ids / train-inference 一致性）。Attention 分析揭示 bridge
+    tokens 是"只写不读"的 dead memory（浅层 engage 4.65x 但深层 L2-L30 抑制到 0.06-0.34x），这是 input-level
+    token injection 的已知结构性限制（P-Tuning v2 文献证实）。三个 pivot 方向均低预期值。C2（position reset
+    only）是最后判定点：C2≤C1 → 终止项目；C2>C1 → 窄化 pivot 可能但 contribution 大幅缩小。C3（bridge only）跳过，bridge
+    tokens 已证明 dead memory，C3 不会好到哪去。
+  related_experiments:
+  - exp_id: mvp_c4_s42
+    role: primary
+    result: P̄=5.49%, KILL
+  - exp_id: mvp_c1_s42
+    role: baseline
+    result: P̄=7.69%
+  - exp_id: mvp_c1_s137
+    role: baseline
+    result: P̄=5.49%
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-18 23:59 UTC
+  summary: MVP KILL 确认，项目终止。Position reset 和 bridge tokens 均无效。
+  rationale: C2（position reset only）P̄=5.49%，与 C4（Full TBAB）和 C1_s137（baseline seed
+    2）完全一致。C1_s42 的 7.69% 是 seed 方差异常值。所有条件在 turns≥6 全部崩溃（0%），模型基线能力极弱，无干预空间。三个 bug
+    假设全部排除（merge_and_unload / position_ids / train-inference 一致性），attention 分析确认 bridge
+    tokens 是"只写不读"的 dead memory（深层 L2-L30 主动抑制）。三个 pivot 方向均低预期值（Reviewer 评估）。项目终止。
+  related_experiments:
+  - exp_id: mvp_c2_s42
+    role: diagnostic
+    result: P̄=5.49%, position reset alone ineffective
+  - exp_id: mvp_c4_s42
+    role: primary
+    result: P̄=5.49%, KILL
+  - exp_id: mvp_c4_s137
+    role: primary
+    result: P̄=5.49%, KILL
+  - exp_id: mvp_c1_s42
+    role: baseline
+    result: P̄=7.69%
+  - exp_id: mvp_c1_s137
+    role: baseline
+    result: P̄=5.49%
+  depends_on:
+  - D003

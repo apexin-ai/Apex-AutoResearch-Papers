@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "700dcdac9bff84f6d1cb",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis pi05 object per episode collision",
+  "task_key": "worker_analysis_pi05_object_per_episode_collision_20260522T230743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pi05_object_per_episode_collision_20260522T230743_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "716399f1e872eada51ef30e9b112a6e232c197847da2de1996db9827c560d10d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成。核心发现：\n\n### 四分类\n\n| 类别 | 数量 | 占比 |\n|------|------|------|\n| SUCCESS+SAFE | 55 | 27.5% |\n| SUCCESS+COLLISION | 91 | 45.5% |\n| FAIL+COLLISION | 53 | 26.5% |\n| FAIL+SAFE | 1 | 0.5% |\n\n### 关键结论\n\n1. **碰撞集中在 step 75-100**（57.6%），是 arm 接近目标物过程中扫到周围 obstacle，不是 EE 精细操作碰撞。\n\n2. **moka_pot 是致命 obstacle**：F+C 中 68% 由它引起，碰到几乎必定失败。**wine_bottle 是可容忍 obstacle**：S+C 中占 43%，碰了也能完成任务。\n\n3. **100% 的 SAFE episodes 是 fake safe**（displacement ≈ 0），Pi0.5 没有避障能力——要么路径天然安全，要么碰得很重。\n\n4. **83% 的碰撞是大位移（>50mm）**，不是轻微擦碰。\n\n5. **EE-only SDF 改善空间**：\n   - Best-case CAR: 0.73（+0.45），假设能消除所有 S+C 碰撞\n   - Conservative CAR: 0.36（+0.08），仅能修复小位移碰撞\n   - 差距巨大，说明 EE-SDF refinement 需要能处理 50-200mm 量级的避障才有实际意义\n\n报告路径：`artifacts/report_pi05_object_collision_analysis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pi05-object-per-episode-collision.md"
+}

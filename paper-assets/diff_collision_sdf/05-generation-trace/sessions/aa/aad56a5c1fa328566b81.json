@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aad56a5c1fa328566b81",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code integration fix and launch",
+  "task_key": "worker_code_integration_fix_and_launch_20260519T184519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_integration_fix_and_launch_20260519T184519_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "7ee9f5fac28f7563c927ffbb93b651f936d10ccd8d1c765fd2714b0b357499b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 任务完成总结\n\n**全部 4 个 Part 已完成：**\n\n| Part | 状态 | 结果 |\n|------|------|------|\n| A: 数据格式转换 | ✓ | LIBERO HDF5 → LeRobot 格式。spatial: 5068 frames, object: 7982 frames。norm stats 已计算 |\n| B: 权重验证 | ✓ | 13.04GB, 777 tensors, 3.5B params, safetensors 加载正常 |\n| C: 端到端验证 | ✓ | **全部 5 个 Stage 通过** — 数据加载、模型初始化、forward pass (loss=172.88)、backward pass (770 LoRA 参数有梯度)、碰撞检测 (6 obstacles) |\n| D: Baseline 训练 | ✓ | PID 49555（另一 Worker 已启动），step 279/30000, loss 0.22→0.063, ~3.6s/step |\n\n**关键产出文件：**\n- LeRobot 数据: `/root/autodl-tmp/colliforce_data/safelibero_{spatial,object}/`\n- Norm stats: `/root/colliforce-vla/assets/baseline_{spatial_bowl,object_pudding}/`\n- 验证脚本: `scripts/verify_pipeline.py`\n- 转换脚本: `scripts/convert_libero_to_lerobot.py`\n- 集成报告: `data/integration_report.txt`\n- 训练日志: `/tmp/train_spatial.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-integration-fix-and-launch.md"
+}

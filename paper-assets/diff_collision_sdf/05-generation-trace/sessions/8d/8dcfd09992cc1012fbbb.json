@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dcfd09992cc1012fbbb",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper scatter fix and cleanup",
+  "task_key": "worker_paper_scatter_fix_and_cleanup_20260524T232821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_scatter_fix_and_cleanup_20260524T232821_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "9b88d5c36729527d440dfc63fe29f9232097b9d4ea38f30c4a2421a9f1d7c7ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 项任务完成（任务 5 是验证步骤，已贯穿执行），编译无错误。\n\n---\n\n## 修改汇总\n\n| # | 任务 | 操作 |\n|---|------|------|\n| 1 | Scatter plot 标签重叠 | 重写 `fig_tsr_car_scatter.pdf`：左侧 7 点改 letter-based (a)-(g) + 右下 legend box；Pi0.5+A1 居中标注；Pi0.5 单标签指向 cluster 中心；移除 spatial 点 |\n| 2 | TODO 清理 | 删除 main.tex 第 3 行和第 76 行的 2 条 `% TODO` 注释 |\n| 3 | 旧文件归档 | `experiments.tex`、`method.tex`、`conclusion_DEPRECATED.tex` → `docs/paper/_archive/` |\n| 4 | 未引用 labels | 删除 6 个未引用 subsection labels：`sec:rw_sdf`、`sec:rw_eval`、`sec:benchmark`、`sec:models`、`sec:oracle_setup`、`sec:sdf_gt` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-scatter-fix-and-cleanup.md"
+}

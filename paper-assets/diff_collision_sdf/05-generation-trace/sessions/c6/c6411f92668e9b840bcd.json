@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c6411f92668e9b840bcd",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "eval a3 object pudding v5",
+  "task_key": "worker_eval_a3_object_pudding_v5_20260521T183654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_a3_object_pudding_v5_20260521T183654.log",
+    "occurrence": 1,
+    "bytes": 606812,
+    "sha256": "3edb8c5d4ce0e08fae7b8de44c4688956a6bd1b451b4c71937edd2ea374fb9b8"
+  },
+  "statistics": {
+    "messages": 276,
+    "user_turns": 0,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 95,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 276,
+      "chunks": [
+        {
+          "path": "c6411f92668e9b840bcd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c6411f92668e9b840bcd-part-0002.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-a3-object-pudding-v5.md"
+}

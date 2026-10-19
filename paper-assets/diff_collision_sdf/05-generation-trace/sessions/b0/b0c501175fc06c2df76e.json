@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0c501175fc06c2df76e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix disk cleanup 45947",
+  "task_key": "worker_fix_disk-cleanup-45947_20260529T043820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_disk-cleanup-45947_20260529T043820_result.json",
+    "occurrence": 1,
+    "bytes": 621,
+    "sha256": "7f9c2b9051dcf03e3afbb6fb833bae96ec0ba6b42cb00d0259d03130458de883"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行。\n\n## 结果汇总\n\n**磁盘清理**（释放 ~47.6G）:\n\n| 已删除 | 大小 |\n|--------|------|\n| seed2_l1/29999 | 7.2G |\n| lora_baseline_seed2/29999 | 7.2G |\n| a3_refine_object_seed0/29999 | 7.1G |\n| a3_refine_spatial_seed0/29999 | 7.1G |\n| baseline_object_pudding_eval/ | 19G |\n\n清理后：250G → 204G used，47G 可用（82%）\n\n**训练重启**:\n- PID: 41134（Python 子进程）\n- 已从 step 2000 成功 resume\n- GPU 0: 100% 利用率，19.1GB/97.9GB 显存\n- 当前进度：step 2003/30000，loss=0.1349，~4.4s/it\n- 预估完成时间：约 34 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-disk-cleanup-45947.md"
+}

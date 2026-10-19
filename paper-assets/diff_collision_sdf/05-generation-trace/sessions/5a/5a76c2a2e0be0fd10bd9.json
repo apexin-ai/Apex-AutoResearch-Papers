@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a76c2a2e0be0fd10bd9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper phase2 eta check",
+  "task_key": "worker_paper_phase2-eta-check_20260528T023045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_phase2-eta-check_20260528T023045_result.json",
+    "occurrence": 1,
+    "bytes": 1380,
+    "sha256": "46496b36ee40d0b30cdbbe1b4ed0104db744da71a65503653af9c9f6fa677335"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全了。汇总报告：\n\n---\n\n## Phase 2 s2 λ=0 训练状态\n\n**实际位置**：westd-35807 GPU 2（PID 856471），不是 westd-45947。\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **~19,363 / 30,000** (65%) |\n| 训练速度 | **4.64 s/step** |\n| 已运行 | ~12h 06min（从 step 10000 resume） |\n| 剩余 steps | 10,637 |\n| 剩余时间 | **~13h 42min** |\n| 预计完成 | **~2026-05-28 16:13 UTC** |\n\n**训练开始时间**：2026-05-27 14:25 UTC（从 step 10000 checkpoint resume，Phase 1 warmup 5000 steps + 初始 10K steps 已完成）\n\n## DDL 可行性分析\n\n| | 时间 (UTC) |\n|---|---|\n| DDL | 2026-05-28 **12:00** |\n| 训练完成 ETA | 2026-05-28 **~16:13** |\n| Eval 耗时 | ~4h |\n| 全部完成 ETA | 2026-05-28 **~20:13** |\n\n**结论：DDL 不可行。** 训练本身就要到 16:13 UTC 才能完成，比 DDL 晚 4+ 小时。加上 eval 的 4h，总共要到 ~20:13 UTC。\n\n## GPU 1 上的另一个训练\n\nPID 892014 → `/tmp/phase2_stage2_seed0.log`，step ~13,049 / 30,000（43%），ETA 也在 ~16:20 UTC。同样不可行。\n\n## Eval 脚本状态\n\nEval 脚本已就绪：\n- `scripts/eval_pi05_safelibero.py` — 主 eval 脚本\n- `scripts/eval_batch.sh` — 批量 eval\n- `scripts/eval_lambda01_all_seeds.sh` — lambda=0.1 全 seed eval\n\n脚本不是瓶颈，训练时间才是。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-phase2-eta-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3f93320fcfa8c07ba74",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops verify frozen definition sdf l01 s0",
+  "task_key": "worker_ops_verify_frozen_definition_sdf_l01_s0_20260526T094809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_frozen_definition_sdf_l01_s0_20260526T094809_result.json",
+    "occurrence": 1,
+    "bytes": 2193,
+    "sha256": "f013fdf4f02a9c1403e97058e81da1490688c456540d87c0ef89b0d210842554"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整的结论如下：\n\n---\n\n## frozen_rate 定义验证结果\n\n### JSON schema（per-episode 字段）\n`episode`, `success`, `collided`, `collision_step`, `collision_obstacle`, `max_displacement`（obstacle）, `max_ee_displacement`（EE）, `total_steps`, `smoothness`, `total_ee_path_length`。**JSON 中没有 `frozen` 字段**，是外部计算的。\n\n### \"frozen\" 实际含义\n`frozen_rate = 55.5%` 对应的是 **`max_displacement`（obstacle 位移）< 0.0001** 的 episode 数占总 episode 数：111/200 = 55.5%。\n\n来源代码：`analyze_displacement.py:34` 定义 `frozen_eps = [e for e in safe_eps if e[\"max_displacement\"] < threshold]`——即**安全 episode 中 obstacle 几乎没动的比例**，不是 EE-based。\n\n### 核心发现：SDF 和 LoRA 的 frozen 数据完全一致\n\n| 指标 | SDF s0 l01 30k | LoRA s0 reeval |\n|---|---|---|\n| **EE frozen (<0.1m)** | **0/200 (0%)** | **0/200 (0%)** |\n| EE disp range | 0.312 – 0.865 | 0.305 – 0.841 |\n| Obs frozen (<0.0001) | **111/200 (55.5%)** | **111/200 (55.5%)** |\n| Obs frozen (<0.001) = CAR | 114/200 (57.0%) | 113/200 (56.5%) |\n| Safe+Failed (fake safe) | 49/200 (24.5%) | 54/200 (27.0%) |\n\n### 矛盾解释\n\n1. **EE-based frozen = 0% for both models**。Robot 在每个 episode 都在动（min EE disp > 0.3m），SDF 没有导致 action collapse。\n\n2. **Reported frozen=55.5% for SDF 是 obstacle-based**（obs_disp < 0.0001），实际上就是\"没碰到障碍物\"的 episode，跟 CAR 几乎等价（114 safe 中 111 个 obs < 0.0001）。\n\n3. **LoRA-only \"frozen=0%\" 是错的/不一致的**——LoRA 用同样标准算也是 55.5%。reeval_comparison.py 中 LoRA frozen=0.0 是手动填入的，未从 JSON 实际计算。\n\n4. Task 1 (chocolate pudding) TSR=78% + obs_frozen=36/50 没有矛盾：robot 在动（EE disp ~0.41m），完成任务的同时没碰障碍物，obstacle 没位移是正常的。\n\n### 正确的 EE-based 指标\n\n| | SDF s0 l01 | LoRA s0 |\n|---|---|---|\n| EE-based frozen rate | **0%** | **0%** |\n| EE-based fake safe rate | N/A（无 frozen episode） | N/A |\n| Obstacle-based fake safe (safe+failed) | 24.5% | 27.0% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-frozen-definition-sdf-l01-s0.md"
+}

@@ -1,0 +1,948 @@
+baseline: null
+experiments:
+  phase0_activation_collection:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T12:10:11.911Z'
+    updated_at: '2026-05-15T16:37:39.414Z'
+    spec:
+      hypothesis: π₀内部激活编码了扰动类型信息，可被轻量级MLP分类到3类(Visual/Spatial/Physical)，macro-F1>70%
+      server: westd-34142
+      model_name: pi0_base (pi0_libero config)
+      data_path: LIBERO-Plus libero_spatial (2402 tasks)
+      data_count: 580 episodes (6x80 perturbed + 100 nominal)
+      seed: 42/1042/2042/3042/4042/5042/6042 (per type)
+      description: 'Phase 0 early-kill gate: collect frozen π₀ activations from LIBERO-Plus
+        rollouts under 6 perturbation types + nominal, train 3-class/6-class/binary
+        classifiers, GO/NO-GO decision'
+      command: python collect_activations.py --checkpoint /root/autodl-tmp/checkpoints/pi0_base
+        --output_dir /root/meta_brain_lora_routing/activations --num_episodes 80 --task_suite
+        libero_spatial
+      gpu_allocation: cuda:0 camera+light | cuda:1 background+noise | cuda:2 layout+robot
+        | cuda:3 nominal
+      checkpoint_path: /root/meta_brain_lora_routing/checkpoints/phase1/par_router/best_router.pt
+      log_path: /root/meta_brain_lora_routing/activations/
+    metrics:
+      3class_macro_f1: 0.9926
+      3class_accuracy: 0.9946
+      6class_accuracy: 0.9982
+      binary_roc_auc: 1
+      confusion_max_offdiag: 0.0244
+      light_bias_gap: 0.0047
+      paligemma_avg_acc: 0.9882
+      expert_avg_acc: 0.7589
+      best_3class_config: mean__paligemma_only__lr0.01
+      best_6class_config: mean__paligemma_only__lr0.001
+      few_shot_k1_visual_subtype_f1: 0.898
+      few_shot_k1_best_single_layer: paligemma_layer_6
+      few_shot_k1_best_single_layer_f1: 1
+      few_shot_3class_k1_macro_f1: 0.978
+      few_shot_3class_k1_accuracy: 0.98
+      few_shot_3class_k1_visual_f1: 0.983
+      few_shot_3class_k1_spatial_f1: 1
+      few_shot_3class_k1_physical_f1: 0.951
+      few_shot_3class_k1_best_pooling: first
+      few_shot_3class_k1_best_pooling_f1: 1
+      few_shot_3class_k3_macro_f1: 0.972
+      few_shot_3class_k5_macro_f1: 0.979
+      few_shot_3class_k10_macro_f1: 0.958
+      few_shot_3class_verdict: GO
+      par_router_pooling: first
+      par_router_5fold_f1: 0.9963
+      par_router_5fold_std: 0.0022
+      par_router_train_samples: 6644
+      sensor_noise_status: collecting_pids_148761_182966
+      phase1_visual_augmentation: ready
+      phase1_par_router: trained_first_pooling
+      phase1_lora_injection_verified: true
+      phase1_lora_trainable_params: 3686400
+      phase1_lora_modules: 72
+    conclusion: success
+    completed_at: '2026-05-15T16:37:39.414Z'
+  phase1_lora_visual:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T17:03:16.804Z'
+    updated_at: '2026-05-16T06:52:53.692Z'
+    spec:
+      checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_visual_r16/final/
+      log_path: /root/meta_brain_lora_routing/logs/lora_visual_r16.log
+    reproduce:
+      finished_at: '2026-05-16T06:45:41.885Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T06:45:45.331331+00:00'
+    checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_visual_r16/final
+    log_path: ~/runs/meta_brain_lora_routing/phase1_lora_visual.log
+    metrics:
+      final_train_loss: 0.0107
+      initial_train_loss: 0.0949
+      loss_reduction_ratio: 8.87
+      total_steps: 9999
+      training_time_minutes: 170.2
+      start_time: '11:55:19'
+      end_time: '14:45:32'
+      exit_code: 0
+      checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_visual_r16/final
+      checkpoints_saved:
+      - step_1000
+      - step_2000
+      - step_3000
+      - step_4000
+      - step_5000
+      - step_6000
+      - step_7000
+      - step_8000
+      - step_9000
+      - final
+      lora_rank: 16
+      lora_alpha: 32
+      trainable_params: 3686400
+      trainable_pct: 0.1052
+      errors: 0
+      tracebacks: 0
+    conclusion: success
+    completed_at: '2026-05-16T06:51:59.265Z'
+  phase1_lora_universal_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T17:03:18.962Z'
+    updated_at: '2026-05-16T06:52:56.029Z'
+    spec:
+      checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_universal_r16/final/
+      log_path: /root/meta_brain_lora_routing/logs/lora_universal_r16.log
+    reproduce:
+      finished_at: '2026-05-16T06:45:45.850Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T06:45:46.576897+00:00'
+    checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_universal_r16/final
+    log_path: ~/runs/meta_brain_lora_routing/phase1_lora_universal_r16.log
+    metrics:
+      final_train_loss: 0.0112
+      initial_train_loss: 0.0949
+      loss_reduction_ratio: 8.47
+      total_steps: 9999
+      training_time_minutes: 170.2
+      start_time: '11:55:25'
+      end_time: '14:45:35'
+      exit_code: 0
+      checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_universal_r16/final
+      checkpoints_saved:
+      - step_1000
+      - step_2000
+      - step_3000
+      - step_4000
+      - step_5000
+      - step_6000
+      - step_7000
+      - step_8000
+      - step_9000
+      - final
+      lora_rank: 16
+      lora_alpha: 32
+      trainable_params: 3686400
+      trainable_pct: 0.1052
+      errors: 0
+      tracebacks: 0
+    conclusion: success
+    completed_at: '2026-05-16T06:52:04.819Z'
+  phase1_physical_demo_collection:
+    status: ALLOCATED
+    retry_count: 0
+    created_at: '2026-05-15T17:49:43.030Z'
+    updated_at: '2026-05-16T07:01:08.619Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && CUDA_VISIBLE_DEVICES=2 python
+        phase1/collect_expert_demos.py --perturbation_type physical --gpu_id 0 --num_tasks
+        10 --episodes_per_config 1"
+      server: westd-34142
+      gpu:
+      - cuda:2
+      pid: '228345'
+      log_path: ~/runs/meta_brain_lora_routing/phase1_physical_demo_collection.log
+      submitted_at: '2026-05-15T17:49:43.023Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+    conclusion: killed
+    checkpoint_path: N/A
+  phase1_spatial_demo_collection:
+    status: ALLOCATED
+    retry_count: 0
+    created_at: '2026-05-15T18:06:57.498Z'
+    updated_at: '2026-05-16T07:01:07.787Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && CUDA_VISIBLE_DEVICES=1 python
+        phase1/collect_expert_demos.py --perturbation_type spatial --spatial_mode
+        add_n --gpu_id 0 --num_tasks 208 --episodes_per_config 3"
+      server: westd-34142
+      gpu:
+      - cuda:1
+      pid: '246213'
+      log_path: ~/runs/meta_brain_lora_routing/phase1_spatial_demo_collection.log
+      submitted_at: '2026-05-15T18:06:57.490Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+    conclusion: killed
+    checkpoint_path: N/A
+  phase1_lora_physical:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T02:26:44.347Z'
+    updated_at: '2026-05-16T06:52:54.778Z'
+    spec:
+      checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_physical_r16/final/
+      log_path: /root/meta_brain_lora_routing/logs/lora_physical_r16.log
+    reproduce:
+      finished_at: '2026-05-16T06:45:14.263Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T06:45:15.000916+00:00'
+    checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_physical_r16/final
+    log_path: ~/runs/meta_brain_lora_routing/phase1_lora_physical.log
+    metrics:
+      final_train_loss: 0.0114
+      initial_train_loss: 0.0788
+      loss_reduction_ratio: 6.91
+      total_steps: 9999
+      training_time_minutes: 169.7
+      start_time: '11:55:25'
+      end_time: '14:45:07'
+      exit_code: 0
+      checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_physical_r16/final
+      checkpoints_saved:
+      - step_1000
+      - step_2000
+      - step_3000
+      - step_4000
+      - step_5000
+      - step_6000
+      - step_7000
+      - step_8000
+      - step_9000
+      - final
+      lora_rank: 16
+      lora_alpha: 32
+      trainable_params: 3686400
+      trainable_pct: 0.1052
+      errors: 0
+      tracebacks: 0
+    conclusion: success
+    completed_at: '2026-05-16T06:52:04.014Z'
+  phase1_lora_universal_r48:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T02:26:47.941Z'
+    updated_at: '2026-05-16T06:52:57.120Z'
+    spec:
+      checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_universal_r48/final/
+      log_path: /root/meta_brain_lora_routing/logs/lora_universal_r48.log
+    reproduce:
+      finished_at: '2026-05-16T06:48:16.331Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T06:48:16.776778+00:00'
+    checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_universal_r48/final
+    log_path: ~/runs/meta_brain_lora_routing/phase1_lora_universal_r48.log
+    metrics:
+      final_train_loss: 0.0098
+      initial_train_loss: 0.1032
+      loss_reduction_ratio: 10.53
+      total_steps: 9999
+      training_time_minutes: 171.1
+      start_time: '11:55:28'
+      end_time: '14:46:33'
+      exit_code: 0
+      checkpoint_path: /root/meta_brain_lora_routing/checkpoints/lora_universal_r48/final
+      checkpoints_saved:
+      - step_1000
+      - step_2000
+      - step_3000
+      - step_4000
+      - step_5000
+      - step_6000
+      - step_7000
+      - step_8000
+      - step_9000
+      - final
+      lora_rank: 48
+      lora_alpha: 96
+      errors: 0
+      tracebacks: 0
+      note: Lowest final loss among the 4 — consistent with ~3x more trainable capacity
+        than rank-16 runs
+    conclusion: success
+    completed_at: '2026-05-16T06:52:05.122Z'
+  phase1_lora_spatial:
+    status: ALLOCATED
+    retry_count: 0
+    created_at: '2026-05-16T06:53:24.502Z'
+    updated_at: '2026-05-16T07:00:19.030Z'
+    spec:
+      hypothesis: Spatial-specialized LoRA expert (r16) trained with distractor compositing
+        augmentation will outperform universal LoRA on spatial perturbation tasks
+      parent: phase0_activation_collection
+      plan_id: plan_002
+      model_name: paligemma-3b-pt-224 (pi0 VLA)
+      server: westd-34142
+      gpu:
+      - cuda:0
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      seed: 42
+      account: root
+    server: westd-34142
+    gpu:
+    - cuda:0
+    account: root
+  eval_visual_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T07:03:07.080Z'
+    updated_at: '2026-05-16T07:42:32.020Z'
+    spec:
+      hypothesis: Evaluate lora_visual_r16 on LIBERO-Plus perturbation tasks
+      command: CUDA_VISIBLE_DEVICES=1 python phase1/evaluate_libero_plus.py --lora_visual_dir
+        /root/meta_brain_lora_routing/checkpoints/lora_visual_r16/final/ --routing
+        par --gpu 0
+      server: westd-34142
+      data_path: /root/LIBERO-plus/
+      data_count: 0
+      model_name: lora_visual_r16
+      seed: 42
+      checkpoint_source: /root/meta_brain_lora_routing/checkpoints/lora_visual_r16/final/
+      eval_data: LIBERO-Plus perturbation tasks
+    conclusion: killed
+    completed_at: '2026-05-16T07:42:32.020Z'
+  eval_physical_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T07:03:07.367Z'
+    updated_at: '2026-05-16T07:42:31.634Z'
+    spec:
+      hypothesis: Evaluate lora_physical_r16 on LIBERO-Plus perturbation tasks
+      command: CUDA_VISIBLE_DEVICES=1 python phase1/evaluate_libero_plus.py --lora_physical_dir
+        /root/meta_brain_lora_routing/checkpoints/lora_physical_r16/final/ --routing
+        par --gpu 0
+      server: westd-34142
+      data_path: /root/LIBERO-plus/
+      data_count: 0
+      model_name: lora_physical_r16
+      seed: 42
+      checkpoint_source: /root/meta_brain_lora_routing/checkpoints/lora_physical_r16/final/
+      eval_data: LIBERO-Plus perturbation tasks
+    conclusion: killed
+    completed_at: '2026-05-16T07:42:31.634Z'
+  eval_par_v1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T07:43:34.218Z'
+    updated_at: '2026-05-16T10:43:17.412Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && CUDA_VISIBLE_DEVICES=0 python
+        phase1/evaluate_libero_plus.py --router_checkpoint /root/meta_brain_lora_routing/checkpoints/phase1/par_router/best_router.pt
+        --lora_visual_dir /root/meta_brain_lora_routing/checkpoints/lora_visual_r16/final/
+        --lora_physical_dir /root/meta_brain_lora_routing/checkpoints/lora_physical_r16/final/
+        --lora_spatial_dir /root/meta_brain_lora_routing/checkpoints/lora_visual_r16/final/
+        --routing par --num_episodes 50 --seeds 42"
+      server: westd-34142
+      gpu:
+      - cuda:0
+      pid: '502021'
+      log_path: ~/runs/meta_brain_lora_routing/eval_par_v1.log
+      submitted_at: '2026-05-16T08:03:12.457Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      kill_reason: pi0_base cannot zero-shot LIBERO, all eval data invalid (D010)
+      wall_clock_seconds: 9605.0
+      gpu_hours: 2.67
+    conclusion: killed
+    completed_at: '2026-05-16T10:43:17.412Z'
+  eval_univ_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T07:43:36.981Z'
+    updated_at: '2026-05-16T10:43:18.434Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && CUDA_VISIBLE_DEVICES=1 python
+        phase1/evaluate_libero_plus.py --router_checkpoint /root/meta_brain_lora_routing/checkpoints/phase1/par_router/best_router.pt
+        --lora_visual_dir /root/meta_brain_lora_routing/checkpoints/lora_universal_r16/final/
+        --lora_physical_dir /root/meta_brain_lora_routing/checkpoints/lora_universal_r16/final/
+        --lora_spatial_dir /root/meta_brain_lora_routing/checkpoints/lora_universal_r16/final/
+        --routing universal --num_episodes 50 --seeds 42"
+      server: westd-34142
+      gpu:
+      - cuda:1
+      pid: '579770'
+      log_path: ~/runs/meta_brain_lora_routing/eval_univ_r16.log
+      submitted_at: '2026-05-16T08:40:32.072Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      kill_reason: pi0_base cannot zero-shot LIBERO, all eval data invalid (D010)
+      wall_clock_seconds: 7366.4
+      gpu_hours: 2.05
+    conclusion: killed
+    completed_at: '2026-05-16T10:43:18.434Z'
+  eval_univ_r48:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T07:43:42.075Z'
+    updated_at: '2026-05-16T10:43:18.848Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && CUDA_VISIBLE_DEVICES=3 python
+        phase1/evaluate_libero_plus.py --router_checkpoint /root/meta_brain_lora_routing/checkpoints/phase1/par_router/best_router.pt
+        --lora_visual_dir /root/meta_brain_lora_routing/checkpoints/lora_universal_r48/final/
+        --lora_physical_dir /root/meta_brain_lora_routing/checkpoints/lora_universal_r48/final/
+        --lora_spatial_dir /root/meta_brain_lora_routing/checkpoints/lora_universal_r48/final/
+        --routing universal --num_episodes 50 --seeds 42"
+      server: westd-34142
+      gpu:
+      - cuda:3
+      pid: '579847'
+      log_path: ~/runs/meta_brain_lora_routing/eval_univ_r48.log
+      submitted_at: '2026-05-16T08:40:34.807Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      kill_reason: pi0_base cannot zero-shot LIBERO, all eval data invalid (D010)
+      wall_clock_seconds: 7364.0
+      gpu_hours: 2.05
+    conclusion: killed
+    completed_at: '2026-05-16T10:43:18.848Z'
+  eval_no_routing:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-16T08:47:56.360Z'
+    updated_at: '2026-05-16T09:35:16.285Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && CUDA_VISIBLE_DEVICES=0 python
+        phase1/evaluate_libero_plus.py --router_checkpoint /root/meta_brain_lora_routing/checkpoints/phase1/par_router/best_router.pt
+        --lora_visual_dir /root/meta_brain_lora_routing/checkpoints/lora_visual_r16/final/
+        --lora_physical_dir /root/meta_brain_lora_routing/checkpoints/lora_physical_r16/final/
+        --lora_spatial_dir /root/meta_brain_lora_routing/checkpoints/lora_visual_r16/final/
+        --routing none --num_episodes 50 --seeds 42"
+      server: westd-34142
+      gpu:
+      - cuda:0
+      pid: '587800'
+      log_path: ~/runs/meta_brain_lora_routing/eval_no_routing.log
+      submitted_at: '2026-05-16T08:47:56.335Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      kill_reason: pi0_base cannot zero-shot LIBERO, all eval data invalid (D010)
+    hypothesis: Frozen PI0 baseline (no LoRA) for comparison — measures perturbation
+      robustness without any adaptation
+    parent: phase0_activation_collection
+    conclusion: killed
+  v2_lora_visual_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T11:55:37.393Z'
+    updated_at: '2026-05-16T16:08:58.941Z'
+    spec:
+      command: CUDA_VISIBLE_DEVICES=2 python phase1/train_lora_expert.py --checkpoint
+        /root/autodl-tmp/checkpoints/pi0_libero --perturbation_type visual --rank
+        16 --run_prefix v2 --batch_size 16 --num_steps 10000 --output_dir /root/autodl-tmp/checkpoints/v2_lora_visual_r16
+        --resume_from /root/autodl-tmp/checkpoints/v2_lora_visual_r16/step_6000 --no_wandb
+      server: westd-34142
+      gpu:
+      - cuda:2
+      pid: '835846'
+      resumed_from_step: 6000
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero + LoRA-visual r16 v2
+      seed: 42
+      checkpoint_path: /root/autodl-tmp/checkpoints/v2_lora_visual_r16/v2lora_visual_r16/final
+      log_path: ~/runs/meta_brain_lora_routing/v2_lora_visual_r16.log
+    reproduce:
+      finished_at: '2026-05-16T15:32:04.377Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T15:32:07.838962+00:00'
+    conclusion: success
+    metrics:
+      final_train_loss: 0.7035
+      total_steps: 9999
+      final_lr: 1.0e-05
+      final_grad_norm: 4.82
+      checkpoint_size_mb: 14.1
+    completed_at: '2026-05-16T15:33:18.668Z'
+    failure_reason: '作废: base checkpoint 是 pi0_libero_base（未微调），训练完成但结果无效'
+  v2_lora_physical_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T11:55:39.464Z'
+    updated_at: '2026-05-16T16:08:59.865Z'
+    spec:
+      command: CUDA_VISIBLE_DEVICES=3 python phase1/train_lora_expert.py --checkpoint
+        /root/autodl-tmp/checkpoints/pi0_libero --perturbation_type physical --rank
+        16 --run_prefix v2 --batch_size 16 --num_steps 10000 --output_dir /root/autodl-tmp/checkpoints/v2_lora_physical_r16
+        --resume_from /root/autodl-tmp/checkpoints/v2_lora_physical_r16/step_6000
+        --no_wandb
+      server: westd-34142
+      gpu:
+      - cuda:3
+      pid: '836032'
+      resumed_from_step: 6000
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero + LoRA-physical r16 v2
+      seed: 42
+    reproduce:
+      finished_at: '2026-05-16T15:29:34.606Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T15:29:35.440008+00:00'
+    metrics:
+      final_train_loss: 0.6776
+      initial_train_loss: 0.731
+      initial_train_loss_note: resume from step_6000, not true initial
+      loss_reduction_ratio: 1.079
+      total_steps: 9999
+      steps_this_run: 3999
+      training_time_minutes: 68
+      exit_code: 0
+      checkpoint_path: /root/autodl-tmp/checkpoints/v2_lora_physical_r16/v2lora_physical_r16/final
+      checkpoints_saved:
+      - step_1000
+      - step_2000
+      - step_3000
+      - step_4000
+      - step_5000
+      - step_6000
+      - step_7000
+      - step_8000
+      - step_9000
+      - final
+      lora_rank: 16
+      lora_alpha: 32
+      errors: 0
+      tracebacks: 0
+    checkpoint_path: /root/autodl-tmp/checkpoints/v2_lora_physical_r16/v2lora_physical_r16/final
+    log_path: ~/runs/meta_brain_lora_routing/v2_lora_physical_r16.log
+    conclusion: success
+    completed_at: '2026-05-16T15:31:12.792Z'
+    failure_reason: '作废: base checkpoint 是 pi0_libero_base（未微调），训练完成但结果无效'
+  v2_lora_spatial_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T12:17:49.462Z'
+    updated_at: '2026-05-16T16:08:57.572Z'
+    spec:
+      command: CUDA_VISIBLE_DEVICES=1 python phase1/train_lora_expert.py --checkpoint
+        /root/autodl-tmp/checkpoints/pi0_libero --perturbation_type spatial --rank
+        16 --run_prefix v2 --batch_size 16 --num_steps 10000 --output_dir /root/autodl-tmp/checkpoints/v2_lora_spatial_r16
+        --resume_from /root/autodl-tmp/checkpoints/v2_lora_spatial_r16/step_1000 --no_wandb
+      server: westd-34142
+      gpu:
+      - cuda:1
+      pid: '835698'
+      resumed_from_step: 1000
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero + LoRA-spatial r16 v2
+      seed: 42
+    reproduce:
+      finished_at: '2026-05-16T15:52:33.122Z'
+    failure_reason: 'Killed: 发现 base checkpoint 是 pi0_libero_base（未微调），所有 v2 LoRA
+      训练作废'
+    conclusion: killed
+    completed_at: '2026-05-16T15:52:34.000Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-16T15:52:34.871971+00:00'
+  v2_lora_universal_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T12:17:49.993Z'
+    updated_at: '2026-05-16T16:08:56.639Z'
+    spec:
+      command: CUDA_VISIBLE_DEVICES=0 python phase1/train_lora_expert.py --checkpoint
+        /root/autodl-tmp/checkpoints/pi0_libero --perturbation_type universal --rank
+        16 --run_prefix v2 --batch_size 16 --num_steps 10000 --output_dir /root/autodl-tmp/checkpoints/v2_lora_universal_r16
+        --resume_from /root/autodl-tmp/checkpoints/v2_lora_universal_r16/step_4000
+        --no_wandb
+      server: westd-34142
+      gpu:
+      - cuda:0
+      pid: '835558'
+      resumed_from_step: 4000
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero + LoRA-universal r16 v2
+      seed: 42
+    reproduce:
+      finished_at: '2026-05-16T15:52:30.153Z'
+    failure_reason: 'Killed: 发现 base checkpoint 是 pi0_libero_base（未微调），所有 v2 LoRA
+      训练作废'
+    conclusion: killed
+    completed_at: '2026-05-16T15:52:30.909Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-16T15:52:31.720964+00:00'
+  phase_b5_activation_collection:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-16T12:45:04.964Z'
+    updated_at: '2026-05-17T01:45:55.109Z'
+    conclusion: killed
+  v3_lora_visual_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T17:09:04.865Z'
+    updated_at: '2026-05-16T20:34:54.538Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && python phase1/train_lora_expert.py
+        --perturbation_type visual --gpu_id 0 --checkpoint /root/autodl-tmp/checkpoints/pi0_libero_openpi
+        --output_dir /root/autodl-tmp/checkpoints/v3_lora_visual_r16 --run_prefix
+        v3 --lora_rank 16 --batch_size 16 --num_train_steps 10000 --no_wandb"
+      server: westd-34142
+      gpu:
+      - cuda:0
+      pid: '4483'
+      log_path: ~/runs/meta_brain_lora_routing/v3_lora_visual_r16.log
+      submitted_at: '2026-05-16T17:09:04.830Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero_finetuned (JAX→PyTorch) + LoRA-visual r16 v3
+      seed: 42
+      checkpoint_source: /root/autodl-tmp/checkpoints/pi0_libero_openpi
+      wall_clock_seconds: 12287.2
+      gpu_hours: 3.41
+    reproduce:
+      finished_at: '2026-05-16T20:13:03.386Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T20:13:04.340614+00:00'
+    metrics:
+      final_train_loss: 0.5899
+      initial_train_loss: 1.9794
+      loss_reduction_ratio: 3.36
+      total_steps: 10000
+      training_time_minutes: 182
+    checkpoint_path: /root/autodl-tmp/checkpoints/v3_lora_visual_r16/v3lora_visual_r16/final
+    log_path: ~/runs/meta_brain_lora_routing/v3_lora_visual_r16.log
+    conclusion: success
+    completed_at: '2026-05-16T20:33:52.002Z'
+  v3_lora_spatial_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T17:09:07.199Z'
+    updated_at: '2026-05-16T20:07:13.198Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && python phase1/train_lora_expert.py
+        --perturbation_type spatial --gpu_id 0 --checkpoint /root/autodl-tmp/checkpoints/pi0_libero_openpi
+        --output_dir /root/autodl-tmp/checkpoints/v3_lora_spatial_r16 --run_prefix
+        v3 --lora_rank 16 --batch_size 16 --num_train_steps 10000 --no_wandb"
+      server: westd-34142
+      gpu:
+      - cuda:1
+      pid: '5216'
+      log_path: ~/runs/meta_brain_lora_routing/v3_lora_spatial_r16.log
+      submitted_at: '2026-05-16T17:09:46.480Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero_finetuned (JAX→PyTorch) + LoRA-spatial r16 v3
+      seed: 42
+      checkpoint_source: /root/autodl-tmp/checkpoints/pi0_libero_openpi
+      wall_clock_seconds: 10646.7
+      gpu_hours: 2.96
+    reproduce:
+      finished_at: '2026-05-16T20:02:22.789Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T20:02:23.664605+00:00'
+    conclusion: success
+    metrics:
+      final_train_loss: 0.6126
+      initial_train_loss: 1.9529
+      loss_reduction_ratio: 3.188
+      total_steps: 10000
+      training_time_minutes: 171.1
+    checkpoint_path: /root/autodl-tmp/checkpoints/v3_lora_spatial_r16/v3lora_spatial_r16/final
+    completed_at: '2026-05-16T20:07:13.198Z'
+  v3_lora_physical_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T17:09:10.057Z'
+    updated_at: '2026-05-16T20:07:12.674Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && python phase1/train_lora_expert.py
+        --perturbation_type physical --gpu_id 0 --checkpoint /root/autodl-tmp/checkpoints/pi0_libero_openpi
+        --output_dir /root/autodl-tmp/checkpoints/v3_lora_physical_r16 --run_prefix
+        v3 --lora_rank 16 --batch_size 16 --num_train_steps 10000 --no_wandb"
+      server: westd-34142
+      gpu:
+      - cuda:2
+      pid: '5442'
+      log_path: ~/runs/meta_brain_lora_routing/v3_lora_physical_r16.log
+      submitted_at: '2026-05-16T17:09:48.896Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero_finetuned (JAX→PyTorch) + LoRA-physical r16 v3
+      seed: 42
+      checkpoint_source: /root/autodl-tmp/checkpoints/pi0_libero_openpi
+      wall_clock_seconds: 10643.8
+      gpu_hours: 2.96
+    reproduce:
+      finished_at: '2026-05-16T20:02:25.992Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T20:02:28.221931+00:00'
+    conclusion: success
+    metrics:
+      final_train_loss: 0.5876
+      initial_train_loss: 2.3697
+      loss_reduction_ratio: 4.033
+      total_steps: 10000
+      training_time_minutes: 170.1
+    checkpoint_path: /root/autodl-tmp/checkpoints/v3_lora_physical_r16/v3lora_physical_r16/final
+    completed_at: '2026-05-16T20:07:12.675Z'
+  v3_lora_universal_r16:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T17:09:12.125Z'
+    updated_at: '2026-05-16T20:07:11.745Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && python phase1/train_lora_expert.py
+        --perturbation_type universal --gpu_id 0 --checkpoint /root/autodl-tmp/checkpoints/pi0_libero_openpi
+        --output_dir /root/autodl-tmp/checkpoints/v3_lora_universal_r16 --run_prefix
+        v3 --lora_rank 16 --batch_size 16 --num_train_steps 10000 --no_wandb"
+      server: westd-34142
+      gpu:
+      - cuda:3
+      pid: '5655'
+      log_path: ~/runs/meta_brain_lora_routing/v3_lora_universal_r16.log
+      submitted_at: '2026-05-16T17:09:51.010Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero_finetuned (JAX→PyTorch) + LoRA-universal r16 v3
+      seed: 42
+      checkpoint_source: /root/autodl-tmp/checkpoints/pi0_libero_openpi
+      wall_clock_seconds: 10640.7
+      gpu_hours: 2.96
+    reproduce:
+      finished_at: '2026-05-16T20:02:29.739Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T20:02:31.099308+00:00'
+    conclusion: success
+    metrics:
+      final_train_loss: 0.603
+      initial_train_loss: 1.9529
+      loss_reduction_ratio: 3.239
+      total_steps: 10000
+      training_time_minutes: 170.4
+    checkpoint_path: /root/autodl-tmp/checkpoints/v3_lora_universal_r16/v3lora_universal_r16/final
+    completed_at: '2026-05-16T20:07:11.745Z'
+  v3_lora_universal_r48:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T20:30:00.605Z'
+    updated_at: '2026-05-17T01:37:56.977Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/meta_brain_lora_routing && python phase1/train_lora_expert.py
+        --perturbation_type universal --gpu_id 0 --checkpoint /root/autodl-tmp/checkpoints/pi0_libero_openpi
+        --output_dir /root/autodl-tmp/checkpoints/v3_lora_universal_r48 --run_prefix
+        v3_r48 --lora_rank 48 --batch_size 16 --num_train_steps 10000 --no_wandb"
+      server: westd-34142
+      gpu:
+      - cuda:1
+      pid: '118481'
+      log_path: ~/runs/meta_brain_lora_routing/v3_lora_universal_r48.log
+      submitted_at: '2026-05-16T20:30:00.559Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero_finetuned (JAX→PyTorch) + LoRA-universal r48 v3
+      seed: 42
+      checkpoint_source: /root/autodl-tmp/checkpoints/pi0_libero_openpi
+      hypothesis: rank-48 parameter-matched universal LoRA as control for Claim 3
+        (parameter efficiency)
+      checkpoint_path: /root/autodl-tmp/checkpoints/v3_lora_universal_r48/v3_r48lora_universal_r48/final
+      wall_clock_seconds: 18476.4
+      gpu_hours: 5.13
+    reproduce:
+      finished_at: '2026-05-16T23:25:01.879Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T23:25:03.252161+00:00'
+    conclusion: success
+    metrics:
+      initial_train_loss: 1.6695
+      final_train_loss: 0.4302
+      loss_reduction_ratio: 3.882
+      total_steps: 9999
+      training_time_minutes: 173
+      checkpoint_path: /root/autodl-tmp/checkpoints/v3_lora_universal_r48/v3_r48lora_universal_r48/final
+      lora_rank: 48
+      lora_alpha: 96
+      trainable_params: 11059200
+      trainable_pct: 0.31
+      errors: 0
+      tracebacks: 0
+    hypothesis: Universal LoRA r48 (11M params) 比 r16 (3.7M) 有更强的扰动适应能力，因为更高 rank
+      提供更大的表征容量来建模多类扰动的联合分布
+    completed_at: '2026-05-17T01:37:56.977Z'
+  eval_variance_p0:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-16T21:20:34.885Z'
+    updated_at: '2026-05-17T01:45:54.483Z'
+    hypothesis: Eval 存在未控制的非确定性源（torch/numpy/env/LIBERO simulator random state），导致
+      same-seed 结果方差 >15pp，需定位并修复后才能做可靠对比
+    conclusion: killed
+  p1_baseline_full_coverage:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-16T22:30:56.349Z'
+    updated_at: '2026-05-17T01:45:53.053Z'
+    hypothesis: Frozen pi0_libero 在不同扰动类型下性能下降程度不同，robot_initial_states 和 language
+      预期降幅最大（>30pp），background_textures 预期降幅小（<10pp），建立完整 baseline 量化各类扰动影响
+    conclusion: killed
+  p1_universal_r16_full:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-16T22:30:58.223Z'
+    updated_at: '2026-05-17T01:45:53.999Z'
+    hypothesis: Universal LoRA r16 是否能在某些扰动类型上改善 baseline——若无改善则证明 specialized routing
+      的必要性（universal 不够，需要 per-perturbation expert）
+    conclusion: killed
+  v3_lora_universal_r8:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T01:42:38.229Z'
+    updated_at: '2026-05-17T12:08:05.478Z'
+    hypothesis: Rank-8 universal LoRA (~1.8M params) 在有限增强数据下是否与 r16 表现相当，用于确定 rank
+      scaling 下界——若 r8 接近 r16 则说明 r16 已有冗余容量，若 r8 明显更差则 r16 是容量下限
+    parent: v3_lora_universal_r16
+    spec:
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero_finetuned+LoRA-universal-r8-v3
+      seed: 42
+      command: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+        && cd /root/meta_brain_lora_routing && python phase1/train_lora_expert.py
+        --perturbation_type universal --gpu_id 0 --checkpoint /root/autodl-tmp/checkpoints/pi0_libero_openpi
+        --output_dir /root/autodl-tmp/checkpoints/v3_lora_universal_r8 --run_prefix
+        v3_r8 --lora_rank 8 --lora_alpha 16 --batch_size 16 --num_train_steps 10000
+        --no_wandb
+      server: westd-34142
+      gpu:
+      - cuda:0
+      pid: '792529'
+      log_path: ~/runs/meta_brain_lora_routing/v3_lora_universal_r8.log
+      submitted_at: '2026-05-17T09:43:50Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      checkpoint_source: /root/autodl-tmp/checkpoints/pi0_libero_openpi
+      eval_data: N/A - training experiment
+      wall_clock_seconds: 8655.5
+      gpu_hours: 2.4
+    failure_reason: 'startup recovery: process dead, no active cron monitor'
+    conclusion: failed
+    completed_at: '2026-05-17T12:08:05.478Z'
+  v3_lora_universal_r32:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T01:42:40.054Z'
+    updated_at: '2026-05-17T12:08:06.794Z'
+    hypothesis: Rank-32 universal LoRA (~7.4M params) 是否比 r16 过拟合（类似 r48 pattern），用于精确定位
+      rank scaling 拐点——若 r32 已开始退化则拐点在 r16-r32 之间，若仍有提升则 r16 并非最优
+    parent: v3_lora_universal_r16
+    spec:
+      command: python phase1/train_lora_expert.py --perturbation_type universal --gpu_id
+        0 --checkpoint /root/autodl-tmp/checkpoints/pi0_libero_openpi --output_dir
+        /root/autodl-tmp/checkpoints/v3_lora_universal_r32 --run_prefix v3_r32 --lora_rank
+        32 --lora_alpha 64 --batch_size 16 --num_train_steps 10000 --no_wandb
+      server: westd-34142
+      gpu:
+      - cuda:1
+      pid: '792798'
+      log_path: ~/runs/meta_brain_lora_routing/v3_lora_universal_r32.log
+      submitted_at: '2026-05-17T01:44:05.174Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/autodl-tmp/libero_demos/libero_object_image/
+      data_count: 66984
+      model_name: pi0_libero_finetuned+LoRA-universal-r32-v3
+      seed: 42
+      checkpoint_source: /root/autodl-tmp/checkpoints/pi0_libero_openpi
+      eval_data: N/A - training experiment
+      wall_clock_seconds: 37441.6
+      gpu_hours: 10.4
+    failure_reason: 'startup recovery: process dead, no active cron monitor'
+    conclusion: failed
+    completed_at: '2026-05-17T12:08:06.794Z'
+  v3_r48_early_stop_ablation:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-17T01:42:42.017Z'
+    updated_at: '2026-05-17T01:42:42.017Z'
+    hypothesis: r48 训练过程中存在过拟合拐点：中间 checkpoint (step 3000-5000) 在 nominal 和 light_conditions
+      上应优于最终 step 10000，直接证明 r48 性能退化源自过拟合而非容量本身有害
+  eval_data_confirm_r48_sensor:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-17T01:42:45.175Z'
+    updated_at: '2026-05-17T01:42:45.175Z'
+    hypothesis: 确认 universal r16 eval 数据完整性（3-seed×20eps=60eps），补全 r48 sensor_noise
+      评估，并追溯 physical expert 数据不一致（26.4% vs 28.3%）的来源

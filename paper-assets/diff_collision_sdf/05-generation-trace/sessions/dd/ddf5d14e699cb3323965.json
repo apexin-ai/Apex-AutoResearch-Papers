@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "ddf5d14e699cb3323965",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code pi05 a1 dryrun validation",
+  "task_key": "worker_code_pi05_a1_dryrun_validation_20260522T230723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pi05_a1_dryrun_validation_20260522T230723.log",
+    "occurrence": 1,
+    "bytes": 935122,
+    "sha256": "43c8aa00e8bb49607b9639ea78f15fda064f3be0b259a6af1ea49ca5a87bca46"
+  },
+  "statistics": {
+    "messages": 410,
+    "user_turns": 0,
+    "tool_calls": 152,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 102,
+      "tool_call": 152,
+      "tool_result": 152,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 410,
+      "chunks": [
+        {
+          "path": "ddf5d14e699cb3323965-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ddf5d14e699cb3323965-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ddf5d14e699cb3323965-part-0003.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-pi05-a1-dryrun-validation.md"
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "95f035029349005e36ca",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "eval oracle pi05 lora",
+  "task_key": "worker_eval_oracle-pi05-lora_20260529T004154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_oracle-pi05-lora_20260529T004154.log",
+    "occurrence": 1,
+    "bytes": 1995516,
+    "sha256": "edd2f4b0cba7b65b7be871e90029fee59778b126d25275dc7359b8574bf83c5a"
+  },
+  "statistics": {
+    "messages": 953,
+    "user_turns": 2,
+    "tool_calls": 390,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 3,
+      "assistant": 159,
+      "tool_call": 390,
+      "tool_result": 390,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 256,
+      "chunks": [
+        {
+          "path": "95f035029349005e36ca-part-0001.json",
+          "message_count": 127
+        },
+        {
+          "path": "95f035029349005e36ca-part-0002.json",
+          "message_count": 129
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 678,
+      "chunks": [
+        {
+          "path": "95f035029349005e36ca-part-0002.json",
+          "message_count": 51
+        },
+        {
+          "path": "95f035029349005e36ca-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "95f035029349005e36ca-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "95f035029349005e36ca-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "95f035029349005e36ca-part-0006.json",
+          "message_count": 87
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "95f035029349005e36ca-part-0006.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-oracle-pi05-lora.md"
+}

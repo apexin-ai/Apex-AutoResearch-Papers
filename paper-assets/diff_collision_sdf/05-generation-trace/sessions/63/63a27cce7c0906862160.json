@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63a27cce7c0906862160",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops prepare lora reeval rotation fix",
+  "task_key": "worker_ops_prepare_lora_reeval_rotation_fix_20260526T070923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare_lora_reeval_rotation_fix_20260526T070923_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "7c3946a5f5ad7c24fc126bf67a7023e02e06e9ae1d36008dc35a3fea773c85b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LoRA re-eval is running — model loaded successfully, now evaluating Task 0. Everything looks good:\n\n- **tmux session**: `lora_reeval`\n- **Checkpoint**: `.../pi05_lora_baseline_object_pudding_seed0/30000/model.safetensors`\n- **LoRA injected**: PaliGemma rank=16 (19.6M params), Expert rank=32 (13.9M params)\n- **Norm stats**: loaded from checkpoint assets\n- **Log**: `/tmp/lora_reeval.log`\n- **Output**: `/root/autodl-tmp/eval_results/lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json`\n\nPi0.5 baseline re-eval result for reference: **TSR=71.5%, CAR=28.5%**. LoRA s0 re-eval will show whether the TSR collapse was real or an eval bug artifact."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-lora-reeval-rotation-fix.md"
+}

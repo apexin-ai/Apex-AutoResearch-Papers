@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66d125df8ebbe237f547",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops close early signal eval",
+  "task_key": "worker_ops_close_early_signal_eval_20260526T235425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_close_early_signal_eval_20260526T235425_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "df27e7e09571c34f2c9fc35525490f98012dafdd756d945da71f977e3f25fed1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron already cleared (not in this session). Registry updated, experiment closed.\n\n---\n\n**eval_early_signal_s0_l1_20k 结果:**\n\n- 状态: **success** (4 tasks × 50 episodes = 200, complete)\n- CAR: **55%**, TSR: **54%**\n- frozen_ee: **0%** (avg ee_disp 0.35–0.40, all healthy)\n- 硬约束: TSR≥35% ✅ (54%), frozen=0% ✅\n- **A/B/C 信号: B** (CAR 55% ≤ 57%, null mean=54.5%)\n\nPer-task:\n\n| Task | CAR | TSR | avg_disp | avg_ee_disp |\n|------|-----|-----|----------|-------------|\n| orange_juice | 50% | 38% | 0.047 | 0.392 |\n| chocolate_pudding | 72% | 74% | 0.049 | 0.404 |\n| milk | 72% | 44% | 0.032 | 0.349 |\n| bbq_sauce | 26% | 60% | 0.093 | 0.390 |\n\nCAR 55% 仅比 null distribution mean (54.5%) 高 0.5%，不到 0.25σ。20K 早期信号强烈倾向 **场景 B（全域 negative）**——λ=0.1 的 SDF loss 在 20K 步时未产生有意义的碰撞避免信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-close-early-signal-eval.md"
+}

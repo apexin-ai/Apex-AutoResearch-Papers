@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1c43c1b89cf96ac6667",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260524T193730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_20260524T193730_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "4540fb3809f2534303a5865e4517c37e4cee317fc326258f618125476f657071"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract v2 written to `artifacts/drafts/abstract_v2.tex` (211 words). Structure:\n\n- **Problem** (2 sentences): VLA collision avoidance methods report high CAR, but metrics are contaminated by action collapse\n- **Evidence** (2 sentences): 91.5% CAR with 99.6% fake safe; cross-method validation (82% CAR / 99.4% fake on baseline)\n- **Corrective metric**: displacement-filtered CAR (CAR_f)\n- **Claim 2**: TSR-CAR anti-correlation\n- **Claim 3**: EE-only SDF oracle fails (arm links sweep through obstacles)\n- **Claim 4** (1 sentence): training-time SDF on capable VLA yields genuine avoidance with 0% frozen-action rate\n- **Takeaway** (1 sentence): displacement filtering is necessary for meaningful evaluation\n\nAll abbreviations expanded on first use (VLA, CAR, SDF, TSR, CAR_f). No em-dashes, no -ing sentence endings. Key numbers limited to 91.5%/99.6% core pair plus 82%/99.4% cross-validation."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract-copy-2.md"
+}

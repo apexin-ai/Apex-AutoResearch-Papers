@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c89c45d3ac4370d3f6c3",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "gpu check westd 45947",
+  "task_key": "worker_gpu-check_westd-45947_20260529T050540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu-check_westd-45947_20260529T050540.log",
+    "occurrence": 1,
+    "bytes": 1158503,
+    "sha256": "165466c31e9ebce855d7e0e4dea334c9ad8882e2d3de82c178fc36b464ca7474"
+  },
+  "statistics": {
+    "messages": 129,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 129,
+      "chunks": [
+        {
+          "path": "c89c45d3ac4370d3f6c3-part-0001.json",
+          "message_count": 95
+        },
+        {
+          "path": "c89c45d3ac4370d3f6c3-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-check-westd-45947.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5727af89ecd76077daa0",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "diagnose v2 lora failures",
+  "task_key": "worker_diagnose_v2_lora_failures_20260516T155344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_v2_lora_failures_20260516T155344_result.json",
+    "occurrence": 1,
+    "bytes": 543,
+    "sha256": "bdb80a609d9df0f21fa21efa30eb1aa54eb3d77aac21dd2a69dd44ef7ce8ff81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：两个实验在 23:48-23:49 被同时 kill，是 tmux session 断开/SSH 连接中断导致的（spatial 收到 SIGHUP 确认了这点）。不是 OOM、CUDA error 或代码问题。\n\n**状态**：\n- universal_r16：停在 step 9300/10000，loss 0.6798，可从 step_9000 checkpoint 恢复（剩 ~17 min）\n- spatial_r16：停在 step 6300/10000，loss 0.6840，可从 step_6000 checkpoint 恢复（剩 ~57 min）\n\n**修复**：用 `nohup` 重启即可，两个都有完好的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-v2-lora-failures.md"
+}

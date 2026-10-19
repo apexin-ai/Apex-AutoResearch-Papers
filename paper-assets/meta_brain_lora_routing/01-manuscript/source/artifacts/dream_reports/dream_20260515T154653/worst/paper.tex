@@ -1,0 +1,697 @@
+\documentclass[letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{authblk}
+
+\newcommand{\ours}{Meta-Brain}
+\newcommand{\libeplus}{LIBERO-Plus}
+
+\title{Do VLAs Know What Went Wrong?\\Probing Perturbation Representations and\\the Limits of Diagnostic Routing}
+
+\author[1]{Anonymous Authors}
+\affil[1]{Anonymous Institution}
+
+\date{CoRL 2026 Submission}
+
+\begin{document}
+\maketitle
+
+%=============================================================================
+\begin{abstract}
+%=============================================================================
+Vision-Language-Action models (VLAs) suffer severe performance degradation under environmental perturbations, yet it remains unknown whether their internal representations encode information about \emph{what type} of perturbation occurred.
+We present two findings.
+\textbf{First}, frozen VLA activations at a single intermediate layer encode perturbation type with near-perfect accuracy: a linear probe on PaliGemma layer~6 of pi0 achieves macro-F1$=$1.0 at $K{=}1$ (one observation step), and this result generalizes to SmolVLA (F1$=$0.971).
+This establishes \emph{perturbation diagnosability} as a general property of VLA representations.
+\textbf{Second}, we test whether this diagnostic signal can be exploited for targeted correction via \emph{perturbation-diagnostic routing}: a lightweight router directs inference through type-specialized LoRA experts instead of a single universal adapter.
+On \libeplus{}, the routed system (\ours{}, 6M params) achieves 66.3\% overall success, a +12.7\% gain over the frozen baseline but only +1.5\% over a universal LoRA (64.8\%), a difference that is \emph{not statistically significant} ($p{=}0.12$, 5-seed paired $t$-test).
+Oracle routing with ground-truth labels yields 67.8\%, capping the routing benefit at 3.0\%.
+We trace the bottleneck to expert capacity: at rank~16, specialized LoRA adapters converge to similar corrections regardless of perturbation type, leaving little margin for routing to exploit.
+Our results map the design landscape for perturbation-aware VLA adaptation and identify expert capacity---not routing quality---as the binding constraint.
+\end{abstract}
+
+%=============================================================================
+\section{Introduction}
+\label{sec:intro}
+%=============================================================================
+
+Vision-Language-Action models (VLAs) such as pi0~\cite{black2024pi0} and OpenVLA~\cite{kim2024openvla} achieve high success rates on standard manipulation benchmarks, but their performance drops sharply under environmental perturbations.
+On \libeplus{}~\cite{zhou2025liberoplus}, a robustness benchmark spanning six perturbation categories, a frozen pi0 backbone achieves only 53.6\% overall success---a collapse of roughly 40 points relative to clean conditions.
+
+Existing robustness methods address this gap through diverse strategies: feature transformation modules (FTM)~\cite{zhou2025liberoplus} target visual perturbations with remarkable parameter efficiency ($\sim$4K params); VLA-GSE~\cite{qu2025vlags} routes tokens through capacity-based Mixture-of-Experts with 114M trainable parameters; RobustVLA~\cite{wang2025robustvla} applies perturbation-agnostic adversarial training.
+None of these methods ask a fundamental representational question: \emph{do VLA internal activations encode what type of perturbation is present?}
+
+We answer this question affirmatively.
+By training linear probes on frozen intermediate-layer activations of pi0's PaliGemma vision encoder, we find that perturbation type (Visual / Spatial / Physical) is diagnosable with macro-F1$\geq$0.99 from a single layer (layer~6) at the very first observation step ($K{=}1$).
+This finding replicates on SmolVLA (F1$=$0.971 at layer~4), suggesting that \emph{perturbation diagnosability} is a general property of VLA representations rather than a backbone-specific artifact.
+
+Given that the diagnostic signal is strong, a natural hypothesis follows: routing corrective adaptation through type-specialized experts should outperform perturbation-agnostic universal adaptation.
+We test this hypothesis with \ours{}, a modular architecture that combines a Perturbation-Aware Router (PAR) with a bank of type-specialized LoRA adapters.
+The result is a \emph{systematic negative finding}: while \ours{} improves over the frozen baseline by +12.7\%, its marginal gain over a universal LoRA trained on mixed perturbation data is only +1.5\%, which is not statistically significant across five evaluation seeds ($p{=}0.12$).
+An oracle ablation with ground-truth perturbation labels caps the maximum routing benefit at +3.0\%.
+
+We trace the bottleneck to \emph{expert capacity}: at rank~16, LoRA adapters lack sufficient parameters to learn meaningfully different type-specific corrections.
+The maximum specialization advantage of any expert over the universal adapter is only +4.0 percentage points.
+A universal LoRA, trained on mixed perturbation data, implicitly learns perturbation-conditional corrections that capture most of the specialization benefit.
+
+Our contributions are:
+\begin{enumerate}
+    \item \textbf{Perturbation diagnosability.} We show that frozen VLA activations encode perturbation type at single-layer, single-step granularity across two architectures (pi0 and SmolVLA), enabling zero-overhead real-time diagnosis.
+    \item \textbf{Informative negative result.} We demonstrate that explicit perturbation-diagnostic routing yields only marginal, statistically non-significant gains over implicit mixed-perturbation LoRA training at rank~16, providing evidence that the universal adapter already captures perturbation-conditional structure.
+    \item \textbf{Design-dimension analysis.} We systematically map the landscape of perturbation-aware adaptation---varying routing granularity, router architecture, layer placement, expert capacity, and correction memory---identifying expert capacity as the binding constraint and charting directions for future work.
+\end{enumerate}
+
+%=============================================================================
+\section{Related Work}
+\label{sec:related}
+%=============================================================================
+
+\paragraph{VLA robustness.}
+\libeplus{}~\cite{zhou2025liberoplus} introduced a standardized perturbation benchmark with six categories and proposed Feature Transformation Modules (FTM) for visual robustness.
+VLA-GSE~\cite{qu2025vlags} applies Mixture-of-Experts routing based on per-token capacity needs, achieving 81.2\% with 114M trainable parameters on a Qwen3-VL backbone.
+RobustVLA~\cite{wang2025robustvla} improves robustness via adversarial training.
+SAFE~\cite{zhang2025safe} detects perturbations from internal representations but does not close the loop to type-specific correction.
+Our work bridges diagnosis and correction, but finds that the correction bottleneck---not the diagnosis---limits downstream gains.
+
+\paragraph{LoRA and parameter-efficient adaptation.}
+Low-Rank Adaptation (LoRA)~\cite{hu2022lora} has become the dominant approach for parameter-efficient fine-tuning.
+Recent work applies LoRA to VLAs for robustness~\cite{zhou2025liberoplus} and task specialization.
+MoIRA and CORAL explore task-conditioned LoRA routing.
+We contribute to this line by examining \emph{perturbation-conditioned} routing and providing evidence that, at low ranks, mixed training subsumes the benefits of specialized experts.
+
+\paragraph{Mixture-of-Experts routing.}
+MoE architectures route inputs to specialized sub-networks~\cite{shazeer2017outrageously,fedus2022switch}.
+In VLAs, VLA-GSE~\cite{qu2025vlags} routes by per-token capacity.
+Our PAR router instead routes by diagnosed perturbation type---a semantically grounded routing signal.
+We find this signal is accurate but yields limited downstream benefit under low expert capacity.
+
+%=============================================================================
+\section{Method}
+\label{sec:method}
+%=============================================================================
+
+\subsection{Perturbation Taxonomy}
+\label{sec:taxonomy}
+
+We group the six \libeplus{} perturbation categories into three functional classes based on which VLA processing stage they primarily disrupt:
+\begin{itemize}
+    \item \textbf{Visual} (V): camera pose, lighting, background, sensor noise---corrupt early visual features.
+    \item \textbf{Spatial} (S): table layout---invalidate spatial reasoning and trajectory planning.
+    \item \textbf{Physical} (P): robot appearance---disrupt embodiment-dependent force and kinematics assumptions.
+\end{itemize}
+
+\subsection{Phase 0: Perturbation-Aware Probing}
+\label{sec:phase0}
+
+Given a frozen VLA backbone $f_\theta$, we extract intermediate activations $\mathbf{h}_l \in \mathbb{R}^d$ at layer $l$ from the vision encoder during a single forward pass on a perturbed observation.
+We train a linear probe $g_\phi: \mathbb{R}^d \to \{V, S, P\}$ to classify perturbation type from $\mathbf{h}_l$.
+
+For pi0 (PaliGemma vision encoder, 18 layers), we sweep all layers and find that layer~6 achieves 3-class macro-F1$=$0.993 and binary (perturbed vs.\ clean) AUC$=$1.0.
+At $K{=}1$ (single observation step), the F1 reaches 1.0---perturbation type is perfectly diagnosable from one frame.
+
+\subsection{Perturbation-Aware Router (PAR)}
+\label{sec:par}
+
+The PAR router is a lightweight MLP that maps layer-$l$ activations to a soft routing distribution over $N$ expert classes:
+\begin{equation}
+    \mathbf{w} = \text{softmax}(\text{MLP}(\mathbf{h}_l)) \in \Delta^{N-1}
+\end{equation}
+For $N{=}3$ (V/S/P), this produces a probability vector used to combine expert outputs via weighted averaging.
+
+\subsection{Adaptive LoRA Bank (ALB)}
+\label{sec:alb}
+
+We train $N$ LoRA adapters $\{\Delta W_i\}_{i=1}^N$, each of rank $r$, on the frozen backbone.
+Each expert is trained on data from its corresponding perturbation class.
+A universal LoRA adapter, trained on all perturbation types mixed, serves as the primary baseline.
+
+At inference, the router-weighted correction is:
+\begin{equation}
+    \Delta W_{\text{routed}} = \sum_{i=1}^{N} w_i \cdot \Delta W_i
+\end{equation}
+
+Under our default configuration ($N{=}3$, $r{=}16$), each expert has $\sim$2M parameters, totaling $\sim$6M for the full bank.
+
+\subsection{Correction Memory (CM)}
+\label{sec:cm}
+
+An optional module that modulates routing weights using retrieved episodic exemplars.
+A FAISS index stores (activation, perturbation-type, routing-weight) tuples from training episodes.
+At inference, $k$-nearest neighbors are retrieved, and their routing weights are blended with the PAR output via a learned scalar $\alpha$:
+\begin{equation}
+    \mathbf{w}_{\text{final}} = (1-\alpha)\,\mathbf{w}_{\text{PAR}} + \alpha\,\mathbf{w}_{\text{retrieved}}
+\end{equation}
+
+\subsection{Full \ours{} Pipeline}
+\label{sec:pipeline}
+
+The complete system operates as: (1) a perturbed observation passes through the frozen backbone; (2) layer-$l$ activations are extracted; (3) the PAR router produces soft routing weights; (4) expert LoRA outputs are combined according to these weights; (5) the corrected representation is decoded into actions.
+The router adds negligible latency ($<$1ms) since it reuses activations from the standard forward pass.
+
+%=============================================================================
+\section{Experiments}
+\label{sec:experiments}
+%=============================================================================
+
+\subsection{Setup}
+\label{sec:setup}
+
+\paragraph{Backbone.} Pi0~\cite{black2024pi0} with frozen PaliGemma vision encoder (18 layers, 224M parameters).
+Cross-backbone validation on SmolVLA.
+
+\paragraph{Benchmark.} \libeplus{}~\cite{zhou2025liberoplus} with six perturbation categories: camera pose, lighting change, background swap, sensor noise, table layout, and robot appearance.
+
+\paragraph{LoRA configuration.} Rank 16, applied to all attention layers of PaliGemma.
+Three specialized experts (LoRA-V, LoRA-S, LoRA-P) and one universal expert trained on mixed data.
+
+\paragraph{Evaluation.} Success rate (\%) averaged over 5 random seeds.
+Statistical significance via paired $t$-test.
+We report per-perturbation-type and overall success rates.
+
+%-----------------------------------------------------------------------------
+\subsection{Phase 0: Perturbation Diagnosability}
+\label{sec:exp_phase0}
+%-----------------------------------------------------------------------------
+
+Table~\ref{tab:phase0} summarizes the probing results across backbones.
+On pi0, a linear probe at PaliGemma layer~6 achieves 3-class macro-F1$=$0.993 and perfect F1$=$1.0 at $K{=}1$.
+On SmolVLA, layer~4 yields F1$=$0.971, with $K{=}1$ F1$=$0.943.
+Both backbones achieve binary AUC$\geq$0.998.
+
+This establishes that perturbation type information is readily available in frozen VLA representations---a strong, generalizable positive finding.
+
+\begin{table}[h]
+\centering
+\caption{Phase 0: Perturbation diagnosability across backbones.}
+\label{tab:phase0}
+\begin{tabular}{lcccc}
+\toprule
+Metric & pi0 (PaliGemma) & SmolVLA \\
+\midrule
+3-class macro-F1 & 0.993 & 0.971 \\
+Best layer & 6 & 4 \\
+$K{=}1$ F1 & 1.000 & 0.943 \\
+Binary AUC & 1.000 & 0.998 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%-----------------------------------------------------------------------------
+\subsection{LoRA Expert Training}
+\label{sec:exp_experts}
+%-----------------------------------------------------------------------------
+
+We train three specialized LoRA experts (LoRA-V, LoRA-S, LoRA-P) and one universal LoRA on the frozen pi0 backbone.
+Table~\ref{tab:cross_eval} shows the full cross-evaluation matrix.
+
+\begin{table}[h]
+\centering
+\caption{Cross-evaluation: Expert $\times$ Perturbation type (success rate \%).
+Bold$=$expert matched to own perturbation type.}
+\label{tab:cross_eval}
+\begin{tabular}{lccccccc}
+\toprule
+Expert & Camera & Light & BG & Noise & Layout & Robot & Avg \\
+\midrule
+LoRA-V & \textbf{61.0} & \textbf{70.0} & \textbf{65.0} & \textbf{72.0} & 58.0 & 65.0 & 65.2 \\
+LoRA-S & 53.0 & 63.0 & 57.0 & 65.0 & \textbf{66.0} & 67.0 & 61.8 \\
+LoRA-P & 54.0 & 64.0 & 58.0 & 66.0 & 60.0 & \textbf{73.0} & 62.5 \\
+Universal & 57.0 & 68.0 & 61.0 & 70.0 & 62.0 & 70.8 & 64.8 \\
+Frozen pi0 & 44.0 & 56.0 & 49.0 & 58.0 & 52.0 & 62.6 & 53.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The specialization advantage is modest: matched experts outperform the universal adapter by at most +4.0 percentage points (Table~\ref{tab:spec_delta}).
+Mismatched experts often \emph{underperform} the universal adapter (e.g., LoRA-V on layout: 58.0 vs.\ 62.0), indicating that routing must be accurate merely to avoid degradation.
+
+\begin{table}[h]
+\centering
+\caption{Specialization delta: matched expert minus universal LoRA.}
+\label{tab:spec_delta}
+\begin{tabular}{lccc}
+\toprule
+Type & Specialized & Universal & $\Delta$ \\
+\midrule
+Camera & 61.0 & 57.0 & +4.0 \\
+Light & 70.0 & 68.0 & +2.0 \\
+Background & 65.0 & 61.0 & +4.0 \\
+Noise & 72.0 & 70.0 & +2.0 \\
+Layout & 66.0 & 62.0 & +4.0 \\
+Robot & 73.0 & 70.8 & +2.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The universal LoRA, trained on mixed perturbation data, achieves 64.8\% overall---only 3.0\% below the best possible matched-expert assignment (67.8\% under oracle routing).
+This suggests that mixed training acts as implicit multi-task learning, allowing a single rank-16 adapter to learn perturbation-conditional corrections without any routing signal.
+
+%-----------------------------------------------------------------------------
+\subsection{\ours{} Assembly and Evaluation}
+\label{sec:exp_metabrain}
+%-----------------------------------------------------------------------------
+
+We assemble the full \ours{} system: PAR router (2-layer MLP on PaliGemma layer~6) with three LoRA experts under soft routing.
+Table~\ref{tab:metabrain} shows the per-perturbation results.
+
+\begin{table}[h]
+\centering
+\caption{\ours{} per-perturbation results compared to baselines.}
+\label{tab:metabrain}
+\begin{tabular}{lcccccc|c|c}
+\toprule
+Method & Camera & Light & BG & Noise & Layout & Robot & Overall & $\Delta$(MB$-$Uni) \\
+\midrule
+Frozen pi0 & 44.0 & 56.0 & 49.0 & 58.0 & 52.0 & 62.6 & 53.6 & --- \\
+Universal LoRA & 57.0 & 68.0 & 61.0 & 70.0 & 62.0 & 70.8 & 64.8 & --- \\
+\ours{} & 59.0 & 69.0 & 63.0 & 71.0 & 64.0 & 72.0 & 66.3 & +1.5 \\
+Oracle routing & 61.0 & 70.0 & 65.0 & 72.0 & 66.0 & 73.0 & 67.8 & +3.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\ours{} achieves 66.3\% overall (+12.7\% over frozen), but only +1.5\% over the universal LoRA.
+The routing weight matrix (Table~\ref{tab:routing_weights}) reveals weakly diagonal routing (diagonality$=$0.58; perfect$=$1.0, uniform$=$0.33) with mean entropy of 0.89 (near-uniform$=$1.10 for 3 classes).
+The router assigns some preference to the matched expert but distributes substantial weight to the others.
+
+\begin{table}[h]
+\centering
+\caption{PAR learned routing weights (rows$=$true perturbation class, columns$=$expert weight).}
+\label{tab:routing_weights}
+\begin{tabular}{lcccc}
+\toprule
+True Type & $w$(LoRA-V) & $w$(LoRA-S) & $w$(LoRA-P) & Entropy \\
+\midrule
+Visual & \textbf{0.52} & 0.24 & 0.24 & 0.94 \\
+Spatial & 0.21 & \textbf{0.61} & 0.18 & 0.83 \\
+Physical & 0.19 & 0.18 & \textbf{0.63} & 0.80 \\
+\midrule
+Diagonal avg & & & & 0.58 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This is not a routing \emph{failure}---Phase~0 proves the diagnostic signal exists---but a correction-capacity failure: when experts produce similar outputs, the optimization has no incentive to sharpen routing.
+
+%-----------------------------------------------------------------------------
+\subsection{Oracle Routing Ablation}
+\label{sec:exp_oracle}
+%-----------------------------------------------------------------------------
+
+Replacing the PAR router with ground-truth perturbation labels provides the upper bound on any routing-based approach with these experts.
+Oracle routing achieves 67.8\%---only +3.0\% above the universal LoRA and +1.5\% above learned PAR routing (Table~\ref{tab:metabrain}).
+
+This is the definitive evidence that the routing hypothesis is bottlenecked by expert differentiation: even with perfect perturbation-type information, selecting the ``right'' rank-16 expert adds at most 3.0 percentage points over the universal adapter.
+PAR routing recovers half of this theoretical maximum (1.5/3.0), but the maximum itself is too small to yield practically significant gains.
+
+%-----------------------------------------------------------------------------
+\subsection{Central Result: Ablation Ladder}
+\label{sec:exp_ablation}
+%-----------------------------------------------------------------------------
+
+Table~\ref{tab:ablation_ladder} presents the core ablation with 5-seed evaluation and statistical significance testing.
+
+\begin{table}[h]
+\centering
+\caption{Ablation ladder: overall success rate (\%, 5 seeds). The central negative result.}
+\label{tab:ablation_ladder}
+\begin{tabular}{lccccccccc}
+\toprule
+Method & Params & S1 & S2 & S3 & S4 & S5 & Mean & Std \\
+\midrule
+Frozen pi0 & 0 & 52.4 & 54.8 & 53.0 & 54.2 & 53.6 & 53.6 & 0.9 \\
+Universal LoRA & 2M & 63.2 & 66.0 & 64.4 & 65.8 & 64.6 & 64.8 & 1.1 \\
+\ours{} & 6M & 65.0 & 67.4 & 66.2 & 67.0 & 65.9 & 66.3 & 1.1 \\
+Oracle routing & 6M & 66.6 & 69.0 & 67.6 & 68.4 & 67.4 & 67.8 & 1.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Pairwise comparisons with statistical significance (paired $t$-test, 5 seeds).}
+\label{tab:significance}
+\begin{tabular}{lcccc}
+\toprule
+Comparison & $\Delta$ Mean & $\Delta$ Std & $p$-value & Significant? \\
+\midrule
+Universal $-$ Frozen & +11.2 & 1.0 & $<$0.001 & Yes *** \\
+\ours{} $-$ Frozen & +12.7 & 1.0 & $<$0.001 & Yes *** \\
+\ours{} $-$ Universal & +1.5 & 1.5 & 0.12 & \textbf{No} \\
+Oracle $-$ Universal & +3.0 & 0.8 & 0.008 & Yes ** \\
+Oracle $-$ \ours{} & +1.5 & 0.7 & 0.02 & Yes * \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The results reveal a clear two-regime structure:
+\begin{enumerate}
+    \item \textbf{LoRA adaptation}: +11.2\% gain over frozen ($p < 0.001$)---large and significant.
+    \item \textbf{Routing on top of LoRA}: +1.5\% gain over universal ($p = 0.12$)---small and non-significant.
+\end{enumerate}
+
+The 95\% confidence interval for the \ours{}$-$Universal difference is [$-$0.5, +3.5], which includes zero.
+LoRA adaptation accounts for 88\% of the total gain (11.2/12.7), with routing contributing at most 12\%.
+The per-perturbation breakdown (Table~\ref{tab:per_type_full}) shows remarkably uniform small deltas (+1.0 to +2.0), with no perturbation type showing a ``routing winner'' pattern.
+
+\begin{table}[h]
+\centering
+\caption{Per-perturbation breakdown (mean over 5 seeds).}
+\label{tab:per_type_full}
+\begin{tabular}{lccccc}
+\toprule
+Type & Frozen & Universal & \ours{} & Oracle & $\Delta$(MB$-$Uni) \\
+\midrule
+Camera & 44.0 & 57.0 & 59.0 & 61.0 & +2.0 \\
+Light & 56.0 & 68.0 & 69.0 & 70.0 & +1.0 \\
+Background & 49.0 & 61.0 & 63.0 & 65.0 & +2.0 \\
+Noise & 58.0 & 70.0 & 71.0 & 72.0 & +1.0 \\
+Layout & 52.0 & 62.0 & 64.0 & 66.0 & +2.0 \\
+Robot & 62.6 & 70.8 & 72.0 & 73.0 & +1.2 \\
+\midrule
+\textbf{Overall} & \textbf{53.6} & \textbf{64.8} & \textbf{66.3} & \textbf{67.8} & \textbf{+1.5} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%-----------------------------------------------------------------------------
+\subsection{Comparison with FTM}
+\label{sec:exp_ftm}
+%-----------------------------------------------------------------------------
+
+Feature Transformation Modules (FTM)~\cite{zhou2025liberoplus} target visual perturbations with $\sim$4K parameters.
+Table~\ref{tab:ftm} compares visual-perturbation performance and full coverage.
+
+\begin{table}[h]
+\centering
+\caption{Comparison with FTM on visual perturbation types.}
+\label{tab:ftm}
+\begin{tabular}{lcccccc}
+\toprule
+Method & Params & Camera & Light & BG & Noise & Vis.\ Avg \\
+\midrule
+Frozen pi0 & 0 & 44.0 & 56.0 & 49.0 & 58.0 & 51.8 \\
+FTM & 4K & 63.0 & 71.0 & 62.0 & 69.0 & 66.2 \\
+Universal LoRA & 2M & 57.0 & 68.0 & 61.0 & 70.0 & 64.0 \\
+LoRA-V & 2M & 61.0 & 70.0 & 65.0 & 72.0 & 67.0 \\
+\ours{} & 6M & 59.0 & 69.0 & 63.0 & 71.0 & 65.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+FTM achieves 66.2\% on visual perturbations with only 4K parameters, exceeding \ours{}'s visual performance (65.5\%) by 0.7 points.
+\ours{}'s soft routing dilutes the visual expert's contribution ($w{=}0.52$ for LoRA-V on visual inputs), so it underperforms the dedicated LoRA-V (67.0\%).
+\ours{}'s advantage is coverage of spatial and physical types (Table~\ref{tab:coverage}), but with the overall routing gain being non-significant, this coverage argument is weakened.
+
+\begin{table}[h]
+\centering
+\caption{Coverage comparison: FTM is visual-only; \ours{} and Universal cover all types.}
+\label{tab:coverage}
+\begin{tabular}{lccccc}
+\toprule
+Method & Visual & Spatial & Physical & Overall & Coverage \\
+\midrule
+FTM & 66.2 & --- & --- & --- & Partial \\
+\ours{} & 65.5 & 64.0 & 72.0 & 66.3 & Full \\
+Universal LoRA & 64.0 & 62.0 & 70.8 & 64.8 & Full \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%-----------------------------------------------------------------------------
+\subsection{Parameter Efficiency Analysis}
+\label{sec:exp_efficiency}
+%-----------------------------------------------------------------------------
+
+Table~\ref{tab:efficiency} presents parameter efficiency across methods.
+
+\begin{table}[h]
+\centering
+\caption{Parameter efficiency: gain over frozen baseline per million trainable parameters.}
+\label{tab:efficiency}
+\begin{tabular}{llcccc}
+\toprule
+Method & Backbone & Params & Gain/Frozen & Gain/M & Coverage \\
+\midrule
+FTM & pi0 & 4K & +14.4 (vis.) & 3600.0 & Visual \\
+Universal LoRA & pi0 & 2M & +11.2 & 5.60 & Full \\
+\ours{} & pi0 & 6M & +12.7 & 2.12 & Full \\
+VLA-GSE$^*$ & Qwen3-VL & 114M & +27.6$^\dagger$ & 0.24 & Full \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize $^*$Different backbone. $^\dagger$Estimated gain over Qwen3-VL frozen baseline.}
+\end{tabular}
+\end{table}
+
+Universal LoRA achieves 5.60\% gain per million parameters---2.6$\times$ more efficient than \ours{} (2.12).
+The 3$\times$ parameter budget (6M vs.\ 2M) buys only +1.5\% additional gain.
+When isolating the routing-attributable improvement (gain over universal LoRA), \ours{}'s marginal efficiency drops to 0.375\%/M for the additional 4M parameters allocated to the expert bank overhead.
+
+%-----------------------------------------------------------------------------
+\subsection{Design-Dimension Ablations}
+\label{sec:exp_ablations}
+%-----------------------------------------------------------------------------
+
+We systematically explore the design space along four axes, finding that none overcomes the expert-capacity bottleneck.
+
+\subsubsection{Correction Memory}
+
+Table~\ref{tab:cm} shows that the optional Correction Memory module adds +0.4\% overall ($p{=}0.38$), a clear null result.
+Since the base routing weights are already near-uniform, modulating them with retrieved exemplars has minimal effect.
+
+\begin{table}[h]
+\centering
+\caption{Correction Memory ablation per perturbation type.}
+\label{tab:cm}
+\begin{tabular}{lccc}
+\toprule
+Type & No CM & With CM & $\Delta$ \\
+\midrule
+Camera & 59.0 & 59.6 & +0.6 \\
+Light & 69.0 & 69.2 & +0.2 \\
+Background & 63.0 & 63.8 & +0.8 \\
+Noise & 71.0 & 71.0 & +0.0 \\
+Layout & 64.0 & 64.4 & +0.4 \\
+Robot & 72.0 & 72.2 & +0.2 \\
+\midrule
+\textbf{Overall} & \textbf{66.3} & \textbf{66.7} & \textbf{+0.4} \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $p = 0.38$ (paired $t$-test, not significant)}
+\end{tabular}
+\end{table}
+
+\subsubsection{Router Architecture}
+
+Table~\ref{tab:router_arch} compares three router architectures.
+All produce downstream performance within 0.3\% of each other, despite varying routing accuracy (98.1--99.3\%).
+Even the simplest linear classifier suffices, confirming that perturbation diagnosis is easy---the downstream bottleneck lies in expert correction capacity.
+
+\begin{table}[h]
+\centering
+\caption{Router architecture comparison: routing accuracy vs.\ downstream success.}
+\label{tab:router_arch}
+\begin{tabular}{lcccc}
+\toprule
+Router & Params & Route Acc.\ (\%) & Downstream (\%) & $\Delta$ from MLP \\
+\midrule
+Linear & 6K & 98.1 & 66.0 & $-$0.3 \\
+MLP (2-layer) & 33K & 99.3 & 66.3 & --- \\
+Attention & 132K & 99.1 & 66.2 & $-$0.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{6-Class vs.\ 3-Class Routing}
+
+Under a fixed $\sim$6M parameter budget, finer-grained 6-class routing (6 experts, rank 8 each) slightly \emph{underperforms} the 3-class configuration (Table~\ref{tab:granularity}).
+Doubling experts halves per-expert rank, reducing correction capacity.
+Robot degradation ($-$1.8\%) is particularly pronounced, as the rank-8 physical expert lacks sufficient parameters for effective correction.
+
+\begin{table}[h]
+\centering
+\caption{Routing granularity: 6-class vs.\ 3-class under matched parameter budget ($\sim$6M).}
+\label{tab:granularity}
+\begin{tabular}{lccccc}
+\toprule
+Config & Experts & Rank/Expert & Overall & Diagonality \\
+\midrule
+3-class & 3 & 16 & 66.3 & 0.58 \\
+6-class & 6 & 8 & 65.8 & 0.51 \\
+$\Delta$ & & & $-$0.5 & $-$0.07 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{6-class per-perturbation results: finer granularity hurts robot and noise most.}
+\label{tab:6class_detail}
+\begin{tabular}{lccc}
+\toprule
+Type & 3-class & 6-class & $\Delta$ \\
+\midrule
+Camera & 59.0 & 59.4 & +0.4 \\
+Light & 69.0 & 69.2 & +0.2 \\
+Background & 63.0 & 62.4 & $-$0.6 \\
+Noise & 71.0 & 70.0 & $-$1.0 \\
+Layout & 64.0 & 63.6 & $-$0.4 \\
+Robot & 72.0 & 70.2 & $-$1.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{LoRA Layer Placement}
+
+Table~\ref{tab:layer_placement} varies which PaliGemma layers receive LoRA adaptation.
+The overall range is only 1.1\% (65.4--66.5\%), within seed-level variance.
+The hypothesis that visual experts benefit from early layers, spatial from mid, and physical from late receives only weak support: physical experts on late layers actually degrade ($-$0.8\%).
+All-layer placement is marginally best, as spreading LoRA across all layers provides the most general correction at rank~16.
+
+\begin{table}[h]
+\centering
+\caption{LoRA layer placement: overall and per-class results.}
+\label{tab:layer_placement}
+\begin{tabular}{llcccc}
+\toprule
+Placement & Layers & Overall & Visual & Spatial & Physical \\
+\midrule
+Early & 2--6 & 65.8 & 66.1 & 63.0 & 71.0 \\
+Mid & 6--12 & 66.1 & 65.4 & 64.8 & 72.2 \\
+Late & 12--16 & 65.4 & 64.8 & 63.2 & 71.8 \\
+All (default) & 2--16 & 66.5 & 65.5 & 64.0 & 72.0 \\
+\midrule
+Range & & 1.1 & 1.3 & 1.8 & 1.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%-----------------------------------------------------------------------------
+\subsection{Cross-Backbone Validation}
+\label{sec:exp_cross}
+%-----------------------------------------------------------------------------
+
+To test generalizability, we replicate the core pipeline on SmolVLA, which uses a different vision encoder architecture.
+Table~\ref{tab:cross_backbone} shows that Phase~0 replicates strongly (F1$=$0.971), and the Phase~1 pattern is identical: large LoRA gain (+10.4 over frozen), marginal routing gain (+1.2 over universal, not significant).
+
+\begin{table}[h]
+\centering
+\caption{Cross-backbone replication on SmolVLA.}
+\label{tab:cross_backbone}
+\begin{tabular}{lccc}
+\toprule
+Method & pi0 & SmolVLA & Pattern match? \\
+\midrule
+Frozen & 53.6 & 48.2 & --- \\
+Universal LoRA & 64.8 & 58.6 & --- \\
+\ours{} & 66.3 & 59.8 & --- \\
+$\Delta$(\ours{}$-$Universal) & +1.5 & +1.2 & \checkmark \\
+Routing diagonality & 0.58 & 0.54 & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+SmolVLA's lower absolute performance (48.2\% frozen, 59.8\% \ours{}) reflects its smaller backbone, but the \emph{relative pattern} is identical---LoRA adaptation helps substantially, routing adds little.
+This replication strengthens Phase~0 as the lead positive contribution and confirms that the routing limitation is a property of the rank-16 LoRA approach, not a backbone-specific artifact.
+
+%=============================================================================
+\section{Discussion}
+\label{sec:discussion}
+%=============================================================================
+
+\paragraph{The routing signal is real but the correction bottleneck limits its value.}
+Phase~0 demonstrates conclusively that VLA representations encode perturbation type---the diagnostic signal is strong, generalizable, and extractable with a linear probe.
+However, the downstream value of this signal is limited by the correction capacity of rank-16 LoRA experts.
+The specialization delta (max +4.0\%) is too small for routing to yield statistically significant gains over the universal adapter.
+
+\paragraph{Universal LoRA as implicit multi-task learning.}
+A surprising finding is that the universal LoRA, trained on mixed perturbation data without any routing signal, captures 88\% of the total adaptation gain (11.2/12.7).
+Mixed training appears to act as implicit multi-task learning: the single adapter learns perturbation-conditional corrections that span the space of type-specific corrections.
+At rank~16, the parameter budget is too constrained for specialized experts to deviate meaningfully from this implicit multi-task solution.
+
+\paragraph{Implications for future work.}
+Our design-dimension analysis identifies several directions where diagnostic routing may become beneficial:
+(1)~\emph{Higher-rank experts} (rank 32+) may provide sufficient capacity for differentiated type-specific corrections;
+(2)~\emph{Compositional perturbations} (multiple simultaneous perturbation types) may require explicit routing that universal training cannot implicitly handle;
+(3)~\emph{Multi-backbone settings} where different VLA architectures exhibit different representation structures may benefit from architecture-aware routing.
+
+\paragraph{Limitations.}
+Our evaluation is simulation-only (\libeplus{}).
+We test on two backbones (pi0, SmolVLA); additional architectures would strengthen the diagnosability claim.
+The rank-16 LoRA constraint, while representative of parameter-efficient practice, does not explore the full capacity spectrum.
+
+%=============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%=============================================================================
+
+We investigated whether VLA internal representations encode perturbation type information and whether this signal can improve robustness via diagnostic routing.
+Our answer is split: \emph{yes}, VLAs know what went wrong (Phase~0 F1$=$1.0 at $K{=}1$, generalizing across backbones), but \emph{no}, this knowledge does not translate to significant correction gains under rank-16 LoRA experts (+1.5\%, $p{=}0.12$).
+
+The bottleneck is expert capacity, not routing quality.
+Oracle routing caps the maximum benefit at +3.0\%, and parameter efficiency favors the universal adapter (5.60 vs.\ 2.12 gain/M).
+These results reframe perturbation-diagnostic routing as a design dimension whose value depends on expert capacity---currently a marginal axis at rank~16, but potentially significant at higher ranks or under compositional perturbations.
+
+Our Phase~0 finding---that perturbation type is perfectly diagnosable from a single frozen layer---stands as an independent contribution with implications beyond routing: it enables perturbation-aware logging, curriculum design, and failure analysis for deployed VLA systems.
+
+%=============================================================================
+% References
+%=============================================================================
+
+\bibliographystyle{plain}
+\begin{thebibliography}{10}
+
+\bibitem{black2024pi0}
+K.~Black et al.
+\newblock $\pi_0$: A vision-language-action flow model for general robot control.
+\newblock \emph{arXiv preprint arXiv:2410.24164}, 2024.
+
+\bibitem{kim2024openvla}
+M.~J. Kim et al.
+\newblock OpenVLA: An open-source vision-language-action model.
+\newblock In \emph{CoRL}, 2024.
+
+\bibitem{zhou2025liberoplus}
+Y.~Zhou et al.
+\newblock LIBERO-Plus: Benchmarking VLA robustness under environmental perturbations.
+\newblock In \emph{CVPR}, 2026.
+
+\bibitem{qu2025vlags}
+J.~Qu et al.
+\newblock VLA-GSE: Efficient robustness enhancement via gated sparse experts.
+\newblock In \emph{arXiv preprint}, 2025.
+
+\bibitem{wang2025robustvla}
+X.~Wang et al.
+\newblock RobustVLA: Adversarial training for vision-language-action models.
+\newblock In \emph{arXiv preprint}, 2025.
+
+\bibitem{zhang2025safe}
+H.~Zhang et al.
+\newblock SAFE: Failure detection from VLA internal representations.
+\newblock In \emph{arXiv preprint}, 2025.
+
+\bibitem{hu2022lora}
+E.~J. Hu et al.
+\newblock LoRA: Low-rank adaptation of large language models.
+\newblock In \emph{ICLR}, 2022.
+
+\bibitem{shazeer2017outrageously}
+N.~Shazeer et al.
+\newblock Outrageously large neural networks: The sparsely-gated mixture-of-experts layer.
+\newblock In \emph{ICLR}, 2017.
+
+\bibitem{fedus2022switch}
+W.~Fedus, B.~Zoph, and N.~Shazeer.
+\newblock Switch transformers: Scaling to trillion parameter models with simple and efficient sparsity.
+\newblock \emph{JMLR}, 23:1--39, 2022.
+
+\end{thebibliography}
+
+\end{document}

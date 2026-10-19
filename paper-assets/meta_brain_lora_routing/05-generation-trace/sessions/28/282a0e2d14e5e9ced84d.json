@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "282a0e2d14e5e9ced84d",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "code phase1 lora training script",
+  "task_key": "worker_code_phase1-lora-training-script_20260515T160319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1-lora-training-script_20260515T160319.log",
+    "occurrence": 1,
+    "bytes": 1366444,
+    "sha256": "eb9add9c4c96868ba74a1873a7b4e2fede7433446d6e458bfbfb17a020ade80f"
+  },
+  "statistics": {
+    "messages": 355,
+    "user_turns": 1,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 4,
+      "assistant": 86,
+      "tool_call": 129,
+      "tool_result": 129,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "282a0e2d14e5e9ced84d-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "282a0e2d14e5e9ced84d-part-0002.json",
+          "message_count": 152
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 81,
+      "chunks": [
+        {
+          "path": "282a0e2d14e5e9ced84d-part-0002.json",
+          "message_count": 28
+        },
+        {
+          "path": "282a0e2d14e5e9ced84d-part-0003.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-phase1-lora-training-script.md"
+}

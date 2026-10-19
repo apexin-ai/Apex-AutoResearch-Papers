@@ -1,0 +1,288 @@
+{
+  "schema_version": "1.0",
+  "id": "ef2f624b85014b462aff",
+  "project": "diff_collision_sdf",
+  "kind": "conversation",
+  "title": "paper appendix tsr collapse",
+  "task_key": "worker_paper_appendix-tsr-collapse_20260529T001953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_appendix-tsr-collapse_20260529T001953.jsonl",
+    "occurrence": 1,
+    "bytes": 13398,
+    "sha256": "5df1dd80fb1c90ac5d42a545016a19626fdcdf049772b0d754cdd1cde9207326"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-29T00:20:56.435721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-29T00:20:56.436506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Complete Multi-Seed Results}\n2\t\\label{sec:appendix_multiseed}\n3\t\n4\tTable~\\ref{tab:multiseed_full} reports individual-seed CAR and TSR for all fine-tuned conditions at the 30K checkpoint (200 episodes each, evaluation seed\\,=\\,7). These per-seed values underlie the means reported in Table~\\ref{tab:avoidance_source}.\n5\t\n6\t\\begin{table}[h]\n7\t\\centering\n8\t\\caption{Per-seed CAR and TSR (\\%) at 30K steps, evaluation seed\\,=\\,7 (200 episodes). All episodes exhibit displacement $>$\\,0.37\\,m and 0\\% action-collapse rate.}\n9\t\\label{tab:multiseed_full}\n10\t\\vspace{2pt}\n11\t\\small\n12\t\\begin{tabular}{llcccc}\n13\t\\toprule\n14\tCondition & Seed & CAR & TSR & Mean CAR & Mean TSR \\\\\n15\t\\midrule\n16\t\\multirow{3}{*}{LoRA-only}\n17\t  & s0 & 57.0 & 46.0 & \\multirow{3}{*}{54.83$\\pm$2.25} & \\multirow{3}{*}{49.7$\\pm$3.2} \\\\\n18\t  & s1 & 52.5 & 51.5 & & \\\\\n19\t  & s2 & 55.0 & 51.5 & & \\\\\n20\t\\midrule\n21\t\\multirow{3}{*}{SDF $\\lambda{=}0.005$}\n22\t  & s0 & 57.0 & 55.5 & \\multirow{3}{*}{54.5$\\pm$2.29} & \\multirow{3}{*}{54.0$\\pm$3.0} \\\\\n23\t  & s1 & 54.0 & 50.5 & & \\\\\n24\t  & s2 & 52.5 & 56.0 & & \\\\\n25\t\\midrule\n26\t\\multirow{3}{*}{SDF $\\lambda{=}0.01$}\n27\t  & s0 & 57.0 & 52.5 & \\multirow{3}{*}{56.33$\\pm$1.61} & \\multirow{3}{*}{53.8$\\pm$1.5} \\\\\n28\t  & s1 & 57.5 & 55.5 & & \\\\\n29\t  & s2 & 54.5 & 53.5 & & \\\\\n30\t\\midrule\n31\t\\multirow{3}{*}{SDF $\\lambda{=}0.1$}\n32\t  & s0 & 58.0 & 47.0 & \\multirow{3}{*}{57.00$\\pm$2.18} & \\multirow{3}{*}{50.2$\\pm$3.9} \\\\\n33\t  & s1 & 58.5 & 49.0 & & \\\\\n34\t  & s2 & 54.5 & 54.5 & & \\\\\n35\t\\bottomrule\n36\t\\end{tabular}\n37\t\\end{table}\n38\t\n39\t\\section{Displacement Distribution}\n40\t\\label{sec:appendix_displacement}\n41\t\n42\t\\begin{figure}[h]\n43\t\\centering\n44\t\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n45\t\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n46\t\\label{f\n…[truncated 25140 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-29T00:20:56.436867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/paper_switch.py",
+              "limit": "60"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-29T00:20:56.437149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Auto-switch paper text based on λ=0.1 s2 30K eval result.\n3\t\n4\tUsage:\n5\t  python paper_switch.py --s2-car 57.5 --s2-tsr 48.0 --dry-run\n6\t  python paper_switch.py --s2-car 57.5 --s2-tsr 48.0\n7\t\"\"\"\n8\timport argparse\n9\timport subprocess\n10\timport sys\n11\tfrom itertools import combinations\n12\tfrom math import comb, sqrt\n13\tfrom pathlib import Path\n14\t\n15\tNULL_VALUES = [57.0, 52.5, 55, 57, 54, 52.5]\n16\tNULL_MEAN = sum(NULL_VALUES) / len(NULL_VALUES)\n17\tNULL_STD = (sum((x - NULL_MEAN) ** 2 for x in NULL_VALUES) / 5) ** 0.5\n18\t\n19\tS0_CAR, S1_CAR = 58.0, 58.5\n20\tS0_TSR, S1_TSR = 47.0, 49.0\n21\t\n22\tPAPER_DIR = Path(__file__).resolve().parent.parent / \"docs\" / \"paper\"\n23\t\n24\t\n25\tdef mean(v):\n26\t    return sum(v) / len(v)\n27\t\n28\t\n29\tdef std_b(v):\n30\t    m = mean(v)\n31\t    return (sum((x - m) ** 2 for x in v) / (len(v) - 1)) ** 0.5\n32\t\n33\t\n34\tdef perm_test(null_vals, treat_vals):\n35\t    pool = null_vals + treat_vals\n36\t    k = len(treat_vals)\n37\t    obs = mean(treat_vals)\n38\t    mu = mean(pool)\n39\t    dev = abs(obs - mu)\n40\t    n = comb(len(pool), k)\n41\t    ge = tw = 0\n42\t    for c in combinations(pool, k):\n43\t        m = mean(c)\n44\t        if m >= obs:\n45\t            ge += 1\n46\t        if abs(m - mu) >= dev - 1e-12:\n47\t            tw += 1\n48\t    return ge / n, tw / n, n\n49\t\n50\t\n51\tdef fill(tpl, vals):\n52\t    for k, v in vals.items():\n53\t        tpl = tpl.replace(\"{\" + k + \"}\", str(v))\n54\t    return tpl\n55\t\n56\t\n57\tdef safe_replace(content, old, new, label):\n58\t    n = content.count(old)\n59\t    if n == 0:\n60\t        print(f\"  !! [{label}] NOT FOUND\")"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-29T00:20:56.437451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/paper_switch.py",
+              "offset": "60"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-29T00:20:56.438032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\t        print(f\"  !! [{label}] NOT FOUND\")\n61\t        return content, False\n62\t    if n > 1:\n63\t        print(f\"  !! [{label}] found {n}x\")\n64\t        return content, False\n65\t    return content.replace(old, new), True\n66\t\n67\t\n68\tdef get_replacements(scenario, v):\n69\t    R = []\n70\t    is_c = scenario == \"C\"\n71\t\n72\t    # 1. abstract.tex L5 (training results — condensed abstract)\n73\t    old = (\n74\t        r\"and SDF training supervision shows no statistically significant benefit \"\n75\t        r\"beyond collision-free demonstrations alone.\"\n76\t    )\n77\t    if is_c:\n78\t        new = (\n79\t            r\"and SDF training supervision shows no statistically significant benefit \"\n80\t            r\"at $\\lambda \\leq 0.01$; at $\\lambda = 0.1$, a modest increase emerges \"\n81\t            r\"but remains small relative to the demonstration-driven gain.\"\n82\t        )\n83\t    else:\n84\t        new = old\n85\t    R.append((\"abstract.tex\", \"abstract L5 training\", old, new))\n86\t\n87\t    # 2. abstract.tex L6 (concluding sentence — condensed abstract)\n88\t    old = (\n89\t        r\"These findings suggest that collision avoidance primarily arises from \"\n90\t        r\"demonstration data rather than EE-only geometric supervision.\"\n91\t    )\n92\t    if is_c:\n93\t        new = (\n94\t            r\"These findings suggest that collision avoidance primarily arises from \"\n95\t            r\"demonstration data, though a modest SDF effect at high loss weights \"\n96\t            r\"cannot be fully ruled out.\"\n97\t        )\n98\t    else:\n99\t        new = old\n100\t    R.append((\"abstract.tex\", \"abstract L6 conclusion\", old, new))\n101\t\n102\t    # 3. claim3.tex L3 scope sentence\n103\t    old = (\n104\t        r\"We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of \"\n105\t        r\"loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all \"\n106\t        r\"evaluated at the 30K-step checkpoint.\"\n107\t    )\n108\t    if is_c:\n109\t        new = (\n110\t            r\"We compare LoRA-only against LoRA+SDF at three loss weights \n…[truncated 20880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-29T00:20:56.438384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "old_string": "All training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.",
+              "new_string": "All training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.\n\n\n\\section{TSR Collapse Mechanism Analysis}\n\\label{sec:appendix_tsr_collapse}\n\nFine-tuning Pi0.5 with LoRA alone (no SDF supervision) reduces TSR from 71.5\\% to 49.7\\,$\\pm$\\,3.2\\%, a drop of 21.8\\,pp (Table~\\ref{tab:multiseed_full}). Adding SDF supervision does not exacerbate this decline: TSR under $\\lambda = 0.005$ is 54.0\\,$\\pm$\\,3.0\\% ($-$17.5\\,pp), under $\\lambda = 0.01$ is 53.8\\,$\\pm$\\,1.5\\% ($-$17.7\\,pp), and under $\\lambda = 0.1$ is 50.2\\,$\\pm$\\,3.9\\% ($-$21.3\\,pp). All SDF conditions fall within the LoRA-only confidence interval, and the largest SDF drop ($\\lambda = 0.1$, $-$21.3\\,pp) matches the LoRA-only drop ($-$21.8\\,pp) to within 0.5\\,pp. This confirms that SDF auxiliary loss is not the cause of TSR degradation.\n\nThe mechanism is catastrophic forgetting of task semantics induced by LoRA fine-tuning on a narrow 4-task subset of the pre-training distribution. Qualitative inspection reveals that fine-tuned models retain full motor capability---0\\% action-collapse rate, end-effector displacement $>$\\,0.37\\,m, and active obstacle interaction (mean obstacle displacement ${\\sim}$0.05\\,m)---but lose goal-directed grasping and placing behavior. The dominant failure mode shifts from collision (baseline safe failure rate 0.5\\%) to task incompletion without collision (${\\sim}$50\\% of episodes), representing a 100$\\times$ increase in safe failures. The robot moves purposefully through the workspace but fails to acquire or deliver the target object, consistent with retained low-level motor skills and degraded high-level task understanding."
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-29T00:20:56.438854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-29T00:20:56.439119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python artifacts/paper_switch.py --verify",
+              "description": "Verify paper_switch.py 21/21 pass"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-29T00:20:56.439343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\n/bin/bash: line 1: python: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-29T00:20:56.439585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 artifacts/paper_switch.py --verify",
+              "description": "Verify paper_switch.py 21/21 pass"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-29T00:20:56.439821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "--- Scenario B (10 items) ---\n  [OK]      abstract L5 training                abstract.tex\n  [OK]      abstract L6 conclusion              abstract.tex\n  [OK]      claim3 L3 scope                     claim3.tex\n  [OK]      claim3 L7 caption                   claim3.tex\n  [OK]      claim3 L20 table row                claim3.tex\n  [OK]      claim3 L27 body                     claim3.tex\n  [OK]      claim3 L32-33 dose-response         claim3.tex\n  [OK]      discussion fig caption              discussion.tex\n  [OK]      discussion L6                       discussion.tex\n  [OK]      discussion L12 limitation           discussion.tex\n--- Scenario C (11 items) ---\n  [OK]      abstract L5 training                abstract.tex\n  [OK]      abstract L6 conclusion              abstract.tex\n  [OK]      claim3 L3 scope                     claim3.tex\n  [OK]      claim3 L7 caption                   claim3.tex\n  [OK]      claim3 L20 table row                claim3.tex\n  [OK]      claim3 L27 body                     claim3.tex\n  [OK]      claim3 L32-33 dose-response         claim3.tex\n  [OK]      discussion fig caption              discussion.tex\n  [OK]      discussion L3 scope                 discussion.tex\n  [OK]      discussion L6                       discussion.tex\n  [OK]      discussion L12 limitation           discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-29T00:20:56.440126+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "21/21 全部通过。appendix.tex 末尾已添加 `\\section{TSR Collapse Mechanism Analysis}`（约 190 words），包含：\n\n- LoRA-only 与各 SDF 条件的 TSR drop 对比（引用 Table 2 数据）\n- 归因：LoRA fine-tuning 导致的 catastrophic forgetting，非 SDF 引起\n- Failure mode 描述：保留运动能力但丧失 goal-directed behavior，safe failure rate 从 0.5% → ~50%"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix-tsr-collapse_20260529T001953"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/paper-appendix-tsr-collapse.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "648081a6561977decab0",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect oracle fixed alpha results",
+  "task_key": "worker_ops_collect_oracle_fixed_alpha_results_20260522T211947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_oracle_fixed_alpha_results_20260522T211947_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "49c42ee77de898f78c307cb222bc3bd2d8f3da33f0cbf2051eb3f12ecf1b29ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n### oracle_true_gt_fixed_alpha_v11 结果\n\n| Task | TSR | CAR | Fake safe | Disp (mean) | Refine count (mean) |\n|------|-----|-----|-----------|-------------|---------------------|\n| orange_juice | 0/40 | 34/40 (85%) | 34/34 (100%) | 0.0113 | 8.7 |\n| chocolate_pudding | 0/40 | 20/40 (50%) | 19/20 (95%) | 0.0365 | 20.2 |\n| milk | 0/40 | 31/40 (77.5%) | 30/31 (96.8%) | 0.0042 | 20.1 |\n| bbq_sauce | 0/40 | 32/40 (80%) | 32/32 (100%) | 0.0032 | 10.4 |\n| **Overall** | **0/160 (0%)** | **117/160 (73.1%)** | **115/117 (98.3%)** | | 14.8 |\n\n**结论：negative。** CAR=73.1% < baseline 79%，TSR=0%。与 adaptive alpha (75%) 差异极小，alpha 大小不是关键因素。98.3% fake safe — 几乎所有 \"safe\" episodes 的 displacement < 0.1mm，本质是 action collapse 而非真正避障。\n\n### Feature-space oracle 状态\n仍在运行，当前 Task 3 ep 30/40，接近完成。Task 2 CAR=82.5%，refined count 极高（~240/episode）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-oracle-fixed-alpha-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1bf5f0a93da21c491bb",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analyze baseline spatial bowl s0 v2",
+  "task_key": "worker_analyze_baseline_spatial_bowl_s0_v2_20260521T064804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_baseline_spatial_bowl_s0_v2_20260521T064804_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "42a8eb6a77e11ed53c6f928e82b8292ac3f1ea7a76463251a3b539f0359dd211"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇总：\n\n## baseline_spatial_bowl_s0_v2 训练结果\n\n| 项目 | 值 |\n|------|-----|\n| **状态** | 正常完成 (EXIT_CODE=0) |\n| **Steps** | 30000/30000 (100%) |\n| **Final loss** | 0.0032 |\n| **Best loss** | 0.00316 (step 30000) |\n| **Final lr** | 2.50e-06 |\n| **Wall time** | 16h6m (step 14000→30000 resume) |\n| **Speed** | ~3.62 s/it |\n| **VRAM** | 35738 MiB (cuda:0) |\n| **Checkpoint** | `/root/autodl-tmp/checkpoints/baseline_spatial_bowl/baseline_spatial_bowl_seed0/` (steps 29999, 30000, best) |\n| **错误** | 无 |\n| **磁盘** | /root/autodl-tmp 119G 可用 (67% used) |\n\n下一步：对 step 30000 checkpoint 跑 TSR/CAR 评估，验证 hypothesis (TSR >50%, CAR ~0%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-baseline-spatial-bowl-s0-v2.md"
+}

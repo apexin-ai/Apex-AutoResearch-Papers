@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1374dc369e52c9291d38",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "diag urgent status check",
+  "task_key": "worker_diag_urgent_status_check_20260516T134551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_urgent_status_check_20260516T134551_result.json",
+    "occurrence": 1,
+    "bytes": 2167,
+    "sha256": "ab8d7ac5ed2bfa43276171a42f3adbcfe8bac004a7f0b8f2c9c5026d46f06309"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. 四路 v2 LoRA 训练（全部 target 10,000 steps）\n\n| Expert | Step | Loss | GPU | 预计剩余 |\n|--------|------|------|-----|----------|\n| **visual** | 6400/10000 | 0.7566 | GPU 2 (12.7GB, 99%) | ~61 min |\n| **physical** | 6350/10000 | 0.7422 | GPU 1 (12.7GB, 99%) | ~62 min |\n| **spatial (restart)** | 1150/10000 | 0.8528 | GPU 0 (68GB, 99%) | **~3.1 hrs** |\n| **universal** | 4850/10000 | 0.7720 | GPU 3 (12.8GB, 99%) | ~88 min |\n\n### 2. Spatial 训练状态\n\n- **原始 spatial** 崩溃：`No space left on device (os error 28)` — 根分区 27/30GB = 88%，保存 checkpoint 时磁盘满\n- **restart 版本在跑**，output_dir 已改到 `/root/autodl-tmp/checkpoints/v2_lora_spatial_r16`（数据盘），step 1150，进度 11.5%，落后其他三路很多\n\n### 3. openpi 原生 eval — 无法执行\n\n`examples/libero/main.py` 是 **WebSocket 客户端**（`openpi_client.websocket_client_policy`），需要先启动 openpi model server（占一整张 GPU）。当前 4 GPU 全满跑训练，**无法启动 server**。openpi 也没有其他 standalone eval 入口（`find` 未找到 eval*.py）。\n\n需要等至少一路训练完成释放 GPU 后才能跑。\n\n### 4. debug_eval.py 结果\n\n- **MetaBrain 加载成功**：actions shape (50, 7)，无 NaN，range [-1.02, 1.06]，mean=0.028\n  - 各维度 stats 合理，dim6（gripper）std=0.96 符合预期\n- **openpi policy 对比加载失败**：`policy_config.create_trained_policy()` 报错，traceback 被截断，末尾是大量 model weight key 列表 — 大概率是 checkpoint 格式/key 不匹配导致的 state_dict 加载错误\n\n### 5. eval_openpi_norm_fixed.log（之前的 wrapper eval）\n\n```\nrouting=none, libero_spatial: 0/5 = 0.0%（全部 FAIL）\n```\n\n5 个 episode 全部走满 220 步超时未完成。\n\n### 关键问题\n\n1. **根分区只剩 3.8GB**，visual/physical/universal 的 checkpoint 还在写根分区，后续保存可能再次磁盘满\n2. **spatial restart 落后 ~5000 steps**，比其他三路晚约 2.5 小时完成\n3. **openpi 原生 eval 无法在训练期间执行**，需要空闲 GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-urgent-status-check.md"
+}

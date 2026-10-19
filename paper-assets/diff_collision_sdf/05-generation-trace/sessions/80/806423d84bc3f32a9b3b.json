@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "806423d84bc3f32a9b3b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix appendix lora pertask tsr",
+  "task_key": "worker_fix_appendix_lora_pertask_tsr_20260528T011106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_appendix_lora_pertask_tsr_20260528T011106_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "97881c486ad7a537cc1c9a645a6544f17e5bb4f5f7c3d824901eb2be81013329"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "远程 appendix.tex 没有 `tab:per_task_tsr` 表——远程文件结构不同（使用的是按条件拆分的 CAR 表，没有合并的 per-task TSR 表）。\n\n**本地修改已完成**，5 处变更全部正确：\n1. Caption: \"LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol)\"\n2. 表头: `LoRA-only` (无 dagger)，`(3 seeds)`\n3. 数据: OJ=30.0, CP=70.7, Milk=44.7, BBQ=60.7\n4. Mean: 51.5\n5. 脚注已删除\n\n**远程文件无需修改** — westd-45947 的 `/root/colliforce-vla/docs/paper/appendix.tex` 没有 `tab:per_task_tsr` 表，结构与本地不同。远程文件的 appendix 仅包含按条件拆分的 per-task CAR 表和 baseline 表，不存在需要更新的 per-task TSR 表。\n\n需要我把本地版本的 per-task TSR 表同步到远程文件吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-appendix-lora-pertask-tsr.md"
+}

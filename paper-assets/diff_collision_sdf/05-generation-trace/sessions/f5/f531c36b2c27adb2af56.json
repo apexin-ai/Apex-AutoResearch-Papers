@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f531c36b2c27adb2af56",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops diagnose s0 l005 exit",
+  "task_key": "worker_ops_diagnose_s0_l005_exit_20260524T102119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_s0_l005_exit_20260524T102119_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "1a400ac941659a2af4b8d4906516c7716b89d9da7e062edaf7913ac4d18de197"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**train_pi05_a1_obj_s0_l005：训练成功完成**\n- 30000/30000 步全部完成\n- best_loss = 0.00786（step 26000）\n- Checkpoint 完整：best/、29999/、30000/（每个含 model.safetensors ~7GB + optimizer + sdf_decoder）\n- wandb_id: umjcftxp\n- Registry 已更新为 DONE/success，cron 已删除\n\n**s0_l01 状态（额外检查）：也已完成**\n- 30000/30000 步完成（首次检查时 `tmp_30000` 正在写入，几秒后重命名为 `30000`，说明刚刚完成）\n- best_loss = 0.00801（step 26000）\n- Checkpoint 完整：best/、28000/、29999/、30000/\n- 两个进程均已退出，无残留进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-s0-l005-exit.md"
+}

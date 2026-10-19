@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c557650f16931522e9f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops post restart check 45947",
+  "task_key": "worker_ops_post_restart_check_45947_20260524T040401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post_restart_check_45947_20260524T040401_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "a2313e47e32b6a0df77401ff011604c12013438910665f3881c6a1f15e7c5ee4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-45947 状态\n\n### 训练\n| 实验 | PID | 存活 | 最新 ckpt step | 估算当前 step | 进度 |\n|------|-----|------|---------------|-------------|------|\n| seed0_l005 (λ_sdf=0.005) | 589765 (GPU 0) | ✅ | 24000 (10:34) | ~25400 | 80% → ~85% |\n| seed0_l01 (λ_sdf=0.01) | 589840 (GPU 1) | ✅ | 24000 (10:38) | ~25400 | 80% → ~85% |\n\n- 两个都是 `train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --num_train_steps 30000`\n- 速率 ~13 steps/min（22000→24000 用时 ~2.5h）\n- **预计完成 ~18:20 今天**\n- best_loss: l005=0.00883 @ 24000, l01=0.00901 @ 24000\n- /tmp 日志不存在（输出在 tmux 中）\n\n### GPU\n| GPU | 型号 | 显存占用 | 利用率 | 温度 | 功率 |\n|-----|------|---------|--------|------|------|\n| 0 | RTX PRO 6000 | 27097/97887 MiB (28%) | 100% | 71°C | 476W/600W |\n| 1 | RTX PRO 6000 | 27097/97887 MiB (28%) | 100% | 71°C | 464W/600W |\n\n### LoRA Baseline 脚本\n- 存在: Yes (`/root/colliforce-vla/scripts/train_pi05_lora_baseline.py`, May 23 14:35)\n- Phase 2 >= 修复: Yes (L113: `if global_step >= self.warmup_phase_steps`)\n- dummy parameter 修复: Yes (L105: `self._dummy = nn.Parameter(torch.zeros(1, device=device))`)\n- Ready to launch: Yes\n\n### 磁盘\n| 分区 | 大小 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| /root/autodl-tmp | 250G | 176G | 75G | 71% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-check-45947.md"
+}

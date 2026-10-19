@@ -1,0 +1,9 @@
+2026-05-16 05:58:17,430 WARNING core.tools.dream  [dream] Phase 1 parse failed (attempt 0): Phase 1 output missing 'tiers' mapping
+2026-05-16 05:58:19,361 WARNING core.tools.dream  [dream] Phase 1 parse failed (attempt 1): Phase 1 output missing 'tiers' mapping
+2026-05-16 05:58:19,361 ERROR   core.tools.dream  [dream:dream_20260516T055808] Phase 1 failed
+Traceback (most recent call last):
+  File "/home/ubuntu/agent-ml-research/core/tools/dream.py", line 1713, in _run_dream_pipeline
+    tier_defs = _define_tiers(context, log_dir=log_dir)
+  File "/home/ubuntu/agent-ml-research/core/tools/dream.py", line 864, in _define_tiers
+    raise ValueError(f"Phase 1 failed: {last_err}")
+ValueError: Phase 1 failed: Phase 1 output missing 'tiers' mapping

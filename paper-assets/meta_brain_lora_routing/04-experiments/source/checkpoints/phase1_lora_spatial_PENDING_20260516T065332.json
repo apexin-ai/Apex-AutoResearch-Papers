@@ -1,0 +1,24 @@
+{
+  "exp_id": "phase1_lora_spatial",
+  "project": "meta_brain_lora_routing",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:53:24.502Z",
+    "updated_at": "2026-05-16T06:53:32.004Z",
+    "spec": {
+      "hypothesis": "Spatial-specialized LoRA expert (r16) trained with distractor compositing augmentation will outperform universal LoRA on spatial perturbation tasks",
+      "parent": "phase0_activation_collection",
+      "plan_id": "plan_002",
+      "model_name": "paligemma-3b-pt-224 (pi0 VLA)",
+      "server": "westd-34142",
+      "gpu": "cuda:0",
+      "data_path": "/root/autodl-tmp/libero_demos/libero_object_image/",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T06:53:32.107470+00:00",
+  "trigger": "update_registry"
+}

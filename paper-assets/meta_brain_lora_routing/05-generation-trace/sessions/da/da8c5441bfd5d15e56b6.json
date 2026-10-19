@@ -1,0 +1,1572 @@
+{
+  "schema_version": "1.0",
+  "id": "da8c5441bfd5d15e56b6",
+  "project": "meta_brain_lora_routing",
+  "kind": "conversation",
+  "title": "debug eval path investigation",
+  "task_key": "worker_debug_eval-path-investigation_20260516T071908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_debug_eval-path-investigation_20260516T071908.jsonl",
+    "occurrence": 1,
+    "bytes": 60095,
+    "sha256": "73dc5d45ece3cdbfc3c5629b849626bc7084cc9914e72d6049d769d82bb72658"
+  },
+  "statistics": {
+    "messages": 77,
+    "user_turns": 0,
+    "tool_calls": 38,
+    "roles": {
+      "tool_call": 38,
+      "tool_result": 38,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T07:21:55.358889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T07:21:55.359214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T07:21:55.359391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "ls -la /root/meta_brain_lora_routing/checkpoints/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T07:21:55.359546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "ls -la /root/meta_brain_lora_routing/checkpoints/lora_visual_r16/final/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T07:21:55.359686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\ndrwxr-xr-x  8 root root  172 May 16 10:26 .\\\\ndrwxr-xr-x 10 root root  164 May 16 14:56 ..\\\\ndrwxr-xr-x 12 root root 4096 May 16 11:23 lora_physical_r16\\\\ndrwxr-xr-x  4 root root   48 May 16 15:14 lora_spatial_r16\\\\ndrwxr-xr-x 12 root root 4096 May 16 11:22 lora_universal_r16\\\\ndrwxr-xr-x 12 root root 4096 May 16 11:52 lora_universal_r48\\\\ndrwxr-xr-x 12 root root 4096 May 16 11:47 lora_visual_r16\\\\ndrwxr-xr-x  4 root root   50 May 16 00:13 phase1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T07:21:55.359818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 14444\\\\ndrwxr-xr-x  2 root root       99 May 16 11:47 .\\\\ndrwxr-xr-x 12 root root     4096 May 16 11:47 ..\\\\n-rw-r--r--  1 root root     5074 May 16 14:45 README.md\\\\n-rw-r--r--  1 root root     1167 May 16 14:45 adapter_config.json\\\\n-rw-r--r--  1 root root 14771512 May 16 14:45 adapter_model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T07:21:55.359962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "ls -la /root/meta_brain_lora_routing/checkpoints/lora_physical_r16/final/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T07:21:55.360095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 14444\\\\ndrwxr-xr-x  2 root root       99 May 16 09:52 .\\\\ndrwxr-xr-x 12 root root     4096 May 16 11:23 ..\\\\n-rw-r--r--  1 root root     5074 May 16 14:45 README.md\\\\n-rw-r--r--  1 root root     1167 May 16 14:45 adapter_config.json\\\\n-rw-r--r--  1 root root 14771512 May 16 14:45 adapter_model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T07:21:55.360212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "ls -la /root/meta_brain_lora_routing/checkpoints/lora_universal_r16/final/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T07:21:55.360340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "ls -la /root/meta_brain_lora_routing/checkpoints/lora_universal_r48/final/",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T07:21:55.360483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 14444\\\\ndrwxr-xr-x  2 root root       99 May 16 09:53 .\\\\ndrwxr-xr-x 12 root root     4096 May 16 11:22 ..\\\\n-rw-r--r--  1 root root     5074 May 16 14:45 README.md\\\\n-rw-r--r--  1 root root     1167 May 16 14:45 adapter_config.json\\\\n-rw-r--r--  1 root root 14771512 May 16 14:45 adapter_model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T07:21:55.360608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 43244\\\\ndrwxr-xr-x  2 root root       99 May 16 11:52 .\\\\ndrwxr-xr-x 12 root root     4096 May 16 11:52 ..\\\\n-rw-r--r--  1 root root     5074 May 16 14:46 README.md\\\\n-rw-r--r--  1 root root     1167 May 16 14:46 adapter_config.json\\\\n-rw-r--r--  1 root root 44262856 May 16 14:46 adapter_model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T07:21:55.360742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "ls -la /root/autodl-tmp/checkpoints/pi0_base/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T07:21:55.360868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 13677392\\\\ndrwxr-xr-x 3 root root        4096 May 15 20:35 .\\\\ndrwxr-xr-x 3 root root          30 May 15 20:01 ..\\\\n-rw-r--r-- 1 root root        1519 May 15 20:01 .gitattributes\\\\n-rw-r--r-- 1 root root        4693 May 15 20:01 README.md\\\\ndrwxr-xr-x 3 root root          43 May 15 20:35 assets\\\\n-rw-r--r-- 1 root root        1895 May 15 20:01 config.json\\\\n-rw-r--r-- 2 root root 14005618584 May 15 20:16 model.safetensors\\\\n-rw-r--r-- 1 root root         448 May 15 20:01 policy_postprocessor.json\\\\n-rw-r--r-- 1 root root        1012 May 15 20:01 policy_preprocessor.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T07:21:55.360985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "find /root -maxdepth 4 -name \"pi0*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T07:21:55.361103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints/pi0_base\\\\n/root/autodl-tmp/.ms_cache/lerobot/pi0_base\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T07:21:55.361220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "find /root -maxdepth 5 -name \"*.safetensors\" -path \"*pi0*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T07:21:55.361336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints/pi0_base/model.safetensors\\\\n/root/autodl-tmp/.ms_cache/lerobot/pi0_base/model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T07:21:55.361473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "find /root -maxdepth 5 -name \"config.json\" -path \"*pi0*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T07:21:55.361592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints/pi0_base/config.json\\\\n/root/autodl-tmp/.ms_cache/lerobot/pi0_base/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T07:21:55.361700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "head -150 /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T07:21:55.361885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Plus evaluation with Meta-Brain routing.\\\\n\\\\nEvaluates pi0 + Meta-Brain LoRA correction across perturbation types.\\\\nSupports 5 routing modes: none / universal / random / par / oracle.\\\\n\\\\nUsage:\\\\n    # Single perturbation type\\\\n    python phase1/evaluate_libero_plus.py \\\\\\\\\\\\n        --routing par --perturbation_types camera --num_episodes 10 --gpu 3\\\\n\\\\n    # All perturbation types (full eval)\\\\n    python phase1/evaluate_libero_plus.py \\\\\\\\\\\\n        --routing par --num_episodes 50 --seeds 42,1042,2042 --gpu 3\\\\n\\\\n    # Dry-run (no LIBERO env, validates arg parsing + MetaBrain loading)\\\\n    python phase1/evaluate_libero_plus.py --dry_run --gpu 3\\\\n\\\\nOutput:\\\\n    JSON results + stdout table + optional W&B logging.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport collections\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# LIBERO perturbation definitions\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nALL_PERTURBATION_TYPES = [\\\\n    \\\\\\\"camera_viewpoints\\\\\\\",\\\\n    \\\\\\\"light_conditions\\\\\\\",\\\\n    \\\\\\\"background_textures\\\\\\\",\\\\n    \\\\\\\"sensor_noise\\\\\\\",\\\\n    \\\\\\\"objects_layout\\\\\\\",\\\\n    \\\\\\\"robot_initial_states\\\\\\\",\\\\n    \\\\\\\"nominal\\\\\\\",\\\\n]\\\\n\\\\nPERTURBATION_TO_3CLASS = {\\\\n    \\\\\\\"camera_viewpoints\\\\\\\": \\\\\\\"visual\\\\\\\",\\\\n    \\\\\\\"light_conditions\\\\\\\": \\\\\\\"visual\\\\\\\",\\\\n    \\\\\\\"background_textures\\\\\\\": \\\\\\\"visual\\\\\\\",\\\\n    \\\\\\\"sensor_noise\\\\\\\": \\\\\\\"visual\\\\\\\",\\\\n    \\\\\\\"objects_layout\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n    \\\\\\\"robot_initial_states\\\\\\\": \\\\\\\"physical\\\\\\\",\\\\n    \\\\\\\"nominal\\\\\\\": \\\\\\\"nominal\\\\\\\",\\\\n}\\\\n\\\\nTASK_SUITES = [\\\\\\\"libero_spatial\\\\\\\", \\\\\\\"libero_obj\n…[truncated 3387 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T07:21:55.362039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -n \"pi0\\|checkpoint\\|lora.*dir\\|base_model\\|base_checkpoint\\|pretrained\" /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T07:21:55.362160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T07:21:55.362272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "ls -lt /root/runs/meta_brain_lora_routing/",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T07:21:55.362390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 360\\\\n-rw-r--r-- 1 root root  35703 May 16 14:46 phase1_lora_universal_r48.log\\\\n-rw-r--r-- 1 root root  35700 May 16 14:45 phase1_lora_universal_r16.log\\\\n-rw-r--r-- 1 root root  35628 May 16 14:45 phase1_lora_visual.log\\\\n-rw-r--r-- 1 root root  35676 May 16 14:45 phase1_lora_physical.log\\\\n-rw-r--r-- 1 root root 132474 May 16 03:37 phase1_spatial_demo_collection.log\\\\n-rw-r--r-- 1 root root  84928 May 16 02:46 phase1_physical_demo_collection.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T07:21:55.362526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T07:21:55.362644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\\\n2, NVIDIA RTX PRO 6000 Blackwell Server Edition, 12713 MiB, 97887 MiB, 99 %\\\\n3, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T07:21:55.362761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "ls -la /root/LIBERO-plus/",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T07:21:55.362883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 104\\\\ndrwxr-xr-x 10 root root  4096 May 15 19:40 .\\\\ndrwx------  1 root root  4096 May 16 00:59 ..\\\\n-rw-r--r--  1 root root  8196 May 15 19:39 .DS_Store\\\\ndrwxr-xr-x  8 root root  4096 May 15 19:39 .git\\\\n-rw-r--r--  1 root root   183 May 15 19:39 .gitignore\\\\n-rw-r--r--  1 root root  8691 May 15 19:39 README.md\\\\ndrwxr-xr-x  2 root root   165 May 15 19:39 benchmark_scripts\\\\n-rw-r--r--  1 root root    19 May 15 19:39 extra_requirements.txt\\\\n-rw-r--r--  1 root root 40818 May 15 19:39 index.html\\\\ndrwxr-xr-x  6 root root   110 May 15 19:39 libero\\\\ndrwxr-xr-x  2 root root   169 May 15 19:40 libero.egg-info\\\\n-rw-r--r--  1 root root  4904 May 15 19:39 libero_res.md\\\\ndrwxr-xr-x  2 root root    72 May 15 19:39 notebooks\\\\n-rw-r--r--  1 root root   290 May 15 19:39 requirements.txt\\\\ndrwxr-xr-x  2 root root  4096 May 15 19:39 scripts\\\\n-rw-r--r--  1 root root   893 May 15 19:39 setup.py\\\\ndrwxr-xr-x  6 root root    96 May 15 19:39 static\\\\ndrwxr-xr-x  2 root root    77 May 15 19:39 templates\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T07:21:55.363030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -n \"pi0\\|checkpoint\\|lora.*dir\\|base_model\\|base_checkpoint\\|pretrained\" /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T07:21:55.363144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T07:21:55.363252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "tail -80 /root/runs/meta_brain_lora_routing/phase1_lora_visual.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T07:21:55.363407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"INFO:__main__:step=8200 loss=0.0110 lr=2.51e-05 grad_norm=0.03 elapsed=51.2s\\\\n14:14:51 [INFO] step=8200 loss=0.0110 lr=2.51e-05 grad_norm=0.03 elapsed=51.2s\\\\nINFO:__main__:step=8250 loss=0.0112 lr=2.43e-05 grad_norm=0.04 elapsed=51.3s\\\\n14:15:43 [INFO] step=8250 loss=0.0112 lr=2.43e-05 grad_norm=0.04 elapsed=51.3s\\\\nINFO:__main__:step=8300 loss=0.0111 lr=2.35e-05 grad_norm=0.03 elapsed=51.0s\\\\n14:16:34 [INFO] step=8300 loss=0.0111 lr=2.35e-05 grad_norm=0.03 elapsed=51.0s\\\\nINFO:__main__:step=8350 loss=0.0116 lr=2.27e-05 grad_norm=0.03 elapsed=51.1s\\\\n14:17:25 [INFO] step=8350 loss=0.0116 lr=2.27e-05 grad_norm=0.03 elapsed=51.1s\\\\nINFO:__main__:step=8400 loss=0.0113 lr=2.20e-05 grad_norm=0.02 elapsed=52.7s\\\\n14:18:17 [INFO] step=8400 loss=0.0113 lr=2.20e-05 grad_norm=0.02 elapsed=52.7s\\\\nINFO:__main__:step=8450 loss=0.0113 lr=2.13e-05 grad_norm=0.04 elapsed=51.0s\\\\n14:19:08 [INFO] step=8450 loss=0.0113 lr=2.13e-05 grad_norm=0.04 elapsed=51.0s\\\\nINFO:__main__:step=8500 loss=0.0103 lr=2.06e-05 grad_norm=0.02 elapsed=51.2s\\\\n14:20:00 [INFO] step=8500 loss=0.0103 lr=2.06e-05 grad_norm=0.02 elapsed=51.2s\\\\nINFO:__main__:step=8550 loss=0.0108 lr=1.99e-05 grad_norm=0.04 elapsed=51.1s\\\\n14:20:51 [INFO] step=8550 loss=0.0108 lr=1.99e-05 grad_norm=0.04 elapsed=51.1s\\\\nINFO:__main__:step=8600 loss=0.0110 lr=1.92e-05 grad_norm=0.03 elapsed=51.0s\\\\n14:21:42 [INFO] step=8600 loss=0.0110 lr=1.92e-05 grad_norm=0.03 elapsed=51.0s\\\\nINFO:__main__:step=8650 loss=0.0113 lr=1.86e-05 grad_norm=0.03 elapsed=51.1s\\\\n14:22:33 [INFO] step=8650 loss=0.0113 lr=1.86e-05 grad_norm=0.03 elapsed=51.1s\\\\nINFO:__main__:step=8700 loss=0.0109 lr=1.80e-05 grad_norm=0.04 elapsed=51.3s\\\\n14:23:24 [INFO] step=8700 loss=0.0109 lr=1.80e-05 grad_norm=0.04 elapsed=51.3s\\\\nINFO:__main__:step=8750 loss=0.0106 lr=1.74e-05 grad_norm=0.04 elapsed=51.1s\\\\n14:24:15 [INFO] step=8750 loss=0.0106 lr=1.74e-05 grad_norm=0.04 elapsed=51.1s\\\\nINFO:__main__:step=8800 \n…[truncated 4574 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T07:21:55.363577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "tail -80 /root/runs/meta_brain_lora_routing/phase1_lora_physical.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T07:21:55.363739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"INFO:__main__:step=8200 loss=0.0113 lr=2.51e-05 grad_norm=0.03 elapsed=51.1s\\\\n14:14:34 [INFO] step=8200 loss=0.0113 lr=2.51e-05 grad_norm=0.03 elapsed=51.1s\\\\nINFO:__main__:step=8250 loss=0.0113 lr=2.43e-05 grad_norm=0.03 elapsed=51.1s\\\\n14:15:25 [INFO] step=8250 loss=0.0113 lr=2.43e-05 grad_norm=0.03 elapsed=51.1s\\\\nINFO:__main__:step=8300 loss=0.0113 lr=2.35e-05 grad_norm=0.03 elapsed=50.8s\\\\n14:16:16 [INFO] step=8300 loss=0.0113 lr=2.35e-05 grad_norm=0.03 elapsed=50.8s\\\\nINFO:__main__:step=8350 loss=0.0113 lr=2.27e-05 grad_norm=0.03 elapsed=51.0s\\\\n14:17:07 [INFO] step=8350 loss=0.0113 lr=2.27e-05 grad_norm=0.03 elapsed=51.0s\\\\nINFO:__main__:step=8400 loss=0.0109 lr=2.20e-05 grad_norm=0.03 elapsed=52.7s\\\\n14:17:59 [INFO] step=8400 loss=0.0109 lr=2.20e-05 grad_norm=0.03 elapsed=52.7s\\\\nINFO:__main__:step=8450 loss=0.0104 lr=2.13e-05 grad_norm=0.03 elapsed=50.8s\\\\n14:18:50 [INFO] step=8450 loss=0.0104 lr=2.13e-05 grad_norm=0.03 elapsed=50.8s\\\\nINFO:__main__:step=8500 loss=0.0112 lr=2.06e-05 grad_norm=0.03 elapsed=51.0s\\\\n14:19:41 [INFO] step=8500 loss=0.0112 lr=2.06e-05 grad_norm=0.03 elapsed=51.0s\\\\nINFO:__main__:step=8550 loss=0.0109 lr=1.99e-05 grad_norm=0.03 elapsed=51.0s\\\\n14:20:32 [INFO] step=8550 loss=0.0109 lr=1.99e-05 grad_norm=0.03 elapsed=51.0s\\\\nINFO:__main__:step=8600 loss=0.0105 lr=1.92e-05 grad_norm=0.03 elapsed=50.8s\\\\n14:21:23 [INFO] step=8600 loss=0.0105 lr=1.92e-05 grad_norm=0.03 elapsed=50.8s\\\\nINFO:__main__:step=8650 loss=0.0103 lr=1.86e-05 grad_norm=0.02 elapsed=50.9s\\\\n14:22:14 [INFO] step=8650 loss=0.0103 lr=1.86e-05 grad_norm=0.02 elapsed=50.9s\\\\nINFO:__main__:step=8700 loss=0.0105 lr=1.80e-05 grad_norm=0.04 elapsed=51.0s\\\\n14:23:05 [INFO] step=8700 loss=0.0105 lr=1.80e-05 grad_norm=0.04 elapsed=51.0s\\\\nINFO:__main__:step=8750 loss=0.0108 lr=1.74e-05 grad_norm=0.04 elapsed=50.7s\\\\n14:23:56 [INFO] step=8750 loss=0.0108 lr=1.74e-05 grad_norm=0.04 elapsed=50.7s\\\\nINFO:__main__:step=8800 \n…[truncated 4582 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T07:21:55.363875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -n \"def.*parse\\|add_argument\\|checkpoint\\|lora\\|pi0\\|base_model\\|pretrained\" /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T07:21:55.364033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T07:21:55.364152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -rn \"python.*eval\" /root/runs/meta_brain_lora_routing/",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T07:21:55.364268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T07:21:55.364410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -n \"checkpoint\\|lora\\|pi0\\|base_model\\|pretrained\\|add_argument\" /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T07:21:55.364553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T07:21:55.364665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "find /root -maxdepth 3 -name \"eval*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T07:21:55.364780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/meta_brain_lora_routing/phase0/eval_classifier.py\\\\n/root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py\\\\n/root/meta_brain_lora_routing/logs/eval_visual_expert.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T07:21:55.364889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "wc -l /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T07:21:55.364999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"610 /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T07:21:55.365112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "ls -la /root/meta_brain_lora_routing/checkpoints/lora_spatial_r16/",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T07:21:55.365228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 4 root root  48 May 16 15:14 .\\\\ndrwxr-xr-x 8 root root 172 May 16 10:26 ..\\\\ndrwxr-xr-x 2 root root  99 May 16 09:54 final\\\\ndrwxr-xr-x 2 root root  99 May 16 15:14 step_1000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T07:21:55.365369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -n \"add_argument\" /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T07:21:55.365524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"459:    p.add_argument(\\\\n464:    p.add_argument(\\\\n469:    p.add_argument(\\\\\\\"--task_suite\\\\\\\", default=\\\\\\\"libero_spatial\\\\\\\")\\\\n470:    p.add_argument(\\\\\\\"--num_episodes\\\\\\\", type=int, default=50)\\\\n471:    p.add_argument(\\\\n476:    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n478:    g = p.add_argument_group(\\\\\\\"checkpoints\\\\\\\")\\\\n479:    g.add_argument(\\\\\\\"--pi0_checkpoint\\\\\\\", default=\\\\\\\"/root/autodl-tmp/checkpoints/pi0_base\\\\\\\")\\\\n480:    g.add_argument(\\\\\\\"--router_checkpoint\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n481:    g.add_argument(\\\\\\\"--lora_visual_dir\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n482:    g.add_argument(\\\\\\\"--lora_spatial_dir\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n483:    g.add_argument(\\\\\\\"--lora_physical_dir\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n485:    g = p.add_argument_group(\\\\\\\"output\\\\\\\")\\\\n486:    g.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/meta_brain_lora_routing/phase1/outputs\\\\\\\")\\\\n487:    g.add_argument(\\\\\\\"--wandb_project\\\\\\\", default=\\\\\\\"meta_brain_lora_routing\\\\\\\")\\\\n488:    g.add_argument(\\\\\\\"--no_wandb\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n490:    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Skip LIBERO env, validate MetaBrain loading only\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T07:21:55.365648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -n \"checkpoint\" /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T07:21:55.365767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"478:    g = p.add_argument_group(\\\\\\\"checkpoints\\\\\\\")\\\\n479:    g.add_argument(\\\\\\\"--pi0_checkpoint\\\\\\\", default=\\\\\\\"/root/autodl-tmp/checkpoints/pi0_base\\\\\\\")\\\\n480:    g.add_argument(\\\\\\\"--router_checkpoint\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n546:        mb = MetaBrain.from_checkpoints(\\\\n547:            pi0_checkpoint=args.pi0_checkpoint,\\\\n548:            router_checkpoint=args.router_checkpoint,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T07:21:55.365886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -n \"pi0\" /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T07:21:55.366002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4:Evaluates pi0 + Meta-Brain LoRA correction across perturbation types.\\\\n479:    g.add_argument(\\\\\\\"--pi0_checkpoint\\\\\\\", default=\\\\\\\"/root/autodl-tmp/checkpoints/pi0_base\\\\\\\")\\\\n547:            pi0_checkpoint=args.pi0_checkpoint,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T07:21:55.366113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -n \"lora\" /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T07:21:55.366234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"481:    g.add_argument(\\\\\\\"--lora_visual_dir\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n482:    g.add_argument(\\\\\\\"--lora_spatial_dir\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n483:    g.add_argument(\\\\\\\"--lora_physical_dir\\\\\\\", default=\\\\\\\"\\\\\\\")\\\\n486:    g.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/meta_brain_lora_routing/phase1/outputs\\\\\\\")\\\\n487:    g.add_argument(\\\\\\\"--wandb_project\\\\\\\", default=\\\\\\\"meta_brain_lora_routing\\\\\\\")\\\\n537:    lora_dirs = {}\\\\n538:    if args.lora_visual_dir:\\\\n539:        lora_dirs[\\\\\\\"visual\\\\\\\"] = args.lora_visual_dir\\\\n540:    if args.lora_spatial_dir:\\\\n541:        lora_dirs[\\\\\\\"spatial\\\\\\\"] = args.lora_spatial_dir\\\\n542:    if args.lora_physical_dir:\\\\n543:        lora_dirs[\\\\\\\"physical\\\\\\\"] = args.lora_physical_dir\\\\n545:    if lora_dirs:\\\\n549:            lora_dirs=lora_dirs,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T07:21:55.366348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "tail -50 /root/meta_brain_lora_routing/logs/eval_visual_expert.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T07:21:55.366485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "head -50 /root/meta_brain_lora_routing/logs/eval_visual_expert.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T07:21:55.366627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 14:57:36,505 [INFO] Loading PI0 model...\\\\n2026-05-16 14:58:17,667 [INFO] PI0 loaded on cuda:0\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py\\\\\\\", line 610, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py\\\\\\\", line 546, in main\\\\n    mb = MetaBrain.from_checkpoints(\\\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/meta_brain_lora_routing/phase1/meta_brain_assembly.py\\\\\\\", line 490, in from_checkpoints\\\\n    router = PARRouter.from_checkpoint(router_checkpoint, device=device_t)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/meta_brain_lora_routing/phase1/par_router.py\\\\\\\", line 57, in from_checkpoint\\\\n    ckpt = torch.load(checkpoint_path, map_location=device, weights_only=False)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\\\\\\\", line 1484, in load\\\\n    with _open_file_like(f, \\\\\\\"rb\\\\\\\") as opened_file:\\\\n         ^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\\\\\\\", line 759, in _open_file_like\\\\n    return _open_file(name_or_buffer, mode)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\\\\\\\", line 740, in __init__\\\\n    super().__init__(open(name, mode))\\\\n                     ^^^^^^^^^^^^^^^^\\\\nFileNotFoundError: [Errno 2] No such file or directory: ''\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T07:21:55.366768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 14:57:36,505 [INFO] Loading PI0 model...\\\\n2026-05-16 14:58:17,667 [INFO] PI0 loaded on cuda:0\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py\\\\\\\", line 610, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py\\\\\\\", line 546, in main\\\\n    mb = MetaBrain.from_checkpoints(\\\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/meta_brain_lora_routing/phase1/meta_brain_assembly.py\\\\\\\", line 490, in from_checkpoints\\\\n    router = PARRouter.from_checkpoint(router_checkpoint, device=device_t)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/meta_brain_lora_routing/phase1/par_router.py\\\\\\\", line 57, in from_checkpoint\\\\n    ckpt = torch.load(checkpoint_path, map_location=device, weights_only=False)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\\\\\\\", line 1484, in load\\\\n    with _open_file_like(f, \\\\\\\"rb\\\\\\\") as opened_file:\\\\n         ^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\\\\\\\", line 759, in _open_file_like\\\\n    return _open_file(name_or_buffer, mode)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\\\\\\\", line 740, in __init__\\\\n    super().__init__(open(name, mode))\\\\n                     ^^^^^^^^^^^^^^^^\\\\nFileNotFoundError: [Errno 2] No such file or directory: ''\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T07:21:55.366933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -n \"routing\" /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T07:21:55.367073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2:LIBERO-Plus evaluation with Meta-Brain routing.\\\\n5:Supports 5 routing modes: none / universal / random / par / oracle.\\\\n10:        --routing par --perturbation_types camera --num_episodes 10 --gpu 3\\\\n14:        --routing par --num_episodes 50 --seeds 42,1042,2042 --gpu 3\\\\n304:    episode_routing = []\\\\n320:                if \\\\\\\"routing_weights\\\\\\\" in result:\\\\n321:                    episode_routing.append(result[\\\\\\\"routing_weights\\\\\\\"])\\\\n341:        \\\\\\\"routing_weights_mean\\\\\\\": (\\\\n342:            np.mean(episode_routing, axis=0).tolist() if episode_routing else None\\\\n406:def print_results_table(results, routing_mode):\\\\n409:    print(f\\\\\\\"Meta-Brain Evaluation Results  [routing={routing_mode}]\\\\\\\")\\\\n441:def results_to_latex(results, routing_mode):\\\\n449:    return f\\\\\\\"{routing_mode} & {' & '.join(rates)} \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"\\\\n460:        \\\\\\\"--routing\\\\\\\",\\\\n486:    g.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/meta_brain_lora_routing/phase1/outputs\\\\\\\")\\\\n487:    g.add_argument(\\\\\\\"--wandb_project\\\\\\\", default=\\\\\\\"meta_brain_lora_routing\\\\\\\")\\\\n524:        mb = MetaBrain.from_dummy(device=device, routing_mode=args.routing)\\\\n528:        log.info(\\\\\\\"DRY-RUN OK: actions=%s, routing=%s\\\\\\\", actions.shape, rw.cpu().numpy())\\\\n551:            routing_mode=args.routing,\\\\n554:        mb = MetaBrain.from_dummy(device=device, routing_mode=args.routing)\\\\n563:                name=f\\\\\\\"eval_{args.routing}_{args.task_suite}\\\\\\\",\\\\n579:    print_results_table(results, args.routing)\\\\n584:    out_path = output_dir / f\\\\\\\"eval_{args.routing}_{args.task_suite}_{ts}.json\\\\\\\"\\\\n592:        \\\\\\\"routing\\\\\\\": args.routing,\\\\n603:    latex_row = results_to_latex(results, args.routing)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T07:21:55.367200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "cat /root/meta_brain_lora_routing/phase1/meta_brain_assembly.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T07:21:55.367447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMeta-Brain Assembly: Soft-routed LoRA correction for pi0.\\\\n\\\\nCore formula: h_corrected = h_frozen + Σ_k p(type_k) · LoRA_k(h_frozen)\\\\nImplementation: Scheme C — dynamic LoRA weight merging.\\\\n  merged_A = Σ_k p_k · A_k, merged_B = Σ_k p_k · B_k\\\\n  W_effective = W_frozen + (alpha/rank) · merged_B @ merged_A\\\\n\\\\nArchitecture:\\\\n  1. Frozen prefix forward → hook captures PaliGemma layer 6 hidden states\\\\n  2. PAR Router: hidden → [p_visual, p_spatial, p_physical]\\\\n  3. Merge 3 LoRA experts' A/B matrices weighted by routing probabilities\\\\n  4. Inject merged LoRA delta into model weights\\\\n  5. Full forward pass → corrected actions\\\\n  6. Restore frozen weights\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport sys\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/openpi/src\\\\\\\")\\\\nsys.path.insert(0, \\\\\\\"/root/openpi\\\\\\\")\\\\n\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\nfrom typing import Optional\\\\n\\\\nimport jax\\\\nimport numpy as np\\\\nimport safetensors.torch\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\n# Stub lerobot to avoid import errors\\\\nimport types as _types\\\\nfor _mod in [\\\\n    \\\\\\\"lerobot\\\\\\\", \\\\\\\"lerobot.common\\\\\\\", \\\\\\\"lerobot.common.datasets\\\\\\\",\\\\n    \\\\\\\"lerobot.common.datasets.lerobot_dataset\\\\\\\",\\\\n]:\\\\n    if _mod not in sys.modules:\\\\n        sys.modules[_mod] = _types.ModuleType(_mod)\\\\n\\\\nfrom openpi.models.model import Observation\\\\nfrom openpi.models.pi0_config import Pi0Config\\\\nfrom openpi.models_pytorch.pi0_pytorch import PI0Pytorch, make_att_2d_masks\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\\\nfrom par_router import PARRouter, PARRouterModel\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nEXPERT_NAMES = [\\\\\\\"visual\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"physical\\\\\\\"]\\\\nROUTING_LAYER = 6\\\\nPALIGEMMA_HIDDEN_DIM = 2048\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Path discovery\\\\n# -----------------------------------------------------------\n…[truncated 7165 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T07:21:55.367617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "find /root/meta_brain_lora_routing -name \"router*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T07:21:55.367744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T07:21:55.367861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "find /root -maxdepth 5 -name \"router*checkpoint*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T07:21:55.368015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T07:21:55.368170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "head -500 /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T07:21:55.368472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Plus evaluation with Meta-Brain routing.\\\\n\\\\nEvaluates pi0 + Meta-Brain LoRA correction across perturbation types.\\\\nSupports 5 routing modes: none / universal / random / par / oracle.\\\\n\\\\nUsage:\\\\n    # Single perturbation type\\\\n    python phase1/evaluate_libero_plus.py \\\\\\\\\\\\n        --routing par --perturbation_types camera --num_episodes 10 --gpu 3\\\\n\\\\n    # All perturbation types (full eval)\\\\n    python phase1/evaluate_libero_plus.py \\\\\\\\\\\\n        --routing par --num_episodes 50 --seeds 42,1042,2042 --gpu 3\\\\n\\\\n    # Dry-run (no LIBERO env, validates arg parsing + MetaBrain loading)\\\\n    python phase1/evaluate_libero_plus.py --dry_run --gpu 3\\\\n\\\\nOutput:\\\\n    JSON results + stdout table + optional W&B logging.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport collections\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# LIBERO perturbation definitions\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nALL_PERTURBATION_TYPES = [\\\\n    \\\\\\\"camera_viewpoints\\\\\\\",\\\\n    \\\\\\\"light_conditions\\\\\\\",\\\\n    \\\\\\\"background_textures\\\\\\\",\\\\n    \\\\\\\"sensor_noise\\\\\\\",\\\\n    \\\\\\\"objects_layout\\\\\\\",\\\\n    \\\\\\\"robot_initial_states\\\\\\\",\\\\n    \\\\\\\"nominal\\\\\\\",\\\\n]\\\\n\\\\nPERTURBATION_TO_3CLASS = {\\\\n    \\\\\\\"camera_viewpoints\\\\\\\": \\\\\\\"visual\\\\\\\",\\\\n    \\\\\\\"light_conditions\\\\\\\": \\\\\\\"visual\\\\\\\",\\\\n    \\\\\\\"background_textures\\\\\\\": \\\\\\\"visual\\\\\\\",\\\\n    \\\\\\\"sensor_noise\\\\\\\": \\\\\\\"visual\\\\\\\",\\\\n    \\\\\\\"objects_layout\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n    \\\\\\\"robot_initial_states\\\\\\\": \\\\\\\"physical\\\\\\\",\\\\n    \\\\\\\"nominal\\\\\\\": \\\\\\\"nominal\\\\\\\",\\\\n}\\\\n\\\\nTASK_SUITES = [\\\\\\\"libero_spatial\\\\\\\", \\\\\\\"libero_obj\n…[truncated 7555 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T07:21:55.368644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "tail -120 /root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T07:21:55.368829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    return p.parse_args()\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    logging.basicConfig(\\\\n        level=logging.INFO,\\\\n        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    )\\\\n\\\\n    device = f\\\\\\\"cuda:{args.gpu}\\\\\\\"\\\\n    seeds = [int(s) for s in args.seeds.split(\\\\\\\",\\\\\\\")]\\\\n\\\\n    if args.perturbation_types == \\\\\\\"all\\\\\\\":\\\\n        perturbation_types = ALL_PERTURBATION_TYPES\\\\n    else:\\\\n        perturbation_types = args.perturbation_types.split(\\\\\\\",\\\\\\\")\\\\n\\\\n    # -------------------------------------------------------------------\\\\n    # Dry-run: just validate MetaBrain assembly\\\\n    # -------------------------------------------------------------------\\\\n    if args.dry_run:\\\\n        log.info(\\\\\\\"DRY-RUN: validating task filtering for suite=%s\\\\\\\", args.task_suite)\\\\n        for ptype in perturbation_types:\\\\n            try:\\\\n                idxs = get_tasks_by_perturbation(args.task_suite, ptype)\\\\n                log.info(\\\\\\\"  %s: %d tasks\\\\\\\", ptype, len(idxs))\\\\n            except Exception as e:\\\\n                log.error(\\\\\\\"  %s: ERROR - %s\\\\\\\", ptype, e)\\\\n\\\\n        log.info(\\\\\\\"DRY-RUN: validating MetaBrain assembly on %s\\\\\\\", device)\\\\n        from meta_brain_assembly import MetaBrain, make_dummy_observation\\\\n\\\\n        mb = MetaBrain.from_dummy(device=device, routing_mode=args.routing)\\\\n        obs = make_dummy_observation(torch.device(device))\\\\n\\\\n        actions, rw = mb.predict_action(obs)\\\\n        log.info(\\\\\\\"DRY-RUN OK: actions=%s, routing=%s\\\\\\\", actions.shape, rw.cpu().numpy())\\\\n        mb.cleanup()\\\\n        return\\\\n\\\\n    # -------------------------------------------------------------------\\\\n    # Full evaluation\\\\n    # -------------------------------------------------------------------\\\\n    from meta_brain_assembly import MetaBrain\\\\n\\\\n    lora_dirs = {}\\\\n    if args.lora_visual_dir:\\\\n        lora_dirs[\\\\\\\"visual\\\\\\\"] = args.lora_vi\n…[truncated 2394 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T07:21:55.369011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "grep -n \"from_checkpoints\" /root/meta_brain_lora_routing/phase1/meta_brain_assembly.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T07:21:55.369139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"471:    def from_checkpoints(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T07:21:55.369257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34142",
+              "command": "head -520 /root/meta_brain_lora_routing/phase1/meta_brain_assembly.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T07:21:55.369504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMeta-Brain Assembly: Soft-routed LoRA correction for pi0.\\\\n\\\\nCore formula: h_corrected = h_frozen + Σ_k p(type_k) · LoRA_k(h_frozen)\\\\nImplementation: Scheme C — dynamic LoRA weight merging.\\\\n  merged_A = Σ_k p_k · A_k, merged_B = Σ_k p_k · B_k\\\\n  W_effective = W_frozen + (alpha/rank) · merged_B @ merged_A\\\\n\\\\nArchitecture:\\\\n  1. Frozen prefix forward → hook captures PaliGemma layer 6 hidden states\\\\n  2. PAR Router: hidden → [p_visual, p_spatial, p_physical]\\\\n  3. Merge 3 LoRA experts' A/B matrices weighted by routing probabilities\\\\n  4. Inject merged LoRA delta into model weights\\\\n  5. Full forward pass → corrected actions\\\\n  6. Restore frozen weights\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport sys\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/openpi/src\\\\\\\")\\\\nsys.path.insert(0, \\\\\\\"/root/openpi\\\\\\\")\\\\n\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\nfrom typing import Optional\\\\n\\\\nimport jax\\\\nimport numpy as np\\\\nimport safetensors.torch\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\n# Stub lerobot to avoid import errors\\\\nimport types as _types\\\\nfor _mod in [\\\\n    \\\\\\\"lerobot\\\\\\\", \\\\\\\"lerobot.common\\\\\\\", \\\\\\\"lerobot.common.datasets\\\\\\\",\\\\n    \\\\\\\"lerobot.common.datasets.lerobot_dataset\\\\\\\",\\\\n]:\\\\n    if _mod not in sys.modules:\\\\n        sys.modules[_mod] = _types.ModuleType(_mod)\\\\n\\\\nfrom openpi.models.model import Observation\\\\nfrom openpi.models.pi0_config import Pi0Config\\\\nfrom openpi.models_pytorch.pi0_pytorch import PI0Pytorch, make_att_2d_masks\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\\\nfrom par_router import PARRouter, PARRouterModel\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nEXPERT_NAMES = [\\\\\\\"visual\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"physical\\\\\\\"]\\\\nROUTING_LAYER = 6\\\\nPALIGEMMA_HIDDEN_DIM = 2048\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Path discovery\\\\n# -----------------------------------------------------------\n…[truncated 7106 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T07:21:55.369719+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。以下是报告：\n\n---\n\n## Checkpoint 路径排查报告\n\n### 1. LoRA Checkpoint 目录\n\n| 目录 | 状态 | 文件 |\n|------|------|------|\n| `lora_visual_r16/final/` | **存在** | `adapter_config.json` (1.1KB) + `adapter_model.safetensors` (14MB) + `README.md` |\n| `lora_physical_r16/final/` | **存在** | 同上 (14MB) |\n| `lora_universal_r16/final/` | **存在** | 同上 (14MB) |\n| `lora_universal_r48/final/` | **存在** | 同上 (42MB, rank 更大) |\n| `lora_spatial_r16/` | **训练中** | 有 `final/` 和 `step_1000/`，但 spatial 训练看起来还在跑 |\n\n### 2. pi0 Base Checkpoint\n\n- **路径**: `/root/autodl-tmp/checkpoints/pi0_base/` — **存在**\n- **内容**: `config.json`, `model.safetensors` (13GB), `policy_preprocessor.json`, `policy_postprocessor.json`\n- 评估脚本 `--pi0_checkpoint` 默认值就是这个路径，**无问题**\n\n### 3. 评估脚本参数 (`evaluate_libero_plus.py`)\n\n```\n--routing          choices=[par, oracle, random, none, universal], default=\"par\"\n--pi0_checkpoint   default=\"/root/autodl-tmp/checkpoints/pi0_base\"  ✅\n--router_checkpoint default=\"\"                                       ⚠️ 根因\n--lora_visual_dir  default=\"\"\n--lora_spatial_dir default=\"\"\n--lora_physical_dir default=\"\"\n```\n\n逻辑 (lines 537-554): 如果任一 `lora_*_dir` 非空 → 调 `MetaBrain.from_checkpoints()` → **无条件**调 `PARRouter.from_checkpoint(router_checkpoint)` → `torch.load(\"\")` → **FileNotFoundError**\n\n### 4. 失败错误信息（`logs/eval_visual_expert.log`）\n\n```\nFileNotFoundError: [Errno 2] No such file or directory: ''\n```\n\n调用链：\n1. `evaluate_libero_plus.py:546` → `MetaBrain.from_checkpoints(router_checkpoint=\"\")`\n2. `meta_brain_assembly.py:490` → `PARRouter.from_checkpoint(\"\", ...)`\n3. `par_router.py:57` → `torch.load(\"\")` → **boom**\n\n**根因**: `--router_checkpoint` 默认空字符串，`from_checkpoints()` 不检查就直接 `torch.load()`。且服务器上**不存在任何 router checkpoint 文件**（find 返回空）。\n\n### 5. GPU 使用\n\n| GPU | 型号 | 显存使用 | 利用率 |\n|-----|------|---------|--------|\n| 0 | RTX PRO 6000 Blackwell | 0 MiB / 98GB | 0% |\n| 1 | RTX PRO 6000 Blackwell | 0 MiB / 98GB | 0% |\n| 2 | RTX PRO 6000 Blackwell | **12.7GB** / 98GB | **99%** |\n| 3 | RTX PRO 6000 Blackwell | 0 MiB / 98GB | 0% |\n\nGPU 2 正在使用（可能是 spatial 训练）。GPU 0/1/3 空闲。\n\n### 6. LIBERO-Plus 数据\n\n- **路径**: `/root/LIBERO-plus/` — **存在**\n- 包含 `libero/` 子目录、`benchmark_scripts/`、`setup.py` 等\n\n### 修复方向\n\n`from_checkpoints()` 在没有 router checkpoint 时仍然无条件调用 `PARRouter.from_checkpoint()`。两种修法：\n\n1. **传入有效的 router_checkpoint 路径** — 但服务器上目前没有训练好的 router（PAR Router 还没训练）\n2. **改代码**: 当 `router_checkpoint` 为空时，创建 dummy router（类似 `from_dummy` 的做法），而非调 `torch.load(\"\")`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_debug_eval-path-investigation_20260516T071908"
+          },
+          "id": "event-000077"
+        }
+      ],
+      "message_count": 77
+    }
+  ],
+  "readable_path": "readable/conversations/debug-eval-path-investigation.md"
+}

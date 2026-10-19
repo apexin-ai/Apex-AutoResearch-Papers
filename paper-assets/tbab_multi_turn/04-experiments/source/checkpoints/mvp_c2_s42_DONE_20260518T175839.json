@@ -1,0 +1,46 @@
+{
+  "exp_id": "mvp_c2_s42",
+  "project": "tbab_multi_turn",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:21:17.763Z",
+    "updated_at": "2026-05-18T17:58:39.085Z",
+    "hypothesis": "Turn-relative position reset alone partially restores mid-frequency RoPE bands (pairs 21-42) by resetting positional distance at turn boundaries, improving cross-turn information retrieval on rope_theta=10K models without additional parameters",
+    "spec": {
+      "command": "bash -c \"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition2_position_reset.yaml --seed 42\"",
+      "server": "westb-25721",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "66861",
+      "log_path": "~/runs/tbab_multi_turn/mvp_c2_s42.log",
+      "submitted_at": "2026-05-18T17:58:22.884Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 16.2,
+      "gpu_hours": 0.0
+    },
+    "server": "westb-25721",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-25721",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T08:24:32.417Z",
+      "command": "bash -c \"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition2_position_reset.yaml --seed 42\"",
+      "finished_at": "2026-05-18T17:58:38.163Z",
+      "training_hours": 9.57
+    },
+    "pid": "66861",
+    "log_path": "~/runs/tbab_multi_turn/mvp_c2_s42.log",
+    "failure_reason": "Traceback → \", line 87, in main config = load_config(args.config) File \"/root/tbab_multi_turn/scripts/train.py\", line 31, in load_config with open(config_path) as f: FileNotFoundError: [Errno 2] No such file or directory: 'configs/condition2_position_reset.yaml'",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T17:58:39.085Z"
+  },
+  "timestamp": "2026-05-18T17:58:39.104795+00:00",
+  "trigger": "update_registry"
+}

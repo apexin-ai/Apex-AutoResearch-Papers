@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f7021b56764ecff6d4b",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "prep openpi native eval fallback",
+  "task_key": "worker_prep_openpi_native_eval_fallback_20260516T152158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_openpi_native_eval_fallback_20260516T152158_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "f9b1f888e26b0e99d90eea10812850eff19dcd23e2398bec3f1023ef8f7d2e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "准备工作完成。总结：\n\n**已就绪**：\n- `serve_policy_wrapper.py` — 解决了 lerobot 版本冲突，���需改动已安装的包\n- `convert_lerobot_to_openpi.py` — LeRobot → openpi 格式转换器\n- `pi0_libero_finetuned_openpi` — 官方 fine-tuned checkpoint 已转换为 openpi 格式\n- EGL 渲染、LIBERO benchmark、openpi_client 全部验证通过\n\n**启动方式**（GPU 空闲后）：\n```bash\n# Terminal 1 (Server, 1 GPU):\ncd /root/openpi && CUDA_VISIBLE_DEVICES=3 python scripts/serve_policy_wrapper.py \\\n  --port 8000 policy:checkpoint --policy.config pi0_libero \\\n  --policy.dir /root/autodl-tmp/checkpoints/pi0_libero_finetuned_openpi\n\n# Terminal 2 (Client, CPU):\ncd /root/openpi && MUJOCO_GL=egl python examples/libero/main.py \\\n  --args.host localhost --args.port 8000 \\\n  --args.task-suite-name libero_spatial --args.num-trials-per-task 1\n```\n\n**注意**：当前 LIBERO 是 \"LIBERO-plus\" ���本（2402 tasks），即使 `num_trials=1` 也要跑较久。快速验证可以观察前几个 task 后 Ctrl-C。MetaBrain 自己的 LoRA checkpoint 需要先 merge adapter 再转换格式才能用此 pipeline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-openpi-native-eval-fallback.md"
+}

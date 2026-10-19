@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "effdf772fa37ab2c490f",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "eval openpi native gpu3",
+  "task_key": "worker_eval_openpi_native_gpu3_20260516T153723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_openpi_native_gpu3_20260516T153723_result.json",
+    "occurrence": 1,
+    "bytes": 1906,
+    "sha256": "093b611600598ebad422d27c61e176af35918223d8bc177945a981738385e677"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n### Server 启动\n✅ 正常启动，加载 checkpoint 和 norm_stats 成功\n\n### 发现的问题（已修复）\n\n| 问题 | 修复 |\n|------|------|\n| `env_wrapper.py` PosixPath 类型错误 | 加 `bddl_file_name = str(bddl_file_name)` |\n| `gemma_pytorch.py` 图像 HWC→NCHW 缺失 | `embed_image` 中加 permute |\n| `model.py` safetensors 加载 strict 失败 | 改为 `strict=False` |\n\n### 核心发现：0% success 的两个原因\n\n**1. LIBERO-Plus 环境不兼容（主因）**\n- LIBERO-Plus 将 `libero_spatial` 从原版 10 tasks 替换为 **2402 个** \"table_N\" 增广变体\n- pi0_libero 从未在这些变体上训练\n- **即使官方 pi0_libero checkpoint（权重正常）也是 0%**——证明不是 checkpoint 问题而是环境不匹配\n\n**2. Finetuned checkpoint 转换 bug（副因）**\n- `pi0_libero_finetuned_openpi` 的 `lm_head.weight` std=0.003（几乎全 0）\n- 官方 checkpoint `lm_head.weight` std=0.020（正常）\n- 原因：JAX→PyTorch 转换时，因为 HuggingFace PaliGemma weight tying（embed_tokens = lm_head），转换脚本保存了无意义的 lm_head 值\n- 导致模型无法编码 language prompt → 输出 mode collapse（对任何输入输出几乎相同动作）\n\n### 验证：官方 checkpoint 行为\n\n| 测试 | Finetuned (broken) | Official |\n|------|-------------------|----------|\n| 不同图像 action diff | 0.035（无响应） | **0.818**（有响应） |\n| Trajectory 多样性 | 无（first≈last） | 有（t=0≠t=25≠t=49） |\n| LIBERO-Plus eval | 0% | 0%（环境不兼容） |\n\n### 结论\n- **Checkpoint 本身**：finetuned 版有转换 bug（lm_head 归零），需要从原始 JAX checkpoint 正确重新转换\n- **Eval pipeline**：即使修复 checkpoint，LIBERO-Plus 环境也不兼容。要得到有效 eval，需安装**原版 LIBERO**（而非 LIBERO-Plus）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-openpi-native-gpu3.md"
+}

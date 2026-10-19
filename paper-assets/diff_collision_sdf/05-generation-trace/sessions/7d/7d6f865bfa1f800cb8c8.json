@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d6f865bfa1f800cb8c8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research sdf extraction",
+  "task_key": "worker_research_sdf_extraction_20260519T160713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sdf_extraction_20260519T160713_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "a491e1bf1afb51a6e0cc21c1869080f5c86443b5bac878ab0321f596fa363e25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/report_sdf_extraction.md`。核心结论：\n\n**MVP 方案**：`pysdf`（sxyu/sdf）离线预计算 GT SDF，Kaolin 作为 GPU 加速备选。\n\n- **pysdf** 胜出原因：C++ 并行快（100K 点 < 1s）、API 极简、无 GPU 依赖、对 watertight mesh 精度可靠\n- **MuJoCo native SDF** 不推荐用于 MVP——Python API 缺失、需 C wrapper、工程复杂度高\n- **采样策略**：建议 4096 点/scene（80% 双尺度近表面 + 20% 均匀），2048 对多物体偏少\n- **SDF Decoder**：4-6 层 MLP，输入 [VLA_feature, xyz]，L1 clamped loss + Eikonal 正则化\n- **主要风险**：mesh 非 watertight（用 trimesh.repair 缓解）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sdf-extraction.md"
+}

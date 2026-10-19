@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7345dd65da95c3055ba",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops restart s1 l005 disp gpu1",
+  "task_key": "worker_ops_restart_s1_l005_disp_gpu1_20260525T195912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart_s1_l005_disp_gpu1_20260525T195912_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "a0c26740316be0e14f8b58db5a128b1e9d51050208c5c0033372a781eb43773f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动完成。\n\n| 项目 | 值 |\n|------|-----|\n| tmux session | `eval_pi05_a1_30k_s1_l005_disp` |\n| PID | 142394 |\n| GPU | 1 (RTX PRO 6000) |\n| 显存占用 | ~9 GB |\n| 日志 | `~/runs/diff_collision_sdf/eval_pi05_a1_30k_s1_l005_disp.log` |\n\n注意：实际启动命令根据 GPU 3 正在跑的 eval 做了修正——脚本路径 `scripts/eval_safelibero.py`、参数名 `--checkpoint`、增加了 `--suite safelibero_object --pi05`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-s1-l005-disp-gpu1.md"
+}

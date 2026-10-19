@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "731af9b468b983118624",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops start s0 l01 30k disp gpu2",
+  "task_key": "worker_ops_start_s0_l01_30k_disp_gpu2_20260525T203612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_start_s0_l01_30k_disp_gpu2_20260525T203612_result.json",
+    "occurrence": 1,
+    "bytes": 284,
+    "sha256": "b6aa6566275707033dbb7283eb2058ad626ee89bfb90eb782755130cf7db3502"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认启动成功：\n\n- **PID**: 199726\n- **GPU 2 显存**: 8967MiB / 97887MiB (~9GB)\n- **tmux session**: `eval_pi05_a1_30k_s0_l01_disp`\n- 模型加载完成，已进入 Task 0 评估（`pick_up_the_orange_juice_and_place_it_in_the_basket`，Safety level II）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-start-s0-l01-30k-disp-gpu2.md"
+}

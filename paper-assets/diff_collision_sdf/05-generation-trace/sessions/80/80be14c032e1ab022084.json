@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80be14c032e1ab022084",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code paper switch script",
+  "task_key": "worker_code_paper_switch_script_20260527T190838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paper_switch_script_20260527T190838_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "a9e85d8e471d4350ad7f9fc7e7e2fa21695db850d3c55d01428a1317eab927d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本完成。`artifacts/paper_switch.py` — 12/12 替换在两种 scenario 下全部通过 dry-run 验证。\n\n**使用方式**:\n```bash\npython paper_switch.py --s2-car 57.5 --s2-tsr 48.0 --dry-run  # 预览\npython paper_switch.py --s2-car 57.5 --s2-tsr 48.0             # 实际替换 + 编译\n```\n\n**决策逻辑**: 3-seed permutation test (C(9,3)=84), 单尾 p < 0.05 → Scenario C (modest significant), 否则 Scenario B (full redundancy)。\n\n**边界参考**: s2≥56 → Scenario C (p=0.048), s2≤55 → Scenario B (p=0.071)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paper-switch-script.md"
+}

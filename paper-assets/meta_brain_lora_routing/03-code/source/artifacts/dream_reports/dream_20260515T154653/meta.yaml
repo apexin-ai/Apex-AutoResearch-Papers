@@ -1,0 +1,4483 @@
+dream_id: dream_20260515T154653
+project: meta_brain_lora_routing
+venue: CoRL 2026
+focus: 'Key risks: (1) Phase 0 classification too easy — does routing actually help
+  downstream? (2) Single backbone pi0 generalizability. (3) Absolute performance vs
+  SRPO/VLA-GSE SOTA. (4) 3-class taxonomy coarseness. Strongest evidence: Phase 0
+  K=1 layer6 F1=1.0 proves zero-overhead routing. Core question for Claim 2: does
+  specialized LoRA outperform universal LoRA?'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Specialized LoRA routing hypothesis fully validated — type-specific
+        experts significantly outperform universal LoRA, and Meta-Brain reaches competitive
+        absolute performance with 20x fewer parameters than VLA-GSE
+      key_assumptions:
+      - Perturbation-type-specific training data produces LoRA experts with clearly
+        differentiated correction behaviors (specialization > generalization)
+      - PAR soft routing approximates oracle routing closely (gap < 2%), confirming
+        Phase 0 signal is actionable
+      - Universal LoRA on pi0 saturates around 63-66% due to capacity dilution across
+        perturbation types
+      - LoRA rank-16 on PaliGemma layers provides sufficient correction capacity per
+        perturbation type
+      number_ranges:
+        libero_plus_overall_meta_brain:
+        - 76
+        - 82
+        gain_over_frozen:
+        - 22
+        - 28
+        universal_lora_overall:
+        - 63
+        - 66
+        gain_over_universal_lora:
+        - 10
+        - 18
+        per_type_specialization_delta_max:
+        - 12
+        - 25
+        oracle_par_gap:
+        - 0
+        - 2
+        routing_diagonality:
+        - 0.85
+        - 0.98
+        gain_per_million_params:
+        - 3.7
+        - 4.7
+        cm_ablation_delta:
+        - 1
+        - 4
+      narrative_direction: 'Original framing holds as-is. Headline: Meta-Brain achieves
+        ~78% on LIBERO-Plus with 6M params, closing >80% of the gap to VLA-GSE (81.2%,
+        114M params). All three claims land — diagnosability (Phase 0), targeted >
+        uniform correction (Claim 2 ablation ladder), and parameter-efficient robustness
+        (Claim 3 scatter plot). Paper positions perturbation-diagnostic routing as
+        a new design dimension with strong empirical support.'
+    median:
+      tier: median
+      meaning: Routing helps but advantage is moderate — specialized experts outperform
+        universal LoRA by a meaningful but not dominant margin, absolute performance
+        clearly trails capacity-routing SOTA
+      key_assumptions:
+      - Specialized LoRA experts show advantage on 2 of 3 perturbation types (likely
+        Visual and Physical), but Spatial expert underperforms due to layout perturbations
+        requiring whole-trajectory reasoning beyond single-step LoRA correction
+      - Universal LoRA is a stronger baseline than expected — mixed training provides
+        partial cross-type robustness
+      - PAR routing is accurate but soft routing dilutes correction signal compared
+        to oracle hard routing (gap 3-6%)
+      - Absolute performance trails VLA-GSE by >8% due to pi0 backbone capacity ceiling,
+        not routing quality
+      number_ranges:
+        libero_plus_overall_meta_brain:
+        - 69
+        - 75
+        gain_over_frozen:
+        - 15
+        - 21
+        universal_lora_overall:
+        - 63
+        - 68
+        gain_over_universal_lora:
+        - 4
+        - 9
+        per_type_specialization_delta_max:
+        - 6
+        - 14
+        oracle_par_gap:
+        - 3
+        - 6
+        routing_diagonality:
+        - 0.7
+        - 0.85
+        gain_per_million_params:
+        - 2.5
+        - 3.5
+        cm_ablation_delta:
+        - 0
+        - 2
+      narrative_direction: 'Claim 1 unchanged (Phase 0 already validated). Claim 2
+        reframed: ''routing by perturbation type improves adaptation efficiency, with
+        strongest gains on perturbation types that disrupt localized processing stages
+        (visual, physical) vs. distributed ones (spatial)'' — adds nuance rather than
+        universal superiority. Claim 3 reframed as parameter-efficiency-per-gain:
+        Meta-Brain achieves ~70% of VLA-GSE''s absolute gain with 5% of parameters,
+        positioning it as complementary (composable with capacity routing) rather
+        than replacement. Ablation ladder still shows clear Frozen < Universal < Meta-Brain
+        < Oracle ordering. Add analysis section explaining which perturbation types
+        benefit most from routing and why — turns partial result into mechanistic
+        insight. May need one additional experiment: combined Meta-Brain + universal
+        LoRA residual to show routing is additive to uniform adaptation.'
+    worst:
+      tier: worst
+      meaning: Specialized LoRA barely outperforms or matches universal LoRA — core
+        routing hypothesis does not produce meaningful downstream improvement despite
+        perfect Phase 0 classification
+      key_assumptions:
+      - 'Universal LoRA is surprisingly effective: mixed-perturbation training implicitly
+        learns perturbation-conditional representations without explicit routing'
+      - LoRA rank-16 correction capacity is insufficient to produce differentiated
+        type-specific behaviors — experts converge to similar solutions
+      - PAR routing weights are near-uniform regardless of perturbation type, indicating
+        the routing signal doesn't translate to actionable correction difference
+      - Absolute performance ceiling on pi0+LIBERO-Plus is low (~65-70%) regardless
+        of adaptation strategy, due to pi0 backbone limitations on this benchmark
+      number_ranges:
+        libero_plus_overall_meta_brain:
+        - 64
+        - 69
+        gain_over_frozen:
+        - 10
+        - 15
+        universal_lora_overall:
+        - 62
+        - 67
+        gain_over_universal_lora:
+        - 0
+        - 4
+        per_type_specialization_delta_max:
+        - 1
+        - 6
+        oracle_par_gap:
+        - 1
+        - 5
+        routing_diagonality:
+        - 0.45
+        - 0.7
+        gain_per_million_params:
+        - 1.7
+        - 2.5
+        cm_ablation_delta:
+        - -1
+        - 1
+      narrative_direction: 'Core reframe: paper pivots from ''routing improves correction''
+        to ''what VLA representations reveal about perturbation processing''. Lead
+        contribution becomes the Phase 0 empirical finding — strongest result we have
+        (F1=1.0 at K=1 single layer) — as a mechanistic discovery about VLA internal
+        representations. Contribution 2 becomes the systematic design-dimension analysis:
+        we tested perturbation-diagnostic routing and found that explicit routing
+        yields marginal gains over implicit adaptation, providing evidence that LoRA
+        mixed training already captures perturbation-conditional structure. This is
+        a negative-but-informative result framed as understanding the landscape. Contribution
+        3: the framework itself (PAR + LoRA bank) as a modular, composable architecture
+        that enables future work combining diagnostic routing with higher-capacity
+        experts or multi-backbone settings. Title shifts from ''Meta-Brain: targeted
+        correction via perturbation routing'' to something like ''Do VLAs Know What
+        Went Wrong? Probing Perturbation Representations and the Limits of Diagnostic
+        Routing''. Still targets CoRL — the Phase 0 finding + design dimension analysis
+        is a solid empirical contribution, and honest negative results on routing
+        inform the community. May add 6-class routing experiment to test whether finer
+        granularity helps, and cross-backbone Phase 0 replication to strengthen the
+        diagnostic finding as the central contribution.'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/artifacts/dream_reports/dream_20260515T154653/best/paper.pdf
+  imagined_experiments:
+  - name: LoRA expert training — 3 specialized + 1 universal
+    plan_id: plan_002
+    description: 'Train 4 LoRA adapters (rank 16) on frozen pi0 PaliGemma layers:
+      LoRA-V (Visual),  LoRA-S (Spatial), LoRA-P (Physical), Universal LoRA (mixed).
+      Evaluate each on  own-type and cross-type perturbations.
+
+      '
+    expected_results:
+      lora_v_visual_avg: 76.0
+      lora_v_camera: 74.0
+      lora_v_light: 80.0
+      lora_v_background: 78.0
+      lora_v_noise: 72.0
+      lora_v_on_spatial: 60.0
+      lora_v_on_physical: 54.0
+      lora_s_layout: 90.0
+      lora_s_on_visual_avg: 46.5
+      lora_s_on_physical: 56.0
+      lora_p_robot: 88.0
+      lora_p_on_visual_avg: 44.0
+      lora_p_on_spatial: 62.0
+      universal_lora_overall: 64.8
+      universal_camera: 54.0
+      universal_light: 66.0
+      universal_background: 62.0
+      universal_noise: 54.0
+      universal_layout: 78.0
+      universal_robot: 74.0
+      per_type_specialization_delta_max: 20.0
+      per_type_specialization_delta_min: 12.0
+      cross_type_degradation_max: -20.0
+    result_rationale: 'Rank-16 LoRA on PaliGemma layers provides足够的修正容量处理单一扰动类型。 专用
+      LoRA 在其目标类型上大幅超越 universal LoRA（最大 delta=20%，camera 类型），因为： (1) Visual 扰动主要破坏
+      PaliGemma 早期视觉编码，LoRA-V 的全部容量用于修复这一信号通路， 而 universal LoRA 必须将同样容量分摊到三类截然不同的校正模式上；
+      (2) Spatial (layout) 扰动修改物体空间关系，LoRA-S 学到的校正向量直接对齐中层空间表征， 在 layout 上达 90%——这是所有组合中最高的，因为
+      layout 是单一子类、分布集中； (3) Physical (robot) 扰动改变力学属性，LoRA-P 在 robot 上达 88%。 Cross-type
+      严重退化（LoRA-V 在 physical 仅 54%，低于 frozen baseline 的 56%）证实 三类扰动所需的校正模式确实互不兼容——这是
+      Claim 2 的关键论据：专用路由并非锦上添花， 而是必要条件。Universal LoRA 在 64.8% 饱和，因为 rank-16 的有限容量在三类矛盾梯度
+      方向间折衷，导致每种类型都欠校正。
+
+      '
+    tables:
+    - name: Expert cross-evaluation matrix
+      columns:
+      - Expert
+      - camera
+      - light
+      - background
+      - noise
+      - layout
+      - robot
+      - Overall
+      rows:
+      - - LoRA-V
+        - 74.0
+        - 80.0
+        - 78.0
+        - 72.0
+        - 60.0
+        - 54.0
+        - 69.7
+      - - LoRA-S
+        - 44.0
+        - 52.0
+        - 48.0
+        - 42.0
+        - 90.0
+        - 56.0
+        - 55.3
+      - - LoRA-P
+        - 40.0
+        - 50.0
+        - 46.0
+        - 40.0
+        - 62.0
+        - 88.0
+        - 54.3
+      - - Universal
+        - 54.0
+        - 66.0
+        - 62.0
+        - 54.0
+        - 78.0
+        - 74.0
+        - 64.8
+      - - Frozen pi0
+        - 42.0
+        - 58.0
+        - 52.0
+        - 46.0
+        - 68.0
+        - 56.0
+        - 53.6
+    - name: Specialization delta (own-type expert minus universal)
+      columns:
+      - Perturbation type
+      - Specialist
+      - Universal
+      - Delta
+      rows:
+      - - camera
+        - 74.0
+        - 54.0
+        - '+20.0'
+      - - light
+        - 80.0
+        - 66.0
+        - '+14.0'
+      - - background
+        - 78.0
+        - 62.0
+        - '+16.0'
+      - - noise
+        - 72.0
+        - 54.0
+        - '+18.0'
+      - - layout
+        - 90.0
+        - 78.0
+        - '+12.0'
+      - - robot
+        - 88.0
+        - 74.0
+        - '+14.0'
+    figures_description:
+    - 'Heatmap: 3×6 cross-evaluation matrix (expert rows × perturbation columns),
+      strong diagonal blocks visible — LoRA-V hot on left 4 columns, LoRA-S hot on
+      layout, LoRA-P hot on robot. Off-diagonal cells cool/cold, many below frozen
+      baseline.'
+    - 'Grouped bar chart: per-type success rate for each expert + universal + frozen,
+      clearly showing each specialist dominates its own types while failing on others.'
+    analysis: '最核心发现：cross-type 退化的幅度（最大 -20% vs frozen）与 own-type 提升幅度（最大 +20%） 几乎对称，说明
+      LoRA 学到的不是通用「鲁棒性」而是类型特异的校正映射。 Universal LoRA 在每个类型上都不如对应专家，差距最大的是 camera（-20）和
+      noise（-18）， 最小的是 layout（-12）。Layout 差距最小因为它是 Spatial 类的唯一子类型，universal LoRA  分配给
+      spatial 校正的有效容量比例相对较高。这为 Meta-Brain 的路由设计提供了直接动机： 如果能正确识别扰动类型并激活对应专家，就能同时获得所有类型上的最优校正。
+
+      '
+  - name: Meta-Brain assembly — PAR + LoRA bank E2E
+    plan_id: plan_003
+    description: 'Assemble PAR router (PaliGemma layer 6 MLP) + 3 frozen LoRA experts
+      with soft routing.  Fine-tune only PAR routing weights end-to-end on LIBERO-Plus
+      rollouts.
+
+      '
+    expected_results:
+      libero_plus_overall: 78.4
+      camera: 72.0
+      light: 78.0
+      background: 76.0
+      noise: 70.0
+      layout: 88.0
+      robot: 86.0
+      visual_avg: 74.0
+      spatial_avg: 88.0
+      physical_avg: 86.0
+      routing_diagonality: 0.92
+      par_visual_weight_on_lora_v: 0.91
+      par_spatial_weight_on_lora_s: 0.93
+      par_physical_weight_on_lora_p: 0.92
+      trainable_params_M: 6.1
+      routing_params_K: 48
+      gain_over_frozen: 24.8
+      gain_over_universal_lora: 13.6
+    result_rationale: 'PAR router 利用 Phase 0 已验证的 layer 6 激活信号（F1=0.993）进行软路由， routing
+      diagonality 达到 0.92 意味着 92% 的权重正确分配给目标专家。 剩余 8% 的"泄漏"实际上是有益的： (1) 部分扰动（如 background
+      clutter + 轻微 layout shift 同时出现）需要混合校正； (2) soft routing 的平滑梯度使得 PAR 在 E2E fine-tuning
+      中可以学到比 hard routing  更精细的权重配置。 整体 78.4% 低于各专家在 own-type 上的最优成绩的加权平均（~81%），差距来源：
+      (a) 8% 路由泄漏导致部分样本获得次优校正； (b) PAR fine-tuning 只调路由权重、冻结 LoRA，整体达不到联合训练的上界。 但
+      78.4% 已经比 universal LoRA 高 13.6%，证明路由带来的专家选择增益远超路由误差成本。 layout 和 robot 达到 88%
+      和 86%（接近 oracle 的 plan_002 数据），因为这两类是  单一子类型、PAR 分类难度最低。Visual 子类型（camera 72%、noise
+      70%）相对低一些， 因为 4 种视觉扰动之间存在一定混淆（noise vs camera 的 PAR 权重偶尔偏移）。
+
+      '
+    tables:
+    - name: Meta-Brain per-perturbation breakdown
+      columns:
+      - Perturbation
+      - Frozen
+      - Universal
+      - Meta-Brain
+      - Gain vs Frozen
+      - Gain vs Universal
+      rows:
+      - - camera
+        - 42.0
+        - 54.0
+        - 72.0
+        - '+30.0'
+        - '+18.0'
+      - - light
+        - 58.0
+        - 66.0
+        - 78.0
+        - '+20.0'
+        - '+12.0'
+      - - background
+        - 52.0
+        - 62.0
+        - 76.0
+        - '+24.0'
+        - '+14.0'
+      - - noise
+        - 46.0
+        - 54.0
+        - 70.0
+        - '+24.0'
+        - '+16.0'
+      - - layout
+        - 68.0
+        - 78.0
+        - 88.0
+        - '+20.0'
+        - '+10.0'
+      - - robot
+        - 56.0
+        - 74.0
+        - 86.0
+        - '+30.0'
+        - '+12.0'
+      - - Overall
+        - 53.6
+        - 64.8
+        - 78.4
+        - '+24.8'
+        - '+13.6'
+    figures_description:
+    - 'Architecture diagram: Frozen pi0 → PaliGemma layer 6 → PAR MLP → [p_V, p_S,
+      p_P] soft weights → LoRA-V/S/P bank → h_corrected = h_frozen + Σ p_k·LoRA_k(h).
+      Only PAR weights are trainable (48K params), LoRA experts frozen from plan_002.'
+    - 'Routing weight heatmap: 3×3 matrix (perturbation category × expert), near-diagonal
+      with 0.91-0.93 on diagonal, 0.03-0.05 off-diagonal. Color-coded to show PAR
+      correctly identifies perturbation type.'
+    - 'Per-perturbation grouped bar chart: 6 clusters (one per type), 3 bars each
+      (frozen/universal/meta-brain), showing consistent improvement across all types.'
+    analysis: '13.6% gain over universal LoRA 是 Claim 2 的核心数值。在参数量相同（6M = 3×2M  vs
+      1×2M + 相同总 rank budget 的另一种分配）甚至 Meta-Brain 用了 3 倍参数的情况下， 关键洞察不是「更多参数 = 更好」而是「路由后的容量利用率远高于混合训练」。
+      可做公平对比：rank-48 universal LoRA（与 3×rank-16 参数量相当）预期仍然饱和在 ~67%， 因为高 rank 并不能解决梯度冲突——这是
+      plan_005 ablation ladder 要验证的。
+
+      '
+  - name: Oracle routing ablation
+    plan_id: plan_004
+    description: 'Replace PAR with ground-truth perturbation labels for hard routing.  Measures
+      upper bound for routing quality.
+
+      '
+    expected_results:
+      oracle_overall: 79.6
+      oracle_camera: 74.0
+      oracle_light: 78.0
+      oracle_background: 78.0
+      oracle_noise: 72.0
+      oracle_layout: 88.0
+      oracle_robot: 88.0
+      oracle_par_gap: 1.2
+      oracle_par_gap_camera: 2.0
+      oracle_par_gap_light: 0.0
+      oracle_par_gap_background: 2.0
+      oracle_par_gap_noise: 2.0
+      oracle_par_gap_layout: 0.0
+      oracle_par_gap_robot: 2.0
+    result_rationale: 'Oracle-PAR gap 仅 1.2%，直接证明 Phase 0 的分类信号在下游任务中是 actionable
+      的。 Gap 主要来自 Visual 子类型（camera +2, background +2, noise +2），因为 PAR 在  4 种 Visual
+      子类型间存在少量混淆（~8% 路由泄漏），导致部分 Visual 样本获得了  LoRA-S/P 的轻微干扰。Layout 和 robot 的 gap
+      为 0-2%，因为这两类在 Phase 0  的分类准确率接近 100%（单一子类型、特征空间高度分离）。 1.2% gap 远小于 Meta-Brain
+      vs Universal LoRA 的 13.6% gain，这意味着即使路由  有少量误差，路由策略本身的收益也远大于误差带来的损失。 Oracle
+      79.6% 低于各专家 own-type 最优的简单加权平均（~81%），因为 oracle routing  是 hard routing（1-hot
+      权重），丢失了 soft routing 在某些混合扰动样本上的  blending 优势。这也解释了为什么 PAR 的 soft routing 在某些类型上能接近
+      oracle。
+
+      '
+    tables:
+    - name: Oracle vs PAR per-perturbation gap
+      columns:
+      - Perturbation
+      - PAR
+      - Oracle
+      - Gap
+      rows:
+      - - camera
+        - 72.0
+        - 74.0
+        - 2.0
+      - - light
+        - 78.0
+        - 78.0
+        - 0.0
+      - - background
+        - 76.0
+        - 78.0
+        - 2.0
+      - - noise
+        - 70.0
+        - 72.0
+        - 2.0
+      - - layout
+        - 88.0
+        - 88.0
+        - 0.0
+      - - robot
+        - 86.0
+        - 88.0
+        - 2.0
+      - - Overall
+        - 78.4
+        - 79.6
+        - 1.2
+    figures_description:
+    - 'Paired bar chart: PAR vs Oracle per perturbation type, gap annotations on top.
+      Visual types show small consistent gaps; Spatial/Physical nearly identical.'
+    analysis: '1.2% gap 是对 reviewer concern C1（「Phase 0 分类太简单，路由无用」）的最佳回应： 分类简单 ≠
+      路由无价值。分类简单意味着路由几乎免费获得正确性（zero overhead）， 而 13.6% 的 gain over universal 证明路由的价值在于下游校正，不在路由本身的难度。
+      Oracle gap 小反而是优势——说明 PAR 已经接近天花板，无需更复杂的路由器。
+
+      '
+  - name: Ablation ladder — Frozen → Universal → Meta-Brain → Oracle
+    plan_id: plan_005
+    description: 'Systematic comparison on LIBERO-Plus with 5 seeds. Core evidence
+      for Claim 2.
+
+      '
+    expected_results:
+      frozen_mean: 53.6
+      frozen_std: 1.4
+      universal_mean: 64.8
+      universal_std: 1.8
+      meta_brain_mean: 78.4
+      meta_brain_std: 1.6
+      oracle_mean: 79.6
+      oracle_std: 1.2
+      gain_frozen_to_universal: 11.2
+      gain_universal_to_meta_brain: 13.6
+      gain_meta_brain_to_oracle: 1.2
+      gain_frozen_to_meta_brain: 24.8
+      p_value_universal_vs_meta_brain: 0.0003
+      p_value_meta_brain_vs_oracle: 0.14
+    result_rationale: '5-seed 统计验证下，ablation ladder 呈现清晰的三级阶梯： (1) Frozen→Universal
+      (+11.2%): universal LoRA 提供了基础的扰动鲁棒性， 证明 PaliGemma 层的 LoRA adaptation 是有效的校正机制。标准差
+      1.8% 较高， 因为 universal LoRA 在不同 seed 下对不同扰动类型的容量分配方式不稳定（ 有时偏重 visual、有时偏重 spatial），导致
+      run-to-run 方差较大。 (2) Universal→Meta-Brain (+13.6%, p<0.001): 路由带来的增益甚至超过 universal
+      LoRA  自身 over frozen 的增益，统计显著。这是 Claim 2 最强的证据——同样的 LoRA capacity， 路由后的利用效率比混合使用高出一倍以上。Meta-Brain
+      的标准差 1.6% 低于 universal  的 1.8%，因为路由机制减少了容量分配的随机性。 (3) Meta-Brain→Oracle (+1.2%,
+      p=0.14): 差异不显著，证明 PAR 路由已接近上界。 这一不显著结果本身就是积极信号——说明无需 oracle 标签，Phase 0 分类足矣。
+
+      '
+    tables:
+    - name: Ablation ladder summary (5 seeds)
+      columns:
+      - Method
+      - Params
+      - Overall ± std
+      - Gain over Frozen
+      - Gain over Prev. Step
+      rows:
+      - - Frozen pi0
+        - '0'
+        - 53.6 ± 1.4
+        - —
+        - —
+      - - Universal LoRA (r16)
+        - ~2M
+        - 64.8 ± 1.8
+        - '+11.2'
+        - '+11.2'
+      - - Meta-Brain (PAR+ALB)
+        - ~6M
+        - 78.4 ± 1.6
+        - '+24.8'
+        - '+13.6'
+      - - Oracle routing
+        - ~6M
+        - 79.6 ± 1.2
+        - '+26.0'
+        - '+1.2'
+    - name: Per-perturbation ablation (mean over 5 seeds)
+      columns:
+      - Perturbation
+      - Frozen
+      - Universal
+      - Meta-Brain
+      - Oracle
+      rows:
+      - - camera
+        - 42.0
+        - 54.0
+        - 72.0
+        - 74.0
+      - - light
+        - 58.0
+        - 66.0
+        - 78.0
+        - 78.0
+      - - background
+        - 52.0
+        - 62.0
+        - 76.0
+        - 78.0
+      - - noise
+        - 46.0
+        - 54.0
+        - 70.0
+        - 72.0
+      - - layout
+        - 68.0
+        - 78.0
+        - 88.0
+        - 88.0
+      - - robot
+        - 56.0
+        - 74.0
+        - 86.0
+        - 88.0
+      - - Overall
+        - 53.6
+        - 64.8
+        - 78.4
+        - 79.6
+    figures_description:
+    - 'Bar chart (Figure 4 in paper): 4 bars per perturbation type + overall, ascending
+      Frozen→Universal→Meta-Brain→Oracle. Error bars from 5 seeds. Clear staircase
+      pattern; biggest jump is Universal→Meta-Brain.'
+    - 'Delta decomposition stacked bar: overall gain 26.0% (oracle over frozen) decomposed
+      into universal contribution (11.2), routing contribution (13.6), routing-perfection
+      headroom (1.2).'
+    analysis: 'Ablation ladder 的核心叙事：从 frozen 到 oracle 的 26.0% 总增益中， routing 贡献了 13.6%（52%），universal
+      adaptation 贡献了 11.2%（43%）， routing 精度 headroom 仅 1.2%（5%）。这意味着 perturbation-diagnostic
+      routing  不是边际优化，而是与 LoRA adaptation 本身同等量级的增益来源。 统计显著性分析确认 universal→meta-brain
+      的增益是 robust 的（p<0.001）， 而 meta-brain→oracle 的差异不显著（p=0.14），为 PAR 路由的实用性提供了严格支持。
+
+      '
+  - name: FTM/FLA reproduction on pi0
+    plan_id: plan_006
+    description: 'Reproduce FTM on pi0 for visual perturbations. Compare with Meta-Brain
+      on visual  and demonstrate Meta-Brain''s advantage on non-visual types.
+
+      '
+    expected_results:
+      ftm_camera: 70.0
+      ftm_light: 76.0
+      ftm_background: 72.0
+      ftm_noise: 68.0
+      ftm_visual_avg: 71.5
+      ftm_layout: 68.0
+      ftm_robot: 56.0
+      ftm_overall: 68.3
+      ftm_params_K: 4
+      meta_brain_visual_avg: 74.0
+      meta_brain_advantage_visual: 2.5
+      meta_brain_advantage_overall: 10.1
+      meta_brain_advantage_non_visual: 22.0
+    result_rationale: 'FTM 在 pi0 上的复现结果合理偏低于原论文（原论文用不同 backbone 且只报告视觉扰动）。 FTM 在 visual
+      子类型上达 71.5%（接近 LoRA-V 的 76.0%），说明 FTM 的 feature  modulation 策略确实能有效修复视觉损坏——这与
+      FTM 原论文的结论一致。 但 FTM 在 layout (68.0%) 和 robot (56.0%) 上几乎无增益或低于 universal LoRA，
+      因为 FTM 的设计假设扰动仅存在于视觉通道，其 modulation 无法处理空间关系和物理属性的变化。 Meta-Brain 在 visual 上略优于
+      FTM (+2.5%)，因为 LoRA-V 有更多参数（2M vs 4K） 可以学到更精细的校正。关键差异在非 visual 类型：Meta-Brain
+      在 layout+robot 上 平均 87.0% vs FTM 的 62.0%（+25.0%），这 25% 的差距直接论证了多类型校正的必要性。 FTM
+      的 4K 参数量在 per-param visual gain 上极其高效，但 scope-limited—— 这在 parameter efficiency
+      scatter plot (plan_007) 中会成为一个有趣的数据点。
+
+      '
+    tables:
+    - name: FTM vs Meta-Brain comparison
+      columns:
+      - Perturbation
+      - FTM (4K)
+      - Meta-Brain (6M)
+      - LoRA-V (2M)
+      - Universal (2M)
+      rows:
+      - - camera
+        - 70.0
+        - 72.0
+        - 74.0
+        - 54.0
+      - - light
+        - 76.0
+        - 78.0
+        - 80.0
+        - 66.0
+      - - background
+        - 72.0
+        - 76.0
+        - 78.0
+        - 62.0
+      - - noise
+        - 68.0
+        - 70.0
+        - 72.0
+        - 54.0
+      - - layout
+        - 68.0
+        - 88.0
+        - 60.0
+        - 78.0
+      - - robot
+        - 56.0
+        - 86.0
+        - 54.0
+        - 74.0
+      - - Overall
+        - 68.3
+        - 78.4
+        - 69.7
+        - 64.8
+    figures_description:
+    - 'Radar chart: 6 axes (perturbation types), overlaid polygons for FTM/Meta-Brain/Universal.
+      FTM polygon inflated in left 4 axes (visual) but deflated in right 2 (spatial/physical);
+      Meta-Brain polygon uniformly large.'
+    analysis: 'FTM 是一个重要的 baseline，因为它代表了「单模态专家」的最佳案例。 Meta-Brain 的价值主张不是在任何单一类型上打败
+      FTM，而是在所有类型上同时提供  强大校正——这正是 perturbation-diagnostic routing 的设计目标。 在论文中应将 FTM
+      定位为「visual-only routing 的上界参考」， 并强调 Meta-Brain 的 multi-type coverage 是其独特贡献。
+
+      '
+  - name: Parameter efficiency analysis
+    plan_id: plan_007
+    description: 'Compute gain-over-frozen per method, normalize by trainable params.  Generate
+      scatter plot (x=params, y=gain). Core visual evidence for Claim 3.
+
+      '
+    expected_results:
+      meta_brain_gain: 24.8
+      meta_brain_params_M: 6.1
+      meta_brain_gain_per_M: 4.07
+      meta_brain_with_cm_gain: 27.2
+      meta_brain_with_cm_params_M: 6.1
+      meta_brain_with_cm_gain_per_M: 4.46
+      universal_lora_gain: 11.2
+      universal_lora_params_M: 2.0
+      universal_lora_gain_per_M: 5.6
+      ftm_gain_overall: 14.7
+      ftm_params_M: 0.004
+      ftm_gain_per_M: 3675.0
+      vla_gse_gain: 27.6
+      vla_gse_params_M: 114.0
+      vla_gse_gain_per_M: 0.24
+      meta_brain_vs_vla_gse_param_ratio: 18.7
+      meta_brain_vs_vla_gse_gain_ratio: 0.9
+      meta_brain_pareto_optimal: true
+    result_rationale: 'Meta-Brain 的 gain/M-param = 4.07，是 VLA-GSE (0.24) 的 17 倍。 在
+      scatter plot 上 Meta-Brain 位于 Pareto 前沿的关键位置： (1) 相比 VLA-GSE：以 5.3% 的参数量达到 90%
+      的 gain，参数效率高 17x； (2) 相比 Universal LoRA：gain/M 虽低（4.07 vs 5.60），但绝对 gain 高 13.6%，
+      说明 3x 参数扩展用于路由（而非增大 rank）是高效的； (3) 相比 FTM：FTM 的 per-param efficiency 极高（3675
+      gain/M）但绝对 gain  受限于 visual-only scope，在 scatter plot 上位于右下角「高效率低总量」区域。 这三对比较构成
+      Claim 3 的完整论证：Meta-Brain 在「参数-增益」trade-off  空间中占据了 VLA-GSE 和 FTM 之间的最优区间。 VLA-GSE
+      的 gain 数据直接引自原论文（Qwen3-VL-4B backbone 上 frozen 53.6%→81.2%， gain=27.6%），跨 backbone
+      比较需在论文中注明 caveat。
+
+      '
+    tables:
+    - name: Parameter efficiency comparison
+      columns:
+      - Method
+      - Backbone
+      - Trainable Params
+      - Gain over Frozen
+      - Gain/M-param
+      rows:
+      - - FTM
+        - pi0
+        - 4K
+        - 14.7
+        - 3675.0
+      - - Universal LoRA (r16)
+        - pi0
+        - 2.0M
+        - 11.2
+        - 5.6
+      - - Meta-Brain
+        - pi0
+        - 6.1M
+        - 24.8
+        - 4.07
+      - - Meta-Brain + CM
+        - pi0
+        - 6.1M
+        - 27.2
+        - 4.46
+      - - VLA-GSE*
+        - Qwen3-VL-4B
+        - 114M
+        - 27.6
+        - 0.24
+    figures_description:
+    - 'Scatter plot (Figure 5 in paper): x-axis = trainable params (log scale, 1K
+      to 200M), y-axis = gain over frozen baseline (%). Points: FTM (bottom-left,
+      high slope from origin), Universal LoRA (mid-left), Meta-Brain (mid, star marker),
+      Meta-Brain+CM (mid, diamond), VLA-GSE (far right, asterisk with cross-backbone
+      caveat). Pareto front line through FTM→Meta-Brain→VLA-GSE. Meta-Brain clearly
+      on or near Pareto front. Dashed iso-efficiency lines (constant gain/M) for reference.'
+    analysis: 'Scatter plot 是 Claim 3 的视觉锚点。关键信息：在 log-scale x 轴上， Meta-Brain 距 VLA-GSE
+      向左一个数量级以上，但 y 轴差距很小（24.8 vs 27.6）。 论文应在图注中明确 VLA-GSE 使用不同 backbone（Qwen3-VL-4B），
+      并引导读者关注 gain-over-own-baseline 指标而非绝对值。 Universal LoRA 的数据点是重要的 in-backbone
+      参照——它证明仅增加参数（从 2M 到 6M） 不如增加路由（从 universal 到 routed），因为 rank-48 universal LoRA
+      预期仍 ~67%。
+
+      '
+  - name: Correction Memory ablation
+    plan_id: plan_008
+    description: 'Compare Meta-Brain with and without Correction Memory. CM modulates
+      routing  weights via retrieved exemplars. Quantify marginal gain.
+
+      '
+    expected_results:
+      meta_brain_no_cm: 78.4
+      meta_brain_with_cm: 80.8
+      cm_ablation_delta: 2.4
+      cm_delta_camera: 2.0
+      cm_delta_light: 2.0
+      cm_delta_background: 2.0
+      cm_delta_noise: 4.0
+      cm_delta_layout: 2.0
+      cm_delta_robot: 3.0
+      cm_alpha_learned: 0.18
+      cm_retrieval_latency_ms: 0.8
+      cm_faiss_index_size_MB: 12
+    result_rationale: 'CM 的 2.4% 增益来自两个机制： (1) 路由权重精修：对于 PAR 不确定的样本（routing entropy
+      较高）， CM 从 FAISS 检索到的 k-NN exemplar 提供了基于历史成功案例的权重校准， 将这些 borderline 样本推向正确专家。noise
+      类型获益最大（+4.0%）， 因为 sensor_noise 与 camera 扰动在激活空间中距离较近，PAR 在此区域 routing 不确定性最高，CM
+      的 exemplar matching 恰好能消除这一歧义。 (2) 校正强度调制：learned alpha=0.18 说明 CM 的权重修正幅度温和，
+      不会覆盖 PAR 的主信号，仅在需要时提供微调——这是「optional module」 定位的实验支撑。 CM 只增加 1 个可学习参数（alpha）+
+      CPU-bound FAISS 检索（0.8ms）， 对推理延迟几乎无影响，使其成为一个低风险的即插即用模块。 2.4% gain 在 [1, 4] 范围内，足以在论文中报告但不构成核心贡献——
+      这恰好是理想定位：CM 是额外加分项而非系统必要组件。
+
+      '
+    tables:
+    - name: CM ablation per-perturbation
+      columns:
+      - Perturbation
+      - w/o CM
+      - w/ CM
+      - CM Delta
+      rows:
+      - - camera
+        - 72.0
+        - 74.0
+        - '+2.0'
+      - - light
+        - 78.0
+        - 80.0
+        - '+2.0'
+      - - background
+        - 76.0
+        - 78.0
+        - '+2.0'
+      - - noise
+        - 70.0
+        - 74.0
+        - '+4.0'
+      - - layout
+        - 88.0
+        - 90.0
+        - '+2.0'
+      - - robot
+        - 86.0
+        - 89.0
+        - '+3.0'
+      - - Overall
+        - 78.4
+        - 80.8
+        - '+2.4'
+    figures_description:
+    - 'Paired bar chart: w/ and w/o CM for each perturbation type. CM gains highlighted
+      with delta annotations. Noise and robot types show largest improvements.'
+    - 'Scatter: per-sample routing entropy (x) vs CM-induced weight change magnitude
+      (y), showing CM intervenes most on high-entropy (uncertain) samples.'
+    analysis: 'CM 对 reviewer concern C6 的回应很清晰：2.4% gain with 1 learned param,  0.8ms
+      latency, 完全 optional。建议在论文中将 CM 放在 ablation section 而非  main method，避免给审稿人造成「系统过于复杂」的印象。
+      noise 类型的 +4% 增益可以作为 case study 展示 CM 的工作机制。
+
+      '
+  - name: Router architecture comparison
+    plan_id: plan_009
+    description: 'Compare PAR router variants: 2-layer MLP, linear classifier, attention-based.  All
+      on PaliGemma layer 6. Measure routing accuracy and downstream success.
+
+      '
+    expected_results:
+      mlp_routing_acc: 97.2
+      mlp_downstream: 78.4
+      mlp_params_K: 48
+      linear_routing_acc: 94.1
+      linear_downstream: 76.6
+      linear_params_K: 6
+      attention_routing_acc: 97.8
+      attention_downstream: 78.8
+      attention_params_K: 196
+      mlp_vs_linear_downstream_gap: 1.8
+      mlp_vs_attention_downstream_gap: -0.4
+    result_rationale: '三种路由器的性能梯度与 Phase 0 的分类难度分析一致： (1) Linear (94.1% → 76.6%):
+      线性可分性已经很强（Phase 0 证实 layer 6 的类别边界 几乎线性），但 ~6% 的误差集中在 Visual 子类型间的边界区域（noise
+      vs camera）， 导致下游 1.8% 的性能损失。线性模型只有 6K params，极其轻量。 (2) MLP (97.2% → 78.4%):
+      两层 MLP 捕捉到非线性边界，将路由误差压缩到 2.8%， 在参数效率（48K）和性能间取得最佳平衡。48K 相对于 6M LoRA params 可忽略不计。
+      (3) Attention (97.8% → 78.8%): attention 机制可以利用 token 间关系进行路由， 略优于 MLP (+0.6%
+      routing, +0.4% downstream)，但参数量增加 4x（196K）， 增益不具统计显著性。 MLP 是论文默认选择的合理性得到验证：比
+      linear 明显好、与 attention 实质等价、 参数最经济。
+
+      '
+    tables:
+    - name: Router architecture comparison
+      columns:
+      - Router
+      - Params
+      - Routing Acc (%)
+      - Downstream (%)
+      - Δ vs MLP
+      rows:
+      - - Linear
+        - 6K
+        - 94.1
+        - 76.6
+        - '-1.8'
+      - - 2-layer MLP (default)
+        - 48K
+        - 97.2
+        - 78.4
+        - —
+      - - Attention-based
+        - 196K
+        - 97.8
+        - 78.8
+        - '+0.4'
+    figures_description:
+    - 'Small dual-axis bar chart: routing accuracy (left axis) and downstream success
+      (right axis) for 3 router types. Shows diminishing returns beyond MLP.'
+    analysis: '这个实验回答了一个隐含问题：路由器复杂度如何影响整体系统？ 答案是：影响极小。94.1→97.2% 的路由精度提升带来 1.8% 下游增益，
+      但 97.2→97.8% 的进一步提升仅带来 0.4%。这是因为 Phase 0 分类本身很容易， 简单模型已足够——与 reviewer concern
+      C1 的回应一致。 建议在 appendix 报告此结果，主文只提 MLP 作为默认配置。
+
+      '
+  - name: 6-class vs 3-class routing comparison
+    plan_id: plan_010
+    description: 'Compare 6-class fine-grained routing (6 LoRA experts) vs 3-class
+      coarse routing  (3 experts). Test whether finer granularity justifies additional
+      parameters.
+
+      '
+    expected_results:
+      three_class_overall: 78.4
+      three_class_params_M: 6.1
+      six_class_overall: 79.4
+      six_class_params_M: 12.2
+      marginal_gain: 1.0
+      marginal_gain_per_additional_expert: 0.33
+      six_class_camera: 74.0
+      six_class_light: 80.0
+      six_class_background: 78.0
+      six_class_noise: 74.0
+      six_class_layout: 88.0
+      six_class_robot: 82.0
+      six_class_routing_acc: 96.8
+      intra_visual_gain: 1.5
+      spatial_physical_gain: -0.7
+    result_rationale: '6-class routing 仅带来 1.0% 的边际增益，原因： (1) Phase 0 已显示 intra-Visual
+      子类型之间的特征距离远小于 inter-category 距离， 6-class 在 Visual 子类型间的路由精度（96.8%）略低于 3-class（97.2%），
+      说明更细的边界带来了更多的路由噪声； (2) Visual 子类型的校正模式确实有差异（camera 需要修复 color/geometry 畸变， noise
+      需要去噪平滑），所以 6 个专家在 Visual 上略优 (+1.5%)， 但这一增益被 spatial/physical 的轻微退化 (-0.7%)
+      部分抵消—— 6-class 中 layout 和 robot 各自只有一个专家（与 3-class 相同）， 但 router 增加了 4 个 Visual
+      类别输出后 softmax 分母增大， 导致 layout/robot 的 routing confidence 略降； (3) 6 个 LoRA 专家的参数量翻倍（12.2M），但增益仅
+      1.0%， gain/additional-param 极低（0.33%/expert vs 3-class 的 4.07 gain/M）。 结论：3-class
+      taxonomy 在效率-性能 trade-off 上是最优粒度， 与 Phase 0 的 mechanistic 分析（early/mid/late
+      layers 对应 Visual/Spatial/Physical）一致。
+
+      '
+    tables:
+    - name: 6-class vs 3-class per-perturbation
+      columns:
+      - Perturbation
+      - 3-class
+      - 6-class
+      - Delta
+      rows:
+      - - camera
+        - 72.0
+        - 74.0
+        - '+2.0'
+      - - light
+        - 78.0
+        - 80.0
+        - '+2.0'
+      - - background
+        - 76.0
+        - 78.0
+        - '+2.0'
+      - - noise
+        - 70.0
+        - 74.0
+        - '+4.0'
+      - - layout
+        - 88.0
+        - 88.0
+        - '0.0'
+      - - robot
+        - 86.0
+        - 82.0
+        - '-4.0'
+      - - Overall
+        - 78.4
+        - 79.4
+        - '+1.0'
+    figures_description:
+    - 'Grouped bar chart: 3-class vs 6-class per type. Visual types show small gains;
+      robot shows slight regression. Annotations: total param cost for each configuration.'
+    analysis: '这个结果直接回应 reviewer concern C5（3-class 是否太粗）： 答案是「对当前任务集合，3-class 是 sweet
+      spot」。论文应在 discussion 中  承认 6-class 在某些 Visual 子类型上有额外区分度，但将 3-class 定位为  Occam''s
+      razor 选择。robot 类的 -4% 退化值得关注——可能是因为 6 个 softmax  输出中 robot 的 prior probability
+      被稀释。如果 LIBERO-Plus 扩展更多物理扰动 子类型，6-class 或更细的 taxonomy 可能变得必要。
+
+      '
+  - name: Cross-backbone validation — OpenVLA
+    plan_id: plan_011
+    description: 'Replicate Phase 0 + Phase 1 core pipeline on OpenVLA to test generalizability  of
+      perturbation-diagnostic routing across architectures.
+
+      '
+    expected_results:
+      cross_backbone: OpenVLA (SigLIP + Llama-2-7B)
+      phase0_3class_f1: 0.972
+      phase0_best_layer: 8
+      phase0_pooling: mean
+      openvla_frozen_overall: 48.2
+      openvla_universal_lora_overall: 58.6
+      openvla_meta_brain_overall: 70.4
+      openvla_gain_over_frozen: 22.2
+      openvla_gain_over_universal: 11.8
+      openvla_oracle_overall: 71.8
+      openvla_oracle_par_gap: 1.4
+      openvla_routing_diagonality: 0.89
+    result_rationale: 'OpenVLA 上的复现确认 perturbation-diagnostic routing 是跨架构通用的： (1)
+      Phase 0 F1=0.972（略低于 pi0 的 0.993）：OpenVLA 使用 SigLIP（非 PaliGemma） 作为视觉编码器，最佳层从
+      layer 6 移至 layer 8，但分类精度依然极高。 这与 SAFE 论文在 OpenVLA 上的 probing 结果一致，进一步支持「VLA
+      内部表征  普遍编码扰动类型信息」的核心假说。 (2) gain over frozen = 22.2%（pi0 上为 24.8%）：绝对增益略低，因为
+      OpenVLA  的 frozen baseline 更低（48.2% vs 53.6%），说明 OpenVLA 本身对扰动更脆弱， 校正难度更大。但
+      gain 仍在 best-tier 范围 [22, 28] 的低端。 (3) gain over universal = 11.8%（pi0 上为 13.6%）：路由增益在
+      OpenVLA 上  同样显著，确认了 Claim 2 的跨架构有效性。 (4) Oracle-PAR gap = 1.4%（pi0 上为 1.2%）：略大但仍在
+      [0, 2] 内， 与 Phase 0 F1 略低（0.972 vs 0.993）一致。 OpenVLA 的较低绝对性能可归因于其较小的视觉编码器容量和不同的训练数据分布。
+
+      '
+    tables:
+    - name: Cross-backbone comparison
+      columns:
+      - Metric
+      - pi0 (PaliGemma)
+      - OpenVLA (SigLIP)
+      rows:
+      - - Phase 0 3-class F1
+        - 0.993
+        - 0.972
+      - - Best probe layer
+        - 6
+        - 8
+      - - Frozen baseline (%)
+        - 53.6
+        - 48.2
+      - - Universal LoRA (%)
+        - 64.8
+        - 58.6
+      - - Meta-Brain (%)
+        - 78.4
+        - 70.4
+      - - Oracle (%)
+        - 79.6
+        - 71.8
+      - - Gain over frozen
+        - 24.8
+        - 22.2
+      - - Gain over universal
+        - 13.6
+        - 11.8
+      - - Oracle-PAR gap
+        - 1.2
+        - 1.4
+      - - Routing diagonality
+        - 0.92
+        - 0.89
+    figures_description:
+    - Side-by-side ablation ladder bars for pi0 and OpenVLA, showing parallel staircase
+      pattern despite different absolute values. Gain-over-frozen annotations highlight
+      comparable relative improvements.
+    analysis: '跨 backbone 验证是应对 reviewer concern C3 的关键实验。 尽管绝对数值不同（OpenVLA 整体低 ~8%），增益模式高度一致：
+      universal→meta-brain 的 gain 在两个 backbone 上分别为 13.6% 和 11.8%， routing diagonality
+      分别为 0.92 和 0.89——都远高于 random baseline (0.33)。 Phase 0 的最佳层从 layer 6 (PaliGemma)
+      移至 layer 8 (SigLIP) 符合预期： 不同视觉编码器的信息编码深度不同，但扰动类型信息的可提取性是通用的。 论文中应以 gain-over-baseline
+      为主要比较指标，避免直接对比绝对值。
+
+      '
+  - name: LoRA layer placement ablation
+    plan_id: plan_012
+    description: 'Vary which PaliGemma layers receive LoRA. Test whether optimal layer
+      placement  differs by perturbation type (early for Visual, mid for Spatial,
+      late for Physical).
+
+      '
+    expected_results:
+      lora_v_early_2_8: 77.2
+      lora_v_mid_6_12: 72.8
+      lora_v_late_12_18: 68.4
+      lora_v_all: 76.0
+      lora_s_early_2_8: 82.0
+      lora_s_mid_6_12: 91.4
+      lora_s_late_12_18: 86.0
+      lora_s_all: 90.0
+      lora_p_early_2_8: 78.0
+      lora_p_mid_6_12: 82.0
+      lora_p_late_12_18: 89.2
+      lora_p_all: 88.0
+      optimal_v: early (layers 2-8)
+      optimal_s: mid (layers 6-12)
+      optimal_p: late (layers 12-18)
+      type_aligned_overall: 80.2
+      all_layers_overall: 78.4
+      type_aligned_gain_over_all_layers: 1.8
+    result_rationale: '层放置的最优分布与 VLA 处理扰动的 mechanistic 假设高度吻合： (1) LoRA-V 最优在 early
+      layers (2-8): Visual 扰动（camera/light/background/noise） 在视觉编码阶段损坏表征，early layers
+      是信号最先被破坏的地方， 在此处施加 LoRA 校正效率最高。LoRA-V 在 late layers 仅 68.4%（接近 universal LoRA），
+      因为视觉损坏在传播到高层后已经耦合到语义表征中，难以局部修复。 (2) LoRA-S 最优在 mid layers (6-12): Spatial 扰动改变物体空间关系，
+      这类信息在 mid layers 被编码为 spatial token relationships。 LoRA-S 在 mid layers 达 91.4%（超过
+      all-layers 的 90.0%）， 说明集中校正比分散校正更有效——避免了 early/late layers 的无用更新。 (3) LoRA-P
+      最优在 late layers (12-18): Physical 扰动影响动力学属性， 这些信息在高层被整合为 action planning 信号。LoRA-P
+      在 late layers 达 89.2%。 Type-aligned 配置（每个专家放在最优层区间）比 all-layers 配置高 1.8%， 同时每个专家的参数量减少
+      ~60%（仅覆盖 6 层而非 18 层）。 这为更极致的参数效率提供了方向，但增加了系统复杂度。
+
+      '
+    tables:
+    - name: Layer placement × expert type (own-type success rate %)
+      columns:
+      - Expert
+      - Early (2-8)
+      - Mid (6-12)
+      - Late (12-18)
+      - All layers
+      rows:
+      - - LoRA-V (Visual)
+        - 77.2
+        - 72.8
+        - 68.4
+        - 76.0
+      - - LoRA-S (Spatial)
+        - 82.0
+        - 91.4
+        - 86.0
+        - 90.0
+      - - LoRA-P (Physical)
+        - 78.0
+        - 82.0
+        - 89.2
+        - 88.0
+    - name: System-level layer placement comparison
+      columns:
+      - Configuration
+      - Params/expert
+      - Visual
+      - Spatial
+      - Physical
+      - Overall
+      rows:
+      - - All layers (default)
+        - ~2.0M
+        - 76.0
+        - 90.0
+        - 88.0
+        - 78.4
+      - - Type-aligned layers
+        - ~0.8M
+        - 77.2
+        - 91.4
+        - 89.2
+        - 80.2
+    figures_description:
+    - '3×3 heatmap: expert rows × layer-group columns, cell values = own-type success
+      rate. Clear diagonal pattern (V-early, S-mid, P-late) with highest values along
+      the diagonal.'
+    analysis: 层放置 ablation 提供了 mechanistic insight 而非直接的系统设计改进。 对角模式（V-early, S-mid,
+      P-late）与 VLA 的分层信息处理模型一致， 为 Phase 0 的单层分类结果提供了因果方向的支持：layer 6 能区分扰动类型， 因为不同类型的信息损坏恰好在该层汇聚/分离。
+      Type-aligned 配置带来 1.8% 增益和 60% 参数节省，但增加了工程复杂度 （需要为每个专家配置不同的层 mask）。建议在论文 appendix
+      中作为  「进一步优化方向」报告，主系统保持 all-layers 的简洁配置。
+  review_report: "---\ndream_id: dream_20260515T154653\ntier: best\noverall_score:\
+    \ \ntimestamp: 2026-05-15T16:36:24.043010+00:00\n---\n\n# Dream Review Report:\
+    \ Meta-Brain\n\n**Paper:** Meta-Brain: Perturbation-Diagnostic Routing of LoRA\
+    \ Experts for Parameter-Efficient VLA Robustness\n**Venue:** CoRL 2026\n**Review\
+    \ Mode:** Full (2 Reviewers, 4-Step Roundtable)\n**Date:** 2026-05-15\n\n---\n\
+    \n## Venue Calibration\n\n**CoRL 2026** — Conference on Robot Learning\n- Rating\
+    \ scale: 1–10 (10=top 5% seminal; 9=strong accept top 15%; 8=clear accept top\
+    \ 50%; 7=good paper accept; 6=marginally above threshold; 5=marginally below;\
+    \ 4=not good enough reject; 3=clear reject)\n- Acceptance rate: ~30–35%\n- Key\
+    \ criteria: significance/novelty of results, objective establishment of results,\
+    \ potential for scientific/technological impact, relevance to robot learning\n\
+    \n---\n\n## Step 1: Independent Reviews\n\n### Reviewer 1 (R1): Methods + Experiments\n\
+    \n#### Summary\nThe paper proposes Meta-Brain, a modular framework that diagnoses\
+    \ perturbation type from frozen VLA internal activations (PaliGemma layer 6, F1=0.993)\
+    \ and routes to type-specialized LoRA experts. On LIBERO-Plus, it achieves 78.4%\
+    \ with 6.1M params, +13.6% over universal LoRA (p<0.001). The paper presents 11\
+    \ experiments across 13 tables with 5-seed evaluation.\n\n#### Strengths\n- **S1:\
+    \ Well-motivated architecture.** Phase 0 diagnosis (F1=0.993 from a single frozen\
+    \ layer) is a genuinely interesting empirical finding that provides a clean mechanistic\
+    \ foundation for routing.\n- **S2: Thorough ablation ladder with appropriate statistics.**\
+    \ The Frozen→Universal→Meta-Brain→Oracle progression is convincing. 5-seed evaluation\
+    \ with paired t-tests (p<0.001) and non-significant oracle gap (p=0.14) are appropriate.\
+    \ The decomposition (routing contributes 52% of total gain) is a clear narrative.\n\
+    - **S3: Expert cross-evaluation matrix (Table 1).** The symmetric specialization/degradation\
+    \ pattern (+12–20% on own types, up to −20% on off-types) directly demonstrates\
+    \ incompatible correction patterns across perturbation categories.\n- **S4: Comprehensive\
+    \ ablation coverage.** 11 experiments spanning expert specialization, ablation\
+    \ ladder, oracle routing, FTM comparison, parameter efficiency, CM ablation, router\
+    \ architecture, routing granularity, cross-backbone, and layer placement. Unusually\
+    \ thorough for a 9-page paper.\n- **S5: Layer placement ablation provides mechanistic\
+    \ insight.** The diagonal pattern (V-early, S-mid, P-late) is consistent with\
+    \ layered information processing in VLAs.\n- **S6: Cross-backbone validation on\
+    \ OpenVLA.** Consistent gain patterns on a different architecture (SigLIP+Llama-2-7B)\
+    \ strengthens generality claims.\n\n#### Weaknesses\n- **W1 (Major): Parameter\
+    \ comparison is unfair.** Meta-Brain (6.1M) vs Universal LoRA (2M) is a 3x parameter\
+    \ gap. The critical missing control is a rank-48 universal LoRA (~6M params) that\
+    \ matches Meta-Brain's total budget. Without this, Claim 2 (\"targeted > uniform\"\
+    ) is confounded by parameter advantage.\n- **W2 (Major): Random routing baseline\
+    \ missing.** The experiment plan (plan_005) explicitly includes random routing\
+    \ as a falsification test for Claim 2, but it is omitted from the paper. Without\
+    \ it, the benefit of intelligent routing cannot be separated from the ensemble\
+    \ effect of having multiple experts.\n- **W3 (Major): Cross-backbone VLA-GSE comparison\
+    \ confounded.** The headline \"19x fewer params\" compares across different backbones\
+    \ (pi0 vs Qwen3-VL-4B). The abstract and conclusion present this as a primary\
+    \ result despite the caveat. The comparison should be explicitly framed as indirect/suggestive.\n\
+    - **W4 (Moderate): All success rates are even integers.** Every result is a multiple\
+    \ of 2.0 (42, 44, 46, …, 88, 90). This suggests either very low episode counts\
+    \ (e.g., 50 episodes per condition producing 2% granularity), post-hoc rounding,\
+    \ or a modeling artifact. The paper does not disclose episode counts.\n- **W5\
+    \ (Moderate): Mean-pooled vs first-token pooling inconsistency.** Section 3.2\
+    \ states PAR uses \"mean-pooled layer-6 activations,\" but the project decision\
+    \ log (D006) records adoption of first-token pooling (F1=1.000 vs mean pooling\
+    \ 0.978). Actual method used is unclear.\n- **W6 (Moderate): Single benchmark\
+    \ (LIBERO-Plus), simulation-only.** Standard for the venue but limits generalizability\
+    \ claims. The 3-class taxonomy is tailored to LIBERO-Plus's specific perturbation\
+    \ set.\n- **W7 (Minor): CM adds complexity for modest +2.4% gain.** FAISS index\
+    \ + deployment assumption (curated exemplar bank) for a gain within noise on most\
+    \ perturbation types.\n- **W8 (Minor): \"Overall\" success rate gives 4/6 weight\
+    \ to visual types.** The simple average across 6 perturbation types (4 visual,\
+    \ 1 spatial, 1 physical) biases toward visual performance without discussion.\n\
+    \n#### Missing Experiments (by priority)\n1. **(Critical)** Parameter-matched\
+    \ universal LoRA (rank-48, ~6M params)\n2. **(Critical)** Random routing baseline\n\
+    3. **(Important)** Clean/unperturbed LIBERO evaluation (does routing hurt baseline\
+    \ performance?)\n4. **(Important)** Latency/throughput analysis (soft routing\
+    \ requires all 3 expert outputs)\n5. **(Desirable)** Mixed/compound perturbation\
+    \ evaluation\n6. **(Desirable)** Per-seed variance for all per-perturbation tables\n\
+    \n#### Minor Issues\n1. Incomplete bibliography (MoIRA, CORAL, LoRA-SP mentioned\
+    \ without citations)\n2. E2E training objective unspecified — how do gradients\
+    \ flow through soft routing weights to PAR?\n3. Cross-type degradation claim misleading\
+    \ — \"up to −20% vs frozen\" is actually specialist-on-off-type vs own-type, not\
+    \ vs frozen\n4. Table 6: \"close to LoRA-V's 76.0%\" understates a 4.5pp gap\n\
+    5. Contribution 3 claims \"systematic design-dimension analysis\" but only provides\
+    \ one parameter-efficiency table\n\n---\n\n### Reviewer 2 (R2): Novelty + Related\
+    \ Work\n\n#### Summary\nSame paper summary. R2 focuses on whether the contribution\
+    \ is novel given the existing MoE/LoRA literature and whether the related work\
+    \ adequately positions the paper.\n\n#### Strengths\n- **S1: Core insight well-motivated.**\
+    \ The \"close the loop\" framing — SAFE detects but doesn't correct, Meta-Brain\
+    \ does both — is clean positioning.\n- **S2: Thorough experimental design within\
+    \ scope.** The ablation decomposition (routing 52%, LoRA 43%, headroom 5%) is\
+    \ informative and clearly presented.\n- **S3: Cross-backbone validation.** Demonstrating\
+    \ consistent patterns on OpenVLA goes beyond what most single-paper contributions\
+    \ provide.\n- **S4: Well-structured narrative.** Logical flow from diagnosis to\
+    \ architecture to experiments. 13 tables, while dense, each serves a clear purpose.\n\
+    \n#### Weaknesses\n- **W1 (Major): Limited novelty.** The architecture is a composition\
+    \ of well-known components: linear probe (standard since Alain & Bengio 2017),\
+    \ soft MoE routing (standard gating), LoRA experts (standard PEFT). The \"perturbation\
+    \ type as routing dimension\" is an application insight, not a methodological\
+    \ advance. The routing mechanism (MLP on intermediate features → softmax → weighted\
+    \ sum) is identical to standard MoE gating. Novelty lies in *what signal* drives\
+    \ routing, not *how* routing works.\n- **W2 (Major): Severely incomplete related\
+    \ work — only 8 references.** Missing citations include:\n  - Mixture-of-LoRA:\
+    \ LoRAMoE, MoLoRA, MixLoRA, MOELoRA, LoRA-Switch\n  - Adapter composition: AdapterFusion,\
+    \ Poly, AdaMix\n  - Test-time adaptation: TENT, TTT\n  - Foundations: PaliGemma\
+    \ [Beyer et al.], linear probing [Alain & Bengio], MoE [Shazeer et al.]\n  - Original\
+    \ LIBERO benchmark\n  - MoIRA, CORAL, LoRA-SP (mentioned by name but uncited)\n\
+    \  \n  8 references is far below CoRL norms (~30-50). This creates the impression\
+    \ the authors have not engaged with the broader literature.\n- **W3 (Major): Cross-backbone\
+    \ VLA-GSE comparison confounded.** Same concern as R1-W3. The \"19x fewer params\"\
+    \ headline is misleading across different backbones.\n- **W4 (Major): Three \"\
+    contributions\" are one repackaged.** Contribution 1 (diagnosability) is a prerequisite\
+    \ observation. Contribution 2 (the system) is the actual method. Contribution\
+    \ 3 (parameter efficiency) is a consequence. These are setup, method, and property\
+    \ — not three independent contributions.\n- **W5 (Moderate): Routing setting too\
+    \ easy.** F1=0.993 (or 1.000 with first-token) raises the question: if types are\
+    \ so trivially separable, can a sufficiently large universal adapter learn implicit\
+    \ decomposition without explicit routing? Missing rank-48 baseline is the key\
+    \ test.\n- **W6 (Moderate): Sim-only. 3-class taxonomy is LIBERO-Plus-specific.**\
+    \ Real-world perturbations are continuous and co-occurring, not categorical and\
+    \ isolated.\n- **W7 (Minor): CM adds complexity for modest gain.** Same as R1-W7.\n\
+    \n#### Missing References (expanded list)\n| Category | Missing Works |\n|----------|--------------|\n\
+    | MoE-LoRA | LoRAMoE, MoLoRA, MixLoRA, MOELoRA, LoRA-Switch |\n| Adapter composition\
+    \ | AdapterFusion, Poly, AdaMix |\n| Test-time adaptation | TENT, TTT |\n| Probing\
+    \ foundations | Alain & Bengio 2017, Belinkov 2022 survey |\n| MoE fundamentals\
+    \ | Shazeer et al. 2017, Fedus et al. 2022 |\n| VLA/vision | PaliGemma [Beyer\
+    \ et al. 2024], original LIBERO |\n| Cited without refs | MoIRA, CORAL, LoRA-SP\
+    \ |\n\n#### Minor Issues\n1. No architecture figure (described in text only; standard\
+    \ for CoRL papers to include)\n2. No t-SNE/feature visualization of perturbation\
+    \ clusters in activation space\n3. Concurrent submission citations (LIBERO-Plus\
+    \ CVPR 2026, VLA-GSE CoRL 2026) require care\n4. All results suspiciously even\
+    \ integers (same as R1-W4)\n5. Overall average discrepancy: (42+58+52+46+68+56)/6\
+    \ = 53.67, not 53.6\n\n---\n\n## Step 2: Cross-Sharing\n\n### R1 reacting to R2\n\
+    \n**Agrees with:**\n- R2-W2 (Incomplete related work): R1 already flagged 3 missing\
+    \ citations; R2's expanded list of 15+ would make R1 upgrade this from \"minor\"\
+    \ to \"moderate/major.\"\n- R2-W4 (Three contributions = one): R1's review implicitly\
+    \ treats this as one system contribution. Would agree the paper overclaims.\n\
+    - R2-W5 (Routing too easy → need rank-48): Directly aligns with R1-M1.\n\n**Pushes\
+    \ back on:**\n- R2-W1 (Limited novelty): R1 credits mechanistic insight (S5) and\
+    \ views the system-level contribution as valid for CoRL. Would argue that CoRL\
+    \ values systems and empirical contributions, and the novelty bar should account\
+    \ for execution quality.\n- R2's downgrading of cross-backbone validation: R1\
+    \ views OpenVLA results as informative even if quantitative comparison is invalid.\n\
+    \n### R2 reacting to R1\n\n**Agrees with:**\n- R1-W1 (Parameter-unfair comparison):\
+    \ Strongly reinforces R2-W5.\n- R1-W2 (Missing random routing): Directly tests\
+    \ R2's core concern about whether routing signal matters or ensemble effect suffices.\n\
+    - R1-W4 (Even integer results): Shared concern about evaluation credibility.\n\
+    - R1-M3 (Clean evaluation) and R1-M4 (Latency): Both important for practical deployment\
+    \ story.\n\n**Pushes back on:**\n- R1-S5 (Layer placement as mechanistic insight):\
+    \ R2 views this as hyperparameter search, not mechanistic insight. Lacks representation\
+    \ analysis or gradient attribution to earn the \"insight\" label.\n- R1-S6 (Cross-backbone\
+    \ as strength): Confounded comparison cannot be credited positively.\n\n### Key\
+    \ emergent insight\nThe missing rank-48 universal LoRA experiment is the single\
+    \ most load-bearing experiment for the paper's fate. It is relevant to both R1's\
+    \ experimental fairness concern AND R2's novelty concern. If rank-48 universal\
+    \ matches Meta-Brain, both the experimental claim (routing helps) and the novelty\
+    \ claim (routing is the contribution) collapse simultaneously.\n\n---\n\n## Step\
+    \ 3: Convergence\n\n### Agreed Strengths\n| ID | Strength | Both? |\n|----|----------|-------|\n\
+    | AS1 | Clear problem motivation, coherent narrative, clean \"detect-and-correct\"\
+    \ framing | Yes |\n| AS2 | Thorough ablation design (11 experiments, 13 tables,\
+    \ 5 seeds, statistical tests) | Yes |\n| AS3 | Expert cross-evaluation matrix\
+    \ (Table 1) convincingly demonstrates type-specific corrections | Yes |\n| AS4\
+    \ | Cross-backbone attempt on OpenVLA (qualitative generality signal) | Partial\
+    \ — R1 stronger |\n\n### Agreed Weaknesses\n| ID | Weakness | Severity | Addressable?\
+    \ |\n|----|----------|----------|-------------|\n| AW1 | Parameter-unfair baselines\
+    \ (6M vs 2M, no rank-48 control) | **Critical** | Yes — 1-2 days compute. But\
+    \ if rank-48 matches Meta-Brain, paper's core claim collapses. |\n| AW2 | Missing\
+    \ random routing baseline | **Critical** | Yes — trivial to implement. If random\
+    \ routing ≈ Meta-Brain, story breaks. |\n| AW3 | Confounded cross-backbone VLA-GSE\
+    \ comparison → misleading \"19x\" headline | **Major** | Partially — can reframe\
+    \ claims, but same-backbone VLA-GSE requires significant compute. |\n| AW4 | Severely\
+    \ incomplete related work (8 refs, 15+ missing) | **Major** | Yes — writing fix.\
+    \ But suggests limited literature engagement. |\n| AW5 | Suspicious evaluation\
+    \ statistics (all even integers, no episode counts disclosed) | **Moderate** |\
+    \ Yes — disclose counts, may reveal underpowered evaluation. |\n| AW6 | Single\
+    \ simulated benchmark, no real-robot data | **Moderate** | No — requires hardware\
+    \ + significant time. Standard limitation for venue. |\n| AW7 | Internal inconsistencies\
+    \ (mean-pool vs first-token, rounding, uncited refs in text) | **Minor** | Yes\
+    \ — proofreading. |\n\n### Disputed Points\n| Point | R1 Position | R2 Position\
+    \ | AC Assessment |\n|-------|------------|------------|---------------|\n| Novelty\
+    \ sufficiency | Systems contribution valid for CoRL; novelty in execution | Straightforward\
+    \ composition; application insight, not method advance | R2's concern is legitimate\
+    \ but CoRL values empirical systems work. Novelty alone does not sink the paper\
+    \ IF experiments are strong — which they currently are not (AW1-AW2). |\n| Cross-backbone\
+    \ validation | Strength (S6) | Confounded, cannot credit | Qualitative applicability\
+    \ = minor strength; quantitative comparison = weakness. Net mild positive. |\n\
+    | Layer placement finding | Mechanistic insight (S5) | Hyperparameter search |\
+    \ Both — useful observation but lacks causal evidence. Mild positive. |\n| Contribution\
+    \ framing | Acceptable (3 claims well-supported) | Inflated (1 contribution ×3)\
+    \ | R2 is correct that these are not independent contributions. Mild negative\
+    \ for paper quality. |\n\n---\n\n## Step 4: Synthesis — Final Scores and Recommendation\n\
+    \n### R1 Final Score: **5** (Marginally below acceptance threshold)\n\n**Rationale:**\
+    \ The experimental design is methodologically sound in structure (5 seeds, ablation\
+    \ ladder, statistical tests), and the ablation coverage is unusually thorough.\
+    \ However, two critical missing controls (rank-48 universal LoRA and random routing)\
+    \ prevent the paper from establishing its core claim that routing — rather than\
+    \ additional parameters or ensemble effects — drives the improvement. The confounded\
+    \ VLA-GSE comparison further weakens the headline result. The evaluation statistics\
+    \ raise credibility concerns. These are fixable issues, but in the paper's current\
+    \ form, the evidence does not support the claims.\n\n### R2 Final Score: **4**\
+    \ (Not good enough — rejection)\n\n**Rationale:** The contribution is a natural\
+    \ composition of well-established techniques (linear probing, MoE gating, LoRA)\
+    \ applied to a specific routing dimension (perturbation type). While the instantiation\
+    \ is reasonable, the methodological novelty is limited. The severely incomplete\
+    \ bibliography (8 references, multiple uncited mentions) indicates insufficient\
+    \ engagement with the extensive MoE-LoRA and adapter composition literature. Even\
+    \ if the missing experiments favor Meta-Brain, the contribution remains an application-level\
+    \ insight rather than a generalizable method advance. Combined with the experimental\
+    \ gaps identified by R1, the paper falls below the CoRL acceptance bar.\n\n###\
+    \ AC Consensus Score: **4–5** (Reject)\n\n### Overall Recommendation: **Reject**\n\
+    \n### Decision Rationale\nThe paper addresses a relevant problem (VLA robustness\
+    \ under environmental perturbations) with a reasonable approach (perturbation-diagnostic\
+    \ routing of LoRA experts). The Phase 0 finding (F1=0.993 from a single frozen\
+    \ layer) is a genuinely interesting empirical observation. The experimental design\
+    \ is ambitious in scope (11 experiments, 13 tables).\n\nHowever, the paper has\
+    \ two critical experimental gaps that prevent it from establishing its central\
+    \ claim:\n1. The comparison between Meta-Brain (6.1M params) and Universal LoRA\
+    \ (2M params) confounds routing benefit with a 3x parameter advantage. A rank-48\
+    \ universal LoRA (~6M) is the essential missing control.\n2. The random routing\
+    \ baseline, explicitly planned but omitted, is needed to separate intelligent\
+    \ routing from ensemble effects.\n\nAdditionally, the severely incomplete bibliography\
+    \ (8 references, with 15+ directly relevant works missing) and the misleading\
+    \ cross-backbone comparison with VLA-GSE undermine the paper's positioning. The\
+    \ uniformly even success rates across all 13 tables raise unresolved questions\
+    \ about evaluation granularity.\n\n### Path to Resubmission\nThe paper has a realistic\
+    \ path to acceptance at a future venue if:\n1. **Run rank-48 universal LoRA**\
+    \ and **random routing baselines** — these are the existential experiments. If\
+    \ Meta-Brain wins convincingly, the contribution is validated.\n2. **Expand related\
+    \ work** to 30+ references, engaging with MoE-LoRA literature (LoRAMoE, MoLoRA,\
+    \ MixLoRA), adapter composition (AdapterFusion, Poly), test-time adaptation (TENT,\
+    \ TTT), and probing foundations (Alain & Bengio).\n3. **Remove or heavily qualify\
+    \ the \"19x fewer params\" claim** unless same-backbone comparison is provided.\n\
+    4. **Disclose evaluation episode counts** and address the even-integer pattern.\n\
+    5. **Add latency analysis** and **clean LIBERO evaluation**.\n6. **Add architecture\
+    \ figure** and **t-SNE visualization** of perturbation clusters.\n7. **Resolve\
+    \ internal inconsistencies** (mean-pool vs first-token, contribution framing).\n\
+    \n### Experiment Coverage Assessment\nThe paper covers all 11 imagined experiments\
+    \ from the review_context.yaml:\n- plan_002 (expert training) → Tables 1-2 ✓\n\
+    - plan_003 (Meta-Brain assembly) → Tables 3-4 ✓\n- plan_004 (oracle routing) →\
+    \ Table 5 ✓\n- plan_005 (ablation ladder) → Table 3 ✓ (but random routing baseline\
+    \ from this plan is missing)\n- plan_006 (FTM reproduction) → Table 6 ✓\n- plan_007\
+    \ (parameter efficiency) → Table 7 ✓\n- plan_008 (CM ablation) → Table 8 ✓\n-\
+    \ plan_009 (router architecture) → Table 9 ✓\n- plan_010 (6-class vs 3-class)\
+    \ → Table 10 ✓\n- plan_011 (cross-backbone OpenVLA) → Table 11 ✓\n- plan_012 (layer\
+    \ placement) → Tables 12-13 ✓\n\nCoverage rate: 11/11 experiments present. However,\
+    \ critical controls within plan_005 (random routing, parameter-matched universal)\
+    \ are omitted.\n"
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/artifacts/dream_reports/dream_20260515T154653/median/paper.pdf
+  imagined_experiments:
+  - name: LoRA Expert Training — Specialized vs Universal
+    plan_id: plan_002
+    description: 'Train 4 rank-16 LoRA adapters on frozen pi0: LoRA-V (visual data),
+      LoRA-S (spatial data), LoRA-P (physical data), Universal (mixed all-type data).
+      Evaluate each on all 7 perturbation types to obtain the cross-type performance
+      matrix.
+
+      '
+    expected_results:
+      lora_v_visual_avg: 78.3
+      lora_v_camera: 75.2
+      lora_v_light: 82.0
+      lora_v_background: 78.4
+      lora_v_noise: 77.6
+      lora_v_spatial_avg: 54.0
+      lora_v_physical: 50.6
+      lora_s_spatial_avg: 68.0
+      lora_s_distractor: 69.4
+      lora_s_layout: 66.6
+      lora_s_visual_avg: 46.9
+      lora_s_physical: 49.2
+      lora_p_physical: 78.0
+      lora_p_visual_avg: 47.9
+      lora_p_spatial_avg: 53.7
+      universal_overall: 65.4
+      universal_visual_avg: 65.35
+      universal_spatial_avg: 63.7
+      universal_physical: 69.0
+      specialization_delta_visual: 12.95
+      specialization_delta_spatial: 4.3
+      specialization_delta_physical: 9.0
+      specialization_delta_max: 12.95
+    result_rationale: 'Visual expert (LoRA-V) shows the strongest specialization (+13%
+      over universal on visual types) because visual perturbations (camera/light/background/noise)
+      corrupt early PaliGemma representations in a consistent, localized manner —
+      rank-16 LoRA can learn a compact correction to these early-layer distortions.
+      Physical expert (LoRA-P) shows strong but smaller specialization (+9%) because
+      robot perturbations (changed dynamics/mass) affect action-space outputs which
+      are more distributed across layers. Spatial expert (LoRA-S) shows weak specialization
+      (+4.3%) because layout and distractor perturbations fundamentally change the
+      required trajectory — not just a representational shift but a different action
+      sequence — and single-step LoRA correction at the representation level cannot
+      replan a trajectory. Cross-type performance degrades sharply (below frozen baseline)
+      because each specialized expert learns type-specific correction biases that
+      actively harm representations when applied to the wrong perturbation type. Universal
+      LoRA at 65.4% is stronger than expected because mixed training provides partial
+      cross-type robustness — the LoRA learns an average correction that modestly
+      helps all types without hurting any.
+
+      '
+    tables:
+    - name: Cross-Type Expert Performance Matrix (success rate %)
+      header:
+      - Method
+      - camera
+      - light
+      - background
+      - noise
+      - distractor
+      - layout
+      - robot
+      - Overall
+      rows:
+      - - Frozen pi0
+        - 47.6
+        - 56.2
+        - 51.8
+        - 49.4
+        - 58.6
+        - 57.8
+        - 53.8
+        - 53.6
+      - - LoRA-V
+        - 75.2
+        - 82.0
+        - 78.4
+        - 77.6
+        - 54.2
+        - 53.8
+        - 50.6
+        - 67.4
+      - - LoRA-S
+        - 44.2
+        - 50.4
+        - 47.8
+        - 45.0
+        - 69.4
+        - 66.6
+        - 49.2
+        - 53.2
+      - - LoRA-P
+        - 45.6
+        - 51.2
+        - 48.4
+        - 46.2
+        - 54.0
+        - 53.4
+        - 78.0
+        - 53.8
+      - - Universal
+        - 62.8
+        - 69.4
+        - 66.2
+        - 63.0
+        - 64.8
+        - 62.6
+        - 69.0
+        - 65.4
+    - name: Specialization Delta (expert own-type minus universal same-type)
+      header:
+      - Coarse Type
+      - Expert Own-Type
+      - Universal Same-Type
+      - Delta
+      rows:
+      - - Visual
+        - 78.3
+        - 65.35
+        - 12.95
+      - - Spatial
+        - 68.0
+        - 63.7
+        - 4.3
+      - - Physical
+        - 78.0
+        - 69.0
+        - 9.0
+    figures_description:
+    - 'Heatmap (4 experts × 7 perturbation types) with success rates. Strong diagonal
+      blocks visible for LoRA-V (4 visual columns bright) and LoRA-P (robot column
+      bright). LoRA-S shows only moderate brightness on distractor/layout. Universal
+      row uniformly mid-tone. Off-diagonal cells for specialized experts are dark
+      (below frozen baseline), visually demonstrating the cost of mismatched routing.
+
+      '
+    - 'Grouped bar chart: 3 coarse types on x-axis, bars for [Frozen, Universal, Specialized
+      Expert]. Visual group shows large gap between universal and LoRA-V. Physical
+      group shows moderate gap. Spatial group shows minimal gap. Frozen baseline as
+      dashed horizontal line per group.
+
+      '
+    analysis: 'The cross-type matrix is the foundational evidence for why routing
+      matters: correct expert helps significantly (+9 to +13% over universal), wrong
+      expert hurts severely (below frozen). This asymmetry means random or poor routing
+      can be worse than no routing at all, motivating the need for accurate PAR classification.
+      The weak spatial specialization is interpretable: layout and distractor perturbations
+      change the goal-relevant spatial configuration, requiring trajectory-level replanning
+      that a single-step representation correction cannot provide. This is a fundamental
+      limitation of the LoRA-based approach for spatial perturbations, not a routing
+      failure. The universal LoRA''s surprising strength (65.4%) sets a high bar for
+      Meta-Brain — the routing system must do substantially better to justify 3× the
+      parameters.
+
+      '
+  - name: Meta-Brain Assembly — PAR Router + LoRA Bank
+    plan_id: plan_003
+    description: 'Assemble PAR router (PaliGemma layer 6, 2-layer MLP, initialized
+      from Phase 0 weights) with 3 LoRA experts. Soft routing: h_corrected = h_frozen
+      + Σ_k p(type_k) · LoRA_k(h_frozen). End-to-end routing fine-tuning with frozen
+      LoRA parameters (only tune PAR weights). Evaluate on full LIBERO-Plus benchmark.
+
+      '
+    expected_results:
+      libero_plus_overall: 71.4
+      per_type_camera: 71.0
+      per_type_light: 77.6
+      per_type_background: 74.4
+      per_type_noise: 73.0
+      per_type_distractor: 65.2
+      per_type_layout: 64.4
+      per_type_robot: 74.2
+      visual_avg: 74.0
+      spatial_avg: 64.8
+      physical: 74.2
+      gain_over_frozen: 17.8
+      gain_over_universal: 6.0
+      routing_diag_visual: 0.82
+      routing_diag_spatial: 0.68
+      routing_diag_physical: 0.8
+      routing_diagonality_mean: 0.77
+      hard_assignment_accuracy: 89.0
+    result_rationale: 'Soft routing dilutes the correction signal compared to hard
+      (oracle) routing, costing ~4% overall. The dilution is uniform across types
+      (3-5% per type) because even a small weight on the wrong expert introduces harmful
+      correction biases. Spatial routing diagonality is lowest (0.68) because layout/distractor
+      perturbations share visual features with camera/background changes at layer
+      6 — the PAR router''s operating point. Despite this, Meta-Brain still improves
+      over universal on spatial (+1.1%) because even imperfect soft routing toward
+      LoRA-S is better than no type awareness. Visual gain (+8.65% over universal)
+      is large because high routing confidence (0.82) allows LoRA-V to dominate the
+      correction. Physical gain (+5.2%) is moderate due to good routing (0.80) but
+      more distributed perturbation effects. Hard assignment accuracy (89%) is lower
+      than Phase 0 classification (99.3%) because the router is fine-tuned for task
+      success, not classification accuracy — it learns to soften assignments when
+      mixing provides marginal task benefit.
+
+      '
+    tables:
+    - name: Meta-Brain Per-Perturbation Success Rate (%)
+      header:
+      - Perturbation
+      - Frozen
+      - Universal
+      - Meta-Brain
+      - Gain over Universal
+      rows:
+      - - camera
+        - 47.6
+        - 62.8
+        - 71.0
+        - 8.2
+      - - light
+        - 56.2
+        - 69.4
+        - 77.6
+        - 8.2
+      - - background
+        - 51.8
+        - 66.2
+        - 74.4
+        - 8.2
+      - - noise
+        - 49.4
+        - 63.0
+        - 73.0
+        - 10.0
+      - - distractor
+        - 58.6
+        - 64.8
+        - 65.2
+        - 0.4
+      - - layout
+        - 57.8
+        - 62.6
+        - 64.4
+        - 1.8
+      - - robot
+        - 53.8
+        - 69.0
+        - 74.2
+        - 5.2
+      - - Overall
+        - 53.6
+        - 65.4
+        - 71.4
+        - 6.0
+    - name: PAR Soft Routing Weight Matrix (mean weights per true type)
+      header:
+      - True Type
+      - P(LoRA-V)
+      - P(LoRA-S)
+      - P(LoRA-P)
+      rows:
+      - - Visual
+        - 0.82
+        - 0.06
+        - 0.12
+      - - Spatial
+        - 0.2
+        - 0.68
+        - 0.12
+      - - Physical
+        - 0.12
+        - 0.08
+        - 0.8
+    figures_description:
+    - 'Routing weight heatmap (3×3): rows = true perturbation type, columns = routing
+      weight to expert. Near-diagonal pattern visible but imperfect. Visual and Physical
+      rows show strong diagonal dominance (0.82, 0.80). Spatial row is more diffuse
+      (0.68 diagonal, 0.20 leak to Visual). Annotated with actual weight values in
+      each cell.
+
+      '
+    - 'Per-type success rate bar chart: 7 perturbation types on x-axis, grouped bars
+      for Frozen/Universal/Meta-Brain. Clear visual separation on camera/light/background/noise
+      (Meta-Brain >> Universal >> Frozen). Minimal separation on distractor/layout.
+      Moderate separation on robot.
+
+      '
+    analysis: 'Meta-Brain achieves the target ordering (Meta-Brain > Universal > Frozen
+      on all 7 types) but the margin varies dramatically: +8-10% on visual types,
+      +5% on physical, only +0.4-1.8% on spatial. This asymmetry is mechanistically
+      interpretable: visual perturbations corrupt the representation in a way that
+      a type-specific LoRA can precisely invert, while spatial perturbations require
+      policy-level replanning beyond representation correction. The routing weight
+      analysis reveals the PAR router appropriately lacks confidence on spatial inputs
+      (diag 0.68), which limits both the benefit and the harm of routing on these
+      types. The end-to-end routing fine-tuning shifts the router from pure classification
+      toward task-success optimization, explaining the gap between Phase 0 accuracy
+      (99.3%) and deployed routing accuracy (~89%).
+
+      '
+  - name: Oracle Routing — Upper Bound for Routing Quality
+    plan_id: plan_004
+    description: 'Replace PAR soft router with ground-truth perturbation type labels
+      (hard 1-hot routing to the correct expert). Same LoRA experts from plan_002.
+      Measures the ceiling for routing quality and quantifies PAR''s gap to perfect
+      routing.
+
+      '
+    expected_results:
+      oracle_overall: 75.3
+      oracle_camera: 75.2
+      oracle_light: 82.0
+      oracle_background: 78.4
+      oracle_noise: 77.6
+      oracle_distractor: 69.4
+      oracle_layout: 66.6
+      oracle_robot: 78.0
+      oracle_par_gap_overall: 3.9
+      oracle_par_gap_visual: 4.3
+      oracle_par_gap_spatial: 3.8
+      oracle_par_gap_physical: 3.8
+    result_rationale: 'Oracle routing eliminates soft-routing dilution entirely —
+      each perturbation type receives 100% correction from its matched expert, with
+      zero contamination from mismatched experts. The 3.9% overall gap from Meta-Brain
+      to oracle quantifies the cost of learned soft routing versus perfect hard routing.
+      This gap arises from two sources: (1) non-zero weight on wrong experts injects
+      harmful correction biases (~60% of the gap), and (2) the router''s lower confidence
+      on spatial perturbations causes LoRA-S to be under-weighted even on true spatial
+      inputs (~40% of the gap). The gap is moderate (not catastrophic), indicating
+      PAR routing is functional but not near-perfect. Closing this gap further would
+      require either better features for spatial classification at layer 6, or a hybrid
+      routing scheme that uses hard routing when confidence is high and universal
+      fallback when confidence is low. Note that oracle performance (75.3%) still
+      trails VLA-GSE (81.2%) by 5.9%, confirming that the performance ceiling is set
+      by pi0 backbone capacity and LoRA rank, not routing quality.
+
+      '
+    tables:
+    - name: Oracle vs PAR Per-Type Gap (%)
+      header:
+      - Perturbation
+      - Oracle
+      - Meta-Brain (PAR)
+      - Gap
+      rows:
+      - - camera
+        - 75.2
+        - 71.0
+        - 4.2
+      - - light
+        - 82.0
+        - 77.6
+        - 4.4
+      - - background
+        - 78.4
+        - 74.4
+        - 4.0
+      - - noise
+        - 77.6
+        - 73.0
+        - 4.6
+      - - distractor
+        - 69.4
+        - 65.2
+        - 4.2
+      - - layout
+        - 66.6
+        - 64.4
+        - 2.2
+      - - robot
+        - 78.0
+        - 74.2
+        - 3.8
+      - - Overall
+        - 75.3
+        - 71.4
+        - 3.9
+    figures_description:
+    - 'Paired bar chart: for each perturbation type, side-by-side bars for Oracle
+      (blue) and Meta-Brain PAR (orange) with the gap annotated above. Layout has
+      the smallest gap (2.2%) because LoRA-S is already weak regardless of routing.
+      Noise has the largest gap (4.6%) because sensor noise is hardest for the router
+      to confidently classify.
+
+      '
+    analysis: 'The oracle-PAR gap of 3.9% is in the moderate range — large enough
+      to matter for absolute performance but not large enough to invalidate the routing
+      approach. The implication for Claim 2 is important: even with perfect routing,
+      the gain over universal LoRA would be 75.3 - 65.4 = 9.9%, only ~64% more than
+      Meta-Brain''s 6.0%. This means routing quality accounts for ~40% of the potential
+      routing benefit left on the table. For the paper, frame this as: "PAR captures
+      ~60% of the theoretically available routing benefit, with the remaining gap
+      attributable to soft-routing dilution and spatial ambiguity." The gap also establishes
+      headroom for future router improvements (e.g., confidence-gated hard routing).
+
+      '
+  - name: Ablation Ladder — Frozen → Universal → Meta-Brain → Oracle
+    plan_id: plan_005
+    description: 'Systematic 5-seed comparison on full LIBERO-Plus: Frozen pi0, Universal
+      LoRA (rank 16, ~2M), Meta-Brain (PAR + 3 LoRA, ~6M), Oracle routing (ground-truth
+      type). Report overall and per-perturbation breakdown with statistical significance.
+      Core evidence for Claim 2.
+
+      '
+    expected_results:
+      frozen_mean: 53.6
+      frozen_std: 1.8
+      universal_mean: 65.4
+      universal_std: 2.1
+      meta_brain_mean: 71.4
+      meta_brain_std: 2.4
+      oracle_mean: 75.3
+      oracle_std: 1.9
+      gain_frozen_to_universal: 11.8
+      gain_universal_to_meta_brain: 6.0
+      gain_meta_brain_to_oracle: 3.9
+      pvalue_universal_gt_frozen: 0.0003
+      pvalue_meta_brain_gt_universal: 0.008
+      pvalue_oracle_gt_meta_brain: 0.021
+      meta_brain_gain_over_frozen: 17.8
+    result_rationale: 'The ablation ladder shows a clean monotonic ordering (Frozen
+      < Universal < Meta-Brain < Oracle) with all adjacent pairs statistically significant
+      at p < 0.05. Step sizes decrease going up the ladder: +11.8 (baseline adaptation),
+      +6.0 (routing benefit), +3.9 (routing quality gap). The largest step is Frozen
+      → Universal, confirming that simply adding LoRA adaptation captures most of
+      the low-hanging fruit. The Universal → Meta-Brain step (+6.0%) is the headline
+      number for Claim 2 — routing by perturbation type provides meaningful additional
+      benefit beyond uniform adaptation, but the advantage is moderate (not dominant).
+      The diminishing step sizes reflect a fundamental pattern: each successive refinement
+      addresses a smaller remaining error surface. Standard deviations are 1.8-2.4%,
+      typical for LIBERO-Plus with per-seed task ordering variance. Meta-Brain''s
+      higher std (2.4%) reflects routing sensitivity to seed-specific perturbation
+      distributions.
+
+      '
+    tables:
+    - name: Ablation Ladder — Overall Success Rate (%, 5 seeds)
+      header:
+      - Method
+      - Params
+      - Mean
+      - Std
+      - 95% CI
+      - p vs. Previous
+      rows:
+      - - Frozen pi0
+        - 0
+        - 53.6
+        - 1.8
+        - '[51.4, 55.8]'
+        - —
+      - - Universal LoRA
+        - ~2M
+        - 65.4
+        - 2.1
+        - '[62.8, 68.0]'
+        - <0.001
+      - - Meta-Brain
+        - ~6M
+        - 71.4
+        - 2.4
+        - '[68.4, 74.4]'
+        - '0.008'
+      - - Oracle
+        - ~6M
+        - 75.3
+        - 1.9
+        - '[72.9, 77.7]'
+        - '0.021'
+    - name: Ablation Ladder — Per-Perturbation Breakdown (%, 5-seed mean)
+      header:
+      - Method
+      - camera
+      - light
+      - bg
+      - noise
+      - distr
+      - layout
+      - robot
+      - Overall
+      rows:
+      - - Frozen
+        - 47.6
+        - 56.2
+        - 51.8
+        - 49.4
+        - 58.6
+        - 57.8
+        - 53.8
+        - 53.6
+      - - Universal
+        - 62.8
+        - 69.4
+        - 66.2
+        - 63.0
+        - 64.8
+        - 62.6
+        - 69.0
+        - 65.4
+      - - Meta-Brain
+        - 71.0
+        - 77.6
+        - 74.4
+        - 73.0
+        - 65.2
+        - 64.4
+        - 74.2
+        - 71.4
+      - - Oracle
+        - 75.2
+        - 82.0
+        - 78.4
+        - 77.6
+        - 69.4
+        - 66.6
+        - 78.0
+        - 75.3
+    - name: Routing Gain Decomposition by Coarse Type
+      header:
+      - Coarse Type
+      - Universal
+      - Meta-Brain
+      - Routing Gain
+      - '% of Oracle Ceiling'
+      rows:
+      - - Visual (4 types)
+        - 65.35
+        - 74.0
+        - 8.65
+        - 66.8%
+      - - Spatial (2 types)
+        - 63.7
+        - 64.8
+        - 1.1
+        - 25.6%
+      - - Physical (1 type)
+        - 69.0
+        - 74.2
+        - 5.2
+        - 57.8%
+      - - Overall
+        - 65.4
+        - 71.4
+        - 6.0
+        - 60.6%
+    figures_description:
+    - 'Stacked bar chart (the ablation ladder): 4 methods on x-axis, success rate
+      on y-axis. Bars are colored in a gradient from red (Frozen) to green (Oracle).
+      Error bars show ±1 std. Horizontal dashed lines at 81.2% (VLA-GSE reference)
+      and 53.6% (Frozen baseline). Clear monotonic increase with decreasing step sizes.
+      Significance brackets between adjacent pairs.
+
+      '
+    - 'Per-perturbation grouped bar chart: 7 perturbation types on x-axis, 4 methods
+      as grouped bars. Reveals the asymmetric routing benefit — large visual/physical
+      separation between Universal and Meta-Brain bars, minimal spatial separation.
+      Oracle bars highest across all types but layout/distractor gap is notably small.
+
+      '
+    analysis: 'The ablation ladder is clean and publishable. All pairwise comparisons
+      are significant. The key narrative point is that Meta-Brain captures 60.6% of
+      the theoretically available routing benefit (oracle ceiling). The per-type decomposition
+      reveals that routing works best where perturbations are localized (visual: 66.8%
+      of ceiling captured) and least where perturbations are distributed (spatial:
+      25.6%). This naturally leads to the mechanistic analysis section in the paper
+      explaining which processing stages each perturbation type disrupts. For Claim
+      2, the headline is: "Routing by perturbation type improves over universal LoRA
+      by 6.0 ± 2.3% (p = 0.008), with gains concentrated on perturbation types that
+      disrupt localized processing stages." This reframing adds nuance rather than
+      claiming universal superiority.
+
+      '
+  - name: FTM/FLA Reproduction — Visual-Only Baseline
+    plan_id: plan_006
+    description: 'Reproduce FTM (4K params) and FLA (4.7M params) on pi0 for visual
+      perturbation types. Compare with LoRA-V and Meta-Brain to establish visual-only
+      baselines and demonstrate Meta-Brain''s multi-type advantage.
+
+      '
+    expected_results:
+      ftm_camera: 69.8
+      ftm_light: 76.4
+      ftm_background: 72.6
+      ftm_noise: 68.2
+      ftm_visual_avg: 71.75
+      ftm_overall: 65.3
+      fla_camera: 73.8
+      fla_light: 80.2
+      fla_background: 76.8
+      fla_noise: 75.4
+      fla_visual_avg: 76.55
+      fla_overall: 68.1
+      lora_v_visual_avg: 78.3
+      meta_brain_visual_avg: 74.0
+      meta_brain_overall: 71.4
+      meta_brain_advantage_over_ftm_overall: 6.1
+      meta_brain_advantage_over_fla_overall: 3.3
+    result_rationale: 'FTM at 4K params is remarkably parameter-efficient for visual
+      perturbations (71.75% visual avg) but fundamentally cannot handle spatial/physical
+      types, leaving those at frozen baseline levels and yielding only 65.3% overall.
+      FLA at 4.7M params approaches LoRA-V quality on visual types (76.55% vs 78.3%)
+      but also cannot generalize beyond visual. Meta-Brain''s overall advantage (71.4%
+      vs 65.3-68.1%) comes entirely from spatial and physical perturbation handling.
+      On visual types alone, LoRA-V (78.3%) > FLA (76.55%) > Meta-Brain routed (74.0%)
+      > FTM (71.75%), showing that specialized visual methods can match or exceed
+      routing-based correction for visual perturbations specifically. The key message:
+      FTM/FLA are excellent visual-only solutions but cannot serve as general robustness
+      methods. Meta-Brain''s value is breadth of coverage, not per-type optimality.
+      FTM''s per-parameter efficiency on visual types (11.7%/0.004M = 2925%/M) dwarfs
+      all other methods but is limited to a single perturbation modality.
+
+      '
+    tables:
+    - name: Visual Perturbation Methods Comparison (%)
+      header:
+      - Method
+      - Params
+      - camera
+      - light
+      - bg
+      - noise
+      - Visual Avg
+      - Overall
+      rows:
+      - - FTM
+        - 4K
+        - 69.8
+        - 76.4
+        - 72.6
+        - 68.2
+        - 71.75
+        - 65.3
+      - - FLA
+        - 4.7M
+        - 73.8
+        - 80.2
+        - 76.8
+        - 75.4
+        - 76.55
+        - 68.1
+      - - LoRA-V
+        - ~2M
+        - 75.2
+        - 82.0
+        - 78.4
+        - 77.6
+        - 78.3
+        - 67.4
+      - - Meta-Brain
+        - ~6M
+        - 71.0
+        - 77.6
+        - 74.4
+        - 73.0
+        - 74.0
+        - 71.4
+      - - Universal
+        - ~2M
+        - 62.8
+        - 69.4
+        - 66.2
+        - 63.0
+        - 65.35
+        - 65.4
+    figures_description:
+    - 'Two-panel figure. Left: visual-types-only comparison (4 visual perturbation
+      bars per method). LoRA-V tops, FLA close second, Meta-Brain third, FTM fourth,
+      Universal last. Right: overall LIBERO-Plus comparison. Meta-Brain tops (71.4%),
+      FLA second (68.1%), LoRA-V/Universal/FTM clustered (65-67%). Shows the reversal:
+      best visual-only method is not the best overall method.
+
+      '
+    analysis: 'This experiment establishes two key points for the paper: (1) Visual-only
+      methods are competitive on visual perturbations but fail as general robustness
+      solutions — there is no free lunch. (2) Meta-Brain''s routing approach provides
+      the best overall coverage by handling all perturbation types, even though it
+      doesn''t maximize any single type. For Claim 3, FTM serves as an extreme point
+      on the parameter-efficiency scatter plot: incredible visual-only efficiency
+      but zero spatial/physical coverage. Meta-Brain occupies a qualitatively different
+      position: moderate efficiency with universal coverage.
+
+      '
+  - name: Parameter Efficiency Analysis
+    plan_id: plan_007
+    description: 'Compute gain-over-frozen per method, normalize by trainable parameters.
+      Produce the parameter efficiency scatter plot (x=params log scale, y=gain-over-baseline).
+      Include Meta-Brain, Universal LoRA, FTM, FLA, VLA-GSE (from paper, different
+      backbone caveat).
+
+      '
+    expected_results:
+      meta_brain_gain: 17.8
+      meta_brain_params_M: 6
+      meta_brain_gain_per_M: 2.97
+      universal_gain: 11.8
+      universal_params_M: 2
+      universal_gain_per_M: 5.9
+      ftm_gain: 11.7
+      ftm_params_M: 0.004
+      ftm_gain_per_M: 2925.0
+      fla_gain: 14.5
+      fla_params_M: 4.7
+      fla_gain_per_M: 3.09
+      vla_gse_gain: 27.6
+      vla_gse_params_M: 114
+      vla_gse_gain_per_M: 0.24
+      meta_brain_pct_of_vla_gse_gain: 64.5
+      meta_brain_pct_of_vla_gse_params: 5.3
+    result_rationale: 'Meta-Brain achieves 2.97%/M gain-per-parameter, sitting in
+      the middle of the efficiency spectrum. Universal LoRA is the most efficient
+      multi-type method (5.9%/M) but has a lower absolute gain ceiling. FTM is an
+      extreme outlier (2925%/M) demonstrating that ultra-compact methods exist for
+      single-type perturbations, but this efficiency doesn''t scale to multi-type
+      coverage. VLA-GSE achieves the highest absolute gain (27.6%) but at 0.24%/M
+      efficiency — a 12× parameter overhead vs Meta-Brain for 55% more gain. The headline
+      for Claim 3: "Meta-Brain achieves 64.5% of VLA-GSE''s robustness improvement
+      using 5.3% of its trainable parameters, demonstrating perturbation-diagnostic
+      routing as a parameter-efficient alternative to capacity-based expert routing."
+      The different-backbone caveat (pi0 vs Qwen3-VL-4B) applies to absolute numbers
+      but the efficiency ratio is still informative.
+
+      '
+    tables:
+    - name: Parameter Efficiency Comparison
+      header:
+      - Method
+      - Backbone
+      - Params (M)
+      - Gain over Frozen (%)
+      - Gain/M Params
+      - Coverage
+      rows:
+      - - FTM
+        - pi0
+        - 0.004
+        - 11.7
+        - 2925.0
+        - Visual only
+      - - Universal LoRA
+        - pi0
+        - 2
+        - 11.8
+        - 5.9
+        - All types
+      - - FLA
+        - pi0
+        - 4.7
+        - 14.5
+        - 3.09
+        - Visual only
+      - - Meta-Brain
+        - pi0
+        - 6
+        - 17.8
+        - 2.97
+        - All types
+      - - VLA-GSE†
+        - Qwen3-VL-4B
+        - 114
+        - 27.6
+        - 0.24
+        - All types
+    figures_description:
+    - 'Scatter plot: x-axis = trainable parameters (log scale, 0.001M to 200M), y-axis
+      = gain over frozen baseline (%). Each method is a labeled point with marker
+      size proportional to coverage (all-type methods larger). FTM is far left (tiny
+      params, moderate gain). Universal LoRA and Meta-Brain are center-left. VLA-GSE
+      is far right (high gain, huge params). A Pareto frontier line connects FTM →
+      Universal → Meta-Brain, showing that Meta-Brain extends the efficiency frontier
+      beyond universal adaptation. VLA-GSE sits above the frontier but at 19× the
+      cost. Dashed diagonal lines show iso-efficiency contours (%/M). Annotation:
+      "Meta-Brain: 65% of VLA-GSE gain at 5% parameters." VLA-GSE point marked with
+      † for different backbone.
+
+      '
+    analysis: 'The scatter plot is the visual centerpiece of Claim 3. The key insight
+      is that Meta-Brain extends the Pareto frontier established by Universal LoRA
+      — it proves that routing-based specialization extracts more gain per parameter
+      than simply increasing uniform LoRA rank. The framing should be "complementary
+      to capacity routing, not replacement": Meta-Brain operates in a different region
+      of the parameter-efficiency space than VLA-GSE. For resource-constrained deployment
+      (edge devices, real-time control), Meta-Brain offers a practical operating point.
+      An ideal system might compose both: Meta-Brain for type-aware correction + capacity
+      routing for residual error.
+
+      '
+  - name: Correction Memory Ablation — With/Without CM
+    plan_id: plan_008
+    description: 'Compare Meta-Brain with and without Correction Memory module. CM
+      modulates routing weights using retrieved exemplars from a FAISS-indexed memory
+      bank. Quantify marginal gain overall and per perturbation type.
+
+      '
+    expected_results:
+      meta_brain_no_cm: 71.4
+      meta_brain_with_cm: 72.6
+      cm_ablation_delta: 1.2
+      cm_delta_visual: 0.8
+      cm_delta_spatial: 0.4
+      cm_delta_physical: 2.8
+      cm_alpha_learned: 0.23
+      cm_retrieval_latency_ms: 1.4
+    result_rationale: 'CM provides a marginal +1.2% overall gain, concentrated on
+      physical perturbations (+2.8%) where the same robot dynamics changes recur consistently
+      across episodes — exemplar retrieval identifies "I''ve seen this perturbation
+      before" and sharpens the routing weight toward LoRA-P. Visual gain is small
+      (+0.8%) because the PAR router already routes visual perturbations confidently
+      (diag 0.82) and CM''s modulation has little room to improve. Spatial gain is
+      minimal (+0.4%) because spatial perturbations are fundamentally different each
+      time (different object positions) so retrieved exemplars provide weak signal.
+      The learned alpha parameter (0.23) confirms the system''s own assessment: CM
+      contributes ~23% weighting to the final routing decision, indicating it''s a
+      secondary correction to PAR, not a primary signal. The 1.4ms retrieval latency
+      adds negligible overhead to the 10Hz control loop. CM is worth including as
+      an optional module but does not change the core story.
+
+      '
+    tables:
+    - name: Correction Memory Ablation (%)
+      header:
+      - Configuration
+      - Visual
+      - Spatial
+      - Physical
+      - Overall
+      rows:
+      - - Meta-Brain (no CM)
+        - 74.0
+        - 64.8
+        - 74.2
+        - 71.4
+      - - Meta-Brain + CM
+        - 74.8
+        - 65.2
+        - 77.0
+        - 72.6
+      - - CM Delta
+        - 0.8
+        - 0.4
+        - 2.8
+        - 1.2
+    figures_description:
+    - 'Grouped bar chart: 3 coarse types + overall on x-axis, paired bars (with/without
+      CM). Physical bar shows visible CM benefit. Visual and spatial bars nearly identical.
+      Error bars from 3 seeds. The difference is within 1 std for visual/spatial but
+      marginally significant for physical.
+
+      '
+    analysis: 'CM''s marginal contribution (1.2%) is expected in the median tier.
+      It validates the module as a sound idea (positive delta on all types) but not
+      a paper-defining contribution. Present CM as "optional module, +1.2% overall,
+      primarily benefiting recurrent physical perturbations." The per-type pattern
+      adds a small mechanistic insight: exemplar-based routing modulation works best
+      when perturbations are consistent (physics changes) rather than combinatorially
+      varied (spatial layouts). For the paper, CM goes in the ablation section with
+      1-2 sentences, not a dedicated section.
+
+      '
+  - name: Router Architecture Comparison — MLP vs Linear vs Attention
+    plan_id: plan_009
+    description: 'Compare PAR router variants on PaliGemma layer 6: (a) 2-layer MLP
+      (default, ~50K params), (b) linear classifier (~6K params), (c) cross-attention
+      router (~120K params). Evaluate both routing accuracy and downstream task success
+      to test whether classification accuracy improvements translate to task performance.
+
+      '
+    expected_results:
+      mlp_routing_accuracy: 93.8
+      mlp_task_success: 71.4
+      mlp_params: 50000
+      linear_routing_accuracy: 90.6
+      linear_task_success: 70.2
+      linear_params: 6000
+      attention_routing_accuracy: 94.2
+      attention_task_success: 71.2
+      attention_params: 120000
+      mlp_vs_linear_task_gap: 1.2
+      mlp_vs_attention_task_gap: 0.2
+    result_rationale: 'MLP (default) achieves 93.8% routing accuracy and 71.4% task
+      success, offering the best cost/performance tradeoff. Linear router loses 3.2%
+      routing accuracy, which translates to a modest 1.2% task success drop — the
+      per-token representation at layer 6 is already quite separable (Phase 0 showed
+      F1=0.993 with MLP), so a linear boundary captures most of the structure but
+      misses some nonlinear decision boundaries near cluster edges. Attention router
+      adds 0.4% routing accuracy over MLP (the classes are well-separated enough that
+      attention over token sequences adds minimal information beyond mean pooling)
+      but this doesn''t translate to task success improvement (71.2% vs 71.4%) — the
+      0.4% classification gain falls within the noise floor of rollout evaluation.
+      The attention router''s 2.4× parameter overhead is unjustified. Conclusion:
+      MLP is the right choice, confirming the Phase 0 finding that perturbation type
+      is a simple classification problem at layer 6.
+
+      '
+    tables:
+    - name: Router Architecture Comparison
+      header:
+      - Router
+      - Params
+      - Routing Acc (%)
+      - Task Success (%)
+      - Inference Overhead (ms)
+      rows:
+      - - Linear
+        - 6K
+        - 90.6
+        - 70.2
+        - 0.02
+      - - MLP (default)
+        - 50K
+        - 93.8
+        - 71.4
+        - 0.05
+      - - Cross-Attention
+        - 120K
+        - 94.2
+        - 71.2
+        - 0.18
+    figures_description:
+    - 'Dual-axis scatter: x = routing classification accuracy (%), left y = task success
+      (%), right y = router parameter count. Three points (Linear, MLP, Attention).
+      Shows that routing accuracy improvements beyond ~93% yield diminishing task
+      success returns. The gap between routing accuracy and task success is largest
+      for Attention, illustrating the disconnect between classification metrics and
+      control metrics.
+
+      '
+    analysis: 'This experiment addresses reviewer concern C1 ("Phase 0 classification
+      is too easy") from a different angle: yes, the classification is relatively
+      easy (even a linear classifier gets 90.6%), but the task-success gap between
+      90.6% and 93.8% routing accuracy is 1.2% — confirming that routing accuracy
+      does matter at the margins. The MLP''s 3.2% classification advantage over linear
+      translates to 1.2% task success gain, roughly 1:0.37 ratio. Beyond 93.8%, additional
+      classification gains have near-zero marginal task benefit. This helps calibrate
+      the oracle-PAR gap analysis: the 3.9% task gap from oracle routing quality corresponds
+      to moving from ~93.8% to ~100% classification accuracy, and the nonlinear mapping
+      suggests diminishing returns as routing approaches perfection.
+
+      '
+  - name: 6-Class vs 3-Class Routing Comparison
+    plan_id: plan_010
+    description: 'Compare fine-grained 6-class routing (camera/light/background/noise/layout/robot,
+      6 LoRA experts ~12M params) with coarse 3-class routing (Visual/Spatial/Physical,
+      3 experts ~6M). Tests whether finer-grained perturbation-type routing justifies
+      additional parameters and architectural complexity.
+
+      '
+    expected_results:
+      three_class_overall: 71.4
+      three_class_routing_accuracy: 93.8
+      three_class_params_M: 6
+      six_class_overall: 72.2
+      six_class_routing_accuracy: 89.4
+      six_class_params_M: 12
+      delta_overall: 0.8
+      six_class_camera: 72.8
+      six_class_light: 79.2
+      six_class_background: 76.0
+      six_class_noise: 74.6
+      six_class_distractor: 66.0
+      six_class_layout: 65.2
+      six_class_robot: 81.6
+    result_rationale: '6-class routing provides only +0.8% overall improvement over
+      3-class while doubling the parameter budget (12M vs 6M) and dropping routing
+      accuracy by 4.4% (89.4% vs 93.8%). The marginal gain arises primarily from the
+      robot expert (+3.8% from dedicated robot LoRA vs shared Physical LoRA) where
+      the 1-type Physical class benefits from fully dedicated parameters. Intra-Visual
+      perturbation types (camera/light/background/noise) do NOT benefit significantly
+      from separate experts because they share the same failure mode (early representation
+      corruption) — Phase 0 6-class analysis already showed high intra-Visual similarity.
+      The spatial split (distractor/layout) gains marginally because both types require
+      trajectory-level reasoning that LoRA cannot provide. The 4.4% routing accuracy
+      drop with 6 classes partially offsets any per-expert specialization gain: more
+      classes means more routing errors, and each error routes to a more narrowly
+      specialized (thus more harmful when mismatched) expert. Net assessment: 3-class
+      is the better design point.
+
+      '
+    tables:
+    - name: 6-Class vs 3-Class Comparison (%)
+      header:
+      - Configuration
+      - Classes
+      - Params
+      - Routing Acc
+      - Overall
+      - Δ vs 3-class
+      rows:
+      - - 3-class Meta-Brain
+        - 3
+        - ~6M
+        - 93.8
+        - 71.4
+        - —
+      - - 6-class Meta-Brain
+        - 6
+        - ~12M
+        - 89.4
+        - 72.2
+        - 0.8
+    - name: 6-Class Per-Type Breakdown vs 3-Class (%)
+      header:
+      - Perturbation
+      - 3-class
+      - 6-class
+      - Delta
+      rows:
+      - - camera
+        - 71.0
+        - 72.8
+        - 1.8
+      - - light
+        - 77.6
+        - 79.2
+        - 1.6
+      - - background
+        - 74.4
+        - 76.0
+        - 1.6
+      - - noise
+        - 73.0
+        - 74.6
+        - 1.6
+      - - distractor
+        - 65.2
+        - 66.0
+        - 0.8
+      - - layout
+        - 64.4
+        - 65.2
+        - 0.8
+      - - robot
+        - 74.2
+        - 81.6
+        - 7.4
+    figures_description:
+    - 'Stacked cost-benefit bar: left bar = 3-class (6M params, 71.4% success), right
+      bar = 6-class (12M params, 72.2% success). The 2× parameter cost is visually
+      dominant for a barely visible success rate gain. Annotation: "+0.8% for 2× params
+      = poor ROI."
+
+      '
+    analysis: 'This directly addresses reviewer concern C5 ("3-class taxonomy may
+      be too coarse"). The answer is: 3-class is nearly optimal for this architecture.
+      The 6-class robot improvement (+7.4%) is notable in isolation but doesn''t offset
+      the systemic costs of finer routing. The Phase 0 intra-Visual similarity finding
+      (6-class accuracy 99.82% but intra-Visual confusion is near-zero) predicted
+      this outcome: types that cluster together in activation space don''t need separate
+      experts. Include this as a 1-paragraph ablation result: "Finer 6-class routing
+      adds +0.8% at 2× parameters, confirming that the 3-class taxonomy aligns with
+      the mechanistic distinction in VLA processing stages."
+
+      '
+  - name: Cross-Backbone Validation — SmolVLA
+    plan_id: plan_011
+    description: 'Replicate Phase 0 classification + Phase 1 routing pipeline on SmolVLA
+      to test whether perturbation-diagnostic routing generalizes beyond pi0. SmolVLA
+      uses a different vision encoder (SigLIP) and language backbone (SmolLM), testing
+      architecture independence.
+
+      '
+    expected_results:
+      smolvla_phase0_3class_f1: 0.938
+      smolvla_phase0_best_layer: 4
+      smolvla_frozen_baseline: 46.2
+      smolvla_universal_lora: 56.8
+      smolvla_meta_brain: 62.4
+      smolvla_gain_over_frozen: 16.2
+      smolvla_gain_over_universal: 5.6
+      smolvla_routing_diagonality: 0.73
+      smolvla_visual_specialization_delta: 10.4
+      smolvla_spatial_specialization_delta: 2.8
+      smolvla_physical_specialization_delta: 7.6
+    result_rationale: 'SmolVLA confirms the core finding: frozen VLA activations encode
+      perturbation type (F1=0.938, lower than pi0''s 0.993 due to SigLIP''s different
+      feature structure but still high). The best classification layer shifts to layer
+      4 (SmolVLA has fewer layers than PaliGemma). Meta-Brain on SmolVLA achieves
+      +16.2% gain over frozen (comparable to pi0''s +17.8%) and +5.6% over universal
+      (comparable to pi0''s +6.0%), demonstrating that the routing benefit is architecture-independent.
+      Absolute numbers are lower (62.4% vs 71.4%) due to SmolVLA''s weaker backbone
+      capacity (SmolLM-360M vs pi0''s larger model). The per-type specialization pattern
+      replicates: visual shows the largest delta (10.4%), physical moderate (7.6%),
+      spatial weak (2.8%). Spatial underperformance persists across backbones, confirming
+      it''s a fundamental limitation of single-step LoRA correction for trajectory-level
+      perturbations, not an artifact of pi0''s architecture. Routing diagonality (0.73)
+      is slightly lower than pi0 (0.77), reflecting SigLIP''s less structured intermediate
+      representations for perturbation classification.
+
+      '
+    tables:
+    - name: Cross-Backbone Comparison (pi0 vs SmolVLA)
+      header:
+      - Metric
+      - pi0
+      - SmolVLA
+      rows:
+      - - Phase 0 3-class F1
+        - 0.993
+        - 0.938
+      - - Best classification layer
+        - 6
+        - 4
+      - - Frozen baseline (%)
+        - 53.6
+        - 46.2
+      - - Universal LoRA (%)
+        - 65.4
+        - 56.8
+      - - Meta-Brain (%)
+        - 71.4
+        - 62.4
+      - - Gain over frozen (%)
+        - 17.8
+        - 16.2
+      - - Gain over universal (%)
+        - 6.0
+        - 5.6
+      - - Routing diagonality
+        - 0.77
+        - 0.73
+      - - Visual specialization delta (%)
+        - 12.95
+        - 10.4
+      - - Spatial specialization delta (%)
+        - 4.3
+        - 2.8
+    figures_description:
+    - 'Side-by-side ablation ladders for pi0 and SmolVLA. Both show the same monotonic
+      ordering (Frozen < Universal < Meta-Brain) with similar step sizes. Pi0 bars
+      are uniformly higher (stronger backbone) but the relative gains are comparable.
+      Annotation highlights the consistent routing benefit across architectures.
+
+      '
+    analysis: 'This experiment addresses reviewer concern C3 ("single backbone, limited
+      generalizability"). The result is clearly positive: the qualitative pattern
+      replicates exactly (same per-type specialization ranking, same ablation ordering,
+      comparable relative gains). The Phase 0 F1 drop (0.993 → 0.938) is expected
+      — SigLIP and PaliGemma have different feature structures — but 0.938 is still
+      high enough for effective routing. The spatial underperformance replication
+      across backbones strengthens the mechanistic interpretation: it''s a property
+      of the perturbation type, not the backbone. For the paper, include as a validation
+      subsection: "Cross-backbone results on SmolVLA replicate the qualitative findings,
+      with comparable routing gains (+5.6% vs +6.0% over universal), confirming that
+      perturbation-diagnostic routing is an architecture-independent principle." This
+      is a P2 experiment — include if time/GPU budget permits, otherwise cite the
+      Phase 0 cross-backbone evidence from SAFE/probing literature.
+
+      '
+  - name: LoRA Layer Placement Ablation
+    plan_id: plan_012
+    description: 'Vary which PaliGemma layers receive LoRA: (a) early (2-6), (b) mid
+      (6-12), (c) late (12-16), (d) all layers. Test hypothesis that perturbation
+      types optimally correct at different processing stages.
+
+      '
+    expected_results:
+      lora_v_early: 80.2
+      lora_v_mid: 74.8
+      lora_v_late: 71.4
+      lora_v_all: 78.3
+      lora_s_early: 64.6
+      lora_s_mid: 70.2
+      lora_s_late: 66.8
+      lora_s_all: 68.0
+      lora_p_early: 72.8
+      lora_p_mid: 75.2
+      lora_p_late: 80.6
+      lora_p_all: 78.0
+      optimal_placement_v: early (2-6)
+      optimal_placement_s: mid (6-12)
+      optimal_placement_p: late (12-16)
+      optimal_combined_overall: 73.8
+      all_layer_combined_overall: 71.4
+      layer_placement_gain: 2.4
+    result_rationale: 'The layer placement results support the mechanistic hypothesis
+      with moderate effect sizes. LoRA-V benefits most from early layers (+1.9% over
+      all-layer) because visual perturbations (camera/light/background/noise) corrupt
+      the initial visual encoding in PaliGemma''s early layers — correcting at the
+      source prevents error propagation. LoRA-S benefits from mid layers (+2.2% over
+      all-layer) because spatial reasoning (object relationships, layout understanding)
+      is computed in middle transformer layers where multi-head attention integrates
+      spatial context — though the absolute improvement remains modest due to the
+      fundamental trajectory-level limitation. LoRA-P benefits from late layers (+2.6%
+      over all-layer) because physical perturbations manifest at the action prediction
+      stage in late layers where dynamics models are implicitly computed. All-layer
+      placement performs as a reasonable default (second-best for each expert type)
+      because the LoRA rank is distributed across layers that contribute varying amounts.
+      The combined optimal placement (type-specific layers per expert) yields 73.8%
+      overall (+2.4% over uniform all-layer 71.4%), suggesting layer-aware routing
+      is a promising extension.
+
+      '
+    tables:
+    - name: Layer Placement × Expert Type (own-type success rate %)
+      header:
+      - Layer Range
+      - LoRA-V (Visual)
+      - LoRA-S (Spatial)
+      - LoRA-P (Physical)
+      rows:
+      - - Early (2-6)
+        - 80.2
+        - 64.6
+        - 72.8
+      - - Mid (6-12)
+        - 74.8
+        - 70.2
+        - 75.2
+      - - Late (12-16)
+        - 71.4
+        - 66.8
+        - 80.6
+      - - All layers
+        - 78.3
+        - 68.0
+        - 78.0
+    - name: Optimal Layer Placement Summary
+      header:
+      - Expert
+      - Best Layers
+      - Own-Type Success
+      - Δ vs All-Layer
+      rows:
+      - - LoRA-V
+        - Early (2-6)
+        - 80.2
+        - 1.9
+      - - LoRA-S
+        - Mid (6-12)
+        - 70.2
+        - 2.2
+      - - LoRA-P
+        - Late (12-16)
+        - 80.6
+        - 2.6
+    figures_description:
+    - '3-panel line chart: one panel per expert type. X-axis = layer range (early/mid/late/all),
+      y-axis = own-type success rate. Each panel shows a different peak: LoRA-V peaks
+      early, LoRA-S peaks mid, LoRA-P peaks late. All-layer performance marked with
+      a dashed horizontal line in each panel for reference. The crossed peak pattern
+      visually demonstrates that different perturbation types optimally correct at
+      different processing stages.
+
+      '
+    analysis: 'This is a P2 experiment that adds mechanistic depth but is not essential
+      for the core claims. The crossed peak pattern (V-early, S-mid, P-late) aligns
+      with how VLA processing stages work: visual encoding → spatial reasoning → action
+      prediction. This provides evidence for the paper''s framing that perturbation
+      types disrupt different processing stages. The +2.4% gain from optimal layer
+      placement is small but suggests a natural extension: layer-aware routing that
+      not only selects the right expert but applies it at the right layers. This could
+      close part of the oracle-PAR gap (3.9%) without improving classification accuracy.
+      For the paper, include as a supplementary analysis with the crossed-peak figure
+      — it''s visually compelling and mechanistically interpretive. Do not pursue
+      layer-specific routing as a primary contribution; it''s a natural future work
+      direction.'
+  review_report: '---
+
+    dream_id: dream_20260515T154653
+
+    tier: median
+
+    overall_score: 5/10 — Borderline (leaning reject)
+
+    timestamp: 2026-05-15T16:43:40.465793+00:00
+
+    ---
+
+
+    # Dream Review Report: Meta-Brain — Perturbation-Diagnostic LoRA Routing for Robust
+    VLAs
+
+
+    **Venue**: CoRL 2026 | **Review Mode**: Full (2-Reviewer Roundtable)
+
+    **Rating Scale**: 1–10 (CoRL/OpenReview standard; 10 = top 5% seminal, 8 = strong
+    accept, 6 = weak accept, 5 = borderline, 4 = weak reject, 3 = clear reject)
+
+    **CoRL Acceptance Rate**: ~30%
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    Meta-Brain observes that frozen VLA activations at a single intermediate layer
+    (PaliGemma layer 6) encode perturbation type with near-perfect accuracy (3-class
+    macro-F1 = 0.993). It exploits this by routing corrective LoRA experts through
+    a lightweight Perturbation-Aware Router (PAR): a ~50K-param MLP classifies the
+    active perturbation type (Visual / Spatial / Physical), then soft-routes corrections
+    through a bank of three rank-16 LoRA adapters (~6M params total). On LIBERO-Plus
+    with a pi0 backbone, Meta-Brain achieves 71.4% overall (+17.8% over frozen, +6.0%
+    over universal LoRA). An optional Correction Memory module adds +1.2%. Cross-backbone
+    validation on SmolVLA replicates the qualitative pattern (+5.6% over universal).
+
+
+    ---
+
+
+    ## 2. Reviewer R1 — Methods & Experiments
+
+
+    ### Strengths
+
+
+    - **Clean ablation ladder with statistical rigor.** Frozen (53.6) < Universal
+    (65.4) < Meta-Brain (71.4) < Oracle (75.3), all adjacent pairs significant at
+    p < 0.05 with 5-seed statistics and 95% CIs. This is above-average experimental
+    discipline for CoRL.
+
+    - **Comprehensive experiment coverage.** 11 distinct experiments / 13+ tables
+    covering: cross-type expert matrix, PAR routing analysis, oracle ceiling, visual-only
+    baselines (FTM/FLA), parameter efficiency, CM ablation, router architecture comparison,
+    6-class vs. 3-class, layer placement ablation, and cross-backbone validation.
+    Unusual breadth.
+
+    - **Expert cross-evaluation matrix (Table 1) is compelling.** Concretely demonstrates
+    that wrong-expert application degrades below frozen baseline (e.g., LoRA-S on
+    visual: 46.9% vs. frozen 51.3%), motivating routing as necessary rather than optional.
+
+    - **Layer placement analysis is the most informative empirical finding.** The
+    crossed-peak pattern (V→early, S→mid, P→late) maps perturbation types to VLA processing
+    stages and provides actionable design guidance. This is genuinely useful for the
+    community.
+
+    - **Cross-backbone validation on SmolVLA.** Replicates the qualitative pattern
+    (same ablation ordering, comparable relative gains), strengthening the architecture-independence
+    claim. Few papers in this space test on a second backbone.
+
+    - **Phase 0 classification result (F1 = 0.993) is striking in magnitude.** Even
+    if the observation is incremental over prior probing work, the near-perfect accuracy
+    at a single layer is a strong quantitative datapoint.
+
+
+    ### Weaknesses
+
+
+    - **(Major) Missing parameter-matched universal LoRA baseline.** Meta-Brain uses
+    ~6M params (3 × rank-16 LoRA + 50K router). The universal LoRA baseline uses ~2M
+    params (rank-16). Without a rank-48 universal LoRA (~6M params) comparison, it
+    is impossible to disentangle routing benefit from parameter scaling. This is the
+    single most critical missing experiment.
+
+    - **(Major) Spatial routing gain is negligible.** +1.1% over universal, capturing
+    only 25.6% of the oracle ceiling. This means Meta-Brain is effectively a 2-class
+    router (Visual + Physical) with a vestigial Spatial expert. The paper frames spatial
+    underperformance as a "fundamental limitation" of LoRA-based correction, which
+    is fair, but this undermines the claimed breadth-of-coverage advantage over visual-only
+    methods.
+
+    - **(Major) VLA-GSE comparison is cross-backbone.** The headline "64.5% of VLA-GSE''s
+    gain at 5.3% of parameters" compares pi0-based Meta-Brain with Qwen3-VL-4B-based
+    VLA-GSE. Even with the footnote caveat, this number appears in the abstract and
+    conclusion. The paper should present within-backbone comparisons as the primary
+    efficiency metric.
+
+    - **(Moderate) Oracle–PAR gap of 3.9% (p = 0.021) is non-trivial.** Meta-Brain
+    captures only 60.6% of the theoretically available routing benefit. 40% left on
+    the table suggests the soft-routing mechanism has significant room for improvement.
+    The paper should discuss this more critically.
+
+    - **(Moderate) Correction Memory is padding.** +1.2% overall, within noise for
+    visual/spatial, only marginally significant for physical. The learned α = 0.23
+    confirms the system itself considers CM a secondary signal. Presenting CM as a
+    named architectural component (with its own section, equation, and ablation table)
+    inflates the contribution count. It should be a footnote-level ablation result.
+
+    - **(Moderate) Training data asymmetry.** Visual experts train on 4 perturbation
+    types (camera/light/background/noise), spatial on 2 (distractor/layout), physical
+    on 1 (robot). The per-expert data volume differs, which could confound specialization
+    quality differences. This is not discussed or controlled for.
+
+    - **(Minor) No random routing baseline.** Random routing (uniform 1/3 weights
+    to all experts) would quantify how much of the benefit comes from routing accuracy
+    vs. expert ensembling. Its absence is a missed falsification test.
+
+    - **(Minor) No real-robot experiments.** Simulation-only evaluation on LIBERO-Plus.
+    While standard for architecture contributions, this limits the impact for CoRL''s
+    practitioner audience.
+
+
+    ### R1 Scores
+
+
+    | Dimension | Score | Note |
+
+    |-----------|-------|------|
+
+    | Soundness | 3/4 | Method is technically correct; claims slightly exceed evidence
+    due to missing controls |
+
+    | Empirical Rigor | 3/4 | Excellent breadth; missing parameter-matched baseline
+    is the key gap |
+
+    | Reproducibility | 3/4 | Architecture and training procedure are clearly described;
+    hyperparameters specified |
+
+    | **Overall Rating** | **6/10** | Borderline accept — solid experimental work,
+    but missing critical baselines |
+
+    | Confidence | 4/5 | |
+
+
+    ---
+
+
+    ## 3. Reviewer R2 — Novelty & Related Work
+
+
+    ### Novelty Assessment
+
+
+    **Core observation (activations encode perturbation type): Incremental.** The
+    paper cites SAFE (VLA internal features detect distribution shifts), OpenVLA probing
+    studies (linear separability of environment factors), and pi0.5 feature steering
+    (causal influence of internal representations). The step from binary anomaly detection
+    / linear separability to 3-class classification on pi0 specifically is a natural
+    extension, not a conceptual leap. The near-perfect accuracy (F1 = 0.993) may actually
+    weaken the novelty argument: the signal is so strong that any reasonable method
+    would find it.
+
+
+    **Routing architecture: Standard composition.** Meta-Brain assembles: (1) linear
+    probing of intermediate features (standard since Alain & Bengio 2017), (2) MLP-based
+    gating (standard MoE, Shazeer et al. 2017), (3) LoRA expert bank with soft weighted
+    combination (standard in MoE-LoRA literature: LoRAMoE, MoLoRA, MixLoRA). The routing
+    formula `h'' = h + Σ_k w_k · LoRA_k(h)` is architecturally identical to existing
+    mixture-of-LoRA methods. The only novelty is what drives the routing weights:
+    perturbation type rather than task identity. This is an application-level design
+    choice, not a methodological advance.
+
+
+    **Perturbation taxonomy: Inherited from LIBERO-Plus.** The 3-class grouping maps
+    directly onto the benchmark''s perturbation categories. No principled derivation
+    from first principles; no evidence it generalizes beyond LIBERO-Plus.
+
+
+    **"Closing the diagnose–correct loop": Straightforward combination.** Given that
+    probing works near-perfectly and LoRA experts can be trained per-type, connecting
+    them via a gating MLP requires no new insight. The "loop closure" rhetoric overstates
+    the conceptual advance.
+
+
+    **"Orthogonal design dimension" claim: Unsupported.** No composability experiment
+    (Meta-Brain + VLA-GSE), no formal design-space analysis, no theoretical argument
+    for independence. One parameter-efficiency table does not establish orthogonality.
+
+
+    ### Related Work Gaps
+
+
+    **Bibliography is critically insufficient: 9 references for a CoRL submission
+    (typical: 30–50).** Major missing categories:
+
+
+    | Category | Key Missing Works | Impact |
+
+    |----------|------------------|--------|
+
+    | MoE-LoRA (directly relevant) | LoRAMoE, MoLoRA, MixLoRA, MOELoRA, AdaMix | These
+    are structurally identical to Meta-Brain''s routing mechanism. Without discussing
+    them, the paper cannot argue its approach is novel. |
+
+    | Test-time adaptation | TENT, TTT, MEMO | Entirely absent paradigm addressing
+    the same problem (adapting to distribution shifts at inference) without pre-defined
+    taxonomies. |
+
+    | Domain generalization | DRO, DANN, style transfer for sim-to-real | Perturbation
+    robustness overlaps heavily with domain adaptation — no engagement. |
+
+    | Probing foundations | Alain & Bengio 2017, Belinkov 2022 | Phase 0 methodology
+    is linear probing; foundational works uncited. |
+
+    | MoE fundamentals | Shazeer et al. 2017, Switch Transformers | Routing mechanism
+    draws from MoE but cites no MoE work. |
+
+    | VLA/backbone foundations | PaliGemma, original LIBERO | Primary backbone and
+    benchmark lack citations. |
+
+    | Mentioned but uncited | MoIRA, CORAL, LoRA-SP | Named in related work text but
+    absent from bibliography — formatting error suggesting limited engagement. |
+
+
+    **Positioning fairness issues:**
+
+    - VLA-GSE cross-backbone comparison is presented as headline efficiency metric
+    despite confound
+
+    - SAFE could be trivially extended to correction (using SAFE features to gate
+    LoRA experts ≈ Meta-Brain) — not discussed
+
+    - MoIRA/CORAL distinction ("task routing vs. perturbation routing") is stated
+    but not rigorously justified — both are categorical routing of LoRA experts by
+    input-derived signal
+
+
+    ### R2 Scores
+
+
+    | Dimension | Score | Note |
+
+    |-----------|-------|------|
+
+    | Novelty | 2/4 | Application insight (perturbation type as routing signal) using
+    standard components; no new mechanism |
+
+    | Related Work | 1/4 | 9 references; 15+ directly relevant works missing including
+    entire MoE-LoRA literature |
+
+    | Significance | 2/4 | Layer placement finding is reusable; overall impact limited
+    by LIBERO-Plus-specific taxonomy |
+
+    | **Overall Rating** | **4/10** | Weak reject — reasonable approach, but limited
+    novelty and critically thin bibliography |
+
+    | Confidence | 4/5 | |
+
+
+    ---
+
+
+    ## 4. Roundtable Synthesis (Step 3–4)
+
+
+    ### Areas of Full Agreement
+
+
+    1. **Missing rank-48 universal LoRA baseline** is a blocking concern — cannot
+    separate routing benefit from parameter scaling
+
+    2. **Spatial perturbation handling** (+1.1%) significantly weakens the multi-type
+    coverage narrative
+
+    3. **Correction Memory** (+1.2%) is padding, not a meaningful contribution
+
+    4. **VLA-GSE cross-backbone comparison** is misleading as a headline metric
+
+    5. **Experimental breadth** (11 experiments, 13+ tables) is commendable
+
+    6. **Layer placement crossed-peak pattern** is the most genuinely novel and informative
+    empirical finding
+
+    7. **Bibliography** (9 references) is critically below CoRL standards
+
+
+    ### Areas of Disagreement and Resolution
+
+
+    R1 emphasizes experimental thoroughness and practical value for VLA practitioners
+    (→ 6/10). R2 emphasizes limited novelty and the absence of the MoE-LoRA literature
+    that makes the architecture appear derivative (→ 4/10). Both agree the paper has
+    a clear path to improvement but currently falls short.
+
+
+    **Resolution:** The experimental work is above average in breadth but has critical
+    missing controls (rank-48 baseline, random routing). The novelty is limited to
+    an application-level insight — routing by perturbation type rather than task identity
+    — using entirely standard components. The bibliography gap is unusually severe
+    and would be flagged by any CoRL reviewer. These factors together place the paper
+    below the acceptance threshold.
+
+
+    ### Consolidated Scores
+
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Originality | 2/4 |
+
+    | Quality (Technical Soundness) | 3/4 |
+
+    | Clarity | 3/4 |
+
+    | Significance | 2/4 |
+
+    | Relevance to Robot Learning | 3/4 |
+
+    | **Overall Rating** | **5/10 — Borderline (leaning reject)** |
+
+    | Confidence | 4/5 |
+
+
+    ### Key Questions for Authors (Consolidated)
+
+
+    1. **Parameter-matched control:** Have you evaluated a rank-48 universal LoRA
+    (~6M params) to isolate routing benefit from parameter advantage?
+
+    2. **Random routing baseline:** What is the performance of uniform 1/3 routing
+    weights across all three experts?
+
+    3. **MoE-LoRA relationship:** How does Meta-Brain differ architecturally from
+    LoRAMoE or MixLoRA beyond the routing signal?
+
+    4. **SAFE extension:** Could SAFE''s detection features gate LoRA experts identically
+    to Meta-Brain?
+
+    5. **Test-time adaptation:** Why is explicit perturbation routing preferable to
+    TTA methods (TENT, TTT) that don''t require pre-defined taxonomies?
+
+    6. **Composability evidence:** Have you tested Meta-Brain + VLA-GSE to support
+    the "orthogonal dimension" claim?
+
+    7. **Open-set robustness:** What happens with novel perturbation types outside
+    the 3-class taxonomy?
+
+
+    ### Verdict
+
+
+    **Below CoRL acceptance threshold in current form.** The paper has a clean narrative,
+    thorough ablation design, and a genuinely useful empirical finding (layer placement
+    crossed-peak pattern). However, the contribution is a natural composition of well-established
+    techniques (probing + MoE gating + LoRA) with the application insight of routing
+    by perturbation type. The critically thin bibliography (9 references, 15+ relevant
+    works missing), missing parameter-matched baseline, and inflated contribution
+    framing are the primary concerns.
+
+
+    ### Clear Path to Acceptance
+
+
+    1. Run rank-48 universal LoRA and random routing controls — if routing benefit
+    survives parameter matching, the core claim is strongly supported
+
+    2. Expand bibliography to 30+ references, engaging with MoE-LoRA literature (LoRAMoE,
+    MoLoRA, MixLoRA), TTA methods, probing foundations, and MoE fundamentals
+
+    3. Reframe as one well-executed systems contribution rather than three independent
+    contributions
+
+    4. Remove or heavily qualify the cross-backbone VLA-GSE efficiency claim from
+    abstract/conclusion
+
+    5. Downgrade CM from named component to ablation footnote
+
+    6. Add a composability experiment (Meta-Brain + capacity routing) or remove the
+    "orthogonal dimension" claim'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/artifacts/dream_reports/dream_20260515T154653/worst/paper.pdf
+  imagined_experiments:
+  - name: LoRA expert training — 3 specialized + 1 universal
+    plan_id: plan_002
+    description: 'Train 4 LoRA adapters (rank 16) on frozen pi0 PaliGemma: LoRA-V
+      (Visual), LoRA-S (Spatial), LoRA-P (Physical), Universal (all types mixed).
+      Evaluate each on all perturbation types.
+
+      '
+    expected_results:
+      lora_v_on_camera: 61.0
+      lora_v_on_light: 70.0
+      lora_v_on_background: 65.0
+      lora_v_on_sensor_noise: 72.0
+      lora_v_visual_avg: 67.0
+      lora_s_on_layout: 66.0
+      lora_p_on_robot: 73.0
+      universal_on_camera: 57.0
+      universal_on_light: 68.0
+      universal_on_background: 61.0
+      universal_on_sensor_noise: 70.0
+      universal_on_layout: 62.0
+      universal_on_robot: 70.8
+      universal_overall: 64.8
+      max_specialization_delta: 4.0
+      lora_v_on_layout_cross: 58.0
+      lora_v_on_robot_cross: 65.0
+      lora_s_on_visual_avg_cross: 59.5
+      lora_p_on_visual_avg_cross: 60.5
+    result_rationale: 'Specialized experts show only marginal gains over universal
+      on their own types (max +4.0% on background/layout, +2.0–2.2% on light/noise/robot).
+      Root cause: rank-16 LoRA has limited correction capacity (~2M params per expert),
+      and at this rank the parameter space is too constrained to learn meaningfully
+      different type-specific behaviors. All experts converge to similar low-rank
+      corrections that primarily recover the frozen backbone''s general robustness
+      gap. The universal LoRA, trained on mixed perturbation data, implicitly learns
+      a perturbation-conditional representation — mixed training acts as a form of
+      implicit multi-task learning that covers the type-specific corrections nearly
+      as well as explicit specialization. Cross-type degradation exists (LoRA-V on
+      layout drops to 58.0 vs universal 62.0) but is moderate, further indicating
+      that experts are not highly differentiated.
+
+      '
+    tables:
+    - title: 'Cross-evaluation matrix: Expert × Perturbation Type (success rate %)'
+      content: '| Expert      | Camera | Light | BG   | Noise | Layout | Robot | Avg   |
+
+        |-------------|--------|-------|------|-------|--------|-------|-------|
+
+        | LoRA-V      | **61.0** | **70.0** | **65.0** | **72.0** | 58.0 | 65.0 |
+        65.2 |
+
+        | LoRA-S      | 53.0   | 63.0  | 57.0 | 65.0  | **66.0** | 67.0 | 61.8 |
+
+        | LoRA-P      | 54.0   | 64.0  | 58.0 | 66.0  | 60.0   | **73.0** | 62.5 |
+
+        | Universal   | 57.0   | 68.0  | 61.0 | 70.0  | 62.0   | 70.8  | 64.8 |
+
+        | Frozen pi0  | 44.0   | 56.0  | 49.0 | 58.0  | 52.0   | 62.6  | 53.6 |
+
+        Bold = expert matched to own perturbation type.
+
+        '
+    - title: 'Specialization delta: Specialized − Universal per type'
+      content: '| Type        | Specialized | Universal | Delta |
+
+        |-------------|-------------|-----------|-------|
+
+        | Camera      | 61.0        | 57.0      | +4.0  |
+
+        | Light       | 70.0        | 68.0      | +2.0  |
+
+        | Background  | 65.0        | 61.0      | +4.0  |
+
+        | Noise       | 72.0        | 70.0      | +2.0  |
+
+        | Layout      | 66.0        | 62.0      | +4.0  |
+
+        | Robot       | 73.0        | 70.8      | +2.2  |
+
+        | Max delta   |             |           | 4.0   |
+
+        '
+    figures_description:
+    - 'Grouped bar chart: per-perturbation success rate for each expert + universal.
+      Shows experts are only slightly above universal on matched types and below on
+      mismatched types.'
+    - Heatmap of (Expert × Type) deltas relative to universal, highlighting the narrow
+      specialization corridor.
+    analysis: 'The cross-evaluation matrix reveals that rank-16 LoRA experts converge
+      to similar correction strategies. Universal LoRA averages 64.8% overall, while
+      matched experts average 67.8% on their own types — a difference of only 3.0%.
+      Critically, mismatched experts often underperform universal (LoRA-V on layout:
+      58.0 vs 62.0; LoRA-S on visual avg: 59.5 vs 64.0), meaning routing must be accurate
+      just to avoid degradation. This creates a narrow "routing benefit window" where
+      the expert-universal delta (~2–4%) must exceed the routing-error cost. At rank-16,
+      the expert capacity bottleneck limits the maximum extractable benefit from routing,
+      regardless of routing quality.
+
+      '
+  - name: Meta-Brain assembly — PAR router + LoRA bank
+    plan_id: plan_003
+    description: 'Assemble PAR router (layer 6 MLP) with 3 LoRA experts under soft
+      routing. End-to-end routing fine-tuning with frozen LoRA parameters. Evaluate
+      on full LIBERO-Plus.
+
+      '
+    expected_results:
+      libero_plus_overall: 66.3
+      gain_over_frozen: 12.7
+      gain_over_universal: 1.5
+      per_type_camera: 59.0
+      per_type_light: 69.0
+      per_type_background: 63.0
+      per_type_noise: 71.0
+      per_type_layout: 64.0
+      per_type_robot: 72.0
+      routing_diagonality: 0.58
+      routing_weight_visual_on_visual: 0.52
+      routing_weight_spatial_on_spatial: 0.61
+      routing_weight_physical_on_physical: 0.63
+      routing_entropy_mean: 0.89
+    result_rationale: 'Soft routing weights are near-uniform (diagonality 0.58, mean
+      entropy 0.89 vs max 1.10 for 3-class uniform). The PAR router correctly classifies
+      perturbation type (Phase 0 F1=0.993) but the learned routing-to-correction mapping
+      during fine-tuning converges toward distributing weight across all experts rather
+      than concentrating on the matched one. This happens because the expert outputs
+      are too similar (rank-16 convergence from plan_002) — the optimization landscape
+      has no strong gradient toward diagonal routing since all experts provide nearly
+      equal correction. The resulting Meta-Brain captures most of the universal LoRA
+      gain (12.7 vs 11.2 over frozen) but adds only 1.5% from routing, which is within
+      the noise floor of 5-seed evaluation.
+
+      '
+    tables:
+    - title: PAR routing weight matrix (rows = true type, columns = expert weight)
+      content: '| True Type | w(LoRA-V) | w(LoRA-S) | w(LoRA-P) | Entropy |
+
+        |-----------|-----------|-----------|-----------|---------|
+
+        | Visual    | **0.52**  | 0.24      | 0.24      | 0.94    |
+
+        | Spatial   | 0.21      | **0.61**  | 0.18      | 0.83    |
+
+        | Physical  | 0.19      | 0.18      | **0.63**  | 0.80    |
+
+        | Diag avg  |           |           |           | 0.58    |
+
+        Perfect diagonality = 1.0, uniform = 0.33. Observed 0.58 = weak preference.
+
+        '
+    - title: Meta-Brain per-perturbation results
+      content: '| Perturbation | Frozen | Universal | Meta-Brain | Δ(MB−Uni) |
+
+        |--------------|--------|-----------|------------|-----------|
+
+        | Camera       | 44.0   | 57.0      | 59.0       | +2.0      |
+
+        | Light        | 56.0   | 68.0      | 69.0       | +1.0      |
+
+        | Background   | 49.0   | 61.0      | 63.0       | +2.0      |
+
+        | Noise        | 58.0   | 70.0      | 71.0       | +1.0      |
+
+        | Layout       | 52.0   | 62.0      | 64.0       | +2.0      |
+
+        | Robot        | 62.6   | 70.8      | 72.0       | +1.2      |
+
+        | **Overall**  | **53.6** | **64.8** | **66.3**   | **+1.5**  |
+
+        '
+    figures_description:
+    - 'Routing weight heatmap (3×3): near-uniform rather than diagonal, with max diagonal
+      entry only 0.63.'
+    - 'Per-perturbation stacked bar: Frozen → Universal gain (large) vs Universal
+      → Meta-Brain gain (thin sliver) visually demonstrates marginal routing benefit.'
+    analysis: 'Meta-Brain achieves 66.3% overall (12.7% gain over frozen) but only
+      +1.5% over the universal LoRA baseline. The routing weight matrix is weakly
+      diagonal (0.58) — the router assigns some preference to the matched expert but
+      distributes substantial weight to others. This is not a routing failure (Phase
+      0 proves the signal exists) but a correction-capacity failure: when experts
+      produce similar outputs, the optimization has no incentive to sharpen routing.
+      The routing entropy (mean 0.89) is close to uniform (1.10), confirming near-flat
+      routing. The 3x parameter overhead of maintaining separate experts (6M vs 2M)
+      yields only 1.5% marginal gain, making the routing architecture difficult to
+      justify on efficiency grounds alone.
+
+      '
+  - name: Oracle routing ablation
+    plan_id: plan_004
+    description: 'Replace PAR router with ground-truth perturbation type labels. Measures
+      upper bound of routing-based improvement.
+
+      '
+    expected_results:
+      oracle_overall: 67.8
+      oracle_vs_par_gap: 1.5
+      oracle_vs_universal_gap: 3.0
+      oracle_camera: 61.0
+      oracle_light: 70.0
+      oracle_background: 65.0
+      oracle_noise: 72.0
+      oracle_layout: 66.0
+      oracle_robot: 73.0
+    result_rationale: 'Oracle routing achieves 67.8% — only 3.0% above universal LoRA
+      and 1.5% above learned PAR routing. The small oracle-universal gap is the definitive
+      evidence that the routing hypothesis is bottlenecked by expert differentiation,
+      not routing quality. Even with perfect perturbation-type information, selecting
+      the "right" rank-16 expert adds minimal value over the mixed-trained universal
+      expert. The oracle-PAR gap of 1.5% indicates PAR routing recovers roughly half
+      (1.5/3.0) of the theoretically available routing benefit, but the theoretical
+      maximum itself is too small to matter. This ceiling analysis shifts the research
+      question from "how to route better" to "how to make experts more different."
+
+      '
+    tables:
+    - title: Oracle vs PAR vs Universal per type
+      content: '| Type       | Universal | PAR(MB) | Oracle | Δ(Oracle−Uni) | Δ(PAR−Uni)
+        |
+
+        |------------|-----------|---------|--------|---------------|------------|
+
+        | Camera     | 57.0      | 59.0    | 61.0   | +4.0          | +2.0       |
+
+        | Light      | 68.0      | 69.0    | 70.0   | +2.0          | +1.0       |
+
+        | Background | 61.0      | 63.0    | 65.0   | +4.0          | +2.0       |
+
+        | Noise      | 70.0      | 71.0    | 72.0   | +2.0          | +1.0       |
+
+        | Layout     | 62.0      | 64.0    | 66.0   | +4.0          | +2.0       |
+
+        | Robot      | 70.8      | 72.0    | 73.0   | +2.2          | +1.2       |
+
+        | **Overall**| **64.8**  |**66.3** |**67.8**| **+3.0**      | **+1.5**   |
+
+        '
+    figures_description:
+    - 'Gap waterfall chart: Universal → PAR (+1.5) → Oracle (+1.5) → showing the theoretical
+      ceiling is low and PAR already captures half of it.'
+    analysis: 'The oracle ablation is the most important diagnostic in the worst tier.
+      Oracle routing = 67.8% sets an absolute ceiling for any routing-based approach
+      with these rank-16 experts. The universal-to-oracle gap of 3.0% means perfect
+      perturbation knowledge is worth at most 3 percentage points — a meaningful but
+      modest gain that ranks below the universal LoRA''s own gain over frozen (11.2%).
+      This proves the core routing hypothesis fails not because of routing errors
+      but because of insufficient expert differentiation at rank 16.
+
+      '
+  - name: Ablation ladder — 5-seed systematic comparison
+    plan_id: plan_005
+    description: 'Core evidence table: Frozen → Universal LoRA → Meta-Brain → Oracle,
+      evaluated on LIBERO-Plus with 5 seeds per condition. Statistical significance
+      testing via paired t-test.
+
+      '
+    expected_results:
+      frozen_mean: 53.6
+      frozen_std: 0.9
+      universal_mean: 64.8
+      universal_std: 1.1
+      meta_brain_mean: 66.3
+      meta_brain_std: 1.1
+      oracle_mean: 67.8
+      oracle_std: 1.0
+      gain_frozen_to_universal: 11.2
+      gain_frozen_to_meta_brain: 12.7
+      gain_universal_to_meta_brain: 1.5
+      gain_universal_to_meta_brain_std: 1.5
+      gain_universal_to_meta_brain_pvalue: 0.12
+      gain_universal_to_oracle: 3.0
+      gain_universal_to_oracle_pvalue: 0.008
+      gain_meta_brain_to_oracle: 1.5
+    result_rationale: 'Five-seed evaluation reveals that Meta-Brain''s +1.5% gain
+      over universal LoRA is not statistically significant (p=0.12, paired t-test).
+      The seed-to-seed variance (std ~1.1%) is comparable to the routing-attributed
+      gain, meaning the benefit could be noise. In contrast, universal LoRA''s +11.2%
+      gain over frozen IS significant (p<0.001), confirming that LoRA adaptation itself
+      works — the routing on top of it doesn''t. Oracle-universal gap (3.0%, p=0.008)
+      is significant but small in absolute terms. The core story: most of the heavy
+      lifting is done by LoRA adaptation (11.2/12.7 = 88% of total gain), with routing
+      contributing at most 12% of the improvement, not statistically distinguishable
+      from zero.
+
+      '
+    tables:
+    - title: 'Ablation ladder: Overall success rate (%, 5 seeds)'
+      content: '| Method         | Params | Seed1 | Seed2 | Seed3 | Seed4 | Seed5
+        | Mean  | Std  |
+
+        |----------------|--------|-------|-------|-------|-------|-------|-------|------|
+
+        | Frozen pi0     | 0      | 52.4  | 54.8  | 53.0  | 54.2  | 53.6  | 53.6  |
+        0.9  |
+
+        | Universal LoRA | 2M     | 63.2  | 66.0  | 64.4  | 65.8  | 64.6  | 64.8  |
+        1.1  |
+
+        | Meta-Brain     | 6M     | 65.0  | 67.4  | 66.2  | 67.0  | 65.9  | 66.3  |
+        1.1  |
+
+        | Oracle routing | 6M     | 66.6  | 69.0  | 67.6  | 68.4  | 67.4  | 67.8  |
+        1.0  |
+
+        '
+    - title: Pairwise gains with significance
+      content: '| Comparison                 | Δ Mean | Δ Std | p-value | Significant?
+        |
+
+        |----------------------------|--------|-------|---------|-------------|
+
+        | Universal − Frozen         | +11.2  | 1.0   | <0.001  | Yes ***     |
+
+        | Meta-Brain − Frozen        | +12.7  | 1.0   | <0.001  | Yes ***     |
+
+        | Meta-Brain − Universal     | +1.5   | 1.5   | 0.12    | **No**      |
+
+        | Oracle − Universal         | +3.0   | 0.8   | 0.008   | Yes **      |
+
+        | Oracle − Meta-Brain        | +1.5   | 0.7   | 0.02    | Yes *       |
+
+        '
+    - title: Per-perturbation breakdown (mean over 5 seeds)
+      content: '| Type       | Frozen | Universal | Meta-Brain | Oracle | Δ(MB−Uni)
+        |
+
+        |------------|--------|-----------|------------|--------|-----------|
+
+        | Camera     | 44.0   | 57.0      | 59.0       | 61.0   | +2.0      |
+
+        | Light      | 56.0   | 68.0      | 69.0       | 70.0   | +1.0      |
+
+        | Background | 49.0   | 61.0      | 63.0       | 65.0   | +2.0      |
+
+        | Noise      | 58.0   | 70.0      | 71.0       | 72.0   | +1.0      |
+
+        | Layout     | 52.0   | 62.0      | 64.0       | 66.0   | +2.0      |
+
+        | Robot      | 62.6   | 70.8      | 72.0       | 73.0   | +1.2      |
+
+        | **Overall**| **53.6**| **64.8** | **66.3**   |**67.8**| **+1.5**  |
+
+        '
+    figures_description:
+    - 'Ablation ladder bar chart with error bars (5 seeds): Frozen → Universal shows
+      a large jump; Universal → Meta-Brain shows a thin, overlapping-CI sliver; Meta-Brain
+      → Oracle shows another thin sliver. The visual immediately communicates that
+      routing contributes negligible additional gain.'
+    - 'Per-perturbation grouped bar chart (6 types × 4 methods): uniform small deltas
+      across all types, no perturbation type shows dramatic routing benefit.'
+    analysis: 'This is the central negative result. The ablation ladder shows a clear
+      two-regime structure: (1) LoRA adaptation produces a large, significant gain
+      (+11.2%), and (2) routing on top of LoRA produces a small, non-significant gain
+      (+1.5%, p=0.12). The 95% CI for the Meta-Brain−Universal difference is [-0.5,
+      +3.5], which includes zero. Even the oracle ceiling is only +3.0% above universal,
+      meaning no routing strategy with these experts could achieve significance with
+      5 seeds. The per-perturbation breakdown shows remarkably uniform small deltas
+      (+1.0 to +2.0), suggesting no perturbation type is a "routing winner." This
+      pattern is consistent with the hypothesis that rank-16 LoRA convergence, not
+      routing quality, is the binding constraint.
+
+      '
+  - name: FTM/FLA reproduction — visual-only baseline
+    plan_id: plan_006
+    description: 'Reproduce FTM on pi0 for visual perturbation types. Compare with
+      LoRA-V and Meta-Brain on visual perturbations. Establish Meta-Brain''s value
+      proposition beyond visual-only methods.
+
+      '
+    expected_results:
+      ftm_camera: 63.0
+      ftm_light: 71.0
+      ftm_background: 62.0
+      ftm_noise: 69.0
+      ftm_visual_avg: 66.2
+      lora_v_visual_avg: 67.0
+      meta_brain_visual_avg: 65.5
+      universal_visual_avg: 64.0
+      ftm_on_layout: null
+      ftm_on_robot: null
+      meta_brain_overall_advantage: 1.5
+    result_rationale: 'FTM achieves 66.2% on visual perturbations with only ~4K trainable
+      parameters, which is competitive with LoRA-V (67.0%) and actually exceeds Meta-Brain''s
+      visual performance (65.5%). FTM''s architecture (feature transformation modules)
+      is specifically optimized for visual distribution shifts, giving it an edge
+      on camera/light perturbations. Meta-Brain''s soft routing dilutes visual expert
+      weight across all three experts (routing weight 0.52 for LoRA-V on visual inputs),
+      so it underperforms the dedicated LoRA-V. Meta-Brain''s only advantage is coverage
+      of spatial/physical types, but with the +1.5% overall gain over universal being
+      non-significant, the coverage argument is weak. In worst tier, FTM''s parameter
+      efficiency on visual perturbations (14.5% gain / 4K params) dramatically outperforms
+      Meta-Brain''s overall efficiency.
+
+      '
+    tables:
+    - title: Visual perturbation comparison
+      content: '| Method      | Params  | Camera | Light | BG   | Noise | Vis Avg
+        |
+
+        |-------------|---------|--------|-------|------|-------|---------|
+
+        | Frozen pi0  | 0       | 44.0   | 56.0  | 49.0 | 58.0  | 51.8   |
+
+        | FTM         | 4K      | 63.0   | 71.0  | 62.0 | 69.0  | 66.2   |
+
+        | Universal   | 2M      | 57.0   | 68.0  | 61.0 | 70.0  | 64.0   |
+
+        | LoRA-V      | 2M      | 61.0   | 70.0  | 65.0 | 72.0  | 67.0   |
+
+        | Meta-Brain  | 6M      | 59.0   | 69.0  | 63.0 | 71.0  | 65.5   |
+
+        '
+    - title: Coverage comparison
+      content: '| Method     | Visual | Spatial | Physical | Overall | Coverage |
+
+        |------------|--------|---------|----------|---------|----------|
+
+        | FTM        | 66.2   | —       | —        | —       | Partial  |
+
+        | Meta-Brain | 65.5   | 64.0    | 72.0     | 66.3    | Full     |
+
+        | Universal  | 64.0   | 62.0    | 70.8     | 64.8    | Full     |
+
+        '
+    figures_description:
+    - 'Visual-perturbation-only bar chart: FTM vs LoRA-V vs Meta-Brain vs Universal.
+      FTM is competitive or better than Meta-Brain on all visual types despite 1500x
+      fewer parameters.'
+    analysis: 'FTM comparison is damaging to Meta-Brain''s narrative in worst tier.
+      FTM achieves comparable visual robustness with 4K params (66.2% visual avg)
+      while Meta-Brain requires 6M params for 65.5% on visual types. Meta-Brain''s
+      theoretical advantage — full perturbation coverage — yields only +1.5% overall
+      gain over universal. A reviewer could argue: "just use FTM for visual + universal
+      LoRA for the rest" as a simpler, more parameter-efficient alternative. In the
+      pivot framing, this comparison supports the design-dimension analysis narrative:
+      different adaptation strategies (feature transformation vs LoRA routing) have
+      different efficiency profiles, and the optimal strategy depends on the perturbation
+      distribution rather than routing quality.
+
+      '
+  - name: Parameter efficiency analysis
+    plan_id: plan_007
+    description: 'Compute gain-over-frozen per method, normalize by trainable parameters.
+      Scatter plot comparison across all methods including cross-paper baselines.
+
+      '
+    expected_results:
+      meta_brain_gain_over_frozen: 12.7
+      meta_brain_params_M: 6.0
+      meta_brain_gain_per_M: 2.12
+      universal_gain_over_frozen: 11.2
+      universal_params_M: 2.0
+      universal_gain_per_M: 5.6
+      ftm_gain_over_frozen_visual: 14.4
+      ftm_params_M: 0.004
+      ftm_gain_per_M_visual: 3600.0
+      vla_gse_gain_over_lora: 12.0
+      vla_gse_params_M: 114.0
+      vla_gse_gain_per_M_over_lora: 0.105
+      meta_brain_gain_over_lora: 1.5
+      meta_brain_gain_per_M_over_lora: 0.25
+    result_rationale: 'Parameter efficiency analysis is unfavorable for Meta-Brain
+      in worst tier. Universal LoRA achieves 5.60% gain per million parameters — 2.6x
+      more efficient than Meta-Brain (2.12). The 3x parameter budget (6M vs 2M) buys
+      only 1.5% additional gain. FTM dominates on visual-only efficiency (3600 gain/M
+      on visual). When normalized to gain-over-LoRA-baseline (the routing-attributable
+      improvement), Meta-Brain''s efficiency drops to 0.25%/M, meaning most of its
+      gain comes from the LoRA components themselves, not the routing mechanism. The
+      scatter plot will show Meta-Brain sitting in an unfavorable region: more parameters
+      than universal LoRA for negligible additional gain, and far from FTM''s visual-only
+      efficiency frontier.
+
+      '
+    tables:
+    - title: Parameter efficiency comparison
+      content: '| Method         | Backbone   | Params  | Gain/Frozen | Gain/M  |
+        Coverage |
+
+        |----------------|------------|---------|-------------|---------|----------|
+
+        | FTM            | pi0        | 4K      | +14.4 (vis) | 3600.0  | Visual   |
+
+        | Universal LoRA | pi0        | 2M      | +11.2       | 5.60    | Full     |
+
+        | Meta-Brain     | pi0        | 6M      | +12.7       | 2.12    | Full     |
+
+        | VLA-GSE*       | Qwen3-VL   | 114M    | +27.6†      | 0.24    | Full     |
+
+        * different backbone  † estimated gain over Qwen3-VL frozen baseline
+
+        '
+    - title: Routing-attributable efficiency
+      content: '| Method     | Gain over Uni LoRA | Routing params | Gain/M (routing)
+        |
+
+        |------------|--------------------|----------------|------------------|
+
+        | Meta-Brain | +1.5               | 4M (extra)     | 0.375            |
+
+        | VLA-GSE*   | +12.0              | 114M           | 0.105            |
+
+        * cross-backbone, not directly comparable
+
+        '
+    figures_description:
+    - 'Log-scale scatter plot: x=trainable params, y=gain-over-frozen. Universal LoRA
+      sits on a better efficiency frontier than Meta-Brain. FTM (visual-only) dominates
+      the low-param region. Meta-Brain is right-shifted from Universal with minimal
+      y-axis gain.'
+    - 'Marginal efficiency bar chart: gain per additional M params spent beyond universal
+      LoRA. Meta-Brain''s marginal efficiency (0.375%/M) is shown as negligible.'
+    analysis: 'The parameter efficiency analysis is the quantitative nail in the routing
+      hypothesis coffin. Universal LoRA achieves 88% of Meta-Brain''s total gain (11.2/12.7)
+      with 33% of the parameters (2M/6M). The additional 4M parameters allocated to
+      maintaining separate experts + router yield 0.375% gain per M — a poor return.
+      In the pivot framing, this supports the design-dimension analysis: parameter-matched
+      universal adaptation is a strong default, and routing-based approaches need
+      either higher-capacity experts (rank 32+) or compositional perturbation scenarios
+      to justify the overhead.
+
+      '
+  - name: Correction Memory ablation
+    plan_id: plan_008
+    description: 'Compare Meta-Brain with and without Correction Memory module. CM
+      adds routing-weight modulation from retrieved exemplars via FAISS.
+
+      '
+    expected_results:
+      meta_brain_no_cm: 66.3
+      meta_brain_with_cm: 66.7
+      cm_ablation_delta: 0.4
+      cm_delta_camera: 0.6
+      cm_delta_light: 0.2
+      cm_delta_background: 0.8
+      cm_delta_noise: 0.0
+      cm_delta_layout: 0.4
+      cm_delta_robot: 0.2
+      cm_pvalue: 0.38
+    result_rationale: 'CM adds 0.4% overall — well within noise (p=0.38). Since the
+      base routing weights are already near-uniform (diagonality 0.58), modulating
+      them with retrieved exemplars has minimal effect: modulating a near-flat distribution
+      stays near-flat. CM''s theoretical value is sharpening routing confidence for
+      ambiguous cases, but when the experts themselves produce similar outputs, sharper
+      routing does not translate to better correction. The per-type breakdown shows
+      CM''s largest effect on background (+0.8%), which is the type with highest cross-expert
+      variance in plan_002, but even this is not significant. CM adds one learned
+      parameter (alpha) and CPU-bound FAISS retrieval — the complexity-to-gain ratio
+      is extremely unfavorable.
+
+      '
+    tables:
+    - title: CM ablation per perturbation type
+      content: '| Type       | No CM  | With CM | Δ    |
+
+        |------------|--------|---------|------|
+
+        | Camera     | 59.0   | 59.6    | +0.6 |
+
+        | Light      | 69.0   | 69.2    | +0.2 |
+
+        | Background | 63.0   | 63.8    | +0.8 |
+
+        | Noise      | 71.0   | 71.0    | +0.0 |
+
+        | Layout     | 64.0   | 64.4    | +0.4 |
+
+        | Robot      | 72.0   | 72.2    | +0.2 |
+
+        | **Overall**| **66.3**|**66.7**| **+0.4** |
+
+        p = 0.38 (paired t-test, not significant)
+
+        '
+    figures_description:
+    - 'Paired bar chart (with/without CM): differences are invisible at chart scale,
+      visually reinforcing the null result.'
+    analysis: 'CM is a clear null result in worst tier. Present as optional module
+      with honest reporting: +0.4% (p=0.38). In the pivot framing, this supports the
+      broader conclusion that the routing bottleneck is expert capacity, not routing
+      precision. Even augmenting routing with episodic memory (retrieved exemplar
+      context) cannot overcome the fundamental limitation that rank-16 experts produce
+      similar outputs. Recommend presenting CM as a "future work" direction for higher-capacity
+      expert settings rather than a contribution of this paper.
+
+      '
+  - name: Router architecture comparison
+    plan_id: plan_009
+    description: 'Compare PAR router variants: 2-layer MLP, linear classifier, attention-based
+      router. All on PaliGemma layer 6. Measure routing accuracy and downstream task
+      success.
+
+      '
+    expected_results:
+      mlp_routing_accuracy: 99.3
+      mlp_downstream: 66.3
+      linear_routing_accuracy: 98.1
+      linear_downstream: 66.0
+      attention_routing_accuracy: 99.1
+      attention_downstream: 66.2
+      downstream_range: 0.3
+      routing_accuracy_range: 1.2
+    result_rationale: 'All three router architectures produce nearly identical downstream
+      performance (66.0–66.3%, range 0.3%) despite varying routing accuracy (98.1–99.3%).
+      This confirms that routing quality is not the bottleneck: even the simplest
+      linear classifier (98.1% accuracy) achieves 66.0%, only 0.3% below the best
+      MLP router. The attention-based router, despite being more expressive, cannot
+      extract additional routing value because the experts themselves are too similar.
+      The routing accuracy → downstream transfer coefficient is near-zero: a 1.2%
+      improvement in routing accuracy translates to at most 0.3% downstream gain.
+      This dissociation between routing accuracy and downstream success is the strongest
+      evidence that the correction-capacity bottleneck, not routing architecture,
+      limits Meta-Brain''s effectiveness.
+
+      '
+    tables:
+    - title: Router architecture comparison
+      content: '| Router     | Params (router) | Route Acc (%) | Downstream (%) |
+        Δ from MLP |
+
+        |------------|-----------------|---------------|-----------------|------------|
+
+        | Linear     | 6K              | 98.1          | 66.0            | −0.3       |
+
+        | MLP (2-layer) | 33K          | 99.3          | 66.3            | —          |
+
+        | Attention  | 132K            | 99.1          | 66.2            | −0.1       |
+
+        '
+    figures_description:
+    - 'Dual-axis chart: routing accuracy (left y-axis) vs downstream success (right
+      y-axis) for 3 router types. Routing accuracy varies more than downstream success,
+      showing the disconnect.'
+    analysis: 'Router architecture is irrelevant in worst tier. All variants perform
+      within 0.3% of each other downstream, regardless of routing accuracy differences.
+      This is useful for the design-dimension analysis: it provides evidence that
+      perturbation-diagnostic routing is easy (even a linear classifier suffices)
+      but that the downstream value of routing is limited by expert capacity. Recommend
+      using the linear router in the paper (simplest, nearly identical performance)
+      and framing the comparison as evidence for the "routing is easy, correction
+      is hard" narrative.
+
+      '
+  - name: 6-class vs 3-class routing comparison
+    plan_id: plan_010
+    description: 'Compare 6-class fine-grained routing (6 LoRA experts, rank 8 each)
+      vs 3-class coarse routing (3 LoRA experts, rank 16 each) under matched total
+      parameter budget (~6M).
+
+      '
+    expected_results:
+      three_class_overall: 66.3
+      six_class_overall: 65.8
+      six_class_delta: -0.5
+      six_class_camera: 59.4
+      six_class_light: 69.2
+      six_class_background: 62.4
+      six_class_noise: 70.0
+      six_class_layout: 63.6
+      six_class_robot: 70.2
+      six_class_routing_accuracy: 98.8
+      six_class_routing_diagonality: 0.51
+      marginal_gain_per_expert: -0.08
+    result_rationale: '6-class routing performs slightly worse than 3-class (65.8
+      vs 66.3, Δ=−0.5%). Under a fixed parameter budget, doubling the number of experts
+      halves each expert''s rank (rank 8 vs rank 16), reducing individual expert capacity.
+      The finer routing granularity cannot compensate for the reduced per-expert correction
+      power. Additionally, 6-class routing diagonality (0.51) is lower than 3-class
+      (0.58) — with more classes, the routing weights spread more thinly, approaching
+      uniform distribution. The intra-Visual perturbations (camera, light, background,
+      noise) occupy overlapping representation spaces in PaliGemma layer 6 (consistent
+      with Phase 0''s 6-class accuracy being only marginally above 3-class), so splitting
+      them into separate experts creates artificial boundaries in a continuous representation
+      space. This result validates the 3-class taxonomy and argues against finer granularity
+      at this parameter budget.
+
+      '
+    tables:
+    - title: 6-class vs 3-class comparison
+      content: '| Config  | Experts | Rank/Expert | Total Params | Overall | Diag  |
+
+        |---------|---------|-------------|-------------|---------|-------|
+
+        | 3-class | 3       | 16          | ~6M         | 66.3    | 0.58  |
+
+        | 6-class | 6       | 8           | ~6M         | 65.8    | 0.51  |
+
+        | Δ       |         |             |             | −0.5    | −0.07 |
+
+        '
+    - title: 6-class per-perturbation results
+      content: '| Type       | 3-class | 6-class | Δ    |
+
+        |------------|---------|---------|------|
+
+        | Camera     | 59.0    | 59.4    | +0.4 |
+
+        | Light      | 69.0    | 69.2    | +0.2 |
+
+        | Background | 63.0    | 62.4    | −0.6 |
+
+        | Noise      | 71.0    | 70.0    | −1.0 |
+
+        | Layout     | 64.0    | 63.6    | −0.4 |
+
+        | Robot      | 72.0    | 70.2    | −1.8 |
+
+        '
+    figures_description:
+    - 'Side-by-side routing heatmaps: 3×3 (3-class) vs 6×6 (6-class). 6-class shows
+      more diffuse routing weights with weaker diagonal.'
+    analysis: 'Finer granularity hurts under fixed parameter budget. Camera and light
+      benefit marginally (+0.4, +0.2) from dedicated experts, but robot (−1.8) and
+      noise (−1.0) degrade substantially — their rank-8 experts lack capacity for
+      effective correction. This is a capacity-granularity tradeoff: more routing
+      precision × less correction capacity = net negative. Addresses reviewer concern
+      C5 directly: 3-class is not too coarse; it is actually the better operating
+      point given the rank-16 constraint. Finer granularity would require proportionally
+      higher total rank budget.
+
+      '
+  - name: Cross-backbone validation — SmolVLA
+    plan_id: plan_011
+    description: 'Replicate Phase 0 + Phase 1 core pipeline on SmolVLA to test generalizability
+      of perturbation-diagnostic routing across architectures.
+
+      '
+    expected_results:
+      smolvla_phase0_3class_f1: 0.971
+      smolvla_phase0_best_layer: 4
+      smolvla_phase0_k1_f1: 0.943
+      smolvla_frozen_baseline: 48.2
+      smolvla_universal_lora: 58.6
+      smolvla_meta_brain: 59.8
+      smolvla_gain_over_frozen: 11.6
+      smolvla_gain_over_universal: 1.2
+      smolvla_routing_diagonality: 0.54
+    result_rationale: 'Phase 0 replicates strongly on SmolVLA (3-class F1=0.971, K=1
+      F1=0.943) — perturbation type is diagnosable from frozen activations across
+      architectures. This is the central positive finding for the pivot narrative:
+      VLA internal representations encode perturbation type as a general property,
+      not a pi0 artifact. Phase 1 shows the same pattern as pi0: large universal LoRA
+      gain (+10.4 over frozen), marginal routing gain (+1.2 over universal, not significant).
+      SmolVLA''s lower absolute performance (48.2% frozen, 59.8% Meta-Brain) reflects
+      its smaller backbone capacity, but the relative pattern is identical — LoRA
+      adaptation helps, routing doesn''t add much. Routing diagonality (0.54) is even
+      weaker than pi0 (0.58), consistent with SmolVLA''s slightly lower Phase 0 accuracy.
+      Cross-backbone replication strengthens Phase 0 as the lead contribution and
+      confirms that the routing limitation is a property of the rank-16 LoRA approach,
+      not a backbone-specific artifact.
+
+      '
+    tables:
+    - title: Cross-backbone Phase 0 comparison
+      content: '| Metric            | pi0 (PaliGemma) | SmolVLA      |
+
+        |-------------------|-----------------|--------------|
+
+        | 3-class F1        | 0.993           | 0.971        |
+
+        | Best layer        | 6               | 4            |
+
+        | K=1 F1            | 1.000           | 0.943        |
+
+        | Binary AUC        | 1.000           | 0.998        |
+
+        '
+    - title: Cross-backbone Phase 1 ablation
+      content: '| Method         | pi0   | SmolVLA | Pattern match? |
+
+        |----------------|-------|---------|----------------|
+
+        | Frozen         | 53.6  | 48.2    | —              |
+
+        | Universal LoRA | 64.8  | 58.6    | —              |
+
+        | Meta-Brain     | 66.3  | 59.8    | —              |
+
+        | Δ(MB−Uni)      | +1.5  | +1.2    | ✓ same pattern |
+
+        | Routing diag   | 0.58  | 0.54    | ✓ same pattern |
+
+        '
+    figures_description:
+    - 't-SNE comparison: pi0 layer 6 vs SmolVLA layer 4 activations, both showing
+      clear 3-class clustering. Visual evidence that perturbation diagnosability is
+      architecture-general.'
+    - 'Mirror ablation ladder: pi0 (left) vs SmolVLA (right) with matching relative
+      patterns despite different absolute baselines.'
+    analysis: 'Cross-backbone replication is the strongest evidence for the pivot
+      paper. Phase 0 generalizes (F1>0.97 on SmolVLA) while Phase 1''s routing limitation
+      also generalizes (Δ=+1.2, not significant). This supports the reframed contribution:
+      "VLA representations universally encode perturbation type" (positive finding,
+      lead contribution) + "diagnostic routing yields marginal downstream gains at
+      rank-16" (negative-but-informative, generalizes across backbones). SmolVLA''s
+      different architecture (different vision encoder, different layer structure)
+      makes the Phase 0 replication a genuine generalization result, not a trivial
+      confirmation. Addresses reviewer concern C3 directly.
+
+      '
+  - name: LoRA layer placement ablation
+    plan_id: plan_012
+    description: 'Vary which PaliGemma layers receive LoRA: early (2-6), mid (6-12),
+      late (12-16), all layers. Test whether type-specific layer placement improves
+      specialization.
+
+      '
+    expected_results:
+      early_layers_overall: 65.8
+      mid_layers_overall: 66.1
+      late_layers_overall: 65.4
+      all_layers_overall: 66.5
+      early_visual_advantage: 0.6
+      mid_spatial_advantage: 0.4
+      late_physical_advantage: 0.2
+      optimal_vs_default_gap: 0.2
+      visual_lora_best_placement: early (2-6)
+      spatial_lora_best_placement: mid (6-12)
+      physical_lora_best_placement: all
+    result_rationale: 'Layer placement produces negligible differences (65.4–66.5%,
+      range 1.1%). The hypothesis that Visual LoRA benefits from early layers, Spatial
+      from mid, and Physical from late receives only weak support: Visual expert on
+      early layers gains +0.6% on visual types (compared to default all-layer), Spatial
+      on mid gains +0.4% on layout, but Physical on late layers actually degrades
+      (−0.8% on robot). The "all layers" placement (66.5%) is marginally best overall
+      — spreading LoRA across all layers provides the most general correction. At
+      rank 16, the LoRA correction is too low-rank to benefit from layer-specific
+      placement: the correction capacity is distributed thinly regardless of which
+      layers are targeted. The type-specific placement hypothesis would require higher-rank
+      experts where layer-specific corrections could diverge more substantially. This
+      ablation provides mild evidence for the "experts converge to similar solutions"
+      hypothesis — even varying their layer targets doesn''t produce differentiated
+      behaviors.
+
+      '
+    tables:
+    - title: Layer placement overall results
+      content: '| Placement    | Layers  | Overall | Visual | Spatial | Physical |
+
+        |--------------|---------|---------|--------|---------|----------|
+
+        | Early        | 2-6     | 65.8    | 66.1   | 63.0    | 71.0     |
+
+        | Mid          | 6-12    | 66.1    | 65.4   | 64.8    | 72.2     |
+
+        | Late         | 12-16   | 65.4    | 64.8   | 63.2    | 71.8     |
+
+        | All (default)| 2-16    | 66.5    | 65.5   | 64.0    | 72.0     |
+
+        | Range        |         | 1.1     | 1.3    | 1.8     | 1.2      |
+
+        '
+    - title: Type-specific placement hypothesis test
+      content: '| Expert  | Hypothesis        | Best placement | Δ vs all-layers |
+        Confirmed? |
+
+        |---------|-------------------|----------------|-----------------|------------|
+
+        | LoRA-V  | Early best        | Early (+0.6)   | +0.6            | Weak       |
+
+        | LoRA-S  | Mid best          | Mid (+0.8)     | +0.8            | Weak       |
+
+        | LoRA-P  | Late best         | All (−0.8 late)| −0.8            | No         |
+
+        '
+    figures_description:
+    - 'Heatmap: (layer placement × perturbation type) success rates. Shows flat landscape
+      with no strong type-layer interaction.'
+    analysis: 'Layer placement is a near-null result. The 1.1% overall range is within
+      seed-level variance, and no type-layer pairing produces a compelling advantage.
+      Physical expert on late layers is actually worse, contradicting the mechanistic
+      hypothesis. At rank 16, the LoRA updates are too constrained to develop layer-specific
+      correction strategies. This supports the overall worst-tier narrative: the rank-16
+      LoRA bottleneck prevents meaningful specialization regardless of routing quality,
+      expert assignment, or layer targeting. Present as supporting evidence for the
+      "capacity is the bottleneck" conclusion and a clear direction for future work
+      (higher-rank experts + layer-aware placement).'
+  review_report: '---
+
+    dream_id: dream_20260515T154653
+
+    tier: worst
+
+    overall_score: 4/10 — Reject
+
+    timestamp: 2026-05-15T16:51:31.493605+00:00
+
+    ---
+
+
+    # Dream Review Report — Consolidated Roundtable
+
+
+    **Paper:** "Do VLAs Know What Went Wrong? Probing Perturbation Representations
+    and the Limits of Diagnostic Routing"
+
+    **Venue:** CoRL 2026 (~39% acceptance rate, OpenReview 1–10 scale)
+
+    **Review Mode:** Full (2 Reviewers, 4-step roundtable)
+
+    **Date:** 2026-05-15
+
+
+    ---
+
+
+    ## Reviewer Assignments
+
+
+    | Reviewer | Focus | Independent Score |
+
+    |----------|-------|-------------------|
+
+    | R1 | Methods + Experiments | 5/10 (Borderline) |
+
+    | R2 | Novelty + Related Work | 4/10 (Weak Reject) |
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews (Summary)
+
+
+    ### R1 — Methods & Experiments (Score: 5/10)
+
+
+    **Strengths:**
+
+    - Phase 0 probing (F1=1.0 at K=1, cross-backbone replication on SmolVLA F1=0.971)
+    is a clean, well-executed positive finding
+
+    - Honest reporting of the negative Phase 1 result with proper 5-seed statistical
+    testing (p=0.12, 95% CI [−0.5, +3.5])
+
+    - Oracle routing ablation (67.8%) definitively caps routing benefit at +3.0%,
+    cleanly shifting diagnosis from "bad router" to "insufficient expert differentiation"
+
+    - Comprehensive design-dimension ablations across 4 axes (CM, router architecture,
+    granularity, layer placement) systematically rule out alternative explanations
+
+    - Cross-backbone replication confirms the negative pattern is structural, not
+    backbone-specific
+
+    - Statistical rigor above CoRL average: per-seed reporting, paired t-tests, confidence
+    intervals
+
+
+    **Weaknesses:**
+
+    - **(Critical)** The central thesis — "expert capacity is the bottleneck" — is
+    never experimentally validated. No rank sweep (r=16/32/64). The paper diagnoses
+    the bottleneck but does not test its prediction (that higher rank would unlock
+    routing benefit). This is the single most damaging omission.
+
+    - **(Critical)** Parameter-mismatched primary comparison: Meta-Brain (6M) vs.
+    Universal LoRA (2M). A rank-48 universal LoRA (~6M) is the natural parameter-matched
+    control. Its absence makes the +1.5% delta uninterpretable — the universal LoRA
+    may simply be under-parameterized.
+
+    - **(Major)** No random/uniform routing baseline. Without it, one cannot distinguish
+    routing signal value from ensemble/averaging effects of combining three expert
+    outputs. The +1.5% could come from ensembling, not routing.
+
+    - **(Major)** Training data imbalance across experts is uncontrolled. Visual perturbations
+    span 4 subcategories (camera, light, background, noise) while Spatial and Physical
+    have 1 each. LoRA-V sees 4× more diverse data, which confounds specialization
+    analysis.
+
+    - **(Moderate)** Bibliography critically thin (9 references). Missing MoE-LoRA
+    literature, probing foundations, TTA methods.
+
+
+    **R1 Scores:**
+
+    - Soundness: 5/10
+
+    - Empirical Rigor: 5/10
+
+    - Reproducibility: 6/10
+
+    - Overall: 5/10
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ### R2 — Novelty & Related Work (Score: 4/10)
+
+
+    **Strengths:**
+
+    - Honest framing of a negative result with clear statistical reporting; the "split
+    answer" narrative is effective
+
+    - Phase 0 cross-backbone replication is a genuine generalization result with standalone
+    value
+
+    - Clear identification of the bottleneck via oracle ablation + routing weight
+    analysis
+
+    - Routing-accuracy-to-downstream dissociation (Table 13: 98.1–99.3% routing accuracy
+    → 66.0–66.3% downstream) is a clean falsification datapoint
+
+
+    **Weaknesses:**
+
+    - **(Critical)** Phase 0 is an incremental extension of existing probing work.
+    SAFE [6] already detects perturbations from VLA internal representations. Moving
+    from binary anomaly detection to 3-class perturbation-type classification is a
+    natural next step, not a conceptual breakthrough. The near-perfect F1 may reflect
+    LIBERO-Plus''s categorically distinct synthetic perturbations rather than a deep
+    VLA property.
+
+    - **(Critical)** The routing architecture (PAR + weighted LoRA combination: h''
+    = h + Σ wk · LoRAk(h)) is architecturally identical to LoRAMoE, MoLoRA, MixLoRA,
+    and other MoE-LoRA methods. The only distinction is the routing signal source
+    (perturbation type vs. task/input features). This is not acknowledged in the paper.
+
+    - **(Critical)** 9 references for a CoRL submission is disqualifying. Missing
+    entire literatures: MoE-LoRA (architecturally identical methods), test-time adaptation
+    (alternative paradigm), probing foundations (Alain & Bengio 2017), adapter composition
+    (AdapterFusion, Poly), PaliGemma citation. Three works named in text (MoIRA, CORAL,
+    LoRA-SP) are absent from the bibliography.
+
+    - **(Major)** The three "contributions" are not independent: setup (Phase 0),
+    finding (negative routing result), discussion (ablation collection). Presenting
+    ablations as a "design-dimension analysis framework" inflates scope without theoretical
+    grounding.
+
+    - **(Major)** The negative result may be predictable from low-rank adaptation
+    literature. At rank 16, the top singular vectors of perturbation correction matrices
+    are likely shared across types, making expert convergence expected. The paper
+    provides no guidance on the rank threshold where routing becomes beneficial.
+
+    - **(Moderate)** VLA-GSE comparison in Table 11 is misleading: cross-backbone
+    parameter efficiency ratios are meaningless. SAFE-to-Meta-Brain proximity is not
+    discussed. The perturbation taxonomy is inherited from LIBERO-Plus, not derived
+    from representational analysis.
+
+
+    **R2 Scores:**
+
+    - Novelty/Originality: 3/10
+
+    - Significance/Impact: 4/10
+
+    - Related Work Completeness: 2/10
+
+    - Clarity: 7/10
+
+    - Overall: 4/10
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## Step 2: Cross-Sharing — Points of Agreement and Disagreement
+
+
+    ### Strong Agreement (both reviewers)
+
+    1. **Phase 0 is the strongest finding** but has limited novelty over SAFE/existing
+    probing work
+
+    2. **Missing parameter-matched baseline** (rank-48 universal LoRA at ~6M) is a
+    critical gap that undermines the central comparison
+
+    3. **No rank sweep** fatally weakens the "expert capacity bottleneck" thesis —
+    the core claim is stated but never experimentally validated
+
+    4. **No random routing baseline** makes the +1.5% delta uninterpretable (routing
+    signal vs. ensemble effect)
+
+    5. **Bibliography is severely deficient** (9 references, missing directly relevant
+    MoE-LoRA literature)
+
+    6. **Statistical rigor is above average** for the venue — honest reporting, 5
+    seeds, paired t-tests, CIs
+
+    7. **Cross-backbone replication** is a genuine strength that adds scientific value
+
+    8. **Oracle ablation** is a well-designed diagnostic that cleanly identifies the
+    ceiling
+
+
+    ### Disagreement (resolved during convergence)
+
+    - R1 gave more weight to the thoroughness of the ablation suite (4 design axes
+    × multiple configurations = comprehensive coverage). R2 viewed the ablations as
+    standard practice that does not constitute a "contribution." **Resolution:** Both
+    agree the ablations are well-executed but insufficient to compensate for limited
+    novelty and the missing critical controls. The ablations answer secondary questions
+    while the primary question (does routing help at higher capacity?) remains unanswered.
+
+    - R1 was slightly more generous toward the "informative negative result" framing.
+    R2 argued the result may be predictable. **Resolution:** Both agree the negative
+    result is *useful* but *under-diagnosed*. Without rank scaling, the paper stops
+    at "routing doesn''t help at rank 16" rather than reaching the more valuable finding
+    of "routing requires rank X+ to unlock."
+
+
+    ---
+
+
+    ## Step 3: Convergence — Consolidated Assessment
+
+
+    ### Verdict: **Reject** (Converged Score: 4/10)
+
+
+    The paper falls below the CoRL 2026 acceptance threshold. While Phase 0 and the
+    honest negative-result framing are appreciated, the combination of (1) limited
+    novelty over prior probing/MoE-LoRA work, (2) missing critical experimental controls,
+    and (3) a disqualifyingly thin bibliography prevents acceptance.
+
+
+    ### Dimension Scores (Converged)
+
+
+    | Dimension | Score | Rationale |
+
+    |-----------|-------|-----------|
+
+    | **Originality** | 3/10 | Phase 0 is an incremental step from SAFE/probing literature.
+    Meta-Brain architecture is standard MoE-LoRA. The negative result is useful but
+    potentially predictable. |
+
+    | **Quality / Soundness** | 5/10 | Statistical methodology is sound (5 seeds,
+    paired t-tests, CIs). But missing three critical controls (parameter-matched universal,
+    random routing, rank sweep) undermines the central claim. |
+
+    | **Clarity** | 7/10 | Well-structured, honest reporting, clean narrative arc.
+    Deductions for missing architecture figure, no t-SNE visualization, and the three-contribution
+    framing. |
+
+    | **Significance** | 4/10 | Phase 0 diagnosability has modest standalone value.
+    The negative routing result lacks actionable guidance (no rank threshold). Limited
+    to VLA-robustness niche. |
+
+    | **Relevance to CoRL** | 6/10 | Addresses robot learning robustness directly.
+    Uses VLA backbones and robot manipulation benchmark. Simulation-only evaluation
+    is acceptable for CoRL but limits impact. |
+
+    | **Related Work** | 2/10 | 9 references. Missing MoE-LoRA, TTA, probing foundations,
+    adapter composition, PaliGemma. Three works named but uncited. |
+
+    | **Overall** | **4/10** | Below acceptance threshold. Honest but incremental,
+    with critical experimental gaps. |
+
+    | **Confidence** | 4/5 | Both reviewers have strong familiarity with MoE, LoRA,
+    probing, and VLA literatures. |
+
+
+    ---
+
+
+    ## Step 4: Consolidated Detailed Review
+
+
+    ### Summary
+
+    This paper asks whether VLA internal representations encode perturbation type
+    and whether this signal can improve robustness via diagnostic routing. Phase 0
+    shows near-perfect perturbation diagnosability from frozen activations (F1=1.0
+    at K=1 on pi0, F1=0.971 on SmolVLA). Phase 1 tests Meta-Brain (PAR router + 3
+    specialized rank-16 LoRA experts, 6M params), finding only +1.5% gain over universal
+    LoRA (p=0.12, not significant), with oracle routing capping the benefit at +3.0%.
+    The paper reframes this as evidence that expert capacity, not routing quality,
+    is the binding constraint.
+
+
+    ### Strengths
+
+
+    **S1 (Both): Rigorous statistical methodology.** Five-seed evaluation with paired
+    t-tests, exact p-values, confidence intervals, and per-seed reporting (Table 6)
+    is well above the CoRL median. The paper does not hide the null result behind
+    selective reporting.
+
+
+    **S2 (Both): Oracle ablation is a well-designed diagnostic.** Replacing the learned
+    router with ground-truth labels (Table 4: oracle=67.8%, only +3.0% over universal)
+    cleanly separates routing quality from expert capacity. This is the most informative
+    single experiment in the paper.
+
+
+    **S3 (Both): Cross-backbone replication adds genuine scientific value.** Phase
+    0 replicating on SmolVLA (F1=0.971, different vision encoder) and Phase 1 showing
+    the same marginal routing pattern (Δ=+1.2) demonstrates the findings are not pi0-specific.
+    Table 17 is well-designed.
+
+
+    **S4 (R1): Comprehensive ablation coverage.** The paper tests 4 design axes (correction
+    memory, router architecture, routing granularity, layer placement) plus FTM comparison
+    and parameter efficiency. All 11 planned experiments from the design document
+    are present in the paper, demonstrating thorough execution.
+
+
+    **S5 (R2): Honest, effective narrative framing.** The "split answer" (VLAs know
+    what went wrong, but this knowledge doesn''t translate to correction gains) is
+    clean and avoids the common trap of overselling a negative result.
+
+
+    **S6 (R1): Routing-accuracy-to-downstream dissociation.** Table 13 (routing accuracy
+    98.1–99.3% → downstream 66.0–66.3%, range 0.3%) provides a clean falsification
+    of "better routing = better correction" at rank 16.
+
+
+    ### Weaknesses
+
+
+    **W1 (Critical, Both): The "capacity bottleneck" thesis is stated but never experimentally
+    validated.** The paper''s central claim — that expert capacity at rank 16 is the
+    binding constraint — predicts that higher-rank experts would unlock routing benefit.
+    Yet no rank sweep (r=32/64/128) is presented. Without this, the reader cannot
+    distinguish "routing fails because of insufficient capacity" from "routing fails
+    for fundamental reasons." A single rank-32 experiment would either (a) show emerging
+    specialization, validating the thesis and making the paper much stronger, or (b)
+    show continued convergence, suggesting a deeper problem. Either outcome is informative;
+    the absence of the experiment is not.
+
+
+    **W2 (Critical, Both): Missing parameter-matched universal LoRA baseline.** Meta-Brain
+    uses ~6M parameters (3 experts × 2M each). The universal LoRA baseline uses only
+    2M. A rank-48 universal LoRA (~6M) is the natural parameter-matched control. If
+    it achieves ≥66.3%, the entire Meta-Brain architecture has zero value proposition.
+    This is the most basic experimental control for any routing/MoE paper and its
+    absence undermines the +1.5% delta.
+
+
+    **W3 (Critical, R2): 9 references is critically below CoRL norms (30–50).** Missing
+    literatures are not peripheral but directly relevant:
+
+    - **MoE-LoRA** (LoRAMoE, MoLoRA, MixLoRA): Meta-Brain''s routing equation (h''
+    = h + Σ wk · LoRAk(h)) is architecturally identical to these methods. Without
+    citation, the paper cannot establish architectural novelty.
+
+    - **Probing foundations** (Alain & Bengio 2017, Belinkov 2022): Phase 0 uses standard
+    linear probing without citing the methodology''s origins.
+
+    - **Test-time adaptation** (TENT, TTT, MEMO): Alternative paradigm for the same
+    problem, entirely absent.
+
+    - **Adapter composition** (AdapterFusion, Poly, AdaMix): Established frameworks
+    for combining adapters via learned routing.
+
+    - **PaliGemma** (Beyer et al. 2024): The primary vision encoder is uncited.
+
+    - **MoIRA, CORAL**: Named in Section 2 text but absent from the bibliography.
+
+
+    **W4 (Major, Both): No random/uniform routing baseline.** Without testing uniform
+    (1/3, 1/3, 1/3) routing weights, one cannot distinguish the value of the routing
+    signal from the ensembling effect of combining three expert outputs. The +1.5%
+    gain could come entirely from expert averaging, not diagnostic routing.
+
+
+    **W5 (Major, R2): Limited novelty.** Phase 0 extends SAFE''s binary perturbation
+    detection to 3-class typing — a natural increment, not a conceptual advance. The
+    near-perfect F1 may reflect LIBERO-Plus''s categorically distinct synthetic perturbations
+    rather than a deep VLA representational property. Meta-Brain''s architecture is
+    a standard MoE-LoRA composition with perturbation type as the gating signal. The
+    negative result, while honest, may be predictable from the low-rank adaptation
+    literature (shared top singular vectors across perturbation correction matrices).
+
+
+    **W6 (Major, R2): Three claimed "contributions" are not independent.** Contribution
+    1 (Phase 0 diagnosability) is a prerequisite. Contribution 2 (negative routing
+    result) is the main finding. Contribution 3 ("design-dimension analysis") is a
+    collection of ablation tables without formal framework, composability theory,
+    or unifying structure. These are setup, finding, and discussion — not three separable
+    contributions.
+
+
+    **W7 (Moderate, R1): Training data imbalance.** Visual perturbations span 4 subcategories
+    (camera, light, background, noise) while Spatial (layout) and Physical (robot)
+    have 1 each. LoRA-V sees 4× more diverse training data, confounding the specialization
+    analysis.
+
+
+    **W8 (Moderate, R2): VLA-GSE comparison in Table 11 is misleading.** Cross-backbone
+    parameter efficiency ratios (pi0 vs. Qwen3-VL) are not meaningful. Despite the
+    footnote, co-locating these in one table invites invalid comparison.
+
+
+    **W9 (Moderate, R2): "General property of VLA representations" is overclaimed.**
+    Two VLAs on one synthetic benchmark does not establish generality. Real-world
+    perturbations are continuous, co-occurring, and unlabeled — categorically different
+    from LIBERO-Plus''s simulator-applied transforms.
+
+
+    **W10 (Minor, R2): SAFE-to-Meta-Brain proximity not discussed.** SAFE''s detection
+    features + softmax + LoRA experts ≈ Meta-Brain. The paper claims to "close the
+    diagnose-correct loop" but does not discuss how trivial this closure is from SAFE''s
+    starting point.
+
+
+    ### Questions for Authors
+
+
+    1. What is the performance of a **rank-48 universal LoRA** (~6M params, matching
+    Meta-Brain''s total budget)? This is the most important missing experiment.
+
+    2. What is the performance under **random/uniform routing weights** (1/3, 1/3,
+    1/3)? This isolates routing signal from ensembling.
+
+    3. Have you tested **rank 32 or 64 experts**? Even a single datapoint would validate
+    or refute the capacity-bottleneck thesis.
+
+    4. How does Meta-Brain differ architecturally from **LoRAMoE or MixLoRA** beyond
+    the routing signal source?
+
+    5. Have you tested using **SAFE''s detection features** as the PAR router?
+
+    6. Have you performed **unsupervised clustering** on layer-6 activations to verify
+    the 3-class taxonomy reflects natural representational structure?
+
+    7. What is Meta-Brain''s behavior under **compound perturbations** (e.g., camera
+    + layout simultaneously)?
+
+    8. Can you report the **FTM + Universal LoRA combination** (FTM for visual, universal
+    for non-visual) as a practical baseline?
+
+
+    ### Experiment Coverage Assessment
+
+
+    The paper covers all 11 experiments from the design plan:
+
+    | # | Experiment | Covered? | Tables |
+
+    |---|-----------|----------|--------|
+
+    | 1 | LoRA expert training | ✓ | 2, 3 |
+
+    | 2 | Meta-Brain assembly | ✓ | 4, 5 |
+
+    | 3 | Oracle routing | ✓ | 4 |
+
+    | 4 | Ablation ladder (5-seed) | ✓ | 6, 7, 8 |
+
+    | 5 | FTM comparison | ✓ | 9, 10 |
+
+    | 6 | Parameter efficiency | ✓ | 11 |
+
+    | 7 | Correction Memory | ✓ | 12 |
+
+    | 8 | Router architecture | ✓ | 13 |
+
+    | 9 | 6-class vs 3-class | ✓ | 14, 15 |
+
+    | 10 | Cross-backbone SmolVLA | ✓ | 17 |
+
+    | 11 | Layer placement | ✓ | 16 |
+
+
+    Coverage is 11/11, but the three most important *missing* experiments (rank sweep,
+    parameter-matched universal, random routing) were not in the original plan either
+    — a design-phase blind spot.
+
+
+    ### Minor Issues
+
+    - No architecture diagram / system figure
+
+    - No t-SNE or UMAP visualization of Phase 0 clusters (would strengthen the diagnosability
+    narrative)
+
+    - Table numbering in text occasionally mismatches (e.g., "Table 5" for routing
+    weights appears as Table 5 in the PDF but is referenced inconsistently)
+
+    - The Correction Memory module (Section 3.5) feels like an afterthought — +0.4%
+    (p=0.38) could be dropped without loss
+
+
+    ### Recommendation
+
+
+    **Reject.** The paper is below the CoRL 2026 acceptance threshold despite thorough
+    execution.
+
+
+    The core issue is that the paper thoroughly documents *what* happens (routing
+    doesn''t help at rank 16) but does not experimentally validate *why* (the capacity-bottleneck
+    thesis) or determine *when* routing would help (no rank scaling). The missing
+    parameter-matched baseline makes even the +1.5% delta uninterpretable. The 9-reference
+    bibliography and standard MoE-LoRA architecture further limit the contribution.
+
+
+    ### Path to Acceptance
+
+
+    1. **Run rank-scaling experiments** (r=16/32/64/128). If routing benefit emerges
+    at higher ranks, the narrative shifts to "routing requires minimum expert capacity
+    C*" — a concrete, actionable finding.
+
+    2. **Add parameter-matched universal LoRA** (rank 48, ~6M) and **random routing
+    baseline**.
+
+    3. **Expand bibliography to 30+ references.** Engage with MoE-LoRA, TTA, probing
+    foundations, adapter composition.
+
+    4. **Reframe as one contribution:** "Perturbation type is diagnosable in VLAs
+    but routing-based correction requires expert capacity beyond rank 16" — supported
+    by the ablation suite.
+
+    5. **Add unsupervised analysis** of Phase 0 (clustering, RSA, information-theoretic
+    measures) to elevate it beyond standard probing.
+
+    6. **Test compound perturbations** to address the taxonomy limitation.
+
+
+    With rank-scaling showing a clear capacity threshold, parameter-matched baselines,
+    and proper literature engagement, this could become a solid empirical contribution
+    at CoRL or a robotics workshop.
+
+
+    ---
+
+
+    ## Final Scores
+
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Originality | 3/10 |
+
+    | Soundness / Quality | 5/10 |
+
+    | Clarity | 7/10 |
+
+    | Significance | 4/10 |
+
+    | Relevance (CoRL) | 6/10 |
+
+    | Related Work | 2/10 |
+
+    | **Overall** | **4/10 — Reject** |
+
+    | Confidence | 4/5 |
+
+    '
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-15T16:51:40+00:00'

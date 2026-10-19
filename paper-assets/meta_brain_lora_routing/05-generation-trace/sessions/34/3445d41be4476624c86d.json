@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3445d41be4476624c86d",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "fix eval use delta true",
+  "task_key": "worker_fix_eval_use_delta_true_20260516T143449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_use_delta_true_20260516T143449_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "676d36a29d8b8ec6335443e023e3b4baba13b9618a16cf86b682a24d3f15ba8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`ablation_ladder.py` doesn't pass `use_delta_actions`, so it gets the default `True` — correct.\n\n**Summary of changes:**\n\n1. **`meta_brain_assembly.py:from_checkpoints()`** — Added `use_delta_actions: bool = True` parameter. Changed line 697-699 to discard `_build_norm_stats`'s `use_delta` flag and use the explicit parameter instead. This ensures LeRobot-format checkpoints (which return `use_delta=False` from `_build_norm_stats`) now correctly get `use_delta_actions=True` by default.\n\n2. **`evaluate_libero_plus.py:558`** — Wired `use_delta_actions=not args.no_delta_actions` through to `from_checkpoints()`, matching the existing behavior in the `from_dummy` path.\n\nThe data flow is now correct for pi0_libero:\n```\nmodel_output → unnormalize(×std + mean) → AbsoluteActions(actions[:6] += state[:6]) → LiberoOutputs([:7]) → env.step()\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-use-delta-true.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed89605722f2578c2a12",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research corl submission requirements",
+  "task_key": "worker_research_corl-submission-requirements_20260528T223113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_corl-submission-requirements_20260528T223113_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "efda8377a5299fff31d74ec2eeb96a2a7845d3000b9a4124a0df2d365247b68f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**提交包已整理到** `artifacts/submission/`，含 `main.pdf` 和 `submission_checklist.md`。\n\n**关键发现：**\n\n| 项目 | 状态 |\n|---|---|\n| 正文 8 页限制 | ⚠️ Limitations 末尾溢出 ~2 行到第 9 页，**必须修剪** |\n| Limitations 章节 | ✅ |\n| 匿名 | ✅ |\n| 模板 `corl_2026` | ✅ submission 模式 |\n| 附录（同一 PDF） | ✅ 8 页 |\n| paper_switch.py | ✅ 全部 21 项匹配 |\n| Supplementary zip | ❌ 未准备（可选） |\n| 视频 | ❌ 未准备（可选，需外部托管） |\n| 代码/数据链接 | ❌ 论文中无匿名链接 |\n| AI 声明 | ❓ 需在 OpenReview 表单填写 |\n\n**最紧急：修剪正文 ~2 行使其严格不超过 8 页，然后重新编译 PDF。**\n\nSources:\n- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [CoRL 2026 - Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)\n- [CoRL 2026 Conference | OpenReview](https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-corl-submission-requirements.md"
+}

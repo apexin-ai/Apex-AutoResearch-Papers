@@ -1,0 +1,40 @@
+dream_id: dream_20260516T065323
+project: meta_brain_lora_routing
+venue: ''
+focus: 4路LoRA训练完成(loss 0.010-0.011), 评估Meta-Brain routing的论文story和实验覆盖率, spatial LoRA即将补全
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions: {}
+scenarios:
+- tier: best
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-be-idea-gen-0515","session_id":"aa617851-cd71-41d1-9f2b-335596ae5528","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model'
+- tier: median
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-be-idea-gen-0515","session_id":"aa617851-cd71-41d1-9f2b-335596ae5528","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model'
+- tier: worst
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-be-idea-gen-0515","session_id":"aa617851-cd71-41d1-9f2b-335596ae5528","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model'
+errors:
+  best:
+    phase2: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-be-idea-gen-0515","session_id":"aa617851-cd71-41d1-9f2b-335596ae5528","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model'
+    write: null
+    review: null
+  median:
+    phase2: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-be-idea-gen-0515","session_id":"aa617851-cd71-41d1-9f2b-335596ae5528","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model'
+    write: null
+    review: null
+  worst:
+    phase2: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-be-idea-gen-0515","session_id":"aa617851-cd71-41d1-9f2b-335596ae5528","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model'
+    write: null
+    review: null
+score_anomaly: ''
+created_at: '2026-05-16T06:53:37+00:00'

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1aac954b41452385d304",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "fix transformers patch and eval",
+  "task_key": "worker_fix_transformers_patch_and_eval_20260516T132432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_transformers_patch_and_eval_20260516T132432_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "0530d84437598e46c66eb54398aeb75d723b7403b79303e1143a276ce704fd04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。结果：\n\n**nominal (routing=none, openpi wrapper): 0/5 = 0.0%**\n\n每个 episode 都跑满 220 步后 FAIL。所有 5 个 episode 全部失败。\n\n这表明 openpi wrapper 推理有问题 — 模型加载成功了，但 action 输出可能不正确（norm stats 缺失警告、或 action 格式/delta 问题）。\n\n关键线索：\n1. `Norm stats not found in .../physical-intelligence/libero, skipping` — 可能缺少关键的 norm stats\n2. 每个 episode 恰好跑满 max_steps=220 — 说明 action 在输出但没有实际让机器人完成任务\n\n需要排查：是否需要加 `--no_delta_actions` 参数，或者 norm stats 路径配置问题。要继续调试吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-transformers-patch-and-eval.md"
+}

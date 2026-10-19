@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cd5b2febcff515cbfe3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260520T233447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260520T233447_result.json",
+    "occurrence": 1,
+    "bytes": 1308,
+    "sha256": "52a3f8662e6bae9830a500704dfd82ab0ee51952dbca7a3e6a7b39fb5e44c191"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 初稿已写入 `artifacts/drafts/related_work.tex`，约 770 words，4 个小节：\n\n- **§2.1 3D-Aware VLAs** — 归纳 13 篇 3D-aware VLA 工作，重点对比 QDepth-VLA（2.5D camera-frame depth vs workspace SDF、decoder 解耦 vs 直接 feature refinement、遮挡盲区），提及 Spatial Forcing 的 implicit alignment 不产生 distance field。结尾回到\"无一篇以碰撞为目标\"的 gap。\n- **§2.2 Collision-Safe Robot Policies** — 按 post-hoc correction（AEGIS, CoFreeVLA）和 constrained optimization（SafeVLA）归纳，简要提及 iKinQP-RL / CAPE / language-guided cost denoising（无 cite）。核心对比：安全机制独立于 VLA 表征 vs ColliForce 内化碰撞几何。\n- **§2.3 SDF in Robotics** — 从表征（DeepSDF）→ 场景重建（iSDF）→ 可微碰撞检测（DiffCo）→ 运动规划（RAMP, CSSDF-Net, Neural NMPC-SDF）→ 策略学习（SAMP, Prof. Robot）。定位：SDF 从未集成到 VLA 架构。\n- **§2.4 Action Refinement** — 2 句提 DFM-VLA 验证 VLA 内 iterative refinement 可行，1 句定位 ColliForce 的 SDF gradient refinement 为 collision-specific instantiation。\n\n已通过风格检查：无 em-dash/en-dash、无 -ing 短语结尾、无 banned words、无论文堆砌式写法。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-copy-2.md"
+}

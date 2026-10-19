@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ddf2692c7d138830af6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper scenario b data prep",
+  "task_key": "worker_paper_scenario_b_data_prep_20260527T011735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_scenario_b_data_prep_20260527T011735_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "e4e96213fce947e384efdb2766479ffbf8df3a19c5a873267bbe3e153b15cc1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成，产出三个文件：\n\n1. **`claim3_data_summary.md`** — 主汇总表（6 conditions × 7 columns）、null distribution 定义、统计比较表、per-task breakdown（明确区分 TSR vs CAR 来源）、Scenario B 叙事要点\n2. **`fig5_lambda_data.csv`** — 4 行 λ-CAR/TSR 绘图数据（λ=0/0.005/0.01/0.1）\n3. **`fig5_lambda_stepwise.csv`** — λ=0.1 的 step-wise 子表（含 pending 占位），供 inset 或 supplementary\n\n两个主产出已注册：`art_20260527_0074f6`（claim3_data_summary）、`art_20260527_b806e4`（fig5_lambda_data）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-scenario-b-data-prep.md"
+}

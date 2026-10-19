@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a80f8887ff6f7a2c1231",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "verify final fig1 sync",
+  "task_key": "worker_verify_final-fig1-sync_20260528T074821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_final-fig1-sync_20260528T074821_result.json",
+    "occurrence": 1,
+    "bytes": 291,
+    "sha256": "5c91d27130bcfba09b23507c9944e190ca84745ac7e76fb1475cbf7b66b1ddb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。\n\n**结果：**\n- `fig1_teaser.pdf` 已同步到远程 `/root/colliforce-vla/figures/fig1_teaser.pdf`（36536 bytes, May 28 15:48）\n- `paper_switch.py --verify` 全部 OK — Scenario B（10 items）和 Scenario C（11 items）共 21 项检查均为 `[OK]`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-final-fig1-sync.md"
+}

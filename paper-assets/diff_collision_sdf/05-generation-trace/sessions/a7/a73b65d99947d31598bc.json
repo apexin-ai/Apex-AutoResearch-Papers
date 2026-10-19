@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a73b65d99947d31598bc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code data pipeline",
+  "task_key": "worker_code_data_pipeline_20260519T175625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data_pipeline_20260519T175625_result.json",
+    "occurrence": 1,
+    "bytes": 1028,
+    "sha256": "bfcdd5c649b4a5346e679acc320c5894188fe10c3c96cdfcc69b95b9cdd2b85f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No `register_artifact` tool available. The report is already saved at `artifacts/report_data_pipeline.md`.\n\nPipeline complete. Here's the summary:\n\n**Both MVP scenes processed successfully:**\n\n| Task | Episodes | Avg Length | Output Size |\n|------|----------|------------|-------------|\n| spatial_bowl | 50 | 101 steps | 403.4 MB |\n| object_chocolate | 50 | 160 steps | 715.9 MB |\n\n**Output at** `/root/autodl-tmp/colliforce_data/` with per-episode data:\n- `observations/agentview` [T, 224, 224, 3] uint8\n- `observations/eye_in_hand` [T, 224, 224, 3] uint8\n- `observations/state` [T, 8] float32 (ee_pos + ee_axisangle + gripper)\n- `actions` [T, 7] float32 (delta EE)\n- `ee_positions` [T, 3] float32 (EE position GT)\n- `sdf_gt/` (per-scene query points + SDF values)\n\n**Key finding**: LIBERO demos store `ee_ori` as 3D axis-angle (not quaternion), so no conversion was needed. Images were 128x128, resized to 224x224 for pi0 compatibility.\n\nReport saved at `artifacts/report_data_pipeline.md`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-data-pipeline.md"
+}

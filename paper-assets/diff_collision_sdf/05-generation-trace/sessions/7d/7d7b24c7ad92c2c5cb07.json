@@ -1,0 +1,1062 @@
+{
+  "schema_version": "1.0",
+  "id": "7d7b24c7ad92c2c5cb07",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ssh fetch method draft",
+  "task_key": "worker_ssh_fetch_method_draft_20260520T224140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fetch_method_draft_20260520T224140.log",
+    "occurrence": 1,
+    "bytes": 125067,
+    "sha256": "81be3c23c949124c2ae2eff536109cefd126ffe951911ba2e30e2275388f26c5"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+                "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "a3604526-12ed-49b8-8bf2-8274e4fa809f",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779326400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "5f175f3c-0460-4680-ab3e-6de2a73fabd8",
+                "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me execute these steps in order. First, I need to load the MCP tool schemas.",
+              "signature": "EpUCCmMIDRgCKkAX5wcBac+Pne14Y4yc07VEnWXasBqPx3IatpPspAjUTzraohmcqHsxAtVn5+/6fw6RkKTOzm/zWNo4J8nKe+OfMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDJscYHAXAvxnnIlvHRoMNXL5qZ/BMRV7tRc5IjCtKdfnyY52ZWTNw/yVjaxWhOg8hrZaH7E/aPT2f+DBmORQNvH88nfT7HU/itfOK/QqYEQ9fw0kqKm7qdbdwLUYBthqJr4mOOzfF09F80lH6lVTpmicgTznaMj6wel5RMEAtWfEUpNKPk490Oiw7+hGnL9CMqBCk4/kP8JBdH25LJtLFSgFhFd27DnFLkfyr2WIARgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "6226388d-8191-4d9f-b7af-c61bdf321254",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011FaQ89cTjzQuq5MN9XncTH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11561,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11561
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019PCQ28tzRs89SBakKUR827",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "9c7a0a6a-2116-4a7a-9e97-43bca1285e11",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011FaQ89cTjzQuq5MN9XncTH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11561,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11561
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T22:41:53.597Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_019PCQ28tzRs89SBakKUR827",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "1fb69d08-b7cc-4268-b72f-69920385a41b",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 27
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vsh81HRPyaHAtjEM9CRmxJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "cat /root/colliforce-vla/docs/method_draft.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "b8d86774-9c1f-449b-9a88-dc4c4a38791b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JnULfGquNgR32zjnjfxM8N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1073,
+                "cache_read_input_tokens": 23008,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1073
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T22:41:57.710Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vsh81HRPyaHAtjEM9CRmxJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"## 3. Method\\\\n\\\\nWe present **ColliForce**, a framework that integrates differentiable workspace Signed Distance Fields (SDFs) into Vision-Language-Action models to enable collision-aware action generation. Our approach operates in the feature space of a pretrained VLA, requiring no architectural modification to the backbone. We describe the problem setting (Sec. 3.1), the differentiable SDF integration (Sec. 3.2), the gradient-guided action refinement mechanism (Sec. 3.3), the training protocol (Sec. 3.4), and inference-time deployment (Sec. 3.5).\\\\n\\\\n### 3.1 Problem Formulation\\\\n\\\\nWe consider a language-conditioned robotic manipulation setting where a Vision-Language-Action model $\\\\\\\\pi_\\\\\\\\theta$ generates an action trajectory $\\\\\\\\{a_t\\\\\\\\}_{t=1}^{H}$ with action horizon $H = 50$ conditioned on visual observations $o$ and a language instruction $l$. Each action $a_t \\\\\\\\in \\\\\\\\mathbb{R}^7$ specifies the desired end-effector (EE) displacement in position ($\\\\\\\\Delta x, \\\\\\\\Delta y, \\\\\\\\Delta z$), orientation ($\\\\\\\\Delta q_1, \\\\\\\\ldots, \\\\\\\\Delta q_3$), and gripper state.\\\\n\\\\nIn cluttered workspaces, the generated trajectory may command the EE into regions occupied by obstacles, causing collisions that damage objects or interrupt task execution. We formalize the collision avoidance objective through the workspace Signed Distance Field $\\\\\\\\Phi: \\\\\\\\mathbb{R}^3 \\\\\\\\to \\\\\\\\mathbb{R}$, where $\\\\\\\\Phi(\\\\\\\\mathbf{x}) > 0$ indicates free space, $\\\\\\\\Phi(\\\\\\\\mathbf{x}) = 0$ denotes the obstacle boundary, and $\\\\\\\\Phi(\\\\\\\\mathbf{x}) < 0$ indicates penetration. The goal is to learn a policy that generates trajectories satisfying $\\\\\\\\Phi(\\\\\\\\text{EE}(a_t)) > 0$ for all $t$, while preserving task success.\\\\n\\\\nOur base VLA is $\\\\\\\\pi_0$ (Physical Intelligence), a 3.5B-parameter flow-matching model comprising a PaliGemma vision-language encoder (Gemma 2B) and a Gemma 300M action expert. Action generation proceeds via iterative denoising over $H$ steps, producing a sequence of action tokens through the action expert's output projection $W_{\\\\\\\\text{out}} \\\\\\\\in \\\\\\\\mathbb{R}^{1024 \\\\\\\\times 32}$ that maps from the expert's hidden dimension to the action token space.\\\\n\\\\n### 3.2 Differentiable Workspace SDF Integration\\\\n\\\\nWe augment the VLA with two lightweight auxiliary modules that operate on the action expert's intermediate representations.\\\\n\\\\n**Feature extraction.** We capture the action expert's suffix output $\\\\\\\\mathbf{z} \\\\\\\\in \\\\\\\\mathbb{R}^{B \\\\\\\\times H \\\\\\\\times 1024}$ — the input to the action output projection $W_{\\\\\\\\text{out}}$ — via a forward hook registered on `action_out_proj`. A mean-pooling operation along the action horizon dimension yields a compact feature vector $\\\\\\\\bar{\\\\\\\\mathbf{z}} = \\\\\\\\frac{1}{H} \\\\\\\\sum_{t=1}^{H} \\\\\\\\mathbf{z}_t \\\\\\\\in \\\\\\\\mathbb{R}^{1024}$ that summarizes the action expert's spatial understanding of the current scene.\\\\n\\\\n**SDF Decoder.** A 4-layer MLP $f_\\\\\\\\text{SDF}$ predicts the signed distance value at arbitrary 3D query points given the pooled action expert features:\\\\n\\\\n$$f_\\\\\\\\text{SDF}: (\\\\\\\\bar{\\\\\\\\mathbf{z}}, \\\\\\\\mathbf{x}) \\\\\\\\mapsto \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}), \\\\\\\\quad \\\\\\\\bar{\\\\\\\\mathbf{z}} \\\\\\\\in \\\\\\\\mathbb{R}^{1024}, \\\\\\\\; \\\\\\\\mathbf{x} \\\\\\\\in \\\\\\\\mathbb{R}^3$$\\\\n\\\\nThe architecture employs hidden dimension 256 with Softplus activation ($\\\\\\\\beta = 5$) and a skip connection that re-injects the query coordinates at the second layer:\\\\n\\\\n$$\\\\\\\\mathbf{h}_0 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_0 [\\\\\\\\bar{\\\\\\\\mathbf{z}}; \\\\\\\\mathbf{x}] + \\\\\\\\mathbf{b}_0)$$\\\\n$$\\\\\\\\mathbf{h}_1 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_1 \\\\\\\\mathbf{h}_0 + \\\\\\\\mathbf{b}_1)$$\\\\n$$\\\\\\\\mathbf{h}_2 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_2 [\\\\\\\\mathbf{h}_1; \\\\\\\\mathbf{x}] + \\\\\\\\mathbf{b}_2)$$\\\\n$$\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}) = \\\\\\\\mathbf{W}_3 \\\\\\\\mathbf{h}_2 + \\\\\\\\mathbf{b}_3$$\\\\n\\\\nwhere $\\\\\\\\sigma(\\\\\\\\cdot) = \\\\\\\\text{Softplus}_{\\\\\\\\beta=5}(\\\\\\\\cdot)$, $\\\\\\\\mathbf{W}_0 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 1027}$, $\\\\\\\\mathbf{W}_1 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 256}$, $\\\\\\\\mathbf{W}_2 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 259}$, and $\\\\\\\\mathbf{W}_3 \\\\\\\\in \\\\\\\\mathbb{R}^{1 \\\\\\\\times 256}$. All weights are initialized with Kaiming normal initialization.\\\\n\\\\nFor spatial gradient computation (required by Eikonal regularization and gradient-guided refinement), the decoder computes $\\\\\\\\nabla_{\\\\\\\\m\\\\n\\\\n... [截断: 输出过长，省略 4704 字符] ...\\\\n\\\\ning action loss $\\\\\\\\mathcal{L}_\\\\\\\\text{action}$. LoRA adapters are injected into both the PaliGemma encoder (rank 16, $\\\\\\\\alpha = 16$) and the action expert (rank 32, $\\\\\\\\alpha = 32$), targeting the attention projections ($\\\\\\\\mathbf{W}_q, \\\\\\\\mathbf{W}_k, \\\\\\\\mathbf{W}_v, \\\\\\\\mathbf{W}_o$) and MLP layers ($\\\\\\\\mathbf{W}_\\\\\\\\text{gate}, \\\\\\\\mathbf{W}_\\\\\\\\text{up}, \\\\\\\\mathbf{W}_\\\\\\\\text{down}$). The total LoRA parameter count is approximately 26M.\\\\n\\\\n**A1 — SDF Auxiliary Task.** This variant adds the SDF decoder and EE extractor as auxiliary tasks:\\\\n\\\\n- *Phase 1* ($0 \\\\\\\\to T_\\\\\\\\text{warmup}$ steps, $T_\\\\\\\\text{warmup} = 5000$): The entire backbone (including LoRA parameters) is frozen. Only the SDF decoder ($\\\\\\\\sim$395K parameters) and EE extractor ($\\\\\\\\sim$263K parameters) are trained. The auxiliary modules receive detached features ($\\\\\\\\bar{\\\\\\\\mathbf{z}}.\\\\\\\\text{detach()}$) to avoid destabilizing the pretrained backbone during warmup. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.\\\\n\\\\n- *Phase 2* ($T_\\\\\\\\text{warmup} \\\\\\\\to T_\\\\\\\\text{end}$): LoRA parameters are unfrozen with a linear gradient warmup over 100 steps to prevent abrupt feature distribution shifts. The full loss is:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{A1} = \\\\\\\\mathcal{L}_\\\\\\\\text{action} + \\\\\\\\lambda_\\\\\\\\text{SDF} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{SDF} + \\\\\\\\lambda_\\\\\\\\text{EE} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{EE}$$\\\\n\\\\nwhere $\\\\\\\\lambda_\\\\\\\\text{SDF} = 0.1$ and $\\\\\\\\lambda_\\\\\\\\text{EE} = 0.01$. Gradients now flow from the auxiliary losses through the pooled features into the LoRA adapters, encouraging the action expert to develop features that encode workspace geometry.\\\\n\\\\n**A3 — SDF Gradient-Guided Refinement.** This variant extends A1 with the gradient refiner:\\\\n\\\\n- *Phase 1*: Identical to A1 — backbone frozen, SDF decoder and EE extractor warmup only.\\\\n\\\\n- *Phase 2*: LoRA unfreezing with gradient warmup (same as A1), plus activation of the gradient refiner. The full loss becomes:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{A3} = \\\\\\\\mathcal{L}_\\\\\\\\text{action} + \\\\\\\\lambda_\\\\\\\\text{SDF} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{SDF} + \\\\\\\\lambda_\\\\\\\\text{EE} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{EE} + \\\\\\\\lambda_\\\\\\\\text{refine} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{refine}$$\\\\n\\\\nwhere $\\\\\\\\lambda_\\\\\\\\text{refine} = 0.1$. The refinement loss is only computed when near-collision samples exist in the batch ($|\\\\\\\\mathcal{S}| > 0$), adding zero computational overhead for collision-free training steps.\\\\n\\\\nAll variants use AdamW with cosine decay scheduling (peak learning rate $2.5 \\\\\\\\times 10^{-5}$, decaying to $2.5 \\\\\\\\times 10^{-6}$), batch size 32, and train for 30,000 steps. The warmup period for the learning rate schedule is $\\\\\\\\min(1000, T_\\\\\\\\text{end} / 3)$ steps.\\\\n\\\\n### 3.5 Inference-Time Refinement\\\\n\\\\nAt inference, ColliForce supports an optional SDF gradient correction that provides an additional safety layer without architectural changes to the deployed model:\\\\n\\\\n1. The VLA generates an action $a_t$ through standard forward pass.\\\\n2. The predicted next EE position is computed: $\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next} = \\\\\\\\mathbf{p}_\\\\\\\\text{EE} + a_t[:3]$.\\\\n3. The SDF decoder queries the predicted SDF at this position: $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})$.\\\\n4. If $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next}) < m$ (near collision), the action's position component is corrected:\\\\n\\\\n$$a'_t[:3] = a_t[:3] + \\\\\\\\alpha \\\\\\\\cdot \\\\\\\\frac{\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})}{\\\\\\\\|\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})\\\\\\\\|_2}$$\\\\n\\\\nThe L2-normalization bounds the correction magnitude to $\\\\\\\\alpha$ regardless of the SDF gradient scale, preventing over-correction near sharp obstacle boundaries. Orientation and gripper components of $a_t$ remain unchanged.\\\\n\\\\nThis inference-time mechanism introduces zero additional latency when $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next}) \\\\\\\\geq m$ (i.e., the EE is sufficiently far from obstacles). For the A3 variant trained with gradient refinement, the model has already learned to produce collision-avoiding actions, so inference-time refinement serves as a complementary safety net for out-of-distribution obstacle configurations.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "e99106a5-ee14-48bd-b748-b6006aec0657",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"## 3. Method\\\\n\\\\nWe present **ColliForce**, a framework that integrates differentiable workspace Signed Distance Fields (SDFs) into Vision-Language-Action models to enable collision-aware action generation. Our approach operates in the feature space of a pretrained VLA, requiring no architectural modification to the backbone. We describe the problem setting (Sec. 3.1), the differentiable SDF integration (Sec. 3.2), the gradient-guided action refinement mechanism (Sec. 3.3), the training protocol (Sec. 3.4), and inference-time deployment (Sec. 3.5).\\\\n\\\\n### 3.1 Problem Formulation\\\\n\\\\nWe consider a language-conditioned robotic manipulation setting where a Vision-Language-Action model $\\\\\\\\pi_\\\\\\\\theta$ generates an action trajectory $\\\\\\\\{a_t\\\\\\\\}_{t=1}^{H}$ with action horizon $H = 50$ conditioned on visual observations $o$ and a language instruction $l$. Each action $a_t \\\\\\\\in \\\\\\\\mathbb{R}^7$ specifies the desired end-effector (EE) displacement in position ($\\\\\\\\Delta x, \\\\\\\\Delta y, \\\\\\\\Delta z$), orientation ($\\\\\\\\Delta q_1, \\\\\\\\ldots, \\\\\\\\Delta q_3$), and gripper state.\\\\n\\\\nIn cluttered workspaces, the generated trajectory may command the EE into regions occupied by obstacles, causing collisions that damage objects or interrupt task execution. We formalize the collision avoidance objective through the workspace Signed Distance Field $\\\\\\\\Phi: \\\\\\\\mathbb{R}^3 \\\\\\\\to \\\\\\\\mathbb{R}$, where $\\\\\\\\Phi(\\\\\\\\mathbf{x}) > 0$ indicates free space, $\\\\\\\\Phi(\\\\\\\\mathbf{x}) = 0$ denotes the obstacle boundary, and $\\\\\\\\Phi(\\\\\\\\mathbf{x}) < 0$ indicates penetration. The goal is to learn a policy that generates trajectories satisfying $\\\\\\\\Phi(\\\\\\\\text{EE}(a_t)) > 0$ for all $t$, while preserving task success.\\\\n\\\\nOur base VLA is $\\\\\\\\pi_0$ (Physical Intelligence), a 3.5B-parameter flow-matching model comprising a PaliGemma vision-language encoder (Gemma 2B) and a Gemma 300M action expert. Action generation proceeds via iterative denoising over $H$ steps, producing a sequence of action tokens through the action expert's output projection $W_{\\\\\\\\text{out}} \\\\\\\\in \\\\\\\\mathbb{R}^{1024 \\\\\\\\times 32}$ that maps from the expert's hidden dimension to the action token space.\\\\n\\\\n### 3.2 Differentiable Workspace SDF Integration\\\\n\\\\nWe augment the VLA with two lightweight auxiliary modules that operate on the action expert's intermediate representations.\\\\n\\\\n**Feature extraction.** We capture the action expert's suffix output $\\\\\\\\mathbf{z} \\\\\\\\in \\\\\\\\mathbb{R}^{B \\\\\\\\times H \\\\\\\\times 1024}$ — the input to the action output projection $W_{\\\\\\\\text{out}}$ — via a forward hook registered on `action_out_proj`. A mean-pooling operation along the action horizon dimension yields a compact feature vector $\\\\\\\\bar{\\\\\\\\mathbf{z}} = \\\\\\\\frac{1}{H} \\\\\\\\sum_{t=1}^{H} \\\\\\\\mathbf{z}_t \\\\\\\\in \\\\\\\\mathbb{R}^{1024}$ that summarizes the action expert's spatial understanding of the current scene.\\\\n\\\\n**SDF Decoder.** A 4-layer MLP $f_\\\\\\\\text{SDF}$ predicts the signed distance value at arbitrary 3D query points given the pooled action expert features:\\\\n\\\\n$$f_\\\\\\\\text{SDF}: (\\\\\\\\bar{\\\\\\\\mathbf{z}}, \\\\\\\\mathbf{x}) \\\\\\\\mapsto \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}), \\\\\\\\quad \\\\\\\\bar{\\\\\\\\mathbf{z}} \\\\\\\\in \\\\\\\\mathbb{R}^{1024}, \\\\\\\\; \\\\\\\\mathbf{x} \\\\\\\\in \\\\\\\\mathbb{R}^3$$\\\\n\\\\nThe architecture employs hidden dimension 256 with Softplus activation ($\\\\\\\\beta = 5$) and a skip connection that re-injects the query coordinates at the second layer:\\\\n\\\\n$$\\\\\\\\mathbf{h}_0 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_0 [\\\\\\\\bar{\\\\\\\\mathbf{z}}; \\\\\\\\mathbf{x}] + \\\\\\\\mathbf{b}_0)$$\\\\n$$\\\\\\\\mathbf{h}_1 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_1 \\\\\\\\mathbf{h}_0 + \\\\\\\\mathbf{b}_1)$$\\\\n$$\\\\\\\\mathbf{h}_2 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_2 [\\\\\\\\mathbf{h}_1; \\\\\\\\mathbf{x}] + \\\\\\\\mathbf{b}_2)$$\\\\n$$\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}) = \\\\\\\\mathbf{W}_3 \\\\\\\\mathbf{h}_2 + \\\\\\\\mathbf{b}_3$$\\\\n\\\\nwhere $\\\\\\\\sigma(\\\\\\\\cdot) = \\\\\\\\text{Softplus}_{\\\\\\\\beta=5}(\\\\\\\\cdot)$, $\\\\\\\\mathbf{W}_0 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 1027}$, $\\\\\\\\mathbf{W}_1 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 256}$, $\\\\\\\\mathbf{W}_2 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 259}$, and $\\\\\\\\mathbf{W}_3 \\\\\\\\in \\\\\\\\mathbb{R}^{1 \\\\\\\\times 256}$. All weights are initialized with Kaiming normal initialization.\\\\n\\\\nFor spatial gradient computation (required by Eikonal regularization and gradient-guided refinement), the decoder computes $\\\\\\\\nabla_{\\\\\\\\m\\\\n\\\\n... [截断: 输出过长，省略 4704 字符] ...\\\\n\\\\ning action loss $\\\\\\\\mathcal{L}_\\\\\\\\text{action}$. LoRA adapters are injected into both the PaliGemma encoder (rank 16, $\\\\\\\\alpha = 16$) and the action expert (rank 32, $\\\\\\\\alpha = 32$), targeting the attention projections ($\\\\\\\\mathbf{W}_q, \\\\\\\\mathbf{W}_k, \\\\\\\\mathbf{W}_v, \\\\\\\\mathbf{W}_o$) and MLP layers ($\\\\\\\\mathbf{W}_\\\\\\\\text{gate}, \\\\\\\\mathbf{W}_\\\\\\\\text{up}, \\\\\\\\mathbf{W}_\\\\\\\\text{down}$). The total LoRA parameter count is approximately 26M.\\\\n\\\\n**A1 — SDF Auxiliary Task.** This variant adds the SDF decoder and EE extractor as auxiliary tasks:\\\\n\\\\n- *Phase 1* ($0 \\\\\\\\to T_\\\\\\\\text{warmup}$ steps, $T_\\\\\\\\text{warmup} = 5000$): The entire backbone (including LoRA parameters) is frozen. Only the SDF decoder ($\\\\\\\\sim$395K parameters) and EE extractor ($\\\\\\\\sim$263K parameters) are trained. The auxiliary modules receive detached features ($\\\\\\\\bar{\\\\\\\\mathbf{z}}.\\\\\\\\text{detach()}$) to avoid destabilizing the pretrained backbone during warmup. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.\\\\n\\\\n- *Phase 2* ($T_\\\\\\\\text{warmup} \\\\\\\\to T_\\\\\\\\text{end}$): LoRA parameters are unfrozen with a linear gradient warmup over 100 steps to prevent abrupt feature distribution shifts. The full loss is:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{A1} = \\\\\\\\mathcal{L}_\\\\\\\\text{action} + \\\\\\\\lambda_\\\\\\\\text{SDF} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{SDF} + \\\\\\\\lambda_\\\\\\\\text{EE} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{EE}$$\\\\n\\\\nwhere $\\\\\\\\lambda_\\\\\\\\text{SDF} = 0.1$ and $\\\\\\\\lambda_\\\\\\\\text{EE} = 0.01$. Gradients now flow from the auxiliary losses through the pooled features into the LoRA adapters, encouraging the action expert to develop features that encode workspace geometry.\\\\n\\\\n**A3 — SDF Gradient-Guided Refinement.** This variant extends A1 with the gradient refiner:\\\\n\\\\n- *Phase 1*: Identical to A1 — backbone frozen, SDF decoder and EE extractor warmup only.\\\\n\\\\n- *Phase 2*: LoRA unfreezing with gradient warmup (same as A1), plus activation of the gradient refiner. The full loss becomes:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{A3} = \\\\\\\\mathcal{L}_\\\\\\\\text{action} + \\\\\\\\lambda_\\\\\\\\text{SDF} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{SDF} + \\\\\\\\lambda_\\\\\\\\text{EE} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{EE} + \\\\\\\\lambda_\\\\\\\\text{refine} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{refine}$$\\\\n\\\\nwhere $\\\\\\\\lambda_\\\\\\\\text{refine} = 0.1$. The refinement loss is only computed when near-collision samples exist in the batch ($|\\\\\\\\mathcal{S}| > 0$), adding zero computational overhead for collision-free training steps.\\\\n\\\\nAll variants use AdamW with cosine decay scheduling (peak learning rate $2.5 \\\\\\\\times 10^{-5}$, decaying to $2.5 \\\\\\\\times 10^{-6}$), batch size 32, and train for 30,000 steps. The warmup period for the learning rate schedule is $\\\\\\\\min(1000, T_\\\\\\\\text{end} / 3)$ steps.\\\\n\\\\n### 3.5 Inference-Time Refinement\\\\n\\\\nAt inference, ColliForce supports an optional SDF gradient correction that provides an additional safety layer without architectural changes to the deployed model:\\\\n\\\\n1. The VLA generates an action $a_t$ through standard forward pass.\\\\n2. The predicted next EE position is computed: $\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next} = \\\\\\\\mathbf{p}_\\\\\\\\text{EE} + a_t[:3]$.\\\\n3. The SDF decoder queries the predicted SDF at this position: $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})$.\\\\n4. If $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next}) < m$ (near collision), the action's position component is corrected:\\\\n\\\\n$$a'_t[:3] = a_t[:3] + \\\\\\\\alpha \\\\\\\\cdot \\\\\\\\frac{\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})}{\\\\\\\\|\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})\\\\\\\\|_2}$$\\\\n\\\\nThe L2-normalization bounds the correction magnitude to $\\\\\\\\alpha$ regardless of the SDF gradient scale, preventing over-correction near sharp obstacle boundaries. Orientation and gripper components of $a_t$ remain unchanged.\\\\n\\\\nThis inference-time mechanism introduces zero additional latency when $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next}) \\\\\\\\geq m$ (i.e., the EE is sufficiently far from obstacles). For the A3 variant trained with gradient refinement, the model has already learned to produce collision-avoiding actions, so inference-time refinement serves as a complementary safety net for out-of-distribution obstacle configurations.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"## 3. Method\\n\\nWe present **ColliForce**, a framework that integrates differentiable workspace Signed Distance Fields (SDFs) into Vision-Language-Action models to enable collision-aware action generation. Our approach operates in the feature space of a pretrained VLA, requiring no architectural modification to the backbone. We describe the problem setting (Sec. 3.1), the differentiable SDF integration (Sec. 3.2), the gradient-guided action refinement mechanism (Sec. 3.3), the training protocol (Sec. 3.4), and inference-time deployment (Sec. 3.5).\\n\\n### 3.1 Problem Formulation\\n\\nWe consider a language-conditioned robotic manipulation setting where a Vision-Language-Action model $\\\\pi_\\\\theta$ generates an action trajectory $\\\\{a_t\\\\}_{t=1}^{H}$ with action horizon $H = 50$ conditioned on visual observations $o$ and a language instruction $l$. Each action $a_t \\\\in \\\\mathbb{R}^7$ specifies the desired end-effector (EE) displacement in position ($\\\\Delta x, \\\\Delta y, \\\\Delta z$), orientation ($\\\\Delta q_1, \\\\ldots, \\\\Delta q_3$), and gripper state.\\n\\nIn cluttered workspaces, the generated trajectory may command the EE into regions occupied by obstacles, causing collisions that damage objects or interrupt task execution. We formalize the collision avoidance objective through the workspace Signed Distance Field $\\\\Phi: \\\\mathbb{R}^3 \\\\to \\\\mathbb{R}$, where $\\\\Phi(\\\\mathbf{x}) > 0$ indicates free space, $\\\\Phi(\\\\mathbf{x}) = 0$ denotes the obstacle boundary, and $\\\\Phi(\\\\mathbf{x}) < 0$ indicates penetration. The goal is to learn a policy that generates trajectories satisfying $\\\\Phi(\\\\text{EE}(a_t)) > 0$ for all $t$, while preserving task success.\\n\\nOur base VLA is $\\\\pi_0$ (Physical Intelligence), a 3.5B-parameter flow-matching model comprising a PaliGemma vision-language encoder (Gemma 2B) and a Gemma 300M action expert. Action generation proceeds via iterative denoising over $H$ steps, producing a sequence of action tokens through the action expert's output projection $W_{\\\\text{out}} \\\\in \\\\mathbb{R}^{1024 \\\\times 32}$ that maps from the expert's hidden dimension to the action token space.\\n\\n### 3.2 Differentiable Workspace SDF Integration\\n\\nWe augment the VLA with two lightweight auxiliary modules that operate on the action expert's intermediate representations.\\n\\n**Feature extraction.** We capture the action expert's suffix output $\\\\mathbf{z} \\\\in \\\\mathbb{R}^{B \\\\times H \\\\times 1024}$ — the input to the action output projection $W_{\\\\text{out}}$ — via a forward hook registered on `action_out_proj`. A mean-pooling operation along the action horizon dimension yields a compact feature vector $\\\\bar{\\\\mathbf{z}} = \\\\frac{1}{H} \\\\sum_{t=1}^{H} \\\\mathbf{z}_t \\\\in \\\\mathbb{R}^{1024}$ that summarizes the action expert's spatial understanding of the current scene.\\n\\n**SDF Decoder.** A 4-layer MLP $f_\\\\text{SDF}$ predicts the signed distance value at arbitrary 3D query points given the pooled action expert features:\\n\\n$$f_\\\\text{SDF}: (\\\\bar{\\\\mathbf{z}}, \\\\mathbf{x}) \\\\mapsto \\\\hat{\\\\Phi}(\\\\mathbf{x}), \\\\quad \\\\bar{\\\\mathbf{z}} \\\\in \\\\mathbb{R}^{1024}, \\\\; \\\\mathbf{x} \\\\in \\\\mathbb{R}^3$$\\n\\nThe architecture employs hidden dimension 256 with Softplus activation ($\\\\beta = 5$) and a skip connection that re-injects the query coordinates at the second layer:\\n\\n$$\\\\mathbf{h}_0 = \\\\sigma(\\\\mathbf{W}_0 [\\\\bar{\\\\mathbf{z}}; \\\\mathbf{x}] + \\\\mathbf{b}_0)$$\\n$$\\\\mathbf{h}_1 = \\\\sigma(\\\\mathbf{W}_1 \\\\mathbf{h}_0 + \\\\mathbf{b}_1)$$\\n$$\\\\mathbf{h}_2 = \\\\sigma(\\\\mathbf{W}_2 [\\\\mathbf{h}_1; \\\\mathbf{x}] + \\\\mathbf{b}_2)$$\\n$$\\\\hat{\\\\Phi}(\\\\mathbf{x}) = \\\\mathbf{W}_3 \\\\mathbf{h}_2 + \\\\mathbf{b}_3$$\\n\\nwhere $\\\\sigma(\\\\cdot) = \\\\text{Softplus}_{\\\\beta=5}(\\\\cdot)$, $\\\\mathbf{W}_0 \\\\in \\\\mathbb{R}^{256 \\\\times 1027}$, $\\\\mathbf{W}_1 \\\\in \\\\mathbb{R}^{256 \\\\times 256}$, $\\\\mathbf{W}_2 \\\\in \\\\mathbb{R}^{256 \\\\times 259}$, and $\\\\mathbf{W}_3 \\\\in \\\\mathbb{R}^{1 \\\\times 256}$. All weights are initialized with Kaiming normal initialization.\\n\\nFor spatial gradient computation (required by Eikonal regularization and gradient-guided refinement), the decoder computes $\\\\nabla_{\\\\m\\n\\n... [截断: 输出过长，省略 4704 字符] ...\\n\\ning action loss $\\\\mathcal{L}_\\\\text{action}$. LoRA adapters are injected into both the PaliGemma encoder (rank 16, $\\\\alpha = 16$) and the action expert (rank 32, $\\\\alpha = 32$), targeting the attention projections ($\\\\mathbf{W}_q, \\\\mathbf{W}_k, \\\\mathbf{W}_v, \\\\mathbf{W}_o$) and MLP layers ($\\\\mathbf{W}_\\\\text{gate}, \\\\mathbf{W}_\\\\text{up}, \\\\mathbf{W}_\\\\text{down}$). The total LoRA parameter count is approximately 26M.\\n\\n**A1 — SDF Auxiliary Task.** This variant adds the SDF decoder and EE extractor as auxiliary tasks:\\n\\n- *Phase 1* ($0 \\\\to T_\\\\text{warmup}$ steps, $T_\\\\text{warmup} = 5000$): The entire backbone (including LoRA parameters) is frozen. Only the SDF decoder ($\\\\sim$395K parameters) and EE extractor ($\\\\sim$263K parameters) are trained. The auxiliary modules receive detached features ($\\\\bar{\\\\mathbf{z}}.\\\\text{detach()}$) to avoid destabilizing the pretrained backbone during warmup. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.\\n\\n- *Phase 2* ($T_\\\\text{warmup} \\\\to T_\\\\text{end}$): LoRA parameters are unfrozen with a linear gradient warmup over 100 steps to prevent abrupt feature distribution shifts. The full loss is:\\n\\n$$\\\\mathcal{L}_\\\\text{A1} = \\\\mathcal{L}_\\\\text{action} + \\\\lambda_\\\\text{SDF} \\\\cdot \\\\mathcal{L}_\\\\text{SDF} + \\\\lambda_\\\\text{EE} \\\\cdot \\\\mathcal{L}_\\\\text{EE}$$\\n\\nwhere $\\\\lambda_\\\\text{SDF} = 0.1$ and $\\\\lambda_\\\\text{EE} = 0.01$. Gradients now flow from the auxiliary losses through the pooled features into the LoRA adapters, encouraging the action expert to develop features that encode workspace geometry.\\n\\n**A3 — SDF Gradient-Guided Refinement.** This variant extends A1 with the gradient refiner:\\n\\n- *Phase 1*: Identical to A1 — backbone frozen, SDF decoder and EE extractor warmup only.\\n\\n- *Phase 2*: LoRA unfreezing with gradient warmup (same as A1), plus activation of the gradient refiner. The full loss becomes:\\n\\n$$\\\\mathcal{L}_\\\\text{A3} = \\\\mathcal{L}_\\\\text{action} + \\\\lambda_\\\\text{SDF} \\\\cdot \\\\mathcal{L}_\\\\text{SDF} + \\\\lambda_\\\\text{EE} \\\\cdot \\\\mathcal{L}_\\\\text{EE} + \\\\lambda_\\\\text{refine} \\\\cdot \\\\mathcal{L}_\\\\text{refine}$$\\n\\nwhere $\\\\lambda_\\\\text{refine} = 0.1$. The refinement loss is only computed when near-collision samples exist in the batch ($|\\\\mathcal{S}| > 0$), adding zero computational overhead for collision-free training steps.\\n\\nAll variants use AdamW with cosine decay scheduling (peak learning rate $2.5 \\\\times 10^{-5}$, decaying to $2.5 \\\\times 10^{-6}$), batch size 32, and train for 30,000 steps. The warmup period for the learning rate schedule is $\\\\min(1000, T_\\\\text{end} / 3)$ steps.\\n\\n### 3.5 Inference-Time Refinement\\n\\nAt inference, ColliForce supports an optional SDF gradient correction that provides an additional safety layer without architectural changes to the deployed model:\\n\\n1. The VLA generates an action $a_t$ through standard forward pass.\\n2. The predicted next EE position is computed: $\\\\hat{\\\\mathbf{p}}_\\\\text{next} = \\\\mathbf{p}_\\\\text{EE} + a_t[:3]$.\\n3. The SDF decoder queries the predicted SDF at this position: $\\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{next})$.\\n4. If $\\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{next}) < m$ (near collision), the action's position component is corrected:\\n\\n$$a'_t[:3] = a_t[:3] + \\\\alpha \\\\cdot \\\\frac{\\\\nabla_{\\\\mathbf{x}} \\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{next})}{\\\\|\\\\nabla_{\\\\mathbf{x}} \\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{next})\\\\|_2}$$\\n\\nThe L2-normalization bounds the correction magnitude to $\\\\alpha$ regardless of the SDF gradient scale, preventing over-correction near sharp obstacle boundaries. Orientation and gripper components of $a_t$ remain unchanged.\\n\\nThis inference-time mechanism introduces zero additional latency when $\\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{next}) \\\\geq m$ (i.e., the EE is sufficiently far from obstacles). For the A3 variant trained with gradient refinement, the model has already learned to produce collision-avoiding actions, so inference-time refinement serves as a complementary safety net for out-of-distribution obstacle configurations.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I got the full content. Let me extract the stdout and write it to the local file. The content was truncated in the middle - let me check. The output says \"截断: 输出过长，省略 4704 字符\" which means it was truncated. Let me write what I have and note the truncation.\n\nActually, looking more carefully, the output has the full content - the truncation message is in the middle but the rest of the content continues after it. Let me parse the full stdout carefully.\n\nLet me reconstruct the full markdown content from the stdout field. The content uses `\\n` for newlines and `\\\\` for LaTeX backslashes.\n\n\nI need to unescape the JSON string properly to get the actual markdown content. The stdout is a JSON string with `\\n` as newlines and `\\\\` as literal backslashes, and there's a truncation notice in the middle indicating 4704 characters were omitted from the display, but I should write what I have.\n\nThe MCP tool truncated the output, so I need to retrieve the full file. Let me try reading it in parts using head and tail commands to get the missing sections.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "ed428502-0930-4c8d-b151-d2588972f576",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016P2aUoWymJcUYJFJGMeoL8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3361,
+                "cache_read_input_tokens": 24081,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3361
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件中间被截断了，分段读取完整内容。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "da6755c0-417f-4cdf-b666-a9ec58bb4b9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016P2aUoWymJcUYJFJGMeoL8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3361,
+                "cache_read_input_tokens": 24081,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3361
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dbo4FToaj5jUf6QF1q1my3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "wc -l /root/colliforce-vla/docs/method_draft.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "bd0d0c07-80c1-43a4-b070-b8b407e0cc34",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016P2aUoWymJcUYJFJGMeoL8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3361,
+                "cache_read_input_tokens": 24081,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3361
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T22:42:11.381Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dbo4FToaj5jUf6QF1q1my3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"119 /root/colliforce-vla/docs/method_draft.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "ae97232a-2d18-47c3-9957-01593c632bf4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"119 /root/colliforce-vla/docs/method_draft.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"119 /root/colliforce-vla/docs/method_draft.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NBtgXG2EAzHg4smBVUv6u6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "head -60 /root/colliforce-vla/docs/method_draft.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "86ee21f2-f63d-41f7-aa7e-7d43b1594634",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SCmzujrPmTzNFE5dRboFnB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 670,
+                "cache_read_input_tokens": 27442,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 670
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017VygPVKeZfj63ozxtAUKzX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "tail -n +61 /root/colliforce-vla/docs/method_draft.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "2a91c037-1c30-4a83-9e3c-63fe362c158f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SCmzujrPmTzNFE5dRboFnB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 670,
+                "cache_read_input_tokens": 27442,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 670
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T22:42:22.706Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NBtgXG2EAzHg4smBVUv6u6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"## 3. Method\\\\n\\\\nWe present **ColliForce**, a framework that integrates differentiable workspace Signed Distance Fields (SDFs) into Vision-Language-Action models to enable collision-aware action generation. Our approach operates in the feature space of a pretrained VLA, requiring no architectural modification to the backbone. We describe the problem setting (Sec. 3.1), the differentiable SDF integration (Sec. 3.2), the gradient-guided action refinement mechanism (Sec. 3.3), the training protocol (Sec. 3.4), and inference-time deployment (Sec. 3.5).\\\\n\\\\n### 3.1 Problem Formulation\\\\n\\\\nWe consider a language-conditioned robotic manipulation setting where a Vision-Language-Action model $\\\\\\\\pi_\\\\\\\\theta$ generates an action trajectory $\\\\\\\\{a_t\\\\\\\\}_{t=1}^{H}$ with action horizon $H = 50$ conditioned on visual observations $o$ and a language instruction $l$. Each action $a_t \\\\\\\\in \\\\\\\\mathbb{R}^7$ specifies the desired end-effector (EE) displacement in position ($\\\\\\\\Delta x, \\\\\\\\Delta y, \\\\\\\\Delta z$), orientation ($\\\\\\\\Delta q_1, \\\\\\\\ldots, \\\\\\\\Delta q_3$), and gripper state.\\\\n\\\\nIn cluttered workspaces, the generated trajectory may command the EE into regions occupied by obstacles, causing collisions that damage objects or interrupt task execution. We formalize the collision avoidance objective through the workspace Signed Distance Field $\\\\\\\\Phi: \\\\\\\\mathbb{R}^3 \\\\\\\\to \\\\\\\\mathbb{R}$, where $\\\\\\\\Phi(\\\\\\\\mathbf{x}) > 0$ indicates free space, $\\\\\\\\Phi(\\\\\\\\mathbf{x}) = 0$ denotes the obstacle boundary, and $\\\\\\\\Phi(\\\\\\\\mathbf{x}) < 0$ indicates penetration. The goal is to learn a policy that generates trajectories satisfying $\\\\\\\\Phi(\\\\\\\\text{EE}(a_t)) > 0$ for all $t$, while preserving task success.\\\\n\\\\nOur base VLA is $\\\\\\\\pi_0$ (Physical Intelligence), a 3.5B-parameter flow-matching model comprising a PaliGemma vision-language encoder (Gemma 2B) and a Gemma 300M action expert. Action generation proceeds via iterative denoising over $H$ steps, producing a sequence of action tokens through the action expert's output projection $W_{\\\\\\\\text{out}} \\\\\\\\in \\\\\\\\mathbb{R}^{1024 \\\\\\\\times 32}$ that maps from the expert's hidden dimension to the action token space.\\\\n\\\\n### 3.2 Differentiable Workspace SDF Integration\\\\n\\\\nWe augment the VLA with two lightweight auxiliary modules that operate on the action expert's intermediate representations.\\\\n\\\\n**Feature extraction.** We capture the action expert's suffix output $\\\\\\\\mathbf{z} \\\\\\\\in \\\\\\\\mathbb{R}^{B \\\\\\\\times H \\\\\\\\times 1024}$ — the input to the action output projection $W_{\\\\\\\\text{out}}$ — via a forward hook registered on `action_out_proj`. A mean-pooling operation along the action horizon dimension yields a compact feature vector $\\\\\\\\bar{\\\\\\\\mathbf{z}} = \\\\\\\\frac{1}{H} \\\\\\\\sum_{t=1}^{H} \\\\\\\\mathbf{z}_t \\\\\\\\in \\\\\\\\mathbb{R}^{1024}$ that summarizes the action expert's spatial understanding of the current scene.\\\\n\\\\n**SDF Decoder.** A 4-layer MLP $f_\\\\\\\\text{SDF}$ predicts the signed distance value at arbitrary 3D query points given the pooled action expert features:\\\\n\\\\n$$f_\\\\\\\\text{SDF}: (\\\\\\\\bar{\\\\\\\\mathbf{z}}, \\\\\\\\mathbf{x}) \\\\\\\\mapsto \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}), \\\\\\\\quad \\\\\\\\bar{\\\\\\\\mathbf{z}} \\\\\\\\in \\\\\\\\mathbb{R}^{1024}, \\\\\\\\; \\\\\\\\mathbf{x} \\\\\\\\in \\\\\\\\mathbb{R}^3$$\\\\n\\\\nThe architecture employs hidden dimension 256 with Softplus activation ($\\\\\\\\beta = 5$) and a skip connection that re-injects the query coordinates at the second layer:\\\\n\\\\n$$\\\\\\\\mathbf{h}_0 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_0 [\\\\\\\\bar{\\\\\\\\mathbf{z}}; \\\\\\\\mathbf{x}] + \\\\\\\\mathbf{b}_0)$$\\\\n$$\\\\\\\\mathbf{h}_1 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_1 \\\\\\\\mathbf{h}_0 + \\\\\\\\mathbf{b}_1)$$\\\\n$$\\\\\\\\mathbf{h}_2 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_2 [\\\\\\\\mathbf{h}_1; \\\\\\\\mathbf{x}] + \\\\\\\\mathbf{b}_2)$$\\\\n$$\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}) = \\\\\\\\mathbf{W}_3 \\\\\\\\mathbf{h}_2 + \\\\\\\\mathbf{b}_3$$\\\\n\\\\nwhere $\\\\\\\\sigma(\\\\\\\\cdot) = \\\\\\\\text{Softplus}_{\\\\\\\\beta=5}(\\\\\\\\cdot)$, $\\\\\\\\mathbf{W}_0 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 1027}$, $\\\\\\\\mathbf{W}_1 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 256}$, $\\\\\\\\mathbf{W}_2 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 259}$, and $\\\\\\\\mathbf{W}_3 \\\\\\\\in \\\\\\\\mathbb{R}^{1 \\\\\\\\times 256}$. All weights are initialized with Kaiming normal initialization.\\\\n\\\\nFor spatial gradient computation (required by Eikonal regularization and gradient-guided refinement), the decoder computes $\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x})$ via `torch.autograd.grad` with graph creation enabled during training.\\\\n\\\\n**End-Effector Position Extractor.** A 2-layer MLP $g_\\\\\\\\text{EE}$ predicts the current EE position from the pooled features:\\\\n\\\\n$$g_\\\\\\\\text{EE}: \\\\\\\\bar{\\\\\\\\mathbf{z}} \\\\\\\\mapsto \\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE} \\\\\\\\in \\\\\\\\mathbb{R}^3$$\\\\n\\\\nwith architecture $\\\\\\\\text{Linear}(1024, 256) \\\\\\\\to \\\\\\\\text{ReLU} \\\\\\\\to \\\\\\\\text{Linear}(256, 3)$. The EE prediction serves dual purposes: (1) it provides the query point for evaluating collision proximity, and (2) its auxiliary loss encourages the action expert features to encode spatial position information.\\\\n\\\\n**Auxiliary training losses.** The SDF decoder is trained with a clamped L1 loss augmented by Eikonal regularization:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{SDF} = \\\\\\\\underbrace{\\\\\\\\frac{1}{N} \\\\\\\\sum_{i=1}^{N} \\\\\\\\left| \\\\\\\\text{clamp}(\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}_i), \\\\\\\\pm\\\\\\\\delta) - \\\\\\\\text{clamp}(\\\\\\\\Phi^*(\\\\\\\\mathbf{x}_i), \\\\\\\\pm\\\\\\\\delta) \\\\\\\\right|}_{\\\\\\\\mathcal{L}_\\\\\\\\text{L1}} + \\\\\\\\lambda_\\\\\\\\text{eik} \\\\\\\\underbrace{\\\\\\\\frac{1}{N} \\\\\\\\sum_{i=1}^{N} \\\\\\\\left( \\\\\\\\|\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}_i)\\\\\\\\|_2 - 1 \\\\\\\\right)^2}_{\\\\\\\\mathcal{L}_\\\\\\\\text{eikonal}}$$\\\\n\\\\nwhere $\\\\\\\\delta = 0.05$ is the clamping threshold, $\\\\\\\\lambda_\\\\\\\\text{eik} = 0.1$, and $N = 64$ query points are randomly sampled from the ground-truth SDF volume per training step. The clamping focuses learning on the near-surface region most relevant for collision detection. The Eikonal term enforces the unit-gradient property of valid distance fields.\\\\n\\\\nThe EE extractor is trained with MSE loss against ground-truth EE positions from the robot state:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{EE} = \\\\\\\\|\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE} - \\\\\\\\mathbf{p}^*_\\\\\\\\text{EE}\\\\\\\\|_2^2$$\\\\n\\\\n### 3.3 SDF Gradient-Guided Action Refinement\\\\n\\\\nThe core contribution of ColliForce is a gradient-based mechanism that leverages the differentiable SDF to steer the action expert's representations away from collision-prone regions during training. Unlike post-hoc action filtering, this approach modifies the feature space directly, enabling the model to internalize collision avoidance behavior.\\\\n\\\\n**Refinement procedure.** Given the captured suffix output $\\\\\\\\mathbf{z} \\\\\\\\in \\\\\\\\mathbb{R}^{B \\\\\\\\times H \\\\\\\\times 1024}$, the refiner:\\\\n\\\\n1. Predicts the EE position and evaluates the SDF: $\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE} = g_\\\\\\\\text{EE}(\\\\\\\\bar{\\\\\\\\mathbf{z}})$, $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE}) = f_\\\\\\\\text{SDF}(\\\\\\\\bar{\\\\\\\\mathbf{z}}, \\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE})$.\\\\n\\\\n2. Identifies near-collision samples: $\\\\\\\\mathcal{S} = \\\\\\\\{i : \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_{\\\\\\\\text{EE},i}) < m\\\\\\\\}$, where the safety margin $m = 0.01$.\\\\n\\\\n3. For samples in $\\\\\\\\mathcal{S}$, computes the SDF gradient with respect to the suffix features: $\\\\\\\\nabla_{\\\\\\\\mathbf{z}} \\\\\\\\hat{\\\\\\\\Phi} = \\\\\\\\frac{\\\\\\\\partial \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE})}{\\\\\\\\partial \\\\\\\\mathbf{z}}$, capturing how changes in the action expert's internal representation affect the predicted collision distance.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "cd908a57-e67e-45b2-bfe2-9c84f5d577cc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"## 3. Method\\\\n\\\\nWe present **ColliForce**, a framework that integrates differentiable workspace Signed Distance Fields (SDFs) into Vision-Language-Action models to enable collision-aware action generation. Our approach operates in the feature space of a pretrained VLA, requiring no architectural modification to the backbone. We describe the problem setting (Sec. 3.1), the differentiable SDF integration (Sec. 3.2), the gradient-guided action refinement mechanism (Sec. 3.3), the training protocol (Sec. 3.4), and inference-time deployment (Sec. 3.5).\\\\n\\\\n### 3.1 Problem Formulation\\\\n\\\\nWe consider a language-conditioned robotic manipulation setting where a Vision-Language-Action model $\\\\\\\\pi_\\\\\\\\theta$ generates an action trajectory $\\\\\\\\{a_t\\\\\\\\}_{t=1}^{H}$ with action horizon $H = 50$ conditioned on visual observations $o$ and a language instruction $l$. Each action $a_t \\\\\\\\in \\\\\\\\mathbb{R}^7$ specifies the desired end-effector (EE) displacement in position ($\\\\\\\\Delta x, \\\\\\\\Delta y, \\\\\\\\Delta z$), orientation ($\\\\\\\\Delta q_1, \\\\\\\\ldots, \\\\\\\\Delta q_3$), and gripper state.\\\\n\\\\nIn cluttered workspaces, the generated trajectory may command the EE into regions occupied by obstacles, causing collisions that damage objects or interrupt task execution. We formalize the collision avoidance objective through the workspace Signed Distance Field $\\\\\\\\Phi: \\\\\\\\mathbb{R}^3 \\\\\\\\to \\\\\\\\mathbb{R}$, where $\\\\\\\\Phi(\\\\\\\\mathbf{x}) > 0$ indicates free space, $\\\\\\\\Phi(\\\\\\\\mathbf{x}) = 0$ denotes the obstacle boundary, and $\\\\\\\\Phi(\\\\\\\\mathbf{x}) < 0$ indicates penetration. The goal is to learn a policy that generates trajectories satisfying $\\\\\\\\Phi(\\\\\\\\text{EE}(a_t)) > 0$ for all $t$, while preserving task success.\\\\n\\\\nOur base VLA is $\\\\\\\\pi_0$ (Physical Intelligence), a 3.5B-parameter flow-matching model comprising a PaliGemma vision-language encoder (Gemma 2B) and a Gemma 300M action expert. Action generation proceeds via iterative denoising over $H$ steps, producing a sequence of action tokens through the action expert's output projection $W_{\\\\\\\\text{out}} \\\\\\\\in \\\\\\\\mathbb{R}^{1024 \\\\\\\\times 32}$ that maps from the expert's hidden dimension to the action token space.\\\\n\\\\n### 3.2 Differentiable Workspace SDF Integration\\\\n\\\\nWe augment the VLA with two lightweight auxiliary modules that operate on the action expert's intermediate representations.\\\\n\\\\n**Feature extraction.** We capture the action expert's suffix output $\\\\\\\\mathbf{z} \\\\\\\\in \\\\\\\\mathbb{R}^{B \\\\\\\\times H \\\\\\\\times 1024}$ — the input to the action output projection $W_{\\\\\\\\text{out}}$ — via a forward hook registered on `action_out_proj`. A mean-pooling operation along the action horizon dimension yields a compact feature vector $\\\\\\\\bar{\\\\\\\\mathbf{z}} = \\\\\\\\frac{1}{H} \\\\\\\\sum_{t=1}^{H} \\\\\\\\mathbf{z}_t \\\\\\\\in \\\\\\\\mathbb{R}^{1024}$ that summarizes the action expert's spatial understanding of the current scene.\\\\n\\\\n**SDF Decoder.** A 4-layer MLP $f_\\\\\\\\text{SDF}$ predicts the signed distance value at arbitrary 3D query points given the pooled action expert features:\\\\n\\\\n$$f_\\\\\\\\text{SDF}: (\\\\\\\\bar{\\\\\\\\mathbf{z}}, \\\\\\\\mathbf{x}) \\\\\\\\mapsto \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}), \\\\\\\\quad \\\\\\\\bar{\\\\\\\\mathbf{z}} \\\\\\\\in \\\\\\\\mathbb{R}^{1024}, \\\\\\\\; \\\\\\\\mathbf{x} \\\\\\\\in \\\\\\\\mathbb{R}^3$$\\\\n\\\\nThe architecture employs hidden dimension 256 with Softplus activation ($\\\\\\\\beta = 5$) and a skip connection that re-injects the query coordinates at the second layer:\\\\n\\\\n$$\\\\\\\\mathbf{h}_0 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_0 [\\\\\\\\bar{\\\\\\\\mathbf{z}}; \\\\\\\\mathbf{x}] + \\\\\\\\mathbf{b}_0)$$\\\\n$$\\\\\\\\mathbf{h}_1 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_1 \\\\\\\\mathbf{h}_0 + \\\\\\\\mathbf{b}_1)$$\\\\n$$\\\\\\\\mathbf{h}_2 = \\\\\\\\sigma(\\\\\\\\mathbf{W}_2 [\\\\\\\\mathbf{h}_1; \\\\\\\\mathbf{x}] + \\\\\\\\mathbf{b}_2)$$\\\\n$$\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}) = \\\\\\\\mathbf{W}_3 \\\\\\\\mathbf{h}_2 + \\\\\\\\mathbf{b}_3$$\\\\n\\\\nwhere $\\\\\\\\sigma(\\\\\\\\cdot) = \\\\\\\\text{Softplus}_{\\\\\\\\beta=5}(\\\\\\\\cdot)$, $\\\\\\\\mathbf{W}_0 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 1027}$, $\\\\\\\\mathbf{W}_1 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 256}$, $\\\\\\\\mathbf{W}_2 \\\\\\\\in \\\\\\\\mathbb{R}^{256 \\\\\\\\times 259}$, and $\\\\\\\\mathbf{W}_3 \\\\\\\\in \\\\\\\\mathbb{R}^{1 \\\\\\\\times 256}$. All weights are initialized with Kaiming normal initialization.\\\\n\\\\nFor spatial gradient computation (required by Eikonal regularization and gradient-guided refinement), the decoder computes $\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x})$ via `torch.autograd.grad` with graph creation enabled during training.\\\\n\\\\n**End-Effector Position Extractor.** A 2-layer MLP $g_\\\\\\\\text{EE}$ predicts the current EE position from the pooled features:\\\\n\\\\n$$g_\\\\\\\\text{EE}: \\\\\\\\bar{\\\\\\\\mathbf{z}} \\\\\\\\mapsto \\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE} \\\\\\\\in \\\\\\\\mathbb{R}^3$$\\\\n\\\\nwith architecture $\\\\\\\\text{Linear}(1024, 256) \\\\\\\\to \\\\\\\\text{ReLU} \\\\\\\\to \\\\\\\\text{Linear}(256, 3)$. The EE prediction serves dual purposes: (1) it provides the query point for evaluating collision proximity, and (2) its auxiliary loss encourages the action expert features to encode spatial position information.\\\\n\\\\n**Auxiliary training losses.** The SDF decoder is trained with a clamped L1 loss augmented by Eikonal regularization:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{SDF} = \\\\\\\\underbrace{\\\\\\\\frac{1}{N} \\\\\\\\sum_{i=1}^{N} \\\\\\\\left| \\\\\\\\text{clamp}(\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}_i), \\\\\\\\pm\\\\\\\\delta) - \\\\\\\\text{clamp}(\\\\\\\\Phi^*(\\\\\\\\mathbf{x}_i), \\\\\\\\pm\\\\\\\\delta) \\\\\\\\right|}_{\\\\\\\\mathcal{L}_\\\\\\\\text{L1}} + \\\\\\\\lambda_\\\\\\\\text{eik} \\\\\\\\underbrace{\\\\\\\\frac{1}{N} \\\\\\\\sum_{i=1}^{N} \\\\\\\\left( \\\\\\\\|\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\mathbf{x}_i)\\\\\\\\|_2 - 1 \\\\\\\\right)^2}_{\\\\\\\\mathcal{L}_\\\\\\\\text{eikonal}}$$\\\\n\\\\nwhere $\\\\\\\\delta = 0.05$ is the clamping threshold, $\\\\\\\\lambda_\\\\\\\\text{eik} = 0.1$, and $N = 64$ query points are randomly sampled from the ground-truth SDF volume per training step. The clamping focuses learning on the near-surface region most relevant for collision detection. The Eikonal term enforces the unit-gradient property of valid distance fields.\\\\n\\\\nThe EE extractor is trained with MSE loss against ground-truth EE positions from the robot state:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{EE} = \\\\\\\\|\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE} - \\\\\\\\mathbf{p}^*_\\\\\\\\text{EE}\\\\\\\\|_2^2$$\\\\n\\\\n### 3.3 SDF Gradient-Guided Action Refinement\\\\n\\\\nThe core contribution of ColliForce is a gradient-based mechanism that leverages the differentiable SDF to steer the action expert's representations away from collision-prone regions during training. Unlike post-hoc action filtering, this approach modifies the feature space directly, enabling the model to internalize collision avoidance behavior.\\\\n\\\\n**Refinement procedure.** Given the captured suffix output $\\\\\\\\mathbf{z} \\\\\\\\in \\\\\\\\mathbb{R}^{B \\\\\\\\times H \\\\\\\\times 1024}$, the refiner:\\\\n\\\\n1. Predicts the EE position and evaluates the SDF: $\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE} = g_\\\\\\\\text{EE}(\\\\\\\\bar{\\\\\\\\mathbf{z}})$, $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE}) = f_\\\\\\\\text{SDF}(\\\\\\\\bar{\\\\\\\\mathbf{z}}, \\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE})$.\\\\n\\\\n2. Identifies near-collision samples: $\\\\\\\\mathcal{S} = \\\\\\\\{i : \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_{\\\\\\\\text{EE},i}) < m\\\\\\\\}$, where the safety margin $m = 0.01$.\\\\n\\\\n3. For samples in $\\\\\\\\mathcal{S}$, computes the SDF gradient with respect to the suffix features: $\\\\\\\\nabla_{\\\\\\\\mathbf{z}} \\\\\\\\hat{\\\\\\\\Phi} = \\\\\\\\frac{\\\\\\\\partial \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{EE})}{\\\\\\\\partial \\\\\\\\mathbf{z}}$, capturing how changes in the action expert's internal representation affect the predicted collision distance.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"## 3. Method\\n\\nWe present **ColliForce**, a framework that integrates differentiable workspace Signed Distance Fields (SDFs) into Vision-Language-Action models to enable collision-aware action generation. Our approach operates in the feature space of a pretrained VLA, requiring no architectural modification to the backbone. We describe the problem setting (Sec. 3.1), the differentiable SDF integration (Sec. 3.2), the gradient-guided action refinement mechanism (Sec. 3.3), the training protocol (Sec. 3.4), and inference-time deployment (Sec. 3.5).\\n\\n### 3.1 Problem Formulation\\n\\nWe consider a language-conditioned robotic manipulation setting where a Vision-Language-Action model $\\\\pi_\\\\theta$ generates an action trajectory $\\\\{a_t\\\\}_{t=1}^{H}$ with action horizon $H = 50$ conditioned on visual observations $o$ and a language instruction $l$. Each action $a_t \\\\in \\\\mathbb{R}^7$ specifies the desired end-effector (EE) displacement in position ($\\\\Delta x, \\\\Delta y, \\\\Delta z$), orientation ($\\\\Delta q_1, \\\\ldots, \\\\Delta q_3$), and gripper state.\\n\\nIn cluttered workspaces, the generated trajectory may command the EE into regions occupied by obstacles, causing collisions that damage objects or interrupt task execution. We formalize the collision avoidance objective through the workspace Signed Distance Field $\\\\Phi: \\\\mathbb{R}^3 \\\\to \\\\mathbb{R}$, where $\\\\Phi(\\\\mathbf{x}) > 0$ indicates free space, $\\\\Phi(\\\\mathbf{x}) = 0$ denotes the obstacle boundary, and $\\\\Phi(\\\\mathbf{x}) < 0$ indicates penetration. The goal is to learn a policy that generates trajectories satisfying $\\\\Phi(\\\\text{EE}(a_t)) > 0$ for all $t$, while preserving task success.\\n\\nOur base VLA is $\\\\pi_0$ (Physical Intelligence), a 3.5B-parameter flow-matching model comprising a PaliGemma vision-language encoder (Gemma 2B) and a Gemma 300M action expert. Action generation proceeds via iterative denoising over $H$ steps, producing a sequence of action tokens through the action expert's output projection $W_{\\\\text{out}} \\\\in \\\\mathbb{R}^{1024 \\\\times 32}$ that maps from the expert's hidden dimension to the action token space.\\n\\n### 3.2 Differentiable Workspace SDF Integration\\n\\nWe augment the VLA with two lightweight auxiliary modules that operate on the action expert's intermediate representations.\\n\\n**Feature extraction.** We capture the action expert's suffix output $\\\\mathbf{z} \\\\in \\\\mathbb{R}^{B \\\\times H \\\\times 1024}$ — the input to the action output projection $W_{\\\\text{out}}$ — via a forward hook registered on `action_out_proj`. A mean-pooling operation along the action horizon dimension yields a compact feature vector $\\\\bar{\\\\mathbf{z}} = \\\\frac{1}{H} \\\\sum_{t=1}^{H} \\\\mathbf{z}_t \\\\in \\\\mathbb{R}^{1024}$ that summarizes the action expert's spatial understanding of the current scene.\\n\\n**SDF Decoder.** A 4-layer MLP $f_\\\\text{SDF}$ predicts the signed distance value at arbitrary 3D query points given the pooled action expert features:\\n\\n$$f_\\\\text{SDF}: (\\\\bar{\\\\mathbf{z}}, \\\\mathbf{x}) \\\\mapsto \\\\hat{\\\\Phi}(\\\\mathbf{x}), \\\\quad \\\\bar{\\\\mathbf{z}} \\\\in \\\\mathbb{R}^{1024}, \\\\; \\\\mathbf{x} \\\\in \\\\mathbb{R}^3$$\\n\\nThe architecture employs hidden dimension 256 with Softplus activation ($\\\\beta = 5$) and a skip connection that re-injects the query coordinates at the second layer:\\n\\n$$\\\\mathbf{h}_0 = \\\\sigma(\\\\mathbf{W}_0 [\\\\bar{\\\\mathbf{z}}; \\\\mathbf{x}] + \\\\mathbf{b}_0)$$\\n$$\\\\mathbf{h}_1 = \\\\sigma(\\\\mathbf{W}_1 \\\\mathbf{h}_0 + \\\\mathbf{b}_1)$$\\n$$\\\\mathbf{h}_2 = \\\\sigma(\\\\mathbf{W}_2 [\\\\mathbf{h}_1; \\\\mathbf{x}] + \\\\mathbf{b}_2)$$\\n$$\\\\hat{\\\\Phi}(\\\\mathbf{x}) = \\\\mathbf{W}_3 \\\\mathbf{h}_2 + \\\\mathbf{b}_3$$\\n\\nwhere $\\\\sigma(\\\\cdot) = \\\\text{Softplus}_{\\\\beta=5}(\\\\cdot)$, $\\\\mathbf{W}_0 \\\\in \\\\mathbb{R}^{256 \\\\times 1027}$, $\\\\mathbf{W}_1 \\\\in \\\\mathbb{R}^{256 \\\\times 256}$, $\\\\mathbf{W}_2 \\\\in \\\\mathbb{R}^{256 \\\\times 259}$, and $\\\\mathbf{W}_3 \\\\in \\\\mathbb{R}^{1 \\\\times 256}$. All weights are initialized with Kaiming normal initialization.\\n\\nFor spatial gradient computation (required by Eikonal regularization and gradient-guided refinement), the decoder computes $\\\\nabla_{\\\\mathbf{x}} \\\\hat{\\\\Phi}(\\\\mathbf{x})$ via `torch.autograd.grad` with graph creation enabled during training.\\n\\n**End-Effector Position Extractor.** A 2-layer MLP $g_\\\\text{EE}$ predicts the current EE position from the pooled features:\\n\\n$$g_\\\\text{EE}: \\\\bar{\\\\mathbf{z}} \\\\mapsto \\\\hat{\\\\mathbf{p}}_\\\\text{EE} \\\\in \\\\mathbb{R}^3$$\\n\\nwith architecture $\\\\text{Linear}(1024, 256) \\\\to \\\\text{ReLU} \\\\to \\\\text{Linear}(256, 3)$. The EE prediction serves dual purposes: (1) it provides the query point for evaluating collision proximity, and (2) its auxiliary loss encourages the action expert features to encode spatial position information.\\n\\n**Auxiliary training losses.** The SDF decoder is trained with a clamped L1 loss augmented by Eikonal regularization:\\n\\n$$\\\\mathcal{L}_\\\\text{SDF} = \\\\underbrace{\\\\frac{1}{N} \\\\sum_{i=1}^{N} \\\\left| \\\\text{clamp}(\\\\hat{\\\\Phi}(\\\\mathbf{x}_i), \\\\pm\\\\delta) - \\\\text{clamp}(\\\\Phi^*(\\\\mathbf{x}_i), \\\\pm\\\\delta) \\\\right|}_{\\\\mathcal{L}_\\\\text{L1}} + \\\\lambda_\\\\text{eik} \\\\underbrace{\\\\frac{1}{N} \\\\sum_{i=1}^{N} \\\\left( \\\\|\\\\nabla_{\\\\mathbf{x}} \\\\hat{\\\\Phi}(\\\\mathbf{x}_i)\\\\|_2 - 1 \\\\right)^2}_{\\\\mathcal{L}_\\\\text{eikonal}}$$\\n\\nwhere $\\\\delta = 0.05$ is the clamping threshold, $\\\\lambda_\\\\text{eik} = 0.1$, and $N = 64$ query points are randomly sampled from the ground-truth SDF volume per training step. The clamping focuses learning on the near-surface region most relevant for collision detection. The Eikonal term enforces the unit-gradient property of valid distance fields.\\n\\nThe EE extractor is trained with MSE loss against ground-truth EE positions from the robot state:\\n\\n$$\\\\mathcal{L}_\\\\text{EE} = \\\\|\\\\hat{\\\\mathbf{p}}_\\\\text{EE} - \\\\mathbf{p}^*_\\\\text{EE}\\\\|_2^2$$\\n\\n### 3.3 SDF Gradient-Guided Action Refinement\\n\\nThe core contribution of ColliForce is a gradient-based mechanism that leverages the differentiable SDF to steer the action expert's representations away from collision-prone regions during training. Unlike post-hoc action filtering, this approach modifies the feature space directly, enabling the model to internalize collision avoidance behavior.\\n\\n**Refinement procedure.** Given the captured suffix output $\\\\mathbf{z} \\\\in \\\\mathbb{R}^{B \\\\times H \\\\times 1024}$, the refiner:\\n\\n1. Predicts the EE position and evaluates the SDF: $\\\\hat{\\\\mathbf{p}}_\\\\text{EE} = g_\\\\text{EE}(\\\\bar{\\\\mathbf{z}})$, $\\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{EE}) = f_\\\\text{SDF}(\\\\bar{\\\\mathbf{z}}, \\\\hat{\\\\mathbf{p}}_\\\\text{EE})$.\\n\\n2. Identifies near-collision samples: $\\\\mathcal{S} = \\\\{i : \\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_{\\\\text{EE},i}) < m\\\\}$, where the safety margin $m = 0.01$.\\n\\n3. For samples in $\\\\mathcal{S}$, computes the SDF gradient with respect to the suffix features: $\\\\nabla_{\\\\mathbf{z}} \\\\hat{\\\\Phi} = \\\\frac{\\\\partial \\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{EE})}{\\\\partial \\\\mathbf{z}}$, capturing how changes in the action expert's internal representation affect the predicted collision distance.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T22:42:23.226Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017VygPVKeZfj63ozxtAUKzX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n4. Performs gradient ascent on the SDF (toward higher, safer values):\\\\n\\\\n$$\\\\\\\\mathbf{z}' = \\\\\\\\mathbf{z} + \\\\\\\\alpha \\\\\\\\cdot \\\\\\\\text{clip}(\\\\\\\\nabla_{\\\\\\\\mathbf{z}} \\\\\\\\hat{\\\\\\\\Phi}) \\\\\\\\odot \\\\\\\\mathbf{m}_\\\\\\\\mathcal{S}$$\\\\n\\\\nwhere $\\\\\\\\alpha = 0.1$ is the step size, $\\\\\\\\text{clip}(\\\\\\\\cdot)$ denotes per-sample L2 norm clipping with threshold $\\\\\\\\gamma = 1.0$ for gradient stability, and $\\\\\\\\mathbf{m}_\\\\\\\\mathcal{S}$ is a binary mask selecting only near-collision samples.\\\\n\\\\n5. Projects both original and refined features through the action output head: $\\\\\\\\mathbf{v}_t = W_\\\\\\\\text{out}(\\\\\\\\mathbf{z})$, $\\\\\\\\mathbf{v}'_t = W_\\\\\\\\text{out}(\\\\\\\\mathbf{z}')$.\\\\n\\\\n**Refinement loss.** The model is trained to directly output the collision-corrected actions by minimizing the discrepancy between the original and refined predictions on near-collision samples:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{refine} = \\\\\\\\frac{1}{|\\\\\\\\mathcal{S}|} \\\\\\\\sum_{i \\\\\\\\in \\\\\\\\mathcal{S}} \\\\\\\\|\\\\\\\\mathbf{v}_{t,i} - \\\\\\\\text{sg}(\\\\\\\\mathbf{v}'_{t,i})\\\\\\\\|_2^2$$\\\\n\\\\nwhere $\\\\\\\\text{sg}(\\\\\\\\cdot)$ denotes the stop-gradient operator. The gradient flows only through $\\\\\\\\mathbf{v}_t \\\\\\\\to \\\\\\\\mathbf{z} \\\\\\\\to \\\\\\\\theta_\\\\\\\\text{LoRA}$, training the LoRA adapters to anticipate and avoid collisions without requiring the gradient refiner at inference time. The refined target $\\\\\\\\mathbf{v}'_t$ is detached, serving as a teacher signal that encodes collision-aware behavior.\\\\n\\\\nThis design is reminiscent of knowledge distillation: the SDF gradient refiner acts as a computationally expensive teacher that produces safe actions, while the student (the LoRA-adapted VLA) learns to replicate these actions directly, amortizing the SDF computation into the model's parameters.\\\\n\\\\n### 3.4 Training Protocol\\\\n\\\\nWe adopt a two-phase training protocol that ensures SDF prediction accuracy before engaging gradient-guided refinement.\\\\n\\\\n**Baseline.** Standard LoRA fine-tuning of $\\\\\\\\pi_0$ on task demonstrations using the flow-matching action loss $\\\\\\\\mathcal{L}_\\\\\\\\text{action}$. LoRA adapters are injected into both the PaliGemma encoder (rank 16, $\\\\\\\\alpha = 16$) and the action expert (rank 32, $\\\\\\\\alpha = 32$), targeting the attention projections ($\\\\\\\\mathbf{W}_q, \\\\\\\\mathbf{W}_k, \\\\\\\\mathbf{W}_v, \\\\\\\\mathbf{W}_o$) and MLP layers ($\\\\\\\\mathbf{W}_\\\\\\\\text{gate}, \\\\\\\\mathbf{W}_\\\\\\\\text{up}, \\\\\\\\mathbf{W}_\\\\\\\\text{down}$). The total LoRA parameter count is approximately 26M.\\\\n\\\\n**A1 — SDF Auxiliary Task.** This variant adds the SDF decoder and EE extractor as auxiliary tasks:\\\\n\\\\n- *Phase 1* ($0 \\\\\\\\to T_\\\\\\\\text{warmup}$ steps, $T_\\\\\\\\text{warmup} = 5000$): The entire backbone (including LoRA parameters) is frozen. Only the SDF decoder ($\\\\\\\\sim$395K parameters) and EE extractor ($\\\\\\\\sim$263K parameters) are trained. The auxiliary modules receive detached features ($\\\\\\\\bar{\\\\\\\\mathbf{z}}.\\\\\\\\text{detach()}$) to avoid destabilizing the pretrained backbone during warmup. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.\\\\n\\\\n- *Phase 2* ($T_\\\\\\\\text{warmup} \\\\\\\\to T_\\\\\\\\text{end}$): LoRA parameters are unfrozen with a linear gradient warmup over 100 steps to prevent abrupt feature distribution shifts. The full loss is:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{A1} = \\\\\\\\mathcal{L}_\\\\\\\\text{action} + \\\\\\\\lambda_\\\\\\\\text{SDF} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{SDF} + \\\\\\\\lambda_\\\\\\\\text{EE} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{EE}$$\\\\n\\\\nwhere $\\\\\\\\lambda_\\\\\\\\text{SDF} = 0.1$ and $\\\\\\\\lambda_\\\\\\\\text{EE} = 0.01$. Gradients now flow from the auxiliary losses through the pooled features into the LoRA adapters, encouraging the action expert to develop features that encode workspace geometry.\\\\n\\\\n**A3 — SDF Gradient-Guided Refinement.** This variant extends A1 with the gradient refiner:\\\\n\\\\n- *Phase 1*: Identical to A1 — backbone frozen, SDF decoder and EE extractor warmup only.\\\\n\\\\n- *Phase 2*: LoRA unfreezing with gradient warmup (same as A1), plus activation of the gradient refiner. The full loss becomes:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{A3} = \\\\\\\\mathcal{L}_\\\\\\\\text{action} + \\\\\\\\lambda_\\\\\\\\text{SDF} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{SDF} + \\\\\\\\lambda_\\\\\\\\text{EE} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{EE} + \\\\\\\\lambda_\\\\\\\\text{refine} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{refine}$$\\\\n\\\\nwhere $\\\\\\\\lambda_\\\\\\\\text{refine} = 0.1$. The refinement loss is only computed when near-collision samples exist in the batch ($|\\\\\\\\mathcal{S}| > 0$), adding zero computational overhead for collision-free training steps.\\\\n\\\\nAll variants use AdamW with cosine decay scheduling (peak learning rate $2.5 \\\\\\\\times 10^{-5}$, decaying to $2.5 \\\\\\\\times 10^{-6}$), batch size 32, and train for 30,000 steps. The warmup period for the learning rate schedule is $\\\\\\\\min(1000, T_\\\\\\\\text{end} / 3)$ steps.\\\\n\\\\n### 3.5 Inference-Time Refinement\\\\n\\\\nAt inference, ColliForce supports an optional SDF gradient correction that provides an additional safety layer without architectural changes to the deployed model:\\\\n\\\\n1. The VLA generates an action $a_t$ through standard forward pass.\\\\n2. The predicted next EE position is computed: $\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next} = \\\\\\\\mathbf{p}_\\\\\\\\text{EE} + a_t[:3]$.\\\\n3. The SDF decoder queries the predicted SDF at this position: $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})$.\\\\n4. If $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next}) < m$ (near collision), the action's position component is corrected:\\\\n\\\\n$$a'_t[:3] = a_t[:3] + \\\\\\\\alpha \\\\\\\\cdot \\\\\\\\frac{\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})}{\\\\\\\\|\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})\\\\\\\\|_2}$$\\\\n\\\\nThe L2-normalization bounds the correction magnitude to $\\\\\\\\alpha$ regardless of the SDF gradient scale, preventing over-correction near sharp obstacle boundaries. Orientation and gripper components of $a_t$ remain unchanged.\\\\n\\\\nThis inference-time mechanism introduces zero additional latency when $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next}) \\\\\\\\geq m$ (i.e., the EE is sufficiently far from obstacles). For the A3 variant trained with gradient refinement, the model has already learned to produce collision-avoiding actions, so inference-time refinement serves as a complementary safety net for out-of-distribution obstacle configurations.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "1cae0405-f795-4ef1-baa1-11635ded1858",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n4. Performs gradient ascent on the SDF (toward higher, safer values):\\\\n\\\\n$$\\\\\\\\mathbf{z}' = \\\\\\\\mathbf{z} + \\\\\\\\alpha \\\\\\\\cdot \\\\\\\\text{clip}(\\\\\\\\nabla_{\\\\\\\\mathbf{z}} \\\\\\\\hat{\\\\\\\\Phi}) \\\\\\\\odot \\\\\\\\mathbf{m}_\\\\\\\\mathcal{S}$$\\\\n\\\\nwhere $\\\\\\\\alpha = 0.1$ is the step size, $\\\\\\\\text{clip}(\\\\\\\\cdot)$ denotes per-sample L2 norm clipping with threshold $\\\\\\\\gamma = 1.0$ for gradient stability, and $\\\\\\\\mathbf{m}_\\\\\\\\mathcal{S}$ is a binary mask selecting only near-collision samples.\\\\n\\\\n5. Projects both original and refined features through the action output head: $\\\\\\\\mathbf{v}_t = W_\\\\\\\\text{out}(\\\\\\\\mathbf{z})$, $\\\\\\\\mathbf{v}'_t = W_\\\\\\\\text{out}(\\\\\\\\mathbf{z}')$.\\\\n\\\\n**Refinement loss.** The model is trained to directly output the collision-corrected actions by minimizing the discrepancy between the original and refined predictions on near-collision samples:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{refine} = \\\\\\\\frac{1}{|\\\\\\\\mathcal{S}|} \\\\\\\\sum_{i \\\\\\\\in \\\\\\\\mathcal{S}} \\\\\\\\|\\\\\\\\mathbf{v}_{t,i} - \\\\\\\\text{sg}(\\\\\\\\mathbf{v}'_{t,i})\\\\\\\\|_2^2$$\\\\n\\\\nwhere $\\\\\\\\text{sg}(\\\\\\\\cdot)$ denotes the stop-gradient operator. The gradient flows only through $\\\\\\\\mathbf{v}_t \\\\\\\\to \\\\\\\\mathbf{z} \\\\\\\\to \\\\\\\\theta_\\\\\\\\text{LoRA}$, training the LoRA adapters to anticipate and avoid collisions without requiring the gradient refiner at inference time. The refined target $\\\\\\\\mathbf{v}'_t$ is detached, serving as a teacher signal that encodes collision-aware behavior.\\\\n\\\\nThis design is reminiscent of knowledge distillation: the SDF gradient refiner acts as a computationally expensive teacher that produces safe actions, while the student (the LoRA-adapted VLA) learns to replicate these actions directly, amortizing the SDF computation into the model's parameters.\\\\n\\\\n### 3.4 Training Protocol\\\\n\\\\nWe adopt a two-phase training protocol that ensures SDF prediction accuracy before engaging gradient-guided refinement.\\\\n\\\\n**Baseline.** Standard LoRA fine-tuning of $\\\\\\\\pi_0$ on task demonstrations using the flow-matching action loss $\\\\\\\\mathcal{L}_\\\\\\\\text{action}$. LoRA adapters are injected into both the PaliGemma encoder (rank 16, $\\\\\\\\alpha = 16$) and the action expert (rank 32, $\\\\\\\\alpha = 32$), targeting the attention projections ($\\\\\\\\mathbf{W}_q, \\\\\\\\mathbf{W}_k, \\\\\\\\mathbf{W}_v, \\\\\\\\mathbf{W}_o$) and MLP layers ($\\\\\\\\mathbf{W}_\\\\\\\\text{gate}, \\\\\\\\mathbf{W}_\\\\\\\\text{up}, \\\\\\\\mathbf{W}_\\\\\\\\text{down}$). The total LoRA parameter count is approximately 26M.\\\\n\\\\n**A1 — SDF Auxiliary Task.** This variant adds the SDF decoder and EE extractor as auxiliary tasks:\\\\n\\\\n- *Phase 1* ($0 \\\\\\\\to T_\\\\\\\\text{warmup}$ steps, $T_\\\\\\\\text{warmup} = 5000$): The entire backbone (including LoRA parameters) is frozen. Only the SDF decoder ($\\\\\\\\sim$395K parameters) and EE extractor ($\\\\\\\\sim$263K parameters) are trained. The auxiliary modules receive detached features ($\\\\\\\\bar{\\\\\\\\mathbf{z}}.\\\\\\\\text{detach()}$) to avoid destabilizing the pretrained backbone during warmup. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.\\\\n\\\\n- *Phase 2* ($T_\\\\\\\\text{warmup} \\\\\\\\to T_\\\\\\\\text{end}$): LoRA parameters are unfrozen with a linear gradient warmup over 100 steps to prevent abrupt feature distribution shifts. The full loss is:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{A1} = \\\\\\\\mathcal{L}_\\\\\\\\text{action} + \\\\\\\\lambda_\\\\\\\\text{SDF} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{SDF} + \\\\\\\\lambda_\\\\\\\\text{EE} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{EE}$$\\\\n\\\\nwhere $\\\\\\\\lambda_\\\\\\\\text{SDF} = 0.1$ and $\\\\\\\\lambda_\\\\\\\\text{EE} = 0.01$. Gradients now flow from the auxiliary losses through the pooled features into the LoRA adapters, encouraging the action expert to develop features that encode workspace geometry.\\\\n\\\\n**A3 — SDF Gradient-Guided Refinement.** This variant extends A1 with the gradient refiner:\\\\n\\\\n- *Phase 1*: Identical to A1 — backbone frozen, SDF decoder and EE extractor warmup only.\\\\n\\\\n- *Phase 2*: LoRA unfreezing with gradient warmup (same as A1), plus activation of the gradient refiner. The full loss becomes:\\\\n\\\\n$$\\\\\\\\mathcal{L}_\\\\\\\\text{A3} = \\\\\\\\mathcal{L}_\\\\\\\\text{action} + \\\\\\\\lambda_\\\\\\\\text{SDF} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{SDF} + \\\\\\\\lambda_\\\\\\\\text{EE} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{EE} + \\\\\\\\lambda_\\\\\\\\text{refine} \\\\\\\\cdot \\\\\\\\mathcal{L}_\\\\\\\\text{refine}$$\\\\n\\\\nwhere $\\\\\\\\lambda_\\\\\\\\text{refine} = 0.1$. The refinement loss is only computed when near-collision samples exist in the batch ($|\\\\\\\\mathcal{S}| > 0$), adding zero computational overhead for collision-free training steps.\\\\n\\\\nAll variants use AdamW with cosine decay scheduling (peak learning rate $2.5 \\\\\\\\times 10^{-5}$, decaying to $2.5 \\\\\\\\times 10^{-6}$), batch size 32, and train for 30,000 steps. The warmup period for the learning rate schedule is $\\\\\\\\min(1000, T_\\\\\\\\text{end} / 3)$ steps.\\\\n\\\\n### 3.5 Inference-Time Refinement\\\\n\\\\nAt inference, ColliForce supports an optional SDF gradient correction that provides an additional safety layer without architectural changes to the deployed model:\\\\n\\\\n1. The VLA generates an action $a_t$ through standard forward pass.\\\\n2. The predicted next EE position is computed: $\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next} = \\\\\\\\mathbf{p}_\\\\\\\\text{EE} + a_t[:3]$.\\\\n3. The SDF decoder queries the predicted SDF at this position: $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})$.\\\\n4. If $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next}) < m$ (near collision), the action's position component is corrected:\\\\n\\\\n$$a'_t[:3] = a_t[:3] + \\\\\\\\alpha \\\\\\\\cdot \\\\\\\\frac{\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})}{\\\\\\\\|\\\\\\\\nabla_{\\\\\\\\mathbf{x}} \\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next})\\\\\\\\|_2}$$\\\\n\\\\nThe L2-normalization bounds the correction magnitude to $\\\\\\\\alpha$ regardless of the SDF gradient scale, preventing over-correction near sharp obstacle boundaries. Orientation and gripper components of $a_t$ remain unchanged.\\\\n\\\\nThis inference-time mechanism introduces zero additional latency when $\\\\\\\\hat{\\\\\\\\Phi}(\\\\\\\\hat{\\\\\\\\mathbf{p}}_\\\\\\\\text{next}) \\\\\\\\geq m$ (i.e., the EE is sufficiently far from obstacles). For the A3 variant trained with gradient refinement, the model has already learned to produce collision-avoiding actions, so inference-time refinement serves as a complementary safety net for out-of-distribution obstacle configurations.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n4. Performs gradient ascent on the SDF (toward higher, safer values):\\n\\n$$\\\\mathbf{z}' = \\\\mathbf{z} + \\\\alpha \\\\cdot \\\\text{clip}(\\\\nabla_{\\\\mathbf{z}} \\\\hat{\\\\Phi}) \\\\odot \\\\mathbf{m}_\\\\mathcal{S}$$\\n\\nwhere $\\\\alpha = 0.1$ is the step size, $\\\\text{clip}(\\\\cdot)$ denotes per-sample L2 norm clipping with threshold $\\\\gamma = 1.0$ for gradient stability, and $\\\\mathbf{m}_\\\\mathcal{S}$ is a binary mask selecting only near-collision samples.\\n\\n5. Projects both original and refined features through the action output head: $\\\\mathbf{v}_t = W_\\\\text{out}(\\\\mathbf{z})$, $\\\\mathbf{v}'_t = W_\\\\text{out}(\\\\mathbf{z}')$.\\n\\n**Refinement loss.** The model is trained to directly output the collision-corrected actions by minimizing the discrepancy between the original and refined predictions on near-collision samples:\\n\\n$$\\\\mathcal{L}_\\\\text{refine} = \\\\frac{1}{|\\\\mathcal{S}|} \\\\sum_{i \\\\in \\\\mathcal{S}} \\\\|\\\\mathbf{v}_{t,i} - \\\\text{sg}(\\\\mathbf{v}'_{t,i})\\\\|_2^2$$\\n\\nwhere $\\\\text{sg}(\\\\cdot)$ denotes the stop-gradient operator. The gradient flows only through $\\\\mathbf{v}_t \\\\to \\\\mathbf{z} \\\\to \\\\theta_\\\\text{LoRA}$, training the LoRA adapters to anticipate and avoid collisions without requiring the gradient refiner at inference time. The refined target $\\\\mathbf{v}'_t$ is detached, serving as a teacher signal that encodes collision-aware behavior.\\n\\nThis design is reminiscent of knowledge distillation: the SDF gradient refiner acts as a computationally expensive teacher that produces safe actions, while the student (the LoRA-adapted VLA) learns to replicate these actions directly, amortizing the SDF computation into the model's parameters.\\n\\n### 3.4 Training Protocol\\n\\nWe adopt a two-phase training protocol that ensures SDF prediction accuracy before engaging gradient-guided refinement.\\n\\n**Baseline.** Standard LoRA fine-tuning of $\\\\pi_0$ on task demonstrations using the flow-matching action loss $\\\\mathcal{L}_\\\\text{action}$. LoRA adapters are injected into both the PaliGemma encoder (rank 16, $\\\\alpha = 16$) and the action expert (rank 32, $\\\\alpha = 32$), targeting the attention projections ($\\\\mathbf{W}_q, \\\\mathbf{W}_k, \\\\mathbf{W}_v, \\\\mathbf{W}_o$) and MLP layers ($\\\\mathbf{W}_\\\\text{gate}, \\\\mathbf{W}_\\\\text{up}, \\\\mathbf{W}_\\\\text{down}$). The total LoRA parameter count is approximately 26M.\\n\\n**A1 — SDF Auxiliary Task.** This variant adds the SDF decoder and EE extractor as auxiliary tasks:\\n\\n- *Phase 1* ($0 \\\\to T_\\\\text{warmup}$ steps, $T_\\\\text{warmup} = 5000$): The entire backbone (including LoRA parameters) is frozen. Only the SDF decoder ($\\\\sim$395K parameters) and EE extractor ($\\\\sim$263K parameters) are trained. The auxiliary modules receive detached features ($\\\\bar{\\\\mathbf{z}}.\\\\text{detach()}$) to avoid destabilizing the pretrained backbone during warmup. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.\\n\\n- *Phase 2* ($T_\\\\text{warmup} \\\\to T_\\\\text{end}$): LoRA parameters are unfrozen with a linear gradient warmup over 100 steps to prevent abrupt feature distribution shifts. The full loss is:\\n\\n$$\\\\mathcal{L}_\\\\text{A1} = \\\\mathcal{L}_\\\\text{action} + \\\\lambda_\\\\text{SDF} \\\\cdot \\\\mathcal{L}_\\\\text{SDF} + \\\\lambda_\\\\text{EE} \\\\cdot \\\\mathcal{L}_\\\\text{EE}$$\\n\\nwhere $\\\\lambda_\\\\text{SDF} = 0.1$ and $\\\\lambda_\\\\text{EE} = 0.01$. Gradients now flow from the auxiliary losses through the pooled features into the LoRA adapters, encouraging the action expert to develop features that encode workspace geometry.\\n\\n**A3 — SDF Gradient-Guided Refinement.** This variant extends A1 with the gradient refiner:\\n\\n- *Phase 1*: Identical to A1 — backbone frozen, SDF decoder and EE extractor warmup only.\\n\\n- *Phase 2*: LoRA unfreezing with gradient warmup (same as A1), plus activation of the gradient refiner. The full loss becomes:\\n\\n$$\\\\mathcal{L}_\\\\text{A3} = \\\\mathcal{L}_\\\\text{action} + \\\\lambda_\\\\text{SDF} \\\\cdot \\\\mathcal{L}_\\\\text{SDF} + \\\\lambda_\\\\text{EE} \\\\cdot \\\\mathcal{L}_\\\\text{EE} + \\\\lambda_\\\\text{refine} \\\\cdot \\\\mathcal{L}_\\\\text{refine}$$\\n\\nwhere $\\\\lambda_\\\\text{refine} = 0.1$. The refinement loss is only computed when near-collision samples exist in the batch ($|\\\\mathcal{S}| > 0$), adding zero computational overhead for collision-free training steps.\\n\\nAll variants use AdamW with cosine decay scheduling (peak learning rate $2.5 \\\\times 10^{-5}$, decaying to $2.5 \\\\times 10^{-6}$), batch size 32, and train for 30,000 steps. The warmup period for the learning rate schedule is $\\\\min(1000, T_\\\\text{end} / 3)$ steps.\\n\\n### 3.5 Inference-Time Refinement\\n\\nAt inference, ColliForce supports an optional SDF gradient correction that provides an additional safety layer without architectural changes to the deployed model:\\n\\n1. The VLA generates an action $a_t$ through standard forward pass.\\n2. The predicted next EE position is computed: $\\\\hat{\\\\mathbf{p}}_\\\\text{next} = \\\\mathbf{p}_\\\\text{EE} + a_t[:3]$.\\n3. The SDF decoder queries the predicted SDF at this position: $\\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{next})$.\\n4. If $\\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{next}) < m$ (near collision), the action's position component is corrected:\\n\\n$$a'_t[:3] = a_t[:3] + \\\\alpha \\\\cdot \\\\frac{\\\\nabla_{\\\\mathbf{x}} \\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{next})}{\\\\|\\\\nabla_{\\\\mathbf{x}} \\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{next})\\\\|_2}$$\\n\\nThe L2-normalization bounds the correction magnitude to $\\\\alpha$ regardless of the SDF gradient scale, preventing over-correction near sharp obstacle boundaries. Orientation and gripper components of $a_t$ remain unchanged.\\n\\nThis inference-time mechanism introduces zero additional latency when $\\\\hat{\\\\Phi}(\\\\hat{\\\\mathbf{p}}_\\\\text{next}) \\\\geq m$ (i.e., the EE is sufficiently far from obstacles). For the A3 variant trained with gradient refinement, the model has already learned to produce collision-avoiding actions, so inference-time refinement serves as a complementary safety net for out-of-distribution obstacle configurations.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have both halves of the file. Let me reconstruct the full content. The first part (lines 1-60) ends with the section about spatial gradient computation and EE position extractor and auxiliary training losses and section 3.3. The second part (lines 61-119) starts with step 4 of the refinement procedure and continues through section 3.5.\n\nLet me carefully combine the two parts into a single markdown file. I need to unescape the JSON newlines and backslashes to produce proper markdown.\n\nPart 1 (head -60):\n- Starts with \"## 3. Method\"\n\n\n- Contains sections 3.1, 3.2, beginning of 3.3\n- Ends with \"capturing how changes in the action expert's internal representation affect the predicted collision distance.\"\n\nPart 2 (tail -n +61):\n- Starts with empty line then \"4. Performs gradient ascent...\"\n- Contains rest of 3.3, sections 3.4, 3.5\n\nWriting the complete file now...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "d302d1d7-851c-43e0-832e-dabcbffad7f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018p42cdaN8fCpy3eHqXdceh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5534,
+                "cache_read_input_tokens": 28112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5534
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在有完整内容，写入本地文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "b6823a97-8505-474f-9810-1fa7931e44a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018p42cdaN8fCpy3eHqXdceh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5534,
+                "cache_read_input_tokens": 28112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5534
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018hjGct9WonDhmMdq9LuPPv",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/method_draft.md",
+                "content": "## 3. Method\n\nWe present **ColliForce**, a framework that integrates differentiable workspace Signed Distance Fields (SDFs) into Vision-Language-Action models to enable collision-aware action generation. Our approach operates in the feature space of a pretrained VLA, requiring no architectural modification to the backbone. We describe the problem setting (Sec. 3.1), the differentiable SDF integration (Sec. 3.2), the gradient-guided action refinement mechanism (Sec. 3.3), the training protocol (Sec. 3.4), and inference-time deployment (Sec. 3.5).\n\n### 3.1 Problem Formulation\n\nWe consider a language-conditioned robotic manipulation setting where a Vision-Language-Action model $\\pi_\\theta$ generates an action trajectory $\\{a_t\\}_{t=1}^{H}$ with action horizon $H = 50$ conditioned on visual observations $o$ and a language instruction $l$. Each action $a_t \\in \\mathbb{R}^7$ specifies the desired end-effector (EE) displacement in position ($\\Delta x, \\Delta y, \\Delta z$), orientation ($\\Delta q_1, \\ldots, \\Delta q_3$), and gripper state.\n\nIn cluttered workspaces, the generated trajectory may command the EE into regions occupied by obstacles, causing collisions that damage objects or interrupt task execution. We formalize the collision avoidance objective through the workspace Signed Distance Field $\\Phi: \\mathbb{R}^3 \\to \\mathbb{R}$, where $\\Phi(\\mathbf{x}) > 0$ indicates free space, $\\Phi(\\mathbf{x}) = 0$ denotes the obstacle boundary, and $\\Phi(\\mathbf{x}) < 0$ indicates penetration. The goal is to learn a policy that generates trajectories satisfying $\\Phi(\\text{EE}(a_t)) > 0$ for all $t$, while preserving task success.\n\nOur base VLA is $\\pi_0$ (Physical Intelligence), a 3.5B-parameter flow-matching model comprising a PaliGemma vision-language encoder (Gemma 2B) and a Gemma 300M action expert. Action generation proceeds via iterative denoising over $H$ steps, producing a sequence of action tokens through the action expert's output projection $W_{\\text{out}} \\in \\mathbb{R}^{1024 \\times 32}$ that maps from the expert's hidden dimension to the action token space.\n\n### 3.2 Differentiable Workspace SDF Integration\n\nWe augment the VLA with two lightweight auxiliary modules that operate on the action expert's intermediate representations.\n\n**Feature extraction.** We capture the action expert's suffix output $\\mathbf{z} \\in \\mathbb{R}^{B \\times H \\times 1024}$ — the input to the action output projection $W_{\\text{out}}$ — via a forward hook registered on `action_out_proj`. A mean-pooling operation along the action horizon dimension yields a compact feature vector $\\bar{\\mathbf{z}} = \\frac{1}{H} \\sum_{t=1}^{H} \\mathbf{z}_t \\in \\mathbb{R}^{1024}$ that summarizes the action expert's spatial understanding of the current scene.\n\n**SDF Decoder.** A 4-layer MLP $f_\\text{SDF}$ predicts the signed distance value at arbitrary 3D query points given the pooled action expert features:\n\n$$f_\\text{SDF}: (\\bar{\\mathbf{z}}, \\mathbf{x}) \\mapsto \\hat{\\Phi}(\\mathbf{x}), \\quad \\bar{\\mathbf{z}} \\in \\mathbb{R}^{1024}, \\; \\mathbf{x} \\in \\mathbb{R}^3$$\n\nThe architecture employs hidden dimension 256 with Softplus activation ($\\beta = 5$) and a skip connection that re-injects the query coordinates at the second layer:\n\n$$\\mathbf{h}_0 = \\sigma(\\mathbf{W}_0 [\\bar{\\mathbf{z}}; \\mathbf{x}] + \\mathbf{b}_0)$$\n$$\\mathbf{h}_1 = \\sigma(\\mathbf{W}_1 \\mathbf{h}_0 + \\mathbf{b}_1)$$\n$$\\mathbf{h}_2 = \\sigma(\\mathbf{W}_2 [\\mathbf{h}_1; \\mathbf{x}] + \\mathbf{b}_2)$$\n$$\\hat{\\Phi}(\\mathbf{x}) = \\mathbf{W}_3 \\mathbf{h}_2 + \\mathbf{b}_3$$\n\nwhere $\\sigma(\\cdot) = \\text{Softplus}_{\\beta=5}(\\cdot)$, $\\mathbf{W}_0 \\in \\mathbb{R}^{256 \\times 1027}$, $\\mathbf{W}_1 \\in \\mathbb{R}^{256 \\times 256}$, $\\mathbf{W}_2 \\in \\mathbb{R}^{256 \\times 259}$, and $\\mathbf{W}_3 \\in \\mathbb{R}^{1 \\times 256}$. All weights are initialized with Kaiming normal initialization.\n\nFor spatial gradient computation (required by Eikonal regularization and gradient-guided refinement), the decoder computes $\\nabla_{\\mathbf{x}} \\hat{\\Phi}(\\mathbf{x})$ via `torch.autograd.grad` with graph creation enabled during training.\n\n**End-Effector Position Extractor.** A 2-layer MLP $g_\\text{EE}$ predicts the current EE position from the pooled features:\n\n$$g_\\text{EE}: \\bar{\\mathbf{z}} \\mapsto \\hat{\\mathbf{p}}_\\text{EE} \\in \\mathbb{R}^3$$\n\nwith architecture $\\text{Linear}(1024, 256) \\to \\text{ReLU} \\to \\text{Linear}(256, 3)$. The EE prediction serves dual purposes: (1) it provides the query point for evaluating collision proximity, and (2) its auxiliary loss encourages the action expert features to encode spatial position information.\n\n**Auxiliary training losses.** The SDF decoder is trained with a clamped L1 loss augmented by Eikonal regularization:\n\n$$\\mathcal{L}_\\text{SDF} = \\underbrace{\\frac{1}{N} \\sum_{i=1}^{N} \\left| \\text{clamp}(\\hat{\\Phi}(\\mathbf{x}_i), \\pm\\delta) - \\text{clamp}(\\Phi^*(\\mathbf{x}_i), \\pm\\delta) \\right|}_{\\mathcal{L}_\\text{L1}} + \\lambda_\\text{eik} \\underbrace{\\frac{1}{N} \\sum_{i=1}^{N} \\left( \\|\\nabla_{\\mathbf{x}} \\hat{\\Phi}(\\mathbf{x}_i)\\|_2 - 1 \\right)^2}_{\\mathcal{L}_\\text{eikonal}}$$\n\nwhere $\\delta = 0.05$ is the clamping threshold, $\\lambda_\\text{eik} = 0.1$, and $N = 64$ query points are randomly sampled from the ground-truth SDF volume per training step. The clamping focuses learning on the near-surface region most relevant for collision detection. The Eikonal term enforces the unit-gradient property of valid distance fields.\n\nThe EE extractor is trained with MSE loss against ground-truth EE positions from the robot state:\n\n$$\\mathcal{L}_\\text{EE} = \\|\\hat{\\mathbf{p}}_\\text{EE} - \\mathbf{p}^*_\\text{EE}\\|_2^2$$\n\n### 3.3 SDF Gradient-Guided Action Refinement\n\nThe core contribution of ColliForce is a gradient-based mechanism that leverages the differentiable SDF to steer the action expert's representations away from collision-prone regions during training. Unlike post-hoc action filtering, this approach modifies the feature space directly, enabling the model to internalize collision avoidance behavior.\n\n**Refinement procedure.** Given the captured suffix output $\\mathbf{z} \\in \\mathbb{R}^{B \\times H \\times 1024}$, the refiner:\n\n1. Predicts the EE position and evaluates the SDF: $\\hat{\\mathbf{p}}_\\text{EE} = g_\\text{EE}(\\bar{\\mathbf{z}})$, $\\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{EE}) = f_\\text{SDF}(\\bar{\\mathbf{z}}, \\hat{\\mathbf{p}}_\\text{EE})$.\n\n2. Identifies near-collision samples: $\\mathcal{S} = \\{i : \\hat{\\Phi}(\\hat{\\mathbf{p}}_{\\text{EE},i}) < m\\}$, where the safety margin $m = 0.01$.\n\n3. For samples in $\\mathcal{S}$, computes the SDF gradient with respect to the suffix features: $\\nabla_{\\mathbf{z}} \\hat{\\Phi} = \\frac{\\partial \\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{EE})}{\\partial \\mathbf{z}}$, capturing how changes in the action expert's internal representation affect the predicted collision distance.\n\n4. Performs gradient ascent on the SDF (toward higher, safer values):\n\n$$\\mathbf{z}' = \\mathbf{z} + \\alpha \\cdot \\text{clip}(\\nabla_{\\mathbf{z}} \\hat{\\Phi}) \\odot \\mathbf{m}_\\mathcal{S}$$\n\nwhere $\\alpha = 0.1$ is the step size, $\\text{clip}(\\cdot)$ denotes per-sample L2 norm clipping with threshold $\\gamma = 1.0$ for gradient stability, and $\\mathbf{m}_\\mathcal{S}$ is a binary mask selecting only near-collision samples.\n\n5. Projects both original and refined features through the action output head: $\\mathbf{v}_t = W_\\text{out}(\\mathbf{z})$, $\\mathbf{v}'_t = W_\\text{out}(\\mathbf{z}')$.\n\n**Refinement loss.** The model is trained to directly output the collision-corrected actions by minimizing the discrepancy between the original and refined predictions on near-collision samples:\n\n$$\\mathcal{L}_\\text{refine} = \\frac{1}{|\\mathcal{S}|} \\sum_{i \\in \\mathcal{S}} \\|\\mathbf{v}_{t,i} - \\text{sg}(\\mathbf{v}'_{t,i})\\|_2^2$$\n\nwhere $\\text{sg}(\\cdot)$ denotes the stop-gradient operator. The gradient flows only through $\\mathbf{v}_t \\to \\mathbf{z} \\to \\theta_\\text{LoRA}$, training the LoRA adapters to anticipate and avoid collisions without requiring the gradient refiner at inference time. The refined target $\\mathbf{v}'_t$ is detached, serving as a teacher signal that encodes collision-aware behavior.\n\nThis design is reminiscent of knowledge distillation: the SDF gradient refiner acts as a computationally expensive teacher that produces safe actions, while the student (the LoRA-adapted VLA) learns to replicate these actions directly, amortizing the SDF computation into the model's parameters.\n\n### 3.4 Training Protocol\n\nWe adopt a two-phase training protocol that ensures SDF prediction accuracy before engaging gradient-guided refinement.\n\n**Baseline.** Standard LoRA fine-tuning of $\\pi_0$ on task demonstrations using the flow-matching action loss $\\mathcal{L}_\\text{action}$. LoRA adapters are injected into both the PaliGemma encoder (rank 16, $\\alpha = 16$) and the action expert (rank 32, $\\alpha = 32$), targeting the attention projections ($\\mathbf{W}_q, \\mathbf{W}_k, \\mathbf{W}_v, \\mathbf{W}_o$) and MLP layers ($\\mathbf{W}_\\text{gate}, \\mathbf{W}_\\text{up}, \\mathbf{W}_\\text{down}$). The total LoRA parameter count is approximately 26M.\n\n**A1 — SDF Auxiliary Task.** This variant adds the SDF decoder and EE extractor as auxiliary tasks:\n\n- *Phase 1* ($0 \\to T_\\text{warmup}$ steps, $T_\\text{warmup} = 5000$): The entire backbone (including LoRA parameters) is frozen. Only the SDF decoder ($\\sim$395K parameters) and EE extractor ($\\sim$263K parameters) are trained. The auxiliary modules receive detached features ($\\bar{\\mathbf{z}}.\\text{detach()}$) to avoid destabilizing the pretrained backbone during warmup. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.\n\n- *Phase 2* ($T_\\text{warmup} \\to T_\\text{end}$): LoRA parameters are unfrozen with a linear gradient warmup over 100 steps to prevent abrupt feature distribution shifts. The full loss is:\n\n$$\\mathcal{L}_\\text{A1} = \\mathcal{L}_\\text{action} + \\lambda_\\text{SDF} \\cdot \\mathcal{L}_\\text{SDF} + \\lambda_\\text{EE} \\cdot \\mathcal{L}_\\text{EE}$$\n\nwhere $\\lambda_\\text{SDF} = 0.1$ and $\\lambda_\\text{EE} = 0.01$. Gradients now flow from the auxiliary losses through the pooled features into the LoRA adapters, encouraging the action expert to develop features that encode workspace geometry.\n\n**A3 — SDF Gradient-Guided Refinement.** This variant extends A1 with the gradient refiner:\n\n- *Phase 1*: Identical to A1 — backbone frozen, SDF decoder and EE extractor warmup only.\n\n- *Phase 2*: LoRA unfreezing with gradient warmup (same as A1), plus activation of the gradient refiner. The full loss becomes:\n\n$$\\mathcal{L}_\\text{A3} = \\mathcal{L}_\\text{action} + \\lambda_\\text{SDF} \\cdot \\mathcal{L}_\\text{SDF} + \\lambda_\\text{EE} \\cdot \\mathcal{L}_\\text{EE} + \\lambda_\\text{refine} \\cdot \\mathcal{L}_\\text{refine}$$\n\nwhere $\\lambda_\\text{refine} = 0.1$. The refinement loss is only computed when near-collision samples exist in the batch ($|\\mathcal{S}| > 0$), adding zero computational overhead for collision-free training steps.\n\nAll variants use AdamW with cosine decay scheduling (peak learning rate $2.5 \\times 10^{-5}$, decaying to $2.5 \\times 10^{-6}$), batch size 32, and train for 30,000 steps. The warmup period for the learning rate schedule is $\\min(1000, T_\\text{end} / 3)$ steps.\n\n### 3.5 Inference-Time Refinement\n\nAt inference, ColliForce supports an optional SDF gradient correction that provides an additional safety layer without architectural changes to the deployed model:\n\n1. The VLA generates an action $a_t$ through standard forward pass.\n2. The predicted next EE position is computed: $\\hat{\\mathbf{p}}_\\text{next} = \\mathbf{p}_\\text{EE} + a_t[:3]$.\n3. The SDF decoder queries the predicted SDF at this position: $\\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{next})$.\n4. If $\\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{next}) < m$ (near collision), the action's position component is corrected:\n\n$$a'_t[:3] = a_t[:3] + \\alpha \\cdot \\frac{\\nabla_{\\mathbf{x}} \\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{next})}{\\|\\nabla_{\\mathbf{x}} \\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{next})\\|_2}$$\n\nThe L2-normalization bounds the correction magnitude to $\\alpha$ regardless of the SDF gradient scale, preventing over-correction near sharp obstacle boundaries. Orientation and gripper components of $a_t$ remain unchanged.\n\nThis inference-time mechanism introduces zero additional latency when $\\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{next}) \\geq m$ (i.e., the EE is sufficiently far from obstacles). For the A3 variant trained with gradient refinement, the model has already learned to produce collision-avoiding actions, so inference-time refinement serves as a complementary safety net for out-of-distribution obstacle configurations.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "b7ce341c-1c04-4f13-a45b-56e556316649",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018p42cdaN8fCpy3eHqXdceh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5534,
+                "cache_read_input_tokens": 28112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5534
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T22:43:31.098Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018hjGct9WonDhmMdq9LuPPv",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/method_draft.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "fe29d428-0242-480b-8309-17eebfd75763",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/method_draft.md",
+              "content": "## 3. Method\n\nWe present **ColliForce**, a framework that integrates differentiable workspace Signed Distance Fields (SDFs) into Vision-Language-Action models to enable collision-aware action generation. Our approach operates in the feature space of a pretrained VLA, requiring no architectural modification to the backbone. We describe the problem setting (Sec. 3.1), the differentiable SDF integration (Sec. 3.2), the gradient-guided action refinement mechanism (Sec. 3.3), the training protocol (Sec. 3.4), and inference-time deployment (Sec. 3.5).\n\n### 3.1 Problem Formulation\n\nWe consider a language-conditioned robotic manipulation setting where a Vision-Language-Action model $\\pi_\\theta$ generates an action trajectory $\\{a_t\\}_{t=1}^{H}$ with action horizon $H = 50$ conditioned on visual observations $o$ and a language instruction $l$. Each action $a_t \\in \\mathbb{R}^7$ specifies the desired end-effector (EE) displacement in position ($\\Delta x, \\Delta y, \\Delta z$), orientation ($\\Delta q_1, \\ldots, \\Delta q_3$), and gripper state.\n\nIn cluttered workspaces, the generated trajectory may command the EE into regions occupied by obstacles, causing collisions that damage objects or interrupt task execution. We formalize the collision avoidance objective through the workspace Signed Distance Field $\\Phi: \\mathbb{R}^3 \\to \\mathbb{R}$, where $\\Phi(\\mathbf{x}) > 0$ indicates free space, $\\Phi(\\mathbf{x}) = 0$ denotes the obstacle boundary, and $\\Phi(\\mathbf{x}) < 0$ indicates penetration. The goal is to learn a policy that generates trajectories satisfying $\\Phi(\\text{EE}(a_t)) > 0$ for all $t$, while preserving task success.\n\nOur base VLA is $\\pi_0$ (Physical Intelligence), a 3.5B-parameter flow-matching model comprising a PaliGemma vision-language encoder (Gemma 2B) and a Gemma 300M action expert. Action generation proceeds via iterative denoising over $H$ steps, producing a sequence of action tokens through the action expert's output projection $W_{\\text{out}} \\in \\mathbb{R}^{1024 \\times 32}$ that maps from the expert's hidden dimension to the action token space.\n\n### 3.2 Differentiable Workspace SDF Integration\n\nWe augment the VLA with two lightweight auxiliary modules that operate on the action expert's intermediate representations.\n\n**Feature extraction.** We capture the action expert's suffix output $\\mathbf{z} \\in \\mathbb{R}^{B \\times H \\times 1024}$ — the input to the action output projection $W_{\\text{out}}$ — via a forward hook registered on `action_out_proj`. A mean-pooling operation along the action horizon dimension yields a compact feature vector $\\bar{\\mathbf{z}} = \\frac{1}{H} \\sum_{t=1}^{H} \\mathbf{z}_t \\in \\mathbb{R}^{1024}$ that summarizes the action expert's spatial understanding of the current scene.\n\n**SDF Decoder.** A 4-layer MLP $f_\\text{SDF}$ predicts the signed distance value at arbitrary 3D query points given the pooled action expert features:\n\n$$f_\\text{SDF}: (\\bar{\\mathbf{z}}, \\mathbf{x}) \\mapsto \\hat{\\Phi}(\\mathbf{x}), \\quad \\bar{\\mathbf{z}} \\in \\mathbb{R}^{1024}, \\; \\mathbf{x} \\in \\mathbb{R}^3$$\n\nThe architecture employs hidden dimension 256 with Softplus activation ($\\beta = 5$) and a skip connection that re-injects the query coordinates at the second layer:\n\n$$\\mathbf{h}_0 = \\sigma(\\mathbf{W}_0 [\\bar{\\mathbf{z}}; \\mathbf{x}] + \\mathbf{b}_0)$$\n$$\\mathbf{h}_1 = \\sigma(\\mathbf{W}_1 \\mathbf{h}_0 + \\mathbf{b}_1)$$\n$$\\mathbf{h}_2 = \\sigma(\\mathbf{W}_2 [\\mathbf{h}_1; \\mathbf{x}] + \\mathbf{b}_2)$$\n$$\\hat{\\Phi}(\\mathbf{x}) = \\mathbf{W}_3 \\mathbf{h}_2 + \\mathbf{b}_3$$\n\nwhere $\\sigma(\\cdot) = \\text{Softplus}_{\\beta=5}(\\cdot)$, $\\mathbf{W}_0 \\in \\mathbb{R}^{256 \\times 1027}$, $\\mathbf{W}_1 \\in \\mathbb{R}^{256 \\times 256}$, $\\mathbf{W}_2 \\in \\mathbb{R}^{256 \\times 259}$, and $\\mathbf{W}_3 \\in \\mathbb{R}^{1 \\times 256}$. All weights are initialized with Kaiming normal initialization.\n\nFor spatial gradient computation (required by Eikonal regularization and gradient-guided refinement), the decoder computes $\\nabla_{\\mathbf{x}} \\hat{\\Phi}(\\mathbf{x})$ via `torch.autograd.grad` with graph creation enabled during training.\n\n**End-Effector Position Extractor.** A 2-layer MLP $g_\\text{EE}$ predicts the current EE position from the pooled features:\n\n$$g_\\text{EE}: \\bar{\\mathbf{z}} \\mapsto \\hat{\\mathbf{p}}_\\text{EE} \\in \\mathbb{R}^3$$\n\nwith architecture $\\text{Linear}(1024, 256) \\to \\text{ReLU} \\to \\text{Linear}(256, 3)$. The EE prediction serves dual purposes: (1) it provides the query point for evaluating collision proximity, and (2) its auxiliary loss encourages the action expert features to encode spatial position information.\n\n**Auxiliary training losses.** The SDF decoder is trained with a clamped L1 loss augmented by Eikonal regularization:\n\n$$\\mathcal{L}_\\text{SDF} = \\underbrace{\\frac{1}{N} \\sum_{i=1}^{N} \\left| \\text{clamp}(\\hat{\\Phi}(\\mathbf{x}_i), \\pm\\delta) - \\text{clamp}(\\Phi^*(\\mathbf{x}_i), \\pm\\delta) \\right|}_{\\mathcal{L}_\\text{L1}} + \\lambda_\\text{eik} \\underbrace{\\frac{1}{N} \\sum_{i=1}^{N} \\left( \\|\\nabla_{\\mathbf{x}} \\hat{\\Phi}(\\mathbf{x}_i)\\|_2 - 1 \\right)^2}_{\\mathcal{L}_\\text{eikonal}}$$\n\nwhere $\\delta = 0.05$ is the clamping threshold, $\\lambda_\\text{eik} = 0.1$, and $N = 64$ query points are randomly sampled from the ground-truth SDF volume per training step. The clamping focuses learning on the near-surface region most relevant for collision detection. The Eikonal term enforces the unit-gradient property of valid distance fields.\n\nThe EE extractor is trained with MSE loss against ground-truth EE positions from the robot state:\n\n$$\\mathcal{L}_\\text{EE} = \\|\\hat{\\mathbf{p}}_\\text{EE} - \\mathbf{p}^*_\\text{EE}\\|_2^2$$\n\n### 3.3 SDF Gradient-Guided Action Refinement\n\nThe core contribution of ColliForce is a gradient-based mechanism that leverages the differentiable SDF to steer the action expert's representations away from collision-prone regions during training. Unlike post-hoc action filtering, this approach modifies the feature space directly, enabling the model to internalize collision avoidance behavior.\n\n**Refinement procedure.** Given the captured suffix output $\\mathbf{z} \\in \\mathbb{R}^{B \\times H \\times 1024}$, the refiner:\n\n1. Predicts the EE position and evaluates the SDF: $\\hat{\\mathbf{p}}_\\text{EE} = g_\\text{EE}(\\bar{\\mathbf{z}})$, $\\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{EE}) = f_\\text{SDF}(\\bar{\\mathbf{z}}, \\hat{\\mathbf{p}}_\\text{EE})$.\n\n2. Identifies near-collision samples: $\\mathcal{S} = \\{i : \\hat{\\Phi}(\\hat{\\mathbf{p}}_{\\text{EE},i}) < m\\}$, where the safety margin $m = 0.01$.\n\n3. For samples in $\\mathcal{S}$, computes the SDF gradient with respect to the suffix features: $\\nabla_{\\mathbf{z}} \\hat{\\Phi} = \\frac{\\partial \\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{EE})}{\\partial \\mathbf{z}}$, capturing how changes in the action expert's internal representation affect the predicted collision distance.\n\n4. Performs gradient ascent on the SDF (toward higher, safer values):\n\n$$\\mathbf{z}' = \\mathbf{z} + \\alpha \\cdot \\text{clip}(\\nabla_{\\mathbf{z}} \\hat{\\Phi}) \\odot \\mathbf{m}_\\mathcal{S}$$\n\nwhere $\\alpha = 0.1$ is the step size, $\\text{clip}(\\cdot)$ denotes per-sample L2 norm clipping with threshold $\\gamma = 1.0$ for gradient stability, and $\\mathbf{m}_\\mathcal{S}$ is a binary mask selecting only near-collision samples.\n\n5. Projects both original and refined features through the action output head: $\\mathbf{v}_t = W_\\text{out}(\\mathbf{z})$, $\\mathbf{v}'_t = W_\\text{out}(\\mathbf{z}')$.\n\n**Refinement loss.** The model is trained to directly output the collision-corrected actions by minimizing the discrepancy between the original and refined predictions on near-collision samples:\n\n$$\\mathcal{L}_\\text{refine} = \\frac{1}{|\\mathcal{S}|} \\sum_{i \\in \\mathcal{S}} \\|\\mathbf{v}_{t,i} - \\text{sg}(\\mathbf{v}'_{t,i})\\|_2^2$$\n\nwhere $\\text{sg}(\\cdot)$ denotes the stop-gradient operator. The gradient flows only through $\\mathbf{v}_t \\to \\mathbf{z} \\to \\theta_\\text{LoRA}$, training the LoRA adapters to anticipate and avoid collisions without requiring the gradient refiner at inference time. The refined target $\\mathbf{v}'_t$ is detached, serving as a teacher signal that encodes collision-aware behavior.\n\nThis design is reminiscent of knowledge distillation: the SDF gradient refiner acts as a computationally expensive teacher that produces safe actions, while the student (the LoRA-adapted VLA) learns to replicate these actions directly, amortizing the SDF computation into the model's parameters.\n\n### 3.4 Training Protocol\n\nWe adopt a two-phase training protocol that ensures SDF prediction accuracy before engaging gradient-guided refinement.\n\n**Baseline.** Standard LoRA fine-tuning of $\\pi_0$ on task demonstrations using the flow-matching action loss $\\mathcal{L}_\\text{action}$. LoRA adapters are injected into both the PaliGemma encoder (rank 16, $\\alpha = 16$) and the action expert (rank 32, $\\alpha = 32$), targeting the attention projections ($\\mathbf{W}_q, \\mathbf{W}_k, \\mathbf{W}_v, \\mathbf{W}_o$) and MLP layers ($\\mathbf{W}_\\text{gate}, \\mathbf{W}_\\text{up}, \\mathbf{W}_\\text{down}$). The total LoRA parameter count is approximately 26M.\n\n**A1 — SDF Auxiliary Task.** This variant adds the SDF decoder and EE extractor as auxiliary tasks:\n\n- *Phase 1* ($0 \\to T_\\text{warmup}$ steps, $T_\\text{warmup} = 5000$): The entire backbone (including LoRA parameters) is frozen. Only the SDF decoder ($\\sim$395K parameters) and EE extractor ($\\sim$263K parameters) are trained. The auxiliary modules receive detached features ($\\bar{\\mathbf{z}}.\\text{detach()}$) to avoid destabilizing the pretrained backbone during warmup. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.\n\n- *Phase 2* ($T_\\text{warmup} \\to T_\\text{end}$): LoRA parameters are unfrozen with a linear gradient warmup over 100 steps to prevent abrupt feature distribution shifts. The full loss is:\n\n$$\\mathcal{L}_\\text{A1} = \\mathcal{L}_\\text{action} + \\lambda_\\text{SDF} \\cdot \\mathcal{L}_\\text{SDF} + \\lambda_\\text{EE} \\cdot \\mathcal{L}_\\text{EE}$$\n\nwhere $\\lambda_\\text{SDF} = 0.1$ and $\\lambda_\\text{EE} = 0.01$. Gradients now flow from the auxiliary losses through the pooled features into the LoRA adapters, encouraging the action expert to develop features that encode workspace geometry.\n\n**A3 — SDF Gradient-Guided Refinement.** This variant extends A1 with the gradient refiner:\n\n- *Phase 1*: Identical to A1 — backbone frozen, SDF decoder and EE extractor warmup only.\n\n- *Phase 2*: LoRA unfreezing with gradient warmup (same as A1), plus activation of the gradient refiner. The full loss becomes:\n\n$$\\mathcal{L}_\\text{A3} = \\mathcal{L}_\\text{action} + \\lambda_\\text{SDF} \\cdot \\mathcal{L}_\\text{SDF} + \\lambda_\\text{EE} \\cdot \\mathcal{L}_\\text{EE} + \\lambda_\\text{refine} \\cdot \\mathcal{L}_\\text{refine}$$\n\nwhere $\\lambda_\\text{refine} = 0.1$. The refinement loss is only computed when near-collision samples exist in the batch ($|\\mathcal{S}| > 0$), adding zero computational overhead for collision-free training steps.\n\nAll variants use AdamW with cosine decay scheduling (peak learning rate $2.5 \\times 10^{-5}$, decaying to $2.5 \\times 10^{-6}$), batch size 32, and train for 30,000 steps. The warmup period for the learning rate schedule is $\\min(1000, T_\\text{end} / 3)$ steps.\n\n### 3.5 Inference-Time Refinement\n\nAt inference, ColliForce supports an optional SDF gradient correction that provides an additional safety layer without architectural changes to the deployed model:\n\n1. The VLA generates an action $a_t$ through standard forward pass.\n2. The predicted next EE position is computed: $\\hat{\\mathbf{p}}_\\text{next} = \\mathbf{p}_\\text{EE} + a_t[:3]$.\n3. The SDF decoder queries the predicted SDF at this position: $\\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{next})$.\n4. If $\\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{next}) < m$ (near collision), the action's position component is corrected:\n\n$$a'_t[:3] = a_t[:3] + \\alpha \\cdot \\frac{\\nabla_{\\mathbf{x}} \\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{next})}{\\|\\nabla_{\\mathbf{x}} \\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{next})\\|_2}$$\n\nThe L2-normalization bounds the correction magnitude to $\\alpha$ regardless of the SDF gradient scale, preventing over-correction near sharp obstacle boundaries. Orientation and gripper components of $a_t$ remain unchanged.\n\nThis inference-time mechanism introduces zero additional latency when $\\hat{\\Phi}(\\hat{\\mathbf{p}}_\\text{next}) \\geq m$ (i.e., the EE is sufficiently far from obstacles). For the A3 variant trained with gradient refinement, the model has already learned to produce collision-avoiding actions, so inference-time refinement serves as a complementary safety net for out-of-distribution obstacle configurations.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CbwGak2moiyLUWCGDfE7W1",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "art_method_draft_local",
+                "type": "paper",
+                "description": "Method section draft (§3.1-3.5), copied from westd-35807",
+                "project": "diff_collision_sdf",
+                "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/method_draft.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "4e55d264-5550-43a1-891e-f40226db8eba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PsZGyaqrigz4VDPyL7vtib",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4748,
+                "cache_read_input_tokens": 33646,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4748
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T22:43:35.561Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CbwGak2moiyLUWCGDfE7W1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_fe96e7\\\", \\\"name\\\": \\\"art_method_draft_local\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Method section draft (§3.1-3.5), copied from westd-35807\\\", \\\"path\\\": \\\"projects/diff_collision_sdf/artifacts/_project/paper/method_draft.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"diff_collision_sdf\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T22:43:35.531803+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "06acdaf7-55e1-4a42-8baa-9fa3da2a925a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_fe96e7\\\", \\\"name\\\": \\\"art_method_draft_local\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Method section draft (§3.1-3.5), copied from westd-35807\\\", \\\"path\\\": \\\"projects/diff_collision_sdf/artifacts/_project/paper/method_draft.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"diff_collision_sdf\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T22:43:35.531803+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_fe96e7\", \"name\": \"art_method_draft_local\", \"type\": \"paper\", \"description\": \"Method section draft (§3.1-3.5), copied from westd-35807\", \"path\": \"projects/diff_collision_sdf/artifacts/_project/paper/method_draft.md\", \"url\": null, \"project\": \"diff_collision_sdf\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T22:43:35.531803+00:00\", \"tags\": []}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。文件已写入本地 `artifacts/method_draft.md` 并注册为 `art_20260520_fe96e7`，包含 §3.1–3.5 完整内容（119 行）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "uuid": "85026074-bc88-4488-8908-afc4826ab32c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YUYSK3fcipSPSsX7rp3G75",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 443,
+                "cache_read_input_tokens": 38394,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 443
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。文件已写入本地 `artifacts/method_draft.md` 并注册为 `art_20260520_fe96e7`，包含 §3.1–3.5 完整内容（119 行）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 108875,
+            "duration_api_ms": 107622,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "aa5a9620-4a1a-4833-b6bd-e3b31ea62758",
+            "total_cost_usd": 0.41570050000000003,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 27390,
+              "cache_read_input_tokens": 186130,
+              "output_tokens": 6019,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27390,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 64,
+                  "cache_read_input_tokens": 38394,
+                  "cache_creation_input_tokens": 443,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 443
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 853,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.000923,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 6019,
+                "cacheReadInputTokens": 186130,
+                "cacheCreationInputTokens": 27390,
+                "webSearchRequests": 0,
+                "costUSD": 0.4147775,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "fc948165-e9ef-4013-9af9-09318a4fa27c"
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fetch-method-draft.md"
+}

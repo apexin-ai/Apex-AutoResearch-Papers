@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efd21d1eff7695abbeb9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops resume spatial bowl cuda0",
+  "task_key": "worker_ops_resume_spatial_bowl_cuda0_20260525T175418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resume_spatial_bowl_cuda0_20260525T175418_result.json",
+    "occurrence": 1,
+    "bytes": 537,
+    "sha256": "eb5298776d9543f07d05773b6d76626d5ae66586f75ce3ec34f0a96ad56ea87d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training resumed and running.\n\n- Resumed at step 8000/30000, Phase 2 LoRA unfrozen\n- step=8000 loss=0.0199; step 8002 currently advancing\n- GPU 0: 27GB VRAM, 100% utilization\n- tmux session `train_pi05_a1_spatial_bowl_s0_l005`, PID 3708, timeout 36h\n- Fix applied: `WANDB_MODE=offline` (API key wiped by server reboot — same pattern as prior A3 runs)\n\nPace ~9s/it for 22K remaining steps → ~55h, exceeds 36h timeout. Will need monitoring; if it doesn't finish in 36h, resubmit again from the latest checkpoint."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resume-spatial-bowl-cuda0.md"
+}

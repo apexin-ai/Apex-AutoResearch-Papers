@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffdc3e94076309ee2acc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval multiseed batch 35807",
+  "task_key": "worker_eval_multiseed-batch-35807_20260528T090743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_multiseed-batch-35807_20260528T090743_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "020cc6f31b0c6e090bcd17737bf68755e8501ee09f4e52ecca13be0670f9b053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 eval 全部提交成功：\n\n| exp_id | GPU | PID | 模型 | eval_seed |\n|--------|-----|-----|------|-----------|\n| `eval_multiseed_lora_s0_eseed0` | cuda:0 | 85158 | LoRA s0 | 0 |\n| `eval_multiseed_lora_s0_eseed99` | cuda:1 | 85239 | LoRA s0 | 99 |\n| `eval_multiseed_sdf_l01_s0_eseed0` | cuda:2 | 85318 | SDF λ=0.01 s0 | 0 |\n| `eval_multiseed_sdf_l01_s0_eseed99` | cuda:3 | 85399 | SDF λ=0.01 s0 | 99 |\n\n日志路径：`~/runs/diff_collision_sdf/<exp_id>.log`，timeout 5h。预计 ~3.4h 完成（参考之前 eseed42 的 wall_clock）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-multiseed-batch-35807.md"
+}

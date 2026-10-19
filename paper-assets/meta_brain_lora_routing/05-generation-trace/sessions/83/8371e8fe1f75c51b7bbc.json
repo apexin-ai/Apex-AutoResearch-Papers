@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8371e8fe1f75c51b7bbc",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "ops fix r8 training",
+  "task_key": "worker_ops_fix_r8_training_20260517T014625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_r8_training_20260517T014625_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "7b600bf7350275a7ee335bd515fe4a107aa63d49464cae49293d20dd5c883ba0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**v3_lora_universal_r8 状态：正常运行中**\n\n- PID 792529 存活，cuda:0 占用 12662MiB，GPU 利用率 99%\n- tmux session `v3_lora_universal_r8` 存在\n- 当前进度：step=100/10000，loss 从 2.0314 降至 1.0687\n- 配置：lora_rank=8, alpha=16, lr=2e-4, batch_size=16\n- 训练参数：1,843,200 trainable / 3.5B total (0.05%)\n- 每 50 步约 51s，预计总训练时间约 170 分钟\n\n**已执行修复：**\n- Registry 状态：PREPARING → QUEUED → RUNNING（含完整 spec）\n- 已注册 cron 监控（120s 轮询）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-r8-training.md"
+}

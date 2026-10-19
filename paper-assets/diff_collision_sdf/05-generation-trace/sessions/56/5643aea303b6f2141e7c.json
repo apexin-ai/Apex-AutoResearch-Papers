@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5643aea303b6f2141e7c",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code baseline training prep",
+  "task_key": "worker_code_baseline_training_prep_20260519T175659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_baseline_training_prep_20260519T175659.log",
+    "occurrence": 1,
+    "bytes": 990973,
+    "sha256": "076d1c802dc102917b04f69dcd611e72ec24697d833c06dc4ff48f27f87b0274"
+  },
+  "statistics": {
+    "messages": 291,
+    "user_turns": 0,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 117,
+      "tool_result": 117,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 291,
+      "chunks": [
+        {
+          "path": "5643aea303b6f2141e7c-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "5643aea303b6f2141e7c-part-0002.json",
+          "message_count": 142
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-baseline-training-prep.md"
+}

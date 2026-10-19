@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bfacb0765c9d92de08f",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "diag eval pipeline critical",
+  "task_key": "worker_diag_eval_pipeline_critical_20260516T122143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_pipeline_critical_20260516T122143_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "9bab62aa3303b3ff0881aa35d2f0f27c75da474a81ca5ca3d09d9693ab6a36d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复已完成。\n\n---\n\n## 总结\n\n### 根因\n\n**`evaluate_libero_plus.py:211-212` — 图像只做了垂直翻转，缺少水平翻转**\n\n```diff\n- agentview = np.ascontiguousarray(obs[\"agentview_image\"][::-1])\n- wrist = np.ascontiguousarray(obs[\"robot0_eye_in_hand_image\"][::-1])\n+ agentview = np.ascontiguousarray(obs[\"agentview_image\"][::-1, ::-1])\n+ wrist = np.ascontiguousarray(obs[\"robot0_eye_in_hand_image\"][::-1, ::-1])\n```\n\n### 影响机制\n\n1. 模型训练数据使用 180° 旋转（垂直+水平翻转）\n2. 我们只做了垂直翻转 → 图像左右镜像\n3. 模型看到镜像图像 → 预测的空间动作方向全反\n4. 第一步就偏，后续 observation 也持续错误 → cascading divergence\n5. 到 step 40-60 action 值已经完全发散到 ±5，机器人飞离工作区\n\n### 修复状态\n\n已在服务器上直接修复 `/root/meta_brain_lora_routing/phase1/evaluate_libero_plus.py`。训练不受影响（训练管线不使用这个文件）。修复后重跑 eval 即可验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-pipeline-critical.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63c483437584bcab9a8e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix paper switch abstract desync v3",
+  "task_key": "worker_fix_paper_switch_abstract_desync_v3_20260527T222438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper_switch_abstract_desync_v3_20260527T222438_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "95b54a1aae0f66a059743dfa12b5df042dbc04d9efcb064ebf42d86165f78d20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。\n\n### 产出汇总\n\n**1. 两处 old string 修复**：\n- **#1** (abstract L5): `\"Its contribution during training is dose-dependent: LoRA-only fine-tuning raises dfCAR...\"` → `\"collision-free demonstrations alone account for all measured avoidance gains (${\\sim}$28 percentage points). SDF supervision adds no significant benefit at $\\lambda \\leq 0.01$...\"`\n- **#2** (abstract L6): `;` → `.`，`\"credited with delivering collision avoidance, nor expected to do so\"` → `\"credited with collision avoidance, nor expected to deliver it\"`\n\n**2. --verify 模式**：已实现，遍历 Scenario B (11 items) 和 C (12 items) 的所有 old_string，逐项检查匹配状态。\n\n**3. verify 结果**：23/23 全部 `[OK]`，exit 0\n\n**4. dry-run 结果**：\n- Scenario C (`--s2-car 58`): **12/12 matched**\n- Scenario B (`--s2-car 55`): **11/11 matched**\n\n**5. 同步状态**：本地和远程 westd-45947 已同步（scp 上传）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-paper-switch-abstract-desync-v3.md"
+}

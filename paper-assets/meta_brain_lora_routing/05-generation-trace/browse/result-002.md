@@ -1,0 +1,32 @@
+# Task result records
+
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
+
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/workers/worker_ops_unzip-assets-tail-logs_20260516T042424_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-unzip-assets-tail-logs.md) | [Open JSON](../sessions/3a/3a93d8e56520e4eca7d4.json) |
+| `logs/workers/worker_ops_verify-unzip-assets_20260516T042742_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-verify-unzip-assets.md) | [Open JSON](../sessions/71/71b2159e9f1e7969553b.json) |
+| `logs/workers/worker_ops_verify_v3_checkpoint_loss_20260516T171754_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-verify-v3-checkpoint-loss.md) | [Open JSON](../sessions/98/988da8b3870083104d4f.json) |
+| `logs/workers/worker_prep_openpi_native_eval_fallback_20260516T152158_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/prep-openpi-native-eval-fallback.md) | [Open JSON](../sessions/3f/3f7021b56764ecff6d4b.json) |
+| `logs/workers/worker_research_bibliography-expansion_20260516T063928_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-bibliography-expansion.md) | [Open JSON](../sessions/2a/2ace2a9de1d0afecd2e7.json) |
+| `logs/workers/worker_research_compare_pi0_libero_variants_20260516T143630_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-compare-pi0-libero-variants.md) | [Open JSON](../sessions/3a/3ad7a31f5c2f74848a00.json) |
+| `logs/workers/worker_research_eval_image_pipeline_20260516T082033_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-eval-image-pipeline.md) | [Open JSON](../sessions/1e/1eddf2749be4c88fe5e8.json) |
+| `logs/workers/worker_research_jax_to_pytorch_conversion_20260516T161259_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-jax-to-pytorch-conversion.md) | [Open JSON](../sessions/0b/0b452e81aec27ce24b4f.json) |
+| `logs/workers/worker_research_libero-plus-assets-download_20260515T171307_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-libero-plus-assets-download.md) | [Open JSON](../sessions/14/14d2fb8c82cdb83f2276.json) |
+| `logs/workers/worker_research_libero_plus_vs_original_prompts_20260516T161516_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-libero-plus-vs-original-prompts.md) | [Open JSON](../sessions/f8/f803d907762f66cf6c08.json) |
+| `logs/workers/worker_research_literature-scan-init_20260516T040326_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-literature-scan-init.md) | [Open JSON](../sessions/17/17980c310d003949c8ed.json) |
+| `logs/workers/worker_research_openpi-codebase_20260515T103420_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-openpi-codebase.md) | [Open JSON](../sessions/8a/8a7b0d46ae5984f46081.json) |
+| `logs/workers/worker_research_openpi_checkpoint_conversion_20260516T141429_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-openpi-checkpoint-conversion.md) | [Open JSON](../sessions/78/78622f472e637a7557c4.json) |
+| `logs/workers/worker_research_pi0_libero_risks_20260516T101147_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-pi0-libero-risks.md) | [Open JSON](../sessions/3a/3aeccc525d7baa12cb5e.json) |
+| `logs/workers/worker_research_spatial-physical-data-collection_20260515T170342_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/research-spatial-physical-data-collection.md) | [Open JSON](../sessions/37/370c807e7095cd1a470a.json) |
+| `logs/workers/worker_setup_download_accelerate_20260516T101018_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/setup-download-accelerate.md) | [Open JSON](../sessions/88/888592435e89bc021c42.json) |
+| `logs/workers/worker_setup_pi05_libero_checkpoint_20260516T093550_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/setup-pi05-libero-checkpoint.md) | [Open JSON](../sessions/68/68cf19387633b7092adb.json) |
+| `logs/workers/worker_train_final-sweep-7class_20260515T151419_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/train-final-sweep-7class.md) | [Open JSON](../sessions/55/55d5d3de823e0301251a.json) |
+| `logs/workers/worker_train_per-layer-analysis_20260515T145957_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/train-per-layer-analysis.md) | [Open JSON](../sessions/5a/5a9d031b7b5bc7b9fe9e.json) |
+| `logs/workers/worker_train_preliminary-classifier_20260515T145927_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/train-preliminary-classifier.md) | [Open JSON](../sessions/37/37c88da8f0546b3b7ac3.json) |
+| `logs/workers/worker_train_universal_r32_full_pipeline_20260517T014329_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/train-universal-r32-full-pipeline.md) | [Open JSON](../sessions/e1/e175a42e5ad011358e97.json) |
+| `logs/workers/worker_train_universal_r8_full_pipeline_20260517T014321_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/train-universal-r8-full-pipeline.md) | [Open JSON](../sessions/e0/e09714a7fbe5c24039de.json) |
+| `logs/workers/worker_train_v3_lora_all4_launch_20260516T170823_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/train-v3-lora-all4-launch.md) | [Open JSON](../sessions/d4/d4a6a200b7a83cf3a95d.json) |
+| `logs/workers/worker_validate_classifier-pipeline-test_20260515T130645_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/validate-classifier-pipeline-test.md) | [Open JSON](../sessions/87/87e29d4d294fad157f92.json) |
+| `logs/workers/worker_validate_dry-run-phase0_20260515T121842_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/validate-dry-run-phase0.md) | [Open JSON](../sessions/f0/f05ed6de72d7bf89f39e.json) |
+| `logs/workers/worker_validate_libero-integration_20260515T114808_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/validate-libero-integration.md) | [Open JSON](../sessions/f6/f68ce4da23c50554cb0e.json) |

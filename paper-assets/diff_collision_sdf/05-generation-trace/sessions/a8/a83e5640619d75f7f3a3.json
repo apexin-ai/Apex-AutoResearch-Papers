@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a83e5640619d75f7f3a3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper extract ssr l01 3seed",
+  "task_key": "worker_paper_extract-ssr-l01-3seed_20260528T021012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_extract-ssr-l01-3seed_20260528T021012_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "a8850efb77d54fc07016389728fc022c16d8fde9ceea3b9c365f7d7dcd2fdd67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据提取完毕。\n\n## λ=0.1 SSR 结果（reeval, seed=7, 30K checkpoint）\n\n```\ns0 SSR: 32.5% (65/200)  数据来源: westd-45947:/root/autodl-tmp/eval_results/reeval_sdf_s0_l01_30k.json\ns1 SSR: 30.0% (60/200)  数据来源: westd-45947:/root/autodl-tmp/eval_results/reeval_sdf_s1_l01_30k.json\ns2 SSR: 28.0% (56/200)  数据来源: westd-45947:/root/autodl-tmp/eval_results/reeval_sdf_s2_l01_30k.json\n\n3-seed mean SSR: 30.2%\nSSR/TSR ratio: 0.60 (用 3-seed TSR=50.2)\n```\n\n### Per-task 分解\n\n| Task | Metric | s0 | s1 | s2 |\n|------|--------|-----|-----|-----|\n| OJ | TSR/CAR/SSR | 28/48/6% | 22/60/2% | 24/64/6% |\n| CP | TSR/CAR/SSR | 78/74/70% | 80/76/64% | 72/68/56% |\n| Milk | TSR/CAR/SSR | 44/72/42% | 54/72/48% | 48/72/46% |\n| BBQ | TSR/CAR/SSR | 60/34/12% | 66/22/6% | 70/14/4% |\n\nBBQ 的 SSR 极低（4-12%），尽管 TSR 高达 60-70%——碰撞率太高。\n\n### Fingerprint 图数据状态\n\n`artifacts/fig_pertask_car_fingerprint.py` 中 λ=0.1 仍为 **2-seed**（s0+s1），注释写 \"s2 training\"。但 s2 的 reeval JSON 已存在，per-task CAR 为 OJ=64, CP=68, Milk=72, BBQ=14，可以更新为 3-seed。\n\n注意：脚本中硬编码的 s0/s1 CAR 值与 reeval JSON 的 CAR 值不一致（脚本用的可能是不同 threshold 或不同 eval run），更新 s2 时需确认数据源一致性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-extract-ssr-l01-3seed.md"
+}

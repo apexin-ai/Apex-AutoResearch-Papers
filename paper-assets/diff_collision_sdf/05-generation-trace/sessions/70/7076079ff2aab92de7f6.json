@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7076079ff2aab92de7f6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix eval lora s2 director order",
+  "task_key": "worker_fix_eval_lora_s2_director_order_20260527T140441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_lora_s2_director_order_20260527T140441_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "33ebe4aa6c25dcde7d0803c1cd9aed790ce16b06687acd3c0b8d97f78d97db16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_lora_s2_30k_v2 已正常启动并进入 eval 阶段。\n\n---\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **PID 512147** (eval_lora_baseline_30k_s2 原始进程) | 已 kill (force_killed) |\n| **PID 512155/512156** (eval_lora_baseline_30k_s2 残留子进程) | 已 kill — 原进程被杀后子进程仍在运行，额外清理 |\n| **PID 514115** (eval_lora_s2_30k_v2 原始进程) | 已死 — 被之前的错误 Worker 终止 (EXIT_CODE=129) |\n| **eval_lora_s2_30k_v2 重新提交** | 已启动，PID 519125，tmux session `eval_lora_s2_30k_v2`，conda `base` 环境 |\n| **当前进度** | 模型加载完成，Task 0 开始 eval（Safety level II, 50 episodes） |\n| **GPU 使用** | cuda:0 = 8623 MiB (eval_lora_s2_30k_v2)，cuda:1 = 27088 MiB (train_pi05_a1_obj_s2_l01_high) |\n\n**Registry 更新：**\n- `eval_lora_baseline_30k_s2` → DONE, conclusion=killed\n- `eval_lora_s2_30k_v2` → RUNNING, PID=519125, tmux=eval_lora_s2_30k_v2"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-lora-s2-director-order.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd5c952246d0effe30f5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper abc scenario patches",
+  "task_key": "worker_paper_abc_scenario_patches_20260526T231412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abc_scenario_patches_20260526T231412_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "6c736e48bfd1ba9a00a5b825d64384c46f0aeacf19dfa4ec4ba4e022550a3d9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已产出 `abc_scenario_patches.md`（`art_20260526_e7187a`）。\n\n与 contingency_claim3.tex 的主要变更：\n- 全部从 2 seeds 更新为 3 seeds，移除 \"third seed in progress\" 语句\n- 新增位置 2（figure caption）、位置 3-4（discussion）、位置 5-6（abstract/intro）的完整替换文本\n- 位置 5-6 采用精确 old_string → new_string 格式，可直接用于文本替换\n- 场景 B 位置 4 为删除操作（全域冗余无需额外 limitation）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-abc-scenario-patches.md"
+}

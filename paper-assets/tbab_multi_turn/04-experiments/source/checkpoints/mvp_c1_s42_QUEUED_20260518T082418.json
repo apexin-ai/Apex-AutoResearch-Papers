@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp_c1_s42",
+  "project": "tbab_multi_turn",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:21:16.233Z",
+    "updated_at": "2026-05-18T08:24:18.774Z",
+    "hypothesis": "Standard LoRA fine-tuning without position or bridge modifications provides baseline multi-turn performance; any improvement in C2-C4 over C1 isolates the contribution of TBAB components beyond LoRA adaptation alone",
+    "spec": {
+      "condition": "C1_lora_only",
+      "seed": 42,
+      "server": "westb-25721",
+      "gpu": "cuda:0",
+      "model_name": "Mistral-7B-Instruct-v0.1",
+      "data_path": "/root/tbab_multi_turn/data/training_data.json",
+      "data_count": 2500,
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 /root/tbab_multi_turn/scripts/train.py --config /root/tbab_multi_turn/scripts/configs/condition1_lora_only.yaml --seed 42",
+      "estimated_time": "~60min",
+      "trainable_params": "83.9M (1.15%)"
+    }
+  },
+  "timestamp": "2026-05-18T08:24:18.806804+00:00",
+  "trigger": "update_registry"
+}

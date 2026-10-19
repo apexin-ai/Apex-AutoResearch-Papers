@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ec74da955f60af2d72c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops prepare pi05 eval env",
+  "task_key": "worker_ops_prepare_pi05_eval_env_20260522T103923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare_pi05_eval_env_20260522T103923_result.json",
+    "occurrence": 1,
+    "bytes": 1528,
+    "sha256": "ba4b4543f62c1b92b856288433c8c517c5854b43275e49454a608ee56475f8e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 结果总结\n\n### 1. 下载状态\n- **进行中**（PID 368719），当前 4.4GB，params 仍在下载\n- assets 已完成\n\n### 2. 目录结构\n- `params/params/` 是 orbax checkpoint 正常结构，**不需要修复**\n- `assets/assets/` 是 gcsfs 下载产生的多余副本，下载完成后执行：\n  ```bash\n  rm -rf /root/autodl-tmp/openpi_weights/pi05_libero/assets/assets\n  ```\n\n### 3. 依赖安装状态\n- openpi server：已安装（.venv，jax=0.5.3, torch=2.7.1）\n- libero：已安装（PyPI 0.1.1, --no-deps + 手动补 bddl, easydict）\n- robosuite 1.4.1, mujoco 3.8.1\n- 所有 eval 所需 import 验证通过\n\n### 4. 准备好的运行命令\n\n**Terminal 1 — Server（占 1 张 GPU）：**\n```bash\ncd /root/autodl-tmp/openpi && source .venv/bin/activate\npython3 scripts/serve_policy.py --env LIBERO --port 8000 \\\n  policy:checkpoint \\\n  --policy.config pi05_libero \\\n  --policy.dir /root/autodl-tmp/openpi_weights/pi05_libero\n```\n\n**Terminal 2 — Client（libero 仿真 eval）：**\n```bash\ncd /root/autodl-tmp/openpi && source .venv/bin/activate\npython3 examples/libero/main.py \\\n  --host 0.0.0.0 \\\n  --port 8000 \\\n  --task_suite_name libero_spatial \\\n  --num_trials_per_task 50\n```\n\n### 注意\n- 下载完成后需删除 `assets/assets/` 多余副本\n- server 启动前确认下载完成（`ps -p 368719` 不返回 PID）\n- `.libero/config.yaml` 已预创建，避免交互提示\n- robosuite macros warning 可忽略，不影响 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-pi05-eval-env.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77065da7eb4793914f21",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops early signal eval s1 l1 20k",
+  "task_key": "worker_ops_early_signal_eval_s1_l1_20k_20260526T235902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_early_signal_eval_s1_l1_20k_20260526T235902_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "6d46fca1127da292a72ca12f4f8aec075e70e291573ec5033d777faa747266ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ncheckpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed1_l1/20000/ (完整性: ✅, model.safetensors 7.0GB)\neval 提交: exp_id=eval_early_signal_s1_l1_20k, PID=430204, server=westd-35807, GPU=cuda:0\n验证 1 (ps): ✅ (PID 430204 confirmed via /proc/430204/cmdline)\n验证 2 (nvidia-smi): ✅ (显存: 7793 MiB)\n验证 3 (log): ✅ (模型已加载, 开始 Task 0: pick up the orange juice and place it in the basket, safety level II)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-early-signal-eval-s1-l1-20k.md"
+}

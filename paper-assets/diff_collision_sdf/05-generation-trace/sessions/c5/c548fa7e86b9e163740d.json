@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c548fa7e86b9e163740d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check westd45947 experiments",
+  "task_key": "worker_ops_check-westd45947-experiments_20260528T225105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-westd45947-experiments_20260528T225105_result.json",
+    "occurrence": 1,
+    "bytes": 1623,
+    "sha256": "8981eba12acec6acce1c1de9d96c9d35e13f69e8f57e854660466bffe1e1476d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-45947 状态汇总\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|----------|--------|\n| cuda:0 | 0 MiB / 97887 MiB | 0% (空闲) |\n\n仅 1 张 GPU（不是 2 张）。无训练进程运行，无 tmux session。仅有 tensorboard 和 jupyter-lab 后台服务。\n\n### eval_phase2_18k_s2 / eval_spatial_bowl_lora_ctrl_s0_v2\n**未找到。** 服务器上不存在任何匹配 `phase2`、`18k`、`spatial_bowl_lora_ctrl` 的文件。这两个 eval 尚未执行。\n\n### 现有 eval 结果（最新）\n\n| 实验 | TSR | CAR |\n|------|-----|-----|\n| multiseed_sdf_l01_s0_eseed123 | 53.5% | 58.5% |\n| multiseed_sdf_l01_s0_eseed256 | 48.0% | 57.0% |\n| eval_lora_baseline_seed7 (30k) | 54.5% | 54.5% |\n| reeval_sdf_s0_l005_30k | 55.5% | 57.0% |\n| reeval_sdf_s0_l01_30k | 52.5% | 57.0% |\n| reeval_sdf_s1_l01_30k | 55.5% | 57.5% |\n| reeval_sdf_s1_l005_30k | 50.5% | 54.0% |\n| reeval_sdf_s2_l01_30k | 53.5% | 54.5% |\n| reeval_sdf_s2_l005_30k | 56.0% | 52.5% |\n| reeval_lora_s1_30k | 51.5% | 52.5% |\n\n### Checkpoint 完整性\n- `pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors` — **7.1 GB，完好** (路径: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/`)\n- checkpoints 总占用约 199 GB\n\n### 磁盘使用\n| 分区 | 已用 | 总量 | 使用率 |\n|------|------|------|--------|\n| / (root) | 17G | 30G | 57% |\n| /root/autodl-tmp (数据盘) | **240G** | **250G** | **96%** ⚠️ |\n\n数据盘快满了，checkpoints 占 ~199G。如需运行新实验，可能需要清理旧 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd45947-experiments.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "569de13fd3868dd0741c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops critical displacement audit",
+  "task_key": "worker_ops_critical_displacement_audit_20260525T174133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_critical_displacement_audit_20260525T174133_result.json",
+    "occurrence": 1,
+    "bytes": 2853,
+    "sha256": "2b5c9379dde0fed32786e10179a8a6811af771b03951e20e80f6a8b5d2554480"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全貌清晰了。以下是完整分析：\n\n---\n\n## 汇报\n\n### 1. Success=True episode 的 max_displacement\n\ns1_l005_30k 共 200 episodes，8 个 success=True：\n\n| Episode | max_displacement | collided |\n|---------|-----------------|----------|\n| ep0 | 0.000289 | False |\n| ep1 | **2.9e-10** | False |\n| ep2 | **2.4e-09** | False |\n| ep3 | 0.1016 | True |\n| ep4 | **2.9e-10** | False |\n| ep5 | 0.0716 | True |\n| ep6 | **2.7e-09** | False |\n| ep7 | 0.1083 | True |\n\n5 个 success+safe episode 的 max_displacement 在 1e-10 ~ 3e-4 范围。\n\n### 2. max_displacement 的精确定义\n\n**`max_displacement` 度量的是障碍物位移，不是机器人位移。**\n\n`eval_safelibero.py:1033-1037`:\n```python\ncurrent_positions = get_obstacle_positions(env.sim, obstacle_names)\nfor name in initial_positions:\n    if name in current_positions:\n        d = np.linalg.norm(current_positions[name] - initial_positions[name])  # L2 范数\n        max_displacement = max(max_displacement, d)\n```\n\n即：所有障碍物相对初始位置的最大 L2 位移。\n\n### 3. 矛盾根因：**数学上的恒等式 bug**\n\n`check_collision` (line 606-614) 判定碰撞用的是 **L1 范数**，阈值 0.001m：\n```python\ndisplacement = np.sum(np.abs(current_positions[name] - initial_positions[name]))  # L1\nif displacement > threshold:  # threshold = 0.001\n    return True, name, displacement\n```\n\n而 `max_displacement` 用的是 **L2 范数**。\n\n由范数不等式 **L2 ≤ L1**，对任何向量恒成立。因此：\n\n> **如果 collided=False（所有障碍物 L1 < 0.001），则必然 max_displacement (L2) < 0.001。**\n\n这意味着 `analyze_displacement.py` 的 frozen 判定条件 `max_displacement < 0.001` 对**所有** safe episode 都为 True。数据验证：103 个 safe episode，103 个 frozen，**Filtered CAR 恒为 0%**。\n\n### 4. Bug 位置\n\n**`analyze_displacement.py` 的 frozen 检测逻辑（整个前提就错了）：**\n\n```python\nfrozen_eps = [e for e in safe_eps if e[\"max_displacement\"] < threshold]  # threshold=0.001\n```\n\n这行用**障碍物位移**当**机器人位移**的代理，但 `collided=False` 已经保证了障碍物位移 < 0.001，所以 frozen filter ≡ safe filter，Filtered CAR 退化为 0。\n\n**`eval_safelibero.py` 没有记录机器人位移。** 虽然 line 1021 追踪了 `trajectory`（EE 位置），但只用于计算 smoothness，未存入 JSON。要正确区分 \"安全但活跃\" vs \"冻结\"，需要在 JSON 中新增 EE displacement 指标（如 `max_ee_displacement = max ||eef_pos_t - eef_pos_0||`）。\n\n### 5. 修复建议\n\n`eval_safelibero.py` 的 episode 循环中加一个 EE displacement 追踪，存入结果 JSON。`analyze_displacement.py` 改用 EE displacement 做 frozen 判定。需要我改代码吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-critical-displacement-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b366df1c9f40b5f8c21",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops p0 gpu conflict fix",
+  "task_key": "worker_ops_p0_gpu_conflict_fix_20260525T195328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0_gpu_conflict_fix_20260525T195328_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "25762d0717a29382f4e9c28dc1c15700280e29c637537164c5b902f6d059608e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_best_s1 (PID 134344) 已在 GPU 2 上成功加载，8967MiB。\n\n---\n\n## 汇报\n\n### 1. 各 GPU 进程状态\n\n| GPU | PID | 进程 | 显存 | 状态 |\n|-----|-----|------|------|------|\n| 0 | 3717 | spatial_bowl 训练 | 27036MiB | ✅ 正常 |\n| 0 | 123811 | eval_s1_l005_30k_disp_fix (`--gpu 0`) | 8997MiB | ⚠️ **冲突残留** |\n| 1 | — | — | 1MiB | 空闲 |\n| 2 | 134344 | eval_pi05_a1_best_s1_l005_16k | 8967MiB | ✅ 刚启动 |\n| 3 | 75123 | eval_pi05_a1_best_s2_l005_10k | 8356MiB | ✅ 保留 |\n\n### 2. 已 kill 进程\n\n- PID 35423, 72605 — GPU 3 orphan 进程\n- PID 121109 — eval_best_s1 误入 GPU 0\n\n### 3. eval_best_s1 重启\n\n✅ PID 134344，已在 cuda:2 上加载（8967MiB），tmux session `eval_pi05_a1_best_s1_l005_16k`。\n\n### 4. cuda:1 displacement eval 状态\n\n⚠️ **GPU 1 完全空闲**。tmux session `eval_pi05_a1_30k_s1_l005_disp` 存在，但实际进程 PID 123811 跑在 **GPU 0** 上（同样的 `--gpu 0` 覆盖 bug）。这个进程占了 GPU 0 约 9GB，仍在与 spatial_bowl 冲突。等待指示是否 kill 并在正确 GPU 上重启。\n\n### 5. --gpu 参数实现方式\n\n确认 root cause — `eval_safelibero.py` 第 1141 行：\n\n```python\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)\n```\n\n脚本用 `--gpu` 参数值**直接覆盖** `CUDA_VISIBLE_DEVICES`。当外部设置 `CUDA_VISIBLE_DEVICES=2` 但 `--gpu 0` 时，脚本会把它改回 `\"0\"`，导致进程跑到物理 GPU 0 而非预期的 GPU 2。这是所有 GPU 错位 bug 的根因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-gpu-conflict-fix.md"
+}

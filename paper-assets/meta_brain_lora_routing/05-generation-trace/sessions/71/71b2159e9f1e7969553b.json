@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71b2159e9f1e7969553b",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "ops verify unzip assets",
+  "task_key": "worker_ops_verify-unzip-assets_20260516T042742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-unzip-assets_20260516T042742_result.json",
+    "occurrence": 1,
+    "bytes": 1174,
+    "sha256": "870ae386802e7b64dc5a855681a8ac6222583308572e4a618deddc6e1dedb6eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总结果：\n\n## 验证结果\n\n**1. 解压状态：已完成**\n- PID 395986 已退出，解压成功\n- 总大小：16GB（zip 本身 6GB + 解压产物 ~10GB）\n\n**2. 解压目录结构**\n```\n/root/autodl-tmp/libero_plus_assets/\n├── assets.zip (6GB)\n└── inspire/hdd/project/embodied-multimodality/public/syfei/libero_new/release/dataset/LIBERO-plus-0/\n    └── assets/\n        ├── scenes/          (场景 XML + 纹理)\n        ├── stable_hope_objects/\n        ├── articulated_objects/\n        ├── new_objects/\n        ├── turbosquid_objects/\n        ├── stable_scanned_objects/\n        └── textures/\n```\n\n**3. 路径匹配：已通过软链接对接**\n\n- `~/.libero/config.yaml` 配置 assets 路径为 `/root/LIBERO-plus/libero/libero/./assets`\n- `/root/LIBERO-plus/libero/libero/assets` 已是软链接 → 指向解压后的 `LIBERO-plus-0/assets/`\n- `ls` 验证软链接有效，scenes 目录内容丰富（数百个 XML 文件）\n\n**结论：无需额外操作，assets 路径已正确对接，evaluate_libero_plus.py 可以正常找到资源。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-unzip-assets.md"
+}

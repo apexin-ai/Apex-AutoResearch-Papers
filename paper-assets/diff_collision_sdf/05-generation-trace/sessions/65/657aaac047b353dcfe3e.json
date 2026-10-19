@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "657aaac047b353dcfe3e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval baseline object pudding gpu check",
+  "task_key": "worker_eval_baseline_object_pudding_gpu_check_20260521T181530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_baseline_object_pudding_gpu_check_20260521T181530_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "3423124fa689a417934c2fc59061ec2f08313068c027d6c905318b0223cc1c95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### GPU VRAM 状态\n\n| GPU | 已用 | 总计 | 空闲 |\n|-----|------|------|------|\n| cuda:0 | 23.3 GB | 95.6 GB | **71.6 GB** |\n| cuda:1 | 23.3 GB | 95.6 GB | **71.6 GB** |\n| cuda:2 | 23.3 GB | 95.6 GB | **71.6 GB** |\n| cuda:3 | 23.3 GB | 95.6 GB | **71.6 GB** |\n\n每张卡训练只占 ~23 GB，剩余 ~71 GB，远超 30 GB 阈值。**4 张卡均可同时跑 eval。**\n\n### Baseline checkpoint\n\n- 路径：`/root/autodl-tmp/checkpoints/baseline_object_pudding/baseline_object_pudding_seed0/best/`\n- `model.safetensors`: 6.5 GB\n- `optimizer.pt`: 11.7 GB\n- 训练已完成（step 30000，有 best 目录）\n\nVRAM 余量充足，可以直接在 westd-35807 任意一张卡上跑 baseline object_pudding eval，无需 scp 到其他服务器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-baseline-object-pudding-gpu-check.md"
+}

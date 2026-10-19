@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa7b600d739fbb539d13",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops restart baseline eval urgent",
+  "task_key": "worker_ops_restart_baseline_eval_urgent_20260522T023238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart_baseline_eval_urgent_20260522T023238_result.json",
+    "occurrence": 1,
+    "bytes": 391,
+    "sha256": "4b653002c42f570504a0296caf6bb50a97a03d7dc941612a1c79e6db6ba49f7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Baseline eval 已成功重启，状态汇报：\n\n- **PID**: 305693\n- **GPU**: GPU 1 (`GPU-1a00ed3e...`)，显存占用 23926 MiB\n- **Log**: 正常输出，已加载 checkpoint、norm stats，正在设置 `safelibero_object` (level II) benchmark，第一个 task `pick up the orange juice and place it in the basket` 已开始\n- **tmux session**: `eval_baseline` 运行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-baseline-eval-urgent.md"
+}

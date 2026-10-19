@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51e9bf10064854d8c741",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper fig5 lambda curve",
+  "task_key": "worker_paper_fig5_lambda_curve_20260527T015611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig5_lambda_curve_20260527T015611_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "b4b432a350dede0b8ad2e05d94cd0df82f8013cb04c9c3f0628c793333c4152b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 5 完成。4 轮迭代，最终版本：\n\n- **PDF**: `artifacts/figures/fig5_lambda_curve.pdf`\n- **PNG**: `artifacts/figures/fig5_lambda_curve.png`\n- **脚本**: `artifacts/figures/plot_fig5.py`\n- **Artifact ID**: `art_20260527_4bb269`\n\n设计要点：\n- 单轴（无 dual y-axis），3.25\" 单栏宽度\n- 灰色 null band（54.5% ± 2.15%）为核心视觉元素，所有 CAR 点落入 band 内\n- λ=0 与 λ>0 之间断线 + 断轴标记\n- λ=0.1 用空心 marker 标识 20K preliminary 数据\n- 色盲友好配色（CAR=#0072B2 蓝，TSR=#D55E00 橙红）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig5-lambda-curve.md"
+}

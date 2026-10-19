@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70dda698311fc53a8db1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval phase2 lambda0 s2 westd35807",
+  "task_key": "worker_ops_eval_phase2_lambda0_s2_westd35807_20260526T111719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_phase2_lambda0_s2_westd35807_20260526T111719_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "46c86b49a0fb494dc2dec01c9b75d250c1829b0a95fd6dc4fd9814ee852ad909"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行中。总结：\n\n**Step 1 — 部署修复版脚本**: **不需要**。westd-35807 上的 `eval_safelibero.py` 已包含两项修复：\n- 180° 旋转：`np.ascontiguousarray(image[::-1, ::-1])` (line 841/843)\n- 相机分辨率：`camera_heights: 256, camera_widths: 256` (line 903/904)\n- 与 westd-45947 版本一致\n\n**Step 2 — 运行 eval**: 已启动\n- tmux session: `eval_p2_l0_s2`\n- 日志: `/root/eval_phase2_lambda0_s2.log`（tee pipe buffer 导致日志延迟刷新，通过 `tmux capture-pane` 可实时查看）\n- GPU 3 占用 ~9GB 显存\n- Task 0 (pick up the orange juice and place it in the basket) 已跑到 Episode 10/50\n- model_type=`lora_baseline`，checkpoint 确认为 full state dict 格式（无 adapter_config.json）\n\n**Step 3 — 注册实验**: 完成\n- exp_id: `eval_phase2_lambda0_s2`\n- parent: `train_pi05_phase2_lambda0_s2`\n- status: RUNNING\n\n**注意**: 跳过了 sanity check，因为脚本已是修复版（无需修改）。如果后续 TSR 异常低，可通过 `tmux capture-pane -t eval_p2_l0_s2 -p -S -100` 查看实时进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-phase2-lambda0-s2-westd35807.md"
+}

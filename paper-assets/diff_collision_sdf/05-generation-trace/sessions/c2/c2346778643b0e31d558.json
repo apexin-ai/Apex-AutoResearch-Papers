@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2346778643b0e31d558",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval oracle pi05 check",
+  "task_key": "worker_eval_oracle-pi05-check_20260529T012305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_oracle-pi05-check_20260529T012305_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "ddd71777d9a4a3d1bd84e75f487ff5f6e85ba8ef42f34fb014eaba87e8b06304"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Eval 仍在运行，目前进度：**\n\n- 总计 4 个 task（task 0-3），已完成 2 个，正在跑 Task 2\n- 每个 task 40 episodes，每 task 约 8-10 分钟，预计再需 ~20 分钟完成\n\n**已完成结果：**\n\n| Task | 名称 | TSR | CAR |\n|------|------|-----|-----|\n| 0 | pick up orange juice → basket | 25.0% (10/40) | 50.0% (20/40) |\n| 1 | pick up chocolate pudding → basket | 90.0% (36/40) | 75.0% (30/40) |\n| 2 | pick up milk → basket | 进行中 | 进行中 |\n| 3 | (待运行) | - | - |\n\n**初步观察：**\n- Task 1 的 CAR 75.0% 显著高于 LoRA baseline 的 57.0%（整体），oracle refinement 在该 task 上效果明显\n- Task 0 的 CAR 50.0% 较低，但 TSR 也只有 25%，说明这个 task 本身较难\n- 所有 episode 的 `collided=False`，oracle SDF refinement 在避碰上表现良好\n\n等 eval 全部完成后再做最终对比和 registry 更新。需要我稍后再查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-oracle-pi05-check.md"
+}

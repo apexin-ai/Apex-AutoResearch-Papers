@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abffdde3b1faee1a678e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code feature space oracle cuda2 v2",
+  "task_key": "worker_code_feature_space_oracle_cuda2_v2_20260522T201817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_feature_space_oracle_cuda2_v2_20260522T201817_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "631ec62ef563e207ebc3f0b0c2a89e93033c36c14443f6511edea369fae814c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process alive (PIDs 181486, 181492, 186100). The torch.compile first-run compilation is in progress — this is normal and can take several minutes before the first episode log appears.\n\n**Summary:**\n\n- **11/11 patches applied** to `eval_safelibero.py` — added `query_gt_sdf_differentiable`, `_refine_action_feature_oracle`, `--feature_oracle` CLI flag, chunk_timestep tracking, feature oracle branch/setup, and output config\n- **Syntax verified** (`py_compile` passed)\n- **Launched on GPU 2** (8586 MiB in use) in tmux session `oracle_feature`\n- **Registered** as `oracle_true_gt_feature_v11` (status: RUNNING)\n- Feature oracle initialization confirmed in log: suffix_out hook registered, norm stats loaded (mean/std correct), GT SDF loaded (4084 points)\n- Currently in `torch.compile` phase — first episode results will appear after compilation completes"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-feature-space-oracle-cuda2-v2.md"
+}

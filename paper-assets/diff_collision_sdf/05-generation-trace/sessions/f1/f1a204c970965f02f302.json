@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1a204c970965f02f302",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops westd35807 status check",
+  "task_key": "worker_ops_westd35807_status_check_20260524T125143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd35807_status_check_20260524T125143_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "e30cbffb623a29a5490311a0caa8f1fd15eea9a643bd4ada0cd4f78c691d950d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接失败，报 `Authentication failed`。密码已更新但工具侧可能还没同步。\n\n需要你确认：\n- 新密码是否已更新到 `~/.ssh/config` 或工具的 credentials 配置中？\n- 如果是密码登录，MCP 工具可能需要更新存储的密码。\n\n请提供新密码或确认已在哪里更新，我再重试连接。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd35807-status-check.md"
+}

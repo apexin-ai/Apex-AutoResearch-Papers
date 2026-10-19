@@ -1,0 +1,39 @@
+{
+  "exp_id": "mvp_c4_s42",
+  "project": "tbab_multi_turn",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:21:21.145Z",
+    "updated_at": "2026-05-18T13:16:02.582Z",
+    "hypothesis": "Full TBAB (bridge tokens + position reset) achieves maximal mid-frequency RoPE band restoration: bridge tokens provide cross-turn attention anchors while position reset ensures all content tokens benefit from frequency band recovery, yielding the strongest multi-turn performance (C4 > C1 by >=3% P-bar on lost_in_conversation)",
+    "spec": {
+      "command": "bash -c \"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition4_full_tbab.yaml --seed 42\"",
+      "server": "westb-25721",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "40212",
+      "log_path": "~/runs/tbab_multi_turn/mvp_c4_s42.log",
+      "submitted_at": "2026-05-18T13:16:02.475Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westb-25721",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-25721",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T08:24:36.175Z",
+      "command": "bash -c \"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition4_full_tbab.yaml --seed 42\""
+    },
+    "pid": "40212",
+    "log_path": "~/runs/tbab_multi_turn/mvp_c4_s42.log"
+  },
+  "timestamp": "2026-05-18T13:16:03.352360+00:00",
+  "trigger": "update_registry"
+}

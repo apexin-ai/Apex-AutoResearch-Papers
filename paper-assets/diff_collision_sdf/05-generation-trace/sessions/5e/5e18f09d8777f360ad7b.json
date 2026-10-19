@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e18f09d8777f360ad7b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops cuda2 best s1 eval",
+  "task_key": "worker_ops_cuda2_best_s1_eval_20260525T194650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda2_best_s1_eval_20260525T194650_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "c36750dac406f95e5afc2e2e0da12e300eca2d1b8d66c755ab60cbc867f4a600"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n1. **Checkpoint 大小检查**:\n   - `best/model.safetensors` → symlink → `model_lora.safetensors`: **7,540,115,784 bytes (7.54GB)**\n   - `30000/model.safetensors`: **7,540,115,784 bytes (7.54GB)**（参考一致）\n   - `model_base_backup.safetensors`: 7,473,091,320 bytes (7.47GB)（base-only 备份）\n   - 16000/ 目录不存在，best/ 对应 step 16000 (best_loss=0.01143)\n\n2. **结论**: seed1 best/ checkpoint **正确**，包含 LoRA weights。已通过 symlink 修复（指向 model_lora.safetensors），base-only 文件已备份。\n\n3. **cuda:2 状态**: 空闲（1MiB 显存，0% 利用率，无进程）\n\n4. **Eval 已提交**:\n   - exp_id: `eval_pi05_a1_best_s1_l005_16k`\n   - PID: 121100\n   - tmux session: `eval_pi05_a1_best_s1_l005_16k`\n   - log: `~/runs/diff_collision_sdf/eval_pi05_a1_best_s1_l005_16k.log`\n   - 使用 best/ 路径（对应 step 16000）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda2-best-s1-eval.md"
+}

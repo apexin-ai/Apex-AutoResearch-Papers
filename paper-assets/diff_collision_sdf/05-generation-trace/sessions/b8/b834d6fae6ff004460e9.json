@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b834d6fae6ff004460e9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh p0 gpu3 fix and status",
+  "task_key": "worker_ssh_p0_gpu3_fix_and_status_20260519T230749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0_gpu3_fix_and_status_20260519T230749_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "b91df425d18f4556d6ddb8615c77e6f1b3b5f9d9ddc04794a414391a042eea72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A1 训练正常运行。\n\n## 最终结果\n\n### P0: GPU 3 修复 — 完成\n\n| 项目 | 结果 |\n|------|------|\n| PID 106344 清理 | 已自行退出，无需 kill |\n| GPU 3 释放 | 确认（现已被新 A1 占用 13385 MiB） |\n| A1 死因 | 日志在 step 160 干净截断，无错误/OOM 信息。dmesg 容器无权限。推测外部 SIGKILL |\n| 新 A1 PID | **117514** |\n| 前 10 步 loss | 0.27~0.24，符合预期（~0.2 范围） |\n| GPU 3 显存 | 13385 MiB / 97887 MiB |\n| 配置 | `extra_delta_transform=False`（已正确），`--save_interval 500`，`WANDB_MODE=disabled` |\n\n### P1: Baseline 状态 — 全部正常\n\n| 实验 | PID | 运行时间 | Step | Loss | 日志文件 |\n|------|-----|---------|------|------|---------|\n| spatial_bowl_s0 | 100319 | 33min | 538 | 0.080 | v3 |\n| spatial_bowl_s1 | 94453 | 45min | 742 | 0.084 | v3 |\n| object_pudding_s0 | 95429 | 45min | 759 | 0.066 | v3 |\n\n注：Baseline 日志文件实际为 v3 版本（非 v2）。三组训练 loss 均在持续下降，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-gpu3-fix-and-status.md"
+}

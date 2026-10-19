@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f0fc1aad615b9fc95e1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "status westd 45947 check",
+  "task_key": "worker_status_westd-45947-check_20260521T181644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_westd-45947-check_20260521T181644_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "8c103a43a472fdda0e394fd066b75867f7b113eb26da9a0aa74a725eea7be0d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-45947 状态汇报\n\n### A3 spatial_bowl (cuda:0, PID 191747)\n- **状态**: ALIVE, 已运行 1h 04m 51s\n- **当前 step**: 6939/30000 (23%)\n- **速度**: ~4.05s/step\n- **Loss**: ~0.07, lr=2.28e-05\n- **预估剩余时间**: (30000 - 6939) × 4.05s ≈ **25.9h**\n- **日志文件**: `/tmp/a3_spatial_bowl.log`（从 step 6000 checkpoint 恢复）\n\n### cuda:1\n- 完全空闲：0 MiB 显存，0% 利用率\n- 无任何进程\n\n### 异常\n- `train_resume3.log` 显示之前一次尝试因 **SyntaxError** 崩溃（`train_a3_hook.py` line 243 有乱码）\n- `/tmp/spatial_bowl.log` 显示一次从 step 0 开始的 fresh run 跑了 8h 到 step 7894 后死亡。当前 run 从 step 6000 checkpoint 恢复，**丢失了 ~1894 steps 的进度**（可能 checkpoint 只存在 step 6000）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-westd-45947-check.md"
+}

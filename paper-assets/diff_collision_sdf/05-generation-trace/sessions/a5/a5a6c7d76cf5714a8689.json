@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5a6c7d76cf5714a8689",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops disk cleanup 35807",
+  "task_key": "worker_ops_disk-cleanup-35807_20260528T231629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-35807_20260528T231629_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "2b3a152b716725edc3c32205f6708bcb95d122186778b84bb61bcf98680c7d41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成：\n\n| 文件 | 大小 | 状态 |\n|------|------|------|\n| seed1/30000/model.safetensors | 1.6M | 已删除 |\n| seed0_l0/tmp_14000/ (整个目录) | 512K | 已删除 |\n| seed2_l0/tmp_20000/ (整个目录) | 4.3G | 已删除 |\n\n释放约 **4.3G** 空间，数据盘从 100% 降至 **99%**（346G/350G，可用 4.3G）。空间仍然很紧张，主要释放来自 seed2_l0 的 4.3G 不完整文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-35807-copy-3.md"
+}

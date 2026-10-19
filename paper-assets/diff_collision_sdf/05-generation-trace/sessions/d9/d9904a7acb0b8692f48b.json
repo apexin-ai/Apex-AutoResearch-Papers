@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9904a7acb0b8692f48b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper per task analysis",
+  "task_key": "worker_paper_per-task-analysis_20260529T150201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_per-task-analysis_20260529T150201_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "a1298b9df9dd8949793e321f6d1333f5457b176f37224c4040977f057c9bb0bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册：`art_20260529_a01313`\n\n核心发现：\n\n- **Fingerprint 完全一致**：CP > Milk > OJ > BBQ 排序在 4/4 条件均值和 12/12 seed 中保持（BBQ 最后 100%，CP 最高 83%）\n- **Task identity 解释 94% 的 CAR 方差**，seed/condition 仅占 6%——直接支撑 Claim 3（demonstration-driven）\n- **BBQ 20pp seed 波动（λ=0.01 s0=34→s2=14）**是 n=50 下的 binomial noise（预期 95% CI 宽 ~23pp），且 LoRA-only 和 SDF 条件下方差相当\n- **无任何 task 有显著 SDF 收益**：最大的 Milk delta (+4.2pp) 不到 1σ；BBQ（SDF 最应帮助的 task）仅 +1.8pp"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-per-task-analysis.md"
+}

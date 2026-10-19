@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc2e4994870e64c48ca9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code implement true oracle refine",
+  "task_key": "worker_code_implement_true_oracle_refine_20260522T194458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_implement_true_oracle_refine_20260522T194458_result.json",
+    "occurrence": 1,
+    "bytes": 2040,
+    "sha256": "3aea79bf2b1bd52a709370bb0fd242dbf2a0ea1a389bb80771184358820dbeb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实现完成。总结：\n\n### GT SDF 数据格式\n- keys: `query_points` (N,3, float64) + `sdf_values` (N,, float32)\n- spatial_bowl: 4076 点, sdf ∈ [-0.05, 0.05], mean=0.017\n- object_chocolate: 4084 点, sdf ∈ [-0.05, 0.05], mean=0.016\n- 正=安全, 负=碰撞\n\n### 新增代码 (1049→1144 行, +95 行)\n| 函数/参数 | 说明 |\n|---|---|\n| `_load_sdf_gt_oracle(path)` | 加载 npz + 构建 cKDTree |\n| `query_gt_sdf(position, sdf_gt_data, k=8)` | IDW 插值查询 GT SDF（K=8 最近邻，解决稀疏网格梯度为零问题） |\n| `_refine_action_oracle(...)` | 数值梯度 refinement，delta→absolute 坐标转换（M024 fix） |\n| `--true_oracle` | 启用 GT SDF oracle refinement |\n| `--force_refine_oracle` | 每步都 refine（忽略 margin） |\n| 每 episode 记录 | `sdf_value`, `refine_count`, `gradient_magnitude_avg` |\n\n### Dry-run 验证\n- 碰撞区域 (SDF=-0.033): refinement 生效，shift=0.1m，grad_mag=0.16\n- 安全区域 (SDF=0.023): 不触发 refinement\n- 两台服务器语法验证通过\n\n### 建议运行命令（cuda:3 释放后）\n```bash\n# spatial_bowl with baseline policy + true oracle\npython scripts/eval_safelibero.py \\\n    --checkpoint /root/autodl-tmp/checkpoints/baseline_spatial_bowl_0 \\\n    --config_name baseline_spatial_bowl \\\n    --suite safelibero_spatial --task_id 0 \\\n    --true_oracle \\\n    --sdf_gt_path /root/colliforce-vla/data/sdf_gt_spatial_bowl.npz \\\n    --refine_alpha 0.1 --refine_margin 0.01 \\\n    --n_episodes 50 --gpu 3 \\\n    --output_prefix true_oracle\n```\n\n```bash\n# force refine 版本\npython scripts/eval_safelibero.py \\\n    --checkpoint /root/autodl-tmp/checkpoints/baseline_spatial_bowl_0 \\\n    --config_name baseline_spatial_bowl \\\n    --suite safelibero_spatial --task_id 0 \\\n    --true_oracle --force_refine_oracle \\\n    --sdf_gt_path /root/colliforce-vla/data/sdf_gt_spatial_bowl.npz \\\n    --refine_alpha 0.1 \\\n    --n_episodes 50 --gpu 3 \\\n    --output_prefix true_oracle_force\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-implement-true-oracle-refine.md"
+}

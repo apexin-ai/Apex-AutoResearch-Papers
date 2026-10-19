@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a972982f5ce3139de8f9",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "reviewer / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3812,
+    "sha256": "20ac09a6ffc99332ad296a7b975a50fb5f57ba116b01ac62b9bfac180cf10503"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-25T04:22:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-35807 cuda:0-3，westd-45947 cuda:0-1。越界进程立即 CRITICAL\n- LoRA baseline 实验结论未经 SSH 验证前**不可引用为正式结果**——当前 registry conclusion=\"failed\" 是 SSH 监控失败，不是训练失败，但反过来也不能假设训练成功\n- Pi0.5+A1 10K 数据只有 seed 0，论文中不可写 \"across seeds\" 或暗示多 seed 验证\n- spatial_bowl 必须 5/28 前启动训练（CoRL DDL 约束），否则放弃泛化性提升\n- Claim 4 措辞禁区：SOTA / consistently outperforms / general solution（paper_framing.md 明确标注）\n\n### 2. 🖥️ 基础设施快照\n- **westd-35807** (root): 4×GPU, `/root/colliforce-vla`, conda base (`/root/miniconda3/bin/python`)\n  - 4 个 Pi0.5+A1 seed 训练（s1_l005/s1_l01/s2_l005/s2_l01）已退出，checkpoint 待验证\n  - SSH 当前 Authentication failed\n- **westd-45947** (root): 2×GPU, `/root/colliforce-vla`, conda base\n  - LoRA baseline s0 (cuda:0, PID 757002) + s1 (cuda:1, PID 757081) 已退出，wall_clock ~16.9h，checkpoint 待验证\n  - SSH 当前 Authentication failed\n- 论文目录: 本地 `/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/`\n- Figures: `artifacts/figures/` (fig_tsr_car_scatter.pdf ✓, fig_oracle_bar.pdf ✓, fig_displacement_hist.pdf mock)\n- W&B: WANDB_MODE=offline（所有训练）\n\n### 3. 📊 当前状态\n所有不依赖 SSH 的论文改进已穷尽。论文 16 页编译通过，~9.6/10。\n\n**Registry 关键实验：**\n- 6 个实验标记 \"failed\" 但实际是 SSH 监控失败（训练大概率完成）：\n  - westd-35807: train_pi05_a1_obj_s1_l005/s1_l01/s2_l005/s2_l01\n  - westd-45947: train_pi05_lora_baseline_s0/s1\n- train_pi05_a1_obj_s0_l005 + s0_l01: DONE/success（seed 0, 30K 完成，已有 10K eval 数据）\n\n**等待中：** SSH 恢复（Manager/用户介入刷新凭证）\n\n### 4. 📋 待办\n- SSH 恢复 → 逐一核实 6 个 \"failed\" 实验的 log + checkpoint → 更新 registry\n- 6 个实验确认完成 → 30K eval（6 模型 × 200 episodes）→ 填充 §5.4 placeholder + Table 1\n- LoRA baseline eval 出结果 → 对照 paper_framing.md 场景 2a-2d 判断 SDF 增量归因\n  - LoRA CAR ≈ baseline (~27%) → SDF 全归因，最强 method claim\n  - LoRA CAR ~35-45% → SDF 仍有增量，需 4-point lambda 曲线\n  - LoRA CAR ~55%+ → 归纯 LoRA，pure analysis paper\n- 30K eval 数据到位 → 真实数据替换 displacement histogram mock + lambda-CAR curve figure\n- spatial_bowl 训练需 5/28 前启动 → SSH 恢复后尽快铺（代码+数据 ready）\n\n### 5. 🎯 战略上下文\n**核心叙事：** Analysis paper with positive method contribution。Claim 1 (fake safety) 是最强贡献(★★★★★)，Claim 4 (Pi0.5+A1) 是 secondary proof-of-concept。论文价值不取决于 method 是否 SOTA，而在于揭示 metric contamination。\n\n**决策链关键节点：** D010 终止 runtime refinement → D012 定义 pass/fail gate → D014 锁定主会目标 → D015/D016 10K mid-eval positive → D018 gradient correction 机制分析\n\n**下一个\"我\"最容易错的事：**\n1. 把 SSH 监控失败等同于训练失败——已有 6 个实验被这样误标，SSH 恢复后第一件事是核实而非重跑\n2. LoRA baseline 结果出来前不要急于更新 Claim 4 措辞——SDF 增量归因完全取决于 LoRA-only CAR 是多少\n3. Pi0.5 \"shows the same pattern\" (abstract) 指的是安全 episode 中 displacement 也极低（56/56 near-zero），不是说 Pi0.5 有 action collapse——这个区分很重要，审稿人问起来要准确回答\n4. 接受率估算：当前 35-40% CoRL / 40-50% ICRA；加 spatial_bowl + 3-seed 可提升到 55-65%\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcc104e36353c45faf6f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code sweep lambda script",
+  "task_key": "worker_code_sweep_lambda_script_20260520T120751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sweep_lambda_script_20260520T120751_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "72699a4663c65da6b8d8e70f906ec3ba1506fed25e9ee8066953ed874ef92054"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。脚本 `/root/colliforce-vla/scripts/sweep_lambda.sh` 已创建并通过 `--help` 验证。\n\n功能：串行遍历 `--lambdas` 列表，每个值调用 `train_a3_hook.py` 并传入 `--lambda_refine`、`--exp_name a3_lambda{VALUE}_{scene}_s{seed}`，日志 tee 到 `outputs/{exp_name}/train.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sweep-lambda-script.md"
+}

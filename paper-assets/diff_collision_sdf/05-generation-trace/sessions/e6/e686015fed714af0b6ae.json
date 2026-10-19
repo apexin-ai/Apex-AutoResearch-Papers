@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e686015fed714af0b6ae",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "write scenario b draft",
+  "task_key": "worker_write_scenario_b_draft_20260527T174713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_scenario_b_draft_20260527T174713_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "725413879e7eae8c91e6d583ce645a7fc5842ce57180c121c36d8ee623adbf6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Both scenario branches are ready in the paper's git repo at `docs/paper/`:\n\n**Branch `scenario-b-draft`** (SDF fully redundant, p≥0.05):\n- 12 Version B modifications across `abstract.tex`, `claim3.tex`, `discussion.tex`\n- Core narrative: \"SDF supervision adds no measurable benefit across the full tested range\"\n- Estimated values: mean_car=57.17%, std_car=1.89, p=0.12\n- λ=0.1 limitation sentence deleted from discussion\n\n**Branch `scenario-c-draft`** (SDF modest but significant, p<0.05):\n- 12 Version A modifications across the same 3 files\n- Core narrative: \"modest but statistically significant increase, effect size small relative to +28pp LoRA gain\"\n- Estimated values: mean_car=58.17%, std_car=0.29, delta_pp=3.5, p=0.012\n\nBoth compiled successfully (15 pages, no errors). All placeholder lines marked with `% TODO: update with actual s2 numbers`. Master branch unchanged. Currently on master."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-scenario-b-draft.md"
+}

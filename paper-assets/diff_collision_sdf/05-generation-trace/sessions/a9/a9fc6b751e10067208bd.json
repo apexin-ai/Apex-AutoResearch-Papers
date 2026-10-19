@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9fc6b751e10067208bd",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh diagnose a1 sdf v3",
+  "task_key": "worker_ssh_diagnose_a1_sdf_v3_20260520T065156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_a1_sdf_v3_20260520T065156_result.json",
+    "occurrence": 1,
+    "bytes": 2101,
+    "sha256": "ae4d168b523062f027e512b382c3e33e87fd1f1178d218240e3e83e4d537b40a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不在当前 session，无需清除。\n\n---\n\n## 诊断结论\n\n**`a1_sdf_spatial_bowl_s0_v3` 因磁盘满崩溃。**\n\n| 项目 | 详情 |\n|------|------|\n| **退出原因** | `No space left on device (os error 28)` — 保存 step 6500 checkpoint 时磁盘写满 |\n| **最终 step** | 6499/30000 (22%) |\n| **最终 loss** | 0.2779, lr=2.31e-05 |\n| **运行时长** | ~6h19m |\n| **磁盘状态** | `/root/autodl-tmp` 350G **100% 已满**，仅剩 1.3M |\n| **最后成功 checkpoint** | step 6000 (`/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_sdf_spatial_bowl_seed0/6000/`) |\n| **失败 checkpoint** | `tmp_6500/`（不完整，应删除） |\n| **已保存 checkpoints** | 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000 (共12个) |\n\n**日志最后 20 行**（step 6489-6499 + traceback）：\n```\nTraining:  22%|██▏ | 6489/30000 [..., loss=0.2597, lr=2.31e-05, step=6489]\nTraining:  22%|██▏ | 6490/30000 [..., loss=0.2044, lr=2.31e-05, step=6490]\nTraining:  22%|██▏ | 6491/30000 [..., loss=0.2549, lr=2.31e-05, step=6491]\nTraining:  22%|██▏ | 6492/30000 [..., loss=0.2554, lr=2.31e-05, step=6492]\nTraining:  22%|██▏ | 6493/30000 [..., loss=0.2492, lr=2.31e-05, step=6493]\nTraining:  22%|██▏ | 6494/30000 [..., loss=0.2580, lr=2.31e-05, step=6494]\nTraining:  22%|██▏ | 6495/30000 [..., loss=0.2512, lr=2.31e-05, step=6495]\nTraining:  22%|██▏ | 6496/30000 [..., loss=0.2618, lr=2.31e-05, step=6496]\nTraining:  22%|██▏ | 6497/30000 [..., loss=0.2727, lr=2.31e-05, step=6497]\nTraining:  22%|██▏ | 6498/30000 [..., loss=0.2476, lr=2.31e-05, step=6498]\nTraining:  22%|██▏ | 6499/30000 [..., loss=0.2779, lr=2.31e-05, step=6499]\nTraceback: safetensors_rust.SafetensorError: I/O error: No space left on device (os error 28)\n  at save_checkpoint → safetensors.torch.save_model → serialize_file\n```\n\n**恢复建议**：需清理磁盘空间后从 step 6000 checkpoint 恢复训练。12 个 checkpoint 占用大量空间，可考虑只保留最近 2-3 个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-a1-sdf-v3.md"
+}

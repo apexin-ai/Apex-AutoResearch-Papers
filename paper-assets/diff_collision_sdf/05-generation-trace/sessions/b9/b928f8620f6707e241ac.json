@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b928f8620f6707e241ac",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose phase2 lambda0 extra seed v2",
+  "task_key": "worker_diagnose_phase2_lambda0_extra_seed_v2_20260527T141345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase2_lambda0_extra_seed_v2_20260527T141345_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "d7cc4392e856fc15f286289d81d083e5b482e16664784b180b6050ac15651bc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**Stage 1 状态：FAILED**\n- 训练在 step 1768/10000（18%）中断，`EXIT_CODE=1`\n- 日志无错误信息/traceback，进程被外部终止（非 CUDA OOM）\n- Checkpoint 目录仅有 `wandb_id.txt`，无模型权重保存\n- 无法 resume，需从头重训\n\n**已执行操作：**\n- Registry `notes` 已更新，记录失败原因\n- Registry `log_path` 已更新为 `/tmp/phase2_stage1_s0.log`\n- `status=DONE`, `conclusion=failed` 此前已设置\n- Cron 已不存在（已被之前的 hook 清除）\n\n**未启动 Stage 2**（Stage 1 未完成，无 10K checkpoint 可用）。\n\nGPU 现况：cuda:0/1/2 空闲，cuda:3 在跑 lora_baseline_spatial_bowl。如需重跑 Stage 1 请指示。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase2-lambda0-extra-seed-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6665065a8c9faaaead57",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code d006 lora code mods",
+  "task_key": "worker_code_d006_lora_code_mods_20260520T204944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d006_lora_code_mods_20260520T204944_result.json",
+    "occurrence": 1,
+    "bytes": 2261,
+    "sha256": "3b8a9410ec193d014cb45eb6c527d10df729618fb105167a16951243d70529f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n---\n\n## 产出汇报\n\n### 1. lora_utils.py 完整内容\n\n`/root/colliforce-vla/colliforce/lora_utils.py` — 包含：\n- `LoRALinear(nn.Module)` — 冻结 base weight，只训练 lora_A/lora_B\n- `inject_lora(module, lora_rank, lora_alpha, target_modules)` — 通用函数，遍历任意 nn.Module 替换匹配的 nn.Linear\n- `inject_lora_pi0(model, pali_rank, pali_alpha, expert_rank, expert_alpha)` — Pi0 专用便捷函数，分别对 PaliGemma 和 Action Expert 注入不同 rank\n\n### 2. train_baseline.py 修改 diff 摘要\n\n- 新增 `sys.path.insert` 父目录（for colliforce imports）\n- 新增 import: `TrainHooks`, `train_loop`, `inject_lora_pi0`\n- 新增 `BaselineLoRAHooks(TrainHooks)` 类：\n  - `on_model_created`: 注入 LoRA，冻结所有非 LoRA 参数\n  - `on_step_start`: 前 100 步每 10 步打印可训练参数统计\n- `build_config`: `gemma_2b_lora` → `gemma_2b`, `gemma_300m_lora` → `gemma_300m`, 移除 `freeze_filter`\n- `main()`: 创建 `BaselineLoRAHooks()` 并传给 `train_loop(config, hooks=hooks)`\n\n### 3. train_a1_sdf_aux.py 修改 diff 摘要\n\n- 新增 import: `from colliforce.lora_utils import inject_lora_pi0`\n- `on_model_created`: 冻结所有参数后，调用 `inject_lora_pi0` 注入 LoRA（Phase 1 保持冻结），然后解冻 SDF decoder + EE extractor\n- `on_step_start`: Phase 2 改为直接遍历 `self.lora_params` 解冻（不再用 name-based 搜索）；新增前 100 步参数验证打印\n- `build_config`: `gemma_2b_lora` → `gemma_2b`, `gemma_300m_lora` → `gemma_300m`, 移除 `freeze_filter`\n\n### 4. A3 实际使用的 LoRA 配置\n\n| 参数 | PaliGemma (Gemma 2B) | Action Expert (Gemma 300M) |\n|------|---------------------|---------------------------|\n| rank | 16 | 32 |\n| alpha | 16.0 | 32.0 |\n| target_modules | q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj | 同左 |\n\n### 5. 验证结果\n\n| 测试 | 结果 |\n|------|------|\n| `from colliforce.lora_utils import inject_lora` | OK |\n| `python scripts/train_baseline.py --help` | OK |\n| `python scripts/train_a1_sdf_aux.py --help` | OK |\n| inject_lora 功能测试（FakeModel） | PASSED — 2 层 × 4 模块 × 2 参数 = 16 LoRA params |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d006-lora-code-mods.md"
+}

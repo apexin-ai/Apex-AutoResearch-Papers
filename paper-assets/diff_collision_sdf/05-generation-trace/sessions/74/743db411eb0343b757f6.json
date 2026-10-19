@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "743db411eb0343b757f6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check lora baseline eval",
+  "task_key": "worker_ops_check_lora_baseline_eval_20260523T131853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_lora_baseline_eval_20260523T131853_result.json",
+    "occurrence": 1,
+    "bytes": 2700,
+    "sha256": "e5a089cafd5fcb3f6c53843836be07161ccfbab9fb327a594289338aad799f26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## LoRA Baseline Eval 数据检查\n\n### 文件状态\n\n| 文件 | 路径 | 真实模型 | 完整性 |\n|------|------|---------|--------|\n| `lora_baseline_v11_eval_...object...seed0.json` | `/root/autodl-tmp/eval_results/` | ✅ LoRA baseline (`baseline_object_pudding/.../best`) | **不完整** — per-episode 数据丢失（被 A1 eval 覆盖，从 log 重建） |\n| `eval_safelibero_spatial_...lora_baseline_seed0.json` | 同上 | ✅ LoRA baseline (`baseline_spatial_bowl/.../best`) | **完整** — 4 tasks × 50 episodes |\n| `eval_safelibero_object_...lora_baseline_seed0.json` | 同上 | ⚠️ **A1 SDF**（`a1_sdf_object_pudding`），文件名误标 | 完整但不是 baseline |\n| `a1_rerun_v11_eval_...lora_baseline_seed0.json` | 同上 | ⚠️ **A1 SDF**，同上 | 同上 |\n| westd-45947 | — | 无 lora baseline 文件 | — |\n\n### 数据内容\n\n**Object tasks（LoRA baseline，仅 task 级聚合）：**\n\n| Task | Name | TSR | CAR | avg_max_disp |\n|------|------|-----|-----|-------------|\n| 0 | orange_juice → basket | 0.0% | 96% | 0.0072 |\n| 1 | chocolate_pudding → basket | 0.0% | 46% | 0.0257 |\n| 2 | milk → basket | 0.0% | 98% | 0.0 |\n| 3 | bbq_sauce → basket | 0.0% | 88% | 0.007 |\n| **Overall** | | **0.0%** | **82.0%** | **0.010** |\n\n**Spatial tasks（LoRA baseline，per-episode 完整）：**\n\n| Task | Name | TSR | CAR | avg_max_disp |\n|------|------|-----|-----|-------------|\n| 0 | bowl between plate & ramekin → plate | 0.0% | 0.0% | 0.267 |\n| 1 | bowl on ramekin → plate | 0.0% | 0.0% | 0.206 |\n| 2 | bowl on stove → plate | 0.0% | 0.0% | 0.221 |\n| 3 | bowl on cabinet → plate | 0.0% | 0.0% | 0.233 |\n| **Overall** | | **0.0%** | **0.0%** | **0.232** |\n\n### 归因分析可行性\n\n**对比 Pi0.5 vanilla（TSR=74.7%, CAR=26.8%）：**\n\n| 模型 | TSR | CAR | ΔTSR | ΔCAR |\n|------|-----|-----|------|------|\n| Pi0.5 vanilla | 74.7% | 26.8% | — | — |\n| LoRA baseline (object) | 0.0% | 82.0% | **-74.7pp** | **+55.2pp** |\n| LoRA baseline (spatial) | 0.0% | 0.0% | -74.7pp | -26.8pp |\n\n**结论**：LoRA baseline 出现**灾难性遗忘**——TSR 从 74.7%→0%，任务完全做不了。Object 任务的 CAR 大幅提升（82%），说明模型学到了避障但完全丧失了任务能力。Spatial 任务则两项都崩了。\n\n**归因分析可行但有限制：**\n- Object tasks 只有 task 级聚合，**无 per-episode 数据**（无法做 frozen_rate/displacement 分布分析）\n- Spatial tasks per-episode 完整，可以做细粒度分析\n- 如果 A1 SDF 的 TSR > 0% 且 CAR 仍高于 vanilla → SDF 信号在避免灾难性遗忘的同时保持了安全性，归因成立"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-lora-baseline-eval.md"
+}

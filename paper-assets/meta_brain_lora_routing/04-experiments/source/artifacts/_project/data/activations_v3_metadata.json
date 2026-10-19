@@ -1,0 +1,22 @@
+{
+  "path": "/root/autodl-tmp/activations_v3/activations.pt",
+  "total_samples": 3000,
+  "class_balance": {"visual": 1000, "spatial": 1000, "physical": 1000},
+  "label_map": {"visual": 0, "spatial": 1, "physical": 2},
+  "activation_shape": [2048],
+  "dtype": "float16",
+  "file_size_mb": 12.6,
+  "collection_method": "policy.infer (OpenPIMetaBrainPolicy, matches eval pipeline)",
+  "hook_path": "paligemma_with_expert.paligemma.model.language_model.layers.6",
+  "pooling": "first-token",
+  "checkpoint": "/root/autodl-tmp/checkpoints/pi0_libero_openpi",
+  "data_source": "/root/autodl-tmp/libero_demos/libero_object_image (66984 frames, subsampled to 3000)",
+  "perturbations": {
+    "visual": "brightness shift [-40,40] + Gaussian noise sigma=[5,20] on images",
+    "spatial": "1-4 distractor patches composited on images",
+    "physical": "Gaussian noise sigma=0.04 on proprioception state"
+  },
+  "nonzero_rate": "2909/3000 (97%)",
+  "timestamp": "2026-05-17T06:25:05",
+  "script": "phase0/collect_activations_v3.py"
+}

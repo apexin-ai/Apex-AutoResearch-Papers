@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e54611f9445f1f6a9378",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check eval and ckpt paths",
+  "task_key": "worker_ops_check_eval_and_ckpt_paths_20260526T231136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_eval_and_ckpt_paths_20260526T231136_result.json",
+    "occurrence": 1,
+    "bytes": 1427,
+    "sha256": "9f40bc9eb6cdef04c037cc62177b0abd738f988d9e4de4e71eb6065bc783f9f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### eval_spatial_sdf_s0_l005_30k 进度\n\n进程 373135 存活，已运行 ~38 分钟。**190/200 episodes 完成**（4 个 task × 50 episodes）。\n\n已完成 task 结果：\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| 0: bowl between plate and ramekin | 66% (33/50) | 0% (0/50) |\n| 1: bowl on ramekin | 38% (19/50) | 16% (8/50) |\n| 2: bowl on stove | 72% (36/50) | 4% (2/50) |\n| 3: bowl on wooden cabinet | 进行中 40/50 | — |\n\nTask 3 最后一条 log 在 07:11 UTC（ep 40/50），预计 **~07:15 UTC 全部完成**（约几分钟内）。结果 JSON 尚未生成。\n\n---\n\n### λ=0.1 训练 checkpoint 路径\n\n**关键发现：λ=0.1 使用后缀 `_l1`**，不是 `_l01_high`。与 λ=0.01 的 `_l01` 命名一致但数值不同。\n\n| Seed | 服务器 | PID | Checkpoint 路径 | 最新 ckpt | 进度 |\n|------|--------|-----|-----------------|-----------|------|\n| s0 | westd-35807 | 271266 (alive) | `.../a1_sdf_pi05_object_pudding_seed0_l1/` | 22000 (06:49 UTC) | ~73% |\n| s1 | westd-35807 | 未提供 | `.../a1_sdf_pi05_object_pudding_seed1_l1/` | 20000 (04:55 UTC) | ~67% |\n| s2 | westd-45947 | 425058 (alive) | `.../a1_sdf_pi05_object_pudding_seed2_l1/` | 10000 (07:08 UTC) | ~33% |\n\n每 2000 步约耗时 2.5 小时。预估 30k 完成时间：\n- s0: ~May 27 17:00 UTC\n- s1: ~May 27 17:30 UTC（需确认进程是否仍在运行）\n- s2: ~May 28 08:00 UTC"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-and-ckpt-paths.md"
+}

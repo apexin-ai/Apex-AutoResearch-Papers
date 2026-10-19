@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "beff0db1db604bbd7a02",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code d012 eval metrics enhancement",
+  "task_key": "worker_code_d012_eval_metrics_enhancement_20260522T234502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d012_eval_metrics_enhancement_20260522T234502_result.json",
+    "occurrence": 1,
+    "bytes": 1360,
+    "sha256": "92b98adcac677418be3c4b04ca0d594cb1eb5e2e39885054c35eed9c9c77c9fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过，`--help` 显示新参数 `--baseline_frozen_rate` 可用。\n\n---\n\n### 完成总结\n\n**修改文件**: `/root/colliforce-vla/scripts/eval_pi05_safelibero.py` (358 → 431 行)，备份在 `.bak`\n\n**新增 CLI 参数**: `--baseline_frozen_rate` (float, default=None)\n\n**Per-episode 新增指标** (在 step loop 中计算):\n| 指标 | 实现 |\n|---|---|\n| `robot_total_displacement` | 每步累加 `‖ee_pos[t+1] - ee_pos[t]‖`，来源 `obs[\"robot0_eef_pos\"]` |\n| `min_ee_obstacle_distance` | 每步计算 EE 到所有 obstacle 的欧氏距离，取全 episode 最小值。obstacle 位置复用已有的 `get_obstacle_positions()` (MuJoCo sim 中的当前位置) |\n| `is_frozen` | `robot_total_displacement < 0.001` |\n\n**汇总新增指标** (eval 结束后):\n- `frozen_rate` = count(is_frozen) / total\n- `real_safe_candidates` = count(safe AND NOT frozen AND min_ee_obstacle_distance < 0.02)\n- `pass_fail` gate: CAR≥33%, TSR≥50%, frozen_rate≤baseline (如提供)\n\n**关于 `min_ee_obstacle_distance`**: 直接从 MuJoCo sim 获取 obstacle 当前位置，与 EE position 计算欧氏距离。复用了已有的 `get_obstacle_positions()` 调用（在 max_displacement 跟踪的同一循环中计算），无需额外 sim query。若 episode 中无 obstacle 被检测到，该值设为 -1.0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d012-eval-metrics-enhancement.md"
+}

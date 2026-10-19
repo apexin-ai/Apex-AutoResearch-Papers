@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7ed94286ddb229331a1",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "reviewer / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_7.md",
+    "occurrence": 1,
+    "bytes": 4268,
+    "sha256": "7ce7df9aa3b35f21115a3ba9564b5da98c57d9dae2866356cb033378203f6412"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-27T09:17:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 (C001)：westd-35807 cuda:0-3 + westd-45947 cuda:0-1，共 6 张。越界即 CRITICAL。\n- 所有 Pi0.5 模型 eval 必须带 `--pi05` flag + `--config_name pi05_libero` + `--model_type lora_baseline`。缺 `--pi05` 会加载 Pi0 架构导致假 frozen 数据（本 session 24K/26K 踩过坑，已发 CRITICAL 纠正）。\n- submit_training_job 预估 >20h 必须设 timeout_hours=48 (C003)，不能用默认 24h。\n- eval 结果验证必须查 JSON 输出文件，不能只看 cron 状态——cron 对 eval 有系统性误报（无 W&B/sentinel → 标 failed）。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-35807 (root) + westd-45947 (root)\n- 代码根目录：`/root/colliforce-vla`（两台服务器相同）\n- Checkpoint 路径：`/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/`\n- Eval 输出：`/root/autodl-tmp/eval_results/`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/`\n- 论文文件：`docs/paper/` 下 abstract.tex, claim3.tex, discussion.tex 等\n- WANDB_MODE=disabled（本项目不用 W&B）\n- 活跃进程（截至 handoff 时）：\n  - s0 30K eval: PID 722752, westd-35807 GPU0 (~18:00 UTC 出结果) ← **最关键**\n  - s1 训练: PID 274407, westd-35807 GPU2, ~29000/30000\n  - spatial_bowl: PID 341425, westd-35807 GPU3, ~18500/30000\n  - LoRA s2 resume: PID 460433, westd-45947 GPU0, ~26000/30000\n  - λ=0.1 s2: PID 425058, westd-45947 GPU1, ~17000/30000\n\n### 3. 📊 当前状态\n**刚完成**：λ=0.1 s0 30K 训练完成，30K eval 已启动（PID 722752, GPU0, 带 `--pi05`），约 40min 出结果。\n\n**本 session 已发 8 份报告**：\n1. [warning] LoRA s2 timeout + GPU0 idle\n2. [info] s1 22K confirms Scenario B\n3. [info] 22K outlier paper explanation\n4. [warning] Fig1 v2 Pi0.5 28.5%→26.8% 数字错误\n5. [warning→retracted] 24K frozen=29.5%（eval bug）\n6. [critical] --pi05 flag 纠正 + 24K 作废\n7. [warning] Claim3 baseline 26.8% vs Abstract 28.5% 不一致\n8. [warning] Discussion CAR_f→dfCAR 术语不一致（已修复）\n\n**Registry RUNNING**：5 个实验（见上方活跃进程）。\n\n**等待中**：s0 30K eval 结果 → 这是 Scenario B 的定论数据点。\n\n### 4. 📋 待办（条件触发式）\n- **s0 30K eval 完成** → 验证 CAR 是否在 null band (54.5±2.15)；若是 → Scenario B 确认，通知 Director 可部署 paper patch 并填 placeholder\n- **s1 训练完成 (~17:35 UTC)** → 确认 30K checkpoint 存在 → 监控 eval 启动是否带 `--pi05`\n- **s1 30K eval 出结果** → 计算 s0+s1 双 seed 30K 均值，更新 claim3.tex Table λ=0.1 行\n- **LoRA s2 resume 完成 (~21:00 UTC)** → 验证 checkpoint → 此 seed 补全 null distribution 为 3-seed\n- **λ=0.1 s2 完成 (~08:40 UTC 5/28)** → 完成三 seed 30K；计算 final mean±std → 替换所有 placeholder\n- **spatial_bowl 完成 (~06:00 UTC 5/28)** → eval → 验证跨场景泛化\n- **Abstract 28.5% vs Table 26.8% 不一致** → 仍未解决，定稿前必须统一（已报两次 warning）\n\n### 5. 🎯 战略上下文\n- **核心结论 = Scenario B**：SDF 在全测试范围 λ∈[0.005, 0.1] 冗余，CAR 增益全部来自 collision-free demonstrations 的 imitation。Step-wise 曲线 7 个点（16K-28K）全在 null band 内，平线无上升趋势。\n- **Null distribution**：pooled from LoRA s0/s1 + SDF λ=0.005 s0/s1/s2 = 5 values, mean=54.5%, σ=2.15%\n- **22K 异常值 (60.5%, z=2.79)**：已通过三重独立验证确认为噪声（s1=56.5, s0 24K=52.5 回落, s0 26K=53.5 回落）\n- **Claim 4 已 falsified**（见 memory）：LoRA-only CAR≈SDF CAR，SDF loss 添加零碰撞避免。\n- **DDL**: 5/28 12:00 UTC。λ=0.1 s2 ETA 08:40 UTC 5/28，距 DDL 仅 3.3h，非常紧。\n- **最容易判断错的事**：\n  1. 不要因为单个数据点偏高就质疑 Scenario B——22K=60.5% 已被确认为噪声\n  2. Eval 的 cron \"failed\" 通知是假阳性——必须独立查 JSON 输出\n  3. 论文中 26.8%（3-seed baseline CAR）和 28.5%（abstract dfCAR）的不一致仍未解决\n  4. Discussion 已统一用 dfCAR（不是 CAR_f），但要注意后续章节修改保持一致\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c14994061ad44aca9a56",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh launch a1 lora spa and check eval",
+  "task_key": "worker_ssh_launch_a1_lora_spa_and_check_eval_20260521T064930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_a1_lora_spa_and_check_eval_20260521T064930_result.json",
+    "occurrence": 1,
+    "bytes": 1448,
+    "sha256": "6e3ff3af03b0698d8b9fcf14909b5e866a964a3d71d3008bb1e3e0eca0323c8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常推进，step 2/30000，cuda:0 占用 16.9GB。\n\n---\n\n## 汇报\n\n### 1. A1 LoRA spatial_bowl 训练状态\n\n| 项目 | 值 |\n|------|-----|\n| PID | **299910** |\n| GPU | cuda:0，16873 MiB / 97887 MiB |\n| tmux | `a1_lora_spa` |\n| 进度 | 2/30000，~7.9s/it |\n| 日志 | `/root/autodl-tmp/colliforce-outputs/a1_lora_spa_s0/train.log` |\n| exp_name | `a1_lora_spatial_bowl_seed0` |\n\n### 2. Eval 是否支持 CPU-only\n\n**不建议 CPU-only 运行。** 证据：\n\n- `eval_safelibero.py:712` — 内部设 `CUDA_VISIBLE_DEVICES=str(args.gpu)`\n- `eval_safelibero.py:736` — `device = \"cuda:0\" if torch.cuda.is_available() else \"cpu\"`，技术上有 CPU fallback\n- `eval_safelibero.py:713` — `MUJOCO_GL=egl`，LIBERO 仿真依赖 EGL GPU 渲染\n- 模型推理（pi0 ~7GB）在 CPU 上会极慢\n\n**GPU 共享可行**：`--gpu N` 指定设备。cuda:0 当前占 16.9GB / 98GB，剩余 ~80GB，足够同时跑 eval（模型 ~7GB + 仿真开销）。但建议等训练完或用其他空闲卡。\n\n### 3. baseline_spatial_bowl checkpoint\n\n路径：`/root/autodl-tmp/checkpoints/baseline_spatial_bowl/baseline_spatial_bowl_seed0/best/`\n\n| 文件 | 大小 |\n|------|------|\n| model.safetensors | 7.0 GB |\n| optimizer.pt | 12.5 GB |\n| metadata.pt | 3.2 KB |\n| best_loss.txt | 0.00316 @ step 30000 |\n\ncheckpoint 完整，可用于 eval。另有 `29999/` 和 `30000/` 两个中间 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-a1-lora-spa-and-check-eval.md"
+}

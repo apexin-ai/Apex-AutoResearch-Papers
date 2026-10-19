@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56486e97919f7bcd9a6e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops lora baseline eval 45947",
+  "task_key": "worker_ops_lora_baseline_eval_45947_20260526T013633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_lora_baseline_eval_45947_20260526T013633_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "ce1b5efcb18405cc4d6896b9e70d0b3f07468f3907dfc854fa037954859ce38b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Episode 已经在跑了！Seed 0 已经完成了 Episode 10/50。之前 tail -5 没看到是因为输出缓冲。两个 eval 都在正常运行。\n\n## 最终确认\n\n| 项目 | Seed 0 | Seed 1 |\n|------|--------|--------|\n| PID | 30237 | 30636 |\n| GPU | 0 (8399 MiB) | 1 (9018 MiB) |\n| 状态 | 正在跑 episodes（已到 10/50） | 正在跑（同样进入 episode 阶段） |\n| 报错 | 无 | 无 |\n\n两个 eval 正常运行中。中间修复了：\n1. 缺 `peft` 包\n2. libero 包需要从 LIBERO/ 做 editable install 才能被 safelibero benchmark 覆盖"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-lora-baseline-eval-45947.md"
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "v2_lora_visual_r16",
+  "project": "meta_brain_lora_routing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:55:37.393Z",
+    "updated_at": "2026-05-16T15:33:05.647Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python phase1/train_lora_expert.py --checkpoint /root/autodl-tmp/checkpoints/pi0_libero --perturbation_type visual --rank 16 --run_prefix v2 --batch_size 16 --num_steps 10000 --output_dir /root/autodl-tmp/checkpoints/v2_lora_visual_r16 --resume_from /root/autodl-tmp/checkpoints/v2_lora_visual_r16/step_6000 --no_wandb",
+      "server": "westd-34142",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "835846",
+      "resumed_from_step": 6000,
+      "data_path": "/root/autodl-tmp/libero_demos/libero_object_image/",
+      "data_count": 66984,
+      "model_name": "pi0_libero + LoRA-visual r16 v2",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T15:32:04.377Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T15:32:07.838962+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T15:33:05.703646+00:00",
+  "trigger": "update_registry"
+}

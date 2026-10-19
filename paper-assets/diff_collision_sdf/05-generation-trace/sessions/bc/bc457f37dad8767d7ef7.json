@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc457f37dad8767d7ef7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260526T163729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260526T163729_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "62766e3d2ee9ef9651f023252b1d6af382e9caee3d766f746213f12cc8504584"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`introduction.tex` written. The section follows the specified structure: 4 paragraphs of Hook+Problem (~500 words), 3 Finding paragraphs (~420 words), and a Contributions itemize (~180 words), plus a Figure 1 placeholder. All numbers are consistent with Sections 3-6 (CAR=91.5%, fake_safe=99.6%, Pi0.5 TSR=74.7%\\pm1.5%, oracle best=76.9% vs baseline 82-83%, LoRA-only CAR=54.5%)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction-copy-2.md"
+}

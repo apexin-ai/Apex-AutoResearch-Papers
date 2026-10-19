@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7fc82e41fdce63c1642",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops spatial bowl readiness check",
+  "task_key": "worker_ops_spatial_bowl_readiness_check_20260525T045522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_spatial_bowl_readiness_check_20260525T045522_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "fb4bd3967845c2925e4dd5ec308469f112323a2b42ff0156de7a7f513a6804f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nPart 1 - spatial_bowl:\n1. 训练代码: ready — 支持 --scene spatial_bowl（line 53-57 有 SCENE_CONFIG，line 74 有 choices 校验）\n2. 数据: 存在 — /root/autodl-tmp/colliforce_data/safelibero_spatial/（含 data/images/meta）\n3. SDF ground truth: 存在 — /root/colliforce-vla/data/sdf_gt_spatial_bowl.npz\n4. 磁盘: 211G 可用（350G 盘用了 140G），足够\n\nPart 2 - s0 checkpoint:\n- s0_l005: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/\n  - 子目录: 30000/ （仅此一个，无 best/）\n  - 大小: 7.2G（完整 checkpoint）\n- s0_l01:  /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/\n  - 子目录: 30000/ （仅此一个，无 best/）\n  - 大小: 7.2G（完整 checkpoint）\n```\n\nspatial_bowl 训练所有前置条件就绪。两个 s0 checkpoint 均只有 `30000/` 步，无 `best/` 目录，各 7.2G，是完整 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-spatial-bowl-readiness-check.md"
+}

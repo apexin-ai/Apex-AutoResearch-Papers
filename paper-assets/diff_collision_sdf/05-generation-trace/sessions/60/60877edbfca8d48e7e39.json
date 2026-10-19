@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60877edbfca8d48e7e39",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose train pi05 a1 obj s1 l01",
+  "task_key": "worker_diagnose_train_pi05_a1_obj_s1_l01_20260524T133218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_train_pi05_a1_obj_s1_l01_20260524T133218_result.json",
+    "occurrence": 1,
+    "bytes": 356,
+    "sha256": "3eb35ab72a1c3b6793f6916011af144ed8e11f841292eff890b42c3c9df8c736"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果**：westd-35807 SSH 认证失败，无法检查训练日志和 checkpoint。Registry 已记录。\n\n注意到 registry 中该实验 conclusion 已经是 `failed`（在 2026-05-24T13:30 被标记）。需要你去 SeetaCloud 控制台确认 westd-35807 的实例状态和 SSH 端口，更新 `~/.ssh/config` 后才能继续诊断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-train-pi05-a1-obj-s1-l01.md"
+}

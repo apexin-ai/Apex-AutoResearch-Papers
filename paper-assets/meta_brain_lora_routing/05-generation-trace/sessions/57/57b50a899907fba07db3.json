@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57b50a899907fba07db3",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "code augment spatial v2",
+  "task_key": "worker_code_augment_spatial_v2_20260516T024435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_augment_spatial_v2_20260516T024435_result.json",
+    "occurrence": 1,
+    "bytes": 1712,
+    "sha256": "7aef55dd83c70c1632bbd4b92cc7ff0b782a2a5a32e123c7d66657c414c87b45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done.\n\n**Approach chosen: Plan B (image-level distractor compositing)**\n\n**Why not Plan A:** LIBERO env API works (verified `OffScreenRenderEnv` loads `_add_N` BDDLs and renders 128×128 agentview), but full re-render needs (a) GPU rendering while cuda:0–3 are running training, (b) per-frame init_state + action replay (~2 s reset + ~50 ms/step), and (c) restructuring the LeRobot parquet pipeline. Online per-batch is infeasible; offline preprocess collides with the GPU constraint.\n\n**What changed (server `/root/meta_brain_lora_routing/phase1/`):**\n- `augment_spatial.py` (new, 151 lines) — `SpatialAugmentation` pastes 1–N synthetic distractor patches per image (random ellipse/rect masks, soft alpha, per-color shading, lower-frame bias, center-keepout). Operates on `(B,C,H,W)` or `(C,H,W)` in `[-1,1]`.\n- `data_loader.py` — added `from phase1.augment_spatial import SpatialAugmentation`; replaced `SpatialAugmentationPlaceholder` class with a back-compat alias; `build_perturbation_augmenter(\"spatial\")` now routes spatial as `image_aug` (it modifies images, not state); `apply_perturbation` universal branch routes `kind in (\"visual\",\"spatial\")` to the images dict; module docstring + dispatch comments updated. Pre-edit copy kept at `data_loader.py.bak_pre_spatial`.\n\n**Verification:**\n- Spatial bundle: `image_aug=SpatialAugmentation, state_aug=None` ✓\n- `apply_perturbation` on Observation: images change, state untouched ✓\n- Universal end-to-end (15 iters, mixed picks) no crash ✓\n- All outputs in `[-1,1]` ✓\n- `phase1/spatial_augmentation_preview.png` (224×448) saved for visual inspection\n- GPU 0–3 still 8.2 GB each (training untouched) ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-augment-spatial-v2.md"
+}

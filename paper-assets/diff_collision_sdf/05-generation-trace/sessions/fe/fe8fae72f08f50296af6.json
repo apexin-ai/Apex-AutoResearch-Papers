@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe8fae72f08f50296af6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops mid eval progress poll",
+  "task_key": "worker_ops_mid_eval_progress_poll_20260523T122307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mid_eval_progress_poll_20260523T122307_result.json",
+    "occurrence": 1,
+    "bytes": 1883,
+    "sha256": "2bcc98b88ff1a498f5c4cc6c4b7f8313635b6710a903eec535f447c3434f5c01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Mid-Eval Progress Update (~1h35m in)\n\n### 进度\n- **s0_l005**: 46/200 episodes (Task 0: 46/50, Tasks 1-3: 未开始)\n- **s0_l01**: 46/200 episodes (Task 0: 46/50, Tasks 1-3: 未开始)\n- 两个 eval 进程均存活\n- 速度: ~2.07 min/episode，预计还需 ~5.3h 完成全部 200 episodes (ETA ~01:45 UTC May 24)\n\n### s0_l005 Per-Task Results (PARTIAL - Task 0 only)\n| Task | Name | Episodes | TSR | CAR | Baseline TSR | Baseline CAR | ΔCAR |\n|------|------|----------|-----|-----|-------------|-------------|------|\n| 0 | orange_juice | 46/50 | **19.6%** (9/46) | **58.7%** (27/46) | 70.7% | 10.0% | **+48.7pp** |\n\n### s0_l01 Per-Task Results (PARTIAL - Task 0 only)\n| Task | Name | Episodes | TSR | CAR | Baseline TSR | Baseline CAR | ΔCAR |\n|------|------|----------|-----|-----|-------------|-------------|------|\n| 0 | orange_juice | 46/50 | **28.3%** (13/46) | **54.3%** (25/46) | 70.7% | 10.0% | **+44.3pp** |\n\n### 整体 Running Average (Task 0 only)\n| 指标 | s0_l005 | s0_l01 | baseline |\n|------|---------|--------|----------|\n| TSR | 19.6% | 28.3% | 74.7% |\n| CAR | 58.7% | 54.3% | 26.8% |\n| frozen | 0% | 0% | — |\n\n### 关键观察\n\n1. **CAR 大幅提升**: 两个模型在 orange_juice 上的 CAR 都远超 baseline（10.0% → 54-59%），collision avoidance 效果显著\n2. **TSR 大幅下降**: TSR 从 baseline 70.7% 降到 19.6-28.3%，模型过度保守——避碰了但也不完成任务了\n3. **s0_l01 略优于 s0_l005**: TSR 28.3% vs 19.6%，CAR 接近（54.3% vs 58.7%）。l01 在任务完成率上更好，碰撞率代价不大\n4. **无 frozen episodes**: 所有 ee_disp > 0.5，模型没有出现静止不动的情况\n5. **碰撞模式**: 成功的 episode 大多带碰撞（s0_l005: 9 次成功中 8 次有碰撞；s0_l01: 13 次成功中 11 次有碰撞），说明\"安全完成\"的能力很弱"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mid-eval-progress-poll.md"
+}

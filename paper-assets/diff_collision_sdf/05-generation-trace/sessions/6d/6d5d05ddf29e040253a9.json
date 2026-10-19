@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "6d5d05ddf29e040253a9",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops verify baseline norm stats",
+  "task_key": "worker_ops_verify_baseline_norm_stats_20260522T111400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_baseline_norm_stats_20260522T111400.log",
+    "occurrence": 1,
+    "bytes": 991489,
+    "sha256": "b7ab9c7919b8aa8477dfe35a3f8eee9a9d99fc678785a7b1750a1018245860e5"
+  },
+  "statistics": {
+    "messages": 460,
+    "user_turns": 1,
+    "tool_calls": 170,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 112,
+      "tool_call": 170,
+      "tool_result": 170,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 449,
+      "chunks": [
+        {
+          "path": "6d5d05ddf29e040253a9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6d5d05ddf29e040253a9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6d5d05ddf29e040253a9-part-0003.json",
+          "message_count": 89
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "6d5d05ddf29e040253a9-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-verify-baseline-norm-stats.md"
+}

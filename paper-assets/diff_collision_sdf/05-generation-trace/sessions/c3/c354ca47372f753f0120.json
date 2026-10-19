@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c354ca47372f753f0120",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops fix eval cuda23",
+  "task_key": "worker_ops_fix_eval_cuda23_20260525T113927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eval_cuda23_20260525T113927.log",
+    "occurrence": 1,
+    "bytes": 766491,
+    "sha256": "a8697e883a90e1f9730db847ba1aa9b38967d6f5ec1acbef270321a6f2534daf"
+  },
+  "statistics": {
+    "messages": 330,
+    "user_turns": 0,
+    "tool_calls": 118,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 89,
+      "tool_call": 118,
+      "tool_result": 118,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 330,
+      "chunks": [
+        {
+          "path": "c354ca47372f753f0120-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c354ca47372f753f0120-part-0002.json",
+          "message_count": 150
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fix-eval-cuda23.md"
+}

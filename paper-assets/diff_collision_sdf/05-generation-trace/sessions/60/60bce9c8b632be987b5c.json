@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "60bce9c8b632be987b5c",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops check train westd45947",
+  "task_key": "worker_ops_check_train_westd45947_20260523T034225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_train_westd45947_20260523T034225.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/ops-check-train-westd45947.md"
+}

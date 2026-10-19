@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17ec7ce742a044a12489",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "analysis few shot immediate",
+  "task_key": "worker_analysis_few-shot-immediate_20260515T153252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_few-shot-immediate_20260515T153252_result.json",
+    "occurrence": 1,
+    "bytes": 1568,
+    "sha256": "67eef5984682836cad9b6bde518a7dfbd6a7d38ca821deccd494dde713c22d57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n## 实验结果\n\n### 实验 A：Visual 子类区分（camera vs light vs background）\n\n| K | macro-F1 | Accuracy | n |\n|---|----------|----------|---|\n| 1 | **0.898** ± 0.064 | 0.899 | 89 |\n| 3 | 0.834 ± 0.091 | 0.853 | 89 |\n| 5 | 0.900 ± 0.072 | 0.900 | 89 |\n| 10 | 0.869 ± 0.083 | 0.878 | 89 |\n| all | **0.920** ± 0.027 | 0.922 | 89 |\n\n### 实验 C：K=1 单层分析（top 5）\n\n| Layer | K=1 macro-F1 |\n|-------|-------------|\n| **paligemma_layer_6** | **1.0000** ± 0.000 |\n| paligemma_layer_4 | 0.9888 ± 0.022 |\n| paligemma_layer_8 | 0.9888 ± 0.022 |\n| paligemma_layer_14 | 0.9888 ± 0.022 |\n| paligemma_layer_12 | 0.9776 ± 0.027 |\n| ... | |\n| expert_layer_14 (最好的 expert) | 0.5740 ± 0.095 |\n| expert_layer_6 (最差) | 0.4268 ± 0.096 |\n\n### ROUTING VIABILITY VERDICT: **VIABLE**\n\n关键发现：\n1. **K=1 就达到 F1=0.898**，远超 70% 阈值 → 单次前向传播即可路由\n2. **paligemma_layer_6 单层 K=1 就达到 F1=1.0**（完美分类），意味着仅用 1 层 2048 维特征即可做路由，无需全部 12 层\n3. **PaLIGemma vs Expert 分支差距巨大**：所有 PaLIGemma 层 >0.92，所有 Expert 层 <0.58 → Visual 子类信号完全在视觉编码器中，action expert 不编码视觉扰动差异\n4. K=3 比 K=1 略低可能是 averaging noise 导致的波动（样本量小，5-fold CV 方差较大）\n5. 实验 B（Visual/Spatial/Physical 3-class）无法运行 —— objects_layout 和 robot_initial_states 的 per_step 数据为空"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-few-shot-immediate.md"
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "be6764edc05ec7a9a6cc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose baseline spatial bowl s0 v2 baseline object pudding s0 v2",
+  "task_key": "worker_diagnose_baseline_spatial_bowl_s0_v2_baseline_object_pudding_s0_v2_20260520T144744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_baseline_spatial_bowl_s0_v2_baseline_object_pudding_s0_v2_20260520T144744_result.json",
+    "occurrence": 1,
+    "bytes": 2256,
+    "sha256": "ef4a2415fc89e952d9f193eb27a281c1a5737aa6d4e8fb23a54a6b39fec74d37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个实验都没有死亡，正在正常训练。**\n\n当前状态：\n\n| 实验 | PID | GPU | 当前 step | 速度 | 状态 |\n|------|-----|-----|-----------|------|------|\n| baseline_spatial_bowl_s0_v2 | 222903 | cuda:0, 100%, 35.7GB | 14160 | ~3.5s/it | **运行中** |\n| baseline_object_pudding_s0_v2 | 222982 | cuda:2, 100%, 35.7GB | 16161 | ~3.5s/it | **运行中** |\n\n- 磁盘 `/root/autodl-tmp`: 35% 使用 (121G/350G)，充足\n- 日志无任何 Traceback / Error / OOM\n- 两个进程都从正确的 checkpoint resume 了（spatial_bowl 从 14000, object_pudding 从 16000），已各自训练约 160 步\n\n```json\n{\n  \"baseline_spatial_bowl_s0_v2\": {\n    \"root_cause\": \"进程未死亡，PID 222903 正在 GPU 0 上正常训练，当前 step=14160\",\n    \"error_type\": \"none\",\n    \"last_good_checkpoint_step\": 14000,\n    \"fix_steps\": [\"无需修复，正在运行\"],\n    \"can_auto_fix\": true\n  },\n  \"baseline_object_pudding_s0_v2\": {\n    \"root_cause\": \"进程未死亡，PID 222982 正在 GPU 2 上正常训练，当前 step=16161\",\n    \"error_type\": \"none\",\n    \"last_good_checkpoint_step\": 16000,\n    \"fix_steps\": [\"无需修复，正在运行\"],\n    \"can_auto_fix\": true\n  },\n  \"common_cause\": \"两个实验均正常运行，不存在共同故障。可能之前查看时进程刚启动尚未出现在监控中，或查看了错误的 PID/时间点。\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "baseline_spatial_bowl_s0_v2": {
+                "root_cause": "进程未死亡，PID 222903 正在 GPU 0 上正常训练，当前 step=14160",
+                "error_type": "none",
+                "last_good_checkpoint_step": 14000,
+                "fix_steps": [
+                  "无需修复，正在运行"
+                ],
+                "can_auto_fix": true
+              },
+              "baseline_object_pudding_s0_v2": {
+                "root_cause": "进程未死亡，PID 222982 正在 GPU 2 上正常训练，当前 step=16161",
+                "error_type": "none",
+                "last_good_checkpoint_step": 16000,
+                "fix_steps": [
+                  "无需修复，正在运行"
+                ],
+                "can_auto_fix": true
+              },
+              "common_cause": "两个实验均正常运行，不存在共同故障。可能之前查看时进程刚启动尚未出现在监控中，或查看了错误的 PID/时间点。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-baseline-spatial-bowl-s0-v2-baseline-object-pudding-s0-v2.md"
+}

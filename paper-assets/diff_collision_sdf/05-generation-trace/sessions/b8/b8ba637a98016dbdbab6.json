@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8ba637a98016dbdbab6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code eval lambda01 prep",
+  "task_key": "worker_code_eval_lambda01_prep_20260526T160258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_lambda01_prep_20260526T160258_result.json",
+    "occurrence": 1,
+    "bytes": 1701,
+    "sha256": "2053fbff250d068c65d33b807c44483082862314413f560d92aabb325f7c4da8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。8 轮 SSH 已用完。汇总：\n\n### 验证结果\n\n| 检查项 | 状态 |\n|--------|------|\n| 180° 旋转修复 (`[::-1, ::-1]`) | ✅ 两台服务器 L841/843 |\n| 256×256 分辨率 | ✅ L903-904 |\n| `--seed 7` 支持 | ✅ L531, default=0 |\n| `max_ee_displacement` per episode | ✅ L1068 |\n| `total_ee_path_length` per episode | ✅ L1071 |\n| `collided` per episode | ✅ L1064 |\n| per-task TSR/CAR 分组 | ✅ `results` 列表每个元素为一个 task 的汇总 |\n| `--model_type a1` | ✅ 确认用 a1 |\n| `--gpu` 参数 | ✅ L532 |\n| `--pi05` flag | ✅ L571 |\n\n### Checkpoint 路径（已确认存在 /30000）\n\n| Seed | 服务器 | 路径 |\n|------|--------|------|\n| s0 | westd-35807 | `.../a1_sdf_pi05_object_pudding_seed0_l01/30000` |\n| s1 | westd-35807 | `.../a1_sdf_pi05_object_pudding_seed1_l01/30000` |\n| s2 | westd-45947 | `.../a1_sdf_pi05_object_pudding_seed2_l01/30000` |\n\n注意：路径是 `_l01` 而非任务中假设的 `_l01_high`。\n\n### 已创建脚本\n\n| 脚本 | 服务器 | 路径 |\n|------|--------|------|\n| s0+s1 eval | westd-35807 | `/root/colliforce-vla/scripts/eval_lambda01_all_seeds.sh` |\n| s2 eval | westd-45947 | `/root/colliforce-vla/scripts/eval_lambda01_s2.sh` |\n| 约束检查 | 两台 | `/root/colliforce-vla/scripts/check_eval_constraints.py` |\n\n### 运行方式\n\n训练完成后（预计 5/27 17:05-17:50 UTC）：\n```bash\n# westd-35807 (conda activate libero)\nbash scripts/eval_lambda01_all_seeds.sh <空闲GPU>\n\n# westd-45947 (conda activate base)\nbash scripts/eval_lambda01_s2.sh <空闲GPU>\n\n# 结果检查\npython scripts/check_eval_constraints.py <eval_result.json>\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-lambda01-prep.md"
+}

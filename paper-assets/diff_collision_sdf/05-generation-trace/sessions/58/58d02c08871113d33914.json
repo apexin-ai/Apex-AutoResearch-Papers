@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58d02c08871113d33914",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose eval pi05 baseline reeval disp",
+  "task_key": "worker_diagnose_eval_pi05_baseline_reeval_disp_20260526T070553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_pi05_baseline_reeval_disp_20260526T070553_result.json",
+    "occurrence": 1,
+    "bytes": 1857,
+    "sha256": "49147ab460cd76a341cddf4d72c8ee0e95a4ee6389ba0356168c93c3b25df89b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. 失败根因：被新实验抢占 GPU 导致 SIGTERM\n\n**不是 OOM，不是系统超时。** 证据：\n\n- EXIT_CODE=143 = SIGTERM（signal 15），OOM killer 用的是 SIGKILL（signal 9, exit code 137）\n- GPU 1 显存仅用 ~8.8GB / 97.9GB，无内存压力\n- 日志无任何 error/exception，干净地打印 `Terminated`\n\n**时间线重建：**\n| 时间 | 事件 |\n|------|------|\n| 12:44 | eval_pi05_baseline_reeval_disp 启动，GPU 1 |\n| 12:45–14:44 | 完成 Task 0/1/2（各200 episodes，~40min/task） |\n| 14:44–14:50 | Task 3 运行到 Episode 30/200 |\n| ~14:50 | 收到 SIGTERM，进程被杀 |\n| 15:02 | 新的 sanity check 实验启动在 GPU 1（`/tmp/pi05_full_eval.log` 中可见） |\n| 15:02 | 产出 `sanity_check_pi05_base_rotation_fix.json` |\n\n**结论：实验被杀是为了给 sanity check 让出 GPU 1。** 可能是手动 kill 或调度系统所为。\n\n### 2. 部分结果可挽救\n\n日志中有 3 个 task 的完整结果（但无 JSON 文件产出，脚本只在全部完成后才写文件）：\n\n| Task | 内容 | TSR | CAR | Smoothness | Max Disp |\n|------|------|-----|-----|------------|----------|\n| 0 | orange juice → basket | 0% | 70% | 0.001372 | 0.0131m |\n| 1 | chocolate pudding → basket | 0% | 100% | 0.002167 | 0.0000m |\n| 2 | milk → basket | 0% | 100% | 0.001369 | 0.0000m |\n| 3 | bbq sauce → basket | 仅 30/200 ep | — | — | — |\n| 4 | 未启动 | — | — | — | — |\n\n### 3. 重跑建议\n\n- **用 tmux 启动**，避免被调度系统或超时机制打断\n- GPU 1 当前有进程（PID 208628, 8.8GB），需等其结束或确认可共存\n- 如果脚本支持 `--start_task` 参数，可从 Task 3 开始跑，省掉已完成的 ~2h\n- 如果不支持断点续跑，完整重跑预估需 ~3.5h（5 tasks × ~40min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-pi05-baseline-reeval-disp.md"
+}

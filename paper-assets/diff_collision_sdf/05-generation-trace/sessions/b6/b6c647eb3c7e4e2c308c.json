@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6c647eb3c7e4e2c308c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval status check westd35807",
+  "task_key": "worker_ops_eval_status_check_westd35807_20260525T071936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_status_check_westd35807_20260525T071936_result.json",
+    "occurrence": 1,
+    "bytes": 1279,
+    "sha256": "1323aa6d14ec6162914bf57deb0495ea67ff6711fa96371537593e990e929fec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**全部 4 个 eval 正常运行中**，没有挂起或失败。GPU 利用率 0% 是 nvidia-smi 采样瞬间的假象，进程持续输出日志。\n\n### 当前进度\n\n| Eval ID | GPU | 进度 | TSR (interim) | CAR (interim) | Collision eps | ETA (服务器时间) |\n|---------|-----|------|---------------|---------------|---------------|-----------------|\n| s1_l005 | cuda:0 | **128/200** | 32.0% (41/128) | 54.7% (70/128) | 58 | ~16:25 |\n| s1_l01 | cuda:1 | **120/200** | 22.5% (27/120) | 54.2% (65/120) | 55 | ~16:35 |\n| s2_l005 | cuda:2 | **119/200** | 26.1% (31/119) | 57.1% (68/119) | 51 | ~16:37 |\n| s2_l01 | cuda:3 | **118/200** | 20.3% (24/118) | 53.4% (63/118) | 55 | ~16:39 |\n\n### 关键观察\n\n- 平均 ~0.9 min/episode，全部预计 **16:40 前完成**（服务器时间，当前 15:20）\n- 4 个 tmux session 均健康：`eval_s1_l005`, `eval_s1_l01`, `eval_s2_l005`, `eval_s2_l01`\n- serve_policy 4 个进程（PID 12031/12034/12037/12040）已运行 ~1h55min\n- **TSR 整体偏低**（20-32%），大量 episode 在 300 steps 超时（FAIL+safe）\n- **碰撞率高**（~45%），moka_pot 和 wine_bottle 是最频繁的碰撞障碍物\n- s1_l005（seed1 + λ=0.05）表现最好，s2_l01（seed2 + λ=0.1）最差"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-status-check-westd35807.md"
+}

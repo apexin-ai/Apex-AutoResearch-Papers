@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88857586bbdf88e1d5cc",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "agent / loop_2_1779740945.md",
+  "task_key": "loop_2_1779740945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779740945.md",
+    "occurrence": 1,
+    "bytes": 3470,
+    "sha256": "069224ccf75d1f6228d9126ac317d43e321355532e57b7066b05c1c64dc48f0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-25T20:29:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-35807 cuda:0/1/2/3, westd-45947 cuda:0/1（共 6 张）\n- westd-45947 用 conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要创建 venv\n- westd-35807 用 conda libero 环境\n- 训练脚本内部覆盖 CUDA_VISIBLE_DEVICES，必须用 `--gpu N`（N 从 0 开始），不要手动设 CUDA_VISIBLE_DEVICES（M013）\n- WANDB_MODE=offline 是当前默认——cron 只能靠 SSH+进程存活判断状态，W&B 指标不可用\n- checkpoint 路径必须包含所有超参变体维度（lambda、seed 等），否则并行训练互相覆盖（M032）\n\n### 2. 🖥️ 基础设施快照\n- **westd-45947**（2×RTX PRO 6000 Blackwell 98GB）\n  - ⚠️ SSH 不可达（port 45947 断连），需用户去 AutoDL 控制台查新端口\n  - 工作目录：/root/colliforce-vla\n  - Python：/root/miniconda3/bin/python（conda base）\n  - Pi0.5 权重：/root/autodl-tmp/openpi_weights/pi05_libero/\n  - 日志目录：~/runs/diff_collision_sdf/\n- **westd-35807**（4×RTX PRO 6000 Blackwell 98GB）\n  - ⚠️ 同样 SSH 不可达\n  - 工作目录：/root/colliforce-vla\n  - Pi0.5 libero PyTorch：/root/autodl-tmp/.cache/openpi/openpi-assets/checkpoints/pi05_libero/model.safetensors\n  - 磁盘曾满（M036），提交前必须检查\n- **活跃进程**：无。所有 cron 已 reconcile，0 个活跃任务\n\n### 3. 📊 当前状态\n刚处理 cron 失败回调：train_pi05_lora_baseline_s0 和 s1 因 SSH 断连被标记 failed。\n- 两个实验均跑了 ~17h（30K steps LoRA baseline），训练大概率已完成但无法确认\n- Registry 已更新 notes，飞书结果卡片已发，已向 Director 汇报\n- Registry：51 个实验全部 DONE（success 13 / negative 16 / failed 14 / killed 8）\n- **无 RUNNING / PREPARING 实验**\n- **无等待中的 Worker 回调 / Cron**\n- Director 已收到汇报，等待用户恢复 SSH\n\n### 4. 📋 待办\n- SSH 恢复（用户更新端口）→ 立即 tail 日志检查 s0/s1 训练是否完成 → 完成则更新 conclusion 为 success 并启动 30K eval；未完成则 resume\n- westd-35807 SSH 恢复 → 检查之前 s1/s2 checkpoint（train_pi05_a1_obj 系列）→ 6 模型 30K eval → 汇总\n- 30K eval 数据到位 → 填充论文 §5.4 placeholder + Table 扩展 + Appendix\n- GPU 空闲时 → λ_sdf=0 Phase 2 ablation（代码 ready）、spatial_bowl 第 2 task（代码+数据 ready）\n\n### 5. 🎯 战略上下文\n- **目标**：CoRL 2026 Main / ICRA 2027，论文 15 页初稿已完成，3/4 Claims 证据充分\n- **核心发现**：Fake Safety（A1 CAR 91.5% 中 99.6% fake）、TSR-CAR 负相关、EE-only SDF 限制（D010 终止 A3 方向）、Pi0.5+A1 10K 真实避碰 +30pp\n- **当前瓶颈**：Claim 4 待 30K eval 数据支撑，全部阻塞在 SSH 恢复\n- **LoRA baseline 的意义**：归因实验——证明 ColliForce CAR 提升来自 SDF 而非 LoRA fine-tuning 本身。预期 CAR ≈ 27%（与 Pi0.5 baseline 持平）\n- **易错点**：\n  - 不要把 SSH 断连的 \"failed\" 当成训练失败——很可能只是 cron 误报（M016）\n  - westd-35807 磁盘曾 100% 满（M036），提交新实验前必须 check_disk\n  - Pi0.5 训练有 Phase 1/2 速度差异（1.3s vs 4.6s/step，M034），估 ETA 要分段\n  - D018 已确认 gradient-based action correction 对 collapsed policy 无效，不要再走 A3 方向\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779740945.md"
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "96804d00815a6eeda52b",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops gpu3 phase2 or eval",
+  "task_key": "worker_ops_gpu3_phase2_or_eval_20260525T214958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu3_phase2_or_eval_20260525T214958.log",
+    "occurrence": 1,
+    "bytes": 616778,
+    "sha256": "73a448ac7f33adb7e9dae15a972dfdc868f68099f0d810c76ededd419431af1b"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 80,
+      "tool_result": 80,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 212,
+      "chunks": [
+        {
+          "path": "96804d00815a6eeda52b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "96804d00815a6eeda52b-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-gpu3-phase2-or-eval.md"
+}

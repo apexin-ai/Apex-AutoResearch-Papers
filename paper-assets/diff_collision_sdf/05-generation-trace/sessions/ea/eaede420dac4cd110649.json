@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eaede420dac4cd110649",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops pi05 download restart westd45947",
+  "task_key": "worker_ops_pi05_download_restart_westd45947_20260522T183902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pi05_download_restart_westd45947_20260522T183902_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "18a846a4b5adbbe422e2c5032b6f448dc7f67baadfca0ec9930e1e20352df19c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**pi0.5 base 权重已经存在，不需要重新下载。**\n\n下载日志 `/root/autodl-tmp/pi05_download.log` 显示之前通过 gsutil 从 GCS 下载已完成（`DOWNLOAD_COMPLETE`）。\n\n当前状态汇总：\n\n| 权重 | 路径 | 大小 | 状态 |\n|------|------|------|------|\n| pi0 base | `/root/autodl-tmp/openpi_weights/pi0_base/` | ~13GB (safetensors) | 完整 |\n| pi0.5 base | `/root/autodl-tmp/.cache/openpi/openpi-assets/checkpoints/pi05_base/` | 12GB (orbax/ocdbt) | 完整 |\n| pi0.5 libero | `/root/autodl-tmp/openpi_weights/pi05_libero/` | 12GB | 完整 |\n\n磁盘空间：`/root/autodl-tmp/` 250GB 总容量，已用 105GB，剩余 146GB（42%），充裕。\n\npi0.5 base 的 checkpoint 是 openpi 原生的 orbax 格式（params 目录含 ocdbt shards），不是 HuggingFace safetensors 格式。这是 openpi 框架的标准格式，可以直接用于 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pi05-download-restart-westd45947.md"
+}

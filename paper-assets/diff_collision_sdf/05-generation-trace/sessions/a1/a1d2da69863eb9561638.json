@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1d2da69863eb9561638",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh check status westd45947",
+  "task_key": "worker_ssh_check_status_westd45947_20260520T081950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_status_westd45947_20260520T081950_result.json",
+    "occurrence": 1,
+    "bytes": 1286,
+    "sha256": "cad15c0791fbdaf74af26844fcd8660f4b230f24377f9a8032ba593f8b9cd71f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 实验 | Step/30000 | Loss | LR | Speed(s/it) | VRAM |\n|-----|------|------------|------|----|-------------|------|\n| cuda:0 | a3_gradient_spatial_bowl_s0 | **58**/30000 (0.2%) | 0.26 | 1.45e-06 | ~13-16 | 16907/97887 MiB |\n| cuda:1 | a3_gradient_object_pudding_s0 | **2560**/30000 (8.5%) | 0.22 | 2.48e-05 | ~12-16 | 16907/97887 MiB |\n\n**进程状态:**\n- PID 71494 (bowl): 存活，运行 20h27m，CPU 182%\n- PID 73165 (pudding): 存活，运行 19h55m，CPU 204%\n\n**GPU 利用率:** 两卡均显示 0%（nvidia-smi 采样瞬间未捕获到计算，但进程活跃、VRAM 占用正常）\n\n**磁盘:**\n```\n/dev/md0  250G  22G  229G  9%  /root/autodl-tmp\n```\n\n**Checkpoint 轮转:**\n- `a3_grad_refine_spatial_bowl_seed0/` — 0 个 checkpoint 子目录（仅 wandb_id.txt，step 58 尚未触发保存）\n- `a3_grad_refine_object_pudding_seed0/` — 1 个 checkpoint: `2500/`（≤3，正常）\n\n**SAVE_TOTAL_LIMIT 代码确认:** `train_pytorch.py:240` — `SAVE_TOTAL_LIMIT = 3` ✓\n\n**注意:** bowl 实验运行 20h 但仅完成 58 步，速度极慢（~13-16s/it 但推算 20h 应有 ~5000 步）。日志显示中间有大段重复的初始化 + 多次从 step 0 重启的痕迹，可能经历了多次 restart。pudding 进度正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-status-westd45947.md"
+}

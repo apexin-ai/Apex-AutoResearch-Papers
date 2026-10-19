@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "f2b8123a9bd4f4f76fdd",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "check westd45947 status and eval",
+  "task_key": "worker_check_westd45947_status_and_eval_20260521T175510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd45947_status_and_eval_20260521T175510_result.json",
+    "occurrence": 1,
+    "bytes": 2337797,
+    "sha256": "d97bf620e8972e1b923058ad51590d87259c8b3a54ca7a9e0527b5f3687c45af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "f2b8123a9bd4f4f76fdd-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd45947-status-and-eval.md"
+}

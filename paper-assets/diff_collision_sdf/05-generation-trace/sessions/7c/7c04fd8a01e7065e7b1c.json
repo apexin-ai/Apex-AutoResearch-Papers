@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c04fd8a01e7065e7b1c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops ssh retry status check",
+  "task_key": "worker_ops_ssh_retry_status_check_20260524T124323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ssh_retry_status_check_20260524T124323_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "2f818761dabbaa72c38433e30cfdca1e8c190af1eec1fa594345396888e8016e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器均 **SSH 认证失败**：\n\n| 服务器 | 状态 | 错误 | 耗时 |\n|--------|------|------|------|\n| **westd-45947** | ❌ 失败 | Authentication failed | 3.13s |\n| **westd-35807** | ❌ 失败 | Authentication failed | 2.69s |\n\n连接未超时（2-3秒响应），说明服务器可达、端口正常，问题在**认证**（密钥或端口变更）。\n\n可能原因：\n1. **实例重启导致 SSH 端口变更**（AutoDL 常见问题）— 需要去控制台查新端口并更新 `~/.ssh/config`\n2. **SSH 密钥被重置** — 需要重新配置\n\n请去 AutoDL 控制台确认两台实例的当前 SSH 端口，并更新 `~/.ssh/config` 中对应的端口配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ssh-retry-status-check.md"
+}

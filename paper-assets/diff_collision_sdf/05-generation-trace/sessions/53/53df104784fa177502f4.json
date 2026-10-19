@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53df104784fa177502f4",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research ref audit C",
+  "task_key": "worker_research_ref-audit-C_20260529T064540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-C_20260529T064540_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "c0b1cb4423591f94b7bed5c1be95c987762f7ddd0b8e7902a97be456db0760f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果已写入 `artifacts/ref_audit_worker_C.md`。\n\n**11 条引用全部真实存在，无幻觉引用。** 其中 8 条完全正确，3 条需修正：\n\n1. **li2025spatialforcing** — 已被 ICLR 2026 接收，venue 需更新\n2. **vlariskanon2026** — \"ICLR 2026 under review\" 可能过时（decisions 已公布），需核实当前状态\n3. **dong2025conditioning** — 已被 NeurIPS 2025 接收，venue 需更新；引用上下文将论文的 \"loss collapse\" 概念表述为 \"action collapse\"，措辞不够精确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-c.md"
+}

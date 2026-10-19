@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8d10b1924e5b74407ae",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "code phase1 lora training scaffold",
+  "task_key": "worker_code_phase1_lora_training_scaffold_20260515T160546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1_lora_training_scaffold_20260515T160546_result.json",
+    "occurrence": 1,
+    "bytes": 1042,
+    "sha256": "384b14879ce92c93e5f818abcb3b6f0aa2a9efb25a3824ce9a2e6468795ac9b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 1 代码完成，dry-run 验证通过。\n\n**总结：**\n\n| 项目 | 状态 |\n|------|------|\n| `train_lora_expert.py` | 部署到 westd-34142，dry-run 通过 |\n| `data_loader.py` | 部署到 westd-34142，dry-run 通过 |\n| LoRA 注入 | 3,686,400 trainable / 3.5B total (0.1052%) |\n| 目标模块 | PaliGemma Q/K/V/O × 18层 (排除 Action Expert) |\n| Forward pass | loss=7.30 (step 0), loss=10.45 (step 1) |\n| Backward pass | grad_norm=2.38 / 3.29，梯度正常回传 |\n| 修复的 bug | `obs_to_device()` 从 `jax.tree.map` 改为显式逐字段 `.to(device)` |\n\n**下一步可启动正式训练：**\n```bash\n# 4 GPU 并行，每 GPU 训练一个 perturbation type 的 LoRA adapter\npython phase1/train_lora_expert.py --perturbation_type visual   --gpu_id 0 &\npython phase1/train_lora_expert.py --perturbation_type spatial  --gpu_id 1 &\npython phase1/train_lora_expert.py --perturbation_type physical --gpu_id 2 &\npython phase1/train_lora_expert.py --perturbation_type universal --gpu_id 3 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase1-lora-training-scaffold.md"
+}

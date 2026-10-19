@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e175a42e5ad011358e97",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "train universal r32 full pipeline",
+  "task_key": "worker_train_universal_r32_full_pipeline_20260517T014329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_universal_r32_full_pipeline_20260517T014329_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "c1060ab6e21fa39320fa70695a4ae3b7fe71ff1ed8c352c28a933fc8862f911f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交，状态 RUNNING。\n\n**总结：**\n- 实验 `v3_lora_universal_r32` 已在 westd-34142 cuda:1 上启动\n- 配置：rank=32, alpha=64, batch_size=16, 10000 steps, universal perturbation\n- 输出目录：`/root/autodl-tmp/checkpoints/v3_lora_universal_r32`\n- 日志：`~/runs/meta_brain_lora_routing/v3_lora_universal_r32.log`\n- 预计耗时 ~170-190 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-universal-r32-full-pipeline.md"
+}

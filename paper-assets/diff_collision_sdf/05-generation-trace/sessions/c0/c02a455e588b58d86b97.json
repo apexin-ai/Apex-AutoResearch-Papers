@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c02a455e588b58d86b97",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose eval baseline v11 object",
+  "task_key": "worker_diagnose_eval_baseline_v11_object_20260522T132348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_baseline_v11_object_20260522T132348_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "71c1be5e3be13c520cd0c918c1d898aadd0e049fe000f5017cbaafcabd62bb50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**实验没有失败，已正常完成。** Cron 误报——进程正常退出后被检测为 \"dead\"，但没有 sentinel/W&B 标记导致 cron 判定为失败。\n\n### 详情\n\n| 项目 | 状态 |\n|------|------|\n| **根因** | 不是 crash/OOM/error。实验正常跑完所有 4 个 task × 50 episodes 后进程退出，cron 监控误判 |\n| **运行时长** | ~40 分钟（20:28 → 21:07） |\n| **完成度** | 4/4 tasks，200/200 episodes，全部完成 |\n| **cuda:1 状态** | 空闲（27°C, 1MiB, 0% util），可立即使用 |\n| **结果文件** | 已保存：`/root/autodl-tmp/eval_results/baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json` |\n\n### 实验结果摘要\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| orange juice → basket | 0.0% | 76.0% |\n| chocolate pudding → basket | 2.0% | 90.0% |\n| milk → basket | 0.0% | 88.0% |\n| bbq sauce → basket | 0.0% | 78.0% |\n| **Overall** | **0.5%** | **83.0%** |\n\n**不需要重跑。** 结果已完整保存。TSR 极低（0.5%）是模型性能问题，不是实验故障。Triton autotuning 中的 OOM warning 是正常的——torch inductor 在测试不同 kernel 配置时某些配置超出 shared memory 限制被自动跳过，不影响计算结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-baseline-v11-object.md"
+}

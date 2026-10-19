@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "945380a10fe54da37d94",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "fix per step robot states",
+  "task_key": "worker_fix_per-step-robot-states_20260515T153343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_per-step-robot-states_20260515T153343_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "5abd3d3a97221f90050b26a144c3b2274de1930bf6a05631804abaa48610b85e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**robot_initial_states per_step 收集完成。**\n\n结果：\n1. **根因**：`collect_per_step.py` 在同一进程中顺序处理 6 种扰动类型。前 3 种 (camera_viewpoints, light_conditions, background_textures) 共 90 episodes 运行后，某种资源泄漏（MuJoCo OpenGL 上下文或内存累积）导致后 3 种全部异常。`except Exception: continue` 静默吞掉了所有错误，最终保存了空列表。单独运行 robot_initial_states 完全正常。\n\n2. **产出**：\n   - 文件：`/root/meta_brain_lora_routing/activations/per_step/robot_initial_states.pt`\n   - 大小：**276MB**（原 1.4KB 空文件）\n   - 30 episodes，每个 44 replan points，12 层 activations\n   - labels: 6class=5, 3class=2, binary=1\n\n3. **per_step 目录当前状态**：\n   | 文件 | 大小 | 状态 |\n   |------|------|------|\n   | camera_viewpoints.pt | 276M | OK |\n   | light_conditions.pt | 276M | OK |\n   | background_textures.pt | 267M | OK |\n   | objects_layout.pt | 111M | 部分收集 |\n   | robot_initial_states.pt | **276M** | **已修复** |\n   | sensor_noise.pt | 1.3K | 仍空 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-per-step-robot-states.md"
+}

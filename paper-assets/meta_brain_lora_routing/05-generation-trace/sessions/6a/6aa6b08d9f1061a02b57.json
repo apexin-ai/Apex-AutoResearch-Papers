@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6aa6b08d9f1061a02b57",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "data download libero plus new objects",
+  "task_key": "worker_data_download-libero-plus-new-objects_20260515T172320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_download-libero-plus-new-objects_20260515T172320_result.json",
+    "occurrence": 1,
+    "bytes": 361,
+    "sha256": "d004e82431760722b1ececf30b127e42fdd4c1b906c9eb6f8c92e7f111ad7adb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "临时文件已清理。\n\n**任务完成总结：**\n- 从 hf-mirror.com（不走代理）下载 assets.zip（6.4GB），耗时约 18 分钟\n- 解压并将 `new_objects/` 复制到 `/root/LIBERO-plus/libero/libero/assets/new_objects/`（6.3GB）\n- 功能验证通过：208 个 `_add` 扰动任务可正常加载\n- 已清理临时下载文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-download-libero-plus-new-objects.md"
+}

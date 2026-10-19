@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f1ff49fe6ee67ae20d6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh launch a1 lora obj",
+  "task_key": "worker_ssh_launch_a1_lora_obj_20260521T044133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_a1_lora_obj_20260521T044133_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "eefddda05fb623e68798c10de9367527b6813257f0790b047dcf7dc1f948a1dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| **Python PID** | **292258** |\n| **GPU** | cuda:2（GPU-8ec4...），16873 MiB / 97887 MiB |\n| **训练状态** | 正常推进，step 45+，~3.9s/it，loss ~0.18-0.27 |\n| **exp_name** | `a1_lora_object_pudding_seed0` |\n| **tmux session** | `a1_lora_obj` |\n\n**参数验证**：日志中没有出现 LoRA/SDF 参数量打印（`logging.info` 输出未捕获到 tee 文件）。但代码确认 `inject_lora_pi0` 在第 134 行被调用，SDF decoder 和 EE extractor 在 110-111 行初始化。\n\n**注意事项**：\n1. 首次启动时 `CUDA_VISIBLE_DEVICES=2` 被脚本第 305 行的 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)` 覆盖（默认 `--gpu 3`），导致跑到 cuda:3 上与 PID 281629 冲突。**已杀掉并用 `--gpu 2` 重新启动**。\n2. cuda:2 显存 16873 MiB 低于 cuda:1/cuda:3 的 baseline_lora（23893 MiB），可能是 A1 变体配置差异（如 batch_size 未显式指定，可能用了不同默认值）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-a1-lora-obj.md"
+}

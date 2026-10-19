@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff3f99812b39890df3d6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis s2 best 10k displacement",
+  "task_key": "worker_analysis_s2_best_10k_displacement_20260525T200725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s2_best_10k_displacement_20260525T200725_result.json",
+    "occurrence": 1,
+    "bytes": 1630,
+    "sha256": "5d125a6c3f3c8be6355bd8527f8708df2880f7c7988a7efcaf0e7bc145e619a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n### Task 2 (milk): 确认 Fake Safety\n\n| 指标 | 值 |\n|------|-----|\n| CAR | 92% (46/50 safe) |\n| TSR | **0%** |\n| avg_max_disp | 0.004334m |\n\n### Obstacle Displacement 分布\n\n| 桶 | 数量 | 比例 |\n|----|------|------|\n| < 0.001m (frozen) | **46/50** | **92%** |\n| 0.001-0.01m | 0/50 | 0% |\n| 0.01-0.1m | 3/50 | 6% |\n| >= 0.1m | 1/50 | 2% |\n\n### Safe vs Collision 对比\n\n- **Safe episodes (46个)**: 障碍物平均位移 **0.0000003m (0.3μm)** — 100% frozen。但 EE displacement 均值 0.588m (范围 0.27-1.22m)\n- **Collision episodes (4个)**: 障碍物平均位移 0.054m，EE displacement 均值 0.458m\n\n### 跨 Task 对比\n\n| Task | CAR | TSR | Frozen% | 判断 |\n|------|-----|-----|---------|------|\n| 0 (orange juice) | 68% | 0% | 70% | 部分 fake safety |\n| 1 (chocolate pudding) | 44% | 36% | 44% | 正常（有 TSR） |\n| 2 (milk) | **92%** | **0%** | **92%** | **严重 fake safety** |\n| 3 (bbq sauce) | 18% | 0% | 20% | 正常碰撞 |\n\n### 结论\n\n**确认 Task 2 是 fake safety，但不是经典 action collapse。**\n\n关键证据：\n1. Frozen% = CAR% = 92%，完美对应——所有\"safe\" episode 的障碍物位移都 < 1mm\n2. TSR = 0%，机器人从未完成任务\n3. **但 EE displacement 正常 (0.27-1.22m)**——机器人在动，只是学会了完全绕开障碍物区域\n\n这是 **learned avoidance pattern**：SDF penalty 过强导致模型学到\"远离障碍物=安全\"的策略，代价是永远无法接近 target object 完成 pick。不是 frozen robot，而是 trajectory 被 penalty 推离了工作区。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s2-best-10k-displacement.md"
+}

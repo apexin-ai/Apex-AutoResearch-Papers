@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5aba11565474f14a43b4",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code plan003 eval prep",
+  "task_key": "worker_code_plan003_eval_prep_20260526T143849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan003_eval_prep_20260526T143849_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "9028e86ced8d60b03104e4cb0e32c2dd4d5fb025367be7f4236c62055a882fc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出汇报：\n\n| 项目 | 详情 |\n|------|------|\n| **s0 checkpoint** | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000` |\n| **s2 checkpoint（预期）** | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed2/30000` |\n| **s2 训练进度** | 43% (13051/30000)，~4.61s/it，剩余约 21h40m，预计完成时间 ~5/27 上午 |\n| **eval 批量脚本** | `/root/colliforce-vla/scripts/eval_lora_baseline_batch.sh` |\n| **rotation fix** | 已确认，eval_safelibero.py L841/L843 有 `[::-1, ::-1]` 旋转 |\n| **s0 eval 状态** | 未 eval（assets 仅有 norm_stats.json） |\n| **预估 eval 耗时** | 每个 seed ~2.5h，两个串行共 ~5h |\n\ns0 可以现在就开始 eval（不用等 s2）。运行方式：\n```bash\n# 只跑 s0（s2 还没训完）\nbash scripts/eval_lora_baseline_batch.sh <GPU_ID>\n# 或者先单独跑 s0，s2 训完后再跑\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-eval-prep.md"
+}

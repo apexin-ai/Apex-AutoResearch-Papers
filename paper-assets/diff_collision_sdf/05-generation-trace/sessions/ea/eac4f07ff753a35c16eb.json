@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eac4f07ff753a35c16eb",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper urgent wording sync",
+  "task_key": "worker_paper_urgent-wording-sync_20260528T055424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_urgent-wording-sync_20260528T055424_result.json",
+    "occurrence": 1,
+    "bytes": 3879,
+    "sha256": "85256754a1b0ff100fa83a925cc90b2174321b6318234b3f5f9bc3cf69ab18db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--verify`: 21/21 OK. All files consistent.\n\n---\n\n## 修改报告\n\n### 1. claim3.tex (7 处修改)\n\n| 位置 | 改前 | 改后 |\n|------|------|------|\n| L7 caption | SDF adds no measurable CAR beyond LoRA-only across the full tested range | SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale |\n| L26 body | Adding SDF supervision produces no measurable benefit across the full tested range: | Adding SDF supervision does not yield statistically significant improvement at the tested scale: |\n| L26 body | CAR\\,=\\,57.5\\% | CAR\\,=\\,58.0\\% |\n| L26 footnote | Single seed (s2); computational constraints precluded additional seeds for this ablation. | At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints. |\n| L26 body | confirming that SDF gradients produce no lasting behavioral effect | suggesting that SDF gradients do not produce a lasting behavioral effect |\n| L32 | SDF supervision is redundant with the demonstration signal across the full tested range | SDF supervision does not produce statistically significant benefit across the tested range |\n| L46 caption | confirming full redundancy of EE-only SDF supervision across a 20×... | consistent with the absence of statistically significant improvement across a 20×... |\n\n### 2. abstract.tex (2 处修改)\n\n| 位置 | 改前 | 改后 |\n|------|------|------|\n| L5 | SDF supervision adds no measurable benefit across the full tested range... ($p > 0.05$ for all; | SDF supervision shows no statistically significant benefit at the tested scale... ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; |\n| L6 | EE-only geometric supervision is fully redundant...confirming that collision avoidance arises from demonstration data, not geometric supervision | EE-only geometric supervision does not significantly improve collision avoidance...suggesting that collision avoidance primarily arises from demonstration data rather than geometric supervision |\n\n### 3. introduction.tex (2 处修改)\n\n| 位置 | 改前 | 改后 |\n|------|------|------|\n| L20 | produces no measurable benefit across the full tested range...($p > 0.05$ for all;...accounts for all observed avoidance | does not yield statistically significant improvement across the tested range...($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$;...primarily accounts for observed avoidance |\n| L27 | account for all measured CAR gains...adds no measurable benefit across the full tested range...($p > 0.05$ for all, | account for nearly all measured CAR gains...shows no statistically significant benefit across the tested range...($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$, |\n\n### 4. discussion.tex (3 处修改)\n\n| 位置 | 改前 | 改后 |\n|------|------|------|\n| L3 | not geometric supervision, account for the measured avoidance gains | account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement |\n| L6 | confirming that Level~A signal masking is not the binding constraint---the failure is architectural | suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway |\n| L6 | Demonstration data subsumes | Demonstration data largely subsumes |\n\n### 5. paper_switch.py 模板更新\n\n- **old strings 更新**: 6 个块（#1, #2, #4, #6, #7, #8）+ 2 个 Scenario-C-only 块（#9, #10）\n- **Scenario B new strings 更新**: 6 个块（#1, #2, #4, #6, #7, #8, #10）\n- **Scenario C new strings 更新**: 5 个块（#1, #4, #6, #7, #10）—消除 \"fully redundant\"/\"adds no measurable\" 等绝对措辞\n- **总计**: ~17 个模板文本更新\n\n### 6. --verify 结果\n\n```\nScenario B: 10/10 OK\nScenario C: 11/11 OK\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-urgent-wording-sync.md"
+}

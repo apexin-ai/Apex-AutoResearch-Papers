@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12c6aa20884ccd8e2a89",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "research position ids architecture",
+  "task_key": "worker_research_position-ids-architecture_20260518T051041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_position-ids-architecture_20260518T051041_result.json",
+    "occurrence": 1,
+    "bytes": 868,
+    "sha256": "5ff8db86401ef40428a246805c064ea03fd5f4e3dc315f8e555780622757f6be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/position_ids_architecture_report.md` 并注册。\n\n核心结论：\n\n1. **position_ids 可以自定义传入**，无需修改模型代码，但**必须同时传入 4D attention mask**绕过 packed sequence 检测（否则 turn 间 attention 被阻断）\n\n2. **rope_theta 实际是 1,000,000**（非 10000），频段恢复理论的距离阈值需要重新计算\n\n3. **MVP 实现路径**：词表扩展 + PEFT `trainable_token_indices`（原生支持 bridge token embedding 训练和序列化），LoRA `target_modules=\"all-linear\"`, r=32, lora_alpha=64\n\n4. **Bridge token position 推荐**：归属前一 turn 末尾（position 继续累加），reset 在 bridge 之后发生\n\n5. **主要风险**：4D mask 的显存开销（seq_len^2）、FlashAttention 兼容性、KV cache 推理需要自定义 generate 逻辑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-position-ids-architecture.md"
+}

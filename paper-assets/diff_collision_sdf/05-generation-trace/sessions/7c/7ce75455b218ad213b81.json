@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7ce75455b218ad213b81",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code fix baseline relaunch",
+  "task_key": "worker_code_fix_baseline_relaunch_20260519T220914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_baseline_relaunch_20260519T220914.log",
+    "occurrence": 1,
+    "bytes": 842092,
+    "sha256": "4a1f969d1204a3a9600b834ccf43bcfdff97fc55ecea9f10288a6bc1ec1530c8"
+  },
+  "statistics": {
+    "messages": 313,
+    "user_turns": 0,
+    "tool_calls": 113,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 113,
+      "tool_result": 113,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 313,
+      "chunks": [
+        {
+          "path": "7ce75455b218ad213b81-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "7ce75455b218ad213b81-part-0002.json",
+          "message_count": 158
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-baseline-relaunch.md"
+}

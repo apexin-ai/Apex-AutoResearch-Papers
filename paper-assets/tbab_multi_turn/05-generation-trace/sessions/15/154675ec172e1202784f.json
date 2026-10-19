@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "154675ec172e1202784f",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "code eval pipeline",
+  "task_key": "worker_code_eval-pipeline_20260518T065009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-pipeline_20260518T065009_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "9f0178c6442610fb60ceafe6687d2d6a9b3108deddfd1a41a0bb56f992e8a7b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。评估管线已在 westd-29046 上实现并验证。\n\n**产出文件** (`/root/tbab_multi_turn/eval/`):\n\n| 文件 | 功能 | 验证结果 |\n|---|---|---|\n| `metrics.py` | P̄/A⁹⁰/U₁₀⁹⁰ 计算 | mock 数据通过 |\n| `tbab_inference.py` | 自定义 position_ids + 4D causal mask + bridge token 插入 | 3 种位置模式逻辑正确 |\n| `model_local.py` | 本地模型推理，替代 model_openai.py | 4 种条件均生成合理输出 |\n| `attention_analysis.py` | 逐频段 RoPE 注意力分析 | 3 层×32 头×3 频段分析正常运行 |\n| `run_eval.py` | 主评估脚本（mock + 实际模式） | mock 流程端到端通过 |\n| `configs/eval_config.yaml` | 评估配置 | - |\n| `lost_in_conversation/` | 上游仓库（627 样本） | code 91 + math 81 (≥5 shards) |\n\n**关键发现**:\n- Bridge token IDs 必须在 vocab 范围内（Mistral vocab_size=32000），训练时需扩展 tokenizer\n- 基座模型 mid_dominant_ratio=0.18（远低于 0.6 阈值），符合预期：TBAB 训练前不应有频段偏好\n- 实际评估待 OpenAI API key 到位后执行：`python run_eval.py --model_path <adapter_path> --condition full_tbab`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-pipeline.md"
+}

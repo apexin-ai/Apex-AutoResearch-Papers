@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dff694c6b11a86c4c3e4",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval spatial bowl sdf s0 30k",
+  "task_key": "worker_eval_spatial_bowl_sdf_s0_30k_20260527T131758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_spatial_bowl_sdf_s0_30k_20260527T131758_result.json",
+    "occurrence": 1,
+    "bytes": 546,
+    "sha256": "b86f23a8a09ec8edcc855788e8531c1a849d1447036198a1aca224f565832bcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载成功，已开始 Task 0 的 eval。进程正常运行中。\n\n状态摘要：\n- **实验**: `eval_spatial_bowl_sdf_s0_l005_30k`\n- **服务器**: westd-35807, cuda:0, PID=820550\n- **日志**: `/tmp/eval_spatial_bowl_s0_l005_30k.log`\n- **状态**: RUNNING — 模型已加载，SDF decoder 已加载，正在执行 safelibero_spatial Task 0（共4个task × 50 episodes）\n- **预计耗时**: ~30-40分钟\n\neval 完成后需要再检查日志提取 CAR/TSR/frozen_rate 等指标，并更新 registry 到 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-spatial-bowl-sdf-s0-30k.md"
+}

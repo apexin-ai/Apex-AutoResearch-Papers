@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "538bddaaab78b1a296a1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh code sync 45947",
+  "task_key": "worker_ssh_code_sync_45947_20260521T071638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_code_sync_45947_20260521T071638_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "57d15150c94b8dfcb84e8f55dc5a77af4845439b701c28c2b86b77fae6fef428"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5/5 文件 md5 完全一致，同步完成。\n\n| 文件 | md5 | 状态 |\n|------|-----|------|\n| `colliforce/lora_utils.py` | `487b38223b01fbb8eabd0e9a35c23461` | OK |\n| `scripts/eval_safelibero.py` | `fa311fae783393c298a61b64186353fc` | OK |\n| `scripts/train_baseline.py` | `ddd60827d472040175275891ef7aba46` | OK |\n| `scripts/train_a1_sdf_aux.py` | `f2c16676880e56f456cec29fd1039b92` | OK |\n| `scripts/train_a3_hook.py` | `f514ad76385a7caaf14f8e88a238df72` | OK |\n\nwestd-35807 → westd-45947 代码同步全部完成。A3 实验进程（PID 71494, 73165）未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-code-sync-45947.md"
+}

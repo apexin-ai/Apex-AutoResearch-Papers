@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "511e114853f5ec4e5d77",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "code fix activation collection v2",
+  "task_key": "worker_code_fix_activation_collection_v2_20260516T212711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_activation_collection_v2_20260516T212711_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "c05430b820c481df1b94f513bf1e37417b279028cdd11ebc1aa3bb6ebab4efbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n**3 个 Bug 已修复：**\n1. `torch._dynamo.config.suppress_errors` 改为 `False`\n2. `model(obs_b, actions_b)` → `model.sample_actions(device, obs_b, num_steps=1)` (inference path，无需 ground truth actions)\n3. Layer path 加了 `.model.`：`paligemma_with_expert.paligemma.model.language_model.layers.6`\n\n**Dry run 结果：**\n- 5/5 forward pass 成功，0 errors\n- Hook 正确触发，activation shape = `(2048,)` (PaliGemma hidden dim)\n- 非零 activation，norm ~2100-2650，符合预期"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-activation-collection-v2.md"
+}

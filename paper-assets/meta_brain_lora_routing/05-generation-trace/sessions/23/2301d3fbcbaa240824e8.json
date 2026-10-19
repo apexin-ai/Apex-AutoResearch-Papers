@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2301d3fbcbaa240824e8",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "code activation collection v3",
+  "task_key": "worker_code_activation_collection_v3_20260516T223034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_activation_collection_v3_20260516T223034_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "e3d519ac9e7a4ffac1d17c377ddb003ad84612ba99ecc3050a133b9d4d3eb8f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "After warmup, throughput jumped to ~20 samples/sec. ETA ~55 minutes, 0 errors. Collection is running successfully.\n\n**Summary:**\n\n1. **Script was already mostly correct** — previous Worker had already fixed:\n   - `suppress_errors = False`\n   - Layer path: `paligemma_with_expert.paligemma.model.language_model.layers.6`\n   - Uses `policy.infer(obs_dict)` pattern with `OpenPIMetaBrainPolicy`\n\n2. **Fix applied**: Changed `policy_wrapper.policy.infer(obs_dict)` → `policy_wrapper.infer(obs_dict)` for full consistency with eval pipeline.\n\n3. **Dry run passed**: 5/5 samples, activation shape (2048,), all 2048 elements non-zero, 0 errors.\n\n4. **Full collection running**: PID 274941, processing 66984 frames on cuda:2, ~20 samples/sec steady state, ETA ~55 min. Output: `/root/autodl-tmp/activations_v3/activations.pt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-activation-collection-v3.md"
+}

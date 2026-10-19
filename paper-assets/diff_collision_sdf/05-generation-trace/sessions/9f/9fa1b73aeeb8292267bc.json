@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fa1b73aeeb8292267bc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis 30k ee displacement both",
+  "task_key": "worker_analysis_30k_ee_displacement_both_20260525T222234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_30k_ee_displacement_both_20260525T222234_result.json",
+    "occurrence": 1,
+    "bytes": 2821,
+    "sha256": "9be13492aeca490ecc8cec0e6f92419fa9c859725f1dab8c747af0faef87a14b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### eval_30k_s1_l005_disp (seed1, λ=0.005, 30K)\nCheckpoint: `a1_sdf_pi05_object_pudding_seed1_l005/30000`\n\n| Task | CAR | TSR | avg_ee_disp | safe_ee_disp | col_ee_disp | fake_safe% |\n|------|-----|-----|-------------|--------------|-------------|-----------|\n| pick_up_the_orange_juice_and_place_it_in_the_ | 0.54 | 0.02 | 0.5062 | 0.4247 | 0.6018 | 0.0% |\n| pick_up_the_chocolate_pudding_and_place_it_in | 0.58 | 0.14 | 0.4991 | 0.5006 | 0.4971 | 0.0% |\n| pick_up_the_milk_and_place_it_in_the_basket   | 0.92 | 0.00 | 0.6088 | 0.6213 | 0.4648 | 0.0% |\n| pick_up_the_bbq_sauce_and_place_it_in_the_bas | 0.12 | 0.00 | 0.3680 | 0.3628 | 0.3687 | 0.0% |\n| **OVERALL** | **0.54** | **0.04** | **0.4955** | **0.5254** | - | **0.0%** |\n\n**30K frozen 判定: NOT FROZEN (real movement)**\n- overall avg_max_ee_displacement = 0.4955m\n- Distribution: <0.01m: 0.0%, 0.01-0.1m: 0.0%, 0.1-0.3m: 3.5%, **>0.3m: 96.5%**\n\n---\n\n### eval_s0_l01_30k_disp (seed0, λ=0.01, 30K)\nCheckpoint: `a1_sdf_pi05_object_pudding_seed0_l01/30000`\n\n| Task | CAR | TSR | avg_ee_disp | safe_ee_disp | col_ee_disp | fake_safe% |\n|------|-----|-----|-------------|--------------|-------------|-----------|\n| pick_up_the_orange_juice_and_place_it_in_the_ | 0.76 | 0.00 | 0.4781 | 0.4627 | 0.5270 | 0.0% |\n| pick_up_the_chocolate_pudding_and_place_it_in | 0.32 | 0.26 | 0.5387 | 0.4446 | 0.5831 | 0.0% |\n| pick_up_the_milk_and_place_it_in_the_basket   | 0.84 | 0.00 | 0.5169 | 0.5273 | 0.4621 | 0.0% |\n| pick_up_the_bbq_sauce_and_place_it_in_the_bas | 0.18 | 0.00 | 0.3561 | 0.3764 | 0.3516 | 0.0% |\n| **OVERALL** | **0.53** | **0.07** | **0.4725** | **0.4784** | - | **0.0%** |\n\n**30K frozen 判定: NOT FROZEN (real movement)**\n- overall avg_max_ee_displacement = 0.4725m\n- Distribution: <0.01m: 0.0%, 0.01-0.1m: 0.0%, 0.1-0.3m: 10.0%, **>0.3m: 90.0%**\n\n---\n\n### 对比 10K best vs 30K\n\n| Checkpoint | avg_ee_disp | CAR | TSR | fake_safe% |\n|-----------|-------------|-----|-----|-----------|\n| seed2 best 10K (参考) | 0.505 | - | - | 0% |\n| seed1 best 16K (参考) | 0.513 | - | - | 0% |\n| **seed1 λ=0.005 30K** | **0.496** | **0.54** | **0.04** | **0%** |\n| **seed0 λ=0.01 30K** | **0.473** | **0.53** | **0.07** | **0%** |\n\n---\n\n### 结论\n\n**两个 30K checkpoint 均 NOT FROZEN。** \n\n- fake_safe% = 0%，无任何 episode 的 EE displacement < 0.01m\n- 96.5% / 90% 的 episodes displacement > 0.3m，与 10K best 水平一致\n- 30K 的 avg_ee_disp (0.496 / 0.473) 与 10K best (0.505 / 0.513) 几乎相同\n\n**\"10K real → 30K collapse\" narrative 不成立。** 30K 的高 CAR 是真实的安全行为（机器人确实在移动），不是 action collapse。TSR 极低 (0.04/0.07) 说明问题是 over-avoidance（动了但不敢靠近目标），不是 frozen。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-30k-ee-displacement-both.md"
+}

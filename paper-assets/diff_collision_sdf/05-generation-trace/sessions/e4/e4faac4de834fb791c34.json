@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4faac4de834fb791c34",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops add action distribution to eval",
+  "task_key": "worker_ops_add_action_distribution_to_eval_20260523T021853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_add_action_distribution_to_eval_20260523T021853_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "1ab783a427966996c9de059759dee1bb3f8248a33559f2b035821b1da86cbf2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`save_project_file` 对 artifacts 目录无写权限，但本地文件已通过 Edit 工具直接更新。\n\n完成总结：\n\n**eval 脚本修改（westd-45947 + westd-35807 均已部署）**：\n- **L160-161**: episode 开始时初始化 `action_norms=[]`, `action_vectors=[]`\n- **L192-194**: 每个 timestep 获取 action 后，记录 L2 norm 和原始 vector\n- **L243-246**: per-episode result dict 新增 4 个字段：`mean_action_magnitude`, `std_action_magnitude`, `mean_action_variance`, `action_count`\n- **L289-291**: per-task summary 新增 3 个聚合字段\n- **L432-434**: overall output 新增 3 个聚合字段\n\n**分析脚本修改（本地 artifacts/analyze_d012_results.py）**：\n- 新增 `extract_action_stats()` 函数\n- 新增 ACTION DISTRIBUTION ANALYSIS 段：per-model action 统计表、pairwise KS test（p>0.05 标记 \"SDF not affecting actions\"）、per-lambda 聚合\n- 自动处理 baseline 无 action 数据的情况（提示需用新版 eval 重跑）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-add-action-distribution-to-eval.md"
+}

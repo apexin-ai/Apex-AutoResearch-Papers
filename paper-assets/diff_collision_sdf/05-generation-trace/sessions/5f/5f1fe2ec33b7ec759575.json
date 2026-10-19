@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f1fe2ec33b7ec759575",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check remaining trains",
+  "task_key": "worker_ops_check_remaining_trains_20260523T055519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_remaining_trains_20260523T055519_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "764d4469933c1db3e541a053f4ea58ae4ca959abad7f0c8e617524c9a82d2091"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| exp_id | server | gpu | status | last_step | notes |\n|--------|--------|-----|--------|-----------|-------|\n| s2_l01 | westd-35807 | cuda:3 | **DEAD** | 7999 | 磁盘满 (350G/350G=100%)，step 8000 存 checkpoint 时 `No space left on device` |\n| s0_l005 | westd-45947 | cuda:0 | **ALIVE** | ~8067 (27%) | 正常，~4.62s/it，ETA ~28h |\n| s0_l01 | westd-45947 | cuda:1 | **ALIVE** | ~8070 (27%) | 正常，~4.62s/it，ETA ~28h |\n\n**westd-35807 全部 4 卡空闲**，磁盘 100% 满是所有训练崩溃的共同原因。重启前必须先清理磁盘。\n\n**westd-45947 两个训练健康**，磁盘 71% (75G free)，但需关注后续 checkpoint 是否会撑满。\n\n报告已写入 `artifacts/remaining_train_status.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-remaining-trains.md"
+}

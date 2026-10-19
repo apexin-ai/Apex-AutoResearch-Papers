@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b192de049f229d63ce30",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops verify a1 lora object completion",
+  "task_key": "worker_ops_verify_a1_lora_object_completion_20260522T135117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_a1_lora_object_completion_20260522T135117_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "7fd842287bfde343c32a0fdfcaba49a231bbd9768490681c80b64a8e330656ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练成功完成。**\n\n| 项目 | 结果 |\n|------|------|\n| 最终步数 | **30000/30000** (100%) |\n| 最终 loss | 0.0184 (step 30000) |\n| best_loss | **0.01326** (step 29999) |\n| 总训练时间 | 33h 00m 18s |\n| 进程 PID 292258 | 已退出 |\n| Checkpoint 路径 | `/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_lora_object_pudding_seed0/` |\n| Checkpoint 内容 | `best/`, `29999/`, `30000/` 三个子目录，总计 **21GB** |\n| best/model.safetensors | 7.1GB |\n\n**GPU 状态：**\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| cuda:0 | 100% | 23.9GB/97.9GB |\n| cuda:1 | 0% | 空闲 |\n| cuda:2 | 0% | **空闲** |\n| cuda:3 | 19% | 8.8GB/97.9GB |\n\ncuda:2 已完全释放。cuda:0 仍有负载（可能是其他任务）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-a1-lora-object-completion.md"
+}

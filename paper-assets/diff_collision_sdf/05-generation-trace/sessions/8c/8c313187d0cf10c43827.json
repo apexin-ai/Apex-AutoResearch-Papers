@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c313187d0cf10c43827",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix gpu binding evals",
+  "task_key": "worker_ops_fix_gpu_binding_evals_20260525T130917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_gpu_binding_evals_20260525T130917_result.json",
+    "occurrence": 1,
+    "bytes": 1120,
+    "sha256": "dfd87302967458e4134b93b9afe0dd4ae8e0fc0ce605504ab187c194e0d3e669"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个进程全部存活，运行 ~1 分钟，正在加载模型/checkpoint（尚未分配 GPU 显存）。\n\n---\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| Kill 260022/260023/260024 | ✅ ALL_KILLED |\n| spatial_bowl (PID 168730) | ✅ cuda:0，运行 3h07m，27GB 显存 |\n| s0_l005 (PID 275278) | ✅ 存活，--gpu 1，加载中 |\n| s0_l01 (PID 275279) | ✅ 存活，--gpu 2，加载中 |\n| s2_l01 (PID 275280) | ✅ 存活，--gpu 3，加载中 |\n\n**nvidia-smi 完整输出：**\n```\nGPU 0: RTX PRO 6000  27045MiB/97887MiB  PID 168730 (spatial_bowl)\nGPU 1: RTX PRO 6000      3MiB/97887MiB  (eval 加载中)\nGPU 2: RTX PRO 6000      3MiB/97887MiB  (eval 加载中)\nGPU 3: RTX PRO 6000      3MiB/97887MiB  (eval 加载中)\n```\n\n3 个 eval 进程参数中 `--gpu` 已正确指向 1/2/3，脚本内部 L1127 会将 `CUDA_VISIBLE_DEVICES` 设为对应物理 GPU ID。已用 6 轮 SSH，达到硬约束上限。\n\n**待确认：** 模型加载完成后（约 2-5 分钟），可再次 `nvidia-smi` 确认显存分配到 cuda:1/2/3。如果需要我后续验证，请告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-gpu-binding-evals.md"
+}

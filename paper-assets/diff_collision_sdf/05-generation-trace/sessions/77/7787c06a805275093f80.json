@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7787c06a805275093f80",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops disk cleanup 35807",
+  "task_key": "worker_ops_disk_cleanup_35807_20260522T124153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_35807_20260522T124153_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "4aa493204d67a9cbe97420237a0a303c21087a398919d283b6bc1e8aa7db6c91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 已用 | 214G (62%) | 173G (50%) |\n| 可用 | 137G | 178G |\n\n**已删除：**\n- `/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/` — 21G\n- `/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/` — 21G\n\n释放 41G，磁盘使用从 62% 降至 **50%**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-35807.md"
+}

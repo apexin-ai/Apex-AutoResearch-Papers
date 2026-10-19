@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eca980fee8026f0ae8fb",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research aegis baseline tsr",
+  "task_key": "worker_research_aegis_baseline_tsr_20260522T032224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_aegis_baseline_tsr_20260522T032224_result.json",
+    "occurrence": 1,
+    "bytes": 2950,
+    "sha256": "5d0a2d816d1019690e8cf119512f805c4db7dc6712e70716e5a69d7a92528d29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕，汇总如下。\n\n---\n\n## AEGIS (VLSA) 论文 SafeLIBERO Baseline 数据\n\n**论文**: VLSA: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer (arXiv 2512.11891, 2024-12)\n\n### 1. Baseline 模型和训练配置\n\n| | OpenVLA-OFT | π0.5 |\n|---|---|---|\n| Base model | OpenVLA-7B + optimized fine-tuning | π0.5 (Physical Intelligence) |\n| 训练数据 | **50 demos/task** (LIBERO 标准: 500 demos / 10 tasks per suite) | 同上 |\n| Action space | Delta end-effector pose | - |\n| 训练 steps | 50K–150K gradient steps (8×A100) | - |\n| Eval episodes | **50 episodes/scenario** (共 1600 episodes = 4 suites × 4 tasks × 2 levels × 50 eps) | 同上 |\n\n### 2. SafeLIBERO-Object TSR（重点关注）\n\n| Task | Level | OpenVLA-OFT | π0.5 | AEGIS |\n|------|-------|------------|------|-------|\n| Orange juice → basket | I | **0%** | **84%** | 88% |\n| Orange juice → basket | II | 78% | 72% | 74% |\n| Chocolate pudding → basket | I | **0%** | **6%** | 92% |\n| Chocolate pudding → basket | II | 70% | 82% | 92% |\n| Milk → basket | I | **0%** | **0%** | 74% |\n| Milk → basket | II | 48% | 72% | 68% |\n| BBQ sauce → basket | I | **0%** | **56%** | 82% |\n| BBQ sauce → basket | II | 40% | 58% | 72% |\n| **Suite 平均** | | **29.5%** | **53.8%** | 80.3% |\n\n### 3. 全 benchmark 平均 TSR\n\n| | OpenVLA-OFT | π0.5 | AEGIS |\n|---|---|---|---|\n| Overall avg | **22.81%** | **50.88%** | 68.13% |\n\n### 4. 与我们的配置差异\n\n| | 我们 | VLSA baseline |\n|---|---|---|\n| Model | π0 | π0.5 / OpenVLA-OFT |\n| Demos | 50 | 50/task (标准 LIBERO) |\n| 当前 TSR | 0% (20 eps) | π0.5: 0%–84%, 平均 53.8% |\n| Eval eps | 20 (进行中) | 50 |\n\n### 5. 判断\n\n- **数据量相同**：VLSA 也是 50 demos/task，和我们一样，所以 50 demos 不是问题根源。\n- **Task 确实有难的**：Level I 下 OpenVLA-OFT 在 Object suite 全是 0%；π0.5 在 milk Level I 也是 0%。障碍物靠近目标物体时，vanilla VLA 确实很难。\n- **但 π0.5 整体远好于 0%**：π0.5 Object suite 平均 53.8%，说明 π0.5 比 π0 强很多。我们用 π0 而非 π0.5 可能是关键差异。\n- **OpenVLA-OFT Level I 全 0%**：说明没有安全约束的 VLA 在高难度场景确实趋近 0%，但 Level II（障碍物在路径上而非目标旁）时能恢复到 40%–78%。\n\n**结论**：50 demos 数据量够，但 π0 vs π0.5 的模型能力差异可能是主要原因。建议确认我们 eval 的具体 task 和 obstacle level 配置，以及是否对标的是 Level I（最难）场景。\n\nSources:\n- [VLSA Paper (arXiv)](https://arxiv.org/abs/2512.11891)\n- [VLSA Paper HTML](https://arxiv.org/html/2512.11891v1)\n- [VLSA Project Page](https://vlsa-aegis.github.io/)\n- [OpenVLA-OFT Paper](https://arxiv.org/html/2502.19645v1)\n- [SafeLIBERO Dataset](https://huggingface.co/datasets/THURCSCT/SafeLIBERO)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-aegis-baseline-tsr.md"
+}

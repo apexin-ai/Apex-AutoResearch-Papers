@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bc6dcfb0f0da2d934b6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops disk cleanup plan 35807",
+  "task_key": "worker_ops_disk-cleanup-plan-35807_20260528T232051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-plan-35807_20260528T232051_result.json",
+    "occurrence": 1,
+    "bytes": 2893,
+    "sha256": "79fc191a346cc19f384e1e3b9cb51b1d2117092728f0ad9d5a66b41fc17f22d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕，以下是清理清单。\n\n---\n\n## 空目录 / 近空目录（可直接删除）\n\n| 路径 | 内容 | 大小 |\n|------|------|------|\n| `.../a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005_p2abl/` | 仅 wandb_id.txt，无 checkpoint | 4K |\n| `.../a1_sdf_pi05_object_pudding/phase2_lambda0_s0_stage1/` | 仅 wandb_id.txt，无 checkpoint | 4K |\n| `.../a1_sdf_pi05_object_pudding/phase2_stage1_seed0_l005_v3/` | 仅 wandb_id.txt，无 checkpoint | 4K |\n| `.../a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/` | 空目录（0 bytes，find -empty 检出） | 0 |\n\n小计: ≈ 0 GB（可忽略，但清理目录结构）\n\n---\n\n## 中间 checkpoint（删除候选）\n\n所有路径前缀: `/root/autodl-tmp/checkpoints/`\n\n### a1_sdf_pi05_object_pudding_seed0_l0\n保留: `best/` (7.2G), `12000/` (7.2G, 最高 step)\n删除:\n- `10000/` — **7.2 GB**\n\n### a1_sdf_pi05_object_pudding_seed0_l005\n仅有 `30000/` (7.2G) — **无需清理**\n\n### a1_sdf_pi05_object_pudding_seed0_l01\n仅有 `30000/` (7.2G) — **无需清理**\n\n### a1_sdf_pi05_object_pudding_seed0_l1\n保留: `best/` (7.2G), `30000/` (7.2G, 最高 step)\n删除:\n- `29999/` — **7.2 GB**\n\n### a1_sdf_pi05_object_pudding_seed1_l005\n保留: `best/` (15G), `30000/` (7.2G, 最高 step)\n删除:\n- `29999/` — **7.2 GB**\n\n### a1_sdf_pi05_object_pudding_seed1_l01\n保留: `best/` (15G), `30000/` (7.2G, 最高 step)\n删除:\n- `29999/` — **7.2 GB**\n\n### a1_sdf_pi05_object_pudding_seed1_l1\n保留: `best/` (7.2G), `30000/` (7.2G, 最高 step)\n删除:\n- `29999/` — **7.2 GB**\n\n### a1_sdf_pi05_object_pudding_seed2_l0\n保留: `best/` (7.2G), `18000/` (7.2G, 最高 step)\n删除:\n- `16000/` — **7.2 GB**\n\n### a1_sdf_pi05_object_pudding_seed2_l005\n保留: `best/` (15G), `30000/` (7.2G, 最高 step)\n删除:\n- `29999/` — **7.2 GB**\n\n### a1_sdf_pi05_object_pudding_seed2_l01\n保留: `best/` (15G), `30000/` (7.2G, 最高 step)\n删除:\n- `29999/` — **7.2 GB**\n\n### phase2_stage1_seed0_l005\n保留: `best/` (7.2G), `10000/` (7.2G, 最高 step)\n删除:\n- `9999/` — **7.2 GB**\n\n### pi05_lora_baseline_object_pudding_seed0\n仅有 `30000/` (7.2G) — **无需清理**\n\n### a1_sdf_pi05_spatial_bowl_seed0_l005\n保留: `best/` (7.2G), `30000/` (7.2G, 最高 step)\n删除:\n- `29999/` — **7.2 GB**\n\n### pi05_lora_baseline_spatial_bowl_seed0\n保留: `best/` (7.2G), `30000/` (7.2G, 最高 step)\n删除:\n- `29999/` — **7.2 GB**\n\n---\n\n## 汇总\n\n| 类别 | 项数 | 预估回收空间 |\n|------|------|-------------|\n| 空/近空目录 | 4 个 | ≈ 0 GB |\n| 中间 checkpoint | 11 个目录 | **79.2 GB** |\n| **总计** | **15 项** | **≈ 79.2 GB** |\n\n清理后数据盘可用空间预计从 4.3 GB 增至 ~83.5 GB（约 24% 可用）。等你确认后再执行删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-plan-35807.md"
+}

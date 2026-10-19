@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b722924fdfe64ec9ba2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check pi05 eval status westd45947",
+  "task_key": "worker_ops_check_pi05_eval_status_westd45947_20260522T203620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_pi05_eval_status_westd45947_20260522T203620_result.json",
+    "occurrence": 1,
+    "bytes": 1417,
+    "sha256": "8603c6fbe0a1acd1570380418227569a71ccd7e9cb7494ce2295b005b846d1e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### Pi0.5 Eval (libero_spatial, 50 episodes/task) — 仍在运行\n\n**进度**: 9/10 tasks 完成，455/500 episodes，当前跑最后一个 task (episode ~6/50)。预计 ~5 分钟完成。\n\n已完成 task-level 结果：\n\n| Task | Name | TSR |\n|------|------|-----|\n| 0 | pick up the black bowl between the plate and the ramekin... | **100%** |\n| 1 | pick up the black bowl next to the ramekin... | **98%** |\n| 2 | pick up the black bowl from table center... | **100%** |\n| 3 | pick up the black bowl on the cookie box... | **100%** |\n| 4 | pick up the black bowl in the top drawer... | **98%** |\n| 5 | pick up the black bowl on the ramekin... | **88%** |\n| 6 | pick up the black bowl next to the cookie box... | **100%** |\n| 7 | pick up the black bowl on the stove... | **100%** |\n| 8 | pick up the black bowl next to the plate... | **100%** |\n| 9 | pick up the black bowl on the wooden cabinet... | 进行中 |\n\n**当前 Overall TSR: 98.2%** (445/453 successes)\n\n### A3 Spatial Training (cuda:0) — 已完成\n\n- 训练到 step 30000，final loss=0.02036，action_loss=0.01708\n- Best checkpoint: step 30000, loss=0.01552\n- Checkpoints 保存在 `/root/autodl-tmp/checkpoints/a3_grad_refine_spatial_bowl/a3_grad_refine_spatial_bowl_seed0/`（best, 29999, 30000）\n- wandb offline run 需要 sync\n\n建议等 ~5 分钟后再查一次 Pi0.5 完整结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-pi05-eval-status-westd45947.md"
+}

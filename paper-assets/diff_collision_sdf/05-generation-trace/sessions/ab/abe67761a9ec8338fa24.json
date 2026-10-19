@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abe67761a9ec8338fa24",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval oracle pi05 done",
+  "task_key": "worker_eval_oracle-pi05-done_20260529T013126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_oracle-pi05-done_20260529T013126_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "f0aee8f909e3bd6266c8256b85c7d1c6e49639fcb1fc992837d50dba4ad0afa6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n### Oracle Pi0.5 Eval 结果 (eval_oracle_pi05_lora_s0)\n\n| Task | TSR | CAR | LoRA s0 CAR | Δ CAR |\n|------|-----|-----|-------------|-------|\n| 0 OJ | 25.0% | 50.0% | 68% | **-18%** |\n| 1 CP | 90.0% | 75.0% | 74% | +1% |\n| 2 Milk | 27.5% | 70.0% | 66% | +4% |\n| 3 BBQ | 60.0% | 12.5% | 20% | **-7.5%** |\n| **Overall** | **50.6%** | **51.9%** | **57.0%** | **-5.1%** |\n\n假设验证通过：Oracle SDF refinement 确实降低了 Pi0.5 LoRA 的 overall CAR（57.0% → 51.9%），支持 Claim 2。BBQ 和 OJ 是主要受损任务（CAR 分别下降 7.5% 和 18%），CP 和 Milk 基本持平或微升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-oracle-pi05-done.md"
+}

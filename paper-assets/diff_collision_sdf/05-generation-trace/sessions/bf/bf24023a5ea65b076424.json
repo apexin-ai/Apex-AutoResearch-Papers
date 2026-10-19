@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf24023a5ea65b076424",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research openvla eval prep",
+  "task_key": "worker_research_openvla_eval_prep_20260523T051238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_openvla_eval_prep_20260523T051238_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "2f6c31ae2e6b72c13e25d012bc13ed83a169e5ff94242fb0f7ca04b985f2d2df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项产出完成：\n\n1. **调研报告**: `artifacts/openvla_eval_prep.md` — OpenVLA 模型信息、LIBERO 兼容性分析、预期结果\n2. **Eval 脚本**: `artifacts/eval_openvla_safelibero.py` — 完整框架，与现有 displacement pipeline 对齐，新增 `fake_safe_rate` 和 `mean_action_magnitude` 指标，7 处 `TODO: adapt` 标注\n3. **Memory 更新**: `memory.md` 记录了调研结论和适配要点\n\n**核心判断**: OpenVLA zero-shot 是验证 fake safety 的理想选择。LIBERO 不在其训练数据中 → TSR≈0%，但 action collapse 会导致 CAR 虚高至 80-100%，frozen_rate 60-90%。这与 Pi0.5 和 baseline 的 fake safety 现象一致，为论文 claim 提供第三个独立模型的证据。\n\n**适配工作量约半天**：主要是 action rotation 格式转换 (roll/pitch/yaw → axis-angle)、图像方向确认、action scaling，都不难。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-openvla-eval-prep-copy-2.md"
+}

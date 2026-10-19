@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5dc7131f316d9fbd3230",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "train phase2 lambda0 s2 v2",
+  "task_key": "worker_train_phase2_lambda0_s2_v2_20260527T131820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_phase2_lambda0_s2_v2_20260527T131820.log",
+    "occurrence": 1,
+    "bytes": 854315,
+    "sha256": "eb4b24bea5e8e91444ef5a8772ee0fdfb793c859cc77c0349348d66d4536bfa4"
+  },
+  "statistics": {
+    "messages": 329,
+    "user_turns": 0,
+    "tool_calls": 109,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 109,
+      "tool_result": 109,
+      "result": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 329,
+      "chunks": [
+        {
+          "path": "5dc7131f316d9fbd3230-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5dc7131f316d9fbd3230-part-0002.json",
+          "message_count": 149
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-phase2-lambda0-s2-v2.md"
+}

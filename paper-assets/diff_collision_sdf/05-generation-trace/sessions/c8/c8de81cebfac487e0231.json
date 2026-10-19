@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8de81cebfac487e0231",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval baseline pertask reeval",
+  "task_key": "worker_eval_baseline_pertask_reeval_20260528T001944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_baseline_pertask_reeval_20260528T001944_result.json",
+    "occurrence": 1,
+    "bytes": 1110,
+    "sha256": "93015dc395b2d5228e082066e0c02d64ddc0c4c4843672c46e2a8139329a6ad7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is running well. GPU 0 at 49% utilization, 74.2 GB VRAM. Process PID 932512, elapsed 2:21.\n\n**Summary:**\n\n- **Command:**\n```\npython scripts/eval_safelibero.py \\\n  --checkpoint /root/autodl-tmp/.cache/openpi/openpi-assets/checkpoints/pi05_libero \\\n  --config_name pi05_libero \\\n  --suite safelibero_object --safety_level II \\\n  --n_episodes 50 --seed 7 --gpu 0 \\\n  --output_path /root/autodl-tmp/eval_results/reeval_baseline_pertask.json\n```\n- **PID:** 932512 (python), 932507 (bash wrapper)\n- **GPU:** cuda:0, westd-35807\n- **Log:** `/root/runs/diff_collision_sdf/reeval_baseline_pertask.log`\n- **Output:** `/root/autodl-tmp/eval_results/reeval_baseline_pertask.json`\n- **Model:** Pi0.5 pretrained (no LoRA, no fine-tuning), config `pi05_libero`, `pi05=True`\n- **Eval protocol:** seed=7, 50 episodes/task, 4 tasks, safety_level II, 300 max_steps, replan_steps=5\n- **v3 fixes confirmed:** 180° image rotation (`[::-1, ::-1]`) + 256px camera resolution\n- **Estimated completion:** ~08:50-09:00 UTC (based on ~5-10s/episode × 200 episodes = 17-33 min, started 08:28)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-baseline-pertask-reeval.md"
+}

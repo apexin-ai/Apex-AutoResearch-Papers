@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "6ab62193459ac6642fe5",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code fix lora weight attr",
+  "task_key": "worker_code_fix_lora_weight_attr_20260521T081441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_lora_weight_attr_20260521T081441.log",
+    "occurrence": 1,
+    "bytes": 1393952,
+    "sha256": "2135b74a4b3f15f2c75d894e419475f91387b7af9c0344ca2dd1c35a3b220321"
+  },
+  "statistics": {
+    "messages": 571,
+    "user_turns": 1,
+    "tool_calls": 189,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 166,
+      "tool_call": 189,
+      "tool_result": 189,
+      "result": 3,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 192,
+      "chunks": [
+        {
+          "path": "6ab62193459ac6642fe5-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "6ab62193459ac6642fe5-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 379,
+      "chunks": [
+        {
+          "path": "6ab62193459ac6642fe5-part-0002.json",
+          "message_count": 162
+        },
+        {
+          "path": "6ab62193459ac6642fe5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab62193459ac6642fe5-part-0004.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-lora-weight-attr.md"
+}

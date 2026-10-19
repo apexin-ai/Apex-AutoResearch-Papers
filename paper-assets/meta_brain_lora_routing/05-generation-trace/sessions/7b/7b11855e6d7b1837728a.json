@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "7b11855e6d7b1837728a",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "eval nominal base no lora",
+  "task_key": "worker_eval_nominal_base_no_lora_20260516T150424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_nominal_base_no_lora_20260516T150424.log",
+    "occurrence": 1,
+    "bytes": 801019,
+    "sha256": "eb6e0adfc583dea44f2f7b7cb601373c15f99514393ba6f997b27e58714a24a9"
+  },
+  "statistics": {
+    "messages": 261,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 102,
+      "tool_result": 102
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 261,
+      "chunks": [
+        {
+          "path": "7b11855e6d7b1837728a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7b11855e6d7b1837728a-part-0002.json",
+          "message_count": 81
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-nominal-base-no-lora.md"
+}

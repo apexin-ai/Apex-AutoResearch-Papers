@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d927738c670553efb487",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper latex compile check",
+  "task_key": "worker_paper_latex_compile_check_20260527T063259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_latex_compile_check_20260527T063259_result.json",
+    "occurrence": 1,
+    "bytes": 3300,
+    "sha256": "ab4fe86762f557ae8804ed53518d0fe951d89f9c4cb0b90cf46787a3408046e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是完整报告。\n\n---\n\n## LaTeX 编译 & Reference 审计报告\n\n### 1. 编译状态：**成功**\n\n- 无 errors\n- 无 citation undefined / reference undefined warnings\n- 输出: `main.pdf`, 15 页, 469,977 bytes\n- 非致命 warnings:\n  - 4x `'h' float specifier changed to 'ht'` (appendix.tex 中的表格)\n  - 3x hyperref warnings: `\\lambda` in PDF bookmark (appendix.tex:121，虽已用 `\\texorpdfstring` 但 hyperref 仍报)\n  - 2x `Underfull \\hbox` (related_work.tex)\n  - 3x `Underfull \\vbox` (排版浮动)\n\n### 2. 页数：**符合 CoRL 限制**\n\n| 部分 | 页码 | 页数 |\n|------|------|------|\n| 主文 (abstract–discussion) | 1–8 | **8** (恰好等于上限) |\n| References | 9–10 | 2 |\n| Appendix | 11–15 | 5 |\n| **总计** | | **15** |\n\n### 3. Citation/Reference 完整性：**通过**\n\n- 28 条 bib entries 全部被引用，无 orphan entries\n- 所有 `\\cite{}` 均有对应 bib entry\n- 所有 `\\ref{}` 均有对应 `\\label{}`\n- 所有 5 个图片文件均存在\n\n### 4. Placeholder 列表\n\n**活跃文件（会被编译）：**\n\n| 文件 | 行号 | 内容 | 严重性 |\n|------|------|------|--------|\n| `claim3.tex` | 24 | `30K results pending.` (λ=0.1 脚注) | **CRITICAL** |\n| `main.tex` | 13 | `\\newcommand{\\placeholder}...` 定义存在但未使用 | 建议删除 |\n\n**归档文件（不编译，不影响提交）：**\n- `archive/analysis_claim3.tex` — 多处 placeholder（已归档）\n- `archive/analysis_claim4.tex` — 大量 `\\placeholder{XX.X}` （已归档）\n- `_archive/experiments.tex` — 大量 `[TODO]`（已归档）\n- `_archive/method.tex`, `_archive/conclusion_DEPRECATED.tex` — placeholder（已归档）\n\n### 5. arXiv preprint 需核查\n\n以下 11 条 bib entry 标记为 `arXiv preprint`，截至 2026-05 可能已正式发表，建议核实：\n\n| Key | 标题缩写 | arXiv ID | 可能已发表? |\n|-----|---------|----------|------------|\n| `black2024pi0` | Pi0 | 2410.24164 | 高概率（2024.10 投稿） |\n| `hu2025vlsa` | VLSA/SafeLIBERO | 2512.11891 | 可能（本文核心 benchmark） |\n| `cofreeevla2026` | CoFreeVLA | 2601.21712 | 可能 |\n| `spalter2024ikinqp` | iKinQP-RL | 2409.08233 | 可能 |\n| `yang2025cape` | CAPE | 2511.22773 | 可能 |\n| `depthvla2025` | DepthVLA | 2510.13375 | 可能 |\n| `li2025qdepth` | QDepth-VLA | 2510.14836 | 可能 |\n| `li2025spatialforcing` | Spatial Forcing | 2510.12276 | 可能 |\n| `dong2025conditioning` | Conditioning Matters | 2505.11123 | 可能 |\n| `chen2026cssdfnet` | CSSDF-Net | 2603.18669 | 较新 |\n| `li2026vlasafety` | VLA Safety Survey | 2604.23775 | 较新 |\n\n---\n\n### 需要修复的问题清单\n\n1. **[CRITICAL]** `claim3.tex:24` — 删除或替换 \"30K results pending\" 脚注。如果 30K 数据已有，填入实际数值；如果没有，改为仅报告 20K 结果而不提 pending。\n2. **[建议]** `main.tex:13` — 删除 `\\newcommand{\\placeholder}` 定义，避免审稿人看到红色 placeholder 机制。\n3. **[建议]** 核查 11 条 arXiv preprint 是否已被正式会议/期刊接收，更新 bib entry（特别是 `black2024pi0` 和 `hu2025vlsa`）。\n4. **[微调]** appendix.tex 中 `[h]` 浮动改为 `[ht]` 消除 4 条 warnings。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-latex-compile-check.md"
+}

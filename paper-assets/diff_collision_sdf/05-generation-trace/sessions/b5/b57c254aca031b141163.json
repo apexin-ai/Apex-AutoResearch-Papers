@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b57c254aca031b141163",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh a1 batchsize fix restart",
+  "task_key": "worker_ssh_a1_batchsize_fix_restart_20260520T001855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a1_batchsize_fix_restart_20260520T001855_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "7d8f7106af7adf9a0be638ba10441586114bb9d2acbf3803d29603c874c4848c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出总结\n\n### 1. A1 实际 batch_size\n**batch_size=32**（脚本默认值，命令行未覆盖）。不需要 kill 重启。\n\n### 2. VRAM 13.4GB 的原因\nA1 采用两阶段训练：\n- **Phase 1** (step 0–5000): backbone 冻结，只训练 SDF decoder + EE extractor heads → VRAM 低是正常的\n- **Phase 2** (step 5000+): 解冻 backbone 端到端训练 → VRAM 预计跳到 ~37GB+\n\n当前 step=1061，仍在 Phase 1。\n\n### 3. 训练状态\n- Step: 1061/30000，运行 1h04m\n- Loss: ~0.22–0.31（正常范围）\n- lr: 2.50e-05（warmup 完成）\n- 速度: ~3.5s/step\n\n### 4. 默认值修复\n| 脚本 | 修复前 | 修复后 |\n|------|--------|--------|\n| `train_a1_sdf_aux.py` | default=32 | ✅ 已经正确 |\n| `train_a3_hook.py` L375 | default=2 | ✅ 改为 32 |\n\n### 5. 不需要新 PID\nA1 (PID 117519) 正常运行中，无需重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a1-batchsize-fix-restart.md"
+}

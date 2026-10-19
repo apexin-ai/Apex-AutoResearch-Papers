@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebed16aabd18def35dc5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops diagnose s1 l01 exit",
+  "task_key": "worker_ops_diagnose_s1_l01_exit_20260523T055349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_s1_l01_exit_20260523T055349_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "441bc930ddf8161f5e4f5c91b0c0547fca8573fc635e9d61cc985a73d97cd9c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**根因：磁盘满** — `/root/autodl-tmp/` 350G/350G (100%)，仅剩 8KB。\n\n**崩溃详情：**\n- 在 step 8000 保存 checkpoint 时触发 `SafetensorError: No space left on device (os error 28)`\n- 最后完成的 step: 7999，运行 5h32m\n- 最后指标: loss=0.0248, action=0.0243, sdf=0.0357, ee=0.0133\n\n**已保存的有效 checkpoint：**\n- step 4000, step 6000, best (step 6000, loss=0.0254)\n- `tmp_8000` 是损坏的（仅 384K），需清理\n\n**影响范围：** 所有 4 个实验（s1_l005, s1_l01, s2_l005, s2_l01）全部因同一原因退出。\n\n**磁盘占用分布：**\n| 目录 | 大小 |\n|------|------|\n| checkpoints/ 总计 | 311G |\n| baseline_object_pudding | 76G |\n| baseline_spatial_bowl | 76G |\n| a1_sdf_pi05_object_pudding (4 runs) | 112G |\n| a1_sdf_object_pudding | 21G |\n| a1_sdf_spatial_bowl | 21G |\n| a3_grad_refine | 7.1G |\n| .hf_cache | 3.3G |\n\n**恢复需要：** 清理旧 checkpoint（baseline 占 152G）腾出空间后可从 step 6000 resume。\n\nRegistry 已更新为 DONE(failed)，cron 之前已不存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-s1-l01-exit.md"
+}

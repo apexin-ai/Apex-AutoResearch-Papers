@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "55e5c1976f3bff970bd8",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "paper appendix evalseed update",
+  "task_key": "worker_paper_appendix-evalseed-update_20260528T033807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-evalseed-update_20260528T033807.log",
+    "occurrence": 1,
+    "bytes": 1109071,
+    "sha256": "af7fb3f979acf1d913e45eacf2dc2fe64c7534ef7223a11cc271b450ebb3c5ea"
+  },
+  "statistics": {
+    "messages": 574,
+    "user_turns": 0,
+    "tool_calls": 246,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 246,
+      "tool_result": 246,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 574,
+      "chunks": [
+        {
+          "path": "55e5c1976f3bff970bd8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "55e5c1976f3bff970bd8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "55e5c1976f3bff970bd8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "55e5c1976f3bff970bd8-part-0004.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-appendix-evalseed-update.md"
+}

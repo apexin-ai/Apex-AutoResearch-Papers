@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97c43a909664ac547ea4",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis dfCAR threshold sensitivity",
+  "task_key": "worker_analysis_dfCAR_threshold_sensitivity_20260526T010133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dfCAR_threshold_sensitivity_20260526T010133_result.json",
+    "occurrence": 1,
+    "bytes": 2787,
+    "sha256": "f347ef531e5893516abbb93df895716910cffef5f79c3a140488bb6566dbb2cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No register_artifact tool available. Results are saved both on the server and locally.\n\n---\n\n## 汇报\n\n### 1. 数据覆盖\n\n**6 个 eval JSON** 含 `max_ee_displacement`，均为 A1 SDF-trained Pi0.5 条件，共 **1200 episodes**（4 tasks × 50 episodes × 6 files）：\n\n| 条件 | Episodes | 文件 |\n|------|----------|------|\n| s0_lam0.05_30k | 200 | `eval_s0_l005_30k_r4.json` |\n| s0_lam0.1_30k | 200 | `eval_s0_l01_30k_disp.json` |\n| s1_lam0.05_30k | 400 | `eval_30k_s1_l005_disp.json` + `eval_s1_l005_30k_disp.json` (2次eval) |\n| s1_lam0.05_best | 200 | `eval_s1_l005_best_16k.json` |\n| s2_lam0.05_best | 200 | `eval_s2_l005_best_10k.json` |\n\n### 2. 核心发现：EE displacement 分布\n\n**NOT bimodal — unimodal, right-skewed.** 所有 1200 episodes 的 `max_ee_displacement` 范围为 **[239mm, 1222mm]**，均值 498mm，中位数 428mm。\n\n**关键结论：0 个 episode 的 ee_disp < 100mm。** 最小值 239mm 远大于 δ=100mm。换言之，在这些 SDF-trained 模型上没有 \"frozen episode\"（机器人不动/微动）。\n\n### 3. Threshold sensitivity — 完全 robust\n\nfiltered_CAR 在 δ ∈ [2mm, 200mm] 范围内**完全不变**（与 raw CAR 完全相同）。直到 δ=300mm 才开始有少量 episode (65/1200 = 5.4%) 被过滤掉。\n\n这意味着 **δ=100mm 的选择极其 robust**：δ 可以是 2mm 到 200mm 之间的任何值，结果完全相同。δ=100mm 落在一个巨大的 \"safe zone\" 内。\n\n### 4. 输出文件\n\n**服务器端** (`/root/colliforce-vla/analysis/threshold_sensitivity/`):\n- `threshold_sensitivity.csv` — 完整数值表\n- `ee_displacement_combined.png` — 全局 EE displacement 分布直方图\n- `ee_displacement_distribution.png` — 按条件分面直方图\n- `sensitivity_curves.png` — filtered_CAR vs δ 曲线\n- `analysis_summary.json` — 机器可读摘要\n\n**本地** (`artifacts/threshold_sensitivity/` 下有相同文件副本)\n\n### 5. 缺失数据\n\n以下条件**没有** `max_ee_displacement`，无法分析：\n- **Pi0.5 baseline** (4 seeds): `eval_safelibero_object_all_levelII__lora_baseline_seed{0,1,2,3}.json`\n- **Pi0.5 baseline (spatial)**: `eval_safelibero_spatial_all_levelII_best_lora_baseline_seed0.json`\n- **Oracle** (3种): `oracle_true_gt_*.json`, `oracle_force_refine_*.json`, `oracle_m024fix_*.json`\n- **早期 SDF eval** (`_final.json`, `_v3.json`, `_v4.json`) — 这些是修复 ee_displacement 记录之前的 eval 运行\n- **Pi0.5 safelibero object s1/s2**: `pi05_safelibero_object_v11_s{1,2}.json`\n\nbaseline 是最可能出现低 ee_disp（frozen episodes）的条件，如果需要展示 \"baseline 有 fake-safe 而 dfCAR 能过滤它们\"，需要对 baseline 重新跑一次带 ee_displacement 记录的 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dfcar-threshold-sensitivity.md"
+}

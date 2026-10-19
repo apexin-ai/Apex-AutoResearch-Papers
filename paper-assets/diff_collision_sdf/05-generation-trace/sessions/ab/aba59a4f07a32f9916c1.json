@@ -1,0 +1,2199 @@
+{
+  "schema_version": "1.0",
+  "id": "aba59a4f07a32f9916c1",
+  "project": "diff_collision_sdf",
+  "kind": "conversation",
+  "title": "figure pertask car fingerprint",
+  "task_key": "worker_figure_pertask_car_fingerprint_20260527T180722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_figure_pertask_car_fingerprint_20260527T180722.jsonl",
+    "occurrence": 1,
+    "bytes": 93570,
+    "sha256": "5ace0d41dedfd40ad33308ccc2ea7bffaa45a89abeb9e884d9de38bdf37ee68d"
+  },
+  "statistics": {
+    "messages": 109,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "tool_call": 54,
+      "tool_result": 54,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T18:16:24.645763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/skills/draw-paper-figure.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T18:16:24.646271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T18:16:24.646440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find paper tex files",
+              "prompt": "In /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/, find all .tex files that could contain per-task CAR data tables, especially claim3.tex, appendix.tex, and abstract.tex. Search both under docs/paper/ and paper/ directories. Also look for any directory named \"paper\" or \"docs\". Report the full paths of all .tex files found."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T18:16:24.646628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf -type d -name \"paper\" -o -type d -name \"docs\""
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T18:16:24.646762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/paper"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-27T18:16:24.646892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-27T18:16:24.647014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/introduction.tex\nartifacts/_project/paper/method.tex\ndocs/paper/_archive/method.tex\nartifacts/drafts/method.tex\nartifacts/_project/paper/related_work.tex\ndocs/paper/_archive/experiments.tex\ndocs/paper/_archive/conclusion_DEPRECATED.tex\nartifacts/drafts/experiments.tex\nartifacts/drafts/abstract.tex\nartifacts/drafts/conclusion.tex\nartifacts/drafts/introduction.tex\nartifacts/drafts/related_work.tex\nartifacts/_project/paper/analysis_claim1.tex\nartifacts/drafts/analysis_claim1.tex\nartifacts/_project/paper/analysis_claim2.tex\nartifacts/drafts/analysis_claim2.tex\nartifacts/_project/paper/analysis_claim3.tex\nartifacts/drafts/analysis_claim3.tex\nartifacts/_project/paper/experimental_framework.tex\nartifacts/drafts/experimental_framework.tex\nartifacts/_project/paper/introduction_v2.tex\nartifacts/_project/paper/abstract_v2.tex\nartifacts/drafts/abstract_v2.tex\nartifacts/drafts/introduction_v2.tex\nartifacts/drafts/related_work_v2.tex\nartifacts/_project/paper/related_work_v2.tex\ndocs/paper/archive/analysis_claim4.tex\nartifacts/dream_reports/dream_20260525T223036/best/paper.tex\nartifacts/dream_reports/dream_20260525T223036/median/paper.tex\nartifacts/dream_reports/dream_20260525T223036/worst/paper.tex\nartifacts/dream_reports/dream_20260526T023936/best/paper.tex\nartifacts/dream_reports/dream_20260526T023936/median/paper.tex\nartifacts/dream_reports/dream_20260526T023936/worst/paper.tex\ndocs/paper/archive/analysis_claim3.tex\ndocs/paper/archive/analysis_claim1.tex\ndocs/paper/archive/analysis_claim2.tex\nartifacts/reeval_comparison.tex\ndocs/paper/contingency_claim3.tex\nartifacts/_project/paper/discussion.tex\ndocs/paper/experimental_framework.tex\ndocs/paper/main.tex\ndocs/paper/related_work.tex\ndocs/paper/claim1.tex\ndocs/paper/claim2.tex\ndocs/paper/method.tex\ndocs/paper/claim3.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/discussion.tex\ndocs/paper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-27T18:16:24.647186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found all the .tex files. Here's a comprehensive report of the files you were looking for:\n\n## Target Files Found\n\nThe specific files you mentioned are located at:\n- **/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex**\n- **/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex**\n- **/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex**\n\n## All .tex Files in the Project\n\nThe project contains .tex files in three main locations:\n\n### docs/paper/ directory (Primary):\n- claim1.tex\n- claim2.tex\n- claim3.tex\n- abstract.tex\n- appendix.tex\n- main.tex\n- related_work.tex\n- introduction.tex\n- discussion.tex\n- method.tex\n- experimental_framework.tex\n- contingency_claim3.tex\n\n### artifacts/_project/paper/ directory:\n- analysis_claim1.tex\n- analysis_claim2.tex\n- analysis_claim3.tex\n- abstract_v2.tex\n- introduction.tex\n- introduction_v2.tex\n- method.tex\n- related_work.tex\n- related_work_v2.tex\n- discussion.tex\n- experimental_framework.tex\n\n### artifacts/drafts/ directory:\n- abstract.tex\n- abstract_v2.tex\n- analysis_claim1.tex\n- analysis_claim2.tex\n- analysis_claim3.tex\n- conclusion.tex\n- experiments.tex\n- experimental_framework.tex\n- introduction.tex\n- introduction_v2.tex\n- method.tex\n- related_work.tex\n- related_work_v2.tex\n\n### Additional locations:\n- docs/paper/_archive/ (method.tex, experiments.tex, conclusion_DEPRECATED.tex)\n- docs/paper/archive/ (analysis_claim1.tex, analysis_claim2.tex, analysis_claim3.tex, analysis_claim4.tex)\n- artifacts/dream_reports/ (multiple subdirectories with paper.tex files)\n- artifacts/reeval_comparison.tex\n\nThe main paper structure appears to be in **/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/**, which contains the claim-based analysis files and the primary paper sections."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Agent",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-27T18:16:24.647328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-27T18:16:24.647737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 2\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术统计图生成（Worker 执行）\n16\t\n17\tWorker 收到统计图画图任务时读本 skill。**画图前必读** `skills/global/paper-visualization.skill.md` 的 L1/L2 原则和 L3 pattern 库。\n18\t\n19\t**质量底线：每张图必须达到 NeurIPS/ICML/EMNLP best paper 的视觉水准——高级感、专业感、精致感。绝不接受 matplotlib 默认样式的廉价感（灰背景、粗网格线、tab10 色板、默认蓝色）。**\n20\t\n21\t**生成图片后必须 Read PNG 做视觉检查，至少迭代 3 轮（Hero Figure 至少 5 轮）。第一版画出来基本不能直接用。**\n22\t\n23\t本 skill 提供：\n24\t- 通用样式（rcParams + 色板）\n25\t- 三个常用图表的起点模板（reliability/heatmap/scatter）\n26\t- NeurIPS 经验提炼的 pattern 实现示例\n27\t\n28\t## 输入字段（从 Paper Agent 传入）\n29\t\n30\t- `fig_id` / `type` / `placement` / `data_source` / `aspect_ratio` / 输出路径\n31\t- **`narrative_intent`**：一句话，这张图要让读者相信什么\n32\t- **`design_notes`**：从 paper-visualization L3 选的 pattern 列表\n33\t\n34\t## 画图工作流\n35\t\n36\t1. 读 paper-visualization skill 的 L1 防丑原则 + L2 叙事原则\n37\t2. 根据 `narrative_intent` 选起点模板（本 skill §模板）\n38\t3. 按 `design_notes` 中每个 pattern 添加相应技法（本 skill §pattern 实现）\n39\t4. 提交前过本 skill §checklist\n40\t\n41\t## 通用样式标准（所有图表必须遵守）\n42\t\n43\t```python\n44\timport matplotlib\n45\tmatplotlib.use('Agg')\n46\timport matplotlib.pyplot as plt\n47\timport matplotlib.patches as mpatches\n48\timport numpy as np\n49\t\n50\t# 字体和全局样式\n51\tplt.rcParams.update({\n52\t    'font.family': 'DejaVu Sans',\n53\t    'font.size': 11,\n54\t    'axes.titlesize': 13,\n55\t    'axes.labelsize': 12,\n56\t    'xtick.labelsize': 10,\n57\t    'ytick.labelsize': 10,\n58\t    'legend.fontsize': 10,\n59\t    'figure.dpi': 300,\n60\t    'savefig.dpi': 300,\n61\t    'savefig.bbox': 'tight',\n62\t    'savefig.pad_inches': 0.05,\n63\t    'axes.spines.top': False,\n64\t    'axes.spines.right': False,\n65\t    'lines.linewidth': 1.8,\n66\t})\n67\t\n68\t# 色盲友好配色：优先从 writing_plan.yaml 的 color_palette 读取\n69\t# 读不到则 fallback 到以下默认值\n70\tCOLORS = {\n71\t    'fp16':   '#E69F00',  # 橙黄\n72\t  \n…[truncated 15923 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-27T18:16:24.647913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-27T18:16:24.648082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}\n2\t\n3\tFine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$28 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only, LoRA+SDF ($\\lambda = 0.005$), and LoRA+SDF ($\\lambda = 0.01$) on Pi0.5, all evaluated at the 30K-step checkpoint.\n4\t\n5\t\\begin{table}[t]\n6\t\\centering\n7\t\\caption{Avoidance source attribution on SafeLIBERO. SDF at $\\lambda \\leq 0.01$ adds no measurable CAR beyond LoRA-only ($p > 0.1$); $\\lambda = 0.1$ shows a marginal signal ($z = 1.76$, $p \\approx 0.039$, $n{=}2$) that requires additional seeds. All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\n8\t\\label{tab:avoidance_source}\n9\t\\vspace{2pt}\n10\t\\small\n11\t\\begin{tabular}{lcccc}\n12\t\\toprule\n13\tMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n14\t\\midrule\n15\tPi0.5 baseline & 3 & 74.7\\,$\\pm$\\,1.5 & 26.8\\,$\\pm$\\,1.6 & 0.367 \\\\\n16\t\\midrule\n17\tLoRA-only (no SDF) & 3 & 49.7\\,$\\pm$\\,3.2 & 54.83\\,$\\pm$\\,2.25 & 0.391 \\\\\n18\tLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.29 & 0.387 \\\\\n19\tLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.33\\,$\\pm$\\,1.61 & 0.389 \\\\\n20\tLoRA+SDF $\\lambda{=}0.1$\\textsuperscript{$\\dagger$} & 2 & 48.0\\,$\\pm$\\,1.4 & 58.25\\,$\\pm$\\,0.35 & 0.394 \\\\\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\vspace{1pt}\n24\t{\\footnotesize \\textsuperscript{$\\dagger$}30K checkpoint, two of three seeds; third seed in progress.}\n25\t\\end{table}\n26\t\n27\tTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$28 percentage points (26.8\\% $\\to$ 54.83\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision produces no measurable benefit: LoRA-only CAR (54.83\\%) is within 0.25\\,pp of $\\lambda = 0.005$ and statistically indistinguish\n…[truncated 2519 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-27T18:16:24.648236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-27T18:16:24.648489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Displacement Distribution}\n2\t\\label{sec:appendix_displacement}\n3\t\n4\t\\begin{figure}[h]\n5\t\\centering\n6\t\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n7\t\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n8\t\\label{fig:displacement}\n9\t\\end{figure}\n10\t\n11\t\\section{Displacement Threshold Sensitivity Analysis}\n12\t\\label{sec:appendix_threshold}\n13\t\n14\tTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\n15\t\n16\t\\begin{table}[h]\n17\t\\centering\n18\t\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n19\t\\label{tab:threshold_sensitivity}\n20\t\\begin{tabular}{lccc}\n21\t\\toprule\n22\t$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n23\t\\midrule\n24\t0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n25\t0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n26\t1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n27\t10 mm   & 100.0 & 0.0 & 0.0 \\\\\n28\t\\bottomrule\n29\t\\end{tabular}\n30\t\\end{table}\n31\t\n32\tThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\n33\t\n34\tTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\\n…[truncated 16472 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-27T18:16:24.648650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-27T18:16:24.648788+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tVision-Language-Action (VLA) models report high Collision Avoidance Rates (CAR) on safety benchmarks, yet we show these metrics are contaminated by action collapse.\n3\tOn SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\\% CAR while 99.6\\% of its safe episodes exhibit end-effector displacement below 0.1\\,mm---the robot is frozen, not safe.\n4\tWe present displacement-filtered CAR (dfCAR), which excludes sub-threshold episodes, as a corrective metric; the bimodal displacement distribution makes it robust across a $[2, 200]$\\,mm threshold range.\n5\tOur analysis further reveals that end-effector-only Signed Distance Field (SDF) supervision is neither necessary nor structurally sufficient for collision avoidance.\n6\tIt is counterproductive at inference time: three ground-truth oracle variants all reduce dfCAR below unrefined baselines, as SDF gradients repelling the end-effector drive arm links into obstacles.\n7\tIts contribution during training is dose-dependent: LoRA-only fine-tuning raises dfCAR from 26.8\\% to 54.83\\%$\\,\\pm\\,$2.25, matching SDF-augmented training at $\\lambda{=}0.005$ (54.5\\%$\\,\\pm\\,$2.29) and $\\lambda{=}0.01$ (56.33\\%$\\,\\pm\\,$1.61); at $\\lambda{=}0.1$, two of three seeds show a marginal signal (58.25\\%$\\,\\pm\\,$0.35, $p{\\approx}0.039$) whose per-task avoidance pattern still mirrors the demonstration distribution, requiring further investigation.\n8\tPer-task avoidance patterns remain identical across all conditions, indicating that collision avoidance arises from collision-free demonstration data rather than geometric supervision.\n9\tDisplacement filtering is necessary for meaningful VLA safety evaluation; EE-only geometric supervision can be neither credited with nor expected to deliver collision avoidance.\n10\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-27T18:16:24.649013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-27T18:16:24.649150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-27T18:16:24.649299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/colliforce-vla -name \"*.json\" -path \"*eval*\" -type f 2>/dev/null | head -40",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-27T18:16:24.649440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-27T18:16:24.649646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/colliforce-vla -name \"*.json\" -path \"*eval*\" -type f 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-27T18:16:24.649772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-27T18:16:24.649891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/colliforce-vla -name \"*.json\" -path \"*eval*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-27T18:16:24.650014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/colliforce-vla/eval_results/eval_30k_s1_l005_disp.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-27T18:16:24.650136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/colliforce-vla -name \"*.json\" -path \"*result*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-27T18:16:24.650258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/colliforce-vla/artifacts/sdf_pipeline_results.json\\\\n/root/colliforce-vla/eval_results/eval_30k_s1_l005_disp.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-27T18:16:24.650373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "ls /root/colliforce-vla/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-27T18:16:24.650514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_30k_s1_l005_disp.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-27T18:16:24.650631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/colliforce-vla -name \"*.csv\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-27T18:16:24.650750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/colliforce-vla/analysis/threshold_sensitivity/threshold_sensitivity.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-27T18:16:24.650864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/colliforce-vla -name \"per_task*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-27T18:16:24.650981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/colliforce-vla/figures/per_task_tsr_comparison.pdf\\\\n/root/colliforce-vla/figures/per_task_tsr_comparison.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-27T18:16:24.651094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/colliforce-vla -name \"reeval*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-27T18:16:24.651209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-27T18:16:24.651326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/colliforce-vla -name \"*.npy\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-27T18:16:24.651458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-27T18:16:24.651589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "ls /root/colliforce-vla/analysis/",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-27T18:16:24.651702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "ls /root/colliforce-vla/artifacts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-27T18:16:24.651816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"threshold_sensitivity\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-27T18:16:24.651929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report_sdf_pipeline.md\\\\nsdf_pipeline_results.json\\\\nsdf_slice_object_chocolate.png\\\\nsdf_slice_spatial_bowl.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-27T18:16:24.652044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/colliforce-vla -name \"wandb*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-27T18:16:24.652159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/colliforce-vla/wandb\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-27T18:16:24.652269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "LoRA s2.*OJ|LoRA.*s2.*per.task|seed.2.*per.task",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+              "-i": "True"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-27T18:16:24.652438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 98 files\nlogs/workers/worker_figure_pertask_car_fingerprint_20260527T180722.log\nlogs/workers/worker_write_scenario_b_draft_20260527T174713.log\ndocs/paper/claim3.tex\nlogs/chats/feishu_group_oc_2c646862aa8ab8cb11d510a31e342e17.jsonl\nlogs/chats/feishu_group_oc_0db37ddf884a30d7a41b32e7cfe7c3ae_director.jsonl\nlogs/chats/feishu_group_oc_2c646862aa8ab8cb11d510a31e342e17_reviewer.jsonl\nartifacts/dual_narrative_templates.md\nlogs/workers/worker_write_dual_narrative_templates_20260527T170903.log\nartifacts/_project/paper/dual_narrative_templates.md\nlogs/workers/worker_fix_paper_sigma_correction_20260527T170749.log\nlogs/workers/worker_fix_paper_reviewer_corrections_s2_20260527T164737_result.json\nlogs/chats/worker_fix_paper_reviewer_corrections_s2_20260527T164737.jsonl\nlogs/workers/worker_fix_paper_reviewer_corrections_s2_20260527T164737.log\nlogs/workers/worker_check_eval_lora_s2_result_20260527T160747_result.json\nlogs/chats/worker_check_eval_lora_s2_result_20260527T160747.jsonl\nlogs/workers/worker_check_eval_lora_s2_result_20260527T160747.log\nlogs/workers/worker_check_pending_evals_for_idle_gpus_20260527T141850.log\nlogs/workers/worker_diagnose_train_phase2_lambda0_extra_seed_20260527T141518.log\nlogs/chats/cron_hook_train_phase2_lambda0_extra_seed.jsonl\nlogs/workers/worker_fix_eval_lora_s2_director_order_20260527T140441.log\nlogs/workers/worker_eval_lora_baseline_s2_30k_20260527T133956.log\nlogs/workers/worker_eval_lora_s2_30k_20260527T131142.log\nlogs/workers/worker_train_phase2_lambda0_s2_v2_20260527T131820.log\nlogs/chats/feishu_group_oc_2c646862aa8ab8cb11d510a31e342e17_paper_agent.jsonl\nlogs/workers/worker_review_reviewer_corrections_audit_20260527T131202.log\nlogs/chats/cron_hook_train_pi05_lora_baseline_s2_resume.jsonl\nlogs/chats/archive/cron_hook_train_pi05_lora_baseline_s1_20260527T100803_930827.jsonl\nlogs/chats/archive/cron_hook_train_pi05_lora_baseline_s0_20260527T094931_848215.jsonl\nlogs/chats/archive/feishu_group_oc_0db37ddf884a30d7a41b32e7cfe7c3ae_director_20260527T\n…[truncated 5110 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-27T18:16:24.652614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_check_eval_lora_s2_result_20260527T160747.log",
+              "limit": "100"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-27T18:16:24.652734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (67348 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-27T18:16:24.652848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_eval_lora_baseline_s2_30k_20260527T133956.log",
+              "limit": "100"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-27T18:16:24.652959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (56778 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-27T18:16:24.653070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "per.task.*CAR|CAR.*per.task|task_0|task_1|task_2|task_3|orange_juice.*\\d+|chocolate_pudding.*\\d+|milk.*\\d+|bbq_sauce.*\\d+",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_check_eval_lora_s2_result_20260527T160747.log",
+              "output_mode": "content",
+              "head_limit": "40"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-27T18:16:24.653194+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "36:[Omitted long matching line]\n38:[Omitted long matching line]\n39:[Omitted long matching line]\n40:[Omitted long matching line]\n45:[Omitted long matching line]\n46:[Omitted long matching line]\n48:[Omitted long matching line]\n50:[Omitted long matching line]\n52:[Omitted long matching line]\n54:[Omitted long matching line]\n55:[Omitted long matching line]\n56:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-27T18:16:24.653309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_check_eval_lora_s2_result_20260527T160747.log",
+              "offset": "35",
+              "limit": "30"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-27T18:16:24.653432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (41593 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-27T18:16:24.653559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "dfCAR|per.task CAR|OJ|CP|Milk|BBQ|seed.2.*55|lora.*s2",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_check_eval_lora_s2_result_20260527T160747.log",
+              "output_mode": "content",
+              "-i": "True",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-27T18:16:24.653682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2:[Omitted long matching line]\n4:[Omitted long matching line]\n5:[Omitted long matching line]\n6:[Omitted long matching line]\n7:[Omitted long matching line]\n8:[Omitted long matching line]\n9:[Omitted long matching line]\n11:[Omitted long matching line]\n12:[Omitted long matching line]\n15:[Omitted long matching line]\n17:[Omitted long matching line]\n19:[Omitted long matching line]\n20:[Omitted long matching line]\n21:[Omitted long matching line]\n22:[Omitted long matching line]\n23:[Omitted long matching line]\n24:[Omitted long matching line]\n25:[Omitted long matching line]\n26:[Omitted long matching line]\n27:[Omitted long matching line]\n29:[Omitted long matching line]\n31:[Omitted long matching line]\n32:[Omitted long matching line]\n33:[Omitted long matching line]\n34:[Omitted long matching line]\n35:[Omitted long matching line]\n36:[Omitted long matching line]\n37:[Omitted long matching line]\n39:[Omitted long matching line]\n40:[Omitted long matching line]\n\n[Showing results with pagination = limit: 30]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-27T18:16:24.653815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "LoRA s2.*per.task|s2.*OJ.*CP|s2.*orange.*chocolate",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+              "output_mode": "content",
+              "-i": "True",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-27T18:16:24.653942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260525T223036/logs/review_best.log:8:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_best.log:9:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_best.log:11:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_best.log:107:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_best.log:191:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_best.log:214:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_median.log:8:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_median.log:9:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_median.log:11:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_median.log:60:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_median.log:187:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_median.log:191:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/paper_agent_median.log:5:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_worst.log:11:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_worst.log:13:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_worst.log:14:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_worst.log:26:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_worst.log:135:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/review_worst.log:155:[Omitted long matching line]\nartifacts/dream_reports/dream_20260525T223036/logs/paper_agent_best.log:5:[Omitted long matc\n…[truncated 57 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-27T18:16:24.654091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "offset": "88",
+              "limit": "25"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-27T18:16:24.654223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "88\t\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n89\t\n90\tTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n91\t\n92\t\\begin{table}[h]\n93\t\\centering\n94\t\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$ and $\\lambda{=}0.01$ report 3-seed means. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n95\t\\label{tab:per_task_car}\n96\t\\vspace{2pt}\n97\t\\small\n98\t\\begin{tabular}{lccccc}\n99\t\\toprule\n100\tCondition & OJ & CP & Milk & BBQ & Agg. \\\\\n101\t\\midrule\n102\tLoRA s0 & 68 & 74 & 66 & 20 & 57.0 \\\\\n103\tLoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\\\\n104\tSDF $\\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\\\\n105\tSDF $\\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\\\\n106\tSDF $\\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\\\\n107\tSDF $\\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\\\\n108\t\\bottomrule\n109\t\\end{tabular}\n110\t\\end{table}\n111\t\n112\tFor the $\\lambda = 0.1$ condition, seed~1 records avg\\_max\\_obstacle\\_displacement of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-27T18:16:24.654390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/colliforce-vla -name \"*.log\" -path \"*eval*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-27T18:16:24.654560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/colliforce-vla/logs/eval_s1_l005_v2_20260525_193549.log\\\\n/root/colliforce-vla/logs/eval_s2_l005_v2_20260525_193549.log\\\\n/root/colliforce-vla/logs/eval_s2_l005_v2_20260525_193714.log\\\\n/root/colliforce-vla/logs/eval_s1_l005_v2_20260525_193715.log\\\\n/root/colliforce-vla/logs/eval_s1_l005_v2_20260525_194429.log\\\\n/root/colliforce-vla/logs/eval_s2_l005_v2_20260525_194506.log\\\\n/root/colliforce-vla/logs/eval_s1_l005_v3_20260525_194832.log\\\\n/root/colliforce-vla/logs/eval_s2_l005_v3_20260525_194906.log\\\\n/root/colliforce-vla/logs/eval_s1_l005_v4_20260525_195350.log\\\\n/root/colliforce-vla/logs/eval_s2_l005_v4_20260525_195355.log\\\\n/root/colliforce-vla/logs/eval_s1_l01_v2_20260525_200337.log\\\\n/root/colliforce-vla/logs/eval_s0_l01_30k.log\\\\n/root/colliforce-vla/logs/eval_s0_l005_30k.log\\\\n/root/colliforce-vla/logs/eval_s2_l01_30k.log\\\\n/root/colliforce-vla/logs/eval_s0_l005_30k_20260525_211035.log\\\\n/root/colliforce-vla/logs/eval_s2_l01_30k_20260525_211035.log\\\\n/root/colliforce-vla/logs/eval_s0_l01_30k_20260525_211035.log\\\\n/root/colliforce-vla/logs/eval_s1_l005_v3.log\\\\n/root/colliforce-vla/logs/eval_s2_l005_v3.log\\\\n/root/colliforce-vla/logs/eval_s0_best_l005.log\\\\n/root/colliforce-vla/logs/eval_s0_l01_30k_v2.log\\\\n/root/colliforce-vla/logs/eval_s1_l005_v4.log\\\\n/root/colliforce-vla/logs/eval_s2_l005_v4.log\\\\n/root/colliforce-vla/logs/eval_s2_l01_v3.log\\\\n/root/colliforce-vla/logs/eval_s2_l005_best_10k.log\\\\n/root/colliforce-vla/logs/eval_s2_l005_best_10k_v2.log\\\\n/root/colliforce-vla/logs/eval_30k_s1_l005_disp_restart.log\\\\n/root/colliforce-vla/logs/eval_a1_ee_disp.log\\\\n/root/colliforce-vla/logs/eval_s1_l1_20k.log\\\\n/root/colliforce-vla/logs/eval_s0_l1_16k.log\\\\n/root/colliforce-vla/logs/eval_s0_l1_22k.log\\\\n/root/colliforce-vla/logs/eval_s0_l01_30k_seed7.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-27T18:16:24.654694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "per.task.*s0.*s1.*s2|individual seed.*per.task|seed_0.*seed_1.*seed_2",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_analysis_paper_data_summary_20260526T004721.log",
+              "output_mode": "content",
+              "-i": "True",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-27T18:16:24.654814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "55:[Omitted long matching line]\n62:[Omitted long matching line]\n63:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-27T18:16:24.654927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep -i \"per.task\\|task_0\\|task_1\\|task_2\\|task_3\\|orange_juice\\|chocolate\\|milk\\|bbq\" /root/colliforce-vla/logs/eval_s0_l005_30k.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-27T18:16:24.655044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-27T18:16:24.655161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"per_task\" /root/colliforce-vla/logs/eval_s0_l005_30k.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-27T18:16:24.655278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-27T18:16:24.655389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -30 /root/colliforce-vla/logs/eval_s0_l005_30k.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-27T18:16:24.655549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-26 00:47:39,978 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_chocolate_pudding_and_place_it_in_the_basket.bddl\\\\n2026-05-26 00:47:39,978 [INFO] Safety level: II\\\\n2026-05-26 00:49:22,908 [INFO]   Episode 10/50: success=False, collided=False, steps=300\\\\n2026-05-26 00:51:13,527 [INFO]   Episode 20/50: success=False, collided=True, steps=300\\\\n2026-05-26 00:52:47,778 [INFO]   Episode 30/50: success=False, collided=False, steps=300\\\\n2026-05-26 00:54:39,702 [INFO]   Episode 40/50: success=False, collided=True, steps=300\\\\n2026-05-26 00:56:24,279 [INFO]   Episode 50/50: success=False, collided=True, steps=300\\\\n2026-05-26 00:56:24,635 [INFO] Results for task 1:\\\\n2026-05-26 00:56:24,635 [INFO]   TSR = 28.0% (14/50)\\\\n2026-05-26 00:56:24,635 [INFO]   CAR = 38.0% (19/50)\\\\n2026-05-26 00:56:24,635 [INFO]   Avg smoothness = 0.001476\\\\n2026-05-26 00:56:24,635 [INFO]   Avg max displacement = 0.0804m\\\\n2026-05-26 00:56:24,636 [INFO] Task 2: pick up the milk and place it in the basket\\\\n2026-05-26 00:56:24,636 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_milk_and_place_it_in_the_basket.bddl\\\\n2026-05-26 00:56:24,636 [INFO] Safety level: II\\\\n2026-05-26 00:58:18,772 [INFO]   Episode 10/50: success=False, collided=False, steps=300\\\\n2026-05-26 01:00:10,569 [INFO]   Episode 20/50: success=False, collided=False, steps=300\\\\n2026-05-26 01:02:02,349 [INFO]   Episode 30/50: success=False, collided=False, steps=300\\\\n2026-05-26 01:03:55,578 [INFO]   Episode 40/50: success=False, collided=False, steps=300\\\\n2026-05-26 01:05:47,442 [INFO]   Episode 50/50: success=False, collided=False, steps=300\\\\n2026-05-26 01:05:47,818 [INFO] Results for task 2:\\\\n2026-05-26 01:05:47,818 [INFO]   TSR = 0.0% (0/50)\\\\n2026-05-26 01:05:47,818 [INFO]   CAR = 86.0% (43/50)\\\\n2026-05-26 01:05:47,818 [INFO]   Avg smo\n…[truncated 690 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-27T18:16:24.655742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex",
+              "old_string": "indicating that collision avoidance arises from collision-free demonstration data rather than geometric supervision.",
+              "new_string": "indicating that collision avoidance arises from collision-free demonstration data rather than EE-only geometric supervision."
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-27T18:16:24.655882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-27T18:16:24.656017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35807",
+              "account": "root",
+              "command": "mkdir -p /root/autodl-tmp/artifacts"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-27T18:16:24.656140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-27T18:16:24.656277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35807",
+              "account": "root",
+              "command": "cat > /tmp/fig_pertask_car_fingerprint.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# === Data from paper Table 8 (appendix.tex) ===\n# Per-task CAR (%) at 30K steps\n# Task order by descending CAR: CP > Milk > OJ > BBQ\n\ntasks = ['Choco.\\nPudding', 'Milk', 'Orange\\nJuice', 'BBQ\\nSauce']\n\n# LoRA-only: s0 and s1 individual data\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_mean = {k: (lora_s0[k] + lora_s1[k]) / 2 for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k]], ddof=0) for k in lora_s0}\n\n# lambda=0.005: 3-seed means from paper\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\n\n# lambda=0.01: 3-seed means from paper\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\n# lambda=0.1: s0 and s1 individual data\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=0) for k in l1_s0}\n\n# Arrange in display order: CP, Milk, OJ, BBQ\norder = ['CP', 'Milk', 'OJ', 'BBQ']\n\nmeans = {\n    'LoRA-only': [lora_mean[t] for t in order],\n    r'$\\lambda$=0.005': [l005_mean[t] for t in order],\n    r'$\\lambda$=0.01': [l01_mean[t] for t in order],\n    r'$\\lambda$=0.1': [l1_mean[t] for t in order],\n}\n\n# Error bars: available for LoRA-only and lambda=0.1 (individual seeds)\n# For lambda=0.005 and 0.01, only 3-seed means available -> no per-task error bars\nerrs = {\n    'LoRA-only': [lora_std[t] for t in order],\n    r'$\\lambda$=0.005': [0, 0, 0, 0],\n    r'$\\lambda$=0.01': [0, 0, 0, 0],\n    r'$\\lambda$=0.1': [l1_std[t] for t in order],\n}\n\n# Individual seed points for overlay\nseed_points = {\n    'LoRA-only': {t: [lora_s0[t], lora_s1[t]] for t in order},\n    r'$\\lambda$=0.1': {t: [l1_s0[t], l1_s1[t]] for t in order},\n}\n\n# Color palette: sequential blue-to-teal gradient for lambda progression\ncolors = ['#7FAADC', '#4A86C8', '#2166AC', '#0B3D6B']\n\nn_tasks = len(tasks)\nn_conds = len(means)\nbar_width = 0.18\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.5, 4.2))\n\nfor i, (label, vals) in enumerate(means.items()):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    err = errs[label]\n    has_err = any(e > 0 for e in err)\n    \n    bars = ax.bar(\n        x + offset, vals, bar_width * 0.88,\n        label=label, color=colors[i], \n        edgecolor='white', linewidth=0.6,\n        yerr=err if has_err else None,\n        capsize=3 if has_err else 0,\n        error_kw={'linewidth': 1.0, 'capthick': 0.8, 'color': '#333333'},\n        zorder=3\n    )\n    \n    # Overlay individual seed points where available\n    if label in seed_points:\n        for j, t in enumerate(order):\n            pts = seed_points[label][t]\n            jitter = np.linspace(-bar_width * 0.15, bar_width * 0.15, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(x[j] + offset + jitter[k], pt, 'o',\n                        color='white', markersize=4,\n                        markeredgecolor='#333333', markeredgewidth=0.7,\n                        zorder=5)\n\n# Horizontal dashed lines connecting same-rank across tasks to emphasize ordering\n# Draw subtle connectors between bar tops for each condition\nfor i, (label, vals) in enumerate(means.items()):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    xs_line = [x[j] + offset for j in range(n_tasks)]\n    ax.plot(xs_line, vals, '--', color=colors[i], alpha=0.35, \n            linewidth=1.0, zorder=2)\n\n# Rank annotations\nfor j in range(n_tasks):\n    rank_label = ['1st', '2nd', '3rd', '4th'][j]\n    # Put rank above the highest bar in each task group\n    max_val = max(means[label][j] for label in means)\n    max_err = max(errs[label][j] for label in errs)\n    ax.text(x[j], max_val + max_err + 4.5, rank_label,\n            ha='center', va='bottom', fontsize=8.5, color='#555555',\n            fontstyle='italic', fontweight='bold')\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10.5)\nax.set_ylim(0, 92)\nax.set_xlim(-0.5, n_tasks - 0.5)\n\n# Subtle grid\nax.yaxis.grid(True, alpha=0.2, linewidth=0.5, zorder=0)\nax.set_axisbelow(True)\n\n# Legend\nleg = ax.legend(loc='upper right', framealpha=0.9, edgecolor='#cccccc',\n                ncol=2, columnspacing=1.0, handlelength=1.5)\nleg.get_frame().set_linewidth(0.5)\n\n# Annotation: seed count footnote\nax.text(0.01, -0.14,\n        'LoRA-only & $\\\\lambda$=0.1: 2-seed mean (dots = individual seeds); '\n        '$\\\\lambda$=0.005 & $\\\\lambda$=0.01: 3-seed mean',\n        transform=ax.transAxes, fontsize=7.5, color='#777777', va='top')\n\nplt.tight_layout(pad=1.2)\n\noutdir = '/root/autodl-tmp/artifacts'\nplt.savefig(f'{outdir}/fig_pertask_car_fingerprint.pdf')\nplt.savefig(f'{outdir}/fig_pertask_car_fingerprint.png')\nprint(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')\n\n# Print data summary\nprint('\\n=== Data used ===')\nfor label, vals in means.items():\n    print(f'{label}: {dict(zip(order, vals))}')\nPYEOF\npython3 /tmp/fig_pertask_car_fingerprint.py"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-27T18:16:24.656536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: \\\\\\\"cat > /tmp/fig_pertask_car_fingerprint.py << 'PYEOF'\\\\\\\\nimport matplotlib\\\\\\\\nmatplotlib.use('Agg')\\\\\\\\nimport matplotlib.pyplot as plt\\\\\\\\nimport numpy as np\\\\\\\\n\\\\\\\\nplt.rcParams.update({\\\\\\\\n    'font.family': 'DejaVu Sans',\\\\\\\\n    'font.size': 11,\\\\\\\\n    'axes.titlesize': 13,\\\\\\\\n    'axes.labelsize': 12,\\\\\\\\n    'xtick.labelsize': 11,\\\\\\\\n    'ytick.labelsize': 10,\\\\\\\\n    'legend.fontsize': 9.5,\\\\\\\\n    'figure.dpi': 300,\\\\\\\\n    'savefig.dpi': 300,\\\\\\\\n    'savefig.bbox': 'tight',\\\\\\\\n    'savefig.pad_inches': 0.05,\\\\\\\\n    'axes.spines.top': False,\\\\\\\\n    'axes.spines.right': False,\\\\\\\\n    'lines.linewidth': 1.8,\\\\\\\\n})\\\\\\\\n\\\\\\\\n# === Data from paper Table 8 (appendix.tex) ===\\\\\\\\n# Per-task CAR (%) at 30K steps\\\\\\\\n# Task order by descending CAR: CP > Milk > OJ > BBQ\\\\\\\\n\\\\\\\\ntasks = ['Choco.\\\\\\\\\\\\\\\\nPudding', 'Milk', 'Orange\\\\\\\\\\\\\\\\nJuice', 'BBQ\\\\\\\\\\\\\\\\nSauce']\\\\\\\\n\\\\\\\\n# LoRA-only: s0 and s1 individual data\\\\\\\\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\\\\\\\\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\\\\\\\\nlora_mean = {k: (lora_s0[k] + lora_s1[k]) / 2 for k in lora_s0}\\\\\\\\nlora_std = {k: np.std([lora_s0[k], lora_s1[k]], ddof=0) for k in lora_s0}\\\\\\\\n\\\\\\\\n# lambda=0.005: 3-seed means from paper\\\\\\\\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\\\\\\\\n\\\\\\\\n# lambda=0.01: 3-seed means from paper\\\\\\\\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\\\\\\\\n\\\\\\\\n# lambda=0.1: s0 and s1 individual data\\\\\\\\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\\\\\\\\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\\\\\\\\nl1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}\\\\\\\\nl1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=0) for k in l1_s0}\\\\\\\\n\\\\\\\\n# Arrange in display order: CP, Milk, OJ, BBQ\\\\\\\\norder = ['CP', 'Milk', 'OJ', 'BBQ']\\\\\\\\n\\\\\\\\nmeans = {\\\\\\\\n    'LoRA-only': [lora_mean[t] for t in order]\n…[truncated 4548 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-27T18:16:24.656729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "ls /root/miniconda3/bin/python3",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-27T18:16:24.656860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-27T18:16:24.656981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35807",
+              "account": "root",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import matplotlib; print(matplotlib.__version__)\""
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-27T18:16:24.657103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3.10.5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-27T18:16:24.657250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# === Data from paper Table 8 (appendix.tex, tab:per_task_car) ===\n# Per-task CAR (%) at 30K steps, rotation-fixed evaluation\n\n# LoRA-only: s0 and s1 individual data (s2 per-task not in table; aggregate=55.0)\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_mean = {k: (lora_s0[k] + lora_s1[k]) / 2 for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k]], ddof=1) for k in lora_s0}\n\n# lambda=0.005: 3-seed means\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\n\n# lambda=0.01: 3-seed means\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\n# lambda=0.1: s0 and s1 individual data\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=1) for k in l1_s0}\n\n# Display order: descending mean CAR\norder = ['CP', 'Milk', 'OJ', 'BBQ']\ntasks = ['Choco.\\nPudding', 'Milk', 'Orange\\nJuice', 'BBQ\\nSauce']\n\ncond_labels = [\n    'LoRA-only ($\\\\lambda$=0)',\n    '$\\\\lambda$=0.005',\n    '$\\\\lambda$=0.01',\n    '$\\\\lambda$=0.1',\n]\n\nmeans_arr = np.array([\n    [lora_mean[t] for t in order],\n    [l005_mean[t] for t in order],\n    [l01_mean[t] for t in order],\n    [l1_mean[t] for t in order],\n])\n\nerrs_arr = np.array([\n    [lora_std[t] for t in order],\n    [0, 0, 0, 0],\n    [0, 0, 0, 0],\n    [l1_std[t] for t in order],\n])\n\nseed_data = {\n    0: {t: [lora_s0[t], lora_s1[t]] for t in order},\n    3: {t: [l1_s0[t], l1_s1[t]] for t in order},\n}\n\n# Color palette: muted blue gradient (lighter=lower lambda)\ncolors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']\n\nn_tasks = len(tasks)\nn_conds = len(cond_labels)\nbar_width = 0.185\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.0, 4.0))\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    has_err = any(errs_arr[i] > 0)\n\n    ax.bar(\n        x + offset, means_arr[i], bar_width * 0.88,\n        label=cond_labels[i], color=colors[i],\n        edgecolor='white', linewidth=0.5,\n        yerr=errs_arr[i] if has_err else None,\n        capsize=2.5 if has_err else 0,\n        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},\n        zorder=3,\n    )\n\n    # Overlay individual seed dots\n    if i in seed_data:\n        for j, t in enumerate(order):\n            pts = seed_data[i][t]\n            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(\n                    x[j] + offset + jx[k], pt, 'o',\n                    color='white', markersize=3.5,\n                    markeredgecolor='#444444', markeredgewidth=0.6,\n                    zorder=5,\n                )\n\n# Dashed connectors across tasks for each condition (shows shape consistency)\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    xs_line = x + offset\n    ax.plot(xs_line, means_arr[i], '--', color=colors[i],\n            alpha=0.4, linewidth=0.9, zorder=2)\n\n# Rank labels above each task group\nfor j in range(n_tasks):\n    rank_label = ['1st', '2nd', '3rd', '4th'][j]\n    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])\n    ax.text(x[j], col_max + 3.5, rank_label,\n            ha='center', va='bottom', fontsize=8, color='#666666',\n            fontstyle='italic', fontweight='bold')\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10)\nax.set_ylim(0, 90)\nax.set_xlim(-0.5, n_tasks - 0.5)\n\nax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)\nax.set_axisbelow(True)\n\nleg = ax.legend(\n    loc='upper right', framealpha=0.92, edgecolor='#cccccc',\n    ncol=2, columnspacing=0.8, handlelength=1.3,\n)\nleg.get_frame().set_linewidth(0.4)\n\nax.text(\n    0.01, -0.13,\n    'LoRA-only & $\\\\lambda$=0.1: 2-seed mean (dots = seeds); '\n    '$\\\\lambda$=0.005 & $\\\\lambda$=0.01: 3-seed mean.',\n    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',\n)\n\nplt.tight_layout(pad=1.0)\n\noutdir = '/root/autodl-tmp/artifacts'\nfor ext in ('pdf', 'png'):\n    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')\nprint(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')\n\nprint('\\n=== Data summary ===')\nfor i, label in enumerate(cond_labels):\n    print(f'{label}: {dict(zip(order, means_arr[i]))}')\n"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-27T18:16:24.657456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-27T18:16:24.657604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35807",
+              "account": "root",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/fig_pertask.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_mean = {k: (lora_s0[k] + lora_s1[k]) / 2 for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k]], ddof=1) for k in lora_s0}\n\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=1) for k in l1_s0}\n\norder = ['CP', 'Milk', 'OJ', 'BBQ']\ntasks = ['Choco.\\nPudding', 'Milk', 'Orange\\nJuice', 'BBQ\\nSauce']\n\ncond_labels = [\n    r'LoRA-only ($\\lambda$=0)',\n    r'$\\lambda$=0.005',\n    r'$\\lambda$=0.01',\n    r'$\\lambda$=0.1',\n]\n\nmeans_arr = np.array([\n    [lora_mean[t] for t in order],\n    [l005_mean[t] for t in order],\n    [l01_mean[t] for t in order],\n    [l1_mean[t] for t in order],\n])\n\nerrs_arr = np.array([\n    [lora_std[t] for t in order],\n    [0, 0, 0, 0],\n    [0, 0, 0, 0],\n    [l1_std[t] for t in order],\n])\n\nseed_data = {\n    0: {t: [lora_s0[t], lora_s1[t]] for t in order},\n    3: {t: [l1_s0[t], l1_s1[t]] for t in order},\n}\n\ncolors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']\n\nn_tasks = len(tasks)\nn_conds = len(cond_labels)\nbar_width = 0.185\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.0, 4.0))\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    has_err = any(errs_arr[i] > 0)\n    ax.bar(\n        x + offset, means_arr[i], bar_width * 0.88,\n        label=cond_labels[i], color=colors[i],\n        edgecolor='white', linewidth=0.5,\n        yerr=errs_arr[i] if has_err else None,\n        capsize=2.5 if has_err else 0,\n        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},\n        zorder=3,\n    )\n    if i in seed_data:\n        for j, t in enumerate(order):\n            pts = seed_data[i][t]\n            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(\n                    x[j] + offset + jx[k], pt, 'o',\n                    color='white', markersize=3.5,\n                    markeredgecolor='#444444', markeredgewidth=0.6,\n                    zorder=5,\n                )\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    xs_line = x + offset\n    ax.plot(xs_line, means_arr[i], '--', color=colors[i],\n            alpha=0.4, linewidth=0.9, zorder=2)\n\nfor j in range(n_tasks):\n    rank_label = ['1st', '2nd', '3rd', '4th'][j]\n    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])\n    ax.text(x[j], col_max + 3.5, rank_label,\n            ha='center', va='bottom', fontsize=8, color='#666666',\n            fontstyle='italic', fontweight='bold')\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10)\nax.set_ylim(0, 90)\nax.set_xlim(-0.5, n_tasks - 0.5)\nax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)\nax.set_axisbelow(True)\n\nleg = ax.legend(\n    loc='upper right', framealpha=0.92, edgecolor='#cccccc',\n    ncol=2, columnspacing=0.8, handlelength=1.3,\n)\nleg.get_frame().set_linewidth(0.4)\n\nax.text(\n    0.01, -0.13,\n    r'LoRA-only & $\\lambda$=0.1: 2-seed mean (dots = seeds); '\n    r'$\\lambda$=0.005 & $\\lambda$=0.01: 3-seed mean.',\n    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',\n)\n\nplt.tight_layout(pad=1.0)\n\noutdir = '/root/autodl-tmp/artifacts'\nfor ext in ('pdf', 'png'):\n    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')\nprint(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')\n\nprint('\\n=== Data summary ===')\nfor i, label in enumerate(cond_labels):\n    d = dict(zip(order, means_arr[i]))\n    print(f'  {label}: CP={d[\"CP\"]}, Milk={d[\"Milk\"]}, OJ={d[\"OJ\"]}, BBQ={d[\"BBQ\"]}')\nPYEOF\npython3 /tmp/fig_pertask.py"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-27T18:16:24.657773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved to /root/autodl-tmp/artifacts/fig_pertask_car_fingerprint.pdf and .png\\\\n\\\\n=== Data summary ===\\\\n  LoRA-only ($\\\\\\\\lambda$=0): CP=71.0, Milk=69.0, OJ=61.0, BBQ=18.0\\\\n  $\\\\\\\\lambda$=0.005: CP=72.7, Milk=71.3, OJ=54.0, BBQ=20.0\\\\n  $\\\\\\\\lambda$=0.01: CP=72.7, Milk=72.0, OJ=57.3, BBQ=23.3\\\\n  $\\\\\\\\lambda$=0.1: CP=73.0, Milk=69.0, OJ=63.0, BBQ=28.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-27T18:16:24.657913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35807",
+              "account": "root",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport base64\nwith open('/root/autodl-tmp/artifacts/fig_pertask_car_fingerprint.png', 'rb') as f:\n    size = len(f.read())\nprint(f'PNG size: {size} bytes')\n\""
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-27T18:16:24.658037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PNG size: 145992 bytes\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-27T18:16:24.658152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35807",
+              "account": "root",
+              "command": "scp /root/autodl-tmp/artifacts/fig_pertask_car_fingerprint.png /root/autodl-tmp/artifacts/fig_pertask_car_fingerprint.pdf /tmp/",
+              "warn": "True"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-27T18:16:24.658272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-27T18:16:24.658397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp westd-35807:/root/autodl-tmp/artifacts/fig_pertask_car_fingerprint.png /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.png 2>&1",
+              "description": "Copy PNG from server to local for visual inspection"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-27T18:16:24.658538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:35807' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-27T18:16:24.658655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.png"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-27T18:16:24.659336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-27T18:16:24.659567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35807",
+              "account": "root",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/fig_pertask_v2.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n})\n\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_mean = {k: (lora_s0[k] + lora_s1[k]) / 2 for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k]], ddof=1) for k in lora_s0}\n\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=1) for k in l1_s0}\n\norder = ['CP', 'Milk', 'OJ', 'BBQ']\ntasks = ['Choco. Pudding', 'Milk', 'Orange Juice', 'BBQ Sauce']\n\ncond_labels = [\n    r'LoRA-only ($\\lambda$=0)',\n    r'$\\lambda$=0.005',\n    r'$\\lambda$=0.01',\n    r'$\\lambda$=0.1',\n]\n\nmeans_arr = np.array([\n    [lora_mean[t] for t in order],\n    [l005_mean[t] for t in order],\n    [l01_mean[t] for t in order],\n    [l1_mean[t] for t in order],\n])\n\nerrs_arr = np.array([\n    [lora_std[t] for t in order],\n    [0, 0, 0, 0],\n    [0, 0, 0, 0],\n    [l1_std[t] for t in order],\n])\n\nseed_data = {\n    0: {t: [lora_s0[t], lora_s1[t]] for t in order},\n    3: {t: [l1_s0[t], l1_s1[t]] for t in order},\n}\n\ncolors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']\n\nn_tasks = len(tasks)\nn_conds = len(cond_labels)\nbar_width = 0.185\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.2, 3.8))\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    has_err = any(errs_arr[i] > 0)\n    ax.bar(\n        x + offset, means_arr[i], bar_width * 0.88,\n        label=cond_labels[i], color=colors[i],\n        edgecolor='white', linewidth=0.5,\n        yerr=errs_arr[i] if has_err else None,\n        capsize=2.5 if has_err else 0,\n        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},\n        zorder=3,\n    )\n    if i in seed_data:\n        for j, t in enumerate(order):\n            pts = seed_data[i][t]\n            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(\n                    x[j] + offset + jx[k], pt, 'o',\n                    color='white', markersize=3.5,\n                    markeredgecolor='#444444', markeredgewidth=0.6,\n                    zorder=5,\n                )\n\n# Subtle separator between high-CAR and low-CAR groups\nax.axhline(y=40, color='#999999', linestyle=':', linewidth=0.5, alpha=0.4, zorder=1)\n\n# Rank annotations — placed directly above highest bar per task\nfor j in range(n_tasks):\n    rank_label = ['1st', '2nd', '3rd', '4th'][j]\n    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])\n    ax.text(x[j], col_max + 2.5, rank_label,\n            ha='center', va='bottom', fontsize=8, color='#666666',\n            fontstyle='italic', fontweight='bold')\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10)\nax.set_ylim(0, 88)\nax.set_xlim(-0.5, n_tasks - 0.5)\nax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)\nax.set_axisbelow(True)\n\n# Legend at bottom center, horizontal\nleg = ax.legend(\n    loc='lower center', bbox_to_anchor=(0.5, 1.01),\n    framealpha=0.0, edgecolor='none',\n    ncol=4, columnspacing=1.0, handlelength=1.3,\n    borderpad=0.2,\n)\n\n# Footnote\nax.text(\n    0.005, -0.15,\n    r'LoRA-only & $\\lambda$=0.1: 2-seed mean (dots = seeds); '\n    r'$\\lambda$=0.005 & $\\lambda$=0.01: 3-seed mean.',\n    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',\n)\n\nplt.tight_layout(pad=0.8)\nplt.subplots_adjust(top=0.88)\n\noutdir = '/root/autodl-tmp/artifacts'\nfor ext in ('pdf', 'png'):\n    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')\nprint(f'Saved v2')\n\nprint('\\n=== Data summary ===')\nfor i, label in enumerate(cond_labels):\n    d = dict(zip(order, means_arr[i]))\n    print(f'  {label}: CP={d[\"CP\"]}, Milk={d[\"Milk\"]}, OJ={d[\"OJ\"]}, BBQ={d[\"BBQ\"]}')\nPYEOF\npython3 /tmp/fig_pertask_v2.py"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-27T18:16:24.659764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved v2\\\\n\\\\n=== Data summary ===\\\\n  LoRA-only ($\\\\\\\\lambda$=0): CP=71.0, Milk=69.0, OJ=61.0, BBQ=18.0\\\\n  $\\\\\\\\lambda$=0.005: CP=72.7, Milk=71.3, OJ=54.0, BBQ=20.0\\\\n  $\\\\\\\\lambda$=0.01: CP=72.7, Milk=72.0, OJ=57.3, BBQ=23.3\\\\n  $\\\\\\\\lambda$=0.1: CP=73.0, Milk=69.0, OJ=63.0, BBQ=28.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-27T18:16:24.659895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp westd-35807:/root/autodl-tmp/artifacts/fig_pertask_car_fingerprint.png /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.png 2>&1",
+              "description": "Copy updated PNG from server"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-27T18:16:24.660013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:35807' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-27T18:16:24.660129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.png"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-27T18:16:24.660635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-27T18:16:24.660843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35807",
+              "account": "root",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/fig_pertask_v3.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n})\n\n# === Data from paper Table 8 (appendix.tex, sec:appendix_pertask_car) ===\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_mean = {k: (lora_s0[k] + lora_s1[k]) / 2 for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k]], ddof=1) for k in lora_s0}\n\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=1) for k in l1_s0}\n\norder = ['CP', 'Milk', 'OJ', 'BBQ']\ntasks = ['Choco. Pudding', 'Milk', 'Orange Juice', 'BBQ Sauce']\n\ncond_labels = [\n    r'LoRA-only ($\\lambda$=0)',\n    r'$\\lambda$=0.005',\n    r'$\\lambda$=0.01',\n    r'$\\lambda$=0.1',\n]\n\nmeans_arr = np.array([\n    [lora_mean[t] for t in order],\n    [l005_mean[t] for t in order],\n    [l01_mean[t] for t in order],\n    [l1_mean[t] for t in order],\n])\n\nerrs_arr = np.array([\n    [lora_std[t] for t in order],\n    [0, 0, 0, 0],\n    [0, 0, 0, 0],\n    [l1_std[t] for t in order],\n])\n\nseed_data = {\n    0: {t: [lora_s0[t], lora_s1[t]] for t in order},\n    3: {t: [l1_s0[t], l1_s1[t]] for t in order},\n}\n\ncolors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']\n\nn_tasks = len(tasks)\nn_conds = len(cond_labels)\nbar_width = 0.185\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.2, 3.8))\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    has_err = any(errs_arr[i] > 0)\n    ax.bar(\n        x + offset, means_arr[i], bar_width * 0.88,\n        label=cond_labels[i], color=colors[i],\n        edgecolor='white', linewidth=0.5,\n        yerr=errs_arr[i] if has_err else None,\n        capsize=2.5 if has_err else 0,\n        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},\n        zorder=3,\n    )\n    if i in seed_data:\n        for j, t in enumerate(order):\n            pts = seed_data[i][t]\n            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(\n                    x[j] + offset + jx[k], pt, 'o',\n                    color='white', markersize=3.5,\n                    markeredgecolor='#444444', markeredgewidth=0.6,\n                    zorder=5,\n                )\n\n# Only label the consistently-ranked extremes\nfor j, label_text in [(0, 'highest'), (3, 'lowest')]:\n    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])\n    t = ax.text(x[j], col_max + 2.0, label_text,\n                ha='center', va='bottom', fontsize=8, color='#555555',\n                fontstyle='italic')\n    t.set_path_effects([pe.withStroke(linewidth=2.0, foreground='white')])\n\n# Bracket annotation on right side showing ordering invariance\nax.annotate(\n    'ordering\\ninvariant\\nacross $\\\\lambda$',\n    xy=(n_tasks - 0.35, 73), xycoords='data',\n    fontsize=7.5, color='#777777', ha='left', va='top',\n    fontstyle='italic',\n    bbox=dict(boxstyle='round,pad=0.3', facecolor='#f8f8f8',\n              edgecolor='#cccccc', linewidth=0.5, alpha=0.9),\n)\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10)\nax.set_ylim(0, 88)\nax.set_xlim(-0.55, n_tasks - 0.25)\nax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)\nax.set_axisbelow(True)\n\nleg = ax.legend(\n    loc='lower center', bbox_to_anchor=(0.5, 1.01),\n    framealpha=0.0, edgecolor='none',\n    ncol=4, columnspacing=1.0, handlelength=1.3,\n    borderpad=0.2,\n)\n\nax.text(\n    0.005, -0.14,\n    r'LoRA-only & $\\lambda$=0.1: 2-seed mean (dots = individual seeds); '\n    r'$\\lambda$=0.005 & $\\lambda$=0.01: 3-seed mean.',\n    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',\n)\n\nplt.tight_layout(pad=0.8)\nplt.subplots_adjust(top=0.88)\n\noutdir = '/root/autodl-tmp/artifacts'\nfor ext in ('pdf', 'png'):\n    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')\nprint('Saved v3')\nPYEOF\npython3 /tmp/fig_pertask_v3.py"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-27T18:16:24.661024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved v3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-27T18:16:24.661150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp westd-35807:/root/autodl-tmp/artifacts/fig_pertask_car_fingerprint.png /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.png 2>&1",
+              "description": "Copy v3 PNG from server"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-27T18:16:24.661270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:35807' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-27T18:16:24.661386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.png"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-27T18:16:24.661936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-27T18:16:24.662108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-27T18:16:24.662246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tVision-Language-Action (VLA) models report high Collision Avoidance Rates (CAR) on safety benchmarks, yet we show these metrics are contaminated by action collapse.\n3\tOn SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\\% CAR while 99.6\\% of its safe episodes exhibit end-effector displacement below 0.1\\,mm---the robot is frozen, not safe.\n4\tWe present displacement-filtered CAR (dfCAR), which excludes sub-threshold episodes, as a corrective metric; the bimodal displacement distribution makes it robust across a $[2, 200]$\\,mm threshold range.\n5\tOur analysis further reveals that end-effector-only Signed Distance Field (SDF) supervision is neither necessary nor structurally sufficient for collision avoidance.\n6\tIt is counterproductive at inference time: three ground-truth oracle variants all reduce dfCAR below unrefined baselines, as SDF gradients repelling the end-effector drive arm links into obstacles.\n7\tIts contribution during training is dose-dependent: LoRA-only fine-tuning raises dfCAR from 26.8\\% to 54.83\\%$\\,\\pm\\,$2.25, matching SDF-augmented training at $\\lambda{=}0.005$ (54.5\\%$\\,\\pm\\,$2.29) and $\\lambda{=}0.01$ (56.33\\%$\\,\\pm\\,$1.61); at $\\lambda{=}0.1$, two of three seeds show a marginal signal (58.25\\%$\\,\\pm\\,$0.35, $p{\\approx}0.039$) whose per-task avoidance pattern still mirrors the demonstration distribution, requiring further investigation.\n8\tPer-task avoidance patterns remain identical across all conditions, indicating that collision avoidance arises from collision-free demonstration data rather than geometric supervision.\n9\tDisplacement filtering is necessary for meaningful VLA safety evaluation; EE-only geometric supervision can be neither credited with nor expected to deliver collision avoidance.\n10\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-27T18:16:24.662440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex",
+              "old_string": "indicating that collision avoidance arises from collision-free demonstration data rather than geometric supervision.",
+              "new_string": "indicating that collision avoidance arises from collision-free demonstration data rather than EE-only geometric supervision."
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-27T18:16:24.662593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-27T18:16:24.662729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig_pertask_car_fingerprint",
+              "type": "chart",
+              "description": "Per-task CAR fingerprint grouped bar chart showing ordering invariance across lambda (CP highest, BBQ lowest across all 4 training conditions). Data from paper Table 8.",
+              "project": "diff_collision_sdf",
+              "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.png",
+              "tags": "['paper', 'claim3', 'per-task', 'CAR', 'fingerprint']",
+              "skill": "draw-paper-figure"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-27T18:16:24.662874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260527_889c4a\\\", \\\"name\\\": \\\"fig_pertask_car_fingerprint\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Per-task CAR fingerprint grouped bar chart showing ordering invariance across lambda (CP highest, BBQ lowest across all 4 training conditions). Data from paper Table 8.\\\", \\\"path\\\": \\\"projects/diff_collision_sdf/artifacts/_project/chart/fig_pertask_car_fingerprint.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"diff_collision_sdf\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-27T18:16:10.387342+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"claim3\\\", \\\"per-task\\\", \\\"CAR\\\", \\\"fingerprint\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-27T18:16:24.663045+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出总结\n\n**图表** — `fig_pertask_car_fingerprint.pdf/.png`（服务器 `/root/autodl-tmp/artifacts/`，已注册 `art_20260527_889c4a`）\n- Grouped bar chart，4 task × 4 condition\n- X 轴按 CAR 降序：Choco. Pudding > Milk > Orange Juice > BBQ Sauce\n- 蓝色渐变：浅→深 = λ 递增（0, 0.005, 0.01, 0.1）\n- LoRA-only 和 λ=0.1 有 individual seed dots + error bars（2-seed）\n- λ=0.005 和 λ=0.01 为 3-seed mean（无 per-task 逐 seed 数据）\n- \"highest\"/\"lowest\" 标注 + \"ordering invariant across λ\" 注释框\n\n**abstract.tex** — line 8 加了 \"EE-only\"：`rather than EE-only geometric supervision`\n\n**实际数据（来自 appendix.tex Table 8）：**\n\n| Condition | CP | Milk | OJ | BBQ |\n|---|---|---|---|---|\n| LoRA-only (s0/s1 mean) | 71.0 | 69.0 | 61.0 | 18.0 |\n| λ=0.005 (3-seed mean) | 72.7 | 71.3 | 54.0 | 20.0 |\n| λ=0.01 (3-seed mean) | 72.7 | 72.0 | 57.3 | 23.3 |\n| λ=0.1 (s0/s1 mean) | 73.0 | 69.0 | 63.0 | 28.0 |\n\n注：LoRA s2 per-task 数据不在论文 Table 8 中（仅 aggregate 55.0% 在 null distribution section）。λ=0.005/0.01 仅有 3-seed 均值。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_pertask_car_fingerprint_20260527T180722"
+          },
+          "id": "event-000109"
+        }
+      ],
+      "message_count": 109
+    }
+  ],
+  "readable_path": "readable/conversations/figure-pertask-car-fingerprint.md"
+}

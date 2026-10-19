@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7bba77a6c51089d1141",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "viz plan014 threshold sensitivity",
+  "task_key": "worker_viz_plan014_threshold_sensitivity_20260526T143924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_plan014_threshold_sensitivity_20260526T143924_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "fab8904d4bff5e9f612af0d5b96da8fbc445e8dec76e4a0a1b27b4c558814e4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表清晰可读。核心发现一目了然：dfCAR 在 2-200mm 范围内完全平坦（所有条件线均为水平），仅 300mm 处有微小上翘（因排除了部分 episodes）。\n\n输出文件：\n- PDF: `artifacts/figures/fig_threshold_sensitivity.pdf`\n- PNG: `artifacts/figures/fig_threshold_sensitivity.png`\n- 脚本: `artifacts/figures/plot_threshold_sensitivity.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-plan014-threshold-sensitivity.md"
+}

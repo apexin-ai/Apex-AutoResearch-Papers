@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2bc3dc8e6f59345c605",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code post reeval analysis script",
+  "task_key": "worker_code_post_reeval_analysis_script_20260526T092833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_post_reeval_analysis_script_20260526T092833_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "fa781ea579247b843e6bbd9d5dd0978c88afb302f9d6a376413f36604c257723"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常。产出三个文件：\n\n- `reeval_comparison.py` — 主脚本\n- `reeval_comparison.tex` — LaTeX 对比表\n- `reeval_comparison.json` — JSON summary\n\n已有数据的关键发现：LoRA-only s0 的 TSR 从 6.5% 跳到 51.5%（+45 pp），确认旧 bug 严重低估了 TSR。CAR 变化很小（+2 pp），符合预期（旋转 bug 主要影响任务完成而非碰撞判定）。\n\n新 re-eval 结果出来后，取消 `NEW_DATA` 中对应条目的注释并填入数值，或配置 `JSON_PATHS` 指向结果 JSON，重新运行即可生成完整对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-post-reeval-analysis-script.md"
+}

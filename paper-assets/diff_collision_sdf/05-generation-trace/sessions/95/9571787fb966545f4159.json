@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9571787fb966545f4159",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh diagnose baseline s1 exit",
+  "task_key": "worker_ssh_diagnose_baseline_s1_exit_20260520T143115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_baseline_s1_exit_20260520T143115_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "70d226143bab2b7524e847569bc9ad67d0b211a0a0b1a8e5a78cbfef69fc6bf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**conclusion = failed**\n\n| 项目 | 详情 |\n|------|------|\n| **退出原因** | **磁盘满**。数据盘 `/root/autodl-tmp/` 350G 已用 100%（剩余 272K）。在 step 16000 保存 checkpoint 时 `torch.save(optimizer.state_dict())` 写入失败 |\n| **最终 step** | **15999**（53%），loss=0.0055，lr=1.31e-05 |\n| **最新完整 checkpoint** | **14000**（`tmp_16000` 是写到一半的残留，11G） |\n| **错误** | `RuntimeError: PytorchStreamWriter failed writing file data/1387: file write failed` |\n\n### 恢复建议\n1. 清理 `tmp_16000`（11G 废数据）\n2. 清理数据盘上不再需要的文件腾出空间（每个 checkpoint 约 11G，剩余 14000 steps 还需 ~7 个 checkpoint）\n3. 从 checkpoint 14000 恢复训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-baseline-s1-exit.md"
+}

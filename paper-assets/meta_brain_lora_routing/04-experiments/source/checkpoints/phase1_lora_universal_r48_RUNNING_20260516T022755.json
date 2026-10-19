@@ -1,0 +1,33 @@
+{
+  "exp_id": "phase1_lora_universal_r48",
+  "project": "meta_brain_lora_routing",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:26:47.941Z",
+    "updated_at": "2026-05-16T02:27:55.564Z",
+    "spec": {
+      "command": "python phase1/train_lora_expert.py --perturbation_type universal --lora_rank 48 --no_wandb --gpu_id 0",
+      "server": "westd-34142",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "370656",
+      "log_path": "~/runs/meta_brain_lora_routing/phase1_lora_universal_r48.log",
+      "submitted_at": "2026-05-16T02:26:47.931Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/libero_demos/libero_object_image/",
+      "data_count": "454 episodes / 66984 frames",
+      "model_name": "pi0_base + LoRA rank-48 PaliGemma Q/K/V/O (parameter-matched 11M)",
+      "seed": "default",
+      "hypothesis": "Existential control: if rank-48 universal ≈ Meta-Brain, routing adds zero value (Claim 2 falsification)",
+      "augmentation": "universal (random visual/physical per sample)"
+    }
+  },
+  "timestamp": "2026-05-16T02:27:55.582609+00:00",
+  "trigger": "update_registry"
+}

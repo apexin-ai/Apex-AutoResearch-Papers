@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cfcae1ce90b8112d515",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "analysis collect remote results",
+  "task_key": "worker_analysis_collect_remote_results_20260517T012912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect_remote_results_20260517T012912_result.json",
+    "occurrence": 1,
+    "bytes": 2619,
+    "sha256": "756f38855a9e1063998b10a92dab25b13b0d7ee374a0862fb25a78f7367b4c33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 远程 GPU/进程状态\n\n| GPU | 显存占用 | 进程 | 状态 |\n|-----|----------|------|------|\n| 0 | 1MiB (空闲) | — | idle |\n| 1 | 8780MiB | PID 493569: r48 eval | **运行中**，sensor_noise 阶段遇到 FileNotFoundError |\n| 2 | 16004MiB | PID 736113 + 748780: `collect_activations_v3_real_v2.py` | 运行中 |\n| 3 | 1MiB (空闲) | — | idle |\n\n**tmux**: 无活跃 session\n\n---\n\n### r48 eval 问题\n\n正在跑 sensor_noise (第7/8类)，但命中了缺失文件错误：\n```\nFileNotFoundError: '/root/LIBERO-plus/libero/libero/init_files/libero_spatial/..._initstate_0.pruned_init'\n```\n已完成 6 类，sensor_noise 部分完成但有跳过的 episodes。\n\n---\n\n### 完整对比表（所有已收集结果）\n\n| 扰动类型 | Baseline | Universal r16 | Universal r48 (partial) | Visual Expert | Physical Expert (oracle) | Physical Expert (r16) | Spatial Expert |\n|----------|----------|---------------|------------------------|---------------|--------------------------|----------------------|----------------|\n| **nominal** | 60.0% | **65.0%** | 56.7% | 55.0% | 58.3% | 61.7% | 60.0% |\n| **background_textures** | 78.3% | 78.3% | 71.7% | **75.0%** | — | — | — |\n| **objects_layout** | 58.8% | **67.6%** | 58.8% | — | — | — | 61.8% |\n| **robot_initial_states** | 22.6% | 20.8% | 18.9% | — | 26.4% | **28.3%** | — |\n| **camera_viewpoints** | 68.4% | **70.2%** | 64.9% | 71.9% | — | — | — |\n| **light_conditions** | 56.7% | **71.7%** | 56.7% | 61.7% | — | — | — |\n| **sensor_noise** | 65.5% | 65.5% | running... | **67.3%** | — | — | — |\n| **OVERALL** | ~58.6% | **~62.7%** | ~54.5% (6类) | 66.1% (5类) | 43.4% (2类) | — | 60.6% (2类) |\n\n---\n\n### 关键发现\n\n1. **Universal r16 全面优于 Baseline**：nominal +5pp, objects_layout +8.8pp, light_conditions +15pp\n2. **Universal r48 反而退步**：所有指标低于 r16，甚至低于 baseline。过拟合迹象明显\n3. **Expert oracle 在专属领域有优势**：Visual expert camera_viewpoints 71.9% > r16 70.2%；Physical expert r16 的 robot_initial_states 28.3% > baseline 22.6%\n4. **Expert nominal 降低**：Visual expert nominal 仅 55.0%（vs baseline 60.0%），说明 expert LoRA 在非目标领域有负面影响\n\n### 新数据（本次收集）\n\n- Visual Expert Oracle 5pt 完整结果 ✓ (09:24完成)\n- Spatial Expert 完整结果 ✓ (09:26完成)\n- Physical Expert Oracle 完整结果 ✓ (08:46完成)\n- r48 eval 仍在进行中（sensor_noise 阶段出错）\n- GPU2 上有 activation 收集进程在运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-remote-results.md"
+}

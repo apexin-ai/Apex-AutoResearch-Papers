@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbc68024d45a259a69ec",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval launch a1 lora spatial v11",
+  "task_key": "worker_eval_launch_a1_lora_spatial_v11_20260522T160428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_launch_a1_lora_spatial_v11_20260522T160428_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "52b7f85c6adde3b89bcfd4e828cfbefb77a6ddacc239fb46576cc3201edc3943"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**a1_lora_spatial_bowl_s0 训练**：30000/30000 steps 完成，best_loss=0.01431。Registry 已更新为 DONE/success。\n\n**eval_a1_lora_spatial_v11**：已在 westd-35807 cuda:0 启动，PID 727358，GPU 占用 8118 MiB。Tmux session: `eval_a1_spatial`。200 episodes, safelibero_spatial Level II。Registry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-launch-a1-lora-spatial-v11.md"
+}

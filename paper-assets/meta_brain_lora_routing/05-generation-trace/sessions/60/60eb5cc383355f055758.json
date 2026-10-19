@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "60eb5cc383355f055758",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "ops install original libero and eval",
+  "task_key": "worker_ops_install_original_libero_and_eval_20260516T161503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_install_original_libero_and_eval_20260516T161503.log",
+    "occurrence": 1,
+    "bytes": 3048274,
+    "sha256": "59490b5ebad6daf7f288e2fe91cb1b05ab10c47249cfaae9b42ea43599bc61be"
+  },
+  "statistics": {
+    "messages": 1611,
+    "user_turns": 2,
+    "tool_calls": 626,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 347,
+      "tool_call": 626,
+      "tool_result": 626,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 548,
+      "chunks": [
+        {
+          "path": "60eb5cc383355f055758-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "60eb5cc383355f055758-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "60eb5cc383355f055758-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "60eb5cc383355f055758-part-0004.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 414,
+      "chunks": [
+        {
+          "path": "60eb5cc383355f055758-part-0004.json",
+          "message_count": 172
+        },
+        {
+          "path": "60eb5cc383355f055758-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "60eb5cc383355f055758-part-0006.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 649,
+      "chunks": [
+        {
+          "path": "60eb5cc383355f055758-part-0006.json",
+          "message_count": 118
+        },
+        {
+          "path": "60eb5cc383355f055758-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "60eb5cc383355f055758-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "60eb5cc383355f055758-part-0009.json",
+          "message_count": 171
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-install-original-libero-and-eval.md"
+}

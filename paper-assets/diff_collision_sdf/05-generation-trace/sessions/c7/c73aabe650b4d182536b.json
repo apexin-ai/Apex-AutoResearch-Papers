@@ -1,0 +1,452 @@
+{
+  "schema_version": "1.0",
+  "id": "c73aabe650b4d182536b",
+  "project": "diff_collision_sdf",
+  "kind": "conversation",
+  "title": "ops start next 3 evals",
+  "task_key": "worker_ops_start_next_3_evals_20260525T125144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_start_next_3_evals_20260525T125144.jsonl",
+    "occurrence": 1,
+    "bytes": 15268,
+    "sha256": "4402d9da65c12537f2194afe2b6e2e28473a2aea2dc0fc3458418caf071068a2"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T12:54:09.548046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T12:54:09.548370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T12:54:09.548583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "nvidia-smi --query-gpu=index,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T12:54:09.548733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 27045 MiB\\\\n1, 0 MiB\\\\n2, 0 MiB\\\\n3, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T12:54:09.548863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "python3 /root/colliforce-vla/scripts/eval_safelibero.py --help 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T12:54:09.548990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T12:54:09.549127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep -nE \"add_argument.*(--(output|result|save|exp_name|seed|dir))\" /root/colliforce-vla/scripts/eval_safelibero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T12:54:09.549250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T12:54:09.549371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep -nE \"add_argument\" /root/colliforce-vla/scripts/eval_safelibero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T12:54:09.549575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"519:    parser.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None, help=\\\\\\\"Checkpoint directory\\\\\\\")\\\\n520:    parser.add_argument(\\\\\\\"--config_name\\\\\\\", type=str, default=\\\\\\\"pi0_libero_low_mem_finetune\\\\\\\",\\\\n522:    parser.add_argument(\\\\\\\"--default_policy\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n524:    parser.add_argument(\\\\\\\"--suite\\\\\\\", type=str, required=True,\\\\n526:    parser.add_argument(\\\\\\\"--task_id\\\\\\\", type=int, default=None,\\\\n528:    parser.add_argument(\\\\\\\"--safety_level\\\\\\\", type=str, default=\\\\\\\"II\\\\\\\", choices=[\\\\\\\"I\\\\\\\", \\\\\\\"II\\\\\\\"])\\\\n529:    parser.add_argument(\\\\\\\"--n_episodes\\\\\\\", type=int, default=50)\\\\n530:    parser.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=300)\\\\n531:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=0)\\\\n532:    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n533:    parser.add_argument(\\\\\\\"--save_dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/eval_results\\\\\\\")\\\\n534:    parser.add_argument(\\\\\\\"--save_videos\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n535:    parser.add_argument(\\\\\\\"--verbose\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n538:    parser.add_argument(\\\\\\\"--model_type\\\\\\\", type=str, default=\\\\\\\"baseline\\\\\\\",\\\\n541:    parser.add_argument(\\\\\\\"--sdf_checkpoint\\\\\\\", type=str, default=None,\\\\n543:    parser.add_argument(\\\\\\\"--sdf_gt_path\\\\\\\", type=str, default=None,\\\\n545:    parser.add_argument(\\\\\\\"--refine_alpha\\\\\\\", type=float, default=0.1,\\\\n547:    parser.add_argument(\\\\\\\"--refine_margin\\\\\\\", type=float, default=0.01,\\\\n549:    parser.add_argument(\\\\\\\"--no_refine\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n551:    parser.add_argument(\\\\\\\"--force_refine\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=False,\\\\n553:    parser.add_argument(\\\\\\\"--collision_threshold\\\\\\\", type=float, default=COLLISION_THRESHOLD,\\\\n555:    parser.add_argument(\\\\\\\"--verify_obstacles\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n557:    parser.add_argument(\\\\\\\"--replan_steps\\\\\\\", type=int, default=\n…[truncated 751 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T12:54:09.549791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "mkdir -p /root/colliforce-vla/logs /root/autodl-tmp/eval_results && \\\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l01/30000/ --config_name pi05_libero --suite safelibero_object --model_type lora_baseline --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_s2_l01_30k.json' > /root/colliforce-vla/logs/eval_s2_l01_30k.log 2>&1 & echo \"s2_l01 PID: $!\" && \\\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=2 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000/ --config_name pi05_libero --suite safelibero_object --model_type lora_baseline --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_s0_l005_30k.json' > /root/colliforce-vla/logs/eval_s0_l005_30k.log 2>&1 & echo \"s0_l005 PID: $!\" && \\\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=3 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000/ --config_name pi05_libero --suite safelibero_object --model_type lora_baseline --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_s0_l01_30k.json' > /root/colliforce-vla/logs/eval_s0_l01_30k.log 2>&1 & echo \"s0_l01 PID: $!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T12:54:09.549963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'mkdir -p /root/colliforce-vla/logs /root/autodl-tmp/eval_results && \\\\\\\\\\\\\\\\\\\\\\\\nnohup bash -c \\\\\\\\'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l01/30000/ --config_name pi05_libero --suite safelibero_object --model_type lora_baseline --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_s2_l01_30k.json\\\\\\\\' > /root/colliforce-vla/logs/eval_s2_l01_30k.log 2>&1 & echo \\\\\\\"s2_l01 PID: $!\\\\\\\" && \\\\\\\\\\\\\\\\\\\\\\\\nnohup bash -c \\\\\\\\'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=2 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000/ --config_name pi05_libero --suite safelibero_object --model_type lora_baseline --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_s0_l005_30k.json\\\\\\\\' > /root/colliforce-vla/logs/eval_s0_l005_30k.log 2>&1 & echo \\\\\\\"s0_l005 PID: $!\\\\\\\" && \\\\\\\\\\\\\\\\\\\\\\\\nnohup bash -c \\\\\\\\'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=3 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000/ --config_name pi05_libero --suite safelibero_object --model_type lora_baseline --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_s0_l01_30k.json\\\\\\\\' > /root/colliforce-vla/logs/eval_s0_l01_30k.log 2>&1 & echo \\\\\\\"s0_l01 PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\ns0_l01 PID: 260020\\\\n\n…[truncated 114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T12:54:09.550148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T12:54:09.550284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 27045 MiB, 100 %\\\\n1, 0 MiB, 0 %\\\\n2, 0 MiB, 0 %\\\\n3, 0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T12:54:09.550453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -20 /root/colliforce-vla/logs/eval_s2_l01_30k.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T12:54:09.550591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-25 20:53:03,856 [INFO] Loading policy (model_type=lora_baseline)...\\\\n2026-05-25 20:53:06,702 [INFO] JAX version 0.6.2 available.\\\\n2026-05-25 20:53:06,908 [INFO] [EVAL CONFIG] extra_delta_transform=False\\\\n2026-05-25 20:53:06,908 [INFO] Creating PI0Pytorch model and injecting LoRA...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T12:54:09.550723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -20 /root/colliforce-vla/logs/eval_s0_l005_30k.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T12:54:09.550845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -20 /root/colliforce-vla/logs/eval_s0_l01_30k.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T12:54:09.550968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-25 20:53:03,856 [INFO] Loading policy (model_type=lora_baseline)...\\\\n2026-05-25 20:53:06,720 [INFO] JAX version 0.6.2 available.\\\\n2026-05-25 20:53:06,923 [INFO] [EVAL CONFIG] extra_delta_transform=False\\\\n2026-05-25 20:53:06,923 [INFO] Creating PI0Pytorch model and injecting LoRA...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T12:54:09.551096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-25 20:53:03,846 [INFO] Loading policy (model_type=lora_baseline)...\\\\n2026-05-25 20:53:06,702 [INFO] JAX version 0.6.2 available.\\\\n2026-05-25 20:53:06,908 [INFO] [EVAL CONFIG] extra_delta_transform=False\\\\n2026-05-25 20:53:06,908 [INFO] Creating PI0Pytorch model and injecting LoRA...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-25T12:54:09.551282+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 都在加载模型阶段（\"Creating PI0Pytorch model and injecting LoRA...\"），正常——加载完权重后才会占 GPU 显存。\n\n## 结果\n\n| GPU | 任务 | PID | 状态 |\n|-----|------|-----|------|\n| cuda:0 | spatial_bowl 训练 | - | 27GB 占用，100% 利用率 |\n| cuda:1 | eval s2_l01 30K | 260018 | 模型加载中 |\n| cuda:2 | eval s0_l005 30K | 260019 | 模型加载中 |\n| cuda:3 | eval s0_l01 30K | 260020 | 模型加载中 |\n\n**JSON 覆写修复**：使用 `--output_path` 指定唯一路径（`--seed` 统一为 0 不影响 eval 行为），3 个输出互不干扰：\n- `/root/autodl-tmp/eval_results/eval_s2_l01_30k.json`\n- `/root/autodl-tmp/eval_results/eval_s0_l005_30k.json`\n- `/root/autodl-tmp/eval_results/eval_s0_l01_30k.json`\n\n同时用 `CUDA_VISIBLE_DEVICES` 隔离 GPU（脚本内 `--gpu 0` 映射到可见的唯一卡），比直接 `--gpu N` 更可靠。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_start_next_3_evals_20260525T125144"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/ops-start-next-3-evals.md"
+}

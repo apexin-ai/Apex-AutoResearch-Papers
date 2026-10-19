@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9c5cc225f1112ee69ea",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops tsr zero diagnosis",
+  "task_key": "worker_ops_tsr_zero_diagnosis_20260522T022106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_tsr_zero_diagnosis_20260522T022106_result.json",
+    "occurrence": 1,
+    "bytes": 3099,
+    "sha256": "34e9adffd90255fec9f29ea0ed11c9c841b9a353edbda76ae837707691d90172"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键对照：westd-35807 上的 **baseline** eval（早期版本，未强制 False）也显示完全相同的 max_displacement=0.822178892934208m、step 0 碰撞。这是一个系统性问题。\n\n---\n\n## 排查结论\n\n### 1. Baseline 初步结果\n- baseline eval 正在运行，前 **10/50 episodes 全部失败**：`success=False, collided=False, steps=300`\n- 机器人 300 步超时，几乎不动\n- **baseline 也是 TSR=0%**\n\n### 2. A3 Episode 详情\n\n| Task | TSR | CAR | Avg Max Displacement | 特征 |\n|------|-----|-----|---------------------|------|\n| 0 (orange juice) | 0% | 96% | **0.0006m** | 障碍物位移 ~1e-10，机器人完全静止 |\n| 1 (chocolate pudding) | 0% | 22% | 0.0392m | |\n| 2 (milk) | 0% | 66% | 0.0396m | |\n| 3 (bbq sauce) | 0% | 42% | 0.0115m | |\n\n- **所有 200 episodes**：`total_steps=300`（全部超时），`refined=0`（SDF 修正从未触发）\n- Task 0 的 CAR=96% 是\"假安全\"——因为机器人根本不动\n\n### 3. Success 判定机制\n- `env.check_success()` — 使用 LIBERO 环境内置判定\n- `max_steps=300`，超时 = 失败\n- 判定本身没问题，问题在于机器人动不了\n\n### 4. 根因诊断：`extra_delta_transform` 配置错误（Eval Pipeline 问题）\n\n**训练配置** (`pi0_libero_low_mem_finetune`, config.py:685)：\n```python\nextra_delta_transform=True\n```\n模型学习的是 **delta action**（位移增量）。推理时需要 `AbsoluteActions` 输出变换将 delta 转为绝对 action。\n\n**eval 脚本** (`eval_safelibero.py:455`)：\n```python\nconfig = _dc.replace(config, data=_dc.replace(config.data, extra_delta_transform=False))\n```\n**强制关闭** `extra_delta_transform`，跳过了 `AbsoluteActions` 反变换。模型输出的小幅 delta (~0.001) 直接传给 `env.step()`，机器人几乎不动。\n\n**证据链**：\n- 早期 eval（02:38，`extra_delta_transform=True`未被覆盖）：机器人动作过激，displacement=0.822m，step 0 碰撞，CAR=0%\n- v9 eval（04:53，强制 `False`）：机器人几乎不动，displacement~1e-10，CAR=96%\n- 两台服务器的 baseline/A3 都显示相同的 0.822m 位移常量（True 时）\n- **这一行代码同时影响 baseline 和 A3**，因为两者都用 `pi0_libero_low_mem_finetune` 训练\n\n### 5. 更深层问题\n\n即使恢复 `extra_delta_transform=True`，早期 eval 仍然 TSR=0%（但失败模式是暴力碰撞而非静止）。这说明 **`AbsoluteActions` 输出变换在 eval 推理循环中工作不正常**——可能是 openpi 的 delta→absolute 转换在 action chunk 模式下与 eval 脚本的单步推理不兼容。\n\n**建议**：\n1. **立即**：删除 line 455 的强制覆盖，但不要直接恢复 True——这只会回到暴力碰撞\n2. **根本修复**：检查 `AbsoluteActions` 变换如何处理 action chunk（model 输出 50-step chunk，eval 只取 `actions[0]`）。delta→absolute 的累积状态可能在 action chunk 边界丢失\n3. **临时验证**：在 `get_action_from_policy` 中打印 raw action 值，确认 delta 量级是否合理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-tsr-zero-diagnosis.md"
+}

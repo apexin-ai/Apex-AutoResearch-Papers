@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "a113997ec4436a1661ae",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops pi05 env setup and eval",
+  "task_key": "worker_ops_pi05_env_setup_and_eval_20260522T113327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pi05_env_setup_and_eval_20260522T113327.log",
+    "occurrence": 1,
+    "bytes": 988595,
+    "sha256": "278b7f275127d831557d9cd4e644ea98b7d6a179562437f9ac49b92a70c9372c"
+  },
+  "statistics": {
+    "messages": 558,
+    "user_turns": 0,
+    "tool_calls": 199,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 156,
+      "tool_call": 199,
+      "tool_result": 199,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 558,
+      "chunks": [
+        {
+          "path": "a113997ec4436a1661ae-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a113997ec4436a1661ae-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a113997ec4436a1661ae-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a113997ec4436a1661ae-part-0004.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-pi05-env-setup-and-eval.md"
+}

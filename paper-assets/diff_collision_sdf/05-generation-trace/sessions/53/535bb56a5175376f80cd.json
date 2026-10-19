@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "535bb56a5175376f80cd",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "setup phase2 stage2 auto trigger",
+  "task_key": "worker_setup_phase2_stage2_auto_trigger_20260527T190854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_phase2_stage2_auto_trigger_20260527T190854_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "6faef28d4a30d03ccb3f998134557c326e420413f8d5918663e837a4d3c653ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告：\n\n| 项目 | 值 |\n|------|-----|\n| **Sentinel PID** | 872754 |\n| **监控的 Stage 1 PID** | 856552 (step 7429/10000, ~3.3h 后完成) |\n| **Stage 1 checkpoint** | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/phase2_stage1_seed0_l005/10000` |\n| **Stage 2 checkpoint dir** | `.../a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l0/` |\n| **Stage 2 命令** | `python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --lambda_sdf 0 --gpu 1 --num_train_steps 30000 --resume` |\n| **Stage 2 训练 log** | `/tmp/phase2_stage2_seed0.log` |\n| **Sentinel log** | `/root/autodl-tmp/auto_stage2_sentinel.log` |\n\nSentinel 逻辑：\n- 每 60s 检查 Stage 1 PID 存活\n- Stage 1 退出后验证 `10000/model.safetensors` 存在（异常退出不启动 Stage 2）\n- 将 10K checkpoint + wandb_id.txt + best 复制到 Stage 2 目录\n- 启动 Stage 2（`WANDB_MODE=disabled`, cuda:1）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-phase2-stage2-auto-trigger.md"
+}

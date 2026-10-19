@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58ad5be30be2e5c47bd5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "verify final compile check",
+  "task_key": "worker_verify_final_compile_check_20260527T210110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_final_compile_check_20260527T210110_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "a05b50bf63eb85289d23c9da25a11bafe50c40c4c4135d27512b78e5576c0e33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 编译验证结果\n\n### 编译状态\n- **PDF 生成成功**：`main.pdf`，575KB\n- **页数：16 页**（预期 15 页，多 1 页）\n- **未解析引用：0** — 全部 clean\n- **Overfull hbox：0**\n- **Underfull hbox：1 处**（appendix 180-181 行，badness 2261，轻微，可忽略）\n- **其他警告：2 处** float specifier `h` → `ht`，无害\n\n### 内容抽查\n\n| 检查项 | 结果 | 状态 |\n|--------|------|------|\n| z-test 仅在 appendix | appendix:178，作为 \"approximate\" 对比出现，正文无 z-test | ✅ |\n| 0.039 已被移除 | **仍存在于 appendix:178**（`$z$-test gives an approximate $p \\approx 0.039$`） | ⚠️ |\n| scope 限定 \"in our experimental setting\" | abstract.tex:5 存在 | ✅ |\n| Safety Level 统一 | 编译文件中无 Level~A/B 引用（仅在未编译的 contingency_claim3.tex 中） | ✅ |\n| pertask_fingerprint 图引用 | appendix:119（label）+ claim3:27（ref） | ✅ |\n| 0.33 pp | claim3:27 \"within 0.33\\,pp\" | ✅ |\n\n### 需关注\n\n1. **页数 16 vs 预期 15** — 可能需要压缩。\n2. **appendix 中 0.039 仍存在** — 如果意图是全文移除该值，appendix:178 行的 z-test 近似 p 值尚未替换。若 appendix 作为 \"approximate comparison\" 保留则无问题，取决于编辑意图。\n\nPDF 已复制到 `artifacts/final_draft_post_review.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-final-compile-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "557cd7e19880fb17914f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh setup westd45947 a3",
+  "task_key": "worker_ssh_setup_westd45947_a3_20260520T033348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_setup_westd45947_a3_20260520T033348_result.json",
+    "occurrence": 1,
+    "bytes": 2758,
+    "sha256": "66d6c4e722fb3a389bc9a449897bc5d773b224804c16ac924fe01f5062ded125"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## westd-45947 环境搭建 & A3 Dry-Run 报告\n\n### 1. 服务器环境状态\n\n| 项目 | 状态 |\n|------|------|\n| GPU | 2× NVIDIA RTX PRO 6000 Blackwell, 各 ~96GB VRAM |\n| Driver | 595.58.03, CUDA 13.2 |\n| Python | 3.12.3 (conda base) |\n| PyTorch | 2.8.0+cu128 |\n| JAX/Flax | jax 0.6.2 / flax 0.10.2（仅用于配置，训练走 PyTorch） |\n| 磁盘 | 数据盘 /root/autodl-tmp 250GB（已用 28GB，剩余 223GB） |\n\n### 2. 代码和数据就绪情况\n\n**代码** — 就绪\n- `/root/colliforce-vla/` — 项目代码\n- `/root/colliforce-vla/openpi/` — openpi（作为子目录引用）\n- `transformers_replace` 自定义补丁已安装到 site-packages\n\n**数据** — 就绪\n- SafeLIBERO spatial: `/root/autodl-tmp/colliforce_data/safelibero_spatial/`\n- SafeLIBERO object: `/root/autodl-tmp/colliforce_data/safelibero_object/`\n- 数据格式已从 lerobot v3.0 转换为 v2.0（per-episode parquet, jsonl 元数据）\n- SDF GT: `/root/colliforce-vla/data/sdf_gt_spatial_bowl.npz`, `sdf_gt_object_chocolate.npz`\n\n**模型权重** — 就绪\n- pi0_base: `/root/autodl-tmp/openpi_weights/pi0_base/model.safetensors`\n\n**Norm stats** — 就绪（通过符号链接）\n- `assets/a3_grad_refine_spatial_bowl` → `baseline_spatial_bowl`\n- `assets/a3_grad_refine_object_pudding` → `baseline_object_pudding`\n\n### 3. 本次修复的问题\n\n从上一 session 接续，本次修复了 3 个问题：\n\n1. **`language_model.model.layers` AttributeError** — openpi 的 PaliGemma 中 `language_model` 已是 `GemmaModel`（通过 `AutoModel.from_config` 创建），无需再 `.model`。修复：`train_a3_hook.py:118` 改为 `language_model.layers`\n\n2. **lerobot v3.0 图片格式不兼容** — parquet 中图片存为 `struct{bytes, path}` dict 格式，两处代码无法处理：\n   - `hf_transform_to_torch()` — 添加 dict→PIL→tensor 分支\n   - `_query_hf_dataset()` — 重写以处理 Column→list 转换 + dict 图片解码\n\n3. **`LoRALinear` 缺少 `weight` 属性** — `pi0_pytorch.py` forward 中访问 `q_proj.weight.dtype`，LoRA 注入后 `q_proj` 变为 `LoRALinear`。修复：添加 `weight`/`bias` property 代理到 `self.base`\n\n### 4. A3 训练可以直接启动\n\n**Dry-run 已通过。** 2 步训练完成：\n- Step 1: loss=0.2363, lr=2.50e-05\n- Step 2: loss=0.2592, lr=1.38e-05\n- 首次运行含 torch.compile 编译约 4 分钟，后续迭代 ~2 min/step\n\n**启动命令：**\n```bash\n# spatial_bowl 场景（GPU 0）\nCUDA_VISIBLE_DEVICES=0 python scripts/train_a3_hook.py --scene spatial_bowl --seed 0\n\n# object_pudding 场景（GPU 1，可并行）\nCUDA_VISIBLE_DEVICES=1 python scripts/train_a3_hook.py --scene object_pudding --seed 0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-setup-westd45947-a3.md"
+}

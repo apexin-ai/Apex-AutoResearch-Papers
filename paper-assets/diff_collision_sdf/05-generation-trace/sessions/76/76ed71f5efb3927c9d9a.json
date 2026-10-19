@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76ed71f5efb3927c9d9a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix paper switch old strings",
+  "task_key": "worker_fix_paper_switch_old_strings_20260527T212108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper_switch_old_strings_20260527T212108_result.json",
+    "occurrence": 1,
+    "bytes": 1627,
+    "sha256": "effdd48ab08bb8dd0ffdc212cb7c937a499f56065f55c528ba6a589c0329faee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All fixes verified. Summary:\n\n### 修改内容\n\n**7 处 old_string 修复：**\n\n| # | 位置 | 修改 |\n|---|------|------|\n| 1 | abstract L7 | `$p{\\approx}0.039$)` → `$p{\\approx}0.071$, two-tailed permutation test)`, 删尾部 `requiring further investigation` |\n| 2 | abstract L9 | `can be neither credited with nor expected to deliver` → `cannot be credited with delivering collision avoidance, nor expected to do so` |\n| 3 | claim3 L7 caption | `($z = 1.76$, $p \\approx 0.039$, ` → `($p \\approx 0.071$, two-tailed permutation test, ` |\n| 4 | claim3 L27 body | `confirming`→`which confirms`, `0.25`→`0.33`, `;`替换`,`, 加 `Figure~\\ref{fig:pertask_fingerprint}` |\n| 5 | claim3 L32-33 dose-response | z-test 统计→permutation test + footnote, `identical`→`preserved` |\n| 6 | claim3 L38 fig caption | `($p \\approx 0.039$)` → `($p \\approx 0.071$, two-tailed permutation test)` |\n| 7 | discussion L12 | `($p \\approx 0.039$)` → `($p \\approx 0.071$, two-tailed permutation test)` |\n\n**1 处 new_string 修复：** claim3 L27 Scenario C 的 `0.25\\,pp` → `0.33\\,pp`\n\n### Dry-run 结果\n- **Scenario C** (`--s2-car 58 --s2-tsr 48`): **12/12** matched\n- **Scenario B** (`--s2-car 55 --s2-tsr 45`): **11/11** matched（discussion L3 scope 为 C-only，正确排除）\n\n### p 值逻辑确认\n- 正文位置全部使用 `{p_value}`（双尾 permutation）✓\n- 脚注位置全部使用 `{p_one_value}`（单尾 permutation）✓\n\n脚本仅在本地修改。服务器上无 `docs/paper/` 目录和 `paper_switch.py`，需要 sync 后才能在服务器上运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-paper-switch-old-strings.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f11c0b6cec623f7a3d87",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research ref audit B",
+  "task_key": "worker_research_ref-audit-B_20260529T064522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-B_20260529T064522_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "04f54a616c3c2ddb34aaa7b13fee33344142b9405d8571fb9941962f9d8388e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果已写入 `artifacts/ref_audit_worker_B.md`。\n\n**11 条引用中 8 条完全正确，3 条有问题：**\n\n1. **[zhi2021diffco] ⚠️** (低优先级): bib key \"2021\" 与发表年份 2022 不一致；标题用 arXiv 版拼写（\"Auto-Differentiable\"）而非 IEEE T-RO 正式版（\"Autodifferentiable\"）。\n2. **[huang2023voxposer] ⚠️** (低优先级): 正文将 VoxPoser 归为 \"SDF for planning\" 的例子，但 VoxPoser 用的是 LLM 生成的 3D value maps，不是 SDF。\n3. **[chi2023diffusionpolicy] ⚠️** (中优先级): 正文将 Diffusion Policy 列入 \"VLA models\"，但它是 visuomotor policy，没有语言组件，不算 VLA。\n\n所有论文均真实存在，标题/作者/年份/venue 基本正确，无虚构引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-b.md"
+}

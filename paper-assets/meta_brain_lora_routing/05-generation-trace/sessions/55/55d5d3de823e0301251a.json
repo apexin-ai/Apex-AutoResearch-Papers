@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55d5d3de823e0301251a",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "train final sweep 7class",
+  "task_key": "worker_train_final-sweep-7class_20260515T151419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_final-sweep-7class_20260515T151419_result.json",
+    "occurrence": 1,
+    "bytes": 1449,
+    "sha256": "11b9c5e7c3c741aa7058ad9998d95283f256f7874346dfa2464de5f9e339dc0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 最终 Sweep 结果\n\n### Sweep 最优配置（5-fold CV）\n\n| Mode | Preliminary | Final | Best Config |\n|------|------------|-------|-------------|\n| **3-class** | 0.9946±0.0044 | **0.9961±0.0078** | `first__both__lr0.001` |\n| **6-class** | 0.9982±0.0036 | **0.9980±0.0039** | `mean__paligemma_only__lr0.001` |\n| **Binary** | 1.0000±0.0000 | **1.0000±0.0000** | `mean__paligemma_only__lr0.01` |\n\n### Eval（最优模型 full-dataset 推理）\n\n- **3-class**: 100% accuracy, 100% macro-F1 (509 samples, 含 sensor_noise 在 visual 类中)\n- **6-class**: 99.80% accuracy, 99.82% macro-F1 (509 samples, 5 类 — sensor_noise.pt 在运行期间丢失)\n- **Binary**: 98.85% accuracy, ROC-AUC=0.9994\n\n### GO/NO-GO 综合评估: **GO — Proceed to Phase 1**\n\n| 指标 | 结果 | 阈值 |\n|------|------|------|\n| 3-class macro-F1 | 0.9926 | ≥ 0.70 PASS |\n| 6-class accuracy | 0.9980 | ≥ 0.50 PASS |\n| Binary AUC | 1.0000 | ≥ 0.75 PASS |\n| Max off-diagonal | 0.0244 | ≤ 0.30 PASS |\n| Light bias gap | 0.0047 | OK |\n\n### 注意\n\n- **sensor_noise.pt** 在 sweep 运行过程中从 `activations/` 目录消失了。3-class sweep 包含了 sensor_noise 数据（50 episodes → visual 类），但 6-class 和 binary sweep 实际只用了 6 种中的 5 种 perturbation type。\n- Final 与 Preliminary 结果高度一致，3-class 略有提升，6-class 基本持平。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-final-sweep-7class.md"
+}

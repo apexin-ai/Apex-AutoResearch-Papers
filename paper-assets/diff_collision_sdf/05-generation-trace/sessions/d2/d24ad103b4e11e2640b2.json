@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d24ad103b4e11e2640b2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code a3 round2 fixes",
+  "task_key": "worker_code_a3_round2_fixes_20260519T234851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_a3_round2_fixes_20260519T234851_result.json",
+    "occurrence": 1,
+    "bytes": 2335,
+    "sha256": "f19841c212b50641e04fa0db247fdedf90dc9232b29d0fc9346dd5e44e15bdb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改完成，语法检查通过。\n\n---\n\n## 修复报告\n\n### Fix 1: LoRA rank 分模块设置\n\n**改动文件**: `scripts/train_a3_hook.py`\n\n| 位置 | 改动 |\n|------|------|\n| L108-136 | `inject_lora` 函数签名改为 `(model, pali_rank=16, pali_alpha=16.0, expert_rank=32, expert_alpha=32.0)`，分别对 PaliGemma 和 Action Expert 使用不同 rank/alpha，返回 `(all_params, pali_params, expert_params)` 三元组 |\n| L230-231 | 调用处改为 `inject_lora(_m, pali_rank=16, pali_alpha=16.0, expert_rank=32, expert_alpha=32.0)` |\n| L242-250 | 日志分别打印 PaliGemma (rank=16) 和 Action Expert (rank=32) 的参数量 |\n\n**参数量估算** (与 baseline openpi `gemma_2b_lora` / `gemma_300m_lora` 一致):\n- PaliGemma (Gemma 2B, 18层, width=2048, rank=16): ~19.6M LoRA params\n- Action Expert (Gemma 300M, 18层, width=1024, rank=32): ~13.9M LoRA params\n- 总计: ~33.5M (原来 uniform rank=32 是 ~53M，VLM 侧减半)\n\n**A1 不受影响**: A1 使用 openpi 内建 LoRA (`gemma_2b_lora` / `gemma_300m_lora`)，rank 本身就是正确的。\n\n### Fix 2: Phase 2 LoRA warmup 死代码修复\n\n**问题根因**: `on_step_start` 在 `optim.zero_grad(set_to_none=True)` 之后执行，此时 `p.grad` 全为 `None`，`p.grad.mul_(scale)` 永远不生效。\n\n**修复方案**: 用 `p.register_hook(lambda grad, s=self: grad * s._lora_warmup_scale)` 替代。gradient hook 在 `backward()` 计算梯度时触发，scale 由 `on_step_start` 每步更新，效果等价于 LR warmup。\n\n**改动文件**:\n\n| 文件 | 位置 | 改动 |\n|------|------|------|\n| `train_a3_hook.py` | L267-275 | Phase 2 转换时注册 gradient hooks，warmup 100 步 |\n| `train_a3_hook.py` | L288-296 | 替换死代码为 `self._lora_warmup_scale = (steps_in+1)/100`，100 步后移除 hooks |\n| `train_a3_hook.py` | L362 | `on_cleanup` 清理 gradient hooks |\n| `train_a1_sdf_aux.py` | L149-161 | 同上：注册 gradient hooks，warmup 100 步 |\n| `train_a1_sdf_aux.py` | L174-182 | 同上：替换死代码 |\n| `train_a1_sdf_aux.py` | L232 | `on_cleanup` 清理 gradient hooks |\n\n**warmup 逻辑确认**:\n- Step 5000 (Phase 2 start): `scale = 1/100 = 0.01`\n- Step 5099 (第100步): `scale = 100/100 = 1.0`\n- Step 5100: 移除所有 gradient hooks，LoRA 梯度不再被缩放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-a3-round2-fixes.md"
+}

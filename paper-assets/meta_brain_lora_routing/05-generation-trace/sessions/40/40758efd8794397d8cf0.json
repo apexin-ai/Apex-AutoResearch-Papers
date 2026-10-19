@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40758efd8794397d8cf0",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "analysis collect all eval results",
+  "task_key": "worker_analysis_collect_all_eval_results_20260517T010713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect_all_eval_results_20260517T010713_result.json",
+    "occurrence": 1,
+    "bytes": 2892,
+    "sha256": "150928d1a5c2fb25c1c59c5cb69c418f0d242c967139b0648d4a0368cc032a84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整汇总：\n\n---\n\n## GPU 状态\n\n| GPU | 显存使用 | 总显存 | 利用率 | 占用进程 |\n|-----|---------|--------|--------|---------|\n| 0 | 8,752 MiB | 97,887 MiB | 0% | Visual expert eval (PID 499143) |\n| 1 | 8,780 MiB | 97,887 MiB | 0% | r48 eval (PID 493569) |\n| 2 | 9,430 MiB | 97,887 MiB | 88% | train_strong.py (PID 695712) |\n| 3 | 1 MiB | 97,887 MiB | 0% | **空闲** |\n\n注：GPU 0/1 利用率显示 0% 但有进程占用显存，可能是 eval 在 episode 间隙的空闲态。\n\n---\n\n## 正在运行的进程\n\n| PID | 实验 | GPU | 当前进度 |\n|-----|------|-----|---------|\n| 493569 | Universal r48 (全8类) | cuda:1 | sensor_noise seed=42 ep=9/20 (第7/8类) |\n| 499143 | Visual expert 5pt | cuda:0 | sensor_noise seed=123 ep=14/20 (第4/5类) |\n| 695712 | train_strong.py | cuda:2 | 运行中 |\n\n---\n\n## 已完成 Eval 结果汇总\n\n### 完整数据（3 seeds × 20 episodes = 60 episodes/perturbation）\n\n| Perturbation | Baseline (none) | Universal r16 | Visual Expert | Physical Expert | r48 |\n|---|---|---|---|---|---|\n| nominal | 60.0% (36/60) | **65.0%** (39/60) | N/A (运行中) | 58.3% (35/60) | N/A (运行中) |\n| background_textures | 78.3% (47/60) | 78.3% (47/60) | 78.3%† (47/60) | — | N/A (运行中) |\n| objects_layout | 58.8% (20/34) | **67.6%** (23/34) | — | — | N/A (运行中) |\n| robot_initial_states | 22.6% (12/53) | 20.8% (11/53) | — | **26.4%** (14/53) | N/A (运行中) |\n| camera_viewpoints | 68.4% (39/57) | **70.2%** (40/57) | N/A (运行中) | — | N/A (运行中) |\n| light_conditions | 56.7% (34/60) | **71.7%** (43/60) | 63.3%† (38/60) | — | N/A (运行中) |\n| sensor_noise | 65.5% (36/55) | 65.5% (36/55) | N/A (运行中) | — | N/A (运行中) |\n| language | 0/0 | 0/0 | — | — | N/A |\n\n†Visual expert 部分结果来自早期单类测试（visual_expert_eval.log），完整 5pt 结果（含 nominal/camera_viewpoints/sensor_noise）仍在运行。\n\n---\n\n## 关键发现\n\n1. **Universal r16 vs Baseline**：在 light_conditions (+15.0pp)、objects_layout (+8.8pp)、nominal (+5.0pp) 上明显提升；robot_initial_states 略降 (-1.8pp)\n2. **Physical expert**：robot_initial_states 比 baseline 高 3.8pp (26.4% vs 22.6%)，但 nominal 反而低于 baseline (-1.7pp)\n3. **Visual expert 初步结果**：light_conditions (63.3%) 低于 universal r16 (71.7%)，background_textures 持平。需等待完整 5pt 跑完再确认\n\n---\n\n## 数据缺失清单\n\n| 条件 | 缺失内容 | 预计完成 |\n|------|---------|---------|\n| Universal r48 | 全部 8 类 | 仍在运行，~30-40min 完成 |\n| Visual expert (完整) | nominal, camera_viewpoints, sensor_noise | 仍在运行，~20-30min 完成 |\n| Physical expert | 仅测了 robot_initial_states + nominal，其他 6 类无数据 | 需单独安排 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-all-eval-results.md"
+}

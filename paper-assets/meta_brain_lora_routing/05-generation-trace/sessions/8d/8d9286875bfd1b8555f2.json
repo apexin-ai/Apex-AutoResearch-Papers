@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d9286875bfd1b8555f2",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "eval universal r16 full",
+  "task_key": "worker_eval_universal_r16_full_20260516T215041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_universal_r16_full_20260516T215041_result.json",
+    "occurrence": 1,
+    "bytes": 59,
+    "sha256": "319e760591dec8015dc127ef1c5035f017e3091a9efcf986bd9558eb84616c4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job running. Will check back in ~15 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-universal-r16-full.md"
+}

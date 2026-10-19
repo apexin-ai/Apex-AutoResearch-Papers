@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "460fd42da1414769e48f",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "diag eval pipeline critical",
+  "task_key": "worker_diag_eval_pipeline_critical_20260516T122143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_pipeline_critical_20260516T122143.log",
+    "occurrence": 1,
+    "bytes": 901452,
+    "sha256": "f37aecba394fb443ba027953b253fa4a9a29e617ab9778d7417916e3b52bf455"
+  },
+  "statistics": {
+    "messages": 244,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 244,
+      "chunks": [
+        {
+          "path": "460fd42da1414769e48f-part-0001.json",
+          "message_count": 150
+        },
+        {
+          "path": "460fd42da1414769e48f-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-eval-pipeline-critical.md"
+}

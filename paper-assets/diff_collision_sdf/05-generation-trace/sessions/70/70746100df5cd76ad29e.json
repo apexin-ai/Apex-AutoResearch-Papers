@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70746100df5cd76ad29e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research literature map",
+  "task_key": "worker_research_literature_map_20260520T013856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_map_20260520T013856_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "e36a4bcad014dcfdc35bfd2b9f92c3ba6d234b352204b2697d7be016b7b4b06f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建且可正常读取。添加的 7 篇论文清单：\n\n| # | Title | Role | Category |\n|---|-------|------|----------|\n| 1 | VLSA (AEGIS/SafeLIBERO) | direct-competitor | collision-aware-vla |\n| 2 | QDepth-VLA | direct-competitor | collision-aware-vla |\n| 3 | Spatial Forcing | method-component | spatial-aware-vla |\n| 4 | VoxPoser | method-component | sdf-robotics |\n| 5 | π0 (pi-zero) | backbone | vla-foundation |\n| 6 | DeepSDF | method-component | sdf-representation |\n| 7 | Representing Robot Geometry as Distance Fields | method-component | sdf-robotics |\n\n5 篇必选 + 2 篇可选全部收录，`literature_map.yaml` 已写入项目目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-map.md"
+}

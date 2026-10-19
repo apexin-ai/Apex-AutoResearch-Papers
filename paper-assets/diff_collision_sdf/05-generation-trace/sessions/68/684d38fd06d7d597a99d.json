@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "684d38fd06d7d597a99d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose phase2 extra seed exit",
+  "task_key": "worker_diagnose_phase2_extra_seed_exit_20260527T223620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase2_extra_seed_exit_20260527T223620_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "704d8ec6b24f886f34828753eece7dc35579af58c2066062b0fd22c4c7bd41ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**Stage 1: SUCCESS**\n- 10K checkpoint 完整：`/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/phase2_stage1_seed0_l005/10000/model.safetensors` (7.5GB)\n- best_loss = 0.0307 @ step 10000\n- wandb summary: action_loss=0.0364, loss=0.0368, sdf_l1=0.0338\n- 日志：`~/runs/diff_collision_sdf/train_phase2_lambda0_extra_seed.log`\n\n**Stage 2: 已自动启动，运行中**\n- Sentinel 于 22:35:26 UTC 验证 10K checkpoint 后自动启动 Stage 2\n- PID 892014，cuda:1，100% GPU 利用率\n- 进度：16325/30000 (54%)，预计剩余 ~17.5h\n- 日志：`~/runs/diff_collision_sdf/train_phase2_lambda0_s2_v3.log`\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase2-extra-seed-exit.md"
+}

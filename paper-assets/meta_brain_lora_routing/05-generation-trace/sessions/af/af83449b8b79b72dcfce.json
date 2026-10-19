@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "af83449b8b79b72dcfce",
+  "project": "meta_brain_lora_routing",
+  "kind": "conversation",
+  "title": "code ablation ladder prep v2",
+  "task_key": "worker_code_ablation_ladder_prep_v2_20260516T031026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_ablation_ladder_prep_v2_20260516T031026.jsonl",
+    "occurrence": 1,
+    "bytes": 318,
+    "sha256": "9235e71e767931bf4d02a10b8d20e1072454c48d0c3c0dff48186e1e41f1bdec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:10:36.746033+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011Cb5WnkCRhZLAS55rZp4b3\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation_ladder_prep_v2_20260516T031026"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-ablation-ladder-prep-v2.md"
+}

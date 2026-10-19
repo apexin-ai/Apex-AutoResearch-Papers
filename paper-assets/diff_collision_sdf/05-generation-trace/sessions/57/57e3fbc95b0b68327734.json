@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57e3fbc95b0b68327734",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops emergency eval launch l1 20k",
+  "task_key": "worker_ops_emergency_eval_launch_l1_20k_20260526T232735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_emergency_eval_launch_l1_20k_20260526T232735_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "a02486afd5133c0915550716d58bcf0d85f45326b05cab328e63108db67d2a41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nGPU 状态:\n- cuda:0: PID 399885 (eval_safelibero 20K, 8356 MiB) — 正在运行\n- cuda:1: PID 271266 (λ=0.1 s0 train, 27036 MiB, 100%) ✅\n- cuda:2: PID 274407 (λ=0.1 s1 train, 27036 MiB, 100%) ✅\n- cuda:3: PID 341425 (spatial LoRA ctrl, 27028 MiB, 100%) ✅\n\n旧 PID 399880: 存活 — 是 eval 的 bash 包装进程，子进程 399885 是实际 python 进程\n\neval 启动结果: 已经在运行，无需重新启动\n- PID: 399885 (wrapper: 399880)\n- model_type: lora_baseline\n- 验证 1 (ps): ✅ 运行 08:11\n- 验证 2 (nvidia-smi): ✅ cuda:0 占用 8356 MiB\n- 验证 3 (log): ✅ Task 0 已完成 40/50 episodes (ep10=success, ep20/30/40=fail)\n```\n\nReviewer 判断有误 — eval 实际已在运行。之前的混淆是因为 PID 399880 是 bash 包装进程，实际 python 进程是子进程 399885。Registry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-emergency-eval-launch-l1-20k.md"
+}

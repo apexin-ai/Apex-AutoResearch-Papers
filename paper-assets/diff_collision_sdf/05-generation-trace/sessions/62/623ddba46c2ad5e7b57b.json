@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "623ddba46c2ad5e7b57b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops diagnose phase2 s2 v4",
+  "task_key": "worker_ops_diagnose-phase2-s2-v4_20260528T033147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-phase2-s2-v4_20260528T033147_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "8a074e65f5bbbf21a1bc9753adfb64ee01467a086cd5485ed0fe431b3cc72e27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. No cron jobs exist in this session to delete. Here's the diagnosis report:\n\n---\n\n## `train_phase2_lambda0_s2_v4` 诊断结果\n\n**结论：训练失败 — 磁盘满**\n\n| 项目 | 详情 |\n|------|------|\n| **失败原因** | `/root/autodl-tmp` 100% 满 (350G/350G, 仅剩 2.6MB)。在 step 20000 保存 checkpoint 时触发 `No space left on device (os error 28)` |\n| **最后成功 step** | 19999 (目标 30000，完成 67%) |\n| **最后完整 checkpoint** | step 18000 — `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/18000` |\n| **损坏的 checkpoint** | `tmp_20000/` 仅有 `model.safetensors` (4.5GB)，缺少 config/optimizer，不可用 |\n| **训练时长** | ~13h (May 27 22:25 → May 28 11:22) |\n| **日志文件** | `/root/runs/diff_collision_sdf/train_phase2_lambda0_s2_v3.log` |\n| **GPU** | cuda:2 已释放 (进程已退出) |\n\n**要恢复训练**需要先清理磁盘空间，然后从 step 18000 checkpoint resume 到 30K（剩余 12K steps，约 ~15.5h）。`tmp_20000/` 目录可以安全删除以回收 ~4.5GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-phase2-s2-v4.md"
+}

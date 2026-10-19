@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7cec96737c40c3bcd4d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "submit phase2 extra seed v3",
+  "task_key": "worker_submit_phase2_extra_seed_v3_20260527T144320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_phase2_extra_seed_v3_20260527T144320_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "201e067f2c57411f2f5d8e62d111339273ae6528ebeb42dcfed80525236c9ca3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 项目 | 结果 |\n|------|------|\n| lerobot 版本 | **0.1.0** ✓ |\n| PID | **859963** |\n| 训练启动 | ✓ 数据集已加载 (safelibero_object)，local_batch_size=32，sample batch 已清理 |\n| 服务器/GPU | westd-35807 / cuda:1 |\n| Registry 状态 | **RUNNING**，hypothesis + parent + spec 已填写 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-phase2-extra-seed-v3.md"
+}

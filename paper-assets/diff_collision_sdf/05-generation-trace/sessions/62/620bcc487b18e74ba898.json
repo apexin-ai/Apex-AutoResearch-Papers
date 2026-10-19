@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "620bcc487b18e74ba898",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check pi05 and prepare eval",
+  "task_key": "worker_ops_check_pi05_and_prepare_eval_20260522T103033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_pi05_and_prepare_eval_20260522T103033_result.json",
+    "occurrence": 1,
+    "bytes": 2003,
+    "sha256": "e2e15bfb237617d8a9f2bd26e02a61d9c76cef1587d6498456480ae72a99746a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。汇总如下：\n\n---\n\n## 1. pi0.5 下载状态\n\n**进行中** — PID 368719 仍在运行，当前目录大小 **3.8G**。\n\n文件结构是 JAX/Orbax checkpoint 格式。但有一个问题：下载脚本导致了**嵌套重复**——`params/` 下又有一层 `params/params/`，`assets/` 下又有 `assets/assets/`。后续加载时可能需要调整路径或重新整理目录。\n\n## 2. 官方 eval 架构\n\nopenpi 使用 **client-server 架构**，需要两个终端：\n\n**Terminal 1 — Policy Server**（需要 GPU）：\n```bash\ncd /root/autodl-tmp/openpi\nuv run scripts/serve_policy.py --env LIBERO \\\n    policy:checkpoint --policy.config pi05_libero \\\n    --policy.dir /root/autodl-tmp/openpi_weights/pi05_libero/\n```\n\n**Terminal 2 — Eval Client**（LIBERO 仿真）：\n```bash\ncd /root/autodl-tmp/openpi\nsource examples/libero/.venv/bin/activate  # 需先创建\npython examples/libero/main.py \\\n    --task-suite-name libero_spatial \\\n    --num-trials-per-task 50\n```\n\neval 脚本路径：`/root/autodl-tmp/openpi/examples/libero/main.py`\n\n## 3. 依赖检查\n\n| 依赖 | 状态 |\n|------|------|\n| robosuite | ✅ 已安装 |\n| openpi_client | ✅ 已安装 |\n| tyro | ✅ 已安装 |\n| jax | ✅ 已安装 |\n| **libero** | ❌ 未安装 |\n| **openpi** (server) | ❌ 未安装 |\n| **third_party/libero/** | ❌ 空目录（git submodule 未初始化） |\n\n**安装前需要做**：\n```bash\ncd /root/autodl-tmp/openpi\ngit submodule update --init --recursive   # 初始化 libero submodule\npip install -e .                          # 安装 openpi server 包\npip install -e third_party/libero         # 安装 libero\n```\n\n## 4. 预计时间线\n\n- 等下载完成（PID 368719 仍在跑）\n- 检查/修复嵌套目录结构\n- 安装缺失依赖（libero + openpi）\n- **等 GPU 释放**后才能启动 policy server\n- 全 4 suite eval（spatial/object/goal/10）每个 50 episodes，预计数小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-pi05-and-prepare-eval.md"
+}

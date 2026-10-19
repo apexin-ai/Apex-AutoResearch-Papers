@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb5fb86d43e0769f1e45",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code sdf pipeline validation",
+  "task_key": "worker_code_sdf_pipeline_validation_20260519T174452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sdf_pipeline_validation_20260519T174452_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "8c47120af50c7f5a1b2e291390a2747d03b67d3e0cc93c7500af9a4a72696711"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 完成，所有质量检查通过。\n\n**结果汇总：**\n\n| 场景 | Mesh总数 | Watertight | 梯度准确率 | 符号验证 | 状态 |\n|------|---------|-----------|-----------|---------|------|\n| spatial_bowl | 68 | 21 (30.9%) | **98.7%** | PASS | PASS |\n| object_chocolate | 60 | 17 (28.3%) | **99.7%** | PASS | PASS |\n\n**产出文件：**\n- `data/sdf_gt_spatial_bowl.npz` / `data/sdf_gt_object_chocolate.npz` — SDF GT (4084 点, 含 query_points + sdf_values)\n- `artifacts/sdf_slice_*.png` — 2D 切面可视化 (SDF 等值线 + 梯度箭头)\n- `artifacts/report_sdf_pipeline.md` — 完整报告\n- `sdf_pipeline.py` — 可复用的 pipeline 脚本\n\n**关键确认：**\n- pysdf 符号翻转已正确应用（`sdf = -pysdf_output`）\n- collision cost `ReLU(-SDF + margin)` 在物体内部正确产生正惩罚\n- 梯度方向验证均 ≥ 90%，无 blocker\n- 非 watertight mesh 主要是机器人臂部件，不影响场景障碍物 SDF"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sdf-pipeline-validation.md"
+}

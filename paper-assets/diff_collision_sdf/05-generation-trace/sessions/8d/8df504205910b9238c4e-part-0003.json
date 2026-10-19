@@ -1,0 +1,1271 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8df504205910b9238c4e",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 337,
+          "timestamp": "2026-05-22T02:54:38.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CZKQBxaQMxQGeaAXnhJ8yL",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/eval_safelibero.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "767effa0-ba5c-4c12-94e7-fb6a260a2596",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/eval_safelibero.py",
+              "oldString": "def get_action_from_policy(policy, obs, language_instruction):\n    \"\"\"Get action from openpi policy given environment observation.\"\"\"\n    agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))\n    wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))\n\n    if agentview_image is None or wrist_image is None:\n        for key in obs:\n            if \"agentview\" in key and \"image\" in key:\n                agentview_image = obs[key]\n            if \"eye_in_hand\" in key and \"image\" in key:\n                wrist_image = obs[key]\n\n    robot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))\n    robot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))\n    gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\n    state = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n\n    policy_input = {\n        \"observation/image\": agentview_image,\n        \"observation/wrist_image\": wrist_image,\n        \"observation/state\": state.astype(np.float32),\n        \"prompt\": language_instruction,\n    }\n\n    result = policy.infer(policy_input)\n    actions = result[\"actions\"]\n\n    if len(actions.shape) == 2:\n        return actions[0]\n    return actions",
+              "newString": "def get_action_from_policy(policy, obs, language_instruction):\n    \"\"\"Get action from openpi policy given environment observation.\"\"\"\n    from scipy.spatial.transform import Rotation as _Rotation\n\n    agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))\n    wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))\n\n    if agentview_image is None or wrist_image is None:\n        for key in obs:\n            if \"agentview\" in key and \"image\" in key:\n                agentview_image = obs[key]\n            if \"eye_in_hand\" in key and \"image\" in key:\n                wrist_image = obs[key]\n\n    ee_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))\n    ee_quat = obs.get(\"robot0_eef_quat\", np.array([1.0, 0.0, 0.0, 0.0]))\n    gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\n    # robosuite quaternion is [x,y,z,w] (scalar-last), same as scipy\n    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()\n    # Training data format: [ee_pos(3), ee_ori_rotvec(3), gripper_states(2)]\n    state = np.concatenate([ee_pos, ee_ori, gripper_qpos]).astype(np.float32)\n\n    policy_input = {\n        \"observation/image\": agentview_image,\n        \"observation/wrist_image\": wrist_image,\n        \"observation/state\": state,\n        \"prompt\": language_instruction,\n    }\n\n    result = policy.infer(policy_input)\n    actions = result[\"actions\"]\n\n    if len(actions.shape) == 2:\n        return actions[0]\n    return actions",
+              "originalFile": "\"\"\"\nEvaluate a VLA model on SafeLIBERO benchmark.\nSupports three model types:\n  - baseline: Standard openpi pi0 LoRA fine-tune\n  - a1: pi0 + SDF decoder + EE extractor (auxiliary task; inference identical to baseline)\n  - a3: pi0 + SDF decoder + EE extractor + SDF Gradient Refiner (inference-time refinement)\n\nMeasures: Collision Avoidance Rate (CAR), Task Success Rate (TSR), trajectory smoothness.\n\nUsage:\n    # Evaluate baseline\n    python scripts/eval_safelibero.py \\\n        --checkpoint /root/autodl-tmp/checkpoints/baseline_spatial_bowl_0 \\\n        --config_name baseline_spatial_bowl \\\n        --suite safelibero_spatial \\\n        --task_id 0 \\\n        --safety_level II \\\n        --n_episodes 50\n\n    # Evaluate A1 (same inference as baseline, loads SDF modules for analysis)\n    python scripts/eval_safelibero.py \\\n        --model_type a1 \\\n        --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_sdf_spatial_bowl_seed0/1000 \\\n        --config_name baseline_spatial_bowl \\\n        --suite safelibero_spatial \\\n        --task_id 0 \\\n        --n_episodes 50\n\n    # Evaluate A3 (inference-time SDF gradient refinement)\n    python scripts/eval_safelibero.py \\\n        --model_type a3 \\\n        --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_spatial_bowl/... \\\n        --config_name baseline_spatial_bowl \\\n        --sdf_gt_path /root/colliforce-vla/data/sdf_gt_spatial_bowl.npz \\\n        --suite safelibero_spatial \\\n        --task_id 0 \\\n        --refine_alpha 0.1 \\\n        --refine_margin 0.01 \\\n        --n_episodes 50\n\n    # Evaluate with default openpi LIBERO policy\n    python scripts/eval_safelibero.py \\\n        --default_policy \\\n        --suite safelibero_object \\\n        --task_id 1 \\\n        --n_episodes 10\n\n    # Quick test\n    python scripts/eval_safelibero.py \\\n        --default_policy \\\n        --suite safelibero_spatial \\\n        --task_id 0 \\\n        --n_episodes 2 \\\n        --max_steps 50\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time\n\nimport numpy as np\n\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\n\nSAFELIBERO_PATH = os.path.join(os.path.dirname(__file__), \"..\", \"vlsa-aegis\", \"safelibero\")\nOPENPI_PATH = os.path.join(os.path.dirname(__file__), \"..\", \"openpi\", \"src\")\nCOLLIFORCE_PATH = os.path.join(os.path.dirname(__file__), \"..\")\nsys.path.insert(0, SAFELIBERO_PATH)\nsys.path.insert(0, OPENPI_PATH)\nsys.path.insert(0, COLLIFORCE_PATH)\n\n# PyTorch 2.6+ defaults weights_only=True; SafeLIBERO init_states contain numpy arrays\nimport torch\nimport torch.nn as nn\n\n_orig_torch_load = torch.load\n\n\ndef _safe_torch_load(f, *a, **kw):\n    kw.setdefault(\"weights_only\", False)\n    return _orig_torch_load(f, *a, **kw)\n\n\ntorch.load = _safe_torch_load\n\nfrom colliforce.sdf_decoder import SDFDecoder\nfrom colliforce.ee_extractor import EEPositionExtractor\n\nCOLLISION_THRESHOLD = 0.001\n\nOBSTACLE_NAMES = [\n    \"moka_pot_obstacle_1\",\n    \"white_storage_box_obstacle_1\",\n    \"milk_obstacle_1\",\n    \"wine_bottle_obstacle_1\",\n    \"red_coffee_mug_obstacle_1\",\n    \"yellow_book_obstacle_1\",\n]\n\nSUITE_TASKS = {\n    \"safelibero_spatial\": [\n        \"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\",\n        \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\",\n        \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\",\n        \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\",\n    ],\n    \"safelibero_object\": [\n        \"pick_up_the_orange_juice_and_place_it_in_the_basket\",\n        \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\",\n        \"pick_up_the_milk_and_place_it_in_the_basket\",\n        \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\",\n    ],\n    \"safelibero_goal\": [\n        \"put_the_bowl_on_the_plate\",\n        \"put_the_bowl_on_top_of_the_cabinet\",\n        \"put_the_bowl_on_the_stove\",\n        \"open_the_top_drawer_and_put_the_bowl_inside\",\n        \"put_the_cream_cheese_in_the_bowl\",\n    ],\n    \"safelibero_long\": [\n        \"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\",\n        \"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\",\n        \"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\",\n        \"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\",\n    ],\n}\n\nPI0_BASE_WEIGHTS = \"/root/autodl-tmp/openpi_weights/pi0_base\"\n\n\n# ---------------------------------------------------------------------------\n# A3 manual LoRA utilities (from train_a3_hook.py)\n# ---------------------------------------------------------------------------\n\nclass LoRALinear(nn.Module):\n    \"\"\"Drop-in nn.Linear replacement with frozen base + low-rank adapters.\"\"\"\n\n    def __init__(self, base: nn.Linear, rank: int = 16, alpha: float = 16.0):\n        super().__init__()\n        self.base = base\n        for p in self.base.parameters():\n            p.requires_grad = False\n        in_f, out_f = base.in_features, base.out_features\n        self.lora_A = nn.Parameter(torch.randn(in_f, rank) * 0.01)\n        self.lora_B = nn.Parameter(torch.zeros(rank, out_f))\n        self.scaling = alpha / rank\n\n    def forward(self, x):\n        base_out = self.base(x)\n        lora_out = (x.float() @ self.lora_A @ self.lora_B) * self.scaling\n        return base_out + lora_out.to(base_out.dtype)\n\n\n_LORA_TARGET_MODULES = (\n    \"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\",\n    \"gate_proj\", \"up_proj\", \"down_proj\",\n)\n\n\ndef _replace_linear(parent: nn.Module, attr_name: str, rank: int, alpha: float):\n    old = getattr(parent, attr_name)\n    setattr(parent, attr_name, LoRALinear(old, rank=rank, alpha=alpha))\n\n\ndef _inject_lora(model, pali_rank=16, pali_alpha=16.0,\n                 expert_rank=32, expert_alpha=32.0):\n    \"\"\"Inject manual LoRA into PaliGemma + Action Expert layers.\n\n    Returns (all_lora_params, pali_lora_params, expert_lora_params).\n    Parameter ordering matches train_a3_hook.py for lora_params.pt loading.\n    \"\"\"\n    pali_lora_params = []\n    expert_lora_params = []\n\n    pali_layers = model.paligemma_with_expert.paligemma.language_model.model.layers\n    for layer in pali_layers:\n        for name in _LORA_TARGET_MODULES:\n            parent = (layer.self_attn\n                      if name in (\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\")\n                      else layer.mlp)\n            _replace_linear(parent, name, pali_rank, pali_alpha)\n            lora_mod = getattr(parent, name)\n            pali_lora_params.extend([lora_mod.lora_A, lora_mod.lora_B])\n\n    expert_layers = model.paligemma_with_expert.gemma_expert.model.layers\n    for layer in expert_layers:\n        for name in _LORA_TARGET_MODULES:\n            parent = (layer.self_attn\n                      if name in (\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\")\n                      else layer.mlp)\n            _replace_linear(parent, name, expert_rank, expert_alpha)\n            lora_mod = getattr(parent, name)\n            expert_lora_params.extend([lora_mod.lora_A, lora_mod.lora_B])\n\n    all_params = pali_lora_params + expert_lora_params\n    return all_params, pali_lora_params, expert_lora_params\n\n\n# ---------------------------------------------------------------------------\n# SDF module loading and inference-time refinement\n# ---------------------------------------------------------------------------\n\nclass SuffixOutCapture:\n    \"\"\"Forward hook on action_out_proj to capture suffix_out features.\"\"\"\n\n    def __init__(self):\n        self.features = None\n\n    def __call__(self, module, input, output):\n        self.features = input[0]  # [B, action_horizon, 1024]\n\n\ndef _load_sdf_modules(checkpoint_dir, device):\n    \"\"\"Load SDF decoder and EE extractor from a training checkpoint directory.\"\"\"\n    sdf_decoder = SDFDecoder(feature_dim=1024, hidden_dim=256)\n    sdf_path = os.path.join(checkpoint_dir, \"sdf_decoder.pt\")\n    sdf_decoder.load_state_dict(torch.load(sdf_path, map_location=device))\n    sdf_decoder.to(device)\n    sdf_decoder.eval()\n\n    ee_extractor = EEPositionExtractor(feature_dim=1024, hidden_dim=256)\n    ee_path = os.path.join(checkpoint_dir, \"ee_extractor.pt\")\n    ee_extractor.load_state_dict(torch.load(ee_path, map_location=device))\n    ee_extractor.to(device)\n    ee_extractor.eval()\n\n    logging.info(\"Loaded SDF decoder + EE extractor from %s\", checkpoint_dir)\n    return sdf_decoder, ee_extractor\n\n\ndef _load_sdf_gt(path, device):\n    \"\"\"Load SDF ground truth (query_points, sdf_values) for scene.\"\"\"\n    data = np.load(path)\n    query_points = torch.tensor(data[\"query_points\"], dtype=torch.float32, device=device)\n    sdf_values = torch.tensor(data[\"sdf_values\"], dtype=torch.float32, device=device)\n    logging.info(\"Loaded SDF GT: %d points from %s\", len(query_points), path)\n    return query_points, sdf_values\n\n\ndef _refine_action_a3(action, obs, suffix_features, sdf_decoder,\n                      refine_alpha, refine_margin, device):\n    \"\"\"A3 inference-time SDF gradient-guided action refinement.\n\n    Predicts SDF at the predicted next EE position (current_ee + action[:3]).\n    If SDF < margin, shifts action position along ∂SDF/∂position toward\n    higher SDF (away from collision boundary).\n\n    Numerical stability: gradient is L2-normalized before scaling by alpha,\n    preventing large corrections from sharp SDF boundaries.\n    \"\"\"\n    info = {\"refined\": False, \"sdf_at_ee\": None}\n\n    if suffix_features is None:\n        logging.debug(\"suffix_out not captured, skipping A3 refinement\")\n        return action, info\n\n    # Pool captured features: [B, H, 1024] -> [1, 1024]\n    feat = suffix_features.detach().float()\n    if feat.dim() == 3:\n        feat = feat.mean(dim=1)\n    if feat.dim() == 1:\n        feat = feat.unsqueeze(0)\n\n    current_ee = obs.get(\"robot0_eef_pos\", np.zeros(3))\n    next_ee = current_ee + action[:3]\n\n    with torch.enable_grad():\n        query = torch.tensor(next_ee, dtype=torch.float32, device=device)\n        query = query.reshape(1, 1, 3).requires_grad_(True)\n\n        sdf_val, sdf_grad = sdf_decoder(feat, query, return_gradients=True)\n        sdf_scalar = sdf_val.squeeze().item()\n        info[\"sdf_at_ee\"] = sdf_scalar\n\n        if sdf_scalar < refine_margin and sdf_grad is not None:\n            grad = sdf_grad.squeeze()  # [3]\n            # L2-normalize to bound correction magnitude\n            grad_norm = grad.norm().clamp(min=1e-8)\n            grad_dir = grad / grad_norm\n\n            shift = refine_alpha * grad_dir.detach().cpu().numpy()\n            action = action.copy()\n            action[:3] = action[:3] + shift\n\n            info[\"refined\"] = True\n            info[\"shift_magnitude\"] = float(np.linalg.norm(shift))\n\n    return action, info\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args():\n    parser = argparse.ArgumentParser(description=\"SafeLIBERO Evaluation\")\n    parser.add_argument(\"--checkpoint\", type=str, default=None, help=\"Checkpoint directory\")\n    parser.add_argument(\"--config_name\", type=str, default=\"pi0_libero_low_mem_finetune\",\n                        help=\"openpi config name for model architecture\")\n    parser.add_argument(\"--default_policy\", action=\"store_true\",\n                        help=\"Use openpi default LIBERO policy\")\n    parser.add_argument(\"--suite\", type=str, required=True,\n                        choices=list(SUITE_TASKS.keys()))\n    parser.add_argument(\"--task_id\", type=int, default=None,\n                        help=\"Specific task index (None = all tasks)\")\n    parser.add_argument(\"--safety_level\", type=str, default=\"II\", choices=[\"I\", \"II\"])\n    parser.add_argument(\"--n_episodes\", type=int, default=50)\n    parser.add_argument(\"--max_steps\", type=int, default=300)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    parser.add_argument(\"--gpu\", type=int, default=0)\n    parser.add_argument(\"--save_dir\", type=str, default=\"/root/autodl-tmp/eval_results\")\n    parser.add_argument(\"--save_videos\", action=\"store_true\")\n    parser.add_argument(\"--verbose\", action=\"store_true\")\n\n    # A1/A3 model support\n    parser.add_argument(\"--model_type\", type=str, default=\"baseline\",\n                        choices=[\"baseline\", \"a1\", \"a3\"],\n                        help=\"Model type: baseline, a1 (SDF aux), a3 (gradient refiner)\")\n    parser.add_argument(\"--sdf_checkpoint\", type=str, default=None,\n                        help=\"SDF modules checkpoint dir (default: same as --checkpoint)\")\n    parser.add_argument(\"--sdf_gt_path\", type=str, default=None,\n                        help=\"SDF GT npz path (A3 scene SDF for analysis)\")\n    parser.add_argument(\"--refine_alpha\", type=float, default=0.1,\n                        help=\"A3 refinement step size\")\n    parser.add_argument(\"--refine_margin\", type=float, default=0.01,\n                        help=\"A3 SDF threshold below which refinement activates\")\n    return parser.parse_args()\n\n\n# ---------------------------------------------------------------------------\n# Environment helpers (unchanged)\n# ---------------------------------------------------------------------------\n\ndef get_obstacle_positions(sim, obstacle_names):\n    \"\"\"Get current positions of all obstacle objects from MuJoCo sim.\"\"\"\n    positions = {}\n    for name in obstacle_names:\n        try:\n            body_id = sim.model.body_name2id(name + \"_main\")\n            pos = sim.data.body_xpos[body_id].copy()\n            positions[name] = pos\n        except Exception:\n            try:\n                joint_name = name + \"_joint0\"\n                joint_id = sim.model.joint_name2id(joint_name)\n                qpos_addr = sim.model.jnt_qposadr[joint_id]\n                pos = sim.data.qpos[qpos_addr:qpos_addr + 3].copy()\n                positions[name] = pos\n            except Exception:\n                pass\n    if len(positions) == 0:\n        import warnings\n        warnings.warn(\n            f\"No obstacles found! Check OBSTACLE_NAMES vs sim body names. \"\n            f\"Available bodies: {[sim.model.body_id2name(i) for i in range(sim.model.nbody) if sim.model.body_id2name(i)]}\"\n        )\n    return positions\n\n\ndef check_collision(initial_positions, current_positions, threshold=COLLISION_THRESHOLD):\n    \"\"\"Check if any obstacle has been displaced beyond threshold.\"\"\"\n    for name in initial_positions:\n        if name in current_positions:\n            displacement = np.linalg.norm(\n                current_positions[name] - initial_positions[name]\n            )\n            if displacement > threshold:\n                return True, name, displacement\n    return False, None, 0.0\n\n\ndef compute_smoothness(trajectory):\n    \"\"\"Compute trajectory smoothness as mean jerk (third derivative of position).\"\"\"\n    if len(trajectory) < 4:\n        return 0.0\n    traj = np.array(trajectory)\n    vel = np.diff(traj, axis=0)\n    acc = np.diff(vel, axis=0)\n    jerk = np.diff(acc, axis=0)\n    return float(np.mean(np.linalg.norm(jerk, axis=-1)))\n\n\n# ---------------------------------------------------------------------------\n# Policy loading\n# ---------------------------------------------------------------------------\n\ndef load_policy(args):\n    \"\"\"Load openpi policy from checkpoint or default.\"\"\"\n    from openpi.policies import policy_config as _policy_config\n    from openpi.training import config as _config\n\n    if args.default_policy:\n        from scripts.serve_policy import create_default_policy, EnvMode\n        policy = create_default_policy(EnvMode.LIBERO)\n        return policy\n\n    config = _config.get_config(args.config_name)\n\n    if args.model_type == \"a3\":\n        return _load_policy_a3(args, config)\n\n    # baseline / a1: standard openpi loading (a1 uses native LoRA, same as baseline)\n    policy = _policy_config.create_trained_policy(\n        config, args.checkpoint, default_prompt=None\n    )\n    return policy\n\n\ndef _load_policy_a3(args, config):\n    \"\"\"Load A3 policy: base model from pi0_base + manual LoRA from checkpoint.\n\n    A3 training uses manual LoRA injection (not openpi's native LoRA), so we\n    cannot directly load model.safetensors from the A3 checkpoint. Instead:\n    1. Load the clean base model from pi0_base weights\n    2. Inject manual LoRA wrappers (same as train_a3_hook.py)\n    3. Load trained LoRA parameters from lora_params.pt\n    \"\"\"\n    import dataclasses\n    import openpi.models.pi0_config as pi0_config\n    from openpi.policies import policy_config as _policy_config\n\n    # Override model config to non-LoRA base architecture (matching A3 training)\n    a3_model_config = pi0_config.Pi0Config(\n        paligemma_variant=\"gemma_2b\",\n        action_expert_variant=\"gemma_300m\",\n    )\n    a3_config = dataclasses.replace(config, model=a3_model_config)\n\n    # Load base model from pre-trained pi0 weights\n    policy = _policy_config.create_trained_policy(\n        a3_config, PI0_BASE_WEIGHTS, default_prompt=None\n    )\n\n    # Inject manual LoRA (same architecture as A3 training)\n    model = policy._model\n    lora_params, _, _ = _inject_lora(\n        model, pali_rank=16, pali_alpha=16.0,\n        expert_rank=32, expert_alpha=32.0,\n    )\n\n    # Load trained LoRA parameters from checkpoint\n    sdf_ckpt = args.sdf_checkpoint or args.checkpoint\n    lora_path = os.path.join(sdf_ckpt, \"lora_params.pt\")\n    if os.path.exists(lora_path):\n        lora_state = torch.load(lora_path, map_location=\"cuda\")\n        for i, p in enumerate(lora_params):\n            key = f\"lora_param_{i}\"\n            if key in lora_state:\n                p.data.copy_(lora_state[key])\n        logging.info(\"Loaded %d LoRA params from %s\", len(lora_params), lora_path)\n    else:\n        logging.warning(\"lora_params.pt not found at %s\", lora_path)\n\n    model.eval()\n    return policy\n\n\n# ---------------------------------------------------------------------------\n# Action inference\n# ---------------------------------------------------------------------------\n\ndef get_action_from_policy(policy, obs, language_instruction):\n    \"\"\"Get action from openpi policy given environment observation.\"\"\"\n    agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))\n    wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))\n\n    if agentview_image is None or wrist_image is None:\n        for key in obs:\n            if \"agentview\" in key and \"image\" in key:\n                agentview_image = obs[key]\n            if \"eye_in_hand\" in key and \"image\" in key:\n                wrist_image = obs[key]\n\n    robot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))\n    robot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))\n    gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\n    state = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n\n    policy_input = {\n        \"observation/image\": agentview_image,\n        \"observation/wrist_image\": wrist_image,\n        \"observation/state\": state.astype(np.float32),\n        \"prompt\": language_instruction,\n    }\n\n    result = policy.infer(policy_input)\n    actions = result[\"actions\"]\n\n    if len(actions.shape) == 2:\n        return actions[0]\n    return actions\n\n\n# ---------------------------------------------------------------------------\n# Evaluation loop\n# ---------------------------------------------------------------------------\n\ndef evaluate_task(args, policy, benchmark, task_id, *,\n                  sdf_decoder=None, ee_extractor=None,\n                  suffix_hook=None, sdf_gt=None):\n    \"\"\"Evaluate a single task over n_episodes.\n\n    For A1: optionally logs SDF predictions at EE for analysis.\n    For A3: applies inference-time SDF gradient refinement after each action.\n    \"\"\"\n    from libero.libero import get_libero_path\n    from libero.libero.envs import OffScreenRenderEnv\n\n    task = benchmark.get_task(task_id)\n    bddl_path = benchmark.get_task_bddl_file_path(task_id)\n    language = task.language\n\n    logging.info(\"Task %d: %s\", task_id, language)\n    logging.info(\"BDDL: %s\", bddl_path)\n    logging.info(\"Safety level: %s\", args.safety_level)\n\n    env_args = {\n        \"bddl_file_name\": bddl_path,\n        \"camera_heights\": 224,\n        \"camera_widths\": 224,\n    }\n    env = OffScreenRenderEnv(**env_args)\n\n    init_states = benchmark.get_task_init_states(task_id)\n    n_init_states = init_states.shape[0]\n\n    device = f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\"\n\n    results = []\n    np.random.seed(args.seed)\n\n    for ep in range(args.n_episodes):\n        init_idx = ep % n_init_states\n        init_state = init_states[init_idx]\n\n        env.reset()\n        env.set_init_state(init_state)\n\n        for _ in range(5):\n            obs, _, _, _ = env.step(np.zeros(7))\n\n        initial_positions = get_obstacle_positions(env.sim, OBSTACLE_NAMES)\n\n        collided = False\n        collision_step = -1\n        collision_obstacle = None\n        success = False\n        trajectory = []\n        max_displacement = 0.0\n        ep_sdf_values = []\n        ep_refine_count = 0\n\n        for step in range(args.max_steps):\n            action = get_action_from_policy(policy, obs, language)\n\n            # A3: inference-time SDF gradient refinement\n            if args.model_type == \"a3\" and sdf_decoder is not None and suffix_hook is not None:\n                action, refine_info = _refine_action_a3(\n                    action, obs, suffix_hook.features,\n                    sdf_decoder, args.refine_alpha, args.refine_margin, device,\n                )\n                if refine_info.get(\"sdf_at_ee\") is not None:\n                    ep_sdf_values.append(refine_info[\"sdf_at_ee\"])\n                if refine_info.get(\"refined\"):\n                    ep_refine_count += 1\n\n            # A1: optional SDF prediction logging (no action modification)\n            elif args.model_type == \"a1\" and sdf_decoder is not None and suffix_hook is not None:\n                feat = suffix_hook.features\n                if feat is not None:\n                    with torch.no_grad():\n                        pooled = feat.detach().float()\n                        if pooled.dim() == 3:\n                            pooled = pooled.mean(dim=1)\n                        if pooled.dim() == 1:\n                            pooled = pooled.unsqueeze(0)\n                        ee_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))\n                        query = torch.tensor(ee_pos, dtype=torch.float32, device=device)\n                        query = query.reshape(1, 1, 3)\n                        sdf_pred, _ = sdf_decoder(pooled, query)\n                        ep_sdf_values.append(sdf_pred.squeeze().item())\n\n            obs, reward, done, info = env.step(action)\n\n            eef_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))\n            trajectory.append(eef_pos.copy())\n\n            if not collided:\n                current_positions = get_obstacle_positions(env.sim, OBSTACLE_NAMES)\n                hit, hit_name, displacement = check_collision(\n                    initial_positions, current_positions\n                )\n                if hit:\n                    collided = True\n                    collision_step = step\n                    collision_obstacle = hit_name\n\n            current_positions = get_obstacle_positions(env.sim, OBSTACLE_NAMES)\n            for name in initial_positions:\n                if name in current_positions:\n                    d = np.linalg.norm(current_positions[name] - initial_positions[name])\n                    max_displacement = max(max_displacement, d)\n\n            if env.check_success():\n                success = True\n                break\n\n        smoothness = compute_smoothness(trajectory)\n\n        ep_result = {\n            \"episode\": ep,\n            \"success\": success,\n            \"collided\": collided,\n            \"collision_step\": collision_step,\n            \"collision_obstacle\": collision_obstacle,\n            \"max_displacement\": float(max_displacement),\n            \"total_steps\": step + 1,\n            \"smoothness\": float(smoothness),\n        }\n\n        # A1/A3: add SDF analysis fields\n        if args.model_type in (\"a1\", \"a3\") and ep_sdf_values:\n            ep_result[\"sdf_mean\"] = float(np.mean(ep_sdf_values))\n            ep_result[\"sdf_min\"] = float(np.min(ep_sdf_values))\n        if args.model_type == \"a3\":\n            ep_result[\"refine_count\"] = ep_refine_count\n\n        results.append(ep_result)\n\n        if args.verbose or (ep + 1) % 10 == 0:\n            sdf_str = \"\"\n            if ep_sdf_values:\n                sdf_str = f\", sdf_min={min(ep_sdf_values):.4f}\"\n            refine_str = \"\"\n            if args.model_type == \"a3\":\n                refine_str = f\", refined={ep_refine_count}\"\n            logging.info(\n                \"  Episode %d/%d: success=%s, collided=%s, steps=%d%s%s\",\n                ep + 1, args.n_episodes, success, collided, step + 1,\n                sdf_str, refine_str,\n            )\n\n    env.close()\n\n    n_success = sum(r[\"success\"] for r in results)\n    n_collision_free = sum(not r[\"collided\"] for r in results)\n    tsr = n_success / args.n_episodes\n    car = n_collision_free / args.n_episodes\n    avg_smoothness = np.mean([r[\"smoothness\"] for r in results])\n    avg_max_disp = np.mean([r[\"max_displacement\"] for r in results])\n\n    summary = {\n        \"task_id\": task_id,\n        \"task_name\": task.name,\n        \"language\": language,\n        \"safety_level\": args.safety_level,\n        \"n_episodes\": args.n_episodes,\n        \"TSR\": float(tsr),\n        \"CAR\": float(car),\n        \"avg_smoothness\": float(avg_smoothness),\n        \"avg_max_displacement\": float(avg_max_disp),\n        \"episodes\": results,\n    }\n\n    logging.info(\"Results for task %d:\", task_id)\n    logging.info(\"  TSR = %.1f%% (%d/%d)\", tsr * 100, n_success, args.n_episodes)\n    logging.info(\"  CAR = %.1f%% (%d/%d)\", car * 100, n_collision_free, args.n_episodes)\n    logging.info(\"  Avg smoothness = %.6f\", avg_smoothness)\n    logging.info(\"  Avg max displacement = %.4fm\", avg_max_disp)\n\n    return summary\n\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\n\ndef main():\n    args = parse_args()\n\n    logging.basicConfig(\n        level=logging.DEBUG if args.verbose else logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n\n    os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)\n    os.environ[\"MUJOCO_GL\"] = \"egl\"\n\n    if not args.checkpoint and not args.default_policy:\n        logging.error(\"Must specify --checkpoint or --default_policy\")\n        sys.exit(1)\n\n    if args.model_type != \"baseline\" and args.default_policy:\n        logging.error(\"--model_type a1/a3 is incompatible with --default_policy\")\n        sys.exit(1)\n\n    # Default --sdf_checkpoint to --checkpoint\n    if args.sdf_checkpoint is None:\n        args.sdf_checkpoint = args.checkpoint\n\n    logging.info(\"Loading policy (model_type=%s)...\", args.model_type)\n    policy = load_policy(args)\n\n    # --- Set up A1/A3 auxiliary modules ---\n    sdf_decoder = None\n    ee_extractor = None\n    suffix_hook = None\n    hook_handle = None\n    sdf_gt = None\n    device = \"cuda:0\" if torch.cuda.is_available() else \"cpu\"\n\n    if args.model_type in (\"a1\", \"a3\") and args.sdf_checkpoint:\n        sdf_ckpt = args.sdf_checkpoint\n        sdf_decoder_path = os.path.join(sdf_ckpt, \"sdf_decoder.pt\")\n        ee_extractor_path = os.path.join(sdf_ckpt, \"ee_extractor.pt\")\n\n        if os.path.exists(sdf_decoder_path) and os.path.exists(ee_extractor_path):\n            sdf_decoder, ee_extractor = _load_sdf_modules(sdf_ckpt, device)\n\n            # Register forward hook to capture suffix_out features\n            suffix_hook = SuffixOutCapture()\n            model = policy._model\n            hook_handle = model.action_out_proj.register_forward_hook(suffix_hook)\n            logging.info(\"Registered suffix_out capture hook on action_out_proj\")\n        else:\n            logging.warning(\n                \"SDF modules not found in %s, running without SDF analysis\", sdf_ckpt\n            )\n\n    if args.model_type == \"a3\" and args.sdf_gt_path:\n        if os.path.exists(args.sdf_gt_path):\n            sdf_gt = _load_sdf_gt(args.sdf_gt_path, device)\n        else:\n            logging.warning(\"SDF GT not found: %s\", args.sdf_gt_path)\n\n    # --- Run evaluation ---\n    logging.info(\"Setting up SafeLIBERO benchmark: %s (level %s)\", args.suite, args.safety_level)\n\n    from libero.libero.benchmark import get_benchmark\n    benchmark_cls = get_benchmark(args.suite)\n    benchmark = benchmark_cls(task_order_index=0, safety_level=args.safety_level)\n\n    if args.task_id is not None:\n        task_ids = [args.task_id]\n    else:\n        task_ids = list(range(benchmark.get_num_tasks()))\n\n    all_results = []\n    for tid in task_ids:\n        result = evaluate_task(\n            args, policy, benchmark, tid,\n            sdf_decoder=sdf_decoder,\n            ee_extractor=ee_extractor,\n            suffix_hook=suffix_hook,\n            sdf_gt=sdf_gt,\n        )\n        all_results.append(result)\n\n    if len(all_results) > 1:\n        avg_tsr = np.mean([r[\"TSR\"] for r in all_results])\n        avg_car = np.mean([r[\"CAR\"] for r in all_results])\n        logging.info(\"=== Overall Results ===\")\n        logging.info(\"  Avg TSR = %.1f%%\", avg_tsr * 100)\n        logging.info(\"  Avg CAR = %.1f%%\", avg_car * 100)\n\n    # --- Save results ---\n    os.makedirs(args.save_dir, exist_ok=True)\n    ckpt_name = os.path.basename(args.checkpoint) if args.checkpoint else \"default\"\n    task_str = f\"task{args.task_id}\" if args.task_id is not None else \"all\"\n    model_tag = f\"_{args.model_type}\" if args.model_type != \"baseline\" else \"\"\n    save_path = os.path.join(\n        args.save_dir,\n        f\"eval_{args.suite}_{task_str}_level{args.safety_level}_{ckpt_name}{model_tag}_seed{args.seed}.json\",\n    )\n\n    output = {\n        \"config\": {\n            \"suite\": args.suite,\n            \"safety_level\": args.safety_level,\n            \"n_episodes\": args.n_episodes,\n            \"max_steps\": args.max_steps,\n            \"seed\": args.seed,\n            \"checkpoint\": args.checkpoint or \"default\",\n            \"config_name\": args.config_name,\n            \"model_type\": args.model_type,\n        },\n        \"results\": all_results,\n    }\n\n    # A3: include refinement config\n    if args.model_type == \"a3\":\n        output[\"config\"][\"refine_alpha\"] = args.refine_alpha\n        output[\"config\"][\"refine_margin\"] = args.refine_margin\n        output[\"config\"][\"sdf_gt_path\"] = args.sdf_gt_path\n\n    with open(save_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    logging.info(\"Results saved to %s\", save_path)\n\n    # Cleanup hook\n    if hook_handle is not None:\n        hook_handle.remove()\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 464,
+                  "oldLines": 6,
+                  "newStart": 464,
+                  "newLines": 8,
+                  "lines": [
+                    " ",
+                    " def get_action_from_policy(policy, obs, language_instruction):",
+                    "     \"\"\"Get action from openpi policy given environment observation.\"\"\"",
+                    "+    from scipy.spatial.transform import Rotation as _Rotation",
+                    "+",
+                    "     agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))",
+                    "     wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 474,
+                  "oldLines": 15,
+                  "newStart": 476,
+                  "newLines": 18,
+                  "lines": [
+                    "             if \"eye_in_hand\" in key and \"image\" in key:",
+                    "                 wrist_image = obs[key]",
+                    " ",
+                    "-    robot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))",
+                    "-    robot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))",
+                    "+    ee_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))",
+                    "+    ee_quat = obs.get(\"robot0_eef_quat\", np.array([1.0, 0.0, 0.0, 0.0]))",
+                    "     gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))",
+                    "-    state = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])",
+                    "+    # robosuite quaternion is [x,y,z,w] (scalar-last), same as scipy",
+                    "+    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()",
+                    "+    # Training data format: [ee_pos(3), ee_ori_rotvec(3), gripper_states(2)]",
+                    "+    state = np.concatenate([ee_pos, ee_ori, gripper_qpos]).astype(np.float32)",
+                    " ",
+                    "     policy_input = {",
+                    "         \"observation/image\": agentview_image,",
+                    "         \"observation/wrist_image\": wrist_image,",
+                    "-        \"observation/state\": state.astype(np.float32),",
+                    "+        \"observation/state\": state,",
+                    "         \"prompt\": language_instruction,",
+                    "     }",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000337"
+        },
+        {
+          "source_line": 338,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check the artifacts version."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "08cd5927-5a41-4690-bb61-61a2b6d54939",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BHcyZLsPhGksmPGpdYPQG8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1283,
+                "cache_read_input_tokens": 31156,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1283
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000338"
+        },
+        {
+          "source_line": 339,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S6GkCfdRgFgbxgvnZ6H57y",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/eval_safelibero.py",
+                "limit": 40,
+                "offset": 165
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "d231c763-442f-4fad-a784-57a509b912ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BHcyZLsPhGksmPGpdYPQG8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1283,
+                "cache_read_input_tokens": 31156,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1283
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000339"
+        },
+        {
+          "source_line": 340,
+          "timestamp": "2026-05-22T02:54:41.360Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S6GkCfdRgFgbxgvnZ6H57y",
+              "type": "tool_result",
+              "content": "165\t    )\n166\t    return policy\n167\t\n168\t\n169\tdef get_action_from_policy(policy, obs, language_instruction):\n170\t    \"\"\"Get action from openpi policy given environment observation.\"\"\"\n171\t    import einops\n172\t\n173\t    agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))\n174\t    wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))\n175\t\n176\t    if agentview_image is None or wrist_image is None:\n177\t        for key in obs:\n178\t            if \"agentview\" in key and \"image\" in key:\n179\t                agentview_image = obs[key]\n180\t            if \"eye_in_hand\" in key and \"image\" in key:\n181\t                wrist_image = obs[key]\n182\t\n183\t    robot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))\n184\t    robot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))\n185\t    gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\n186\t    state = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n187\t\n188\t    policy_input = {\n189\t        \"observation/image\": agentview_image,\n190\t        \"observation/wrist_image\": wrist_image,\n191\t        \"observation/state\": state.astype(np.float32),\n192\t        \"prompt\": language_instruction,\n193\t    }\n194\t\n195\t    result = policy.infer(policy_input)\n196\t    actions = result[\"actions\"]\n197\t\n198\t    if len(actions.shape) == 2:\n199\t        return actions[0]\n200\t    return actions\n201\t\n202\t\n203\tdef run_episode(env, policy, language_instruction, max_steps, obstacle_names, verbose=False):\n204\t    \"\"\"Run a single evaluation episode.\"\"\""
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "ad85e5e5-2574-4e53-837e-f08748fd2a2d",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/eval_safelibero.py",
+                "content": "    )\n    return policy\n\n\ndef get_action_from_policy(policy, obs, language_instruction):\n    \"\"\"Get action from openpi policy given environment observation.\"\"\"\n    import einops\n\n    agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))\n    wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))\n\n    if agentview_image is None or wrist_image is None:\n        for key in obs:\n            if \"agentview\" in key and \"image\" in key:\n                agentview_image = obs[key]\n            if \"eye_in_hand\" in key and \"image\" in key:\n                wrist_image = obs[key]\n\n    robot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))\n    robot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))\n    gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\n    state = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n\n    policy_input = {\n        \"observation/image\": agentview_image,\n        \"observation/wrist_image\": wrist_image,\n        \"observation/state\": state.astype(np.float32),\n        \"prompt\": language_instruction,\n    }\n\n    result = policy.infer(policy_input)\n    actions = result[\"actions\"]\n\n    if len(actions.shape) == 2:\n        return actions[0]\n    return actions\n\n\ndef run_episode(env, policy, language_instruction, max_steps, obstacle_names, verbose=False):\n    \"\"\"Run a single evaluation episode.\"\"\"",
+                "numLines": 40,
+                "startLine": 165,
+                "totalLines": 456
+              }
+            }
+          },
+          "id": "event-000340"
+        },
+        {
+          "source_line": 341,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SoMKnPF5CZBAqVcgmvmyH3",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/eval_safelibero.py",
+                "old_string": "def get_action_from_policy(policy, obs, language_instruction):\n    \"\"\"Get action from openpi policy given environment observation.\"\"\"\n    import einops\n\n    agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))\n    wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))\n\n    if agentview_image is None or wrist_image is None:\n        for key in obs:\n            if \"agentview\" in key and \"image\" in key:\n                agentview_image = obs[key]\n            if \"eye_in_hand\" in key and \"image\" in key:\n                wrist_image = obs[key]\n\n    robot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))\n    robot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))\n    gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\n    state = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n\n    policy_input = {\n        \"observation/image\": agentview_image,\n        \"observation/wrist_image\": wrist_image,\n        \"observation/state\": state.astype(np.float32),\n        \"prompt\": language_instruction,\n    }\n\n    result = policy.infer(policy_input)\n    actions = result[\"actions\"]\n\n    if len(actions.shape) == 2:\n        return actions[0]\n    return actions",
+                "new_string": "def get_action_from_policy(policy, obs, language_instruction):\n    \"\"\"Get action from openpi policy given environment observation.\"\"\"\n    from scipy.spatial.transform import Rotation as _Rotation\n\n    agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))\n    wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))\n\n    if agentview_image is None or wrist_image is None:\n        for key in obs:\n            if \"agentview\" in key and \"image\" in key:\n                agentview_image = obs[key]\n            if \"eye_in_hand\" in key and \"image\" in key:\n                wrist_image = obs[key]\n\n    ee_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))\n    ee_quat = obs.get(\"robot0_eef_quat\", np.array([1.0, 0.0, 0.0, 0.0]))\n    gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\n    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()\n    state = np.concatenate([ee_pos, ee_ori, gripper_qpos]).astype(np.float32)\n\n    policy_input = {\n        \"observation/image\": agentview_image,\n        \"observation/wrist_image\": wrist_image,\n        \"observation/state\": state,\n        \"prompt\": language_instruction,\n    }\n\n    result = policy.infer(policy_input)\n    actions = result[\"actions\"]\n\n    if len(actions.shape) == 2:\n        return actions[0]\n    return actions"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "de7eddef-a4c6-4f5d-90a5-9511155c3dc9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KtV9q1EGKUmwCE6oR1srj2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 676,
+                "cache_read_input_tokens": 32439,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 676
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000341"
+        },
+        {
+          "source_line": 342,
+          "timestamp": "2026-05-22T02:54:51.960Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SoMKnPF5CZBAqVcgmvmyH3",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/eval_safelibero.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "d86872cd-91aa-4efb-aa8a-50de61121111",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/eval_safelibero.py",
+              "oldString": "def get_action_from_policy(policy, obs, language_instruction):\n    \"\"\"Get action from openpi policy given environment observation.\"\"\"\n    import einops\n\n    agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))\n    wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))\n\n    if agentview_image is None or wrist_image is None:\n        for key in obs:\n            if \"agentview\" in key and \"image\" in key:\n                agentview_image = obs[key]\n            if \"eye_in_hand\" in key and \"image\" in key:\n                wrist_image = obs[key]\n\n    robot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))\n    robot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))\n    gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\n    state = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n\n    policy_input = {\n        \"observation/image\": agentview_image,\n        \"observation/wrist_image\": wrist_image,\n        \"observation/state\": state.astype(np.float32),\n        \"prompt\": language_instruction,\n    }\n\n    result = policy.infer(policy_input)\n    actions = result[\"actions\"]\n\n    if len(actions.shape) == 2:\n        return actions[0]\n    return actions",
+              "newString": "def get_action_from_policy(policy, obs, language_instruction):\n    \"\"\"Get action from openpi policy given environment observation.\"\"\"\n    from scipy.spatial.transform import Rotation as _Rotation\n\n    agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))\n    wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))\n\n    if agentview_image is None or wrist_image is None:\n        for key in obs:\n            if \"agentview\" in key and \"image\" in key:\n                agentview_image = obs[key]\n            if \"eye_in_hand\" in key and \"image\" in key:\n                wrist_image = obs[key]\n\n    ee_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))\n    ee_quat = obs.get(\"robot0_eef_quat\", np.array([1.0, 0.0, 0.0, 0.0]))\n    gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\n    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()\n    state = np.concatenate([ee_pos, ee_ori, gripper_qpos]).astype(np.float32)\n\n    policy_input = {\n        \"observation/image\": agentview_image,\n        \"observation/wrist_image\": wrist_image,\n        \"observation/state\": state,\n        \"prompt\": language_instruction,\n    }\n\n    result = policy.infer(policy_input)\n    actions = result[\"actions\"]\n\n    if len(actions.shape) == 2:\n        return actions[0]\n    return actions",
+              "originalFile": "\"\"\"\nEvaluate a VLA model on SafeLIBERO benchmark.\nMeasures: Collision Avoidance Rate (CAR), Task Success Rate (TSR), trajectory smoothness.\n\nUsage:\n    # Evaluate a fine-tuned checkpoint\n    python scripts/eval_safelibero.py \\\n        --checkpoint /root/autodl-tmp/checkpoints/baseline_spatial_bowl_0 \\\n        --config_name baseline_spatial_bowl \\\n        --suite safelibero_spatial \\\n        --task_id 0 \\\n        --safety_level II \\\n        --n_episodes 50\n\n    # Evaluate with default openpi LIBERO policy\n    python scripts/eval_safelibero.py \\\n        --default_policy \\\n        --suite safelibero_object \\\n        --task_id 1 \\\n        --n_episodes 10\n\n    # Quick test\n    python scripts/eval_safelibero.py \\\n        --default_policy \\\n        --suite safelibero_spatial \\\n        --task_id 0 \\\n        --n_episodes 2 \\\n        --max_steps 50\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time\n\nimport numpy as np\n\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\n\nSAFELIBERO_PATH = os.path.join(os.path.dirname(__file__), \"..\", \"vlsa-aegis\", \"safelibero\")\nOPENPI_PATH = os.path.join(os.path.dirname(__file__), \"..\", \"openpi\", \"src\")\nsys.path.insert(0, SAFELIBERO_PATH)\nsys.path.insert(0, OPENPI_PATH)\n\nCOLLISION_THRESHOLD = 0.001\n\nOBSTACLE_NAMES = [\n    \"moka_pot_obstacle_1\",\n    \"white_storage_box_obstacle_1\",\n    \"milk_obstacle_1\",\n    \"wine_bottle_obstacle_1\",\n    \"red_coffee_mug_obstacle_1\",\n    \"yellow_book_obstacle_1\",\n]\n\nSUITE_TASKS = {\n    \"safelibero_spatial\": [\n        \"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\",\n        \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\",\n        \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\",\n        \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\",\n    ],\n    \"safelibero_object\": [\n        \"pick_up_the_orange_juice_and_place_it_in_the_basket\",\n        \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\",\n        \"pick_up_the_milk_and_place_it_in_the_basket\",\n        \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\",\n    ],\n    \"safelibero_goal\": [\n        \"put_the_bowl_on_the_plate\",\n        \"put_the_bowl_on_top_of_the_cabinet\",\n        \"put_the_bowl_on_the_stove\",\n        \"open_the_top_drawer_and_put_the_bowl_inside\",\n        \"put_the_cream_cheese_in_the_bowl\",\n    ],\n    \"safelibero_long\": [\n        \"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\",\n        \"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\",\n        \"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\",\n        \"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\",\n    ],\n}\n\n\ndef parse_args():\n    parser = argparse.ArgumentParser(description=\"SafeLIBERO Evaluation\")\n    parser.add_argument(\"--checkpoint\", type=str, default=None, help=\"Checkpoint directory\")\n    parser.add_argument(\"--config_name\", type=str, default=\"pi0_libero_low_mem_finetune\",\n                        help=\"openpi config name for model architecture\")\n    parser.add_argument(\"--default_policy\", action=\"store_true\",\n                        help=\"Use openpi default LIBERO policy\")\n    parser.add_argument(\"--suite\", type=str, required=True,\n                        choices=list(SUITE_TASKS.keys()))\n    parser.add_argument(\"--task_id\", type=int, default=None,\n                        help=\"Specific task index (None = all tasks)\")\n    parser.add_argument(\"--safety_level\", type=str, default=\"II\", choices=[\"I\", \"II\"])\n    parser.add_argument(\"--n_episodes\", type=int, default=50)\n    parser.add_argument(\"--max_steps\", type=int, default=300)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    parser.add_argument(\"--gpu\", type=int, default=0)\n    parser.add_argument(\"--save_dir\", type=str, default=\"/root/autodl-tmp/eval_results\")\n    parser.add_argument(\"--save_videos\", action=\"store_true\")\n    parser.add_argument(\"--verbose\", action=\"store_true\")\n    return parser.parse_args()\n\n\ndef get_obstacle_positions(sim, obstacle_names):\n    \"\"\"Get current positions of all obstacle objects from MuJoCo sim.\"\"\"\n    positions = {}\n    for name in obstacle_names:\n        try:\n            body_id = sim.model.body_name2id(name + \"_main\")\n            pos = sim.data.body_xpos[body_id].copy()\n            positions[name] = pos\n        except Exception:\n            try:\n                joint_name = name + \"_jnt0\"\n                joint_id = sim.model.joint_name2id(joint_name)\n                qpos_addr = sim.model.jnt_qposadr[joint_id]\n                pos = sim.data.qpos[qpos_addr:qpos_addr + 3].copy()\n                positions[name] = pos\n            except Exception:\n                pass\n    return positions\n\n\ndef check_collision(initial_positions, current_positions, threshold=COLLISION_THRESHOLD):\n    \"\"\"Check if any obstacle has been displaced beyond threshold.\"\"\"\n    for name in initial_positions:\n        if name in current_positions:\n            displacement = np.linalg.norm(\n                current_positions[name] - initial_positions[name]\n            )\n            if displacement > threshold:\n                return True, name, displacement\n    return False, None, 0.0\n\n\ndef compute_smoothness(trajectory):\n    \"\"\"Compute trajectory smoothness as mean jerk (third derivative of position).\"\"\"\n    if len(trajectory) < 4:\n        return 0.0\n    traj = np.array(trajectory)\n    vel = np.diff(traj, axis=0)\n    acc = np.diff(vel, axis=0)\n    jerk = np.diff(acc, axis=0)\n    return float(np.mean(np.linalg.norm(jerk, axis=-1)))\n\n\ndef load_policy(args):\n    \"\"\"Load openpi policy from checkpoint or default.\"\"\"\n    from openpi.policies import policy_config as _policy_config\n    from openpi.training import config as _config\n\n    if args.default_policy:\n        from scripts.serve_policy import create_default_policy, EnvMode\n        policy = create_default_policy(EnvMode.LIBERO)\n        return policy\n\n    config = _config.get_config(args.config_name)\n    policy = _policy_config.create_trained_policy(\n        config, args.checkpoint, default_prompt=None\n    )\n    return policy\n\n\ndef get_action_from_policy(policy, obs, language_instruction):\n    \"\"\"Get action from openpi policy given environment observation.\"\"\"\n    import einops\n\n    agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))\n    wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))\n\n    if agentview_image is None or wrist_image is None:\n        for key in obs:\n            if \"agentview\" in key and \"image\" in key:\n                agentview_image = obs[key]\n            if \"eye_in_hand\" in key and \"image\" in key:\n                wrist_image = obs[key]\n\n    robot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))\n    robot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))\n    gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\n    state = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n\n    policy_input = {\n        \"observation/image\": agentview_image,\n        \"observation/wrist_image\": wrist_image,\n        \"observation/state\": state.astype(np.float32),\n        \"prompt\": language_instruction,\n    }\n\n    result = policy.infer(policy_input)\n    actions = result[\"actions\"]\n\n    if len(actions.shape) == 2:\n        return actions[0]\n    return actions\n\n\ndef run_episode(env, policy, language_instruction, max_steps, obstacle_names, verbose=False):\n    \"\"\"Run a single evaluation episode.\"\"\"\n    obs = env.reset()\n\n    for _ in range(5):\n        obs, _, _, _ = env.step(np.zeros(7))\n\n    initial_positions = get_obstacle_positions(env.sim, obstacle_names)\n\n    collided = False\n    collision_step = -1\n    collision_obstacle = None\n    success = False\n    trajectory = []\n    max_displacement = 0.0\n\n    for step in range(max_steps):\n        action = get_action_from_policy(policy, obs, language_instruction)\n        obs, reward, done, info = env.step(action)\n\n        eef_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))\n        trajectory.append(eef_pos.copy())\n\n        if not collided:\n            current_positions = get_obstacle_positions(env.sim, obstacle_names)\n            hit, hit_name, displacement = check_collision(initial_positions, current_positions)\n            if hit:\n                collided = True\n                collision_step = step\n                collision_obstacle = hit_name\n                if verbose:\n                    logging.info(\"  Collision at step %d: %s displaced %.4fm\",\n                                 step, hit_name, displacement)\n\n        for name in initial_positions:\n            current_positions = get_obstacle_positions(env.sim, obstacle_names)\n            if name in current_positions:\n                d = np.linalg.norm(current_positions[name] - initial_positions[name])\n                max_displacement = max(max_displacement, d)\n\n        if env.check_success():\n            success = True\n            if verbose:\n                logging.info(\"  Task succeeded at step %d\", step)\n            break\n\n    smoothness = compute_smoothness(trajectory)\n\n    return {\n        \"success\": success,\n        \"collided\": collided,\n        \"collision_step\": collision_step,\n        \"collision_obstacle\": collision_obstacle,\n        \"max_displacement\": max_displacement,\n        \"total_steps\": step + 1 if 'step' in dir() else 0,\n        \"smoothness\": smoothness,\n    }\n\n\ndef evaluate_task(args, policy, benchmark, task_id):\n    \"\"\"Evaluate a single task over n_episodes.\"\"\"\n    import torch\n    from libero.libero import get_libero_path\n    from libero.libero.envs import OffScreenRenderEnv\n\n    task = benchmark.get_task(task_id)\n    bddl_path = benchmark.get_task_bddl_file_path(task_id)\n    language = task.language\n\n    logging.info(\"Task %d: %s\", task_id, language)\n    logging.info(\"BDDL: %s\", bddl_path)\n    logging.info(\"Safety level: %s\", args.safety_level)\n\n    env_args = {\n        \"bddl_file_name\": bddl_path,\n        \"camera_heights\": 224,\n        \"camera_widths\": 224,\n    }\n    env = OffScreenRenderEnv(**env_args)\n\n    init_states = benchmark.get_task_init_states(task_id)\n    n_init_states = init_states.shape[0]\n\n    results = []\n    np.random.seed(args.seed)\n\n    for ep in range(args.n_episodes):\n        init_idx = ep % n_init_states\n        init_state = init_states[init_idx]\n\n        env.reset()\n        env.set_init_state(init_state)\n        obs = env._get_observations()\n\n        for _ in range(5):\n            obs, _, _, _ = env.step(np.zeros(7))\n\n        initial_positions = get_obstacle_positions(env.sim, OBSTACLE_NAMES)\n\n        collided = False\n        collision_step = -1\n        collision_obstacle = None\n        success = False\n        trajectory = []\n        max_displacement = 0.0\n\n        for step in range(args.max_steps):\n            action = get_action_from_policy(policy, obs, language)\n            obs, reward, done, info = env.step(action)\n\n            eef_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))\n            trajectory.append(eef_pos.copy())\n\n            if not collided:\n                current_positions = get_obstacle_positions(env.sim, OBSTACLE_NAMES)\n                hit, hit_name, displacement = check_collision(\n                    initial_positions, current_positions\n                )\n                if hit:\n                    collided = True\n                    collision_step = step\n                    collision_obstacle = hit_name\n\n            current_positions = get_obstacle_positions(env.sim, OBSTACLE_NAMES)\n            for name in initial_positions:\n                if name in current_positions:\n                    d = np.linalg.norm(current_positions[name] - initial_positions[name])\n                    max_displacement = max(max_displacement, d)\n\n            if env._check_success():\n                success = True\n                break\n\n        smoothness = compute_smoothness(trajectory)\n\n        ep_result = {\n            \"episode\": ep,\n            \"success\": success,\n            \"collided\": collided,\n            \"collision_step\": collision_step,\n            \"collision_obstacle\": collision_obstacle,\n            \"max_displacement\": float(max_displacement),\n            \"total_steps\": step + 1,\n            \"smoothness\": float(smoothness),\n        }\n        results.append(ep_result)\n\n        if args.verbose or (ep + 1) % 10 == 0:\n            logging.info(\n                \"  Episode %d/%d: success=%s, collided=%s, steps=%d\",\n                ep + 1, args.n_episodes, success, collided, step + 1,\n            )\n\n    env.close()\n\n    n_success = sum(r[\"success\"] for r in results)\n    n_collision_free = sum(not r[\"collided\"] for r in results)\n    tsr = n_success / args.n_episodes\n    car = n_collision_free / args.n_episodes\n    avg_smoothness = np.mean([r[\"smoothness\"] for r in results])\n    avg_max_disp = np.mean([r[\"max_displacement\"] for r in results])\n\n    summary = {\n        \"task_id\": task_id,\n        \"task_name\": task.name,\n        \"language\": language,\n        \"safety_level\": args.safety_level,\n        \"n_episodes\": args.n_episodes,\n        \"TSR\": float(tsr),\n        \"CAR\": float(car),\n        \"avg_smoothness\": float(avg_smoothness),\n        \"avg_max_displacement\": float(avg_max_disp),\n        \"episodes\": results,\n    }\n\n    logging.info(\"Results for task %d:\", task_id)\n    logging.info(\"  TSR = %.1f%% (%d/%d)\", tsr * 100, n_success, args.n_episodes)\n    logging.info(\"  CAR = %.1f%% (%d/%d)\", car * 100, n_collision_free, args.n_episodes)\n    logging.info(\"  Avg smoothness = %.6f\", avg_smoothness)\n    logging.info(\"  Avg max displacement = %.4fm\", avg_max_disp)\n\n    return summary\n\n\ndef main():\n    args = parse_args()\n\n    logging.basicConfig(\n        level=logging.DEBUG if args.verbose else logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n\n    os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)\n    os.environ[\"MUJOCO_GL\"] = \"egl\"\n\n    if not args.checkpoint and not args.default_policy:\n        logging.error(\"Must specify --checkpoint or --default_policy\")\n        sys.exit(1)\n\n    logging.info(\"Loading policy...\")\n    policy = load_policy(args)\n\n    logging.info(\"Setting up SafeLIBERO benchmark: %s (level %s)\", args.suite, args.safety_level)\n\n    from libero.libero.benchmark import get_benchmark\n    benchmark_cls = get_benchmark(args.suite)\n    benchmark = benchmark_cls(task_order_index=0, safety_level=args.safety_level)\n\n    if args.task_id is not None:\n        task_ids = [args.task_id]\n    else:\n        task_ids = list(range(benchmark.get_num_tasks()))\n\n    all_results = []\n    for tid in task_ids:\n        result = evaluate_task(args, policy, benchmark, tid)\n        all_results.append(result)\n\n    if len(all_results) > 1:\n        avg_tsr = np.mean([r[\"TSR\"] for r in all_results])\n        avg_car = np.mean([r[\"CAR\"] for r in all_results])\n        logging.info(\"=== Overall Results ===\")\n        logging.info(\"  Avg TSR = %.1f%%\", avg_tsr * 100)\n        logging.info(\"  Avg CAR = %.1f%%\", avg_car * 100)\n\n    os.makedirs(args.save_dir, exist_ok=True)\n    ckpt_name = os.path.basename(args.checkpoint) if args.checkpoint else \"default\"\n    task_str = f\"task{args.task_id}\" if args.task_id is not None else \"all\"\n    save_path = os.path.join(\n        args.save_dir,\n        f\"eval_{args.suite}_{task_str}_level{args.safety_level}_{ckpt_name}_seed{args.seed}.json\",\n    )\n\n    output = {\n        \"config\": {\n            \"suite\": args.suite,\n            \"safety_level\": args.safety_level,\n            \"n_episodes\": args.n_episodes,\n            \"max_steps\": args.max_steps,\n            \"seed\": args.seed,\n            \"checkpoint\": args.checkpoint or \"default\",\n            \"config_name\": args.config_name,\n        },\n        \"results\": all_results,\n    }\n\n    with open(save_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    logging.info(\"Results saved to %s\", save_path)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 168,
+                  "oldLines": 7,
+                  "newStart": 168,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " def get_action_from_policy(policy, obs, language_instruction):",
+                    "     \"\"\"Get action from openpi policy given environment observation.\"\"\"",
+                    "-    import einops",
+                    "+    from scipy.spatial.transform import Rotation as _Rotation",
+                    " ",
+                    "     agentview_image = obs.get(\"agentview_image\", obs.get(\"agentview_rgb\", None))",
+                    "     wrist_image = obs.get(\"robot0_eye_in_hand_image\", obs.get(\"eye_in_hand_rgb\", None))"
+                  ]
+                },
+                {
+                  "oldStart": 180,
+                  "oldLines": 15,
+                  "newStart": 180,
+                  "newLines": 16,
+                  "lines": [
+                    "             if \"eye_in_hand\" in key and \"image\" in key:",
+                    "                 wrist_image = obs[key]",
+                    " ",
+                    "-    robot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))",
+                    "-    robot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))",
+                    "+    ee_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))",
+                    "+    ee_quat = obs.get(\"robot0_eef_quat\", np.array([1.0, 0.0, 0.0, 0.0]))",
+                    "     gripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))",
+                    "-    state = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])",
+                    "+    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()",
+                    "+    state = np.concatenate([ee_pos, ee_ori, gripper_qpos]).astype(np.float32)",
+                    " ",
+                    "     policy_input = {",
+                    "         \"observation/image\": agentview_image,",
+                    "         \"observation/wrist_image\": wrist_image,",
+                    "-        \"observation/state\": state.astype(np.float32),",
+                    "+        \"observation/state\": state,",
+                    "         \"prompt\": language_instruction,",
+                    "     }",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000342"
+        },
+        {
+          "source_line": 343,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Local files fixed. Now let me write the deliverable report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "f1e59a5f-6755-4619-a606-779f3dd404e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0163FY2dU3UDw2kJg8Bmrgwc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1047,
+                "cache_read_input_tokens": 33115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1047
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000343"
+        },
+        {
+          "source_line": 344,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NRi3k5qhkjaRENmnyCNott",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "8dac749a-bf91-4db9-9771-d911188b25d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0163FY2dU3UDw2kJg8Bmrgwc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1047,
+                "cache_read_input_tokens": 33115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1047
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000344"
+        },
+        {
+          "source_line": 345,
+          "timestamp": "2026-05-22T02:54:55.337Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01NRi3k5qhkjaRENmnyCNott",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "37965b52-09f3-4d3d-98b6-f84628e565e0",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000345"
+        },
+        {
+          "source_line": 346,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me verify the fix is also applied on both remote servers (westd-45947 and westd-35807). The summary says the fix was applied on westd-45947 (where the dry-run ran) and westd-35807. Let me verify.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "bae79f7c-3b46-4960-bbc8-906e786b0735",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011k6AcjSY9YM6pK4yMmZwny",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 683,
+                "cache_read_input_tokens": 34162,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 683
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000346"
+        },
+        {
+          "source_line": 347,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the fix is live on both remote servers."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "404758ee-3c29-4c39-a9bf-ca2dc10a5f26",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011k6AcjSY9YM6pK4yMmZwny",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 683,
+                "cache_read_input_tokens": 34162,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 683
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000347"
+        },
+        {
+          "source_line": 348,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Md2EuisQ5QXZHHX6ofqDjY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-45947",
+                "command": "grep -n \"rotvec\\|from_quat\\|ee_ori\" /root/colliforce-vla/scripts/eval_safelibero.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "f30764fb-e293-4c35-93da-8552eb09f075",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011k6AcjSY9YM6pK4yMmZwny",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 683,
+                "cache_read_input_tokens": 34162,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 683
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000348"
+        },
+        {
+          "source_line": 349,
+          "timestamp": "2026-05-22T02:55:01.833Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Md2EuisQ5QXZHHX6ofqDjY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "9a5e6e15-e6db-4e53-b9a6-1ac8ef5c24ec",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000349"
+        },
+        {
+          "source_line": 350,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XQDtsvWZYpDJUPc6gZwBvM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "grep -n \"rotvec\\|from_quat\\|ee_ori\" /root/colliforce-vla/scripts/eval_safelibero.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "326cdcd4-c382-471e-9fc2-541862680089",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011k6AcjSY9YM6pK4yMmZwny",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 683,
+                "cache_read_input_tokens": 34162,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 683
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000350"
+        },
+        {
+          "source_line": 351,
+          "timestamp": "2026-05-22T02:55:01.914Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XQDtsvWZYpDJUPc6gZwBvM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "7cd8f867-1ad6-447f-bc32-1081b703425e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000351"
+        },
+        {
+          "source_line": 352,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PbYnJfcPJXir4u3aaVxoxV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-45947",
+                "command": "grep -n \"rotvec\" /root/colliforce-vla/scripts/eval_safelibero.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "1397ab0a-4558-4b6e-8fe1-9c892a6cd8be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GRAMHJ2CRBYuEArVjVP9y4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 566,
+                "cache_read_input_tokens": 34845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 566
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000352"
+        },
+        {
+          "source_line": 353,
+          "timestamp": "2026-05-22T02:55:05.314Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PbYnJfcPJXir4u3aaVxoxV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"541:    # State must match training data format: [ee_pos(3), ee_ori_rotvec(3), gripper_states(2)]\\\\n550:    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "797150b3-3b07-458e-b988-a0d27145d994",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"541:    # State must match training data format: [ee_pos(3), ee_ori_rotvec(3), gripper_states(2)]\\\\n550:    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"541:    # State must match training data format: [ee_pos(3), ee_ori_rotvec(3), gripper_states(2)]\\n550:    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000353"
+        },
+        {
+          "source_line": 354,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012nPoLHM8FQhcnkBdP2UgrD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35807",
+                "command": "grep -n \"rotvec\" /root/colliforce-vla/scripts/eval_safelibero.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "57bc6fca-1b4c-4e55-85a2-b9b92785a033",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GRAMHJ2CRBYuEArVjVP9y4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 566,
+                "cache_read_input_tokens": 34845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 566
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000354"
+        },
+        {
+          "source_line": 355,
+          "timestamp": "2026-05-22T02:55:05.941Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012nPoLHM8FQhcnkBdP2UgrD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"500:    # State must match training data format: [ee_pos(3), ee_ori_rotvec(3), gripper_states(2)]\\\\n509:    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "64dad226-85fc-4202-abc1-646af8099d3d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"500:    # State must match training data format: [ee_pos(3), ee_ori_rotvec(3), gripper_states(2)]\\\\n509:    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"500:    # State must match training data format: [ee_pos(3), ee_ori_rotvec(3), gripper_states(2)]\\n509:    ee_ori = _Rotation.from_quat(ee_quat).as_rotvec()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000355"
+        },
+        {
+          "source_line": 356,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fix confirmed on both servers. Now writing the report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "befe15c0-098b-40bb-9d94-b5a4fdf59f4c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017STL15eq7bfkWZKwiZCoYw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 649,
+                "cache_read_input_tokens": 35411,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 649
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000356"
+        },
+        {
+          "source_line": 357,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BRdXrmcwc2goJyGo4Pb6cy",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/report_eval_tsr_zero_fix.md",
+                "content": "# Eval Pipeline TSR=0% 根因分析与修复报告\n\n## 1. openpi policy.infer() 返回值语义和格式\n\n`policy.infer(input_dict)` 的完整流程：\n\n```\ninput_dict → _input_transform(LiberoInputs + Normalize) → model → _output_transform(Unnormalize + LiberoOutputs) → result\n```\n\n**返回值格式：**\n```python\n{\n    \"actions\": np.ndarray,     # shape (50, 7) — 50步 action chunk，每步7维\n    \"state\": np.ndarray,       # 当前state（透传）\n    \"policy_timing\": dict,     # 推理耗时统计\n}\n```\n\n- `actions` 的50步是 action chunking 的结果，eval 时只取 `actions[0]`（第一步），每步重新推理\n- 7维含义：`[dx, dy, dz, drot_x, drot_y, drot_z, gripper]`（delta动作 + gripper开合）\n- `LiberoOutputs` 负责从模型原始输出（32维 padded）截取前7维\n\n**input_dict 要求的字段：**\n```python\n{\n    \"observation/image\": np.ndarray,       # agentview RGB, shape (H, W, 3)\n    \"observation/wrist_image\": np.ndarray, # wrist camera RGB, shape (H, W, 3)\n    \"observation/state\": np.ndarray,       # 8维 state vector (float32)\n    \"prompt\": str,                         # 语言指令\n}\n```\n\n## 2. extra_delta_transform 的确切含义\n\n`extra_delta_transform` 控制是否在 transform 链中插入 `DeltaActions` / `AbsoluteActions`：\n\n- **True**：训练时在 data_transforms 中加入 `DeltaActions`（将绝对动作转换为相对于当前 state 的 delta）；推理时在 output_transforms 中加入 `AbsoluteActions`（将 delta 预测还原为绝对动作）\n- **False**：不做转换，模型直接输出 delta 动作\n\n**LIBERO 的训练数据本身就是 delta 动作**（HDF5 中的 `actions` 已经是相对位移），所以 `extra_delta_transform` 应该为 **False**。\n\n- 训练配置 `pi0_libero_low_mem_finetune` 默认 `extra_delta_transform=True`（适用于其他 absolute action 的数据集）\n- `train_baseline.py` 和 eval 脚本都正确地 override 为 `False`\n- 这不是 TSR=0% 的原因\n\n## 3. eval_safelibero.py 中 action 处理的具体问题\n\n### 根因：state 向量格式不匹配\n\n**训练数据格式**（来自 `convert_libero_to_lerobot.py`）：\n```python\nstate = np.concatenate([ee_pos, ee_ori, gripper_states])\n# ee_pos:        3维, 末端位置\n# ee_ori:        3维, rotation vector (axis-angle)\n# gripper_states: 2维, 左右手指 qpos\n# 总计 8维\n```\n\n**eval 脚本（修复前）：**\n```python\nstate = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n# robot_state:    3维, 末端位置 ✓\n# robot_quat:     4维, 四元数 [x,y,z,w]  ✗ (应为3维 rotation vector)\n# gripper_qpos[:1]: 1维, 只取一个手指  ✗ (应为2维)\n# 总计 8维（碰巧维度相同，无 shape error！）\n```\n\n### 为什么导致 TSR=0%\n\n两种格式都是8维，不会触发 shape 错误，但内容完全不匹配。经过 z-score normalization 后产生灾难性的数值：\n\n- 训练时 dim[3]（rotation vector x分量）均值=3.122，std=0.049\n- Eval 时 dim[3] 实际是四元数 x 分量（≈0.0）\n- 归一化：`(0.0 - 3.122) / 0.049 ≈ -63.7`（正常值应在 ±3 内）\n\n所有 orientation 和 gripper 维度都严重偏离训练分布，模型接收到的 state 是 garbage，导致输出无意义的动作。\n\n### 两种失败模式\n\n| 配置 | 现象 | 原因 |\n|------|------|------|\n| `extra_delta_transform=True` | 碰撞爆炸, displacement=0.822m | AbsoluteActions 把 garbage state 加到 delta 上，产生巨大动作 |\n| `extra_delta_transform=False` | 机器人静止, displacement≈1e-10 | 模型在极端 OOD state 下输出接近零的动作 |\n\n## 4. 修复方案和 dry-run 结果\n\n### 修复内容\n\n`get_action_from_policy` 函数中的 state 构建：\n\n```python\n# 修复前\nrobot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))\nrobot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))\ngripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\nstate = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n\n# 修复后\nfrom scipy.spatial.transform import Rotation as _Rotation\nee_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))\nee_quat = obs.get(\"robot0_eef_quat\", np.array([1.0, 0.0, 0.0, 0.0]))\ngripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\nee_ori = _Rotation.from_quat(ee_quat).as_rotvec()  # robosuite [x,y,z,w] = scipy convention\nstate = np.concatenate([ee_pos, ee_ori, gripper_qpos]).astype(np.float32)\n```\n\n关键改动：\n1. **四元数→旋转向量**：robosuite 提供 `robot0_eef_quat`（[x,y,z,w]），通过 scipy 转为3维 rotation vector，匹配训练时 HDF5 中 `obs[\"ee_ori\"]` 的格式\n2. **gripper 取两维**：去掉 `[:1]` 截断，保留两个手指的 qpos，匹配训练时 `obs[\"gripper_states\"]` 的2维格式\n\n### Dry-run 结果\n\n在 westd-45947 上运行1个 episode（baseline checkpoint, object_pudding task, max 400 steps）：\n\n```\nInitial EEF pos: [-0.153, -0.015, 0.261]\nFinal EEF pos:   [ 0.106,  0.550, 0.041]\nTotal displacement: 0.659m\nTask success: False\n```\n\n**对比修复前后：**\n\n| 指标 | 修复前 (extra_delta=False) | 修复前 (extra_delta=True) | 修复后 |\n|------|--------------------------|-------------------------|--------|\n| 机器人运动 | 静止 (disp≈1e-10) | 爆炸 (disp=0.822) | 正常运动 (disp=0.659) |\n| 动作幅度 | ≈0 | 极大 | 合理 (0.1~0.8) |\n| Gripper 行为 | 无变化 | 无意义 | 先闭合再张开 (pick-place) |\n| TSR | 0% | 0% | 待全量评估 |\n\n单 episode 未成功完成任务（TSR=0/1），但这是正常的——单次评估的随机性很大，且 baseline 模型本身可能 TSR 不高。关键改善是机器人从**完全不动**变为**执行有意义的 pick-and-place 动作序列**。\n\n### 修复部署状态\n\n| 位置 | 状态 |\n|------|------|\n| westd-45947 `/root/colliforce-vla/scripts/eval_safelibero.py` | ✅ 已修复 |\n| westd-35807 `/root/colliforce-vla/scripts/eval_safelibero.py` | ✅ 已修复 |\n| 本地 `eval_safelibero.py` | ✅ 已修复 |\n| 本地 `artifacts/eval_safelibero.py` | ✅ 已修复 |\n\n### 建议下一步\n\n1. 在 westd-45947 上重新跑全量 baseline eval（所有4个 task × 20 episodes）获取真实 TSR\n2. 同样重新跑 A3 eval，验证 SDF refinement 在正确 state 下是否有效\n3. 将修复 commit 到 git repo\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "966ff4ea-bfbf-4cd5-8362-308e38df76e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017STL15eq7bfkWZKwiZCoYw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 649,
+                "cache_read_input_tokens": 35411,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 649
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000357"
+        },
+        {
+          "source_line": 358,
+          "timestamp": "2026-05-22T02:55:58.017Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BRdXrmcwc2goJyGo4Pb6cy",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/report_eval_tsr_zero_fix.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "e830edd1-a6b2-4821-9942-1a2b2b3b77ad",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/report_eval_tsr_zero_fix.md",
+              "content": "# Eval Pipeline TSR=0% 根因分析与修复报告\n\n## 1. openpi policy.infer() 返回值语义和格式\n\n`policy.infer(input_dict)` 的完整流程：\n\n```\ninput_dict → _input_transform(LiberoInputs + Normalize) → model → _output_transform(Unnormalize + LiberoOutputs) → result\n```\n\n**返回值格式：**\n```python\n{\n    \"actions\": np.ndarray,     # shape (50, 7) — 50步 action chunk，每步7维\n    \"state\": np.ndarray,       # 当前state（透传）\n    \"policy_timing\": dict,     # 推理耗时统计\n}\n```\n\n- `actions` 的50步是 action chunking 的结果，eval 时只取 `actions[0]`（第一步），每步重新推理\n- 7维含义：`[dx, dy, dz, drot_x, drot_y, drot_z, gripper]`（delta动作 + gripper开合）\n- `LiberoOutputs` 负责从模型原始输出（32维 padded）截取前7维\n\n**input_dict 要求的字段：**\n```python\n{\n    \"observation/image\": np.ndarray,       # agentview RGB, shape (H, W, 3)\n    \"observation/wrist_image\": np.ndarray, # wrist camera RGB, shape (H, W, 3)\n    \"observation/state\": np.ndarray,       # 8维 state vector (float32)\n    \"prompt\": str,                         # 语言指令\n}\n```\n\n## 2. extra_delta_transform 的确切含义\n\n`extra_delta_transform` 控制是否在 transform 链中插入 `DeltaActions` / `AbsoluteActions`：\n\n- **True**：训练时在 data_transforms 中加入 `DeltaActions`（将绝对动作转换为相对于当前 state 的 delta）；推理时在 output_transforms 中加入 `AbsoluteActions`（将 delta 预测还原为绝对动作）\n- **False**：不做转换，模型直接输出 delta 动作\n\n**LIBERO 的训练数据本身就是 delta 动作**（HDF5 中的 `actions` 已经是相对位移），所以 `extra_delta_transform` 应该为 **False**。\n\n- 训练配置 `pi0_libero_low_mem_finetune` 默认 `extra_delta_transform=True`（适用于其他 absolute action 的数据集）\n- `train_baseline.py` 和 eval 脚本都正确地 override 为 `False`\n- 这不是 TSR=0% 的原因\n\n## 3. eval_safelibero.py 中 action 处理的具体问题\n\n### 根因：state 向量格式不匹配\n\n**训练数据格式**（来自 `convert_libero_to_lerobot.py`）：\n```python\nstate = np.concatenate([ee_pos, ee_ori, gripper_states])\n# ee_pos:        3维, 末端位置\n# ee_ori:        3维, rotation vector (axis-angle)\n# gripper_states: 2维, 左右手指 qpos\n# 总计 8维\n```\n\n**eval 脚本（修复前）：**\n```python\nstate = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n# robot_state:    3维, 末端位置 ✓\n# robot_quat:     4维, 四元数 [x,y,z,w]  ✗ (应为3维 rotation vector)\n# gripper_qpos[:1]: 1维, 只取一个手指  ✗ (应为2维)\n# 总计 8维（碰巧维度相同，无 shape error！）\n```\n\n### 为什么导致 TSR=0%\n\n两种格式都是8维，不会触发 shape 错误，但内容完全不匹配。经过 z-score normalization 后产生灾难性的数值：\n\n- 训练时 dim[3]（rotation vector x分量）均值=3.122，std=0.049\n- Eval 时 dim[3] 实际是四元数 x 分量（≈0.0）\n- 归一化：`(0.0 - 3.122) / 0.049 ≈ -63.7`（正常值应在 ±3 内）\n\n所有 orientation 和 gripper 维度都严重偏离训练分布，模型接收到的 state 是 garbage，导致输出无意义的动作。\n\n### 两种失败模式\n\n| 配置 | 现象 | 原因 |\n|------|------|------|\n| `extra_delta_transform=True` | 碰撞爆炸, displacement=0.822m | AbsoluteActions 把 garbage state 加到 delta 上，产生巨大动作 |\n| `extra_delta_transform=False` | 机器人静止, displacement≈1e-10 | 模型在极端 OOD state 下输出接近零的动作 |\n\n## 4. 修复方案和 dry-run 结果\n\n### 修复内容\n\n`get_action_from_policy` 函数中的 state 构建：\n\n```python\n# 修复前\nrobot_state = obs.get(\"robot0_eef_pos\", np.zeros(3))\nrobot_quat = obs.get(\"robot0_eef_quat\", np.zeros(4))\ngripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\nstate = np.concatenate([robot_state, robot_quat, gripper_qpos[:1]])\n\n# 修复后\nfrom scipy.spatial.transform import Rotation as _Rotation\nee_pos = obs.get(\"robot0_eef_pos\", np.zeros(3))\nee_quat = obs.get(\"robot0_eef_quat\", np.array([1.0, 0.0, 0.0, 0.0]))\ngripper_qpos = obs.get(\"robot0_gripper_qpos\", np.zeros(2))\nee_ori = _Rotation.from_quat(ee_quat).as_rotvec()  # robosuite [x,y,z,w] = scipy convention\nstate = np.concatenate([ee_pos, ee_ori, gripper_qpos]).astype(np.float32)\n```\n\n关键改动：\n1. **四元数→旋转向量**：robosuite 提供 `robot0_eef_quat`（[x,y,z,w]），通过 scipy 转为3维 rotation vector，匹配训练时 HDF5 中 `obs[\"ee_ori\"]` 的格式\n2. **gripper 取两维**：去掉 `[:1]` 截断，保留两个手指的 qpos，匹配训练时 `obs[\"gripper_states\"]` 的2维格式\n\n### Dry-run 结果\n\n在 westd-45947 上运行1个 episode（baseline checkpoint, object_pudding task, max 400 steps）：\n\n```\nInitial EEF pos: [-0.153, -0.015, 0.261]\nFinal EEF pos:   [ 0.106,  0.550, 0.041]\nTotal displacement: 0.659m\nTask success: False\n```\n\n**对比修复前后：**\n\n| 指标 | 修复前 (extra_delta=False) | 修复前 (extra_delta=True) | 修复后 |\n|------|--------------------------|-------------------------|--------|\n| 机器人运动 | 静止 (disp≈1e-10) | 爆炸 (disp=0.822) | 正常运动 (disp=0.659) |\n| 动作幅度 | ≈0 | 极大 | 合理 (0.1~0.8) |\n| Gripper 行为 | 无变化 | 无意义 | 先闭合再张开 (pick-place) |\n| TSR | 0% | 0% | 待全量评估 |\n\n单 episode 未成功完成任务（TSR=0/1），但这是正常的——单次评估的随机性很大，且 baseline 模型本身可能 TSR 不高。关键改善是机器人从**完全不动**变为**执行有意义的 pick-and-place 动作序列**。\n\n### 修复部署状态\n\n| 位置 | 状态 |\n|------|------|\n| westd-45947 `/root/colliforce-vla/scripts/eval_safelibero.py` | ✅ 已修复 |\n| westd-35807 `/root/colliforce-vla/scripts/eval_safelibero.py` | ✅ 已修复 |\n| 本地 `eval_safelibero.py` | ✅ 已修复 |\n| 本地 `artifacts/eval_safelibero.py` | ✅ 已修复 |\n\n### 建议下一步\n\n1. 在 westd-45947 上重新跑全量 baseline eval（所有4个 task × 20 episodes）获取真实 TSR\n2. 同样重新跑 A3 eval，验证 SDF refinement 在正确 state 下是否有效\n3. 将修复 commit 到 git repo\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000358"
+        },
+        {
+          "source_line": 359,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "63584ddd-56aa-49bc-ae62-7ff3e10ea056",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R1kz8XHP6UbuBcnH6Tug9N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2750,
+                "cache_read_input_tokens": 36060,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2750
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000359"
+        },
+        {
+          "source_line": 360,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014rsvhE4XCSCrAgiskcEYND",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "0c3b5730-4c11-4391-b788-e2bfded68188",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R1kz8XHP6UbuBcnH6Tug9N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2750,
+                "cache_read_input_tokens": 36060,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2750
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000360"
+        },
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-22T02:56:00.988Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_014rsvhE4XCSCrAgiskcEYND",
+              "content": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "2db5428a-9ccc-4b34-8d3a-edf00d9ddd3f",
+            "tool_use_result": {
+              "matches": [],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014yWB4pE8oMu468rRdsuuhq",
+              "name": "ToolSearch",
+              "input": {
+                "query": "register artifact",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "a37d571f-ddca-4b2a-a92f-01c531d6d9e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019uEjTh19vSo47YcGpjK6k2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 109,
+                "cache_read_input_tokens": 38810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 109
+                },
+                "output_tokens": 57,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-22T02:56:04.033Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_014yWB4pE8oMu468rRdsuuhq",
+              "content": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "86f2765d-2d61-408b-839c-07a295723f72",
+            "tool_use_result": {
+              "matches": [],
+              "query": "register artifact",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成，写入 `artifacts/report_eval_tsr_zero_fix.md`。\n\n---\n\n## 汇总\n\n**根因**：`eval_safelibero.py` 的 `get_action_from_policy` 构建 state 向量时，用了4维四元数+1维gripper（`[pos(3), quat(4), grip[:1]]`），但训练数据是3维旋转向量+2维gripper（`[pos(3), rotvec(3), grip(2)]`）。两者碰巧都是8维不报错，但 z-score normalization 后产生极端 OOD 输入，模型输出垃圾动作。\n\n**修复**：用 `scipy.spatial.transform.Rotation.from_quat().as_rotvec()` 将四元数转为旋转向量，gripper 取完整2维。\n\n**验证**：dry-run 中机器人从完全静止（displacement≈1e-10）恢复为正常运动（displacement=0.659m），执行了合理的 pick-and-place 动作序列。修复已部署到 westd-45947、westd-35807 和本地代码。\n\n**下一步**：需要重跑全量 eval（4 task × 20 episodes）获取真实 TSR 数据。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "uuid": "07a5661e-5a7c-4175-a95f-c7d87d44626c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NwH4WifYcgsmgURgnPtkc7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 91,
+                "cache_read_input_tokens": 38919,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 91
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成，写入 `artifacts/report_eval_tsr_zero_fix.md`。\n\n---\n\n## 汇总\n\n**根因**：`eval_safelibero.py` 的 `get_action_from_policy` 构建 state 向量时，用了4维四元数+1维gripper（`[pos(3), quat(4), grip[:1]]`），但训练数据是3维旋转向量+2维gripper（`[pos(3), rotvec(3), grip(2)]`）。两者碰巧都是8维不报错，但 z-score normalization 后产生极端 OOD 输入，模型输出垃圾动作。\n\n**修复**：用 `scipy.spatial.transform.Rotation.from_quat().as_rotvec()` 将四元数转为旋转向量，gripper 取完整2维。\n\n**验证**：dry-run 中机器人从完全静止（displacement≈1e-10）恢复为正常运动（displacement=0.659m），执行了合理的 pick-and-place 动作序列。修复已部署到 westd-45947、westd-35807 和本地代码。\n\n**下一步**：需要重跑全量 eval（4 task × 20 episodes）获取真实 TSR 数据。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1459700,
+            "duration_api_ms": 1300234,
+            "num_turns": 133,
+            "stop_reason": "end_turn",
+            "session_id": "3799a53d-dd0e-443b-97e4-ae756c2ceb2b",
+            "total_cost_usd": 7.287957500000003,
+            "usage": {
+              "input_tokens": 101,
+              "cache_creation_input_tokens": 182910,
+              "cache_read_input_tokens": 8528972,
+              "output_tokens": 66027,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 182910,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 365,
+                  "cache_read_input_tokens": 38919,
+                  "cache_creation_input_tokens": 91,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 91
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2607,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002702,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1732,
+                "outputTokens": 71368,
+                "cacheReadInputTokens": 8695766,
+                "cacheCreationInputTokens": 183122,
+                "webSearchRequests": 0,
+                "costUSD": 7.285255500000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "88913fa9-3641-496c-a60d-51dcedb67df8"
+          },
+          "id": "event-000365"
+        }
+      ]
+    }
+  ]
+}

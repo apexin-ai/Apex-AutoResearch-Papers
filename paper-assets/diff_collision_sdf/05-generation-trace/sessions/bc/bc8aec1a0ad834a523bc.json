@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc8aec1a0ad834a523bc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval s1 30k result extract",
+  "task_key": "worker_eval_s1_30k_result_extract_20260527T110149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s1_30k_result_extract_20260527T110149_result.json",
+    "occurrence": 1,
+    "bytes": 1294,
+    "sha256": "8ae6457eb804abdcc869d6faa6356c85c94121fc36aa4029cd86ee357941a871"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "conclusion 只接受枚举值，status 已设为 ANALYZING，待 Pareto 分析后再定结论。\n\n## s1 30K Eval 结果\n状态: **DONE**（eval 已完成，结果已保存）\n\n| 指标 | 值 |\n|------|-----|\n| CAR | 58.5% |\n| TSR | 49.0% |\n| dfCAR | 58.5%（frozen=0%，dfCAR=CAR）|\n| frozen | 0% |\n| avg_max_ee_displacement | 0.3884m |\n| avg_max_obstacle_displacement | 0.0553m |\n\n### Per-task CAR / TSR:\n| Task | CAR | TSR | avg_max_ee_disp | avg_max_obs_disp |\n|------|-----|-----|-----------------|------------------|\n| orange_juice | 66% | 26% | 0.3882m | 0.0333m |\n| chocolate_pudding | 72% | 80% | 0.4057m | 0.0545m |\n| milk | 70% | 28% | 0.3551m | 0.0408m |\n| bbq_sauce | **26%** | 62% | 0.4045m | **0.0927m** |\n\n### 判定\ns1 CAR=58.5% ≥ 56% → **Scenario C（灰区）**。两 seed 平均 CAR=58.25%（s0=58.0%, s1=58.5%）。bbq_sauce CAR 极低(26%) 且 obstacle displacement 最大(0.093m)，是主要拖后腿项。需 Pareto 分析决定 SDF 是否有附加价值。\n\nRegistry 已更新：metrics 已写入，status → ANALYZING。\n\n## GPU 状态\n| GPU | 状态 |\n|-----|------|\n| cuda:0 | 空闲 |\n| cuda:1 | 空闲 |\n| cuda:2 | 空闲 |\n| cuda:3 | 占用（PID 341425, spatial_bowl s0 训练, 已运行 22h35m, 27GB VRAM）|"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s1-30k-result-extract.md"
+}

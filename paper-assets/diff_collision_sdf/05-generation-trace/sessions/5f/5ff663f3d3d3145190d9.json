@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ff663f3d3d3145190d9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect a1 rerun results",
+  "task_key": "worker_ops_collect_a1_rerun_results_20260522T212621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_a1_rerun_results_20260522T212621_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "902290d811db595a54ce5a1ddb093980fc9c44cfaec34a65f04e73cb71d622c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总：\n\n## A1 Rerun 完整结果 (800 eps)\n\n| Task | TSR | CAR | Fake Safe | Safe Disp Mean |\n|------|-----|-----|-----------|----------------|\n| orange_juice | 0% | 96.0% | 192/192 (100%) | 0.000315mm |\n| chocolate_pudding | 0% | 82.0% | 162/164 (98.8%) | 0.007588mm |\n| milk | 0% | 97.0% | 194/194 (100%) | 0.000288mm |\n| bbq_sauce | 0% | 91.0% | 181/182 (99.5%) | 0.001293mm |\n| **Overall** | **0%** | **91.5%** | **729/732 (99.6%)** | — |\n\n**Real safe: 3/800 (0.4%)**\n\nSafe displacement 分布：74% < 1μm（纳米级），26% 在 1μm-0.1mm，仅 0.4% ≥ 0.1mm。\n\nCollision episodes (68个)：displacement mean=45.92mm, max=286.53mm —— 唯一有真实 movement 的 episodes 全部碰撞。\n\n**与 Baseline 对比**：baseline CAR=83% fake=99.4%, A1 CAR=91.5% fake=99.6%。A1 的 CAR 提升完全来自更严重的 action collapse，SDF auxiliary loss 没有带来任何 real safety improvement。200 eps 完整数据完全确认了之前 50 eps 样本的结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-a1-rerun-results.md"
+}

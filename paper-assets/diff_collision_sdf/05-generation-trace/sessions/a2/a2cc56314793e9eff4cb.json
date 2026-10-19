@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2cc56314793e9eff4cb",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "audit search westd 35807",
+  "task_key": "worker_audit_search-westd-35807_20260529T054016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_search-westd-35807_20260529T054016_result.json",
+    "occurrence": 1,
+    "bytes": 2364,
+    "sha256": "2a0237ec8109766a6c94a53100f8dceffb7efc55bba359371f310a1f7c14482b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search complete. Here's the full report:\n\n---\n\n## 搜索结果汇报\n\n### 搜索目标 1: Pi0.5 baseline (TSR=71.5%, CAR=28.5%, per-task TSR: 74/80/66/66)\n\n**未找到。** westd-35807 上仅有 3 个 Pi0.5 pretrained baseline eval 文件，均不匹配：\n\n| 文件 | Seed | TSR | CAR | Per-task TSR (OJ/CP/Milk/BBQ) |\n|------|------|-----|-----|------|\n| `reeval_baseline_pertask.json` | 7 | 75.0% | 30.0% | 74/74/72/80 |\n| `pi05_safelibero_object_v11_s1.json` | 1 | 76.0% | 25.0% | 72/86/68/78 |\n| `pi05_safelibero_object_v11_s2.json` | 2 | 75.0% | 27.5% | 76/86/64/74 |\n\n论文目标 (74+80+66+66)/4 = 71.5% 内部自洽，但服务器上没有任何文件含有 per-task TSR [74, 80, 66, 66]。全量扫描了 `/root/autodl-tmp/eval_results/` 下 57 个 JSON 文件，无一匹配。\n\n### 搜索目标 2: LoRA s2 (CAR=55.0%, per-task CAR: 56/76/62/26)\n\n**未找到。** \n\n**LoRA baseline checkpoint 目录实际 seed：**\n| Checkpoint | 状态 |\n|------------|------|\n| `pi05_lora_baseline_object_pudding_seed0` | 完成 (30000 steps) |\n| `pi05_lora_baseline_object_pudding_seed1` | 空目录 (无 checkpoint) |\n| `pi05_lora_baseline_object_pudding_seed3` | 训练中 (仅 4000 steps, best=2000) |\n\n**没有 seed2。** seed3 的训练尚未完成，**也没有任何 eval 结果**。\n\n仅 seed0 的 LoRA baseline 被评估过（5 个 eval seed），avg CAR 在 51.9%~57.5% 之间，但 per-task 均不匹配 [56, 76, 62, 26]。\n\n全量扫描中最接近的文件：\n- `eval_s1_l1_22k_seed7.json`: CAR=[56, 76, 72, 22] — OJ 和 CP 匹配，但这是 **SDF 模型** (seed1, λ=1.0)，不是 LoRA baseline\n- `eval_safelibero_object_all_levelII_10000_lora_baseline_seed2.json`: CAR=[56, 74, 74, 26] — OJ 和 BBQ 匹配，但 CP=74≠76, Milk=74≠62\n\n### 结论\n\n1. **Pi0.5 baseline (71.5/28.5)**: 源 JSON 在 westd-35807 上不存在。可能在 westd-45947 上（已知有 `pi05_safelibero_object_v11.json` 但 TSR=73%≠71.5%），或已被删除/覆盖\n2. **LoRA s2 (CAR=55.0%)**: 源 JSON 不存在。seed3 checkpoint 仍在训练（4000/30000 steps），尚未产生 eval。seed1 checkpoint 为空。**论文中报告的 \"s2\" 数据目前无法复现**——需要等 seed3 训练完成后运行 eval\n3. **无 git 历史** 记录 eval JSON 文件的变更，无法追溯是否有文件被删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-search-westd-35807.md"
+}

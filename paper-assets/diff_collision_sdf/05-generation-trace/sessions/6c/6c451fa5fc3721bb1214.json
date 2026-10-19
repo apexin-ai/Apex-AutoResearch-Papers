@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c451fa5fc3721bb1214",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops lora baseline health check",
+  "task_key": "worker_ops_lora_baseline_health_check_20260525T143156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_lora_baseline_health_check_20260525T143156_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "ab1137c4f3d4374fa9eaaf826035aa4df6bb9823ffaf08c67ee6c7e87078751d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 指标 | s0 (cuda:0) | s1 (cuda:1) |\n|------|-------------|-------------|\n| PID | 2275 (存活, 运行 9h52m) | 2353 (存活, 运行 9h52m) |\n| 当前 step | 23655 / 30000 (79%) | 23664 / 30000 (79%) |\n| 当前 loss | ~0.0149 | ~0.0108 |\n| 速度 | 4.62 s/it | 4.61 s/it |\n| 预估剩余 | ~8h09m → 完成约 05:00 UTC (5/26) | ~8h07m → 完成约 05:00 UTC (5/26) |\n| best/ 存在？ | 是 (loss=0.01124 @ step 20000) | 是 (loss=0.01130 @ step 14000) |\n| Checkpoints | 20000, 22000 | 20000, 22000 |\n| GPU 显存 | 27089 MiB, 100% 利用率 | 27089 MiB, 100% 利用率 |\n\n训练健康，两个 seed 进度同步。ETA 比之前预估晚约 6.5h（原估 22:30 UTC 5/25 → 实际约 05:00 UTC 5/26），因为是从 step ~16000 resume 后实际已跑到 23655，tqdm 剩余预估基于当前速度是 ~8h。Loss 在 0.008-0.02 范围正常波动，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-lora-baseline-health-check.md"
+}

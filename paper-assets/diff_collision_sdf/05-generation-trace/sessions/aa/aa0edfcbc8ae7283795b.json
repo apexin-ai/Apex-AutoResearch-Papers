@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa0edfcbc8ae7283795b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops openvla preinstall westd35807",
+  "task_key": "worker_ops_openvla_preinstall_westd35807_20260525T062503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_openvla_preinstall_westd35807_20260525T062503_result.json",
+    "occurrence": 1,
+    "bytes": 2047,
+    "sha256": "102fb3ccef4ea9aea413a0179a3306c4dd627e656f2866caa5b23644ffe753a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载速度 ~1 MB/s，第一个分片 6.5GB 预计 ~90 分钟。三个分片串行下载总计约 3-4 小时。\n\n我汇报当前状态：\n\n**汇报**\n\n| 项目 | 状态 |\n|------|------|\n| **脚本同步** | `/root/diff_collision_sdf/scripts/eval_safelibero_openvla.py` (626 行) |\n| **依赖安装** | |\n| - torch 2.8.0+cu128 | 已有 |\n| - torchvision 0.23.0+cu128 | 已有 |\n| - transformers 4.53.2 | 已有 |\n| - pillow 11.3.0 | 已有 |\n| - scipy 1.17.1 | 已有 |\n| - tokenizers 0.21.1 | 已有 |\n| - timm 1.0.27 | **新装** |\n| - flash-attn 2.8.3 | **新装** |\n| - huggingface_hub 0.36.2 | 已有（从 0.30.2 经历了 xet bug 处理后恢复） |\n| **模型下载** | **进行中** — aria2c 16 线程从 hf-mirror.com 下载，速度 ~1 MB/s |\n| - processor | 已缓存 (`/root/autodl-tmp/.hf_cache/hub/models--openvla--openvla-7b/`) |\n| - model shard 1/3 (6.5GB) | 下载中 (~288MB/6.5GB)，PID=58256 |\n| - model shard 2/3 + 3/3 | 排队中 |\n| **磁盘** | 根分区 30G 用了 20G (11G 余)；数据盘 `/root/autodl-tmp/` 350G 用了 168G (183G 余，模型放这里) |\n\n**问题**：AutoDL 代理下载 HuggingFace 大文件极慢（xet CDN 在美国），三个分片串行下载预计 **3-4 小时**。\n\n**后台进程**：\n- 主进程 PID=58253（bash wrapper）\n- aria2c PID=58256（正在下载 shard 1）\n- 日志：`/tmp/openvla_aria2.log`\n- 模型原始文件：`/root/autodl-tmp/openvla-7b-raw/`\n- HF cache（processor等）：`/root/autodl-tmp/.hf_cache/hub/models--openvla--openvla-7b/`\n\n**下载完成后需要做**：\n1. 将原始文件注册到 HF cache 或 `from_pretrained` 时指定 `--model_path /root/autodl-tmp/openvla-7b-raw/`\n2. 运行验证脚本确认模型可加载\n\n下载已在后台运行，无需干预。可稍后用以下命令检查状态：\n```bash\n# 检查是否完成\nls /root/autodl-tmp/openvla-7b-raw/*.aria2 && echo \"STILL_DOWNLOADING\" || echo \"DONE\"\ntail -20 /tmp/openvla_aria2.log\nls -lh /root/autodl-tmp/openvla-7b-raw/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-openvla-preinstall-westd35807.md"
+}

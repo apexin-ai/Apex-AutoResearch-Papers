@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6db73d71c7eb7a33f1c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper related work verify expand",
+  "task_key": "worker_paper_related_work_verify_expand_20260525T082751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related_work_verify_expand_20260525T082751_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "a26155eaef17944ad4350f3012ef0371a23dfc3c5be81c3283d960d9f3ea4b7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成所有更新。最终结果：\n\n---\n\n### Part 1: 引用核实\n\n| 论文 | 状态 |\n|------|------|\n| CoFreeVLA (Zhai et al., 2026) | **Verified** — arXiv 2601.21712，非 hallucinated |\n| APEX (IROS 2024) | **Verified** |\n| Safe Learning Survey (Zhang 2025) | **Verified** |\n| C-space SDF (Li, RSS 2024) | **Verified** |\n| SDF-SC (\"Liu\" 2024) | **Needs correction** — 一作是 Zhu 非 Liu，已修正 |\n| Neural NMPC-SDF (Jacquet, IJRR 2025) | **Verified** |\n\n### Part 2: VLA Foundations\n\nRT-2、π0、OpenVLA 已在文献列表中，无需新增。\n\n### Part 3: 新增 5 篇（已写入 literature_map.yaml）\n\n**Action Collapse（2 篇）:**\n- **Conditioning Matters / Cocos** (Dong et al., 2025) — diffusion policy 中的 loss collapse 机制，与 ColliForce action collapse 直接类比\n- **Diffusion Policy** (Chi et al., RSS 2023) — IL 中 mode averaging 的规范表述\n\n**Safe RL/IL（3 篇）:**\n- **CPO** (Achiam et al., ICML 2017) — 训练时安全 RL 基础，标量 cost vs ColliForce 几何 SDF 信号\n- **RAIL** (Jung et al., ICRA 2025) — 测试时可达性安全过滤 vs 训练时嵌入\n- **TamedPUMA** (Bakker et al., L4DC 2025) — 运行时 geometric fabrics vs 训练时 SDF"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-related-work-verify-expand.md"
+}

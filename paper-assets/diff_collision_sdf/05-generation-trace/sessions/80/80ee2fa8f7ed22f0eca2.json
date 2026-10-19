@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80ee2fa8f7ed22f0eca2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval stepwise s0 l1 26k v2",
+  "task_key": "worker_eval_stepwise_s0_l1_26k_v2_20260527T051320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_stepwise_s0_l1_26k_v2_20260527T051320_result.json",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "9196d87375cbad466f3bd8c57df10d1357cd21df0018801bdba48e1dbf10dd11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "26K eval 已启动（PID=623881，13:14 UTC），预计 ~13:55 完成。模型加载正常（PI0Pytorch + LoRA + `--pi05`）。4.5 分钟后轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-stepwise-s0-l1-26k-v2.md"
+}

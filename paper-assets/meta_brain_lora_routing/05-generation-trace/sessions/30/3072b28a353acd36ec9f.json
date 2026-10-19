@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3072b28a353acd36ec9f",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "eval physical expert oracle",
+  "task_key": "worker_eval_physical_expert_oracle_20260516T235309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_physical_expert_oracle_20260516T235309_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "52dd99d0ac84e4833939b3885aa29809515c70e050dca133c70bede6b6f95e47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Physical expert eval 已在 cuda:1 上运行（PID 389015）：\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/v3_lora_physical_r16/v3lora_physical_r16/final/`\n- **扰动类型**: robot_initial_states + nominal\n- **配置**: 3 seeds × 20 eps × 2 perturbations = 120 episodes total\n- **预计完成**: ~55 分钟\n\n4.5 分钟后回查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-physical-expert-oracle.md"
+}

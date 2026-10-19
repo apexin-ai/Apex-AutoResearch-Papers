@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fc61cb46b072c2b6d4a",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "code phase1 visual augmentation",
+  "task_key": "worker_code_phase1-visual-augmentation_20260515T160352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1-visual-augmentation_20260515T160352_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "c64d77dfb4da53d533c55745e022c6686d7d9b5cd3cab11e4d44d050229fcc58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n**已创建文件**（`/root/meta_brain_lora_routing/phase1/`）：\n\n| 文件 | 功能 |\n|------|------|\n| `visual_augmentation.py` | 4 种视觉增强（camera_jitter、brightness_contrast、background_swap、gaussian_noise）+ `VisualAugmentor` 组合类 |\n| `data_loader.py` | LIBERO HDF5 数据加载 + `AugmentedDataset` 在线增强包装 + `DummyLiberoDataset` 测试用 |\n| `test_augmentation.py` | 5 项测试：单增强、组合、预览图、逐类型预览、DataLoader 集成 |\n| `generate_textures.py` | 程序化生成 20 张纹理到 `textures/` |\n| `textures/` | 20 张 PNG（solid×5, gradient×5, checker×5, noise×5）|\n\n**Dry-run 结果（cuda:1）**：\n- 4 种增强全部 PASS，输出形状 `[B,3,224,224]` 不变，值域 `[0,1]` 无 NaN\n- batch=8 组合增强平均 7.7ms/iter\n- DataLoader 集成正常，`image=[8,3,224,224]`, `action=[8,7]`\n- 增强前后对比图已保存至 `phase1/augmentation_preview.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase1-visual-augmentation.md"
+}

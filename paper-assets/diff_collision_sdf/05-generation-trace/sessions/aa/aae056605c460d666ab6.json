@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "aae056605c460d666ab6",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code a1 sdf decoder integration",
+  "task_key": "worker_code_a1_sdf_decoder_integration_20260519T203309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_a1_sdf_decoder_integration_20260519T203309.log",
+    "occurrence": 1,
+    "bytes": 849605,
+    "sha256": "fe90000503b2897b7850ca67014fbf20b26af74fdcf3eb021eaea49127043291"
+  },
+  "statistics": {
+    "messages": 311,
+    "user_turns": 0,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 120,
+      "tool_result": 120,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 311,
+      "chunks": [
+        {
+          "path": "aae056605c460d666ab6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "aae056605c460d666ab6-part-0002.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-a1-sdf-decoder-integration.md"
+}

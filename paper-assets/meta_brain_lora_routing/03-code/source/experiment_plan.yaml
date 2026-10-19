@@ -1,0 +1,286 @@
+experiments:
+- id: plan_001
+  claim: 1
+  title: Phase 0 — Perturbation classification from frozen activations
+  description: 'Train 2-layer MLP on frozen pi0 PaliGemma activations for 3-class
+    perturbation classification (Visual/Spatial/Physical). Sweep layers, pooling strategies,
+    learning rates. Includes binary sanity check, 6-class comparison, few-shot K=1/3/5/10
+    analysis.
+
+    '
+  priority: P0
+  status: done
+  registry_id: phase0_activation_collection
+  gpu_budget_hours: 5
+  deps: []
+  key_results: 3-class F1=0.993, binary AUC=1.0, K=1 F1=0.898, layer6 K=1=1.0
+- id: plan_002
+  claim: 2
+  title: LoRA expert training — 3 perturbation-specific + 1 universal baseline
+  description: "Train 4 LoRA adapters on frozen pi0 PaliGemma attention layers (rank\
+    \ 16, Q/K/V/O projections): (a) LoRA-V: trained on Visual perturbation rollouts\
+    \ (camera+light+background+noise) (b) LoRA-S: trained on Spatial perturbation\
+    \ rollouts (layout) (c) LoRA-P: trained on Physical perturbation rollouts (robot)\
+    \ (d) Universal LoRA: trained on mixed all-perturbation rollouts Each on 1 GPU\
+    \ in parallel (4 GPUs total).\nTraining data strategy (unified augmentation —\
+    \ revised after pi0 rollout success-filtering yielded 0% on spatial/physical):\n\
+    \    ALL experts use standard LIBERO expert demos + type-specific augmentation.\n\
+    \    (a) LoRA-V: standard demos + online visual augmentation (camera jitter, brightness/contrast,\
+    \ background swap, Gaussian noise). Analogous to FTM.\n    (b) LoRA-S: standard\
+    \ demo actions replayed in _add_N BDDL environments (distractor objects added\
+    \ to scene). Records new observations with distractors visible; action labels\
+    \ unchanged because _add_N objects don't obstruct task. Train/eval distribution\
+    \ matched (both use _add_N).\n    (c) LoRA-P: standard demos + proprioceptive\
+    \ noise augmentation. Gaussian noise (sigma ~0.04 rad, matching LIBERO-Plus init_state\
+    \ perturbation magnitude) added to joint position observations during training.\
+    \ Action labels approximately correct for small perturbations.\n(c) Universal\
+    \ LoRA: Mix of all above data sources. Training objective: SFT (behavior cloning)\
+    \ — minimize flow-matching action prediction loss on (perturbed_observation, correct_action)\
+    \ pairs. Match pi0's action head format. Convergence criterion: validation action\
+    \ MSE plateaus for 3 consecutive eval checkpoints. LoRA config: rank 16 on Q/K/V/O\
+    \ of ALL PaliGemma attention layers (18 layers). All 3 experts use identical layer\
+    \ coverage initially (per Reviewer feedback — Phase 0 shows <2.5pp spread across\
+    \ layers, no evidence for layer-specific assignment). Layer placement ablation\
+    \ deferred to plan_012.\nEvaluate each expert on its own perturbation type AND\
+    \ cross-type (mismatched expert).\n"
+  priority: P0
+  gpu_budget_hours: 55
+  deps: []
+  metrics:
+  - per_expert_success_rate_on_own_type
+  - per_expert_success_rate_cross_type
+  - universal_lora_success_rate_all_types
+  registry_id: phase1_lora_universal_r16
+- id: plan_003
+  claim: 2
+  title: Meta-Brain assembly — PAR router + LoRA bank end-to-end
+  description: 'Assemble PAR router (PaliGemma layer 6, 2-layer MLP) + 3 LoRA experts
+    with soft routing: h_corrected = h_frozen + sum_k p(type_k) * LoRA_k(h_frozen).
+    End-to-end routing fine-tuning with frozen LoRA parameters (only tune PAR routing
+    weights). Evaluate on full LIBERO-Plus benchmark (all 7 perturbation types × all
+    task suites).
+
+    '
+  priority: P0
+  gpu_budget_hours: 15
+  deps:
+  - plan_002
+  metrics:
+  - libero_plus_overall_success_rate
+  - per_perturbation_success_rate_breakdown
+  - routing_weight_distribution_per_type
+- id: plan_004
+  claim: 2
+  title: Oracle routing ablation — upper bound for routing quality
+  description: 'Replace PAR router with ground-truth perturbation type labels (oracle
+    routing). Measures the gap between learned routing and perfect routing. If gap
+    is small, PAR is sufficient; if large, router needs improvement.
+
+    '
+  priority: P1
+  gpu_budget_hours: 5
+  deps:
+  - plan_002
+  metrics:
+  - oracle_vs_par_success_rate_gap
+- id: plan_005
+  claim: 2
+  title: Ablation ladder — Frozen → Universal LoRA → Random → Meta-Brain → Oracle
+  description: "Systematic comparison on LIBERO-Plus with 5 seeds: (a) Frozen pi0\
+    \ baseline (no adaptation) (b) Universal LoRA (rank 16, ~3.7M params) (b2) Universal\
+    \ LoRA (rank 48, ~12M params — PARAMETER-MATCHED to Meta-Brain total.\n     THIS\
+    \ IS THE EXISTENTIAL CONTROL: if rank-48 universal ≈ Meta-Brain, routing\n   \
+    \  adds no value. Dream reviewers flagged this as the #1 critical missing experiment.)\n\
+    (c) Random routing (randomly assign one of 3 LoRA experts per episode — controls\n\
+    \    for ensemble effect. If random ≈ Meta-Brain, Claim 2 is falsified)\n(d) Meta-Brain\
+    \ (PAR + 3 LoRA experts, ~12M params) (e) Oracle routing (ground-truth type →\
+    \ LoRA expert) Report overall success rate + per-perturbation breakdown. This\
+    \ is the core evidence for Claim 2. The critical comparison is (c) vs (d): Meta-Brain\
+    \ must significantly outperform random routing to prove routing matters.\n"
+  priority: P0
+  gpu_budget_hours: 25
+  deps:
+  - plan_003
+  - plan_004
+  metrics:
+  - ablation_ladder_table
+  - gain_over_frozen_per_method
+  - gain_over_universal_lora
+  - meta_brain_vs_random_routing_gap
+- id: plan_006
+  claim: 3
+  title: FTM/FLA reproduction — visual-only baseline comparison
+  description: 'Reproduce FTM on pi0 for visual perturbation types (camera, light,
+    background, noise). Compare Meta-Brain LoRA-V vs FTM on visual perturbations.
+    Meta-Brain must show value beyond FTM by additionally handling spatial/physical.
+
+    '
+  priority: P1
+  gpu_budget_hours: 10
+  deps: []
+  metrics:
+  - ftm_vs_lora_v_on_visual_perturbations
+  - meta_brain_advantage_on_non_visual
+- id: plan_007
+  claim: 3
+  title: Parameter efficiency analysis — gain-over-baseline vs trainable params
+  description: 'Compute gain-over-frozen-baseline per method and normalize by trainable
+    parameters. Plot scatter: x=trainable params (log scale), y=gain-over-baseline.
+    Include: Meta-Brain (12M), Universal LoRA (3.7M), FTM (4K-4.7M), VLA-GSE (114M,
+    from paper). This is the visual evidence for Claim 3.
+
+    '
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_005
+  - plan_006
+  metrics:
+  - parameter_efficiency_scatter_plot
+  - gain_per_million_params
+- id: plan_008
+  claim: 2
+  title: Correction Memory ablation — with/without CM
+  description: 'Compare Meta-Brain with and without Correction Memory module. CM adds
+    routing-weight modulation from retrieved exemplars. Quantify marginal gain of
+    CM on overall and per-perturbation success.
+
+    '
+  priority: P1
+  gpu_budget_hours: 10
+  deps:
+  - plan_003
+  metrics:
+  - cm_ablation_delta
+  - cm_benefit_per_perturbation_type
+- id: plan_009
+  claim: 1
+  title: Router architecture comparison — MLP vs linear vs attention
+  description: 'Compare PAR variants: (a) 2-layer MLP (default), (b) linear classifier,
+    (c) attention-based router. All on PaliGemma layer 6. Measures whether routing
+    accuracy changes translate to downstream task success.
+
+    '
+  priority: P2
+  gpu_budget_hours: 5
+  deps:
+  - plan_002
+  metrics:
+  - router_accuracy_comparison
+  - downstream_success_by_router_type
+- id: plan_010
+  claim: 2
+  title: 6-class vs 3-class routing comparison
+  description: 'Compare 6-class fine-grained routing (camera/light/background/noise/layout/robot)
+    with 6 LoRA experts vs 3-class coarse routing (Visual/Spatial/Physical) with 3
+    experts. Tests whether finer-grained routing justifies additional parameters.
+
+    '
+  priority: P2
+  gpu_budget_hours: 15
+  deps:
+  - plan_002
+  metrics:
+  - 6class_vs_3class_overall_success
+  - marginal_gain_per_additional_expert
+- id: plan_013
+  claim: 2
+  title: Rank-48 parameter-matched universal LoRA — existential control
+  description: 'Train a single universal LoRA with rank 48 (~12M params, matching
+    Meta-Brain''s total parameter budget) on mixed all-perturbation data. This is
+    the #1 critical experiment flagged by Dream reviewers across ALL three tiers:
+    - If rank-48 universal ≈ Meta-Brain → routing adds zero value, Claim 2 collapses
+    - If rank-48 universal < Meta-Brain → routing genuinely helps beyond parameter
+    scaling Run alongside plan_002 on same GPU as Universal rank-16.
+
+    '
+  priority: P0
+  gpu_budget_hours: 15
+  deps: []
+  metrics:
+  - rank48_universal_vs_meta_brain_gap
+  - claim2_survival_test
+  registry_id: v3_lora_universal_r48
+- id: plan_014
+  claim: 2
+  title: LoRA rank sweep (r=16/32/64) — capacity bottleneck test
+  description: 'Test whether routing benefit grows with expert capacity. Train LoRA-V
+    at rank 16/32/64 and evaluate with/without routing at each rank. Dream worst-case
+    flagged: if routing benefit emerges at higher rank, the narrative shifts to "routing
+    requires minimum expert capacity C*" — a concrete, actionable finding. Even 1
+    datapoint at rank 32 is valuable.
+
+    '
+  priority: P1
+  gpu_budget_hours: 20
+  deps:
+  - plan_002
+  metrics:
+  - routing_benefit_vs_rank_curve
+  - capacity_threshold_for_routing
+- id: plan_015
+  claim: 2
+  title: Clean LIBERO evaluation — nominal performance preservation
+  description: 'Evaluate Meta-Brain on standard (unperturbed) LIBERO to verify routing
+    does not degrade nominal performance. Dream reviewers flagged this as important
+    for practical deployment story.
+
+    '
+  priority: P1
+  gpu_budget_hours: 5
+  deps:
+  - plan_003
+  metrics:
+  - nominal_libero_success_with_routing
+  - performance_delta_vs_frozen
+- id: plan_011
+  claim: 3
+  title: Cross-backbone validation — SmolVLA or OpenVLA
+  description: 'Replicate Phase 0 + Phase 1 core pipeline on a second VLA backbone
+    (SmolVLA or OpenVLA) to test generalizability of the perturbation-diagnostic routing
+    principle across architectures.
+
+    '
+  priority: P2
+  gpu_budget_hours: 30
+  deps:
+  - plan_005
+  metrics:
+  - cross_backbone_phase0_f1
+  - cross_backbone_gain_over_baseline
+- id: plan_012
+  claim: 2
+  title: LoRA layer placement ablation
+  description: 'Vary which PaliGemma layers receive LoRA experts: (a) early layers
+    only (2-6), (b) mid layers (6-12), (c) late layers (12-16), (d) all layers. Test
+    hypothesis that Visual LoRA benefits from early layers, Spatial from mid, Physical
+    from late.
+
+    '
+  priority: P2
+  gpu_budget_hours: 15
+  deps:
+  - plan_002
+  metrics:
+  - optimal_layer_placement_per_expert_type
+- id: plan_016
+  claim: 2
+  title: Compound perturbation evaluation — soft routing advantage
+  description: 'Evaluate Meta-Brain on co-occurring perturbations: (a) V+S (visual
+    + _add_N distractor objects), (b) V+P (visual + robot init state), (c) S+P (distractor
+    + robot init), (d) V+S+P (all three). Tests whether soft routing naturally handles
+    compound perturbations via expert blending (mixed routing weights). Compare: Meta-Brain
+    soft routing vs universal LoRA vs oracle single-type routing. If Meta-Brain outperforms
+    oracle single-type routing on compound scenarios, this demonstrates soft routing
+    advantage beyond single-perturbation correction. Directly addresses Dream reviewer
+    concern about closed-set taxonomy and real-world applicability.
+
+    '
+  priority: P1
+  gpu_budget_hours: 10
+  deps:
+  - plan_003
+  metrics:
+  - compound_vs_single_perturbation_success
+  - routing_weight_distribution_compound
+  - soft_routing_vs_hard_routing_on_compound

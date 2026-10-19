@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed31c9e74df2f0f90341",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper polish fake safety dfcar",
+  "task_key": "worker_paper_polish_fake_safety_dfcar_20260526T052405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_polish_fake_safety_dfcar_20260526T052405_result.json",
+    "occurrence": 1,
+    "bytes": 2128,
+    "sha256": "fdc90edca0daeb31dcecc3e83c90ae0281e68d5af1699a7c5119bb8ab08fdd22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files are consistent. Here's a summary of all changes:\n\n### Changes made\n\n**abstract.tex**\n- Added obstacle displacement evidence (\"obstacle displacement at the nanometer scale\") alongside EE displacement\n- Added TSR expansion on first use; removed duplicate TSR definition later in the abstract\n\n**introduction.tex**\n- Added obstacle displacement confirmation (5 nm median) next to the 99.6% EE displacement statistic\n- Distinguished Pi0.5's fake safe mechanism: \"not action collapse per se but the low prior probability of collision along short, incomplete trajectories\"\n- Specified \"end-effector displacement\" explicitly in dfCAR description\n- Added threshold robustness sentence: any τ_d in [2, 200] mm yields identical filtering\n- Fixed -ing phrase ending: \"rendering cross-method comparisons... misleading\" → \"Cross-method comparisons on raw CAR are therefore unreliable\"\n\n**analysis_claim1.tex**\n- Added obstacle displacement as independent evidence (median ~5 nm, \"numerical noise rather than physical contact\")\n- Restructured fake safe definition: EE displacement < τ_d as the formal criterion (aligned with dfCAR), TSR=0% as corroborating evidence\n- Positioned dfCAR as community tool: \"general-purpose diagnostic for the VLA safety evaluation community\"\n- Added full threshold robustness paragraph: bimodal distribution, min active EE disp = 239 mm, [2, 200] mm invariance\n- Rewrote dfCAR filtering effect: \"91.5% CAR but CAR_f is statistically undefined\"\n\n**analysis_claim2.tex**\n- Replaced \"striking\" with neutral \"an aggregate\"\n- Added explicit observation caveat: \"empirical observation within two model families, not as a universal law. A causal claim would require evidence across a broader range of architectures and benchmarks.\"\n- Fixed -ing participial phrase: \"placing this cluster in what we term\" → \"we term this region\"\n- Removed \"We note that\" (AI-style hedging)\n\n**experimental_framework.tex**\n- Replaced terse threshold robustness note with substantive description: bimodal distribution, τ_d ∈ [2, 200] mm invariance"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-polish-fake-safety-dfcar.md"
+}

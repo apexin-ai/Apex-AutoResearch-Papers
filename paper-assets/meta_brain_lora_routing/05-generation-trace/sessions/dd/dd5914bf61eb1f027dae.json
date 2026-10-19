@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd5914bf61eb1f027dae",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "eval kill and restart",
+  "task_key": "worker_eval_kill_and_restart_20260516T075228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kill_and_restart_20260516T075228_result.json",
+    "occurrence": 1,
+    "bytes": 1278,
+    "sha256": "9559374cbd0bc00dcd3a3be24dcba71e306f219a01db4da1e1421866df9094ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Dry run 失败。** TypeError 已修复（0 次出现），但所有 episode 均因 `jaxtyping.TypeCheckError` 失败。\n\n错误详情：\n\n```\njaxtyping.TypeCheckError: Type-check error whilst checking the parameters of openpi.models.model.Observation.\n```\n\n调用链：`evaluate_libero_plus.py:374 → run_episode:317 → meta_brain.infer(obs_dict)`\n\n根因：图像维度格式不匹配。日志显示输入是 `f32[1,3,224,224]`（NCHW），但 jaxtyping 注解期望 `*b h w c`（NHWC）格式。实际维度映射为 `h=3, w=224, c=224`，说明 channel 维被错误地当作了 height。\n\n所有 7 个 perturbation 类型的 episode 均 100% 失败（0/0），共触发 7 次 TypeCheckError（每个 perturbation 各 1 次）。\n\n---\n\n**最终结果：**\n\n1. **Kill 结果：** 旧进程已全部终止（ps 无残留 evaluate_libero_plus 进程）\n2. **Dry run 结果：** 失败 — TypeError 已修复，但新出现 `jaxtyping.TypeCheckError`（图像 NCHW→NHWC 维度不匹配）\n3. **未重启 3 路评估** — dry run 未通过，不执行 Step 3\n\n需要在 `meta_brain.infer()` 中将图像从 NCHW 转为 NHWC（`images.permute(0, 2, 3, 1)`），或在 `evaluate_libero_plus.py` 构造 `obs_dict` 时调整维度顺序。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kill-and-restart.md"
+}

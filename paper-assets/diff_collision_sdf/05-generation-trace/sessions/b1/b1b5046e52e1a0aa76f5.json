@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1b5046e52e1a0aa76f5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops lora baseline eval prep",
+  "task_key": "worker_ops_lora_baseline_eval_prep_20260526T002712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_lora_baseline_eval_prep_20260526T002712_result.json",
+    "occurrence": 1,
+    "bytes": 2036,
+    "sha256": "0963fcfd33cc0f483976c21e018a9cc243eb4a7a36cd2287b8c6b45943d47209"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。汇报如下：\n\n---\n\n### 1. eval_safelibero.py 版本\n**是修复版**。1357 行，包含 `Using external CUDA_VISIBLE_DEVICES` 检查逻辑（第 1143 行）。**无需同步**。\n\n### 2. Checkpoint 目录\n路径不是任务预设的 `/root/colliforce-vla/checkpoints/`，实际在：\n- seed0: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/`\n- seed1: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/`\n\n当前进度：两个 seed 都到了 step 28000（有 26000 和 28000 子目录 + best 目录）。目标 step 30000 目录尚未生成，训练仍在进行。\n\n每个 step 目录含 `model.safetensors`，格式正确。\n\n### 3. 修正后的 eval 命令\n\nSeed 0 (GPU 0):\n```bash\nCUDA_VISIBLE_DEVICES=0 python scripts/eval_safelibero.py \\\n  --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 \\\n  --config_name pi05_libero \\\n  --model_type lora_baseline \\\n  --suite safelibero_object \\\n  --pi05 \\\n  --gpu 0 \\\n  --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_s0.json\n```\n\nSeed 1 (GPU 1):\n```bash\nCUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py \\\n  --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000 \\\n  --config_name pi05_libero \\\n  --model_type lora_baseline \\\n  --suite safelibero_object \\\n  --pi05 \\\n  --gpu 1 \\\n  --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_s1.json\n```\n\n### 4. 阻塞项\n- **训练未完成**：step 30000 目录尚不存在（当前 28000），需等训练完成后再执行 eval。\n- **输出目录**：`/root/autodl-tmp/eval_results/` 可能不存在，执行前需 `mkdir -p /root/autodl-tmp/eval_results/`。\n- 如果训练最终 step 不是 30000（例如提前停止或改了总步数），需用 `best/` 子目录替代 `30000`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-lora-baseline-eval-prep.md"
+}

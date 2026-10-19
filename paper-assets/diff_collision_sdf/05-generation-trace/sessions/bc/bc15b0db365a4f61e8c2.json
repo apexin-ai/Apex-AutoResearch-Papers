@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc15b0db365a4f61e8c2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops monitor eval and disk",
+  "task_key": "worker_ops_monitor_eval_and_disk_20260521T235454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor_eval_and_disk_20260521T235454_result.json",
+    "occurrence": 1,
+    "bytes": 1481,
+    "sha256": "8ba0ada67dcd61cb4ec576d43d36d0281c3e61f3dde3cee947a75641ef5163ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Eval 进度（westd-45947）\n\n**进程存活**，PID 263983，已运行 3h02m。\n\n| Task | 描述 | TSR | CAR | 状态 |\n|------|------|-----|-----|------|\n| 0 | (spatial?) | 0.0% | 96.0% | 已完成 50/50 |\n| 1 | pick chocolate pudding → basket | 0.0% | 22.0% | 已完成 50/50 |\n| 2 | pick milk → basket | — | — | 进行中，30/50 episodes |\n\n当前在 Task 2 的 Episode 30/50。每 10 episodes 约 14 分钟，预计 Task 2 还需 ~28 分钟完成。TSR 全是 0%，Task 0 安全性好（CAR 96%），Task 1 碰撞严重（CAR 22%）。\n\n### 2. westd-35807 磁盘\n\n| 指标 | 值 |\n|------|---|\n| 总容量 | 350G |\n| 已用 | 260G (75%) |\n| 可用 | 91G |\n\nCheckpoint 目录：\n\n| 目录 | 大小 |\n|------|------|\n| baseline_object_pudding | 76G |\n| baseline_spatial_bowl | 76G |\n| a1_sdf_spatial_bowl | 47G |\n| a1_sdf_object_pudding | 41G |\n| **合计** | **240G** |\n\n### 3. 四个训练当前 step（westd-35807）\n\n| 训练 | Step | 进度 | Loss |\n|------|------|------|------|\n| baseline_lora_spa_s0 | 19,344 / 30,000 | 64% | 0.013 |\n| baseline_lora_obj_s0 | 19,306 / 30,000 | 64% | 0.013 |\n| a1_lora_spa_s0 | 15,813 / 30,000 | 53% | 0.028 |\n| a1_lora_obj_s0 | 17,703 / 30,000 | 59% | 0.024 |\n\n四个训练均正常运行，~4s/step。baseline 两组进度一致（64%），a1 两组稍慢（53%-59%）。按当前速度，baseline 预计还需 ~12h，a1_spa ~16h，a1_obj ~14h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-eval-and-disk.md"
+}

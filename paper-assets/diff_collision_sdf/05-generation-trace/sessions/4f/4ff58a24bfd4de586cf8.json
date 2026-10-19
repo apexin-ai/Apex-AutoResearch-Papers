@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ff58a24bfd4de586cf8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diag lora baseline log check",
+  "task_key": "worker_diag_lora_baseline_log_check_20260525T174904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_lora_baseline_log_check_20260525T174904_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "deda92dc6398307125ea5529d1560297946db3332a5111dc8a1dc323be179a6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n两个 LoRA baseline 实验**并未失败**——resume2 进程正在运行中：\n\n| 实验 | PID | GPU | 状态 | 从 step | 启动时间 (UTC) | ETA |\n|------|-----|-----|------|---------|---------------|-----|\n| s0 | 3622 | cuda:0 | 运行中 | 24000 | 05-26 01:48 | ~09:30 |\n| s1 | 3712 | cuda:1 | 运行中 | 24000 | 05-26 01:48 | ~09:30 |\n\n**关键发现**：\n- 之前的 resume（从 step 16000）确实因 tmux 服务器崩溃中断，s0 停在 25695，s1 停在 25705\n- 但 resume2 已在 01:48 UTC 自动重新提交，从 step 24000 成功恢复\n- Checkpoint 加载正常，Phase 2 LoRA 解冻正常\n- 日志文件只有 ~13KB 因为 tqdm 进度条用 `\\r`，周期性 step 日志尚未触发新条目\n- 剩余 6000 steps × ~4.6s/step ≈ 7.7h\n\nRegistry 已更新为 RUNNING 状态，notes 记录了完整的 resume 历史。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-lora-baseline-log-check.md"
+}

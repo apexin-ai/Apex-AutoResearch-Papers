@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e27c03a38ebcb74453a6",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops sync and launch baseline v11",
+  "task_key": "worker_ops_sync_and_launch_baseline_v11_20260522T120107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_and_launch_baseline_v11_20260522T120107.log",
+    "occurrence": 1,
+    "bytes": 588606,
+    "sha256": "440666e4d054213556531cb0ea2cc725a19c0d9f98f0f688f36ff8bb8cf681b4"
+  },
+  "statistics": {
+    "messages": 294,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 5,
+      "system": 1,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 100,
+      "tool_result": 99,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 5,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 294,
+      "chunks": [
+        {
+          "path": "e27c03a38ebcb74453a6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e27c03a38ebcb74453a6-part-0002.json",
+          "message_count": 114
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-sync-and-launch-baseline-v11.md"
+}

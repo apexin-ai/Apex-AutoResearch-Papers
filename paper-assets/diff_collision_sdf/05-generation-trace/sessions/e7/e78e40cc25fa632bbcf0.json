@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e78e40cc25fa632bbcf0",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval lora baseline s2 30k",
+  "task_key": "worker_eval_lora_baseline_s2_30k_20260527T133956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_lora_baseline_s2_30k_20260527T133956_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "cbf38b07966fea0ad72cf66f54e8ce3190820a1217d8709794b739d56adb8418"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n**Step 1 - 训练验证** ✓\n- `train_pi05_lora_baseline_s2_resume` 训练完成，step 30000/30000, EXIT_CODE=0\n- Checkpoint: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed2/30000/` (model.safetensors 7.5GB)\n- Final loss=0.0117, 训练时间 10.3h\n\n**Step 2 - Registry 更新** ✓\n- status=DONE, conclusion=success, checkpoint_path + metrics 已记录\n\n**Step 3 - Eval 已启动** ✓\n- `eval_lora_baseline_30k_s2` 在 westd-45947 cuda:0 运行，PID=512147\n- 日志正在产出，模型加载中（LoRA injection 阶段）\n- 日志路径: `~/runs/diff_collision_sdf/eval_lora_baseline_30k_s2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-lora-baseline-s2-30k.md"
+}

@@ -1,0 +1,12 @@
+_next_id: 2
+mistakes:
+- id: M001
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: C2/C3 配置文件缺失导致 mvp_c2_s42 训练失败
+  root_cause: MVP 准备阶段只创建了 C1（LoRA-only）和 C4（Full TBAB）的 YAML 配置文件，未同步创建 C2（position
+    reset only）和 C3（bridge only）的配置。dry-run 验证也只测了 C1/C4，未覆盖全部 4 个条件。
+  prevention: 提交多条件实验前，dry-run 必须覆盖所有条件的配置文件存在性和基本启动验证，不能只测部分条件。审批时加检查项：所有实验对应的配置文件是否就绪。
+  status: active
+  fix: Agent 基于已有 C1/C4 配置创建缺失的 C2/C3 配置文件

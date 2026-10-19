@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99e983142011fbcd46e9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix best ckpt symlink and rerun",
+  "task_key": "worker_ops_fix_best_ckpt_symlink_and_rerun_20260525T170124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_best_ckpt_symlink_and_rerun_20260525T170124_result.json",
+    "occurrence": 1,
+    "bytes": 1846,
+    "sha256": "c9fc10633d84bcd0af7d5a885ee350dca3ef8af8bf5e30873d1afa5bd88d1d96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Episode 20 出来了！两个 episode 都正常完成：\n\n- Episode 10/50: success=False, collided=False, steps=300\n- Episode 20/50: success=False, collided=False, steps=300\n\nEval 确认正常运行。\n\n## 汇报\n\n### A. Symlink 修复（4 个 best/ 目录）\n全部成功：`model.safetensors -> model_lora.safetensors`\n\n| 目录 | 验证 |\n|------|------|\n| `.../a1_sdf_pi05_object_pudding_seed1_l005/best/` | `model.safetensors -> model_lora.safetensors` |\n| `.../a1_sdf_pi05_object_pudding_seed1_l01/best/` | `model.safetensors -> model_lora.safetensors` |\n| `.../a1_sdf_pi05_object_pudding_seed2_l005/best/` | `model.safetensors -> model_lora.safetensors` |\n| `.../a1_sdf_pi05_object_pudding_seed2_l01/best/` | `model.safetensors -> model_lora.safetensors` |\n\n原始基模型已备份为 `model_base_backup.safetensors`。\n\n### B. Eval 启动\n- **PID**: 508967（python 子进程），父进程 508965\n- **GPU 3**: 9014 MiB，正常推理中\n- **Checkpoint**: `seed2_l005/best/`（symlink 修复后）\n- **日志**: `/root/colliforce-vla/logs/eval_s2_l005_best_10k_v2.log`\n\n### C. 前 2 个 Episode 结果\n- Episode 10/50: success=False, collided=**False**, steps=300\n- Episode 20/50: success=False, collided=**False**, steps=300\n\n模型加载和推理正常（LoRA 注入成功，key 匹配无报错），无碰撞。\n\n### D. 其他 GPU 状态\n\n| GPU | PID | 进程 | 显存 | 说明 |\n|-----|-----|------|------|------|\n| cuda:0 | 168730 | `train_a1_sdf_aux_pi05.py --scene spatial_bowl --seed 0` | 27036 MiB | 训练中，已运行 7h+ |\n| cuda:1 | 478655 | `eval_safelibero.py s0_l005 30k` | 8991 MiB | eval 中 |\n| cuda:2 | 478930 | `eval_safelibero.py s0_l01 30k` | 8995 MiB | eval 中 |\n| cuda:3 | 508967 | `eval_safelibero.py s2_l005 best`（刚启动） | 9014 MiB | eval 中 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-best-ckpt-symlink-and-rerun.md"
+}

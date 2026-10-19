@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd4c52d735a9e2316ea5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval pi05 safelibero object westd45947",
+  "task_key": "worker_eval_pi05_safelibero_object_westd45947_20260522T205932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pi05_safelibero_object_westd45947_20260522T205932_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "ca380c29df154fd26d05b76d8e3b42c069b47986e6dc664d9dd6d7e2cd604108"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并运行正常。\n\n**状态总结：**\n- **exp_id**: `eval_pi05_safelibero_object_v11` — RUNNING\n- **服务器**: westd-45947，pi0.5 serve_policy 在 GPU 1 运行（port 8000），eval 脚本通过 websocket 连接\n- **配置**: safelibero_object, Level II, 4 tasks × 50 episodes = 200 total, seed=7\n- **实现**: 独立脚本 `eval_pi05_safelibero.py`，结合 openpi websocket client + SafeLIBERO 碰撞检测\n- **初始数据**: 前 3 个 episode 全部检测到碰撞（CAR=0% 暂时），ep2 成功完成任务但有碰撞\n- **预计耗时**: ~6-12s/episode × 200 episodes ≈ 20-40 分钟\n- **监控**: 每 12 分钟自动检查进度，完成后更新 registry\n\n初始 3 个 episode 都有碰撞，这已经暗示了结论方向：**即使 TSR 很高的 pi0.5，CAR 也可能很低**——说明碰撞避免需要显式安全机制（SDF），不会随基础模型质量自动改善。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-pi05-safelibero-object-westd45947.md"
+}

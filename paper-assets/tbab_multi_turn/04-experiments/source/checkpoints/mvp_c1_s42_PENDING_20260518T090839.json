@@ -1,0 +1,53 @@
+{
+  "exp_id": "mvp_c1_s42",
+  "project": "tbab_multi_turn",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 1,
+    "created_at": "2026-05-18T08:21:16.233Z",
+    "updated_at": "2026-05-18T09:08:39.339Z",
+    "hypothesis": "Standard LoRA fine-tuning without position or bridge modifications provides baseline multi-turn performance; any improvement in C2-C4 over C1 isolates the contribution of TBAB components beyond LoRA adaptation alone",
+    "server": "westb-25721",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-25721",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T08:46:10.712Z",
+      "command": "bash -c \"cd /root/tbab_multi_turn/scripts && CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition1_lora_only.yaml --seed 42\"",
+      "finished_at": "2026-05-18T08:46:20.274Z",
+      "training_hours": 0.0
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-18T08:46:21.161Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T08:46:22.757803+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "condition": "C1_lora_only",
+      "seed": 42,
+      "server": "westb-25721",
+      "gpu": "cuda:0",
+      "model_name": "Mistral-7B-Instruct-v0.1",
+      "data_path": "/root/tbab_multi_turn/data/training_data.json",
+      "data_count": 2500,
+      "command": "bash -c \"cd /root/tbab_multi_turn/scripts && WANDB_MODE=offline CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/condition1_lora_only.yaml --seed 42\"",
+      "estimated_time": "~60min",
+      "trainable_params": "83.9M (1.15%)",
+      "fix": "WANDB_MODE=offline added to train.py"
+    }
+  },
+  "timestamp": "2026-05-18T09:08:39.355785+00:00",
+  "trigger": "update_registry"
+}

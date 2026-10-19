@@ -1,0 +1,101 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{black2024pi0,kim2024openvla}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{vlaGSE}
+\citation{hu2022lora}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{VLA Robustness.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Parameter-Efficient Adaptation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Perturbation Diagnosability (Phase~0)}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Architecture}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Perturbation-Aware Router (PAR).}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LoRA Expert Bank.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Soft Routing.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Training}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Expert Specialization}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:expert_specialization}{{4.1}{3}{Expert Specialization}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Per-expert success rates (\%). Bold indicates in-type (matched) evaluation. Cross-type drop ($\Delta $) measures the gap between in-type and average cross-type performance.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:expert_cross}{{1}{3}{Per-expert success rates (\%). Bold indicates in-type (matched) evaluation. Cross-type drop ($\Delta $) measures the gap between in-type and average cross-type performance}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Result: Ablation Ladder}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:ablation_ladder}{{4.2}{3}{Main Result: Ablation Ladder}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Ablation ladder on LIBERO-Plus (5 seeds). All routed/expert methods use ${\sim }$12M total parameters.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:ablation_ladder}{{2}{3}{Ablation ladder on LIBERO-Plus (5 seeds). All routed/expert methods use ${\sim }$12M total parameters}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Per-Perturbation Analysis}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:per_perturbation}{{4.3}{3}{Per-Perturbation Analysis}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Pairwise statistical significance (two-sided $t$-test, 5 seeds).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:significance}{{3}{4}{Pairwise statistical significance (two-sided $t$-test, 5 seeds)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-perturbation-category breakdown (\%).}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:per_perturbation}{{4}{4}{Per-perturbation-category breakdown (\%)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Meta-Brain per-perturbation success rates with comparison to frozen pi0.}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:fine_grained}{{5}{4}{Meta-Brain per-perturbation success rates with comparison to frozen pi0}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Parameter-Matched Universal Baseline}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:param_matched}{{4.4}{4}{Parameter-Matched Universal Baseline}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Parameter-matched comparison: rank-48 universal vs.\ Meta-Brain.}}{4}{table.6}\protected@file@percent }
+\newlabel{tab:param_matched}{{6}{4}{Parameter-matched comparison: rank-48 universal vs.\ Meta-Brain}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Routing Analysis}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:routing_analysis}{{4.5}{4}{Routing Analysis}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces PAR routing weight distribution and entropy per input perturbation category.}}{4}{table.7}\protected@file@percent }
+\newlabel{tab:routing_weights}{{7}{4}{PAR routing weight distribution and entropy per input perturbation category}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Oracle Routing Upper Bound}{4}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:oracle}{{4.6}{4}{Oracle Routing Upper Bound}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Oracle (hard) routing vs.\ PAR (soft) routing.}}{5}{table.8}\protected@file@percent }
+\newlabel{tab:oracle}{{8}{5}{Oracle (hard) routing vs.\ PAR (soft) routing}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Comparison with FTM}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:ftm}{{4.7}{5}{Comparison with FTM}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces FTM (visual-only) vs.\ Meta-Brain (multi-type).}}{5}{table.9}\protected@file@percent }
+\newlabel{tab:ftm}{{9}{5}{FTM (visual-only) vs.\ Meta-Brain (multi-type)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Parameter Efficiency}{5}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:param_efficiency}{{4.8}{5}{Parameter Efficiency}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Parameter efficiency comparison. VLA-GSE uses a different backbone (Qwen3-VL-4B); comparison is indirect.}}{5}{table.10}\protected@file@percent }
+\newlabel{tab:param_eff}{{10}{5}{Parameter efficiency comparison. VLA-GSE uses a different backbone (Qwen3-VL-4B); comparison is indirect}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Rank Sweep: Capacity--Routing Interaction}{5}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:rank_sweep}{{4.9}{5}{Rank Sweep: Capacity--Routing Interaction}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Rank sweep: routing benefit (routed experts minus parameter-matched universal) at different expert ranks.}}{5}{table.11}\protected@file@percent }
+\newlabel{tab:rank_sweep}{{11}{5}{Rank sweep: routing benefit (routed experts minus parameter-matched universal) at different expert ranks}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Ablation Studies}{5}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:ablations}{{4.10}{5}{Ablation Studies}{subsection.4.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Router Architecture.}{5}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Router architecture comparison.}}{6}{table.12}\protected@file@percent }
+\newlabel{tab:router_arch}{{12}{6}{Router architecture comparison}{table.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{6-Class vs.\ 3-Class Routing.}{6}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces 6-class vs.\ 3-class routing granularity.}}{6}{table.13}\protected@file@percent }
+\newlabel{tab:6vs3}{{13}{6}{6-class vs.\ 3-class routing granularity}{table.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Correction Memory.}{6}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Correction Memory ablation.}}{6}{table.14}\protected@file@percent }
+\newlabel{tab:cm}{{14}{6}{Correction Memory ablation}{table.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Layer Placement.}{6}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Layer placement ablation: success rate (\%) of each expert at different layer ranges.}}{6}{table.15}\protected@file@percent }
+\newlabel{tab:layer_placement}{{15}{6}{Layer placement ablation: success rate (\%) of each expert at different layer ranges}{table.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Clean LIBERO Evaluation}{6}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:clean}{{4.11}{6}{Clean LIBERO Evaluation}{subsection.4.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Clean LIBERO performance (\%).}}{6}{table.16}\protected@file@percent }
+\newlabel{tab:clean}{{16}{6}{Clean LIBERO performance (\%)}{table.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Cross-Backbone Validation}{6}{subsection.4.12}\protected@file@percent }
+\newlabel{sec:cross_backbone}{{4.12}{6}{Cross-Backbone Validation}{subsection.4.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Cross-backbone comparison: pi0 (PaliGemma) vs.\ OpenVLA (Llama).}}{6}{table.17}\protected@file@percent }
+\newlabel{tab:cross_backbone}{{17}{6}{Cross-backbone comparison: pi0 (PaliGemma) vs.\ OpenVLA (Llama)}{table.17}{}}
+\bibstyle{plainnat}
+\bibcite{black2024pi0}{{1}{}{{}}{{}}}
+\bibcite{kim2024openvla}{{2}{}{{}}{{}}}
+\bibcite{hu2022lora}{{3}{}{{}}{{}}}
+\bibcite{vlaGSE}{{4}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Where routing helps---and where it does not.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The oracle gap as future work.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entropy-gated deployment.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{7}{Conclusion}{section.6}{}}
+\gdef \@abspage@last{7}

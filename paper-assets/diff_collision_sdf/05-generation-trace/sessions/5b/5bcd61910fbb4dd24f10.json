@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bcd61910fbb4dd24f10",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper appendix tsr collapse",
+  "task_key": "worker_paper_appendix-tsr-collapse_20260529T001953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-tsr-collapse_20260529T001953_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "237a30fa1ff601e186e20228a2ba9387d3d4fd1f87456dabd1c17fc4a180d40f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "21/21 全部通过。appendix.tex 末尾已添加 `\\section{TSR Collapse Mechanism Analysis}`（约 190 words），包含：\n\n- LoRA-only 与各 SDF 条件的 TSR drop 对比（引用 Table 2 数据）\n- 归因：LoRA fine-tuning 导致的 catastrophic forgetting，非 SDF 引起\n- Failure mode 描述：保留运动能力但丧失 goal-directed behavior，safe failure rate 从 0.5% → ~50%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-tsr-collapse.md"
+}

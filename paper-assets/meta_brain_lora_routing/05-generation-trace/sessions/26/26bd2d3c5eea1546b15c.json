@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26bd2d3c5eea1546b15c",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "diag debug eval compare",
+  "task_key": "worker_diag_debug_eval_compare_20260516T124213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_debug_eval_compare_20260516T124213_result.json",
+    "occurrence": 1,
+    "bytes": 2108,
+    "sha256": "18da300bc160e1e5ffd6e93e340b2f49c9c6df47a429d308f9eeeb7e6420bd62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已出。openpi 官方推理失败了——checkpoint 格式与 openpi 的 `safetensors.torch.load_model` 不兼容。\n\n## 完整诊断报告\n\n### MetaBrain 推理（成功）\n\n| 项目 | 值 |\n|------|-----|\n| Shape | `(50, 7)` — 50步 action horizon，7维 |\n| Range | `[-1.0173, 1.0569]`，mean=0.0284 |\n| NaN | 无 |\n\n**首步 action[0]:**\n```\n[ 0.1698, -0.1323, 0.5482, 0.4313, -0.0788, -0.0355, 1.0395 ]\n```\n\n**各维统计:**\n| dim | min | max | mean | std |\n|-----|-------|-------|-------|-------|\n| 0 | -0.0601 | 0.1973 | 0.0595 | 0.0789 |\n| 1 | -0.2007 | 0.1015 | 0.0058 | 0.0798 |\n| 2 | -0.2486 | 0.7758 | 0.2355 | 0.2631 |\n| 3 | -0.1333 | 0.4313 | 0.0909 | 0.1595 |\n| 4 | -0.7727 | 0.5323 | -0.0689 | 0.3413 |\n| 5 | -0.1504 | 0.0744 | 0.0055 | 0.0519 |\n| 6 | -1.0173 | 1.0569 | -0.1298 | 0.9629 |\n\n### openpi 官方推理（失败）\n\n`policy_config.create_trained_policy()` 在 `safetensors.torch.load_model()` 崩溃：\n\n**根因：checkpoint 格式不匹配。** 该 checkpoint 是 LeRobot 格式（key 带 `model.` 前缀），而 openpi 的 `load_pytorch` 直接用 `safetensors.torch.load_model` 加载，期望无前缀的 key。\n\n具体错误：\n- **Missing keys** (openpi 期望但 checkpoint 没有)：`action_in_proj.weight`, `paligemma_with_expert.gemma_expert.model.layers.*.weight` 等 — 这些是无前缀格式\n- **Unexpected keys** (checkpoint 有但 openpi 不期望)：`model.action_in_proj.weight`, `model.paligemma_with_expert.*.weight` — 全部带 `model.` 前缀，以及额外的 `normalize_inputs.*`, `normalize_targets.*`, `unnormalize_outputs.*` buffers\n\n**关键诊断结论：**\n\n1. MetaBrain 的 `meta_brain_assembly.py` 正确处理了 LeRobot 格式（`stripped model. prefix from 777 keys, extracted 6 norm buffers`），而 openpi 官方的 `load_pytorch` 没有这个 strip 逻辑\n2. MetaBrain 单独推理正常工作，输出范围合理\n3. 无法通过 openpi 官方路径加载同一 checkpoint 做对比——需要修改 openpi 的加载逻辑或使用 openpi 原生格式的 checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-debug-eval-compare.md"
+}

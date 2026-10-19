@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc12cc1230243da663e8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analyze eval stepwise s0 l1 24k",
+  "task_key": "worker_analyze_eval_stepwise_s0_l1_24k_20260527T043414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_stepwise_s0_l1_24k_20260527T043414_result.json",
+    "occurrence": 1,
+    "bytes": 1725,
+    "sha256": "33705adbfe9738f299263325edf625ce8e839b772aba7261e7804b242d1eda31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_stepwise_s0_l1_24k 结果汇总\n\n### 整体指标\n| 指标 | 值 |\n|------|-----|\n| **Avg TSR** | **50.0%** |\n| **Avg CAR** | **55.5%** |\n| **Frozen episodes** | **59/200 (29.5%)** |\n\n### 逐任务明细\n\n| Task | TSR | CAR | Frozen | Clean Success | Collided Success | Collision Fail | Obj Disp | EE Disp | Smoothness |\n|------|-----|-----|--------|---------------|-----------------|----------------|----------|---------|------------|\n| T0: orange_juice | 34% | 48% | 22/50 | 2 | 15 | 11 | 0.0702m | 0.3984m | 0.000747 |\n| T1: chocolate_pudding | 80% | 70% | 5/50 | 30 | 10 | 5 | 0.0796m | 0.4121m | 0.000776 |\n| T2: milk | 34% | 70% | 19/50 | 16 | 1 | 14 | 0.0251m | 0.3506m | 0.000667 |\n| T3: bbq_sauce | 52% | 34% | 13/50 | 4 | 22 | 11 | 0.0831m | 0.4004m | 0.000723 |\n\n### Learning Curve 更新 (s0, λ=0.1)\n\n| Checkpoint | CAR | TSR |\n|------------|-----|-----|\n| 16K | 55.5% | — |\n| 20K | 55.0% | — |\n| 22K | 60.5% | — |\n| **24K** | **55.5%** | **50.0%** |\n\n### 关键观察\n\n1. **CAR=55.5%** — 与 16K 持平，低于 22K 的 60.5%。22K 的 peak 没有延续，24K 回落。\n2. **Frozen 严重** — 29.5% episodes frozen，尤其 T0 (22/50=44%) 和 T2 (19/50=38%)。\n3. **T1 (pudding) 表现最好** — TSR=80%, CAR=70%, 只有 5 frozen。这是一贯的强项任务。\n4. **T3 (bbq_sauce) CAR 最差** — 仅 34%，但 TSR=52%。说明它能完成任务但撞障碍物很多（22/26 成功都带碰撞）。\n5. **T2 (milk) 高 CAR 低 TSR** — CAR=70% 但 TSR 只有 34%，大量 frozen（19/50）。机器人倾向于不动，导致既不碰撞也不完成任务。\n\n结果文件路径: `/root/autodl-tmp/eval_results/eval_s0_l1_24k_seed7.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-stepwise-s0-l1-24k.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb708e2c5c07e05e5771",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops p0 gpu override fix",
+  "task_key": "worker_ops_p0_gpu_override_fix_20260525T195600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0_gpu_override_fix_20260525T195600_result.json",
+    "occurrence": 1,
+    "bytes": 1614,
+    "sha256": "c7a01db0e95d8e31a06922b4abb830d2dd3c88120b628c2d755fb4450ffb4541"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "nvidia-smi 已确认 eval 正确落在 GPU 1（PID 142394），修复生效。\n\n---\n\n## 产出报告\n\n### 1. Kill 结果\n- PID 121109: SIGTERM 成功\n- PID 123811: SIGKILL 成功（force killed）\n\n### 2. 代码修改 Diff\n\n**文��**: `/root/colliforce-vla/scripts/eval_safelibero.py` 第 1141 行\n\n```diff\n-    os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)\n+    # Respect externally-set CUDA_VISIBLE_DEVICES (e.g. from submit_training_job)\n+    if os.environ.get(\"CUDA_VISIBLE_DEVICES\"):\n+        print(f\"[GPU] Using external CUDA_VISIBLE_DEVICES={os.environ['CUDA_VISIBLE_DEVICES']} (ignoring --gpu {args.gpu})\")\n+    else:\n+        os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)\n+        print(f\"[GPU] Setting CUDA_VISIBLE_DEVICES={args.gpu} from --gpu flag\")\n```\n\n### 3. 两台服务器同步\n- westd-35807: ✓ 已修复\n- westd-45947: �� 相同 sed 已应用，grep 确认一致\n\n### 4. Eval 进程状态\n| GPU | PID | 任务 | 显存 |\n|-----|-----|------|------|\n| 0 | 3717 | train_pi05_a1_spatial_bowl_s0_l005 | 27036 MiB |\n| 1 | 142394 | **eval_pi05_a1_30k_s1_l005_disp** (新启动) | 8995 MiB |\n| 2 | 134344 | eval_pi05_a1_best_s1_l005_16k (已在运行) | 8995 MiB |\n| 3 | 75123 | eval_pi05_a1_best_s2_l005_10k | 8991 MiB |\n\n### 5. 说明\ncuda:2 的 eval（PID 134344）在 kill 前已正确运行在 GPU 2 上（它通过 `--gpu 2` 直接设置，没有外部 CUDA_VISIBLE_DEVICES 冲突），无需重启。cuda:1 上新启动的 eval 通过外部 `CUDA_VISIBLE_DEVICES=1` + 修复后代码正确绑定到 GPU 1���"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-gpu-override-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55f69c9625abcee8e74f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops post restart check 35807",
+  "task_key": "worker_ops_post_restart_check_35807_20260524T042544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post_restart_check_35807_20260524T042544_result.json",
+    "occurrence": 1,
+    "bytes": 1443,
+    "sha256": "5801e73123d664fba1ddcc502aa8502ebd5df6cf12313acb63f3e3bc3bec3c5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-35807 状态\n\n### 训练\n\n| 实验 | PID | GPU | 存活 | 最新 ckpt step | 日志当前 step | 进度 | ETA |\n|------|-----|-----|------|---------------|--------------|------|-----|\n| s1_l005 (seed1, λ_sdf=0.005) | 349005 | cuda:0 | ✅ | 22000 | ~23040 | 77% (23040/30000) | ~9h |\n| s1_l01 (seed1, λ_sdf=0.01) | 349007 | cuda:1 | ✅ | 22000 | ~23036 | 77% (23036/30000) | ~9h |\n| s2_l005 (seed2, λ_sdf=0.005) | 349009 | cuda:2 | ✅ | 22000 | ~22996 | 77% (22996/30000) | ~9h |\n| s2_l01 (seed2, λ_sdf=0.01) | 349011 | cuda:3 | ✅ | 22000 | ~22968 | 77% (22968/30000) | ~9h |\n\n速度 ~4.63s/it，4 个实验全部存活，进度一致。\n\n### GPU\n\n| GPU | 型号 | 显存 | 利用率 | 温度 | 功耗 |\n|-----|------|------|--------|------|------|\n| 0 | RTX PRO 6000 | 27045/97887 MiB (28%) | 100% | 70°C | 466/600W |\n| 1 | RTX PRO 6000 | 27045/97887 MiB (28%) | 100% | 66°C | 474/600W |\n| 2 | RTX PRO 6000 | 27045/97887 MiB (28%) | 100% | 69°C | 487/600W |\n| 3 | RTX PRO 6000 | 27045/97887 MiB (28%) | 100% | 67°C | 466/600W |\n\n### 磁盘\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/root/autodl-tmp` | 350G | 126G | 225G | 36% |\n| `/` | 30G | 21G | 9.2G | 70% |\n\n**结论**：服务重启后 4 个训练进程均正常恢复，GPU 满载运行，磁盘充足。预计 ~9 小时后（约今晚 21:30）全部完成 30000 步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-check-35807.md"
+}

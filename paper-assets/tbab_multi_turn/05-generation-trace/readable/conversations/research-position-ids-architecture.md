@@ -1,0 +1,546 @@
+# research position ids architecture
+
+**tbab multi turn** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/chats/worker_research_position-ids-architecture_20260518T051041.jsonl`
+- **Structured JSON:** [`5328057fe43cc2f927ed.json`](../../sessions/53/5328057fe43cc2f927ed.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+17 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T05:19:47.270320+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T05:19:47.270678+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T05:19:47.270881+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Qwen2.5 RoPE position_ids 源码调研",
+  "prompt": "调研 Qwen2.5-7B 在 HuggingFace transformers 中的 RoPE 和 position_ids 实现细节。\n\n需要回答：\n1. Qwen2.5 模型在 transformers 源码中的具体文件路径（modeling_qwen2.py 或类似文件）\n2. RoPE 的实现类名和关键函数（apply_rotary_pos_emb 等）\n3. position_ids 参数在 forward pass 中如何传递：从 model.forward() → 各 layer → attention → RoPE 的完整链路\n4. position_ids 的默认生成逻辑（当用户不传入时如何自动生成）\n5. 是否可以通过外部传入自定义 position_ids 来实现 turn-relative position reset（每个 turn 开头 position 重置为 0），还是必须修改模型代码\n6. attention mask 与 position_ids 的交互：position reset 后 causal mask 是否需要特殊处理\n7. Qwen2.5 的 RoPE 参数：d_head=128, base=10000，是否使用了 YaRN/NTK 等扩展\n\n请搜索 HuggingFace transformers 源码（GitHub）和相关文档。给出具体的代码位置（文件路径+行号）和关键代码片段。\n\n用中文回答，输出要详细，包含所有代码片段和文件路径。",
+  "subagent_type": "general-purpose",
+  "run_in_background": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Qwen2.5 RoPE position_ids 源码调研",
+    "prompt": "调研 Qwen2.5-7B 在 HuggingFace transformers 中的 RoPE 和 position_ids 实现细节。\n\n需要回答：\n1. Qwen2.5 模型在 transformers 源码中的具体文件路径（modeling_qwen2.py 或类似文件）\n2. RoPE 的实现类名和关键函数（apply_rotary_pos_emb 等）\n3. position_ids 参数在 forward pass 中如何传递：从 model.forward() → 各 layer → attention → RoPE 的完整链路\n4. position_ids 的默认生成逻辑（当用户不传入时如何自动生成）\n5. 是否可以通过外部传入自定义 position_ids 来实现 turn-relative position reset（每个 turn 开头 position 重置为 0），还是必须修改模型代码\n6. attention mask 与 position_ids 的交互：position reset 后 causal mask 是否需要特殊处理\n7. Qwen2.5 的 RoPE 参数：d_head=128, base=10000，是否使用了 YaRN/NTK 等扩展\n\n请搜索 HuggingFace transformers 源码（GitHub）和相关文档。给出具体的代码位置（文件路径+行号）和关键代码片段。\n\n用中文回答，输出要详细，包含所有代码片段和文件路径。",
+    "subagent_type": "general-purpose",
+    "run_in_background": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T05:19:47.271054+00:00_
+
+Async agent launched successfully.
+agentId: ad5a35e3009c89f60 (internal ID - do not mention to user. Use SendMessage with to: 'ad5a35e3009c89f60' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-tbab-multi-turn/c55f3af1-3f49-479b-ad0e-30d9ee82d99c/tasks/ad5a35e3009c89f60.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T05:19:47.271220+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Bridge token 插入架构调研",
+  "prompt": "调研在 LLM（特别是 Qwen2.5 架构）中插入 learnable bridge tokens 的技术实现方案。\n\n背景：TBAB (Turn-Boundary Attention Bridges) 研究，在多轮对话的 turn 边界插入 K=4 个可学习 bridge tokens，利用 RoPE 频段恢复缓解多轮对话注意力通道关闭问题。\n\n需要回答：\n1. 在 transformer 模型中插入 learnable tokens 的已有工作和实现模式（如 prefix tuning、prompt tuning、soft prompts 等类似技术）\n2. bridge tokens 的 embedding 初始化策略比较：random init vs 从现有 special token 复制 vs 从词表均值初始化\n3. bridge tokens 在 forward pass 中的具体实现方式：\n   - 是在 input_ids 层面插入（需要扩展 vocabulary），还是在 embedding 层面直接拼接\n   - 如果在 embedding 层面拼接，如何处理 attention mask 和 position_ids 的对齐\n4. bridge tokens 是否应参与 loss 计算（通常不参与，如何实现 mask）\n5. bridge tokens 的 position_ids 设置策略：\n   - 方案A：属于前一个 turn 的末尾（position 继续累加）\n   - 方案B：属于后一个 turn 的开头（position 从 0 开始的前几个）\n   - 方案C：使用特殊 position（如 -1 或固定值）\n6. 参考 Perceiver、Memory Transformer、Compressive Transformer 等使用 learnable tokens 的架构\n\n搜索相关论文、GitHub 实现和 HuggingFace 文档。用中文回答，包含具体代码示例。",
+  "subagent_type": "general-purpose",
+  "run_in_background": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Bridge token 插入架构调研",
+    "prompt": "调研在 LLM（特别是 Qwen2.5 架构）中插入 learnable bridge tokens 的技术实现方案。\n\n背景：TBAB (Turn-Boundary Attention Bridges) 研究，在多轮对话的 turn 边界插入 K=4 个可学习 bridge tokens，利用 RoPE 频段恢复缓解多轮对话注意力通道关闭问题。\n\n需要回答：\n1. 在 transformer 模型中插入 learnable tokens 的已有工作和实现模式（如 prefix tuning、prompt tuning、soft prompts 等类似技术）\n2. bridge tokens 的 embedding 初始化策略比较：random init vs 从现有 special token 复制 vs 从词表均值初始化\n3. bridge tokens 在 forward pass 中的具体实现方式：\n   - 是在 input_ids 层面插入（需要扩展 vocabulary），还是在 embedding 层面直接拼接\n   - 如果在 embedding 层面拼接，如何处理 attention mask 和 position_ids 的对齐\n4. bridge tokens 是否应参与 loss 计算（通常不参与，如何实现 mask）\n5. bridge tokens 的 position_ids 设置策略：\n   - 方案A：属于前一个 turn 的末尾（position 继续累加）\n   - 方案B：属于后一个 turn 的开头（position 从 0 开始的前几个）\n   - 方案C：使用特殊 position（如 -1 或固定值）\n6. 参考 Perceiver、Memory Transformer、Compressive Transformer 等使用 learnable tokens 的架构\n\n搜索相关论文、GitHub 实现和 HuggingFace 文档。用中文回答，包含具体代码示例。",
+    "subagent_type": "general-purpose",
+    "run_in_background": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T05:19:47.271388+00:00_
+
+Async agent launched successfully.
+agentId: a6b824eb8dbb02db2 (internal ID - do not mention to user. Use SendMessage with to: 'a6b824eb8dbb02db2' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-tbab-multi-turn/c55f3af1-3f49-479b-ad0e-30d9ee82d99c/tasks/a6b824eb8dbb02db2.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T05:19:47.271639+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "LoRA + 自定义 embedding 集成调研",
+  "prompt": "调研 PEFT/LoRA 微调与自定义 learnable embedding（如 bridge tokens）的集成方案。\n\n背景：TBAB 项目使用 Qwen2.5-7B，需要：\n- 用 LoRA 微调模型的 attention layers\n- 同时添加 K=4 个 learnable bridge token embeddings 作为额外可训练参数\n\n需要回答：\n1. PEFT/LoRA 的标准用法：target_modules 参数如何设置，Qwen2.5 的 linear layer 命名（q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj）\n2. 推荐的 LoRA target_modules 配置：只加 qkv 还是全部 linear layers？各自的参数量和性能 trade-off\n3. LoRA rank 和 alpha 的推荐值（对 7B 模型）\n4. 如何在 LoRA 微调中添加额外的可训练参数（bridge token embeddings）：\n   - 方案A：将 bridge embeddings 作为独立的 nn.Parameter，不通过 LoRA\n   - 方案B：扩展 embedding layer 并设置为可训练\n   - 方案C：使用 PEFT 的 modules_to_save 参数\n5. 使用 peft.get_peft_model() 后，如何确保 bridge token embeddings 的梯度正常回传\n6. 保存和加载时，bridge token embeddings 如何与 LoRA adapter 一起序列化\n7. 搜索是否有已有项目同时使用 LoRA + 自定义 learnable tokens 的实现案例\n\n搜索 PEFT 文档、GitHub issues 和相关实现。用中文回答，包含具体代码示例。",
+  "subagent_type": "general-purpose",
+  "run_in_background": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "LoRA + 自定义 embedding 集成调研",
+    "prompt": "调研 PEFT/LoRA 微调与自定义 learnable embedding（如 bridge tokens）的集成方案。\n\n背景：TBAB 项目使用 Qwen2.5-7B，需要：\n- 用 LoRA 微调模型的 attention layers\n- 同时添加 K=4 个 learnable bridge token embeddings 作为额外可训练参数\n\n需要回答：\n1. PEFT/LoRA 的标准用法：target_modules 参数如何设置，Qwen2.5 的 linear layer 命名（q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj）\n2. 推荐的 LoRA target_modules 配置：只加 qkv 还是全部 linear layers？各自的参数量和性能 trade-off\n3. LoRA rank 和 alpha 的推荐值（对 7B 模型）\n4. 如何在 LoRA 微调中添加额外的可训练参数（bridge token embeddings）：\n   - 方案A：将 bridge embeddings 作为独立的 nn.Parameter，不通过 LoRA\n   - 方案B：扩展 embedding layer 并设置为可训练\n   - 方案C：使用 PEFT 的 modules_to_save 参数\n5. 使用 peft.get_peft_model() 后，如何确保 bridge token embeddings 的梯度正常回传\n6. 保存和加载时，bridge token embeddings 如何与 LoRA adapter 一起序列化\n7. 搜索是否有已有项目同时使用 LoRA + 自定义 learnable tokens 的实现案例\n\n搜索 PEFT 文档、GitHub issues 和相关实现。用中文回答，包含具体代码示例。",
+    "subagent_type": "general-purpose",
+    "run_in_background": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T05:19:47.271806+00:00_
+
+Async agent launched successfully.
+agentId: a8e5fd0357341be4a (internal ID - do not mention to user. Use SendMessage with to: 'a8e5fd0357341be4a' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-tbab-multi-turn/c55f3af1-3f49-479b-ad0e-30d9ee82d99c/tasks/a8e5fd0357341be4a.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T05:19:47.272012+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Qwen2.5 chat template 和数据格式调研",
+  "prompt": "调研 Qwen2.5 的 chat template 格式和多轮对话 tokenization 方式，以及在 turn 边界插入 bridge tokens 的数据处理方案。\n\n需要回答：\n1. Qwen2.5 的 chat template 格式：\n   - 特殊 token 列表（<|im_start|>, <|im_end|>, <|endoftext|> 等）\n   - 多轮对话的完整格式示例（system + user + assistant 多轮）\n   - tokenizer.apply_chat_template() 的输出格式\n2. 如何在 tokenized 序列中识别 turn 边界：\n   - 通过特殊 token ID 定位（<|im_start|> 和 <|im_end|> 的 token ID）\n   - 或通过 role 标记定位\n3. 在 turn 边界插入 bridge tokens 的具体方案：\n   - 方案A：在 tokenization 之前插入特殊占位符 token，然后在 embedding 层替换\n   - 方案B：在 tokenization 之后直接修改 input_ids 序列（插入 bridge token IDs）\n   - 方案C：在 embedding 层面操作（不修改 input_ids）\n4. 插入位置的选择：\n   - 在 <|im_end|> 之后、下一个 <|im_start|> 之前\n   - 在每个 turn 的开头（<|im_start|> 之后）\n   - 只在 assistant turn 的开头\n5. 数据 collator 的实现：批处理时如何处理不同长度的序列（bridge tokens 插入后长度变化）\n6. labels 的处理：bridge tokens 位置的 label 设为 -100（不参与 loss）\n\n搜索 Qwen2.5 tokenizer 文档、HuggingFace 相关代码。用中文回答，包含具体代码示例和 token 格式。",
+  "subagent_type": "general-purpose",
+  "run_in_background": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Qwen2.5 chat template 和数据格式调研",
+    "prompt": "调研 Qwen2.5 的 chat template 格式和多轮对话 tokenization 方式，以及在 turn 边界插入 bridge tokens 的数据处理方案。\n\n需要回答：\n1. Qwen2.5 的 chat template 格式：\n   - 特殊 token 列表（<|im_start|>, <|im_end|>, <|endoftext|> 等）\n   - 多轮对话的完整格式示例（system + user + assistant 多轮）\n   - tokenizer.apply_chat_template() 的输出格式\n2. 如何在 tokenized 序列中识别 turn 边界：\n   - 通过特殊 token ID 定位（<|im_start|> 和 <|im_end|> 的 token ID）\n   - 或通过 role 标记定位\n3. 在 turn 边界插入 bridge tokens 的具体方案：\n   - 方案A：在 tokenization 之前插入特殊占位符 token，然后在 embedding 层替换\n   - 方案B：在 tokenization 之后直接修改 input_ids 序列（插入 bridge token IDs）\n   - 方案C：在 embedding 层面操作（不修改 input_ids）\n4. 插入位置的选择：\n   - 在 <|im_end|> 之后、下一个 <|im_start|> 之前\n   - 在每个 turn 的开头（<|im_start|> 之后）\n   - 只在 assistant turn 的开头\n5. 数据 collator 的实现：批处理时如何处理不同长度的序列（bridge tokens 插入后长度变化）\n6. labels 的处理：bridge tokens 位置的 label 设为 -100（不参与 loss）\n\n搜索 Qwen2.5 tokenizer 文档、HuggingFace 相关代码。用中文回答，包含具体代码示例和 token 格式。",
+    "subagent_type": "general-purpose",
+    "run_in_background": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T05:19:47.272183+00:00_
+
+Async agent launched successfully.
+agentId: af46a4e3b0eb854e9 (internal ID - do not mention to user. Use SendMessage with to: 'af46a4e3b0eb854e9' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-tbab-multi-turn/c55f3af1-3f49-479b-ad0e-30d9ee82d99c/tasks/af46a4e3b0eb854e9.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T05:19:47.272390+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/artifacts/ 2>/dev/null || echo \"artifacts dir not found\"",
+  "description": "Check artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/artifacts/ 2>/dev/null || echo \"artifacts dir not found\"",
+    "description": "Check artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T05:19:47.272565+00:00_
+
+_project
+data_availability_report.md
+manifest.yaml
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T05:19:47.273368+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/artifacts/position_ids_architecture_report.md",
+  "content": "# TBAB 技术调研报告：Qwen2.5-7B Position IDs 操控与 Bridge Token 架构\n\n> 调研日期：2026-05-18\n> 模型：Qwen2.5-7B-Instruct (d_head=128, **rope_theta=1,000,000**, GQA 28H/4KV)\n\n---\n\n## 0. 关键发现摘要\n\n| 问题 | 结论 |\n|------|------|\n| 能否外部传入自定义 position_ids？ | **可以**，无需修改模型代码 |\n| position reset 有没有副作用？ | **有**，会触发 packed sequence 检测，阻断跨 turn attention |\n| 解决方案 | 传入预构建的 **4D attention mask** 绕过检测 |\n| rope_theta 实际值 | **1,000,000**（非 10000），已用大 base 扩展上下文 |\n| Bridge token 实现推荐 | **词表扩展 + PEFT trainable_token_indices**（MVP 路径） |\n| LoRA 配置推荐 | `target_modules=\"all-linear\"`, r=32, lora_alpha=64 |\n\n---\n\n## 1. Position IDs 操控\n\n### 1.1 源码位置\n\nQwen2.5 复用 Qwen2 架构（`model_type = \"qwen2\"`）：\n\n| 文件 | 路径 |\n|------|------|\n| 模型代码 | `transformers/models/qwen2/modeling_qwen2.py` |\n| 配置 | `transformers/models/qwen2/configuration_qwen2.py` |\n| RoPE 工具 | `transformers/modeling_rope_utils.py` |\n| Mask 工具 | `transformers/masking_utils.py` |\n\n### 1.2 RoPE 实现\n\n核心类 `Qwen2RotaryEmbedding`：\n\n```python\nclass Qwen2RotaryEmbedding(nn.Module):\n    def forward(self, x, position_ids):\n        # inv_freq: (d_head/2,) = (64,)\n        inv_freq_expanded = self.inv_freq[None, :, None].expand(batch, -1, 1)\n        position_ids_expanded = position_ids[:, None, :].float()\n        # freqs: (batch, seq_len, d_head/2)\n        freqs = (inv_freq_expanded @ position_ids_expanded).transpose(1, 2)\n        emb = torch.cat((freqs, freqs), dim=-1)  # (batch, seq_len, d_head)\n        cos = emb.cos() * self.attention_scaling\n        sin = emb.sin() * self.attention_scaling\n        return cos, sin\n```\n\n关键函数 `apply_rotary_pos_emb`：\n\n```python\ndef apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1):\n    cos = cos.unsqueeze(unsqueeze_dim)  # (batch, 1, seq_len, d_head)\n    sin = sin.unsqueeze(unsqueeze_dim)\n    q_embed = (q * cos) + (rotate_half(q) * sin)\n    k_embed = (k * cos) + (rotate_half(k) * sin)\n    return q_embed, k_embed\n```\n\n### 1.3 position_ids 传递链路\n\n```\nQwen2ForCausalLM.forward(position_ids=...)\n  └─ Qwen2Model.forward(position_ids=...)\n       ├─ if position_ids is None → 自动生成 arange(seq_len) + past_seen_tokens\n       ├─ position_embeddings = self.rotary_emb(hidden_states, position_ids)  # 计算一次\n       ├─ create_causal_mask(..., position_ids=position_ids)  ← ⚠️ 关键交互点\n       └─ for layer in self.layers:\n            layer(..., position_embeddings=(cos, sin))\n              └─ self.self_attn(..., position_embeddings=...)\n                   └─ apply_rotary_pos_emb(q, k, cos, sin)\n```\n\nRoPE 的 cos/sin 在 `Qwen2Model` 层面只计算一次，然后传递给所有 decoder layer。\n\n### 1.4 ⚠️ 关键风险：packed sequence 检测\n\n`create_causal_mask` 内部调用 `find_packed_sequence_indices(position_ids)`：\n\n```python\ndef find_packed_sequence_indices(position_ids):\n    first_dummy_value = position_ids[:, :1] - 1\n    position_diff = torch.diff(position_ids, prepend=first_dummy_value, dim=-1)\n    packed_sequence_mask = (position_diff != 1).cumsum(-1)\n    if (packed_sequence_mask[:, -1] == 0).all():\n        return None  # 正常递增，无需处理\n    return packed_sequence_mask  # 非递增 → 视为 packed sequences\n```\n\n当 position 从 n 跳回 0 时，`position_diff = -n != 1`，系统将其视为**独立序列边界**，生成 mask 阻止跨序列 attention。\n\n这意味着：**简单传入 turn-relative position_ids 会导致 turn 之间无法互相 attend**。\n\n### 1.5 解决方案：预构建 4D attention mask\n\n传入 4D attention mask（shape `[batch, 1, seq_len, seq_len]`）时，`create_causal_mask` 直接返回该 mask，跳过 packed sequence 检测：\n\n```python\ndef build_tbab_causal_mask(seq_len, device, dtype=torch.bfloat16):\n    \"\"\"标准 causal mask，允许所有 turn 互相 attend\"\"\"\n    mask = torch.zeros(1, 1, seq_len, seq_len, device=device, dtype=dtype)\n    causal = torch.triu(torch.ones(seq_len, seq_len, device=device), diagonal=1).bool()\n    mask.masked_fill_(causal, float('-inf'))\n    return mask\n\n# 使用\noutputs = model(\n    input_ids=input_ids,              # 或 inputs_embeds\n    position_ids=custom_position_ids, # turn-relative positions\n    attention_mask=build_tbab_causal_mask(seq_len, device),  # 4D mask\n    labels=labels,\n)\n```\n\n### 1.6 Qwen2.5-7B RoPE 参数（修正）\n\n| 参数 | 实际值 | 备注 |\n|------|--------|------|\n| rope_theta | **1,000,000** | 非 10000，用大 base 替代 YaRN/NTK |\n| head_dim | 128 | = 3584 / 28 |\n| num_attention_heads | 28 | |\n| num_key_value_heads | 4 | GQA |\n| max_position_embeddings | 32768 | |\n| rope_scaling | 无 | 默认 RoPE，无显式扩展 |\n\ninv_freq 计算：`inv_freq = 1.0 / (1000000.0 ** (arange(0, 128, 2) / 128))`\n\n> **对 TBAB 的影响**：rope_theta=1M 意味着高频分量衰减更慢，中频通道的\"关闭\"阈值对应的绝对 position 距离更大。需要重新评估频段恢复理论中的距离阈值。\n\n---\n\n## 2. Bridge Token 插入架构\n\n### 2.1 相关工作参考\n\n| 工作 | Token 类型 | 插入方式 | Position 处理 | Loss |\n|------|-----------|---------|--------------|------|\n| Prompt Tuning | Virtual tokens | Embedding 前置 | 递增 [0..V-1] | 不参与 |\n| Prefix Tuning | Virtual KV | 每层 KV 前置 | 绕过 position | 不参与 |\n| Pause Tokens (ICLR 2024) | `&lt;pause>` | 词表扩展，input_ids 插入 | 标准递增 | 不参与 |\n| Register Tokens (ICLR 2024) | `[reg]` | Patch embedding 后 | 与 [CLS] 一致 | 推理时丢弃 |\n| Latent Tokens (2025) | Learnable vectors | Embedding 周期插入 | 共享后续 verbal token 的 pos | 不参与 |\n| RMT (NeurIPS 2022) | Memory tokens | 序列首尾添加 | 标准递增 | 不参与 |\n\n### 2.2 两条实现路径\n\n#### 路径 A：词表扩展（MVP 推荐）\n\n在 tokenizer 中注册 bridge token，通过 input_ids 插入，利用 PEFT `trainable_token_indices` 训练。\n\n**优点**：与 HuggingFace Trainer/PEFT 无缝集成，自动保存/加载，代码量最少。\n**缺点**：bridge token 进入了 LM head 的输出空间（但可通过 loss mask 避免影响）。\n\n#### 路径 B：Embedding 层拼接\n\n用独立 `nn.Parameter` 维护 bridge embeddings，在 embedding 空间拼接。\n\n**优点**：完全隔离，不影响词表和 LM head。\n**缺点**：需要手动管理 position_ids/attention_mask/labels 对齐，保存/加载需额外代码。\n\n**MVP 推荐路径 A**，原因：实现简单，PEFT 原生支持，可快速验证核心假设。\n\n### 2.3 Embedding 初始化策略\n\n| 策略 | 做法 | 推荐度 |\n|------|------|--------|\n| 词表均值 + 扰动 | `mean(embed_tokens.weight) + N(0, 0.01)` | **主方案** |\n| Random | `N(0, 0.02)` | 消融对比 |\n| 复制 special token | 复制 `<\\|im_end\\|>` 的 embedding | 备选 |\n\n词表均值初始化将 bridge token 放在 embedding 空间的语义中心，训练更稳定。加微小扰动保证 K=4 个 token 有多样性。\n\n### 2.4 Bridge Tokens 不参与 Loss\n\n所有相关工作一致：bridge token 位置的 label 设为 -100。\n\n实现：在数据处理阶段直接构造 labels，bridge 位置填 -100，`CrossEntropyLoss(ignore_index=-100)` 自动跳过。\n\n### 2.5 Bridge Token Position 策略\n\n#### 推荐方案：Bridge 归属前一 Turn，Reset 在 Bridge 之后\n\n```\nTurn 1:  [<|im_start|> system \\n content <|im_end|>]  positions: [0, 1, 2, ..., n]\nBridge:  [bridge_0, bridge_1, bridge_2, bridge_3]      positions: [n+1, n+2, n+3, n+4]\nTurn 2:  [<|im_start|> user \\n content <|im_end|>]     positions: [0, 1, 2, ..., m]\nBridge:  [bridge_0, bridge_1, bridge_2, bridge_3]      positions: [m+1, m+2, m+3, m+4]\nTurn 3:  [<|im_start|> assistant \\n content <|im_end|>] positions: [0, 1, 2, ..., p]\n```\n\n**理由**：\n1. Bridge tokens 作为前一 turn 的\"总结延伸\"，与前 turn token 保持连续 RoPE 距离\n2. Bridge 可以通过 causal attention 看到前一 turn 全部内容\n3. Position reset 发生在 bridge 之后，后一 turn 的 token 到 bridge 的 RoPE 距离由 bridge 的绝对 position 和后一 turn token 的 position 共同决定（跨 turn 时通过 4D mask 保证可见性）\n4. Bridge tokens 之间保持正常顺序（n+1..n+4），可以学习不同角色\n\n#### 备选方案（消融对比）：Bridge 归属后一 Turn\n\n```\nTurn 1:  [... <|im_end|>]                              positions: [0, ..., n]\nBridge:  [bridge_0, bridge_1, bridge_2, bridge_3]      positions: [0, 1, 2, 3]\nTurn 2:  [<|im_start|> user ...]                       positions: [4, 5, ..., 4+m]\n```\n\nBridge 作为新 turn 的前缀，后续 content 从 position K 开始。后续 token 到 bridge 的 RoPE 距离很短（K=4），直接利用频段恢复。\n\n---\n\n## 3. LoRA 集成\n\n### 3.1 Qwen2.5-7B Linear Layer 命名\n\n| 模块 | Layer 名称 |\n|------|-----------|\n| Attention | `self_attn.q_proj`, `self_attn.k_proj`, `self_attn.v_proj`, `self_attn.o_proj` |\n| MLP (SwiGLU) | `mlp.gate_proj`, `mlp.up_proj`, `mlp.down_proj` |\n\n### 3.2 推荐 LoRA 配置\n\n```python\nlora_config = LoraConfig(\n    r=32,\n    lora_alpha=64,            # alpha = 2r\n    target_modules=\"all-linear\",  # 全部 7 个 linear layers\n    lora_dropout=0.05,\n    task_type=\"CAUSAL_LM\",\n    trainable_token_indices=bridge_token_ids,  # 只训练 4 个 bridge token 的 embedding\n)\n```\n\n| 配置 | target_modules | 可训练参数（r=32） |\n|------|---------------|------------------|\n| 仅 QV | `[\"q_proj\", \"v_proj\"]` | ~13M |\n| 全 Attention | `[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"]` | ~26M |\n| **全 Linear（推荐）** | `\"all-linear\"` | ~46M |\n\n全 linear 参数量仍 <1% 原模型，QLoRA 论文已证明其接近全量微调效果。\n\n### 3.3 Bridge Embeddings 与 LoRA 共存方案\n\n**推荐：PEFT `trainable_token_indices`（原生支持）**\n\n```python\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nfrom peft import LoraConfig, get_peft_model\n\nmodel = AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen2.5-7B-Instruct\", torch_dtype=torch.bfloat16)\ntokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen2.5-7B-Instruct\")\n\n# 注册 bridge tokens\nbridge_tokens = [\"<|bridge_0|>\", \"<|bridge_1|>\", \"<|bridge_2|>\", \"<|bridge_3|>\"]\ntokenizer.add_special_tokens({\"additional_special_tokens\": bridge_tokens})\nmodel.resize_token_embeddings(len(tokenizer))\nbridge_token_ids = tokenizer.convert_tokens_to_ids(bridge_tokens)\n\n# LoRA + trainable bridge tokens\nlora_config = LoraConfig(\n    r=32,\n    lora_alpha=64,\n    target_modules=\"all-linear\",\n    lora_dropout=0.05,\n    task_type=\"CAUSAL_LM\",\n    trainable_token_indices=bridge_token_ids,\n)\nmodel = get_peft_model(model, lora_config)\nmodel.print_trainable_parameters()\n```\n\nPEFT 内部通过 `TrainableTokensModel` 自动处理：\n- 被指定的 token indices 的 embedding `requires_grad=True`，其余冻结\n- 保存时只保存这 4 个 token 的 embedding delta，不保存整个 embedding 矩阵\n- 加载时自动恢复\n\n**对比 `modules_to_save=[\"embed_tokens\", \"lm_head\"]`**：会保存整个 embedding 矩阵（Qwen2.5 vocab ~152K，约 2GB），不推荐。\n\n### 3.4 保存与加载\n\n```python\n# 保存（LoRA weights + bridge token embeddings 自动一起保存）\nmodel.save_pretrained(\"output_dir\")\ntokenizer.save_pretrained(\"output_dir\")\n\n# 加载\nfrom peft import PeftModel\nbase_model = AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen2.5-7B-Instruct\")\ntokenizer = AutoTokenizer.from_pretrained(\"output_dir\")\nbase_model.resize_token_embeddings(len(tokenizer))  # 必须先 resize\nmodel = PeftModel.from_pretrained(base_model, \"output_dir\")\n```\n\n---\n\n## 4. 数据格式\n\n### 4.1 Qwen2.5 Chat Template (ChatML)\n\n特殊 token：\n\n| Token | ID | 用途 |\n|-------|------|------|\n| `<\\|endoftext\\|>` | 151643 | pad_token |\n| `<\\|im_start\\|>` | 151644 | turn 开始 |\n| `<\\|im_end\\|>` | 151645 | turn 结束，eos_token |\n\n多轮格式：\n```\n<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n第一轮用户输入<|im_end|>\n<|im_start|>assistant\n第一轮助手回复<|im_end|>\n<|im_start|>user\n第二轮用户输入<|im_end|>\n<|im_start|>assistant\n```\n\n### 4.2 Turn 边界识别\n\n```python\nIM_START_ID = 151644\nIM_END_ID = 151645\n\ndef find_turn_boundaries(input_ids):\n    \"\"\"返回每个 <|im_end|> 的位置索引\"\"\"\n    return [i for i, tid in enumerate(input_ids) if tid == IM_END_ID]\n```\n\n### 4.3 Bridge Token 插入方案\n\n**推荐：tokenization 之后修改 input_ids（方案 B）**\n\n先正常 tokenize，再在 `<|im_end|>` 之后插入 bridge token IDs：\n\n```python\ndef insert_bridge_tokens(input_ids, bridge_ids, im_end_id=151645):\n    \"\"\"在每个 <|im_end|> 之后插入 bridge tokens（最后一个 turn 除外）\"\"\"\n    new_ids = []\n    im_end_positions = [i for i, tid in enumerate(input_ids) if tid == im_end_id]\n    last_im_end = im_end_positions[-1] if im_end_positions else -1\n\n    for i, tid in enumerate(input_ids):\n        new_ids.append(tid)\n        if tid == im_end_id and i != last_im_end:\n            new_ids.extend(bridge_ids)\n    return new_ids\n```\n\n### 4.4 完整数据处理 Pipeline\n\n```python\nimport torch\nfrom torch.utils.data import Dataset\n\nIGNORE_INDEX = -100\nIM_START_ID = 151644\nIM_END_ID = 151645\n\nclass TBABDataset(Dataset):\n    def __init__(self, conversations, tokenizer, max_length=4096, num_bridge=4):\n        self.conversations = conversations\n        self.tokenizer = tokenizer\n        self.max_length = max_length\n        self.num_bridge = num_bridge\n        self.bridge_ids = tokenizer.convert_tokens_to_ids(\n            [f\"<|bridge_{i}|>\" for i in range(num_bridge)]\n        )\n\n    def __len__(self):\n        return len(self.conversations)\n\n    def __getitem__(self, idx):\n        conv = self.conversations[idx]\n\n        # Step 1: 正常 tokenize\n        input_ids = self.tokenizer.apply_chat_template(\n            conv, tokenize=True, add_generation_prompt=False\n        )\n\n        # Step 2: 解析 turn 结构\n        turns = self._split_into_turns(input_ids)\n        role_sequence = [msg[\"role\"] for msg in conv]\n\n        # Step 3: 插入 bridge tokens + 构造 position_ids + labels\n        new_input_ids = []\n        position_ids = []\n        labels = []\n\n        for turn_idx, turn_tokens in enumerate(turns):\n            is_assistant = (turn_idx < len(role_sequence)\n                           and role_sequence[turn_idx] == \"assistant\")\n\n            # Bridge tokens（非第一个 turn 且非最后一个 turn 之后）\n            if turn_idx > 0:\n                # Bridge tokens 归属后一 turn，position [0..K-1]\n                # 或归属前一 turn（见 §2.5 讨论）\n                for k, bid in enumerate(self.bridge_ids):\n                    new_input_ids.append(bid)\n                    position_ids.append(k)\n                    labels.append(IGNORE_INDEX)\n\n            # Turn content\n            turn_start_pos = self.num_bridge if turn_idx > 0 else 0\n            for j, tid in enumerate(turn_tokens):\n                new_input_ids.append(tid)\n                position_ids.append(turn_start_pos + j)\n                if is_assistant and tid != IM_START_ID:\n                    labels.append(tid)\n                else:\n                    labels.append(IGNORE_INDEX)\n\n        # Step 4: 截断\n        new_input_ids = new_input_ids[:self.max_length]\n        position_ids = position_ids[:self.max_length]\n        labels = labels[:self.max_length]\n        seq_len = len(new_input_ids)\n\n        # Step 5: 构建 4D causal mask（绕过 packed sequence 检测）\n        causal_mask = torch.zeros(1, seq_len, seq_len)\n        causal_upper = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).bool()\n        causal_mask.masked_fill_(causal_upper, float('-inf'))\n\n        return {\n            \"input_ids\": torch.tensor(new_input_ids, dtype=torch.long),\n            \"position_ids\": torch.tensor(position_ids, dtype=torch.long),\n            \"labels\": torch.tensor(labels, dtype=torch.long),\n            \"attention_mask\": causal_mask,  # 4D: [1, seq_len, seq_len]\n        }\n\n    def _split_into_turns(self, input_ids):\n        \"\"\"按 <|im_start|>...<|im_end|> 分割为 turn segments\"\"\"\n        turns = []\n        current = []\n        for tid in input_ids:\n            if tid == IM_START_ID and current:\n                turns.append(current)\n                current = [tid]\n            else:\n                current.append(tid)\n        if current:\n            turns.append(current)\n        return turns\n```\n\n### 4.5 Data Collator\n\n```python\nfrom dataclasses import dataclass\nfrom typing import Dict, List\n\n@dataclass\nclass TBABDataCollator:\n    tokenizer: object\n    max_length: int = 4096\n\n    def __call__(self, features: List[Dict]) -> Dict[str, torch.Tensor]:\n        batch_size = len(features)\n        max_len = min(\n            max(f[\"input_ids\"].shape[0] for f in features),\n            self.max_length\n        )\n\n        input_ids = torch.full((batch_size, max_len),\n                               self.tokenizer.pad_token_id, dtype=torch.long)\n        position_ids = torch.zeros(batch_size, max_len, dtype=torch.long)\n        labels = torch.full((batch_size, max_len), IGNORE_INDEX, dtype=torch.long)\n        # 4D mask: [batch, 1, max_len, max_len]\n        attention_mask = torch.full((batch_size, 1, max_len, max_len), float('-inf'))\n\n        for i, feat in enumerate(features):\n            sl = min(feat[\"input_ids\"].shape[0], max_len)\n            input_ids[i, :sl] = feat[\"input_ids\"][:sl]\n            position_ids[i, :sl] = feat[\"position_ids\"][:sl]\n            labels[i, :sl] = feat[\"labels\"][:sl]\n            # 复制 causal mask 到对应区域\n            attention_mask[i, 0, :sl, :sl] = feat[\"attention_mask\"][0, :sl, :sl]\n\n        return {\n            \"input_ids\": input_ids,\n            \"position_ids\": position_ids,\n            \"labels\": labels,\n            \"attention_mask\": attention_mask,\n        }\n```\n\n### 4.6 Labels 处理规则\n\n| 位置类型 | label |\n|---------|-------|\n| system turn | -100 |\n| user turn | -100 |\n| assistant turn content | 真实 token ID |\n| `<\\|im_start\\|>` + role | -100 |\n| `<\\|im_end\\|>` (assistant) | 保留（学习生成 EOS） |\n| bridge tokens | -100 |\n| padding | -100 |\n\n### 4.7 Position IDs 完整示例\n\n3-turn 对话（system + user + assistant），K=4，bridge 归属后一 turn 方案：\n\n```\nTokens:     [<|im_start|> system \\n content <|im_end|>]\nPositions:  [0            1      2 3...     n         ]\nLabels:     [-100         -100   ...        -100      ]\n\n            [bridge_0 bridge_1 bridge_2 bridge_3] [<|im_start|> user \\n content <|im_end|>]\n            [0        1        2        3       ] [4            5    6 7...     4+m       ]\n            [-100     -100     -100     -100    ] [-100         -100 ...       -100       ]\n\n            [bridge_0 bridge_1 bridge_2 bridge_3] [<|im_start|> assistant \\n content <|im_end|>]\n            [0        1        2        3       ] [4            5         6 7...     4+p       ]\n            [-100     -100     -100     -100    ] [-100         -100      ...tok...  tok       ]\n```\n\n---\n\n## 5. 训练集成\n\n### 5.1 完整训练脚本骨架\n\n```python\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer\nfrom peft import LoraConfig, get_peft_model\n\n# 1. 加载模型\nmodel = AutoModelForCausalLM.from_pretrained(\n    \"Qwen/Qwen2.5-7B-Instruct\",\n    torch_dtype=torch.bfloat16,\n    device_map=\"auto\",\n)\ntokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen2.5-7B-Instruct\")\n\n# 2. 注册 bridge tokens\nNUM_BRIDGE = 4\nbridge_tokens = [f\"<|bridge_{i}|>\" for i in range(NUM_BRIDGE)]\ntokenizer.add_special_tokens({\"additional_special_tokens\": bridge_tokens})\nmodel.resize_token_embeddings(len(tokenizer))\n\n# 初始化 bridge token embeddings（词表均值 + 扰动）\nwith torch.no_grad():\n    vocab_mean = model.model.embed_tokens.weight[:-NUM_BRIDGE].mean(dim=0)\n    for i in range(NUM_BRIDGE):\n        model.model.embed_tokens.weight[-(NUM_BRIDGE - i)] = \\\n            vocab_mean + torch.randn_like(vocab_mean) * 0.01\n\nbridge_token_ids = tokenizer.convert_tokens_to_ids(bridge_tokens)\n\n# 3. LoRA + trainable bridge tokens\nlora_config = LoraConfig(\n    r=32,\n    lora_alpha=64,\n    target_modules=\"all-linear\",\n    lora_dropout=0.05,\n    task_type=\"CAUSAL_LM\",\n    trainable_token_indices=bridge_token_ids,\n)\nmodel = get_peft_model(model, lora_config)\nmodel.print_trainable_parameters()\n\n# 4. 数据\ndataset = TBABDataset(conversations, tokenizer, max_length=4096, num_bridge=NUM_BRIDGE)\ncollator = TBABDataCollator(tokenizer=tokenizer, max_length=4096)\n\n# 5. 训练\ntraining_args = TrainingArguments(\n    output_dir=\"./tbab_output\",\n    per_device_train_batch_size=2,\n    gradient_accumulation_steps=8,\n    learning_rate=2e-4,\n    num_train_epochs=3,\n    lr_scheduler_type=\"cosine\",\n    bf16=True,\n    logging_steps=10,\n    save_steps=500,\n    remove_unused_columns=False,  # 保留 position_ids\n)\n\ntrainer = Trainer(\n    model=model,\n    args=training_args,\n    train_dataset=dataset,\n    data_collator=collator,\n)\ntrainer.train()\n\n# 6. 保存\nmodel.save_pretrained(\"./tbab_adapter\")\ntokenizer.save_pretrained(\"./tbab_adapter\")\n```\n\n### 5.2 关键注意事项\n\n1. **`remove_unused_columns=False`**：必须设置，否则 Trainer 自动移除 `position_ids`\n2. **4D attention mask**：必须传入，否则 position reset 触发 packed sequence 检测\n3. **Bridge token 初始化**：`resize_token_embeddings` 默认用 random init，需要手动覆盖为词表均值\n4. **`trainable_token_indices` 与 `modules_to_save`**：不能同时对 embed_tokens 使用两者，会报 ValueError\n\n---\n\n## 6. 潜在风险与注意事项\n\n### 6.1 rope_theta=1M 对频段恢复理论的影响\n\n原始分析假设 rope_theta=10000，但 Qwen2.5 使用 1,000,000。这意味着：\n- 高频分量衰减更慢，中频通道\"关闭\"对应的 position 距离更大\n- 频段恢复效果可能在更长的对话中才显著\n- **需要重新计算频段分析**：`inv_freq = 1/(1M^(2i/128))`，各频段的半波长和衰减曲线与 base=10000 时差异很大\n\n### 6.2 4D Attention Mask 的显存开销\n\n4D mask shape = `[batch, 1, seq_len, seq_len]`，当 seq_len=4096 时：\n- bf16: 4096^2 * 2 bytes = 32MB per sample\n- batch=2: 64MB\n\n对于长序列训练可能成为瓶颈。可考虑：\n- 使用 Flash Attention 2 的 block-sparse mask 替代\n- 检查是否可以修改 `find_packed_sequence_indices` 的判断逻辑（需要 monkey-patch transformers）\n\n### 6.3 KV Cache 推理兼容性\n\n推理时需要特殊处理：\n- 每个 turn 结束后插入 bridge tokens 并计算其 KV cache\n- 新 turn 的 position_ids 需要 reset\n- 需要自定义 `generate()` 逻辑或使用 `model.forward()` 手动解码\n\n### 6.4 梯度流\n\nbridge token embeddings 的梯度通过以下路径回传：\n```\nloss → logits → transformer layers → attention(Q, K_with_bridge, V_with_bridge) → bridge embeddings\n```\n需要验证梯度不为零且数值稳定（特别是只有 4 个参数时，梯度可能很大或很小）。\n\n### 6.5 FlashAttention 兼容性\n\nFlashAttention 2 对 4D custom attention mask 的支持取决于 transformers 版本。需要确认：\n- `transformers >= 4.43` 支持 FA2 + 4D mask\n- 或者禁用 FA2，使用 SDPA（`attn_implementation=\"sdpa\"`）\n\n---\n\n## 7. MVP 实现路径\n\n按最小改动量排序的实现步骤：\n\n### Phase 1: 验证 position_ids 操控（0.5 天）\n\n1. 加载 Qwen2.5-7B，构造一个简单的 2-turn 输入\n2. 传入 turn-relative position_ids + 4D causal mask\n3. 验证 forward pass 正常运行、logits 合理\n4. 对比标准 position_ids 的 logits 差异\n\n### Phase 2: 数据处理 pipeline（1 天）\n\n1. 实现 `TBABDataset`：chat template tokenization + bridge token 插入 + position_ids 构造\n2. 实现 `TBABDataCollator`：4D mask batch 处理\n3. 用小数据集验证 data loading 正确性\n\n### Phase 3: 训练（1 天）\n\n1. LoRA + trainable_token_indices 配置\n2. Bridge token embedding 初始化（词表均值）\n3. 小规模训练验证 loss 下降\n4. 检查 bridge token embedding 的梯度和更新\n\n### Phase 4: 评估与消融（2 天）\n\n1. 对比实验：有/无 bridge tokens、有/无 position reset\n2. 消融：bridge position 策略（归属前 turn vs 后 turn）\n3. 消融：bridge 数量（K=1,2,4,8）\n4. 频段分析：RoPE 频率响应在 reset 前后的变化\n\n---\n\n## 附录 A：参考资源\n\n- [Qwen2.5-7B-Instruct config.json](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/blob/main/config.json)\n- [modeling_qwen2.py](https://github.com/huggingface/transformers/blob/main/src/transformers/models/qwen2/modeling_qwen2.py)\n- [masking_utils.py](https://github.com/huggingface/transformers/blob/main/src/transformers/masking_utils.py)\n- [PEFT trainable_token_indices](https://github.com/huggingface/peft)\n- [Pause Tokens (ICLR 2024)](https://arxiv.org/abs/2310.02226)\n- [Register Tokens (ICLR 2024)](https://arxiv.org/abs/2309.16588)\n- [Latent Tokens (2025)](https://arxiv.org/html/2505.12629v1)\n- [Recurrent Memory Transformer (NeurIPS 2022)](https://github.com/booydar/LM-RMT)\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/artifacts/position_ids_architecture_report.md",
+    "content": "# TBAB 技术调研报告：Qwen2.5-7B Position IDs 操控与 Bridge Token 架构\n\n> 调研日期：2026-05-18\n> 模型：Qwen2.5-7B-Instruct (d_head=128, **rope_theta=1,000,000**, GQA 28H/4KV)\n\n---\n\n## 0. 关键发现摘要\n\n| 问题 | 结论 |\n|------|------|\n| 能否外部传入自定义 position_ids？ | **可以**，无需修改模型代码 |\n| position reset 有没有副作用？ | **有**，会触发 packed sequence 检测，阻断跨 turn attention |\n| 解决方案 | 传入预构建的 **4D attention mask** 绕过检测 |\n| rope_theta 实际值 | **1,000,000**（非 10000），已用大 base 扩展上下文 |\n| Bridge token 实现推荐 | **词表扩展 + PEFT trainable_token_indices**（MVP 路径） |\n| LoRA 配置推荐 | `target_modules=\"all-linear\"`, r=32, lora_alpha=64 |\n\n---\n\n## 1. Position IDs 操控\n\n### 1.1 源码位置\n\nQwen2.5 复用 Qwen2 架构（`model_type = \"qwen2\"`）：\n\n| 文件 | 路径 |\n|------|------|\n| 模型代码 | `transformers/models/qwen2/modeling_qwen2.py` |\n| 配置 | `transformers/models/qwen2/configuration_qwen2.py` |\n| RoPE 工具 | `transformers/modeling_rope_utils.py` |\n| Mask 工具 | `transformers/masking_utils.py` |\n\n### 1.2 RoPE 实现\n\n核心类 `Qwen2RotaryEmbedding`：\n\n```python\nclass Qwen2RotaryEmbedding(nn.Module):\n    def forward(self, x, position_ids):\n        # inv_freq: (d_head/2,) = (64,)\n        inv_freq_expanded = self.inv_freq[None, :, None].expand(batch, -1, 1)\n        position_ids_expanded = position_ids[:, None, :].float()\n        # freqs: (batch, seq_len, d_head/2)\n        freqs = (inv_freq_expanded @ position_ids_expanded).transpose(1, 2)\n        emb = torch.cat((freqs, freqs), dim=-1)  # (batch, seq_len, d_head)\n        cos = emb.cos() * self.attention_scaling\n        sin = emb.sin() * self.attention_scaling\n        return cos, sin\n```\n\n关键函数 `apply_rotary_pos_emb`：\n\n```python\ndef apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1):\n    cos = cos.unsqueeze(unsqueeze_dim)  # (batch, 1, seq_len, d_head)\n    sin = sin.unsqueeze(unsqueeze_dim)\n    q_embed = (q * cos) + (rotate_half(q) * sin)\n    k_embed = (k * cos) + (rotate_half(k) * sin)\n    return q_embed, k_embed\n```\n\n### 1.3 position_ids 传递链路\n\n```\nQwen2ForCausalLM.forward(position_ids=...)\n  └─ Qwen2Model.forward(position_ids=...)\n       ├─ if position_ids is None → 自动生成 arange(seq_len) + past_seen_tokens\n       ├─ position_embeddings = self.rotary_emb(hidden_states, position_ids)  # 计算一次\n       ├─ create_causal_mask(..., position_ids=position_ids)  ← ⚠️ 关键交互点\n       └─ for layer in self.layers:\n            layer(..., position_embeddings=(cos, sin))\n              └─ self.self_attn(..., position_embeddings=...)\n                   └─ apply_rotary_pos_emb(q, k, cos, sin)\n```\n\nRoPE 的 cos/sin 在 `Qwen2Model` 层面只计算一次，然后传递给所有 decoder layer。\n\n### 1.4 ⚠️ 关键风险：packed sequence 检测\n\n`create_causal_mask` 内部调用 `find_packed_sequence_indices(position_ids)`：\n\n```python\ndef find_packed_sequence_indices(position_ids):\n    first_dummy_value = position_ids[:, :1] - 1\n    position_diff = torch.diff(position_ids, prepend=first_dummy_value, dim=-1)\n    packed_sequence_mask = (position_diff != 1).cumsum(-1)\n    if (packed_sequence_mask[:, -1] == 0).all():\n        return None  # 正常递增，无需处理\n    return packed_sequence_mask  # 非递增 → 视为 packed sequences\n```\n\n当 position 从 n 跳回 0 时，`position_diff = -n != 1`，系统将其视为**独立序列边界**，生成 mask 阻止跨序列 attention。\n\n这意味着：**简单传入 turn-relative position_ids 会导致 turn 之间无法互相 attend**。\n\n### 1.5 解决方案：预构建 4D attention mask\n\n传入 4D attention mask（shape `[batch, 1, seq_len, seq_len]`）时，`create_causal_mask` 直接返回该 mask，跳过 packed sequence 检测：\n\n```python\ndef build_tbab_causal_mask(seq_len, device, dtype=torch.bfloat16):\n    \"\"\"标准 causal mask，允许所有 turn 互相 attend\"\"\"\n    mask = torch.zeros(1, 1, seq_len, seq_len, device=device, dtype=dtype)\n    causal = torch.triu(torch.ones(seq_len, seq_len, device=device), diagonal=1).bool()\n    mask.masked_fill_(causal, float('-inf'))\n    return mask\n\n# 使用\noutputs = model(\n    input_ids=input_ids,              # 或 inputs_embeds\n    position_ids=custom_position_ids, # turn-relative positions\n    attention_mask=build_tbab_causal_mask(seq_len, device),  # 4D mask\n    labels=labels,\n)\n```\n\n### 1.6 Qwen2.5-7B RoPE 参数（修正）\n\n| 参数 | 实际值 | 备注 |\n|------|--------|------|\n| rope_theta | **1,000,000** | 非 10000，用大 base 替代 YaRN/NTK |\n| head_dim | 128 | = 3584 / 28 |\n| num_attention_heads | 28 | |\n| num_key_value_heads | 4 | GQA |\n| max_position_embeddings | 32768 | |\n| rope_scaling | 无 | 默认 RoPE，无显式扩展 |\n\ninv_freq 计算：`inv_freq = 1.0 / (1000000.0 ** (arange(0, 128, 2) / 128))`\n\n> **对 TBAB 的影响**：rope_theta=1M 意味着高频分量衰减更慢，中频通道的\"关闭\"阈值对应的绝对 position 距离更大。需要重新评估频段恢复理论中的距离阈值。\n\n---\n\n## 2. Bridge Token 插入架构\n\n### 2.1 相关工作参考\n\n| 工作 | Token 类型 | 插入方式 | Position 处理 | Loss |\n|------|-----------|---------|--------------|------|\n| Prompt Tuning | Virtual tokens | Embedding 前置 | 递增 [0..V-1] | 不参与 |\n| Prefix Tuning | Virtual KV | 每层 KV 前置 | 绕过 position | 不参与 |\n| Pause Tokens (ICLR 2024) | `&lt;pause>` | 词表扩展，input_ids 插入 | 标准递增 | 不参与 |\n| Register Tokens (ICLR 2024) | `[reg]` | Patch embedding 后 | 与 [CLS] 一致 | 推理时丢弃 |\n| Latent Tokens (2025) | Learnable vectors | Embedding 周期插入 | 共享后续 verbal token 的 pos | 不参与 |\n| RMT (NeurIPS 2022) | Memory tokens | 序列首尾添加 | 标准递增 | 不参与 |\n\n### 2.2 两条实现路径\n\n#### 路径 A：词表扩展（MVP 推荐）\n\n在 tokenizer 中注册 bridge token，通过 input_ids 插入，利用 PEFT `trainable_token_indices` 训练。\n\n**优点**：与 HuggingFace Trainer/PEFT 无缝集成，自动保存/加载，代码量最少。\n**缺点**：bridge token 进入了 LM head 的输出空间（但可通过 loss mask 避免影响）。\n\n#### 路径 B：Embedding 层拼接\n\n用独立 `nn.Parameter` 维护 bridge embeddings，在 embedding 空间拼接。\n\n**优点**：完全隔离，不影响词表和 LM head。\n**缺点**：需要手动管理 position_ids/attention_mask/labels 对齐，保存/加载需额外代码。\n\n**MVP 推荐路径 A**，原因：实现简单，PEFT 原生支持，可快速验证核心假设。\n\n### 2.3 Embedding 初始化策略\n\n| 策略 | 做法 | 推荐度 |\n|------|------|--------|\n| 词表均值 + 扰动 | `mean(embed_tokens.weight) + N(0, 0.01)` | **主方案** |\n| Random | `N(0, 0.02)` | 消融对比 |\n| 复制 special token | 复制 `<\\|im_end\\|>` 的 embedding | 备选 |\n\n词表均值初始化将 bridge token 放在 embedding 空间的语义中心，训练更稳定。加微小扰动保证 K=4 个 token 有多样性。\n\n### 2.4 Bridge Tokens 不参与 Loss\n\n所有相关工作一致：bridge token 位置的 label 设为 -100。\n\n实现：在数据处理阶段直接构造 labels，bridge 位置填 -100，`CrossEntropyLoss(ignore_index=-100)` 自动跳过。\n\n### 2.5 Bridge Token Position 策略\n\n#### 推荐方案：Bridge 归属前一 Turn，Reset 在 Bridge 之后\n\n```\nTurn 1:  [<|im_start|> system \\n content <|im_end|>]  positions: [0, 1, 2, ..., n]\nBridge:  [bridge_0, bridge_1, bridge_2, bridge_3]      positions: [n+1, n+2, n+3, n+4]\nTurn 2:  [<|im_start|> user \\n content <|im_end|>]     positions: [0, 1, 2, ..., m]\nBridge:  [bridge_0, bridge_1, bridge_2, bridge_3]      positions: [m+1, m+2, m+3, m+4]\nTurn 3:  [<|im_start|> assistant \\n content <|im_end|>] positions: [0, 1, 2, ..., p]\n```\n\n**理由**：\n1. Bridge tokens 作为前一 turn 的\"总结延伸\"，与前 turn token 保持连续 RoPE 距离\n2. Bridge 可以通过 causal attention 看到前一 turn 全部内容\n3. Position reset 发生在 bridge 之后，后一 turn 的 token 到 bridge 的 RoPE 距离由 bridge 的绝对 position 和后一 turn token 的 position 共同决定（跨 turn 时通过 4D mask 保证可见性）\n4. Bridge tokens 之间保持正常顺序（n+1..n+4），可以学习不同角色\n\n#### 备选方案（消融对比）：Bridge 归属后一 Turn\n\n```\nTurn 1:  [... <|im_end|>]                              positions: [0, ..., n]\nBridge:  [bridge_0, bridge_1, bridge_2, bridge_3]      positions: [0, 1, 2, 3]\nTurn 2:  [<|im_start|> user ...]                       positions: [4, 5, ..., 4+m]\n```\n\nBridge 作为新 turn 的前缀，后续 content 从 position K 开始。后续 token 到 bridge 的 RoPE 距离很短（K=4），直接利用频段恢复。\n\n---\n\n## 3. LoRA 集成\n\n### 3.1 Qwen2.5-7B Linear Layer 命名\n\n| 模块 | Layer 名称 |\n|------|-----------|\n| Attention | `self_attn.q_proj`, `self_attn.k_proj`, `self_attn.v_proj`, `self_attn.o_proj` |\n| MLP (SwiGLU) | `mlp.gate_proj`, `mlp.up_proj`, `mlp.down_proj` |\n\n### 3.2 推荐 LoRA 配置\n\n```python\nlora_config = LoraConfig(\n    r=32,\n    lora_alpha=64,            # alpha = 2r\n    target_modules=\"all-linear\",  # 全部 7 个 linear layers\n    lora_dropout=0.05,\n    task_type=\"CAUSAL_LM\",\n    trainable_token_indices=bridge_token_ids,  # 只训练 4 个 bridge token 的 embedding\n)\n```\n\n| 配置 | target_modules | 可训练参数（r=32） |\n|------|---------------|------------------|\n| 仅 QV | `[\"q_proj\", \"v_proj\"]` | ~13M |\n| 全 Attention | `[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"]` | ~26M |\n| **全 Linear（推荐）** | `\"all-linear\"` | ~46M |\n\n全 linear 参数量仍 <1% 原模型，QLoRA 论文已证明其接近全量微调效果。\n\n### 3.3 Bridge Embeddings 与 LoRA 共存方案\n\n**推荐：PEFT `trainable_token_indices`（原生支持）**\n\n```python\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nfrom peft import LoraConfig, get_peft_model\n\nmodel = AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen2.5-7B-Instruct\", torch_dtype=torch.bfloat16)\ntokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen2.5-7B-Instruct\")\n\n# 注册 bridge tokens\nbridge_tokens = [\"<|bridge_0|>\", \"<|bridge_1|>\", \"<|bridge_2|>\", \"<|bridge_3|>\"]\ntokenizer.add_special_tokens({\"additional_special_tokens\": bridge_tokens})\nmodel.resize_token_embeddings(len(tokenizer))\nbridge_token_ids = tokenizer.convert_tokens_to_ids(bridge_tokens)\n\n# LoRA + trainable bridge tokens\nlora_config = LoraConfig(\n    r=32,\n    lora_alpha=64,\n    target_modules=\"all-linear\",\n    lora_dropout=0.05,\n    task_type=\"CAUSAL_LM\",\n    trainable_token_indices=bridge_token_ids,\n)\nmodel = get_peft_model(model, lora_config)\nmodel.print_trainable_parameters()\n```\n\nPEFT 内部通过 `TrainableTokensModel` 自动处理：\n- 被指定的 token indices 的 embedding `requires_grad=True`，其余冻结\n- 保存时只保存这 4 个 token 的 embedding delta，不保存整个 embedding 矩阵\n- 加载时自动恢复\n\n**对比 `modules_to_save=[\"embed_tokens\", \"lm_head\"]`**：会保存整个 embedding 矩阵（Qwen2.5 vocab ~152K，约 2GB），不推荐。\n\n### 3.4 保存与加载\n\n```python\n# 保存（LoRA weights + bridge token embeddings 自动一起保存）\nmodel.save_pretrained(\"output_dir\")\ntokenizer.save_pretrained(\"output_dir\")\n\n# 加载\nfrom peft import PeftModel\nbase_model = AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen2.5-7B-Instruct\")\ntokenizer = AutoTokenizer.from_pretrained(\"output_dir\")\nbase_model.resize_token_embeddings(len(tokenizer))  # 必须先 resize\nmodel = PeftModel.from_pretrained(base_model, \"output_dir\")\n```\n\n---\n\n## 4. 数据格式\n\n### 4.1 Qwen2.5 Chat Template (ChatML)\n\n特殊 token：\n\n| Token | ID | 用途 |\n|-------|------|------|\n| `<\\|endoftext\\|>` | 151643 | pad_token |\n| `<\\|im_start\\|>` | 151644 | turn 开始 |\n| `<\\|im_end\\|>` | 151645 | turn 结束，eos_token |\n\n多轮格式：\n```\n<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n第一轮用户输入<|im_end|>\n<|im_start|>assistant\n第一轮助手回复<|im_end|>\n<|im_start|>user\n第二轮用户输入<|im_end|>\n<|im_start|>assistant\n```\n\n### 4.2 Turn 边界识别\n\n```python\nIM_START_ID = 151644\nIM_END_ID = 151645\n\ndef find_turn_boundaries(input_ids):\n    \"\"\"返回每个 <|im_end|> 的位置索引\"\"\"\n    return [i for i, tid in enumerate(input_ids) if tid == IM_END_ID]\n```\n\n### 4.3 Bridge Token 插入方案\n\n**推荐：tokenization 之后修改 input_ids（方案 B）**\n\n先正常 tokenize，再在 `<|im_end|>` 之后插入 bridge token IDs：\n\n```python\ndef insert_bridge_tokens(input_ids, bridge_ids, im_end_id=151645):\n    \"\"\"在每个 <|im_end|> 之后插入 bridge tokens（最后一个 turn 除外）\"\"\"\n    new_ids = []\n    im_end_positions = [i for i, tid in enumerate(input_ids) if tid == im_end_id]\n    last_im_end = im_end_positions[-1] if im_end_positions else -1\n\n    for i, tid in enumerate(input_ids):\n        new_ids.append(tid)\n        if tid == im_end_id and i != last_im_end:\n            new_ids.extend(bridge_ids)\n    return new_ids\n```\n\n### 4.4 完整数据处理 Pipeline\n\n```python\nimport torch\nfrom torch.utils.data import Dataset\n\nIGNORE_INDEX = -100\nIM_START_ID = 151644\nIM_END_ID = 151645\n\nclass TBABDataset(Dataset):\n    def __init__(self, conversations, tokenizer, max_length=4096, num_bridge=4):\n        self.conversations = conversations\n        self.tokenizer = tokenizer\n        self.max_length = max_length\n        self.num_bridge = num_bridge\n        self.bridge_ids = tokenizer.convert_tokens_to_ids(\n            [f\"<|bridge_{i}|>\" for i in range(num_bridge)]\n        )\n\n    def __len__(self):\n        return len(self.conversations)\n\n    def __getitem__(self, idx):\n        conv = self.conversations[idx]\n\n        # Step 1: 正常 tokenize\n        input_ids = self.tokenizer.apply_chat_template(\n            conv, tokenize=True, add_generation_prompt=False\n        )\n\n        # Step 2: 解析 turn 结构\n        turns = self._split_into_turns(input_ids)\n        role_sequence = [msg[\"role\"] for msg in conv]\n\n        # Step 3: 插入 bridge tokens + 构造 position_ids + labels\n        new_input_ids = []\n        position_ids = []\n        labels = []\n\n        for turn_idx, turn_tokens in enumerate(turns):\n            is_assistant = (turn_idx < len(role_sequence)\n                           and role_sequence[turn_idx] == \"assistant\")\n\n            # Bridge tokens（非第一个 turn 且非最后一个 turn 之后）\n            if turn_idx > 0:\n                # Bridge tokens 归属后一 turn，position [0..K-1]\n                # 或归属前一 turn（见 §2.5 讨论）\n                for k, bid in enumerate(self.bridge_ids):\n                    new_input_ids.append(bid)\n                    position_ids.append(k)\n                    labels.append(IGNORE_INDEX)\n\n            # Turn content\n            turn_start_pos = self.num_bridge if turn_idx > 0 else 0\n            for j, tid in enumerate(turn_tokens):\n                new_input_ids.append(tid)\n                position_ids.append(turn_start_pos + j)\n                if is_assistant and tid != IM_START_ID:\n                    labels.append(tid)\n                else:\n                    labels.append(IGNORE_INDEX)\n\n        # Step 4: 截断\n        new_input_ids = new_input_ids[:self.max_length]\n        position_ids = position_ids[:self.max_length]\n        labels = labels[:self.max_length]\n        seq_len = len(new_input_ids)\n\n        # Step 5: 构建 4D causal mask（绕过 packed sequence 检测）\n        causal_mask = torch.zeros(1, seq_len, seq_len)\n        causal_upper = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).bool()\n        causal_mask.masked_fill_(causal_upper, float('-inf'))\n\n        return {\n            \"input_ids\": torch.tensor(new_input_ids, dtype=torch.long),\n            \"position_ids\": torch.tensor(position_ids, dtype=torch.long),\n            \"labels\": torch.tensor(labels, dtype=torch.long),\n            \"attention_mask\": causal_mask,  # 4D: [1, seq_len, seq_len]\n        }\n\n    def _split_into_turns(self, input_ids):\n        \"\"\"按 <|im_start|>...<|im_end|> 分割为 turn segments\"\"\"\n        turns = []\n        current = []\n        for tid in input_ids:\n            if tid == IM_START_ID and current:\n                turns.append(current)\n                current = [tid]\n            else:\n                current.append(tid)\n        if current:\n            turns.append(current)\n        return turns\n```\n\n### 4.5 Data Collator\n\n```python\nfrom dataclasses import dataclass\nfrom typing import Dict, List\n\n@dataclass\nclass TBABDataCollator:\n    tokenizer: object\n    max_length: int = 4096\n\n    def __call__(self, features: List[Dict]) -> Dict[str, torch.Tensor]:\n        batch_size = len(features)\n        max_len = min(\n            max(f[\"input_ids\"].shape[0] for f in features),\n            self.max_length\n        )\n\n        input_ids = torch.full((batch_size, max_len),\n                               self.tokenizer.pad_token_id, dtype=torch.long)\n        position_ids = torch.zeros(batch_size, max_len, dtype=torch.long)\n        labels = torch.full((batch_size, max_len), IGNORE_INDEX, dtype=torch.long)\n        # 4D mask: [batch, 1, max_len, max_len]\n        attention_mask = torch.full((batch_size, 1, max_len, max_len), float('-inf'))\n\n        for i, feat in enumerate(features):\n            sl = min(feat[\"input_ids\"].shape[0], max_len)\n            input_ids[i, :sl] = feat[\"input_ids\"][:sl]\n            position_ids[i, :sl] = feat[\"position_ids\"][:sl]\n            labels[i, :sl] = feat[\"labels\"][:sl]\n            # 复制 causal mask 到对应区域\n            attention_mask[i, 0, :sl, :sl] = feat[\"attention_mask\"][0, :sl, :sl]\n\n        return {\n            \"input_ids\": input_ids,\n            \"position_ids\": position_ids,\n            \"labels\": labels,\n            \"attention_mask\": attention_mask,\n        }\n```\n\n### 4.6 Labels 处理规则\n\n| 位置类型 | label |\n|---------|-------|\n| system turn | -100 |\n| user turn | -100 |\n| assistant turn content | 真实 token ID |\n| `<\\|im_start\\|>` + role | -100 |\n| `<\\|im_end\\|>` (assistant) | 保留（学习生成 EOS） |\n| bridge tokens | -100 |\n| padding | -100 |\n\n### 4.7 Position IDs 完整示例\n\n3-turn 对话（system + user + assistant），K=4，bridge 归属后一 turn 方案：\n\n```\nTokens:     [<|im_start|> system \\n content <|im_end|>]\nPositions:  [0            1      2 3...     n         ]\nLabels:     [-100         -100   ...        -100      ]\n\n            [bridge_0 bridge_1 bridge_2 bridge_3] [<|im_start|> user \\n content <|im_end|>]\n            [0        1        2        3       ] [4            5    6 7...     4+m       ]\n            [-100     -100     -100     -100    ] [-100         -100 ...       -100       ]\n\n            [bridge_0 bridge_1 bridge_2 bridge_3] [<|im_start|> assistant \\n content <|im_end|>]\n            [0        1        2        3       ] [4            5         6 7...     4+p       ]\n            [-100     -100     -100     -100    ] [-100         -100      ...tok...  tok       ]\n```\n\n---\n\n## 5. 训练集成\n\n### 5.1 完整训练脚本骨架\n\n```python\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer\nfrom peft import LoraConfig, get_peft_model\n\n# 1. 加载模型\nmodel = AutoModelForCausalLM.from_pretrained(\n    \"Qwen/Qwen2.5-7B-Instruct\",\n    torch_dtype=torch.bfloat16,\n    device_map=\"auto\",\n)\ntokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen2.5-7B-Instruct\")\n\n# 2. 注册 bridge tokens\nNUM_BRIDGE = 4\nbridge_tokens = [f\"<|bridge_{i}|>\" for i in range(NUM_BRIDGE)]\ntokenizer.add_special_tokens({\"additional_special_tokens\": bridge_tokens})\nmodel.resize_token_embeddings(len(tokenizer))\n\n# 初始化 bridge token embeddings（词表均值 + 扰动）\nwith torch.no_grad():\n    vocab_mean = model.model.embed_tokens.weight[:-NUM_BRIDGE].mean(dim=0)\n    for i in range(NUM_BRIDGE):\n        model.model.embed_tokens.weight[-(NUM_BRIDGE - i)] = \\\n            vocab_mean + torch.randn_like(vocab_mean) * 0.01\n\nbridge_token_ids = tokenizer.convert_tokens_to_ids(bridge_tokens)\n\n# 3. LoRA + trainable bridge tokens\nlora_config = LoraConfig(\n    r=32,\n    lora_alpha=64,\n    target_modules=\"all-linear\",\n    lora_dropout=0.05,\n    task_type=\"CAUSAL_LM\",\n    trainable_token_indices=bridge_token_ids,\n)\nmodel = get_peft_model(model, lora_config)\nmodel.print_trainable_parameters()\n\n# 4. 数据\ndataset = TBABDataset(conversations, tokenizer, max_length=4096, num_bridge=NUM_BRIDGE)\ncollator = TBABDataCollator(tokenizer=tokenizer, max_length=4096)\n\n# 5. 训练\ntraining_args = TrainingArguments(\n    output_dir=\"./tbab_output\",\n    per_device_train_batch_size=2,\n    gradient_accumulation_steps=8,\n    learning_rate=2e-4,\n    num_train_epochs=3,\n    lr_scheduler_type=\"cosine\",\n    bf16=True,\n    logging_steps=10,\n    save_steps=500,\n    remove_unused_columns=False,  # 保留 position_ids\n)\n\ntrainer = Trainer(\n    model=model,\n    args=training_args,\n    train_dataset=dataset,\n    data_collator=collator,\n)\ntrainer.train()\n\n# 6. 保存\nmodel.save_pretrained(\"./tbab_adapter\")\ntokenizer.save_pretrained(\"./tbab_adapter\")\n```\n\n### 5.2 关键注意事项\n\n1. **`remove_unused_columns=False`**：必须设置，否则 Trainer 自动移除 `position_ids`\n2. **4D attention mask**：必须传入，否则 position reset 触发 packed sequence 检测\n3. **Bridge token 初始化**：`resize_token_embeddings` 默认用 random init，需要手动覆盖为词表均值\n4. **`trainable_token_indices` 与 `modules_to_save`**：不能同时对 embed_tokens 使用两者，会报 ValueError\n\n---\n\n## 6. 潜在风险与注意事项\n\n### 6.1 rope_theta=1M 对频段恢复理论的影响\n\n原始分析假设 rope_theta=10000，但 Qwen2.5 使用 1,000,000。这意味着：\n- 高频分量衰减更慢，中频通道\"关闭\"对应的 position 距离更大\n- 频段恢复效果可能在更长的对话中才显著\n- **需要重新计算频段分析**：`inv_freq = 1/(1M^(2i/128))`，各频段的半波长和衰减曲线与 base=10000 时差异很大\n\n### 6.2 4D Attention Mask 的显存开销\n\n4D mask shape = `[batch, 1, seq_len, seq_len]`，当 seq_len=4096 时：\n- bf16: 4096^2 * 2 bytes = 32MB per sample\n- batch=2: 64MB\n\n对于长序列训练可能成为瓶颈。可考虑：\n- 使用 Flash Attention 2 的 block-sparse mask 替代\n- 检查是否可以修改 `find_packed_sequence_indices` 的判断逻辑（需要 monkey-patch transformers）\n\n### 6.3 KV Cache 推理兼容性\n\n推理时需要特殊处理：\n- 每个 turn 结束后插入 bridge tokens 并计算其 KV cache\n- 新 turn 的 position_ids 需要 reset\n- 需要自定义 `generate()` 逻辑或使用 `model.forward()` 手动解码\n\n### 6.4 梯度流\n\nbridge token embeddings 的梯度通过以下路径回传：\n```\nloss → logits → transformer layers → attention(Q, K_with_bridge, V_with_bridge) → bridge embeddings\n```\n需要验证梯度不为零且数值稳定（特别是只有 4 个参数时，梯度可能很大或很小）。\n\n### 6.5 FlashAttention 兼容性\n\nFlashAttention 2 对 4D custom attention mask 的支持取决于 transformers 版本。需要确认：\n- `transformers >= 4.43` 支持 FA2 + 4D mask\n- 或者禁用 FA2，使用 SDPA（`attn_implementation=\"sdpa\"`）\n\n---\n\n## 7. MVP 实现路径\n\n按最小改动量排序的实现步骤：\n\n### Phase 1: 验证 position_ids 操控（0.5 天）\n\n1. 加载 Qwen2.5-7B，构造一个简单的 2-turn 输入\n2. 传入 turn-relative position_ids + 4D causal mask\n3. 验证 forward pass 正常运行、logits 合理\n4. 对比标准 position_ids 的 logits 差异\n\n### Phase 2: 数据处理 pipeline（1 天）\n\n1. 实现 `TBABDataset`：chat template tokenization + bridge token 插入 + position_ids 构造\n2. 实现 `TBABDataCollator`：4D mask batch 处理\n3. 用小数据集验证 data loading 正确性\n\n### Phase 3: 训练（1 天）\n\n1. LoRA + trainable_token_indices 配置\n2. Bridge token embedding 初始化（词表均值）\n3. 小规模训练验证 loss 下降\n4. 检查 bridge token embedding 的梯度和更新\n\n### Phase 4: 评估与消融（2 天）\n\n1. 对比实验：有/无 bridge tokens、有/无 position reset\n2. 消融：bridge position 策略（归属前 turn vs 后 turn）\n3. 消融：bridge 数量（K=1,2,4,8）\n4. 频段分析：RoPE 频率响应在 reset 前后的变化\n\n---\n\n## 附录 A：参考资源\n\n- [Qwen2.5-7B-Instruct config.json](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/blob/main/config.json)\n- [modeling_qwen2.py](https://github.com/huggingface/transformers/blob/main/src/transformers/models/qwen2/modeling_qwen2.py)\n- [masking_utils.py](https://github.com/huggingface/transformers/blob/main/src/transformers/masking_utils.py)\n- [PEFT trainable_token_indices](https://github.com/huggingface/peft)\n- [Pause Tokens (ICLR 2024)](https://arxiv.org/abs/2310.02226)\n- [Register Tokens (ICLR 2024)](https://arxiv.org/abs/2309.16588)\n- [Latent Tokens (2025)](https://arxiv.org/html/2505.12629v1)\n- [Recurrent Memory Transformer (NeurIPS 2022)](https://github.com/booydar/LM-RMT)\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T05:19:47.273855+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/artifacts/position_ids_architecture_report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T05:19:47.274005+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "position_ids_architecture_report",
+  "type": "report",
+  "description": "Qwen2.5-7B position_ids 操控 + TBAB bridge token 架构技术调研报告，含 RoPE 源码分析、4D attention mask 方案、LoRA 集成、数据处理 pipeline 和 MVP 实现路径",
+  "project": "tbab_multi_turn",
+  "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/artifacts/position_ids_architecture_report.md",
+  "tags": "['technical-report', 'position-ids', 'rope', 'bridge-tokens', 'lora', 'architecture']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "position_ids_architecture_report",
+    "type": "report",
+    "description": "Qwen2.5-7B position_ids 操控 + TBAB bridge token 架构技术调研报告，含 RoPE 源码分析、4D attention mask 方案、LoRA 集成、数据处理 pipeline 和 MVP 实现路径",
+    "project": "tbab_multi_turn",
+    "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/artifacts/position_ids_architecture_report.md",
+    "tags": "['technical-report', 'position-ids', 'rope', 'bridge-tokens', 'lora', 'architecture']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T05:19:47.274163+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_52d627\", \"name\": \"position_ids_architecture_report\", \"type\": \"report\", \"description\": \"Qwen2.5-7B position_ids 操控 + TBAB bridge token 架构技术调研报告，含 RoPE 源码分析、4D attention mask 方案、LoRA 集成、数据处理 pipeline 和 MVP 实现路径\", \"path\": \"projects/tbab_multi_turn/artifacts/_project/report/position_ids_architecture_report.md\", \"url\": null, \"project\": \"tbab_multi_turn\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T05:19:37.717330+00:00\", \"tags\": [\"technical-report\", \"position-ids\", \"rope\", \"bridge-tokens\", \"lora\", \"architecture\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/tbab_multi_turn/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_position-ids-architecture_20260518T051041",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-18T05:19:47.274332+00:00_
+
+报告已写入 `artifacts/position_ids_architecture_report.md` 并注册。
+
+核心结论：
+
+1. **position_ids 可以自定义传入**，无需修改模型代码，但**必须同时传入 4D attention mask**绕过 packed sequence 检测（否则 turn 间 attention 被阻断）
+
+2. **rope_theta 实际是 1,000,000**（非 10000），频段恢复理论的距离阈值需要重新计算
+
+3. **MVP 实现路径**：词表扩展 + PEFT `trainable_token_indices`（原生支持 bridge token embedding 训练和序列化），LoRA `target_modules="all-linear"`, r=32, lora_alpha=64
+
+4. **Bridge token position 推荐**：归属前一 turn 末尾（position 继续累加），reset 在 bridge 之后发生
+
+5. **主要风险**：4D mask 的显存开销（seq_len^2）、FlashAttention 兼容性、KV cache 推理需要自定义 generate 逻辑
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_position-ids-architecture_20260518T051041"
+}
+```
+
+</details>
+
+---

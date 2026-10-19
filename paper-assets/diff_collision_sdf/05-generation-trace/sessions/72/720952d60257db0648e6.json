@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "720952d60257db0648e6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval oracle pi05 final",
+  "task_key": "worker_eval_oracle-pi05-final_20260529T012954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_oracle-pi05-final_20260529T012954_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "b30f63739282c7fa0adae6a9a25e9f79d6a79859e97fff08247db5fec6cea80e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Oracle Pi0.5 Eval 状态：3/4 tasks 完成，Task 3 进行中\n\n**GPU**: PID 66747, 8991 MiB — eval 仍在运行\n**Task 3 (BBQ)**: Episode 10/40，预计还需 ~5-6 分钟\n\n### 已完成结果\n\n| Task | TSR | CAR | LoRA s0 baseline CAR | Δ CAR |\n|------|-----|-----|---------------------|-------|\n| 0 (OJ) | 25.0% | 50.0% | 68% | **-18%** |\n| 1 (CP) | 90.0% | 75.0% | 74% | **+1%** |\n| 2 (Milk) | 27.5% | 70.0% | 66% | **+4%** |\n| 3 (BBQ) | *running* | *running* | 20% | — |\n\n### 初步观察\n\n- **3-task partial mean**: TSR=47.5%, CAR=65.0%\n- CP 和 Milk 的 CAR 持平或略优于 baseline，OJ 明显下降\n- Task 3 episode 10 已有 1 个 success + 1 collision，BBQ baseline CAR 只有 20%，oracle 版本表现待定\n- 等 Task 3 完成后可算 overall；按当前节奏约 09:35 左右结束"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-oracle-pi05-final.md"
+}

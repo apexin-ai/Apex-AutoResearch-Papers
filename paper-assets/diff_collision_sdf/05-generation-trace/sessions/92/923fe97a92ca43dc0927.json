@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "923fe97a92ca43dc0927",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops sync chunking fix 35807",
+  "task_key": "worker_ops_sync_chunking_fix_35807_20260522T103908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_chunking_fix_35807_20260522T103908.log",
+    "occurrence": 1,
+    "bytes": 627604,
+    "sha256": "ef31cae48441e17c9cbff990f91060b8ca12f510ecfc3c7ae6cc57524595d31a"
+  },
+  "statistics": {
+    "messages": 221,
+    "user_turns": 1,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 63,
+      "tool_call": 75,
+      "tool_result": 75,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 159,
+      "chunks": [
+        {
+          "path": "923fe97a92ca43dc0927-part-0001.json",
+          "message_count": 159
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 62,
+      "chunks": [
+        {
+          "path": "923fe97a92ca43dc0927-part-0001.json",
+          "message_count": 21
+        },
+        {
+          "path": "923fe97a92ca43dc0927-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-sync-chunking-fix-35807.md"
+}

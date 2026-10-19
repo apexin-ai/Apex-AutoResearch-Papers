@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff520d977b7d86c371a6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix westd45947 eval restart",
+  "task_key": "worker_ops_fix-westd45947-eval-restart_20260528T030802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-westd45947-eval-restart_20260528T030802_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "eda669926ef9525e018dda929795dc74c0486816fb249d9a93c2a3beb11fcf9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 进程均成功启动并开始评估：\n\n- **eseed123** (GPU 0, 8642 MiB): Task 0 开始 — `pick up the orange juice`\n- **eseed256** (GPU 1, 8442 MiB): Task 0 开始 — `pick up the orange juice`\n\n模型加载、LoRA 注入、checkpoint 读取全部通过，没有报错。\n\n**总结**：\n1. 从 westd-35807 同步了 `a1_sdf_pi05_object_pudding_seed0_l1/30000/` checkpoint（7.2GB）到 westd-45947\n2. 修复了 scp 造成的嵌套目录问题\n3. 通过 tmux 重启了两个 eval 进程，均正常运行中\n\n注意：westd-45947 数据盘已 99% 满（3.4GB 剩余），后续如需更多空间可考虑清理 `_seed2_l01_OLD`（7.1GB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-westd45947-eval-restart.md"
+}

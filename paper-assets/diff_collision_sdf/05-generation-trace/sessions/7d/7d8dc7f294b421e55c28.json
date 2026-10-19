@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d8dc7f294b421e55c28",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "train phase2 lambda0 extra seed",
+  "task_key": "worker_train_phase2_lambda0_extra_seed_20260527T132032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_phase2_lambda0_extra_seed_20260527T132032_result.json",
+    "occurrence": 1,
+    "bytes": 1323,
+    "sha256": "bb8bd8ffc2a1cfc934eac0fc8cc0e898ba27aaddec3fb445c23396c06a5a5563"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Stage 1 训练已成功启动并进入 RUNNING 状态。\n\n**总结**：\n\n- **问题**：seed0 和 seed1 都没有 10K SDF checkpoint（原 30K 训练的中间 checkpoint 已清理），两台服务器均无。\n- **解决方案**：先跑 **Stage 1** —— 为 seed0 做一次 10K 步 SDF 训练（λ=0.005），生成所需的 10K checkpoint。\n- **当前状态**：Stage 1 在 westd-35807 cuda:1 上运行中\n  - tmux session: `phase2_stage1_s0`\n  - PID: 829727\n  - 速度: ~2.7s/step，预计 ~7.4h 完成\n  - Checkpoint 输出: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/phase2_stage1_seed0_l005/10000/`\n  - 环境: `conda activate libero`（不是 `base`——`base` 的 lerobot 版本缺 tasks.jsonl 支持）\n\n**后续步骤**（Stage 1 完成后）：\n1. 将 10K checkpoint 复制到 `a1_sdf_pi05_object_pudding_seed0_l0/10000/`\n2. 启动 Stage 2: `--lambda_sdf 0 --seed 0 --resume --num_train_steps 30000`（从 10K resume 到 30K = 20K λ=0 步，~14h）\n\n**修正了任务模板中的两个问题**：\n1. `--gpu` 参数应与 `CUDA_VISIBLE_DEVICES` 一致（都用 1），不是 0——脚本内部会用 `args.gpu` 覆盖 `CUDA_VISIBLE_DEVICES`\n2. 必须用 `conda activate libero`（不是 `base`），因为 base 的 lerobot 版本不兼容本地数据集格式"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-phase2-lambda0-extra-seed.md"
+}

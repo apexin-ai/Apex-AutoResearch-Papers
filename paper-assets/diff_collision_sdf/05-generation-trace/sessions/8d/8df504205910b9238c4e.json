@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "8df504205910b9238c4e",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops fix eval pipeline tsr zero",
+  "task_key": "worker_ops_fix_eval_pipeline_tsr_zero_20260522T023143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eval_pipeline_tsr_zero_20260522T023143.log",
+    "occurrence": 1,
+    "bytes": 1181504,
+    "sha256": "a1bb8e19b79b04be3bf59914522a831ea7e20df36227c1177b231bfb0221cd96"
+  },
+  "statistics": {
+    "messages": 365,
+    "user_turns": 1,
+    "tool_calls": 131,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 95,
+      "tool_call": 131,
+      "tool_result": 131,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 315,
+      "chunks": [
+        {
+          "path": "8df504205910b9238c4e-part-0001.json",
+          "message_count": 156
+        },
+        {
+          "path": "8df504205910b9238c4e-part-0002.json",
+          "message_count": 159
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 50,
+      "chunks": [
+        {
+          "path": "8df504205910b9238c4e-part-0002.json",
+          "message_count": 21
+        },
+        {
+          "path": "8df504205910b9238c4e-part-0003.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fix-eval-pipeline-tsr-zero.md"
+}

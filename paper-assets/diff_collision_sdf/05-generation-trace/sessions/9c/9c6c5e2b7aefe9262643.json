@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c6c5e2b7aefe9262643",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops verify checkpoint path 30k eval",
+  "task_key": "worker_ops_verify_checkpoint_path_30k_eval_20260525T094127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_checkpoint_path_30k_eval_20260525T094127_result.json",
+    "occurrence": 1,
+    "bytes": 2134,
+    "sha256": "a0f40ad807fe61a46989269d750ceb805e02f436e73888d02e0e03e34f68beb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Checkpoint 核实结果\n\n### Eval 进程命令行\n\n**全部 4 个 eval 使用的是 `/best/` checkpoint，而非 `/30000/`：**\n\n| Session | `--policy.dir` 实际值 | GPU | Port |\n|---------|----------------------|-----|------|\n| eval_s1_l005 | `.../seed1_l005/best` | cuda:0 | 8000 |\n| eval_s1_l01 | `.../seed1_l01/best` | cuda:1 | 8001 |\n| eval_s2_l005 | `.../seed2_l005/best` | cuda:2 | 8002 |\n| eval_s2_l01 | `.../seed2_l01/best` | cuda:3 | 8003 |\n\n注意：tmux session 名和日志文件名都带 `30k`（如 `/tmp/eval_30k_s1_l005.log`、输出路径 `30k_evals/`），但实际加载的模型路径是 `/best`。**命名具有误导性。**\n\n### 目录内容\n\n| Checkpoint 目录 | 子目录 |\n|----------------|--------|\n| seed0_l005 | `30000/` only |\n| seed0_l01 | `30000/` only |\n| seed1_l005 | `29999/`, `30000/`, `best/` |\n| seed1_l01 | `29999/`, `30000/`, `best/` |\n| seed2_l005 | `29999/`, `30000/`, `best/` |\n| seed2_l01 | `29999/`, `30000/`, `best/` |\n\n### Best checkpoint 对应的实际步数\n\n从 `best_loss.txt` 读取（格式: loss step）：\n\n| 模型 | best step | best loss |\n|------|-----------|-----------|\n| seed1_l005 | **16000** | 0.01143 |\n| seed1_l01 | **16000** | 0.01168 |\n| seed2_l005 | **10000** | 0.00874 |\n| seed2_l01 | **10000** | 0.00911 |\n\n### 模型文件差异\n\nbest/ 目录的 `model.safetensors` 与 30000/ 的大小不同，确认不是同一个文件：\n- `best/model.safetensors`: 7,473,091,320 bytes（May 25 13:06 创建，是合并后的模型）\n- `best/model_lora.safetensors`: 7,540,115,784 bytes\n- `30000/model.safetensors`: 7,540,115,784 bytes\n\n### 结论\n\n**Reviewer 怀疑成立。当前 4 个 \"30K eval\" 实际加载的是 `/best/` checkpoint：**\n- seed1 的 best = step **16000**\n- seed2 的 best = step **10000**\n- **没有一个在用 step 30000 的模型**\n\neval 目前正在运行中（s1_l005 跑到 ep 111/200，s2_l01 跑到 ep 97/200），结果将写入 `30k_evals/` 目录但实际评估的不是 30K checkpoint。这些结果作废，需要杀掉进程并用 `/30000` 路径重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-checkpoint-path-30k-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0582f516b02f9742415",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research oracle feasibility",
+  "task_key": "worker_research_oracle-feasibility_20260529T002012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_oracle-feasibility_20260529T002012_result.json",
+    "occurrence": 1,
+    "bytes": 3621,
+    "sha256": "a7a871683641e065564e5a40bec7f8229aff21c7b70bc0ead12de6664802f1b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。以下是四个问题的回答。\n\n---\n\n## Q1: Pi0.5 LoRA 30K checkpoint\n\n**两台服务器都有，完好。**\n\n| 服务器 | 路径 | 内容 |\n|---|---|---|\n| westd-35807 | `.../pi05_lora_baseline_object_pudding_seed0/30000/` | `model.safetensors` (7.1GB) + metadata + optimizer |\n| westd-35807 | `.../pi05_lora_baseline_spatial_bowl_seed0/30000/` | 同上，7.1GB |\n| westd-45947 | `.../pi05_lora_baseline_object_pudding_seed0/30000/` | 同上 + `best/` 目录，seed0-2 三个 seed |\n\n标准 openpi checkpoint 格式，7.1GB 大小合理（Pi0.5 7B 参数 bfloat16 + LoRA）。\n\n---\n\n## Q2: Oracle-adaptive eval 代码\n\n**现有代码不能直接用，需要 ~100 行修改。**\n\n- `eval_safelibero.py` (1363行)：有完整 oracle 支持（`--true_oracle`, `--adaptive_alpha`, `--force_refine_oracle`），但只支持 **Pi0** 模型（in-process JAX 加载）\n- `eval_pi05_safelibero.py` (452行)：Pi0.5 专用 eval，通过 **websocket 连接 serve_policy.py**，**完全没有 oracle/sdf/refine 代码**\n\n**需要的修改：**\n\naction-space oracle refinement (`_refine_action_oracle`) 是模型无关的——只需要 7D action + 当前 EE 位置 + GT SDF 数据。改动方案：\n\n1. 从 `eval_safelibero.py` 复制 `_load_sdf_gt_oracle`、`query_gt_sdf`、`_refine_action_oracle` 三个函数（~70行）\n2. 添加 CLI 参数：`--true_oracle`、`--sdf_gt_path`、`--refine_alpha`、`--refine_margin`、`--adaptive_alpha`、`--force_refine_oracle`\n3. 在 eval 循环中 `action = action_plan.popleft()` 之后插入 oracle refinement 调用\n4. 记录和输出 refinement 统计\n\n**限制：feature-space oracle 不可行**（websocket 隔离无法获取模型内部 suffix_out features）。但 Claim 2 验证只需要 action-space oracle（EE-only SDF refinement），这是可行的。\n\n**兼容性：** Pi0.5 checkpoint 用 config `pi05_libero` 加载 serve_policy.py，无兼容性问题。\n\n---\n\n## Q3: GPU 时间预估\n\n| 环节 | 耗时 |\n|---|---|\n| serve_policy.py 启动加载模型 | ~1-2 min |\n| 160 episodes eval (4 tasks × 40) | ~32 min |\n| Oracle refinement 开销 | ~5 sec（纯 numpy KDTree，可忽略） |\n| **总计** | **~35 min** |\n\nOracle refinement 是纯 CPU 操作（KDTree 查 GT SDF + 数值梯度），每步 7 次查询 ~0.1ms，不额外占 GPU。\n\n---\n\n## Q4: 服务器资源\n\n| | westd-35807 | westd-45947 |\n|---|---|---|\n| GPU | RTX PRO 6000 (96GB), **空闲** | RTX PRO 6000 (96GB), **空闲** |\n| 根盘 | 6GB 剩余 (81%) | 14GB 剩余 (57%) |\n| 数据盘 | **83GB 剩余** (77%) | 11GB 剩余 (96%) |\n| 两个任务 checkpoint | ✓ object + spatial | ✓ object only |\n| GT SDF 数据 | ✓ `sdf_gt_object_chocolate.npz` + `sdf_gt_spatial_bowl.npz` | 未确认 |\n| Pi0.5 base weights | ✓ `openpi_weights/pi05_libero` | ✓ |\n| 历史 oracle 结果 | ✓ 所有之前的 oracle 结果都在 | ❌ |\n\n**推荐 westd-35807**：两个任务的 checkpoint + GT SDF 数据 + 历史结果全在这台机器上，96GB GPU 远超 Pi0.5 推理所需的 ~48GB。\n\n---\n\n## 可行性结论\n\n**可行，低风险，小工作量。**\n\n- **代码改动**：~100 行，在 `eval_pi05_safelibero.py` 中加入 action-space oracle refinement\n- **运行时间**：~35 min（含模型加载）\n- **运行方式**：两个进程——`serve_policy.py`（GPU）+ `eval_pi05_safelibero.py`（CPU+sim）\n- **服务器**：westd-35807，资源全部就绪\n- **限制**：只能做 action-space oracle（足够验证 Claim 2），feature-space oracle 因 websocket 架构不可行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-oracle-feasibility.md"
+}

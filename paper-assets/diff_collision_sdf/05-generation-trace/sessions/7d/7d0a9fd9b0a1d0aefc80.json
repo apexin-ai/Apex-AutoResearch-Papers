@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "7d0a9fd9b0a1d0aefc80",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code integration fix and launch 20260519T184519 retry1",
+  "task_key": "worker_code_integration_fix_and_launch_20260519T184519_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_integration_fix_and_launch_20260519T184519_retry1.log",
+    "occurrence": 1,
+    "bytes": 786238,
+    "sha256": "ce92fb6a9c1035c14ee6be750448cb7186f90bce88c9942575b777c73bf324ae"
+  },
+  "statistics": {
+    "messages": 324,
+    "user_turns": 0,
+    "tool_calls": 130,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 130,
+      "tool_result": 130,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 324,
+      "chunks": [
+        {
+          "path": "7d0a9fd9b0a1d0aefc80-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7d0a9fd9b0a1d0aefc80-part-0002.json",
+          "message_count": 144
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-integration-fix-and-launch-20260519t184519-retry1.md"
+}

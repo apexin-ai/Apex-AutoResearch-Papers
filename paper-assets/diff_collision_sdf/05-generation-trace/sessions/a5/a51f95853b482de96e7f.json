@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a51f95853b482de96e7f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops read pi05 pertask s1s2",
+  "task_key": "worker_ops_read_pi05_pertask_s1s2_20260526T065436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read_pi05_pertask_s1s2_20260526T065436_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "72c6a79e18dd4f2906c3ae4075ab070d5f2b6d47e23bfbfe93429756af79c855"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全。汇总如下：\n\n## Pi0.5 Baseline 逐任务 TSR（3 seeds）\n\n| Task | s0 | s1 | s2 | Mean |\n|------|----|----|-----|------|\n| Orange Juice | 64% | 72% | 76% | **70.7%** |\n| Chocolate Pudding | 86% | 86% | 86% | **86.0%** |\n| Milk | 66% | 68% | 64% | **66.0%** |\n| BBQ Sauce | 76% | 78% | 74% | **76.0%** |\n| **Overall** | **73%** | **76%** | **75%** | **74.7%** |\n\n验证：(70.7 + 86.0 + 66.0 + 76.0) / 4 = 74.7%，与 3-seed overall 均值 (73+76+75)/3 = 74.7% 一致。\n\nCAR 数据（附带）：\n\n| Task | s0 CAR | s1 CAR | s2 CAR | Mean CAR |\n|------|--------|--------|--------|----------|\n| Orange Juice | — | 10% | 14% | — |\n| Chocolate Pudding | — | 56% | 56% | — |\n| Milk | — | 10% | 10% | — |\n| BBQ Sauce | — | 24% | 30% | — |\n\ns0 的 CAR 数据如需补充可从 westd-45947 上的 `pi05_safelibero_object_v11.json` 提取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-pi05-pertask-s1s2.md"
+}

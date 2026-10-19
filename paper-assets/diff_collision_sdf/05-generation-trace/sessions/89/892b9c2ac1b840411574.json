@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "892b9c2ac1b840411574",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops restart s1 l005 disp gpu1 v2",
+  "task_key": "worker_ops_restart_s1_l005_disp_gpu1_v2_20260525T205542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart_s1_l005_disp_gpu1_v2_20260525T205542_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "320a5371d79364f695bafce146738e56beda076c731c2de5981fb85288898da8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 重启成功，已确认正常运行。\n\n**报告：**\n- **PID**: 218796\n- **GPU 1 状态**: 8610MiB 占用，进程已上 GPU\n- **Checkpoint 路径**（已修正）: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed1_l005/30000`\n- **日志确认**: 模型加载完毕，LoRA 注入成功（PaliGemma rank=16, Expert rank=32），已进入 eval 任务（Task 0: pick up the orange juice and place it in the basket, Safety level II）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-s1-l005-disp-gpu1-v2.md"
+}

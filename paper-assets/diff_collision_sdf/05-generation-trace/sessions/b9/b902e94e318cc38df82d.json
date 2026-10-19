@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b902e94e318cc38df82d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh a3 restart and eval urgent",
+  "task_key": "worker_ssh_a3_restart_and_eval_urgent_20260521T171124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a3_restart_and_eval_urgent_20260521T171124_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "9302d4fe9d0c85315d992d735273233429a3fe33d0293e0c5f176bd027b13a34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都正常运行。\n\n---\n\n## 报告\n\n### 1. A3 spatial_bowl (cuda:0)\n- **Checkpoint 可 resume**: 是，从 step 6000 resume（之前 best loss = 0.0827）\n- **旧进程**: PID 164430 已杀掉（之前占着 GPU 0 但没有 --exp_name 参数的旧版进程）\n- **新 PID**: 191747，tmux session `a3_spatial`\n- **从 step 6001 开始**，目标 30000，~4s/step，预计 ~27 小时\n- GPU 0 占用 23924 MiB，利用率 100%\n\n### 2. A3 object_pudding (cuda:1)\n- **未完成**，当前 step 29198/30000（97%）\n- ~4s/step，剩余 ~802 steps ≈ 54 分钟完成\n- **eval 未启动**（等训练完成后再启动）\n\n### 3. GPU 状态\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 100% | 23933/24576 MiB | spatial_bowl (PID 191747) |\n| 1 | 100% | 23935/24576 MiB | object_pudding (PID 165990) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a3-restart-and-eval-urgent.md"
+}

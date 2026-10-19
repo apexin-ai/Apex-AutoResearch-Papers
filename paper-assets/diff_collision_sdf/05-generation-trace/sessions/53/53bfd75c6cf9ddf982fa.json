@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53bfd75c6cf9ddf982fa",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix a1 naming and check oracle",
+  "task_key": "worker_ops_fix_a1_naming_and_check_oracle_20260522T155908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_a1_naming_and_check_oracle_20260522T155908_result.json",
+    "occurrence": 1,
+    "bytes": 1578,
+    "sha256": "c389cf90439ff311e353559690998c1282ba0d65d37c2f383a0a3418ee24cb89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## Part 1: 文件覆盖修复\n\n**确认覆盖**：`eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json` 的 checkpoint 指向 `a1_sdf_object_pudding`（A1），时间戳 23:50。LoRA baseline 原始写入在 23:04 被覆盖。\n\n**已完成**：\n- A1 结果备份为 `a1_lora_v11_eval_safelibero_object_all_levelII_best_seed0.json`\n- LoRA baseline 从 log 重建为 `lora_baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json`，包含 task-level 汇总：\n\n| Task | TSR | CAR | Disp |\n|------|-----|-----|------|\n| orange_juice | 0% | 96% | 0.0072m |\n| chocolate_pudding | 0% | 46% | 0.0257m |\n| milk | 0% | 98% | 0.0000m |\n| bbq_sauce | 0% | 88% | 0.0070m |\n| **Overall** | **0%** | **82%** | — |\n\n**注意**：per-episode 数据无法从 log 恢复（log 只有每 10 episode 进度和 task 汇总）。如需完整 per-episode 数据，需重跑 LoRA baseline object eval。\n\n**Spatial LoRA baseline 未被覆盖**：checkpoint 正确指向 `baseline_spatial_bowl/baseline_lora_spatial_bowl_seed0/best`。\n\n---\n\n## Part 2: Oracle A3 Force Refine 进度\n\n**正在运行**，cuda:2，task 1/4（chocolate pudding），episode 20/40 刚完成。\n\nTask 0 结果：TSR=0%, CAR=95%, disp=0.0005m\n\n按 ~2.2 min/10ep 估算，剩余 ~40 min（task 1 剩 20ep + task 2,3 各 40ep）。\n\n---\n\n## Part 3: a1_lora_spatial 训练\n\n**即将完成**：step 29960/30000，loss ~0.02，ETA ~3 min。tmux session 名为 `a1_lora_spa`。最新 checkpoint 在 step 28000，`best` 也已存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-a1-naming-and-check-oracle.md"
+}

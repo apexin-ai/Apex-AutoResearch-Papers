@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bffe04ecb03bfb7d1c8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check spatial bowl best ckpt",
+  "task_key": "worker_ops_check_spatial_bowl_best_ckpt_20260525T140840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_spatial_bowl_best_ckpt_20260525T140840_result.json",
+    "occurrence": 1,
+    "bytes": 1777,
+    "sha256": "406da9c1ba6c4645e46c1507c8432e910f6734cd2cf57e842182150024e44f18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n### 1. spatial_bowl 当前 checkpoint 目录\n\n```\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/a1_sdf_pi05_spatial_bowl_seed0_l005/\n├── 4000/\n├── 6000/\n├── best/          ← 存在，step 6000 的副本\n├── best_loss.txt  ← \"0.030538175255060196 6000\"\n└── wandb_id.txt\n```\n\n### 2. best checkpoint 保存逻辑：存在且正确\n\n实际生效的文件是 `/root/autodl-tmp/openpi/scripts/train_pytorch.py`（通过 symlink `/root/colliforce-vla/openpi -> /root/autodl-tmp/openpi` 解析），第 222-237 行：\n\n- 每个 `save_interval` 步保存时，将当前 `loss` 与 `best_loss.txt` 中的记录比较\n- 如果 `loss < best_loss`，`shutil.copytree` 将该步 checkpoint 复制到 `best/`\n- 更新 `best_loss.txt`（格式 `\"{loss} {step}\"`）\n- `save_checkpoint()` 在 train_loop 第 702 行被调用，传入了 `loss=loss.item()`\n\n### 3. 训练日志中有 best 记录\n\n`best_loss.txt` 内容 `0.030538175255060196 6000` 证实 best checkpoint 已在 step 6000 保存。训练 ~20%，后续 loss 下降时会自动更新。\n\n### 4. s0_l005/s0_l01 (object_pudding seed0) 问题原因\n\n- `seed0_l005` 和 `seed0_l01` 目录下 **没有 best_loss.txt 和 best/**\n- 但 `seed1_l005`、`seed1_l01`、`seed2_l005`、`seed2_l01` **都有 best/**\n- **原因**：seed0 实验在 best checkpoint 逻辑被添加到 `/root/autodl-tmp/openpi/scripts/train_pytorch.py` 之前就已完成。之前使用的 `vlsa-aegis/scripts/train_pytorch.py`（632 行）没有 best 逻辑。\n\n### 5. 总结\n\n**spatial_bowl 不需要修复。** best checkpoint 逻辑已正常工作。s0_l005/s0_l01 缺失 best/ 是历史问题（代码升级前完成的训练），不影响当前运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-spatial-bowl-best-ckpt.md"
+}

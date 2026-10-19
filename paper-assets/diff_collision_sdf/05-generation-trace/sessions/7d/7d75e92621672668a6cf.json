@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d75e92621672668a6cf",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "viz fig5 lambda curve template",
+  "task_key": "worker_viz_fig5_lambda_curve_template_20260526T134613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig5_lambda_curve_template_20260526T134613_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "8810c3c9494a0d37dc2b93f99c04d4b5f429c17032808b5a405324f79896d71a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表第二轮迭代完成，质量达标。\n\n**输出文件**：\n- PDF: `artifacts/figures/fig5_lambda_curve.pdf`\n- PNG: `artifacts/figures/fig5_lambda_curve.png`\n- 脚本: `artifacts/figures/plot_fig5.py`\n\n**图表要素**：\n- 双 Y 轴（蓝=CAR, 红=TSR），spine 颜色对应\n- X 轴为等距伪 log 布局，λ=0 标注 \"(LoRA-only)\"\n- Pi0.5 baseline 两条虚线分别标注在左上(TSR=71.5%)和左下(CAR=28.5%)\n- λ=0.1 灰色空心圆 + \"Pending\" 标注\n- n=1 标注在每个数据点下方\n- `plot_lambda_curve(data_dict, output_path)` 函数可直接复用，append 新 seed 数据即自动计算 mean±std"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig5-lambda-curve-template.md"
+}

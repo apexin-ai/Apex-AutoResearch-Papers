@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f20bf304b020d21f4aa6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops lora baseline launch prep",
+  "task_key": "worker_ops_lora_baseline_launch_prep_20260524T061044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_lora_baseline_launch_prep_20260524T061044_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "2c744602752378ed13238c1885b89dd2ae2b5829d370ac3ec8b7d3f9fa1f0f8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清单已写入 `artifacts/lora_baseline_launch_checklist.md`。\n\n**总结：**\n- 脚本已在 westd-45947 上，版本一致，两个 bug fix 均已包含\n- 磁盘 75GB 可用，充足\n- 两个 seed 的启动命令已准备好（cuda:0 / cuda:1）\n- **2 个需要注意的事项：**\n  1. **等 s0_l005/s0_l01 完成释放 GPU 后再启动**\n  2. **seed0 启动前须删除 dry-run 残留目录**（`rm -rf /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/`），否则 `overwrite=False` 会报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-lora-baseline-launch-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68ef0236b46fedee423d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops resume baseline training westd45947",
+  "task_key": "worker_ops_resume_baseline_training_westd45947_20260525T174710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resume_baseline_training_westd45947_20260525T174710_result.json",
+    "occurrence": 1,
+    "bytes": 429,
+    "sha256": "36b4499b2da96b913af5888aff4f415bcdd75409d3da268fc440cf29b48c9a13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练均已成功恢复，运行正常。\n\n| 实验 | PID | 当前 step | GPU 占用 | 速度 |\n|------|-----|-----------|----------|------|\n| s0 (seed=0, cuda:0) | 3622 | ~24028 | 27089 MiB / 97887 MiB (100% util) | ~4.64s/it |\n| s1 (seed=1, cuda:1) | 3712 | ~24028 | 27089 MiB / 97887 MiB (100% util) | ~4.61s/it |\n\n从 step 24000 恢复，目标 30000，剩余 ~6000 steps，预计 ~7.7h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resume-baseline-training-westd45947.md"
+}

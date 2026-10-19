@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "c8c9868b66be954fb713",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ssh a3 restart final 45947",
+  "task_key": "worker_ssh_a3_restart_final_45947_20260520T074225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a3_restart_final_45947_20260520T074225.log",
+    "occurrence": 1,
+    "bytes": 1585446,
+    "sha256": "dda5c1ee237ccdbd6a37c47a141ba9e1567136a85822585195ee48caf85946e4"
+  },
+  "statistics": {
+    "messages": 651,
+    "user_turns": 1,
+    "tool_calls": 234,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 2,
+      "assistant": 162,
+      "tool_call": 234,
+      "tool_result": 234,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 558,
+      "chunks": [
+        {
+          "path": "c8c9868b66be954fb713-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8c9868b66be954fb713-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8c9868b66be954fb713-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8c9868b66be954fb713-part-0004.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "c8c9868b66be954fb713-part-0004.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-a3-restart-final-45947.md"
+}

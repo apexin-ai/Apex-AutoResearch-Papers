@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d25db2576f32d5ab209a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper p1 1 terminology",
+  "task_key": "worker_paper_p1-1-terminology_20260528T061837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p1-1-terminology_20260528T061837_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "8ca0cabb1dbacaf43d6e29f506ac726421d5fc44ccc17f4f0e01bc79452d9174"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All replacements are clean and consistent. Summary of changes across 9 files:\n\n| Term | Replacement | Count |\n|---|---|---|\n| frozen episodes/episode | action-collapsed episodes/episode | 5 |\n| frozen rate / Frozen Rate | action-collapse rate / Action-Collapse Rate | 5 |\n| fake safety (after first mention) | action-collapsed safety / action-collapse / CAR inflation | 5 |\n| fake safety (first mention, intro:12) | action-collapsed safety (colloquially, \"fake safety\") | 1 (kept as colloquial note) |\n| Fake Safe (%) table header | Collapsed (%) | 2 |\n| frozen robot / frozen (robot behavior) | action-collapsed robot / action-collapsed | 6 |\n\nPreserved without changes:\n- All `\\label{sec:fake_safety}`, `\\ref{sec:fake_safety}`, `\\label{tab:fake_safety}` identifiers\n- \"frozen backbone\", \"parameters are frozen\" (ML training terms)\n- All `archive/` files"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p1-1-terminology.md"
+}

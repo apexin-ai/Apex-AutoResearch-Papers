@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0108c1035dc400f956b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh westd45947 install tmux",
+  "task_key": "worker_ssh_westd45947_install_tmux_20260520T031420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd45947_install_tmux_20260520T031420_result.json",
+    "occurrence": 1,
+    "bytes": 98,
+    "sha256": "c5fcc711112d2cb288384371f60adcbfdddef4e2b42a6d9cbf515d80453adb54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 安装成功。版本：**tmux 3.2a**（通过 apt 安装于 westd-45947）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd45947-install-tmux.md"
+}

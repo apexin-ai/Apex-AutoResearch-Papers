@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "649425c03ad5ae447764",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops sync eval script to westd35807",
+  "task_key": "worker_ops_sync_eval_script_to_westd35807_20260523T004929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_eval_script_to_westd35807_20260523T004929.log",
+    "occurrence": 1,
+    "bytes": 757719,
+    "sha256": "c9244cb52e443eeab913c839328a24b550aa2809db3abd3b4837e676061815e0"
+  },
+  "statistics": {
+    "messages": 191,
+    "user_turns": 1,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 64,
+      "tool_result": 64,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 143,
+      "chunks": [
+        {
+          "path": "649425c03ad5ae447764-part-0001.json",
+          "message_count": 143
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "649425c03ad5ae447764-part-0001.json",
+          "message_count": 1
+        },
+        {
+          "path": "649425c03ad5ae447764-part-0002.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-sync-eval-script-to-westd35807.md"
+}

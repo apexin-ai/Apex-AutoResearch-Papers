@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f891df6afb9992b02083",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis tsr collapse mechanism",
+  "task_key": "worker_analysis_tsr_collapse_mechanism_20260526T040202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tsr_collapse_mechanism_20260526T040202_result.json",
+    "occurrence": 1,
+    "bytes": 1673,
+    "sha256": "43409c447effa6de7766bcf6dc95028c68a2bf7f63071649b6607e5df8d972db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**TSR Collapse 机制诊断：COMPOSITE（复合机制）**\n\n| 指标 | Pi0.5 Base | SDF λ=0.005 30K | LoRA Baseline 30K |\n|------|-----------|-----------------|-------------------|\n| avg TSR | 75.5% | 6.8% | 7.1% |\n| Safe Failure Rate | 0.5% | 49.8% | 47.5% |\n| Collision Failure Rate | 24.0% | 43.0% | 45.4% |\n| Obstacle Displacement | 0.143m | 0.059m | 0.060m |\n| EE Displacement | N/A | ~0.5m | N/A |\n| Frozen Episodes | N/A | 0% | N/A |\n\n**3 条关键证据链：**\n\n1. **SDF loss 不是 TSR 崩溃的原因**：LoRA baseline（无 SDF loss）TSR 崩溃幅度完全一致（68.4% vs 68.7%）。根因是 LoRA 在 safety 数据上 fine-tuning 破坏了 pre-trained task policy。\n\n2. **不是纯粹的 catastrophic forgetting（motor level）**：robot 没有冻结，EE displacement 均值 0.5m，0% 冻结 episode。Robot 在动，但不是目标导向的运动。\n\n3. **有 learned collision avoidance 组件**：safe failure rate 从 0.5% 暴增到 ~50%（100 倍），obstacle displacement 减半。Robot 学会了避障但丢失了 task completion 能力。\n\n**对审稿人的回复论点**：TSR collapse 的 root cause 是 LoRA fine-tuning 的 catastrophic forgetting of task semantics（不是 SDF loss），fine-tuned model 保留了部分 collision avoidance 能力但丧失了 goal-directed grasping/placing 行为。\n\n**产出路径：**\n- 脚本：`westd-35807:/root/colliforce-vla/scripts/analysis_tsr_collapse.py`\n- 图表：`westd-35807:/root/colliforce-vla/figures/` （4 组 PDF+PNG）\n- 已注册：`art_20260526_b41f73`（report）、`art_20260526_c26246`（figures index）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tsr-collapse-mechanism.md"
+}

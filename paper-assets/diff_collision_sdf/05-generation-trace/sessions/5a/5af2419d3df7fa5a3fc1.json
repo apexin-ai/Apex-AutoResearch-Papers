@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5af2419d3df7fa5a3fc1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh a3 spa check and restart",
+  "task_key": "worker_ssh_a3_spa_check_and_restart_20260521T091356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a3_spa_check_and_restart_20260521T091356_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "0e9fd35272e2b5d97d9165ce841d939d594886c07edc74c371d9a94ac1a7db0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常运行，无需操作。\n\n## 状态报告\n\n### 1. spatial_bowl (GPU 0)\n- **PID 164420**: DEAD（旧 bash wrapper）\n- **PID 164430**: ALIVE，已从头重启（无 --resume），运行 ~10 分钟\n- **当前 step**: **138/30000**，loss ~0.26-0.28，lr=3.45e-06\n- 速度: ~3.5s/step，预计 ~29 小时完成\n\n### 2. object_pudding (GPU 1)\n- **PID 165984/165990**: ALIVE，从 step 22000 resume\n- **当前 step**: **22119/30000**，loss ~0.027-0.035，lr=6.36e-06\n- 速度: ~4.0s/step，预计 ~8.8 小时完成剩余 ~7880 steps\n\n### 3. GPU 状态\n| GPU | 利用率 | 显存 | 进程 |\n|-----|--------|------|------|\n| 0 | 100% | 16907 MiB | PID 164430 (spatial_bowl) |\n| 1 | 100% | 23935 MiB | PID 165990 (object_pudding) |\n\n### 结论\nspatial_bowl 已被前一个 Worker 重启（从 step 0 开始，无 --resume），当前正常训练中。无需任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a3-spa-check-and-restart.md"
+}

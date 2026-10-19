@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f39d23184dd07ced8cef",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh critical a3 restart 45947",
+  "task_key": "worker_ssh_critical_a3_restart_45947_20260520T071627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_critical_a3_restart_45947_20260520T071627_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "b0ad0ea1d88310812073335f81ac7c472a43932c5fbec3a1f463f12cf36e4bcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "旧 cron 已注册且无 MCP 删除工具，但 registry 中的 PID 和 spec 已更新为新值（50318/50397），cron 轮询时会读取 registry 最新状态，应能正常工作。\n\n---\n\n## 汇报\n\n| 项目 | Kill 前 | Kill 后重启 |\n|------|---------|------------|\n| **GPU 0** (spatial_bowl) | PID 38475, 16925 MiB | PID **50318**, 24520 MiB |\n| **GPU 1** (object_pudding) | PID 38554, 16925 MiB | PID **50397**, 24520 MiB |\n\n**Checkpoint 清理**：\n- spatial_bowl: 删除 6 个 checkpoint (step 1, 2, 500, 1000, 1500, 2000)，保留 step 2500\n- object_pudding: 删除 4 个 checkpoint (step 500, 1000, 1500, 2000)，保留 step 2500\n- 释放 **68GB** (82GB → 14GB)，磁盘使用 96GB → 28GB (12%)\n\n**重启后状态**：\n- spatial_bowl: 从 step 2500 resume，当前 step **2936**，loss ~0.25，lr=2.48e-05\n- object_pudding: 从 step 2500 resume，当前 step **2741**，loss ~0.17-0.22，lr=2.48e-05\n- `--save_interval 2000` 已生效\n- VRAM 24520 MiB/97887 MiB（比之前高，因已进入 Phase 2 LoRA 解冻阶段）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-critical-a3-restart-45947.md"
+}

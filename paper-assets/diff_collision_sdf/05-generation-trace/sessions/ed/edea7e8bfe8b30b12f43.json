@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edea7e8bfe8b30b12f43",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "improve appendix completion",
+  "task_key": "worker_improve_appendix_completion_20260527T220539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_improve_appendix_completion_20260527T220539_result.json",
+    "occurrence": 1,
+    "bytes": 1909,
+    "sha256": "de6de3e40c798cd56dbd936e44f31351adcc24becd1bcfb4cc46d1b66b9cfcc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "主文引用了 3 个 appendix label，appendix.tex 全部覆盖：\n- `sec:appendix_null` ✓ (Section A.2)\n- `sec:appendix_ssr` ✓ (Section A.3)  \n- `sec:appendix_stepwise` ✓ (Section A.5)\n\n没有 main.tex 和编译基础设施，无法 latexmk 编译。\n\n---\n\n**已补充内容清单（8 个 section，254 行）：**\n\n| Section | Label | 内容 |\n|---------|-------|------|\n| A.1 Per-Task CAR | `appendix_pertask` | 4 个表：LoRA-only / λ=0.005 / λ=0.01 / baseline 的 per-task×per-seed CAR；分析 task difficulty ordering |\n| A.2 Null Distribution | `appendix_null` | 零假设构造（6 值 pooled null）、排列检验过程、λ=0.01 和 λ=0.1 的具体 p 值 |\n| A.3 SSR/TSR Ratio | `appendix_ssr` | 9 条 per-seed SSR/TSR 数据，baseline 0.39 → fine-tuned 0.48–0.62 |\n| A.4 Threshold Sensitivity | `appendix_threshold` | dfCAR 在 τ_d ∈ [2,300]mm 的稳定性表（8 条件 × 7 阈值） |\n| A.5 Stepwise Ablation | `appendix_stepwise` | λ=0.1 的 16K–28K checkpoint 分析 |\n| A.6 SDF Pipeline | `appendix_sdf_pipeline` | mesh 修复统计、SDF 采样、梯度验证、符号约定 |\n| A.7 Hyperparameters | `appendix_hyperparams` | 完整训练/评估超参数表 |\n| A.8 Eval Protocol | `appendix_eval_protocol` | 任务描述、4 个 metric 定义 |\n\n**仍需补充但缺少数据的内容：**\n\n| 内容 | 缺失原因 |\n|------|----------|\n| λ=0.1 per-task CAR 表 | 无 reeval JSON（只有 2 seed 的 aggregate 数据 58.0, 58.5） |\n| 训练 loss 曲线图 | artifacts 中无 loss curve 文件，需从 wandb 导出 |\n| Phase-2 ablation 详情 | 单 seed (s2) 实验，数据不足 |\n| experiments.tex | 文件不存在，非 appendix 范围 |\n\n**编译结果：** 无法编译——`docs/paper/` 下无 `main.tex`、`.bib`、`.cls` 文件。appendix.tex 是独立 section 文件，需集成到完整论文后编译。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/improve-appendix-completion.md"
+}

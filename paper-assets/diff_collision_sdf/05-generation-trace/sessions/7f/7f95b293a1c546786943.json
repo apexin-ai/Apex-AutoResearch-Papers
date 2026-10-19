@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f95b293a1c546786943",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops sync and launch baseline v11",
+  "task_key": "worker_ops_sync_and_launch_baseline_v11_20260522T120107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_and_launch_baseline_v11_20260522T120107_result.json",
+    "occurrence": 1,
+    "bytes": 1259,
+    "sha256": "cdb88d3f1f3e8a2d769eb16cd20a9654f52f96011d55c9adce991eb6a6085804"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 确认成功运行。总结：\n\n**1. 文件同步** ✅\n- 通过 SSH 密钥互信 + SCP 从 westd-45947 直接传输到 westd-35807\n- MD5 校验通过：`dccc40763ac344ca19c69de2062e54e8`（977 行, 38631 bytes）\n- action chunking 修复已包含（replan_steps:3, deque:2, action_queue:5, warmup:2）\n\n**2. Checkpoint 路径**\n- `/root/autodl-tmp/checkpoints/baseline_object_pudding/baseline_object_pudding_seed0/best`\n- 与 westd-45947 上的 `baseline_object_pudding_eval/best` MD5 一致（`f3687b79ae43af8334bba77847a8ee6d`）\n- config_name: `pi0_libero_low_mem_finetune`\n\n**3. Eval 启动确认** ✅\n- tmux session: `eval_baseline_v11`\n- PID: 527472（running, 235 threads）\n- GPU: cuda:1（10% util, 8458 MiB）\n- cuda:0 和 cuda:2 的训练未受影响\n- 参数: `--suite safelibero_object --n_episodes 50 --max_steps 300 --replan_steps 5 --gpu 1`\n- Task 0 Episode 10/50 已完成，eval 正常推进中\n\n**4. 预计运行时间**\n- AUTOTUNE 编译已完成（~5 min）\n- Episode 10/50 at Task 0 运行中\n- 4 tasks × 50 episodes，预计总计 ~2-4h\n\n日志: `/tmp/eval_baseline_v11.log`\n结果保存到: `/root/autodl-tmp/eval_results/baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-and-launch-baseline-v11.md"
+}

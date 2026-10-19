@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e919bd91d8d6ca87ee3a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "figure fig5 lambda curve",
+  "task_key": "worker_figure_fig5_lambda_curve_20260527T112433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig5_lambda_curve_20260527T112433_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "27947044b6bffcff91caeb49ea8a0535b9b7288318162ef8d3559d4b494a4dc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，效果良好。\n\n**输出文件**：\n- `/root/colliforce-vla/figures/fig5_lambda_car.pdf` (25KB)\n- `/root/colliforce-vla/figures/fig5_lambda_car.png` (65KB)\n\n**脚本**：`/root/colliforce-vla/plot_fig5_lambda_car.py`\n\n包含全部 4 个 λ 数据点（0, 0.005, 0.01, 0.1），shaded area 为 ±1 std，最佳点 λ=0.1 (58.25%) 用橙色高亮标注。趋势清晰：CAR 随 λ 增大单调上升（0.005 处有微小 dip），std 持续缩小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig5-lambda-curve.md"
+}

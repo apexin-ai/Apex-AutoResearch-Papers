@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc4aa9f5b14d54bafc51",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code lora baseline eval adapt",
+  "task_key": "worker_code_lora_baseline_eval_adapt_20260522T135625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lora_baseline_eval_adapt_20260522T135625_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "412216ac7b91a042798298a69c4bd6c96f9a7a85083dec5d8bf16a779cc0f911"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都已启动，正在创建模型和注入 LoRA。\n\n**汇报：**\n\n- **代码改动**：`eval_safelibero.py` 新增 `--model_type lora_baseline` 支持，添加 `_load_policy_lora_baseline` 函数。实现方式：用 `PI0Pytorch` 创建非 LoRA 基础模型 → `inject_lora_pi0` 注入 LoRA → `safetensors.load_model` 加载完整 state dict → 手动构建 Policy。\n- **Dry-run**：3 episodes × 4 tasks 全部通过，无报错。结果保存到 `/root/autodl-tmp/eval_results/`。\n- **正式 eval 已启动**：\n  - `eval_lora_spatial` — GPU 1, 50 episodes, safelibero_spatial, log: `/tmp/eval_lora_baseline_spatial_v11.log`\n  - `eval_lora_object` — GPU 2, 50 episodes, safelibero_object, log: `/tmp/eval_lora_baseline_object_v11.log`\n- **tmux sessions**: `eval_lora_spatial`, `eval_lora_object`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lora-baseline-eval-adapt.md"
+}

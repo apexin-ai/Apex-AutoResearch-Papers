@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bf26f07d7be40dd7526",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper fix scatter plot",
+  "task_key": "worker_paper_fix_scatter_plot_20260524T210645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_scatter_plot_20260524T210645_result.json",
+    "occurrence": 1,
+    "bytes": 336,
+    "sha256": "2fce1d4b44f3e2fc9f49c0457f4ed9e5d7786ac269c19aceb9f1b36e67c8594a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项修复均已完成：\n\n1. Legend 文字已改为 \"Pi0.5+A1 (SDF aux)\"\n2. Pareto front 虚线已删除，替换为从 Pi0.5 baseline 到 Pi0.5+A1 的箭头，旁标 \"SDF training effect\"\n3. Legend 已移至右上角，不遮挡数据点\n\n文件已覆盖写入 `artifacts/figures/fig_tsr_car_scatter.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-scatter-plot.md"
+}

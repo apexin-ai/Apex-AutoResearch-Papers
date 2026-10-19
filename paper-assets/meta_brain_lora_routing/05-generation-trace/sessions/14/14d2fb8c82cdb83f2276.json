@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14d2fb8c82cdb83f2276",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "research libero plus assets download",
+  "task_key": "worker_research_libero-plus-assets-download_20260515T171307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_libero-plus-assets-download_20260515T171307_result.json",
+    "occurrence": 1,
+    "bytes": 3559,
+    "sha256": "2b060e99a399416d0eb56db90e874dcd8e7379ba2751ef190af325e65898509b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。以下是结论：\n\n---\n\n## 结论：**可下载。** `new_objects/` 目录缺失是唯一问题。\n\n### 1. 问题根因\n\n服务器上 `/root/LIBERO-plus/libero/libero/assets/` 缺少 `new_objects/` 目录。这是 `_add_N` 扰动所需的全部干扰物体 XML 所在位置。\n\n`custom_objects.py` 引用路径格式：\n```\nassets/new_objects/cupcake/sutaow/usd/MJCF/sutaow.xml\nassets/new_objects/cutting_board/aibvew/usd/MJCF/aibvew.xml\nassets/new_objects/bag_of_yeast/...\n```\n\n当前 assets 目录有 7 个子目录（articulated_objects, scenes, stable_hope_objects 等），但缺了关键的 `new_objects/`。\n\n### 2. 已下载但不完整\n\n服务器上有两个 `assets.zip`：\n- `/root/autodl-tmp/assets.zip` — **仅 4MB**，只包含 scenes 的纹理变体 XML（如 `kitchen_table_WoodFine001_REFL_6K.xml`），**不含 `new_objects/`**\n- `/root/autodl-tmp/libero_plus_assets/assets.zip` — 同一个文件\n\n4MB 不可能包含\"hundreds of new objects\"。可能是下载不完整或 HuggingFace Git LFS 未正确拉取。\n\n### 3. 公开下载源\n\n| 来源 | URL |\n|------|-----|\n| HuggingFace 数据集 | [Sylvest/LIBERO-plus](https://huggingface.co/datasets/Sylvest/LIBERO-plus) |\n| GitHub 主仓库 | [sylvestf/LIBERO-plus](https://github.com/sylvestf/LIBERO-plus) |\n| 备用仓库（主账号被封时） | [sii-research/LIBERO-plus](https://github.com/sii-research/LIBERO-plus) |\n\nREADME 明确指示：\n> \"Please download our assets from [LIBERO-plus](https://huggingface.co/datasets/Sylvest/LIBERO-plus/tree/main), including hundreds of new objects, textures, and other required assets. Please unzip the `assets.zip` file to `/LIBERO-plus/libero/libero` path.\"\n\n### 4. 修复命令\n\n```bash\nsource /etc/network_turbo\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\n# 方法1: huggingface-cli (推荐)\npip install -U huggingface_hub\nhuggingface-cli download --repo-type dataset Sylvest/LIBERO-plus assets.zip --local-dir /root/autodl-tmp/libero_plus_assets/\n\n# 解压到正确位置（assets.zip 内路径较深，需 strip）\ncd /root/autodl-tmp/libero_plus_assets/\nunzip -o assets.zip\n# 检查解压后的目录结构，找到 new_objects/ 并 cp/mv 到正确位置\ncp -r <extracted_path>/assets/new_objects /root/LIBERO-plus/libero/libero/assets/\n\n# 方法2: 如果 HF 太慢，用 wget 直接下载\nwget \"https://huggingface.co/datasets/Sylvest/LIBERO-plus/resolve/main/assets.zip\" -O /root/autodl-tmp/assets_full.zip\n```\n\n### 5. 典型缺失文件（从 `custom_objects.py` 提取）\n\n```\nassets/new_objects/bag_of_yeast/<hash>/usd/MJCF/<hash>.xml\nassets/new_objects/cupcake/sutaow/usd/MJCF/sutaow.xml\nassets/new_objects/cupcake/wdiezm/usd/MJCF/wdiezm.xml\nassets/new_objects/cutting_board/aibvew/usd/MJCF/aibvew.xml\nassets/new_objects/cutting_board/idmcgf/usd/MJCF/idmcgf.xml\n```\n（`custom_objects.py` 中注册了数十种物体类别，每类多个变体）\n\n### 6. 风险点\n\n- HuggingFace \"Repo is missing\" [讨论帖](https://huggingface.co/datasets/Sylvest/LIBERO-plus/discussions/2) 提到原作者 GitHub 账号曾被封，但数据集仍在 HuggingFace 上\n- 如果 HF 下载失败，备用方案：联系作者（论文一作 Sylvest / syfei）或从 [sii-research/LIBERO-plus](https://github.com/sii-research/LIBERO-plus) 获取\n- AutoDL 上下载 HF 大文件慢，建议用 `network_turbo` + 后台 nohup 执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-libero-plus-assets-download.md"
+}

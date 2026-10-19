@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e85f4e4f042fadd6d361",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code method section draft",
+  "task_key": "worker_code_method_section_draft_20260520T202102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_method_section_draft_20260520T202102_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "ea9a6a3255c8e58248232ef2c4c07678894d7c0ee49f34f02ae4dde484e58786"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method Section 初稿已写入 `/root/colliforce-vla/docs/method_draft.md`（119 行）。\n\n关键内容对照代码的准确性总结：\n\n| 项目 | 代码实际值 | 文稿中 |\n|------|-----------|--------|\n| SDF Decoder | 4-layer MLP, hidden=256, Softplus(β=5), skip at layer 2 | ✓ |\n| SDF loss | Clamped L1 (δ=0.05) + Eikonal (λ=0.1) | ✓ |\n| EE Extractor | Linear(1024,256)→ReLU→Linear(256,3) | ✓ |\n| Query points per step | N=64 | ✓ |\n| Refiner α/margin/grad_clip | 0.1 / 0.01 / 1.0 | ✓ |\n| LoRA ranks | PaliGemma=16, Expert=32 | ✓ |\n| Target modules | q/k/v/o_proj + gate/up/down_proj | ✓ |\n| Phase 1 warmup | 5000 steps, backbone frozen | ✓ |\n| Loss weights | λ_SDF=0.1, λ_EE=0.01, λ_refine=0.1 | ✓ |\n| Inference refinement | L2-normalized spatial gradient on action[:3] | ✓ |\n| Refinement loss | MSE(v_t, sg(v_t_refined)) on near-collision samples | ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-method-section-draft.md"
+}

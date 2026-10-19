@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfe0e35453d2ad3b9438",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval lora baseline s1 v2 check",
+  "task_key": "worker_ops_eval_lora_baseline_s1_v2_check_20260526T022746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_lora_baseline_s1_v2_check_20260526T022746_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "dbf7504abd707189d4ef0980c788e4bbdc700a245bdaedd63d7219684bb89ad7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 session 中已清理）。所有步骤完成。\n\n---\n\n## eval_lora_baseline_30k_s1_v2 完整结果\n\n**200 episodes, 4 tasks, Safety Level II, Frozen: 0%**\n\n| Task | TSR | CAR | EE disp mean | EE disp median | EE min | EE max |\n|------|-----|-----|-------------|---------------|--------|--------|\n| orange_juice | 2.0% | 58.0% | 0.4827 | 0.4011 | 0.2626 | 0.8339 |\n| chocolate_pudding | 14.0% | 50.0% | 0.5380 | 0.4548 | 0.3654 | 0.8677 |\n| milk | 0.0% | 90.0% | 0.4817 | 0.5120 | 0.2759 | 0.8916 |\n| bbq_sauce | 0.0% | 26.0% | 0.3653 | 0.3335 | 0.2475 | 0.6553 |\n| **OVERALL** | **4.0%** | **56.0%** | **0.4669** | **0.4127** | **0.2475** | **0.8916** |\n\n- **dfCAR@100mm**: 56.0% (200/200 active, 0 frozen)\n- **Avg max displacement** (obstacle): 0.0013–0.0873m across tasks\n- Registry: DONE/success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-lora-baseline-s1-v2-check.md"
+}

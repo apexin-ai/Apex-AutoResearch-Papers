@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e761b661d1c970142bc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops pi05 download urgent",
+  "task_key": "worker_ops_pi05_download_urgent_20260522T144046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pi05_download_urgent_20260522T144046_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "7cace7c71b0817e1f51161248300fa062c27fd230c2db9ce3fdc97ca8cad220a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## pi0.5 下载状态\n\n**状态：Running** — gsutil 进程活跃（多个 `-m cp` worker，PID 399232+，19:48 启动）\n\n**进度：7.0 / 11.6 GiB（~60%）**\n\n| 指标 | 值 |\n|------|-----|\n| 磁盘实际写入 | 7.0 GiB |\n| 文件表观大小 | 11.6 GiB（6 个 .gstmp 稀疏文件） |\n| 30min 增量 | 5.9→7.0 GiB（+1.1 GiB） |\n| 当前速度 | ~625 KiB/s |\n| 剩余 | ~4.6 GiB |\n| **预估 ETA** | **~2h（约 00:45）** |\n\n6 个大权重分片（ocdbt.process_0/d/）都还在下载中（.gstmp 后缀），小文件（norm_stats.json、_METADATA、_sharding 等）已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pi05-download-urgent.md"
+}

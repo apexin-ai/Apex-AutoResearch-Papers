@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c17e24a68b5b10526c76",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "check westd35807 phase2 stage2",
+  "task_key": "worker_check_westd35807_phase2_stage2_20260527T184738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd35807_phase2_stage2_20260527T184738_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "d76074a82c956821216716b189861ba15441f603b246de7680e1207ebc4c7e0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Stage 1 仍在运行，尚未完成。\n\n**GPU 状态汇总：**\n\n| GPU | PID | 运行时间 | 任务 | 状态 |\n|-----|-----|---------|------|------|\n| cuda:1 | 856552 | 4h 22m | Phase 2 Stage 1 (seed0, λ=0.005, 10K) | 7068/10000 (71%), ETA ~3h 46m |\n| cuda:2 | 856471 | 4h 22m | Phase 2 s2_v4 (seed2, λ=0, 30K, resume) | 运行中 |\n| cuda:3 | 341425 | 1d 6h 20m | spatial_bowl LoRA control (seed0, 30K) | 运行中 |\n| cuda:0 | — | — | 空闲 | — |\n\n**Stage 1 详情：**\n- 当前 step 7068/10000，速度 ~4.63s/it（前期 ~1.21s/it，后期明显减速，可能是 eval/checkpoint 开销）\n- 预估剩余 ~3h 46min，预计约 4 小时后完成\n- loss 稳定在 0.03-0.04 区间，sdf ~0.03，ee ~0.02-0.03\n\n**Stage 2 暂不启动**，等 Stage 1 跑完 10K 步后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd35807-phase2-stage2.md"
+}

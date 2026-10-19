@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "501b2fd8769bcde1225f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper discussion caveat",
+  "task_key": "worker_paper_discussion-caveat_20260529T001938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_discussion-caveat_20260529T001938_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "529bb90c8eb657d02630607105ff261c3079be41644882329a9ee99a52321d96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "21/21 全部通过。\n\ndiscussion.tex 已更新：在 `$p = 0.155$` 之后插入了统计功效 caveat 句，paper_switch.py 验证 21/21 OK。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-discussion-caveat.md"
+}

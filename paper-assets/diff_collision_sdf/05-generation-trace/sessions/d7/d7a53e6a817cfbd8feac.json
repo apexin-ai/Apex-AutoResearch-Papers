@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7a53e6a817cfbd8feac",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu_status_check_20260525T185246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260525T185246_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "88c33c3ccd7232c6a49918d56922daaece7c1827eb27e256452d0411fbb55a91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 占用汇总\n\n| 服务器 | GPU | 显存占用 | util% | 进程 | 对应实验 |\n|--------|-----|----------|-------|------|----------|\n| **westd-35807** | cuda:0 | 27045/97887 MiB | 100% | PID 3717 | `train_a1_sdf_aux_pi05.py --scene spatial_bowl --seed 0 --resume` |\n| **westd-35807** | cuda:1 | 8483/97887 MiB | 0% | PID 6667 | `eval_safelibero.py` s0_l005_30k_final (object_pudding) |\n| **westd-35807** | cuda:2 | 9142/97887 MiB | 11% | PID 7094 | `eval_safelibero.py` s0_l01_30k_final (object_pudding) |\n| **westd-35807** | cuda:3 | 1 MiB | 0% | — | **空闲** |\n| **westd-45947** | cuda:0 | 27089/97887 MiB | 100% | PID 3634 | `train_pi05_lora_baseline.py --scene object_pudding --seed 0 --resume` |\n| **westd-45947** | cuda:1 | 27089/97887 MiB | 100% | PID 3724 | `train_pi05_lora_baseline.py --scene object_pudding --seed 1 --resume` |\n\n**空闲卡：westd-35807:cuda:3**（完全空闲），cuda:1 和 cuda:2 在跑 eval 但显存占用不大，eval 结束后也会释放。\n\n**westd-45947 满载**，两张卡都在跑 lora baseline 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check.md"
+}

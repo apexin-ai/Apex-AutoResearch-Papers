@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4c56a5fd5b33efde883",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops urgent diag westd45947",
+  "task_key": "worker_ops_urgent_diag_westd45947_20260525T043854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_diag_westd45947_20260525T043854_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "b3a59be897423be3ae6b78535696adff553c77529a6d2418f527f032f9ff0a21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论清晰了。\n\n```\n问题1: LoRA baseline（非 SDF 训练）\n  脚本: train_pi05_lora_baseline（无 lambda_sdf 参数）\n  配置: pi05_lora_baseline_object_pudding, lr=2.5e-05, batch=32, target=30000 steps\n  两个 seed 同时启动于 5/24 19:25:\n    - seed0 (wandb: fjmhoj37) → GPU 0\n    - seed1 (wandb: e1gwkkop) → GPU 1\n\n问题2: 两个 GPU 均无进程，训练已停止\n  GPU 0: 0MiB 显存, 无进程 (GPU-Util 100% 但无实际进程，可能是 persistence mode 残留)\n  GPU 1: 0MiB 显存, 无进程, 0% util\n\n  最新 checkpoint 时间戳:\n    seed0: step 16000 @ 5/25 11:15\n    seed1: step 16000 @ 5/25 11:18\n  目标 30000 steps, 仅完成 ~53%。训练在 step 16000 后崩溃/退出（距今约 1.5 小时前）。\n  /tmp/ 下无对应训练日志文件（train_pi05_lora_baseline_s0/s1.log 不存在），无法从日志确认崩溃原因。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-diag-westd45947.md"
+}

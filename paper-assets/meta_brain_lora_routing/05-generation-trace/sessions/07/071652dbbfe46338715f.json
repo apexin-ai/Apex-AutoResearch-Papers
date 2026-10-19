@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "071652dbbfe46338715f",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "eval spatial expert oracle",
+  "task_key": "worker_eval_spatial_expert_oracle_20260517T011209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_spatial_expert_oracle_20260517T011209.log",
+    "occurrence": 1,
+    "bytes": 790699,
+    "sha256": "52b68e1a677637e2ded64d94066b377a04140bb24b91d8eae6fa2af117ee204d"
+  },
+  "statistics": {
+    "messages": 480,
+    "user_turns": 0,
+    "tool_calls": 198,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 198,
+      "tool_result": 198
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 480,
+      "chunks": [
+        {
+          "path": "071652dbbfe46338715f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "071652dbbfe46338715f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "071652dbbfe46338715f-part-0003.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-spatial-expert-oracle.md"
+}

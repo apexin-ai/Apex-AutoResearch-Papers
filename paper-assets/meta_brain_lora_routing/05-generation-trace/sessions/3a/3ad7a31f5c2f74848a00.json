@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ad7a31f5c2f74848a00",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "research compare pi0 libero variants",
+  "task_key": "worker_research_compare_pi0_libero_variants_20260516T143630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_compare_pi0_libero_variants_20260516T143630_result.json",
+    "occurrence": 1,
+    "bytes": 3147,
+    "sha256": "77444e85f77b1cc86b30e6b7d392464639269ac867a69aa636b3232fbfa85198"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the comparison:\n\n---\n\n## pi0_libero vs pi0_libero_finetuned 对比\n\n### 来源\n\n| | pi0_libero | pi0_libero_finetuned |\n|---|---|---|\n| HF repo | `lerobot/pi0_libero` (base model) | `pepijn223/pi0_libero_finetuned_extra2` |\n| base_model | — | `lerobot/pi0_libero_base` |\n| pretrained_path | — | `pepijn223/pi0_libero_finetuned_extra` |\n| 训练数据 | 未指定 | `HuggingFaceVLA/libero` |\n| 定位 | \"Base model to fine tune\" | 在 LIBERO 上微调过的版本 |\n\n### Config 关键差异\n\n| 字段 | pi0_libero | pi0_libero_finetuned |\n|---|---|---|\n| **dtype** | float32 | **bfloat16** |\n| **n_action_steps** | 10 | **50** |\n| **gradient_checkpointing** | false | **true** |\n| **compile_model** | false | **true** |\n| scheduler_decay_steps | 30000 | 10000 |\n| normalization_mapping | 缺失 | 显式定义 (VISUAL→IDENTITY, STATE→MEAN_STD, ACTION→MEAN_STD) |\n| input_features | 3 个 (image, image2, state) | **4 个** (+empty_camera_0 [3,224,224]) |\n| time_sampling_scale/offset | 缺失 | 0.999 / 0.001 |\n\n### Norm Stats 差异\n\n| | pi0_libero | pi0_libero_finetuned |\n|---|---|---|\n| state mean[:4] | [-0.047, 0.034, 0.765, 2.972] | [-0.047, 0.034, 0.765, 2.972] (几乎一致) |\n| **action mean[:4]** | [0.067, 0.064, **-0.805, -2.972**] | [0.063, 0.087, **-0.090, 0.001**] |\n| action std[:4] | [0.329, 0.420, 0.617, 0.351] | [0.336, 0.378, 0.445, **0.039**] |\n| state std padding (dim 8-31) | 全 0 | 全 **1.0** |\n| q01/q99 | 有真实值 | **全 0**（未计算或不同 norm 方式） |\n\naction 统计差异巨大：pi0_libero 是绝对关节位置的统计，finetuned 更像是 delta action 或在不同数据分布上计算的。\n\n### 文件结构差异\n\n| | pi0_libero | pi0_libero_finetuned |\n|---|---|---|\n| model.safetensors | 7,011,549,448 B ✅ 完整 | 7,011,548,640 B ⚠️ **有 .aria2 文件，下载未完成** |\n| train_config.json | ❌ 无 | ✅ 有（batch_size=32, steps=10000, wandb run=wdhhngzb） |\n| preprocessor state | 无 safetensors | ✅ `policy_preprocessor_step_5_normalizer_processor.safetensors` |\n| postprocessor state | 无 safetensors | ✅ `policy_postprocessor_step_0_unnormalizer_processor.safetensors` |\n| preprocessor features | 空 {} | 完整定义所有 features |\n\n### ModelScope 下载状态\n\n- `.ms_cache/lerobot/pi0_libero/` 只有 28K 元数据文件（config/README/policy JSON），**无 model.safetensors**\n- `.ms_cache/lerobot/pi0_base/` 有完整 model.safetensors\n- 没有活跃的 modelscope 下载进程在运行\n\n### 结论\n\n1. **pi0_libero** = 官方 base checkpoint（float32），已完整下载，用于微调起点\n2. **pi0_libero_finetuned** = 社区用户 pepijn223 在 LIBERO 数据上微调的版本（bfloat16），是\"更新的\"版本，但 **model.safetensors 下载不完整**（有 .aria2 残留，且文件比 base 小 808 bytes）\n3. finetuned 版本的 preprocessor/postprocessor 配置更完整，有独立的 normalizer state 文件\n4. **ModelScope 的 pi0_libero 下载基本未开始**（只拉了元数据），也没有下载进程在跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-compare-pi0-libero-variants.md"
+}

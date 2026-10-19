@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e0b283e89c0214ca894",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code plan005 phase2 lambda0 prep",
+  "task_key": "worker_code_plan005_phase2_lambda0_prep_20260526T143911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan005_phase2_lambda0_prep_20260526T143911_result.json",
+    "occurrence": 1,
+    "bytes": 3761,
+    "sha256": "796fefc08866fb1ab22baa1c1444ac5cfeedf8e6dca516417999d9fd9da22124"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。汇总产出：\n\n---\n\n## Phase 2 λ=0 训练准备报告\n\n### 1. 可用 10K SDF Checkpoints: 无\n\n**`SAVE_TOTAL_LIMIT=2`**（`/root/autodl-tmp/openpi/scripts/train_pytorch.py:240`）已删除所有 λ>0 SDF 训练的中间 checkpoints。只剩终态。\n\n**westd-35807:**\n| Run | 可用 steps |\n|-----|-----------|\n| seed0_l005 | 30000 |\n| seed0_l01 | 30000 |\n| seed0_l1 | 12000, 14000（仍在跑） |\n| seed1_l005 | 29999, 30000 |\n| seed1_l01 | 29999, 30000 |\n| seed1_l1 | 12000, 14000（仍在跑） |\n| seed2_l0 | 9999, 10000（这是 λ=0 run，非 SDF 源） |\n| seed2_l005 | 29999, 30000 |\n| seed2_l01 | 29999, 30000 |\n| phase2_lambda0_s0_stage1 | 空（仅 wandb_id.txt） |\n| seed0_l005_p2abl | 空（仅 wandb_id.txt） |\n\n**westd-45947:**\n| Run | 可用 steps |\n|-----|-----------|\n| seed0_l005 | 30000 |\n| seed0_l01 | 30000 |\n| seed1_l005 | 30000 |\n| seed1_l01 | 30000 |\n| seed2_l005 | 30000 |\n| seed2_l01 | 30000 |\n| baseline_seed0/1 | 30000 |\n| baseline_seed2 | 10000, 12000（仍在跑） |\n\n### 2. Resume 机制\n\n- `--resume`：布尔 flag，自动找 exp 目录下**最新** checkpoint 恢复（model + optimizer + step）\n- **无 `--resume_from` 参数**，不能指定特定 step\n- Checkpoint 目录：`{CHECKPOINT_BASE}/a1_sdf_pi05_{scene}/{exp_name}/`\n- `--exp_name` 可覆盖自动名称，指向不同 checkpoint 目录\n- `SdfAuxHooks` 的 resume 额外从 `aux_metadata.pt` 恢复 phase 状态（LoRA 是否解冻）；但路径构造有 bug（缺 `name` 层级），实际不影响功能——`on_step_start` 会在 `global_step >= warmup_phase_steps` 时自动触发 Phase 2\n\n### 3. Phase 2 命令模板\n\n前提：先获得 10K SDF checkpoint（见下方选项）。假设 checkpoint 位于 `{exp_dir}/10000/`：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && \\\ncd /root/colliforce-vla && export WANDB_MODE=disabled && \\\npython scripts/train_a1_sdf_aux_pi05.py \\\n  --scene object_pudding \\\n  --seed <SEED> \\\n  --lambda_sdf 0 \\\n  --gpu <GPU_ID> \\\n  --num_train_steps 30000 \\\n  --resume \\\n  --exp_name <SOURCE_EXP_NAME>\n```\n\n`--resume` 会从 `<SOURCE_EXP_NAME>` 目录找最新 checkpoint（必须是 10000），以 λ=0 继续训到 30000。\n\n### 4. 核心问题与选项\n\n之前 Phase 2 成功是因为赶在 SAVE_TOTAL_LIMIT 清理前捞到了 10K checkpoint。现在 **所有 l005/l01 的 10K checkpoint 已被删除**。\n\n**Option A：重跑 Phase 1 到 10K（推荐）**\n```bash\npython scripts/train_a1_sdf_aux_pi05.py \\\n  --scene object_pudding --seed 0 --lambda_sdf 0.005 \\\n  --num_train_steps 10000 --gpu <ID> \\\n  --exp_name a1_sdf_pi05_object_pudding_seed0_l005_p2\n```\n10K 是终态 step，不会被 SAVE_TOTAL_LIMIT 删。约 ~8h/run。然后 Phase 2 用 `--resume --exp_name` 同名目录 + `--lambda_sdf 0 --num_train_steps 30000`。\n\n**Option B：用 l1 的 12K checkpoint**\n`seed0_l1/12000` 和 `seed1_l1/12000`（westd-35807 上还在）。但 λ=1.0 ≠ 0.005，实验设计不同。\n\n**Option C：直接从 30K checkpoint 继续**\n`--num_train_steps 50000`，但改变了实验设计。\n\n### 5. SAVE_TOTAL_LIMIT 注意事项\n\n当前值 = 2，**必须改为 ≥3**。改动位置：`/root/autodl-tmp/openpi/scripts/train_pytorch.py:240`。否则 Phase 1 跑完后 10K checkpoint 仍会被删。\n\n对于 Option A（`--num_train_steps 10000`），10K 是最终 step，不存在被清理问题。但如果后续还要跑完整 30K SDF + 保留 10K，则必须改 SAVE_TOTAL_LIMIT。\n\n### 6. 代码改动\n\n训练脚本本身不需要改动。唯一需要的改动是 `SAVE_TOTAL_LIMIT`（如果选择方案需要保留中间 checkpoints）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan005-phase2-lambda0-prep.md"
+}

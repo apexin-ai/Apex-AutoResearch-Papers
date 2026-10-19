@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1cc22d617a2bc3aebcd",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu3 phase2 or eval",
+  "task_key": "worker_ops_gpu3_phase2_or_eval_20260525T214958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu3_phase2_or_eval_20260525T214958_result.json",
+    "occurrence": 1,
+    "bytes": 1232,
+    "sha256": "4e06ebb2e8ef5a7d36ffa8d1782d23038d0068a88bb8d2548c4ecfd6e97ed48d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### GPU 3 — Phase 2 λ=0 训练 (已启动)\n\n| 项目 | 值 |\n|------|-----|\n| PID | 254634 |\n| 显存 | 27045 MiB / 97887 MiB, 100% util |\n| Checkpoint 来源 | seed2_l005/best (30K步完训模型) |\n| Resume 机制 | 复制 l005 best → l0/0 目录，metadata 重置 global_step=0 |\n| lambda_sdf | **0** (SDF loss 不参与梯度) |\n| warmup_phase_steps | 0 → LoRA 立即解冻 (Phase 2 at step 0) |\n| num_train_steps | 10000 |\n| LR | warmup 1K → peak 2.5e-5 → cosine decay → 2.5e-6 |\n| Step 0 | loss=0.0187, action=0.0166, sdf=0.1376(×0=0), ee=0.2076 |\n| 速度 | ~9s/step → ETA ~25h |\n\nPhase 2 确认：33.47M LoRA params 已在 step 0 解冻，LoRA gradient warmup 100 steps。\n\n### GPU 1 — Eval s1_l005 30K (已完成)\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| 0 | 2% | 54% |\n| 1 | 14% | 58% |\n| 2 | 0% | 92% |\n| 3 | 0% | 12% |\n| **Avg** | **4.0%** | **54.0%** |\n\n### GPU 2 — Eval s0_l01 30K (已完成)\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| 0 | 0% | 76% |\n| 1 | 26% | 32% |\n| 2 | 0% | 84% |\n| 3 | 0% | 18% |\n| **Avg** | **6.5%** | **52.5%** |\n\nGPU 1/2 当前空闲 (0 MiB)。日志显示之前的 eval 已完成并保存了结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu3-phase2-or-eval.md"
+}

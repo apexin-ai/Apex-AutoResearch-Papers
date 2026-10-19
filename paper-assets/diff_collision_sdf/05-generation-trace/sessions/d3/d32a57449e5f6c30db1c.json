@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d32a57449e5f6c30db1c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops phase2 lambda0 ablation prep",
+  "task_key": "worker_ops_phase2_lambda0_ablation_prep_20260525T074355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_phase2_lambda0_ablation_prep_20260525T074355_result.json",
+    "occurrence": 1,
+    "bytes": 4180,
+    "sha256": "047495c25057d785508cf08ad2e5bee3278b9bf7ec3958e36535c1d26d9dd9e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。以下是完整结果：\n\n---\n\n## 1. 10K checkpoint 不存在\n\n`seed0_l005` 目录**只有 30000/**，没有 10K：\n```\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000/\n```\n\n原因：`train_pytorch.py` 的 `save_checkpoint` 函数有 **`SAVE_TOTAL_LIMIT = 2`**，只保留最近 2 个 checkpoint，中间的全部被清理。所有 seed/lambda 组合都只剩 30000/（seed1/2 额外有 29999/ 和 best/）。\n\n## 2. 脚本能力分析\n\n| 功能 | 支持? | 说明 |\n|------|-------|------|\n| `--lambda_sdf 0` | ✅ | float 参数，直接传 0 即可，loss 公式: `action_loss + lambda_sdf * sdf_total + lambda_ee * ee_loss` |\n| `--resume` | ✅ | 自动找 exp_name 目录下最新 checkpoint 恢复 global_step 和 optimizer |\n| 指定恢复到特定 step | ❌ | 只能从目录里最大 step 的 checkpoint 恢复 |\n| Phase 2 lambda 独立控制 | ❌ | `self.lambda_sdf` 从 args 一次性设置，整个训练周期不变 |\n\nPhase 逻辑：\n- Phase 1（step 0 → 5000）：只训 SDF decoder + EE extractor，LoRA 冻结\n- Phase 2（step 5000+）：LoRA 解冻，含 100 步 gradient warmup\n\n## 3. 可行方案：两阶段训练\n\n由于 10K checkpoint 已丢失，需要重新训练 Phase 1 → 保存 10K → resume with λ_sdf=0。\n\n### a) Stage 1：训练 10K steps（重建 checkpoint）\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && \\\ncd /root/colliforce-vla && \\\npython scripts/train_a1_sdf_aux_pi05.py \\\n    --scene object_pudding --seed 0 --gpu 0 \\\n    --num_train_steps 10000 \\\n    --lambda_sdf 0.005 \\\n    --save_interval 10000 \\\n    --exp_name a1_sdf_pi05_object_pudding_seed0_l005_p2abl\n```\n\n预计耗时：~8-10h（30K 约 24h，按比例）。产出 checkpoint 在：\n`/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005_p2abl/10000/`\n\n### b) Stage 2：从 10K resume，λ_sdf=0，训到 30K\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && \\\ncd /root/colliforce-vla && \\\npython scripts/train_a1_sdf_aux_pi05.py \\\n    --scene object_pudding --seed 0 --gpu 0 \\\n    --num_train_steps 30000 \\\n    --lambda_sdf 0 \\\n    --save_interval 5000 \\\n    --resume \\\n    --exp_name a1_sdf_pi05_object_pudding_seed0_l005_p2abl\n```\n\nresume 时 global_step=10000 > warmup_phase_steps=5000 → `on_step_start` 自动触发 Phase 2 → LoRA 解冻。λ_sdf=0 从 args 传入，后续 20K 步 SDF loss 权重为 0。\n\n### c) s0 l005 30K eval\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && \\\ncd /root/colliforce-vla && \\\npython scripts/eval_safelibero.py \\\n    --model_type a1 \\\n    --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000 \\\n    --config_name baseline_object_pudding \\\n    --suite safelibero_object \\\n    --task_id 0 \\\n    --n_episodes 50 \\\n    --gpu 0 \\\n    --pi05\n```\n\n### d) s0 l01 30K eval\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && \\\ncd /root/colliforce-vla && \\\npython scripts/eval_safelibero.py \\\n    --model_type a1 \\\n    --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000 \\\n    --config_name baseline_object_pudding \\\n    --suite safelibero_object \\\n    --task_id 0 \\\n    --n_episodes 50 \\\n    --gpu 0 \\\n    --pi05\n```\n\n## 4. 阻塞问题\n\n| # | 问题 | 影响 | 解决 |\n|---|------|------|------|\n| 1 | **10K checkpoint 不存在** | 不能直接 resume | 需要先重训 10K（Stage 1），额外 ~8-10h |\n| 2 | Stage 1 与原始 s0 训练不完全相同 | 数据 shuffle 可能因 seed 相同而一致，但 wandb run 是新的 | 影响可忽略——random seed 固定，dataloader 顺序确定性由 seed 保证 |\n| 3 | `SAVE_TOTAL_LIMIT=2` 也会影响 Stage 2 | 20K 步中间 checkpoint 可能被清理 | 已将 save_interval 设为 5000，最多保留 2 个（25000+30000），如需更多需改 SAVE_TOTAL_LIMIT |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-phase2-lambda0-ablation-prep.md"
+}

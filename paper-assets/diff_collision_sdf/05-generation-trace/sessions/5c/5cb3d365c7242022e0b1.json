@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cb3d365c7242022e0b1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops verify and fix action chunking",
+  "task_key": "worker_ops_verify_and_fix_action_chunking_20260522T105355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_and_fix_action_chunking_20260522T105355_result.json",
+    "occurrence": 1,
+    "bytes": 1296,
+    "sha256": "b570f21f391484e40823e25f3a682a3b7e9872176b9409994e13e810c49c5c34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成。结果：\n\n| 指标 | 值 |\n|------|-----|\n| TSR | 0.0% (0/3) |\n| CAR | 66.7% (2/3) |\n| Avg smoothness | 0.003058 |\n| Avg max displacement | **0.0076m** |\n\n**与 v10 对比**：v10 的 avg max displacement 是 0.048m，现在 v11（带 action chunking）降到 0.0076m，改善了约 6.3 倍。CAR 从 v10 数据也有改善。\n\n**验证总结**：\n\n1. **修复状态**：action chunking 确实完全丢失，已重新实现\n2. **实施的 9 项修改**：\n   - `PYTHONUNBUFFERED` 环境变量\n   - `from collections import deque` + `from PIL import Image`\n   - `--replan_steps` (default=5) + `--output_prefix` argparse 参数\n   - `get_action_from_policy` 返回完整 action chunk（移除 `actions[0]`）\n   - `deque` 缓存 + 每 replan_steps 步重新推理\n   - 10 步 warm-up（gripper closed）\n   - 图像 resize 224×224\n   - 输出文件支持 output_prefix\n   - 保存 config 包含 replan_steps\n3. **额外修复**：baseline 的 norm_stats 加载——从 checkpoint assets 自动发现子目录（与 M022 同理）\n4. **保留的修复**：M019（rotvec L579）和 M022（a3_norm_stats）均完好\n5. **Dry-run 成功**：3 episodes 全部完成，displacement 显著下降\n6. **cuda:0 未受影响**：训练仍在运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-and-fix-action-chunking.md"
+}

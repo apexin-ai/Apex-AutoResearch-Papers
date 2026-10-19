@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f505bc6abc0fb4fe15db",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops deep cleanup 35807 and check 45947",
+  "task_key": "worker_ops_deep_cleanup_35807_and_check_45947_20260523T061911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deep_cleanup_35807_and_check_45947_20260523T061911_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "0f2abea94c08064e2eb40cbfd275c6b6b0d011763529c96d1b0ef8f3f288a00d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**westd-35807**：已删除 `pi05_lora_baseline_object_pudding_seed0`（22G）。`baseline_object_pudding/` 和 `baseline_spatial_bowl/` 已被其他 Worker 先行清理。无 dry-run/tmp 残留。当前 126G used / 350G，**225 GB free — SAFE**。\n\n**westd-45947**：176G used / 250G，**75 GB free — SAFE**（>50G 阈值）。但有 ~91.6G 旧 checkpoints 可清理（旧 A3 × 2 共 44G、旧 baseline + eval 共 25.6G、lora baseline 22G），待 Director 批准。\n\n报告已写入 `artifacts/disk_cleanup_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deep-cleanup-35807-and-check-45947.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0a398c4a8ea75d23aca",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "analysis light bias",
+  "task_key": "worker_analysis_light-bias_20260515T150036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_light-bias_20260515T150036_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "bab75864ee454d8208de3ce0fb9428a9c530fadf546a169079b56497fbbcf5ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n### Visual 子类 F1（6-class 分类器）\n\n| 子类 | Precision | Recall | F1 |\n|------|-----------|--------|----|\n| camera | 1.000 | 0.963 | 0.981 |\n| **light** | 0.988 | 1.000 | **0.994** |\n| background | 1.000 | 0.995 | 0.997 |\n\n### 偏差指标\n\n- **Bias gap**: 0.0047（light F1 0.994 vs 其他 Visual 平均 0.989）\n- **判定: OK** — light 与其他 Visual 子类表现基本一致，无显著偏差\n\n### 3-class 对照（有/无 light）\n\n| 条件 | Macro-F1 |\n|------|----------|\n| 含 light（559 样本） | 0.9926 |\n| 去掉 light（479 样本） | 0.9897 |\n| **Delta** | **+0.0029** |\n\n去掉 light 后 macro-F1 仅下降 0.3pp，影响可忽略。\n\n### 结论\n\n合成 light_conditions 数据**未引入分类偏差**。尽管 light 场景成功率为 0%（远低于官方 85%），但其 activation 特征并没有比其他 Visual 子类更容易分类。bias gap 仅 0.47pp，远低于 10pp 阈值。结果已保存至 `/root/meta_brain_lora_routing/results/preliminary/light_bias/light_bias_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-light-bias.md"
+}

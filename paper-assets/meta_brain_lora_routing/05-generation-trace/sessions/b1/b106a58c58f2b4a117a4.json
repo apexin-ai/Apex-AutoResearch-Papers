@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b106a58c58f2b4a117a4",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "doc phase0 experiment spec",
+  "task_key": "worker_doc_phase0-experiment-spec_20260515T110032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_doc_phase0-experiment-spec_20260515T110032_result.json",
+    "occurrence": 1,
+    "bytes": 1231,
+    "sha256": "6ecc1051c2d98fb559bce711e9806fc70bc140ed25ccc946185404fd886e26d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 不在当前可用工具列表中，无法自动注册。文档已写入：\n\n**`/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/meta_brain_lora_routing/artifacts/phase0_experiment_spec.md`**\n\n覆盖内容：\n1. **实验目标** — early-kill gate 定位，GO/NO-GO 逻辑\n2. **扰动 Taxonomy** — 7→3 映射表 + 排除 Language 的理由 + Visual 类内方差风险分析\n3. **模型架构** — π₀ 双 Transformer 参数 + 修正后的 12 层提取方案 + 2-layer MLP 分类器\n4. **数据收集** — 580 episodes 分布 + 4 种 pooling 全存储 (~5.4 GB)\n5. **评估 Protocol** — 3-class (主) / 6-class (对照) / binary (sanity check) + per-layer breakdown / activation source 对比 / pooling 对比 / t-SNE 可视化\n6. **Hyperparameter Sweep** — 27 configs × 3 modes × 5-fold = 405 runs\n7. **GO/NO-GO 判据** — 5 档判定 (GO/AUGMENT/RETHINK/PIVOT/信息) + chance-level 参考\n8. **资源预算** — ~20 H100-hrs, 2-4 天墙钟\n9. **风险与缓解** — 8 项风险 + 缓解方案\n10. **附录** — SAFE 对比 / 已有代码基础 / π₀ baseline 参考值\n\n`register_artifact` 需要你手动执行或等该工具可用后补注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/doc-phase0-experiment-spec.md"
+}

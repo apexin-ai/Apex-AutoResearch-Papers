@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f757717a0b7bc718ad94",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops launch a3 eval v10",
+  "task_key": "worker_ops_launch_a3_eval_v10_20260522T060714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_a3_eval_v10_20260522T060714_result.json",
+    "occurrence": 1,
+    "bytes": 133,
+    "sha256": "6870c3c8746b325404c2e708dfc47d91f79419227f9a8e63be300a7c4a72feb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A3 eval v10a tmux session `eval_a3` 已在 westd-45947 GPU 1 上启动。60 秒后回来验证启动状态和日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-a3-eval-v10.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a5925563c03eb2dad1a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix missing crons",
+  "task_key": "worker_ops_fix_missing_crons_20260526T163502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_missing_crons_20260526T163502_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "0ecb581b992af0a0aa1eda587d56efc1d69da3ac90e6dde77a3ab22c4abe2a1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 实验 | 服务器 | GPU | PID | tmux session | 运行时长 | cron | registry |\n|---|---|---|---|---|---|---|---|\n| **train_pi05_a1_obj_s2_l01_high** | westd-45947 | cuda:1 | 425058 | `train_pi05_a1_obj_s2_l01_high` | ~1h36m | ✅ 已注册 | ✅ PID 已更新 |\n| **train_pi05_lora_baseline_s2** | westd-45947 | cuda:0 | 78558 | `train_pi05_lora_baseline_s2` | ~13h59m | ✅ 已注册 | ✅ PID 已更新 |\n| **train_spatial_bowl_lora_control_s0** | westd-35807 | cuda:3 | 341425 | `plan015` | ~4h08m | ✅ 已注册 | ✅ PID 已更新 |\n\n3 个实验全部正常运行（GPU 利用率 100%），cron 监控已注册（120s 间隔），registry spec 已补全（含正确 PID 和 tmux session）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-missing-crons.md"
+}

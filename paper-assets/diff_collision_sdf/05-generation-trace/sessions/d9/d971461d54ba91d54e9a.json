@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d971461d54ba91d54e9a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code lambda sdf phase2 param",
+  "task_key": "worker_code_lambda_sdf_phase2_param_20260524T143454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lambda_sdf_phase2_param_20260524T143454_result.json",
+    "occurrence": 1,
+    "bytes": 2085,
+    "sha256": "b37b21a0cff2d2c295e4981a7aaa01b1a882ff1ea343548588ca819b1311e9f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File written and verified. Here's the summary:\n\n**Modified file:** `artifacts/train_a1_sdf_aux_pi05.py`\n\n**Diff (3 changes vs original):**\n\n1. **`parse_args()` — 新增参数** (line 87-88):\n   ```python\n   p.add_argument(\"--lambda_sdf_phase2\", type=float, default=None,\n                  help=\"SDF loss weight for Phase 2 (step >= phase1_steps). If None, uses --lambda_sdf throughout.\")\n   ```\n\n2. **`SdfAuxHooks.__init__` — 存储 phase2 值** (line 120):\n   ```python\n   self.lambda_sdf_phase2 = args.lambda_sdf_phase2 if args.lambda_sdf_phase2 is not None else args.lambda_sdf\n   ```\n\n3. **`on_step_start` — Phase 2 切换时打印日志** (lines 192-195):\n   ```python\n   if self.lambda_sdf != self.lambda_sdf_phase2:\n       logging.info(\"[Phase 2] Switching lambda_sdf: %.4f -> %.4f\",\n                    self.lambda_sdf, self.lambda_sdf_phase2)\n   ```\n\n4. **`on_loss_computed` — 按 phase 选择 lambda** (line 230):\n   ```python\n   _lsdf = self.lambda_sdf if self.phase == 1 else self.lambda_sdf_phase2\n   total = action_loss + _lsdf * sdf_losses[\"sdf_total\"] + self.lambda_ee * ee_loss\n   ```\n   同时在 `aux_info` 中添加 `\"lambda_sdf_effective\": _lsdf` 用于 wandb tracking。\n\n5. **`main()` — 启动时记录 phase2 override** (lines 285-286):\n   ```python\n   if args.lambda_sdf_phase2 is not None:\n       logging.info(\"Phase 2 lambda_sdf override: %.4f\", args.lambda_sdf_phase2)\n   ```\n\n**行为保证：** 不传 `--lambda_sdf_phase2` 时，`default=None` → `lambda_sdf_phase2 = lambda_sdf`，与修改前完全一致。\n\n**训练命令示例：**\n```bash\npython scripts/train_a1_sdf_aux_pi05.py \\\n    --scene object_pudding --seed 0 --gpu 2 \\\n    --batch_size 32 --num_train_steps 30000 \\\n    --lambda_sdf 0.005 --lambda_sdf_phase2 0 \\\n    --lambda_ee 0.01 --lr 2.5e-5 \\\n    --save_interval 2000 \\\n    --exp_name a1_sdf_pi05_object_pudding_seed0_l000_phase2off\n```\n\n需要 `sync_code_to_remote` 把文件推到服务器 `/root/colliforce-vla/scripts/` 后才能运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lambda-sdf-phase2-param.md"
+}

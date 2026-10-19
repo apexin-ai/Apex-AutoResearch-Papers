@@ -1,0 +1,194 @@
+- id: art_20260515_7628d0
+  name: phase0_configs
+  type: intermediate
+  description: 'Phase 0 config constants: perturbation taxonomy, layer indices, model
+    dims, sweep grid, go/no-go thresholds'
+  path: projects/meta_brain_lora_routing/artifacts/_project/intermediate/configs.py
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:03:52.095752+00:00'
+  tags:
+  - phase0
+  - config
+- id: art_20260515_494c80
+  name: phase0_collect_activations
+  type: intermediate
+  description: 'Activation collection script: hooks on PaliGemma 8 layers + Expert
+    4 layers, 4 pooling strategies, LIBERO-Plus rollout'
+  path: projects/meta_brain_lora_routing/artifacts/_project/intermediate/collect_activations.py
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:03:54.397406+00:00'
+  tags:
+  - phase0
+  - activations
+  - hooks
+- id: art_20260515_56725f
+  name: phase0_train_classifier
+  type: intermediate
+  description: 'Classifier training: 2-layer MLP, 6class/3class/binary modes, 5-fold
+    CV, 27-config sweep'
+  path: projects/meta_brain_lora_routing/artifacts/_project/intermediate/train_classifier.py
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:03:57.325281+00:00'
+  tags:
+  - phase0
+  - classifier
+  - training
+- id: art_20260515_c63d9b
+  name: phase0_eval_classifier
+  type: intermediate
+  description: 'Evaluation script: confusion matrix, ROC-AUC, t-SNE, per-layer accuracy
+    breakdown, sweep leaderboard'
+  path: projects/meta_brain_lora_routing/artifacts/_project/intermediate/eval_classifier.py
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:03:59.111345+00:00'
+  tags:
+  - phase0
+  - evaluation
+  - visualization
+- id: art_20260515_5dd29d
+  name: phase0_code_pipeline
+  type: intermediate
+  description: Phase 0 完整代码管线：collect_activations.py + train_classifier.py + eval_classifier.py
+    + configs.py，支持 3-class/6-class/binary 分类、5-fold CV、27-config sweep、confusion
+    matrix/ROC-AUC/t-SNE 可视化
+  path: projects/meta_brain_lora_routing/artifacts/_project/intermediate/configs_5dd29d.py
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:08:32.255778+00:00'
+  tags:
+  - phase0
+  - code
+  - classifier
+  - activation-hook
+- id: art_20260515_d64778
+  name: phase0_experiment_spec
+  type: report
+  description: Phase 0 实验规格文档：7→3 映射定义、评估 protocol（3-class/6-class/binary）、GO/NO-GO
+    判据（5 档）、资源预算、风险缓解
+  path: projects/meta_brain_lora_routing/artifacts/_project/report/phase0_experiment_spec.md
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:08:34.021091+00:00'
+  tags:
+  - phase0
+  - experiment-spec
+  - taxonomy
+- id: art_20260515_51c75d
+  name: phase1_train_lora_expert
+  type: intermediate
+  description: 'Phase 1 LoRA expert training script. Trains perturbation-specific
+    LoRA adapters (visual/spatial/physical/universal) on frozen pi0 base model using
+    flow-matching action prediction loss. PEFT LoRA rank=16 on PaliGemma Q/K/V/O attention
+    projections (18 layers, 3.69M trainable params). Dry-run validated: model load
+    + LoRA injection + 2 forward/backward steps passed on westd-34142 GPU0.'
+  path: projects/meta_brain_lora_routing/artifacts/_project/intermediate/train_lora_expert.py
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:35:09.260497+00:00'
+  tags:
+  - phase1
+  - lora
+  - training
+  - pi0
+  - peft
+- id: art_20260516_diag01
+  name: openpi_vs_metabrain_diagnostic
+  type: report
+  description: 'OpenPI vs MetaBrain diagnostic: root cause of 0% eval found — MetaBrain
+    used wrong norm_stats (LeRobot buffers vs openpi delta-transformed JSON). Fix
+    applied on server.'
+  path: projects/meta_brain_lora_routing/artifacts/openpi_vs_metabrain_diag_report.md
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T21:15:00.000000+00:00'
+  tags:
+  - diagnostic
+  - norm-stats
+  - pi0-libero
+  - fix
+- id: art_20260515_e00fe0
+  name: phase1_data_loader
+  type: intermediate
+  description: Phase 1 data loader for LoRA expert training. Includes SyntheticRolloutDataset
+    (dry-run), LIBERORolloutDataset (real rollouts), VisualAugmentation (camera jitter,
+    brightness/contrast, Gaussian noise for LoRA-V), custom Observation dataclass,
+    and collate function. Perturbation type filtering maps 6-class to 3-class taxonomy.
+  path: projects/meta_brain_lora_routing/artifacts/_project/intermediate/data_loader.py
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:35:13.792052+00:00'
+  tags:
+  - phase1
+  - data
+  - augmentation
+  - pi0
+- id: art_20260516_f5d162
+  name: v3_training_analysis
+  type: report
+  description: v3 LoRA training analysis - 3/4 experts completed (physical/spatial/universal),
+    loss curves, checkpoint verification
+  path: projects/meta_brain_lora_routing/artifacts/_project/report/v3_training_analysis.md
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T20:25:24.975672+00:00'
+  tags:
+  - v3
+  - training
+  - lora
+  - phase1
+- id: art_20260516_cb51c7
+  name: activations_v3_policy_infer
+  type: data
+  description: 'PaliGemma layer-6 first-token activations (3000 samples, 1000/class)
+    collected via policy.infer path for PAR router retraining. Path: /root/autodl-tmp/activations_v3/activations.pt'
+  path: projects/meta_brain_lora_routing/artifacts/_project/data/activations_v3_metadata.json
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T22:26:18.369121+00:00'
+  tags:
+  - phase0
+  - activation
+  - router
+  - par
+- id: art_20260516_580d6c
+  name: PAR Router v3 Training Analysis
+  type: report
+  description: 'PAR router trained on v3 activations - F1=0.50 (vs Phase 0 0.99).
+    Root cause: weak synthetic perturbations + different model/hook path.'
+  path: projects/meta_brain_lora_routing/artifacts/_project/report/par_router_v3_analysis.txt
+  url: null
+  project: meta_brain_lora_routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T23:00:45.509748+00:00'
+  tags:
+  - router
+  - v3
+  - analysis
+  - phase1

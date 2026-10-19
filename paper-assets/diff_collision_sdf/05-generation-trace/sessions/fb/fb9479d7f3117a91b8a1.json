@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb9479d7f3117a91b8a1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops scp paper files",
+  "task_key": "worker_ops_scp-paper-files_20260528T120619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-paper-files_20260528T120619_result.json",
+    "occurrence": 1,
+    "bytes": 249,
+    "sha256": "da2ec3be571fa9d0ee588b78bcc5eee91df4809f5e953381922ce1e748e7739c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个文件全部传输成功，远程文件大小与本地一致：\n\n| 文件 | 大小 |\n|------|------|\n| main.tex | 750 B |\n| claim1.tex | 2,852 B |\n| claim2.tex | 2,474 B |\n| claim3.tex | 5,105 B |\n| main.pdf | 584,172 B |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-paper-files.md"
+}

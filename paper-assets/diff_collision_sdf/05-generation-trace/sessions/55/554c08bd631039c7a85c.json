@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "554c08bd631039c7a85c",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "train phase2 lambda0 extra seed",
+  "task_key": "worker_train_phase2_lambda0_extra_seed_20260527T132032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_phase2_lambda0_extra_seed_20260527T132032.log",
+    "occurrence": 1,
+    "bytes": 562818,
+    "sha256": "215395223e4631a3532c4991513a81682f859c59734767d7b5d90787c00e3b6a"
+  },
+  "statistics": {
+    "messages": 266,
+    "user_turns": 0,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 97,
+      "tool_result": 97,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 266,
+      "chunks": [
+        {
+          "path": "554c08bd631039c7a85c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "554c08bd631039c7a85c-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-phase2-lambda0-extra-seed.md"
+}

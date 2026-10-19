@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "134ac9fe9777d927fb95",
+  "project": "meta_brain_lora_routing",
+  "kind": "worker",
+  "title": "fix per step objects layout",
+  "task_key": "worker_fix_per-step-objects-layout_20260515T153327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_per-step-objects-layout_20260515T153327.log",
+    "occurrence": 1,
+    "bytes": 652817,
+    "sha256": "efdb954c65e1d0a610b4b0e97509ee40cac7f4bde453a776935f70e89b094126"
+  },
+  "statistics": {
+    "messages": 290,
+    "user_turns": 0,
+    "tool_calls": 113,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 58,
+      "record": 3,
+      "tool_call": 113,
+      "tool_result": 113,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 290,
+      "chunks": [
+        {
+          "path": "134ac9fe9777d927fb95-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "134ac9fe9777d927fb95-part-0002.json",
+          "message_count": 110
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-per-step-objects-layout.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e79937a838934846d3a3",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops a3 action collapse diagnosis",
+  "task_key": "worker_ops_a3_action_collapse_diagnosis_20260522T092935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_a3_action_collapse_diagnosis_20260522T092935.log",
+    "occurrence": 1,
+    "bytes": 610287,
+    "sha256": "6e137d83c4750d7d323133b54c5efb00a40ecaa92c6a1a89a6104dfb18e018bb"
+  },
+  "statistics": {
+    "messages": 252,
+    "user_turns": 0,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 94,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 252,
+      "chunks": [
+        {
+          "path": "e79937a838934846d3a3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e79937a838934846d3a3-part-0002.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-a3-action-collapse-diagnosis.md"
+}

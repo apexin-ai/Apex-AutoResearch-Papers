@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c62d35047eb1a13b923a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect oracle adaptive alpha results",
+  "task_key": "worker_ops_collect_oracle_adaptive_alpha_results_20260522T211919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_oracle_adaptive_alpha_results_20260522T211919_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "c1b00fd4b51cfe3b35d7dc225dcccadbd52e5e959a16cba9dcae08d07ebc7dc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三组 oracle 实验全部完成，Registry 已更新。汇总：\n\n| 方法 | CAR | Fake Safe Rate | Refine/ep | Grad Mag |\n|------|-----|---------------|-----------|----------|\n| Baseline (无 refine) | ~79% | ~99% | 0 | — |\n| Fixed α=0.005 (action-space) | 73.1% | 98.3% | 14.8 | 0.29-0.42 |\n| Adaptive α (action-space) | 75.0% | 98.3% | 14.2 | 0.18-0.49 |\n| Feature-space oracle | 76.9% | 96.7% | 241.7 | 0.004-0.006 |\n\n所有方法 TSR=0%。chocolate_pudding 最差（47.5%-55%）。\n\n**统一结论**：即使使用 GT SDF，三种 gradient-based refinement 变体全部 negative——CAR 均低于 baseline，且 96-98% 的 \"safe\" episodes 是 fake safe（displacement<0.1mm = action collapse）。Alpha 大小不是关键因素，feature-space 也未优于 action-space。根本问题：SDF gradient refinement 导致 action collapse 而非真正避障。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-oracle-adaptive-alpha-results.md"
+}

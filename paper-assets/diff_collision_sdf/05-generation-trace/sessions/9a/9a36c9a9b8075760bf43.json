@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a36c9a9b8075760bf43",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops sync eval script 45947",
+  "task_key": "worker_ops_sync_eval_script_45947_20260525T195247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_eval_script_45947_20260525T195247_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "1c2ccae210148746a0305d2646a17d957d86889351720b338a2ae9e136fb8917"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步成功。\n\n| 项目 | westd-35807 | westd-45947 |\n|------|-------------|-------------|\n| 行数 | 1352 | 1352 |\n| md5 | `0fa78e146930f95e4d27be8c1ed462d0` | `0fa78e146930f95e4d27be8c1ed462d0` |\n| displacement 代码 | 有 | 有（941/1026/1062/1104/1116 行） |\n\n旧文件已备份为 `eval_safelibero.py.bak_20260525`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-eval-script-45947.md"
+}

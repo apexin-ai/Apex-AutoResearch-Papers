@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efb9b9c2f8e4fb00f0a5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper figures scatter oracle",
+  "task_key": "worker_paper_figures_scatter_oracle_20260524T210046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figures_scatter_oracle_20260524T210046_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "0b011904b71ba81297429499eb8e764383faa4dcfa34b0c2f31571d22ba7b43c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两张图已生成并注册：\n\n- `fig_tsr_car_scatter.pdf` — 13 个数据点的 TSR vs CAR scatter plot，含 Pareto front 虚线和 \"fake safety zone\" 阴影标注，5 组方法用不同 marker/color 区分\n- `fig_oracle_bar.pdf` — 6 个方法的 CAR horizontal bar chart，Oracle 系紫色、baseline 灰色、A3 蓝色，含 baseline 平均虚线\n\n输出路径：`artifacts/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figures-scatter-oracle.md"
+}

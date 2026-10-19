@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ab8abe647e2613a1368",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "figure fig5 lambda curve 3seed",
+  "task_key": "worker_figure_fig5-lambda-curve-3seed_20260528T030223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig5-lambda-curve-3seed_20260528T030223_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "e5365ae06c63c54a7ce288679e4f5174a000c197b0d7fa2329ceb0a6bc90117d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有更新：\n\n| 数据点 | 旧值 | 新值 |\n|--------|------|------|\n| LoRA CAR | 54.75±3.18 (n=2) | 54.67±2.02 (n=3) |\n| λ=0.1 CAR | 58.25±0.35 (n=2) | 57.0±2.18 (n=3) |\n| λ=0.1 TSR | 48.0 | 50.17 |\n| null band | μ=54.6, σ=2.27 | μ=54.58, σ=1.93 |\n\n清理：移除了 \"2 of 3 seeds†\" 图例项和 \"30K†\" 标注（所有点均为 n=3）。CSV 已同步更新。PDF/PNG 已生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig5-lambda-curve-3seed.md"
+}

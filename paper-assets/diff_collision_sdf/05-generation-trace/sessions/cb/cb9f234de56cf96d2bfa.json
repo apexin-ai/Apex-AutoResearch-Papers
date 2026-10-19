@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb9f234de56cf96d2bfa",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "agent / loop_1_1779406437.md",
+  "task_key": "loop_1_1779406437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779406437.md",
+    "occurrence": 1,
+    "bytes": 4792,
+    "sha256": "4a4720022e3ecf8b75237d96e6af6ab572c5f57f3ea0fb930bc13db2b8fa832a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-21T18:15:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-35807 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3（4× RTX PRO 6000 96GB）\n- westd-45947 GPU 白名单: cuda:0, cuda:1（2× RTX PRO 6000 96GB）\n- submit_training_job 的命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero`），裸 `python` 命令会导致 EXIT_CODE=2\n- A1 SDF aux 脚本内部会覆盖 CUDA_VISIBLE_DEVICES（M013 教训），用 `--gpu` 参数而非环境变量\n- A1 Phase 2 LoRA 解冻从未生效（M014），baseline/A1 脚本的 LoRA 注入需要统一 lora_utils.py，尚未修复\n- Checkpoint 必须 SAVE_TOTAL_LIMIT=2 + save_interval=2000，防止爆盘（M008 教训，autodl-tmp 350G 已炸过两次）\n\n### 2. 🖥️ 基础设施快照\n- **westd-35807**: 工作目录 `/root/colliforce-vla`，conda env `libero`，Python `/root/miniconda3/envs/libero/bin/python`\n  - 数据: `/root/autodl-tmp/colliforce_data/safelibero_spatial/` (50 demos), `/root/autodl-tmp/colliforce_data/safelibero_object/` (50 demos)\n  - Checkpoints: `/root/autodl-tmp/checkpoints/` 和 `/root/autodl-tmp/colliforce-outputs/`\n  - 磁盘: `/autodl-tmp` 570GB/879GB 可用 (32%)\n  - 活跃进程: baseline_spatial_bowl_s0_v2 (PID 222903, cuda:0), baseline_object_pudding_s0_v2 (PID 222982, cuda:2)\n  - cuda:1 和 cuda:3 空闲（LoRA baseline 刚失败）\n\n- **westd-45947**: 工作目录 `/root/colliforce-vla`，conda env `base`，Python `/root/miniconda3/bin/python`\n  - 磁盘: 400GB/439GB 可用 (4%)\n  - 活跃进程: a3_gradient_spatial_bowl_s0 (PID 71489/71494, cuda:0), a3_gradient_object_pudding_s0 (PID 73160/73165, cuda:1)\n  - WANDB_MODE=offline（key missing after reboot）\n\n- Cron 监控: 4 个活跃 cron 分别跟踪上述 4 个 RUNNING 实验\n- W&B: 大部分实验 WANDB_MODE=disabled 或 offline\n\n### 3. 📊 当前状态\n刚收到 cron 回调：`baseline_lora_object_pudding_s0` 和 `baseline_lora_spatial_bowl_s0` 都以 EXIT_CODE=2 失败。已派诊断 Worker (`worker_diagnose_baseline_lora_failed_20260521T021217`) 正在运行中（刚启动，turn_count=2）。**尚未收到诊断结果。**\n\n**Registry RUNNING 实验:**\n| exp_id | server | GPU | 进度 | ETA |\n|--------|--------|-----|------|-----|\n| baseline_spatial_bowl_s0_v2 | westd-35807 | cuda:0 | 19.7K/30K (66%) | ~8h (from 20:22 UTC) |\n| baseline_object_pudding_s0_v2 | westd-35807 | cuda:2 | 21.7K/30K (72%) | ~8h (from 20:22 UTC) |\n| a3_gradient_spatial_bowl_s0 | westd-45947 | cuda:0 | 11.2K/30K (37%) | ~21h |\n| a3_gradient_object_pudding_s0 | westd-45947 | cuda:1 | 13.3K/44K (44%) | ~19h |\n\n**等待中:**\n- Worker `worker_diagnose_baseline_lora_failed_20260521T021217` 回调 → 诊断 LoRA baseline 失败原因\n- westd-35807 cuda:1 和 cuda:3 空闲，等诊断结果后重跑 LoRA baseline\n- 4 个 RUNNING 实验的 cron 完成回调\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 根据根因修复命令（大概率是缺 conda activate）→ 重新提交 baseline_lora_spatial_bowl_s0 (cuda:1) 和 baseline_lora_object_pudding_s0 (cuda:3)\n- baseline_spatial_bowl_s0_v2 完成 → eval_batch.sh 评估 → 启动 A1 LoRA spatial_bowl on cuda:0\n- baseline_object_pudding_s0_v2 完成 → eval_batch.sh 评估 → 启动 A1 LoRA object_pudding on cuda:2\n- A3 gradient 完成 → eval_batch.sh 评估 → 与 baseline 对比 CAR/TSR → 判断 MVP pass/fail（CAR↓≥15%, TSR↓<10%）\n- 所有方法×场景完成 → MVP gate check → 向 Director 汇报综合结论\n- **westd-35807 cuda:1/3 空闲 = 失职**——诊断完成后必须立即重跑，不能等\n\n### 5. 🎯 战略上下文\n- **核心方向**: ColliForce-VLA，SDF gradient 引导 VLA 碰撞感知，MVP 阶段验证 A3 (gradient-guided action refinement) 是否比 baseline 降低碰撞率\n- **决策链**: D001 锁定 π0/openpi → D002 否决 OpenVLA-OFT → D003 接受非 watertight SDF → D004 批准 Phase B → D005 暂停 seed 1 只跑 seed 0 → D006 停止 A1（LoRA 解冻 bug），释放 GPU 跑 LoRA baseline\n- **MVP Pass/Fail**: A3 vs Baseline CAR↓≥15% 且 TSR↓<10% = PASS\n- **方法覆盖矩阵**: Baseline(full-FT) ×2 场景 running, Baseline(LoRA) ×2 刚失败待重跑, A3 gradient ×2 running, A1 SDF aux 待 baseline 完成后启动\n- **易错点**:\n  - LoRA baseline 命令之前没有 conda activate 导致 EXIT_CODE=2，重跑时必须加环境激活\n  - A1 脚本的 Phase 2 LoRA 解冻从未生效（M014），不要在修复前启动 A1 实验\n  - westd-35807 autodl-tmp 曾两次爆盘，提交前必须 check_disk\n  - A3 在 westd-45947 用的是 conda base 环境而非 libero，两台服务器环境不同\n  - 0 个实验有 success/negative 结论，全是 failed/killed，尚无任何有效实验数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779406437.md"
+}

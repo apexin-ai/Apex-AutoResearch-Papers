@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa2d1114177196203197",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "agent / loop_3_1779875371.md",
+  "task_key": "loop_3_1779875371",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779875371.md",
+    "occurrence": 1,
+    "bytes": 4135,
+    "sha256": "a9f29cecba13a4c00707ce8123f0a2583950331b12e50824560d178ca658ae9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-27T04:14:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd-35807 cuda:0/1/2/3, westd-45947 cuda:0/1。用其他卡必须 push back Director\n- **submit_training_job >20h 训练必须 timeout_hours=48**（M046 教训：24h 默认杀死了 LoRA s2 在 step 22364/30000）\n- **eval 脚本 GPU 绑定**: `--gpu N` 是物理卡号，不能靠 CUDA_VISIBLE_DEVICES=N --gpu 0（M040）\n- **eval config**: `--config_name pi05_libero --model_type lora_baseline --suite safelibero_object`（object_pudding 场景）；spatial_bowl 用 `--suite safelibero_spatial`\n- **DDL: 2026-05-28 12:00 UTC**（北京时间 20:00）。λ=0.1 30K eval 是 critical path，不能被任何低优先级任务阻塞\n\n### 2. 🖥️ 基础设施快照\n- **westd-35807**: 4× RTX PRO 6000 96GB, `/root/colliforce-vla/`, conda env=`base`（miniconda3）, WANDB_MODE=disabled\n  - cuda:0: eval_stepwise_s0_l1_24k (PID 575130, tmux session, ~1.5h 剩余)\n  - cuda:1: train_pi05_a1_obj_s0_l01_high (nohup, 无 timeout, ~84% → ~17:00 UTC 完成)\n  - cuda:2: train_pi05_a1_obj_s1_l01_high (nohup, 无 timeout, ~82% → ~17:30 UTC)\n  - cuda:3: train_spatial_bowl_lora_control_s0 (手动 tmux `plan015`, 无 timeout, ~49% → ~06:10 5/28 UTC)\n- **westd-45947**: 2× RTX PRO 6000 96GB, conda env=`base`\n  - cuda:0: train_pi05_lora_baseline_s2_resume (tmux, timeout 48h, 从 step 22000 恢复, ~10h 剩余)\n  - cuda:1: train_pi05_a1_obj_s2_l01_high (tmux, timeout 48h, ~08:40 5/28 UTC)\n- **Checkpoint 路径**: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/`\n- **Eval 输出**: `/root/autodl-tmp/eval_results/`\n- **Cron 活跃**: 5 个（train_pi05_a1_obj_s0/s1/s2_l01_high, train_pi05_lora_baseline_s2_resume, train_spatial_bowl_lora_control_s0）\n\n### 3. 📊 当前状态\n刚完成：\n- s1 22K 交叉验证 eval → **negative** (CAR=56.5%)，确认 s0 22K 跳变 (60.5%) 为单 seed 噪声，Scenario B 成立\n- LoRA s2 resume 从 ckpt 22000 重启（timeout_hours=48）\n- Fig 1 v2 最终版（frozen label coral + post-filter 26.8%）\n- Fig 5 y 轴修复 (\"Rate (%)\")\n- tmux timeout 审计：根因是 submit_training_job 的 timeout 命令，不是 tmux 配置\n\n等待中：\n- eval_stepwise_s0_l1_24k cron 回调（~1.5h）\n- train_pi05_a1_obj_s0_l01_high 完成 → **立即跑 30K eval**（最高优先级，A/B/C 判定）\n- train_pi05_a1_obj_s1_l01_high 完成 → s1 30K eval\n- train_pi05_lora_baseline_s2_resume 完成 → s2 30K eval（3v3 统计）\n\n### 4. 📋 待办（条件触发式）\n- eval_stepwise_s0_l1_24k 完成 → 记录 metrics，如果到 30K 训练还有时间 → 继续跑 26K/28K step-wise eval 填充空窗\n- train_pi05_a1_obj_s0_l01_high 完成 (~17:00 UTC) → **立即** cuda:0@35807 跑 eval_l01_s0_30k（最高优先级，A/B/C 场景判定）\n- train_pi05_a1_obj_s1_l01_high 完成 (~17:30 UTC) → eval_l01_s1_30k\n- 30K eval 出结果 → 按 D033 阈值判定 A/B/C：≤57% = B, 57-60% = C, 60-65% = A-, >65% = A+\n- A/B/C 判定后 → patch claim3 §6.3 + discussion + abstract 的 λ=0.1 placeholder → 定稿\n- train_pi05_lora_baseline_s2_resume 完成 → eval 30K → 补充 3v3 LoRA baseline 统计\n- spatial_bowl LoRA control 完成 (~06:10 5/28) → eval → 跨场景归因对比\n\n### 5. 🎯 战略上下文\n- **核心决策链**: D033（量化阈值）→ λ=0.1 30K eval → A/B/C 场景判定 → claim3 patch → 定稿\n- **Scenario B 大概率成立**: 低 λ (0.005/0.01) 全域 redundant (D032), 20K 双 seed negative (D035), 22K s0 跳变被 s1 交叉验证否定 (D036 provisional removed)。30K 是最终确认\n- **论文状态**: 全 8 章节已写完 + Reviewer 审查通过，CoRL 单栏 7pp + 4pp appendix。待填 claim3/discussion/abstract 的 λ=0.1 placeholder\n- **易错点**:\n  - eval 任务 cron 会误判 failed（M045：无 W&B + 无 sentinel → auto-resolve 为 failed）。收到 eval failed 通知时先 tail 日志确认\n  - checkpoint 路径：确认是 `/30000/` 不是 `/best/`（M038 教训）\n  - 定稿窗口只有 ~14h（5/27 22:00 → 5/28 12:00 UTC），30K eval 一出来就要立即 patch 论文\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779875371.md"
+}

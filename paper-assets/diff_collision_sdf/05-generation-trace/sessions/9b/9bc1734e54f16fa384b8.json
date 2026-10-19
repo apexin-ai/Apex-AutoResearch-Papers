@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bc1734e54f16fa384b8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops restart baseline eval fixed",
+  "task_key": "worker_ops_restart_baseline_eval_fixed_20260522T025713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart_baseline_eval_fixed_20260522T025713_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "5b9bea089151f184457f8c6e407263eae4f8917a55b189000bd68a4c67e50939"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_baseline 已成功重启，状态正常：\n\n- **tmux session**: `eval_baseline` 已创建（10:58:20）\n- **GPU 占用**: PID 313305 在 GPU-9568...（cuda:1），占用 8271 MiB，正在加载模型\n- **日志**: 模型加载完成，norm stats 已加载，SafeLIBERO benchmark `safelibero_object` (level II) 初始化中，第一个 task 是 `pick up the orange juice and place it in the basket`\n- **log 文件**: `/root/autodl-tmp/eval_results/eval_v10_baseline.log`\n\n一切正常，修复后的 baseline eval 已在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-baseline-eval-fixed.md"
+}

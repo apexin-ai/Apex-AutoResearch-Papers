@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b449681f6f5af7753c85",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check reeval batch2 completion",
+  "task_key": "worker_ops_check_reeval_batch2_completion_20260526T143815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_reeval_batch2_completion_20260526T143815_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "ece8872921d762cf11416c53d31341da238e61f5d5a07cb297244524e496026f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，cron 已清除。\n\n## Batch2 Reeval 汇总（rotation-fixed, eval_seed=7, 200 episodes/experiment）\n\n所有 4 个 eval 全部完成，0 frozen EE，确认 rotation-fixed 版本。\n\n### 总体指标\n\n| Experiment | λ | seed | TSR (%) | CAR (%) | avg_max_ee_disp |\n|---|---|---|---|---|---|\n| reeval_sdf_s1_l005_30k | 0.005 | 1 | 50.5 | 54.0 | 0.3883 |\n| reeval_sdf_s1_l01_30k | 0.01 | 1 | 55.5 | 57.5 | 0.3852 |\n| reeval_sdf_s2_l005_30k | 0.005 | 2 | 56.0 | 52.5 | 0.3858 |\n| reeval_sdf_s2_l01_30k | 0.01 | 2 | 53.5 | 54.5 | 0.3877 |\n\n### Per-task 明细\n\n| Task | s1_l005 TSR/CAR | s1_l01 TSR/CAR | s2_l005 TSR/CAR | s2_l01 TSR/CAR |\n|---|---|---|---|---|\n| T0 orange_juice | 28/64 | 22/60 | 34/46 | 24/64 |\n| T1 chocolate_pudding | 72/70 | 80/76 | 82/74 | 72/68 |\n| T2 milk | 30/68 | 54/72 | 38/72 | 48/72 |\n| T3 bbq_sauce | 72/14 | 66/22 | 70/18 | 70/14 |\n\n### 多种子汇总（含 s0 已有数据）\n\n**λ=0.01 三种子：**\n- s0: CAR=57.0%, TSR=52.5% (已有)\n- s1: CAR=57.5%, TSR=55.5%\n- s2: CAR=54.5%, TSR=53.5%\n- **均值: TSR=53.8±1.5%, CAR=56.3±1.6%**\n\n**λ=0.005 三种子：**\n- s0: 已有 (reeval_sdf_s0_l005_30k)\n- s1: TSR=50.5%, CAR=54.0%\n- s2: TSR=56.0%, CAR=52.5%\n\n### 关键观察\n\n- **T3 bbq_sauce** CAR 在所有条件下都极低（14-22%），拖低整体 CAR — 碰撞严重\n- **T1 chocolate_pudding** 表现最好，TSR 72-82%，CAR 68-76%\n- **λ=0.01 vs λ=0.005** 差异不大，l01 略高 TSR，CAR 相近\n- 所有实验 frozen_ee=0，rotation fix 有效"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-reeval-batch2-completion.md"
+}

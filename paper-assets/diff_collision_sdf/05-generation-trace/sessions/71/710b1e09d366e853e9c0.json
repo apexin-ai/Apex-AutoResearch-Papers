@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "710b1e09d366e853e9c0",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops recover displacement from logs",
+  "task_key": "worker_ops_recover_displacement_from_logs_20260525T131004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_recover_displacement_from_logs_20260525T131004_result.json",
+    "occurrence": 1,
+    "bytes": 1272,
+    "sha256": "12aff098ba4369b1252b695908fa76072573c428c61a6e64f9b10d272b2fcd46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. Per-episode displacement 在日志中？**否。**\n\n日志每 10 个 episode 只记录 `success/collided/steps`，不含 displacement：\n```\nEpisode 10/50: success=False, collided=True, steps=300\n```\nDisplacement 只有 per-task 的聚合平均值 `Avg max displacement = X.XXXXm`。\n\n### 2. 保留的 JSON？\n\n- `/root/colliforce-vla/eval_results/` **为空**（0 文件）\n- JSON 实际保存路径是 `/root/autodl-tmp/eval_results/`（未能在 3 轮内检查）\n\n### 3. 可从日志恢复的 per-task 平均值\n\n| eval | task 0 | task 1 | task 2 | task 3 | Avg TSR | Avg CAR |\n|------|--------|--------|--------|--------|---------|---------|\n| **s1_l005** (v4) | 0.0603m | 0.0929m | 0.0019m | 0.0920m | 5.5% | 52.5% |\n| **s2_l005** (v4) | 0.0377m | 0.0884m | 0.0012m | 0.0885m | — | — |\n| **s1_l01** (v2) | 0.0462m | 0.0619m | 0.0040m | 0.0962m | — | — |\n\n注意：s1_l005 和 s2_l005 的日志文件名是 **v4** 不是 v2。\n\n### 结论\n\n**s1_l005 和 s2_l005 的 per-episode displacement 不可恢复。** 日志中只有 per-task 聚合值，没有逐 episode 的 displacement。如果需要 per-episode 粒度的数据，必须重跑。如果只需 per-task 平均值，上表数据已完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-recover-displacement-from-logs.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c121689d1a8a46298e09",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh fix method draft lora count",
+  "task_key": "worker_ssh_fix_method_draft_lora_count_20260520T225241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_method_draft_lora_count_20260520T225241_result.json",
+    "occurrence": 1,
+    "bytes": 73,
+    "sha256": "0e7e6e40283312be5fb690220a616e529fe094b2e5c3317cc6a5be133715c8c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "替换完成。文件中已改为 `approximately 33.5M`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-method-draft-lora-count.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b1c46963aab3b4756fb",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval stepwise gap fill",
+  "task_key": "worker_eval_stepwise_gap_fill_20260527T043847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_stepwise_gap_fill_20260527T043847_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "d773385e2ae3c9072fd249dde589034015d96cb75e74c56c0aba5dfa8bbf1f76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态汇总：**\n- s0 26K eval 已在 cuda:0 后台运行（PID=621277），预计 ~40min 完成\n- 可用 checkpoint：s0 26K ✓, s1 24K ✓（s0 28K 尚未产生，约 ~1.9h 后）\n- 训练进度：s0 at 26532/30K, s1 at 25991/30K\n- 计划：s0 26K 完成后 → 检查 s0 28K 是否出现 → 跑 s1 24K 或 s0 28K → 留足 30min 给 30K eval\n\n10 分钟后轮询 eval 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-stepwise-gap-fill.md"
+}

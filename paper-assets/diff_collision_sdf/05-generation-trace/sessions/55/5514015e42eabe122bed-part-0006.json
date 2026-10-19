@@ -1,0 +1,3522 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5514015e42eabe122bed",
+  "rounds": [
+    {
+      "number": 43,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-22T23:46:56.959521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": "2026-05-22T23:46:57.561784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1054
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": "2026-05-22T23:46:58.116993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000scripts/serve_policy.py\\\\u0000--env\\\\u0000LIBERO\\\\u0000--port\\\\u00008001\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1609
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": "2026-05-22T23:47:10.947907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /tmp -name \"*pi05*\" -newer /tmp/lerobot_src -type f"
+            }
+          },
+          "id": "event-000904"
+        },
+        {
+          "source_line": 905,
+          "timestamp": "2026-05-22T23:47:11.199083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "find /root/autodl-tmp/eval_results -name \"*pi05*\" -type f"
+            }
+          },
+          "id": "event-000905"
+        },
+        {
+          "source_line": 906,
+          "timestamp": "2026-05-22T23:47:11.700965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-000906"
+        },
+        {
+          "source_line": 907,
+          "timestamp": "2026-05-22T23:47:11.851782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "ls -lt /tmp/pi05_server*.log"
+            }
+          },
+          "id": "event-000907"
+        },
+        {
+          "source_line": 908,
+          "timestamp": "2026-05-22T23:47:12.002644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/serve_pi05_p8000.log\\\\n/root/autodl-tmp/eval_results/serve_pi05_p8001.log\\\\n/root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log\\\\n/root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 803
+          },
+          "id": "event-000908"
+        },
+        {
+          "source_line": 909,
+          "timestamp": "2026-05-22T23:47:12.556288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/tmp/pi05_server*.log': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 704
+          },
+          "id": "event-000909"
+        },
+        {
+          "source_line": 910,
+          "timestamp": "2026-05-22T23:47:19.883593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -10 /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log"
+            }
+          },
+          "id": "event-000910"
+        },
+        {
+          "source_line": 911,
+          "timestamp": "2026-05-22T23:47:20.385650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 07:46:09,176 INFO   ep 23/50: SUCCESS | safe | max_disp=0.0000 | steps=116 | 3.8s\\\\n2026-05-23 07:46:15,327 INFO   ep 24/50: SUCCESS | COLLISION@72(yellow_book_obstacle_1) | max_disp=0.1696 | steps=134 | 4.5s\\\\n2026-05-23 07:46:27,335 INFO   ep 25/50: FAIL | COLLISION@75(moka_pot_obstacle_1) | max_disp=0.2153 | steps=300 | 10.4s\\\\n2026-05-23 07:46:33,262 INFO   ep 26/50: SUCCESS | COLLISION@81(wine_bottle_obstacle_1) | max_disp=0.1681 | steps=130 | 4.3s\\\\n2026-05-23 07:46:39,200 INFO   ep 27/50: SUCCESS | COLLISION@78(red_coffee_mug_obstacle_1) | max_disp=0.1621 | steps=132 | 4.4s\\\\n2026-05-23 07:46:45,612 INFO   ep 28/50: SUCCESS | COLLISION@81(yellow_book_obstacle_1) | max_disp=0.1857 | steps=144 | 4.8s\\\\n2026-05-23 07:46:57,484 INFO   ep 29/50: FAIL | COLLISION@37(moka_pot_obstacle_1) | max_disp=0.4142 | steps=300 | 10.3s\\\\n2026-05-23 07:47:03,196 INFO   ep 30/50: SUCCESS | COLLISION@84(wine_bottle_obstacle_1) | max_disp=0.0486 | steps=125 | 4.1s\\\\n2026-05-23 07:47:08,948 INFO   ep 31/50: SUCCESS | safe | max_disp=0.0000 | steps=126 | 4.2s\\\\n2026-05-23 07:47:14,598 INFO   ep 32/50: SUCCESS | COLLISION@90(yellow_book_obstacle_1) | max_disp=0.0054 | steps=122 | 4.0s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000911"
+        },
+        {
+          "source_line": 912,
+          "timestamp": "2026-05-22T23:47:20.737062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -10 /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s2.log"
+            }
+          },
+          "id": "event-000912"
+        },
+        {
+          "source_line": 913,
+          "timestamp": "2026-05-22T23:47:21.188918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 07:46:03,859 INFO   ep 24/50: FAIL | COLLISION@107(yellow_book_obstacle_1) | max_disp=0.1131 | steps=300 | 10.5s\\\\n2026-05-23 07:46:16,544 INFO   ep 25/50: FAIL | COLLISION@78(moka_pot_obstacle_1) | max_disp=0.2071 | steps=300 | 11.1s\\\\n2026-05-23 07:46:22,641 INFO   ep 26/50: SUCCESS | COLLISION@81(wine_bottle_obstacle_1) | max_disp=0.0507 | steps=127 | 4.5s\\\\n2026-05-23 07:46:28,421 INFO   ep 27/50: SUCCESS | safe | max_disp=0.0000 | steps=122 | 4.2s\\\\n2026-05-23 07:46:34,430 INFO   ep 28/50: SUCCESS | COLLISION@80(yellow_book_obstacle_1) | max_disp=0.1495 | steps=129 | 4.4s\\\\n2026-05-23 07:46:46,824 INFO   ep 29/50: FAIL | COLLISION@77(moka_pot_obstacle_1) | max_disp=0.2330 | steps=300 | 10.7s\\\\n2026-05-23 07:46:52,868 INFO   ep 30/50: SUCCESS | COLLISION@80(wine_bottle_obstacle_1) | max_disp=0.0675 | steps=129 | 4.5s\\\\n2026-05-23 07:46:58,813 INFO   ep 31/50: SUCCESS | COLLISION@80(red_coffee_mug_obstacle_1) | max_disp=0.0844 | steps=125 | 4.3s\\\\n2026-05-23 07:47:04,705 INFO   ep 32/50: SUCCESS | safe | max_disp=0.0000 | steps=125 | 4.3s\\\\n2026-05-23 07:47:16,810 INFO   ep 33/50: FAIL | COLLISION@86(moka_pot_obstacle_1) | max_disp=0.0169 | steps=300 | 10.5s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000913"
+        },
+        {
+          "source_line": 914,
+          "timestamp": "2026-05-22T23:47:21.640716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "wc -l /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s2.log"
+            }
+          },
+          "id": "event-000914"
+        },
+        {
+          "source_line": 915,
+          "timestamp": "2026-05-22T23:47:22.092508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   48 /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log\\\\n   49 /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s2.log\\\\n   97 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000915"
+        },
+        {
+          "source_line": 916,
+          "timestamp": "2026-05-22T23:47:39.663840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "head -15 /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log"
+            }
+          },
+          "id": "event-000916"
+        },
+        {
+          "source_line": 917,
+          "timestamp": "2026-05-22T23:47:40.165962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 07:42:38,960 INFO Waiting for server at ws://0.0.0.0:8000...\\\\n2026-05-23 07:42:38,965 INFO Connected to pi0.5 serve_policy at 0.0.0.0:8000\\\\n2026-05-23 07:42:38,966 INFO SafeLIBERO benchmark: safelibero_object (level II)\\\\n2026-05-23 07:42:38,966 INFO Tasks to evaluate: [0, 1, 2, 3] (50 episodes each)\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n2026-05-23 07:42:38,980 WARNING No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n2026-05-23 07:42:38,980 WARNING It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-23 07:42:38,980 WARNING To setup, run: python /root/miniconda3/envs/libero/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-23 07:42:39,109 INFO No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\\\n2026-05-23 07:42:39,345 INFO Task 0: pick up the orange juice and place it in the basket\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000917"
+        },
+        {
+          "source_line": 918,
+          "timestamp": "2026-05-22T23:47:40.367682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "head -5 /root/autodl-tmp/eval_results/serve_pi05_p8000.log"
+            }
+          },
+          "id": "event-000918"
+        },
+        {
+          "source_line": 919,
+          "timestamp": "2026-05-22T23:47:40.819658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"INFO:root:Loading model...\\\\nINFO:2026-05-23 07:42:14,305:jax._src.xla_bridge:752: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: libtpu.so: cannot open shared object file: No such file or directory\\\\nINFO:jax._src.xla_bridge:Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: libtpu.so: cannot open shared object file: No such file or directory\\\\nINFO:absl:orbax-checkpoint version: 0.11.13\\\\nINFO:absl:Created BasePyTreeCheckpointHandler: use_ocdbt=True, use_zarr3=False, pytree_metadata_options=PyTreeMetadataOptions(support_rich_types=False), array_metadata_store=<orbax.checkpoint._src.metadata.array_metadata_store.Store object at 0x7fe17ba6a690>\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000919"
+        },
+        {
+          "source_line": 920,
+          "timestamp": "2026-05-22T23:48:01.737961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "1200",
+              "reason": "Pi0.5 多 seed eval 运行中（约 20-30 分钟完成），同时等待 Pi0.5+A1 训练启动",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-000920"
+        },
+        {
+          "source_line": 921,
+          "timestamp": "2026-05-22T23:48:01.788525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 00:09:00 (in 1258s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000921"
+        },
+        {
+          "source_line": 922,
+          "timestamp": "2026-05-22T23:48:03.736629+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署验证完毕。Pi0.5 多 seed eval 正常运行：\n\n- **westd-35807 GPU 0** (port 8000): serve_policy + eval seed 1, Task 0 ep 32/50\n- **westd-35807 GPU 2** (port 8001): serve_policy + eval seed 2, Task 0 ep 33/50  \n- C001 合规 ✓，collision patterns 两 seed 间有差异（确认 seed 不同）✓\n- 预计 ~20-30 分钟完成全部 200 episodes/seed\n\n无需报告，部署正确。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer"
+          },
+          "id": "event-000922"
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "messages": [
+        {
+          "source_line": 923,
+          "timestamp": "2026-05-22T23:52:32.977733+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_d011_phase0_fix_and_phase2_dryrun_20260522T234128]:\nWorker worker_code_d011_phase0_fix_and_phase2_dryrun_20260522T234128 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "source": "system"
+          },
+          "id": "event-000923"
+        },
+        {
+          "source_line": 924,
+          "timestamp": "2026-05-22T23:52:44.322008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "find /tmp -name \"*dryrun*\" -newer /tmp/dryrun_pi05_v2.log -type f"
+            }
+          },
+          "id": "event-000924"
+        },
+        {
+          "source_line": 925,
+          "timestamp": "2026-05-22T23:52:45.074769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000925"
+        },
+        {
+          "source_line": 926,
+          "timestamp": "2026-05-22T23:52:45.426676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/tmp/d011_dryrun.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000926"
+        },
+        {
+          "source_line": 927,
+          "timestamp": "2026-05-22T23:52:46.029025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 954
+          },
+          "id": "event-000927"
+        },
+        {
+          "source_line": 928,
+          "timestamp": "2026-05-22T23:52:49.240387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "cat /tmp/d011_dryrun.log"
+            }
+          },
+          "id": "event-000928"
+        },
+        {
+          "source_line": 929,
+          "timestamp": "2026-05-22T23:52:49.693833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WARNING:root:\\\\nThe dataset you requested (safelibero_spatial) is in 2.0 format.\\\\nWhile current version of LeRobot is backward-compatible with it, the version of your dataset still uses global\\\\nstats instead of per-episode stats. Update your dataset stats to the new format using this command:\\\\n```\\\\npython lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py --repo-id=safelibero_spatial\\\\n```\\\\n\\\\nIf you encounter a problem, contact LeRobot maintainers on [Discord](https://discord.com/invite/s3KuuzsPFb)\\\\nor open an [issue on GitHub](https://github.com/huggingface/lerobot/issues/new/choose).\\\\n\\\\nWARNING:root:\\\\nThe dataset you requested (safelibero_spatial) is in 2.0 format.\\\\nWhile current version of LeRobot is backward-compatible with it, the version of your dataset still uses global\\\\nstats instead of per-episode stats. Update your dataset stats to the new format using this command:\\\\n```\\\\npython lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py --repo-id=safelibero_spatial\\\\n```\\\\n\\\\nIf you encounter a problem, contact LeRobot maintainers on [Discord](https://discord.com/invite/s3KuuzsPFb)\\\\nor open an [issue on GitHub](https://github.com/huggingface/lerobot/issues/new/choose).\\\\n\\\\nWARNING:root:\\\\nThe dataset you requested (safelibero_spatial) is in 2.0 format.\\\\nWhile current version of LeRobot is backward-compatible with it, the version of your dataset still uses global\\\\nstats instead of per-episode stats. Update your dataset stats to the new format using this command:\\\\n```\\\\npython lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py --repo-id=safelibero_spatial\\\\n```\\\\n\\\\nIf you encounter a problem, contact LeRobot maintainers on [Discord](https://discord.com/invite/s3KuuzsPFb)\\\\nor open an [issue on GitHub](https://github.com/huggingface/lerobot/issues/new/choose).\\\\n\\\\nWARNING:root:\\\\nThe dataset you requested (safelibero_spatial) is in 2.0 format.\\\\nWhile current version of \n…[truncated 3521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000929"
+        },
+        {
+          "source_line": 930,
+          "timestamp": "2026-05-22T23:53:29.305254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"warmup_steps\\|phase2_start\\|PHASE_1_STEPS\\|lora_unfreeze\" /root/colliforce-vla/scripts/train_a1_sdf_aux_pi05.py"
+            }
+          },
+          "id": "event-000930"
+        },
+        {
+          "source_line": 931,
+          "timestamp": "2026-05-22T23:53:29.556500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 251
+          },
+          "id": "event-000931"
+        },
+        {
+          "source_line": 932,
+          "timestamp": "2026-05-22T23:53:29.556922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "stat /root/colliforce-vla/scripts/train_a1_sdf_aux_pi05.py"
+            }
+          },
+          "id": "event-000932"
+        },
+        {
+          "source_line": 933,
+          "timestamp": "2026-05-22T23:53:30.009314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/colliforce-vla/scripts/train_a1_sdf_aux_pi05.py\\\\n  Size: 14161     \\\\tBlocks: 32         IO Block: 4096   regular file\\\\nDevice: 50h/80d\\\\tInode: 26845189724  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-23 07:15:14.458752289 +0800\\\\nModify: 2026-05-23 07:51:30.786805363 +0800\\\\nChange: 2026-05-23 07:51:30.786805363 +0800\\\\n Birth: 2026-05-23 07:15:04.474548011 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000933"
+        },
+        {
+          "source_line": 934,
+          "timestamp": "2026-05-22T23:53:33.178342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"warmup_steps\" /root/colliforce-vla/scripts/train_a1_sdf_aux_pi05.py"
+            }
+          },
+          "id": "event-000934"
+        },
+        {
+          "source_line": 935,
+          "timestamp": "2026-05-22T23:53:33.629837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"184:            self._lora_warmup_steps = 100\\\\n200:                n_unfrozen, global_step, n_total_trainable, self._lora_warmup_steps,\\\\n205:            if steps_in < self._lora_warmup_steps:\\\\n206:                self._lora_warmup_scale = (steps_in + 1) / self._lora_warmup_steps\\\\n300:            warmup_steps=min(1000, num_steps // 3),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000935"
+        },
+        {
+          "source_line": 936,
+          "timestamp": "2026-05-22T23:53:33.681378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"PHASE_1\" /root/colliforce-vla/scripts/train_a1_sdf_aux_pi05.py"
+            }
+          },
+          "id": "event-000936"
+        },
+        {
+          "source_line": 937,
+          "timestamp": "2026-05-22T23:53:34.491950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 810
+          },
+          "id": "event-000937"
+        },
+        {
+          "source_line": 938,
+          "timestamp": "2026-05-22T23:53:34.542643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"phase2\\|unfreeze\\|5000\" /root/colliforce-vla/scripts/train_a1_sdf_aux_pi05.py"
+            }
+          },
+          "id": "event-000938"
+        },
+        {
+          "source_line": 939,
+          "timestamp": "2026-05-22T23:53:34.593635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000939"
+        },
+        {
+          "source_line": 940,
+          "timestamp": "2026-05-22T23:53:40.363823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"phase2\" /root/colliforce-vla/scripts/train_a1_sdf_aux_pi05.py"
+            }
+          },
+          "id": "event-000940"
+        },
+        {
+          "source_line": 941,
+          "timestamp": "2026-05-22T23:53:40.866001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"183:            self._phase2_start = global_step\\\\n203:        if self.phase == 2 and hasattr(self, '_phase2_start'):\\\\n204:            steps_in = global_step - self._phase2_start\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000941"
+        },
+        {
+          "source_line": 942,
+          "timestamp": "2026-05-22T23:53:40.866393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"unfreeze\" /root/colliforce-vla/scripts/train_a1_sdf_aux_pi05.py"
+            }
+          },
+          "id": "event-000942"
+        },
+        {
+          "source_line": 943,
+          "timestamp": "2026-05-22T23:53:41.368168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000943"
+        },
+        {
+          "source_line": 944,
+          "timestamp": "2026-05-22T23:53:41.368523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"5000\" /root/colliforce-vla/scripts/train_a1_sdf_aux_pi05.py"
+            }
+          },
+          "id": "event-000944"
+        },
+        {
+          "source_line": 945,
+          "timestamp": "2026-05-22T23:53:41.920626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"91:    p.add_argument(\\\\\\\"--warmup_phase_steps\\\\\\\", type=int, default=5000)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000945"
+        },
+        {
+          "source_line": 946,
+          "timestamp": "2026-05-22T23:54:13.404154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "project": "diff_collision_sdf",
+              "text": "## 审查报告 — D011 Phase 0 Fix + Phase 2 Dry Run\n\n**结论**: PASS (Phase 2 backward 风险评估为低)\n\n### 验证结果\n\n7-step dry run 通过，关键改进：**SDF loss 分组 logging 已添加**。\n\nLoss 分解（7 步平均）：\n- action: 0.11-0.15 (主导)\n- sdf: 0.13-0.14 (经 λ=0.005 缩放后仅占总 loss ~0.5%)\n- ee: 0.33-0.40 (EE extractor loss)\n- Model load: missing=0, unexpected=0 ✓\n\n### 发现\n\n- [severity: info] **Loss 分组 logging 已就位** — 解决了我上一份报告 (Report #18) 中关于 SDF loss 不可见的问题。正式训练 W&B 将有 action/sdf/ee 三路独立指标。\n\n- [severity: info] **Phase 2 LoRA backward 未在此 dry run 中实际测试** — `--warmup_phase_steps=5000`（默认），7 步 dry run 全在 Phase 1（LoRA params: 0）。但经分析，Phase 2 backward crash 风险低：\n  - LoRA forward 的 dtype fix 已在 Phase 1 验证（LoRA IS injected, forward 已跑通）\n  - LoRA backward 经过 `x.float() @ lora_A @ lora_B`，全部 float32 运算，无 dtype 冲突\n  - 原版 A1 openpi 训练（同样 LoRA+SDF aux）Phase 2 正常完成过\n  - 真正风险不是 crash，而是 Phase 2 LoRA unfreeze 后 SDF loss 是否导致 action collapse——这只能通过完整训练验证\n\n- [severity: info] **SDF loss 贡献极小**：λ_sdf=0.005 × sdf_loss≈0.13 ≈ 0.0007，仅占总 loss 0.5%。如果 λ=0.001 组更小（0.0001），SDF 信号可能被噪声淹没。正式训练时关注：如果 SDF loss 不下降但 action loss 正常下降，说明 SDF decoder 未学到有用信息。"
+            }
+          },
+          "id": "event-000946"
+        },
+        {
+          "source_line": 947,
+          "timestamp": "2026-05-22T23:54:16.819946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3415
+          },
+          "id": "event-000947"
+        },
+        {
+          "source_line": 948,
+          "timestamp": "2026-05-22T23:54:24.446411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "1200",
+              "reason": "D011 dry run 通过，等待正式训练启动 + Pi0.5 多 seed eval 应即将完成",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-000948"
+        },
+        {
+          "source_line": 949,
+          "timestamp": "2026-05-22T23:54:24.497032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 00:15:00 (in 1236s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000949"
+        },
+        {
+          "source_line": 950,
+          "timestamp": "2026-05-22T23:54:26.191996+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "D011 dry run 审查完毕。Loss 分组 logging 已就位，Phase 2 backward crash 风险低（dtype 修复已覆盖 forward 路径，backward 全 float32 无冲突）。SDF loss 占总 loss 仅 0.5%，正式训练需关注 SDF decoder 是否真正学到信息。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer"
+          },
+          "id": "event-000950"
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "messages": [
+        {
+          "source_line": 951,
+          "timestamp": "2026-05-22T23:56:33.736103+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_d012_eval_metrics_enhancement_20260522T234502]:\nWorker worker_code_d012_eval_metrics_enhancement_20260522T234502 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "source": "system"
+          },
+          "id": "event-000951"
+        },
+        {
+          "source_line": 952,
+          "timestamp": "2026-05-22T23:56:41.135889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "diff_collision_sdf",
+              "limit": "3",
+              "fields": "['exp_id', 'status', 'created_at', 'updated_at']"
+            }
+          },
+          "id": "event-000952"
+        },
+        {
+          "source_line": 953,
+          "timestamp": "2026-05-22T23:56:41.688746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_safelibero_object_v11_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:45:00.000Z\\\"}, \\\"eval_pi05_safelibero_object_v11_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:45:00.000Z\\\"}, \\\"eval_pi05_safelibero_spatial_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T21:42:33.469Z\\\", \\\"updated_at\\\": \\\"2026-05-22T22:40:00.000Z\\\"}}, \\\"count\\\": 3, \\\"total\\\": 41, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1146}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-000953"
+        },
+        {
+          "source_line": 954,
+          "timestamp": "2026-05-22T23:56:42.642446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000954"
+        },
+        {
+          "source_line": 955,
+          "timestamp": "2026-05-22T23:56:43.946951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1304
+          },
+          "id": "event-000955"
+        },
+        {
+          "source_line": 956,
+          "timestamp": "2026-05-22T23:56:44.097932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -5 /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log"
+            }
+          },
+          "id": "event-000956"
+        },
+        {
+          "source_line": 957,
+          "timestamp": "2026-05-22T23:56:44.951483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 07:56:27,108 INFO   ep 49/50: SUCCESS | safe | max_disp=0.0000 | steps=139 | 4.6s\\\\n2026-05-23 07:56:34,278 INFO   ep 50/50: SUCCESS | safe | max_disp=0.0000 | steps=162 | 5.5s\\\\n2026-05-23 07:56:34,372 INFO Task 1 results: TSR=86.0% CAR=56.0% avg_disp=0.0744\\\\n2026-05-23 07:56:34,373 INFO Task 2: pick up the milk and place it in the basket\\\\n2026-05-23 07:56:34,373 INFO BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_milk_and_place_it_in_the_basket.bddl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 853
+          },
+          "id": "event-000957"
+        },
+        {
+          "source_line": 958,
+          "timestamp": "2026-05-22T23:56:55.740060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -5 /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s2.log"
+            }
+          },
+          "id": "event-000958"
+        },
+        {
+          "source_line": 959,
+          "timestamp": "2026-05-22T23:56:55.890965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "stat /root/colliforce-vla/scripts/eval_pi05_safelibero.py"
+            }
+          },
+          "id": "event-000959"
+        },
+        {
+          "source_line": 960,
+          "timestamp": "2026-05-22T23:56:56.443350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 07:56:12,416 INFO BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_milk_and_place_it_in_the_basket.bddl\\\\n2026-05-23 07:56:24,830 INFO   ep 1/50: FAIL | COLLISION@34(moka_pot_obstacle_1) | max_disp=0.1924 | steps=300 | 9.5s\\\\n2026-05-23 07:56:32,395 INFO   ep 2/50: SUCCESS | COLLISION@83(wine_bottle_obstacle_1) | max_disp=0.3796 | steps=169 | 6.0s\\\\n2026-05-23 07:56:38,165 INFO   ep 3/50: SUCCESS | safe | max_disp=0.0000 | steps=127 | 4.2s\\\\n2026-05-23 07:56:46,502 INFO   ep 4/50: SUCCESS | COLLISION@84(yellow_book_obstacle_1) | max_disp=0.1608 | steps=188 | 6.7s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-000960"
+        },
+        {
+          "source_line": 961,
+          "timestamp": "2026-05-22T23:56:56.594297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "stat /root/colliforce-vla/scripts/eval_safelibero.py"
+            }
+          },
+          "id": "event-000961"
+        },
+        {
+          "source_line": 962,
+          "timestamp": "2026-05-22T23:56:56.695839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/colliforce-vla/scripts/eval_pi05_safelibero.py\\\\n  Size: 16303     \\\\tBlocks: 32         IO Block: 4096   regular file\\\\nDevice: 50h/80d\\\\tInode: 26845189712  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-23 07:56:04.163638931 +0800\\\\nModify: 2026-05-23 07:55:57.024128853 +0800\\\\nChange: 2026-05-23 07:55:57.024128853 +0800\\\\n Birth: 2026-05-23 05:04:48.837349978 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 804
+          },
+          "id": "event-000962"
+        },
+        {
+          "source_line": 963,
+          "timestamp": "2026-05-22T23:56:57.197968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/colliforce-vla/scripts/eval_safelibero.py\\\\n  Size: 42549     \\\\tBlocks: 88         IO Block: 4096   regular file\\\\nDevice: 50h/80d\\\\tInode: 26859752424  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-23 03:52:48.041387310 +0800\\\\nModify: 2026-05-23 03:52:42.273240134 +0800\\\\nChange: 2026-05-23 03:52:42.273240134 +0800\\\\n Birth: 2026-05-22 04:25:38.486196832 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 603
+          },
+          "id": "event-000963"
+        },
+        {
+          "source_line": 964,
+          "timestamp": "2026-05-22T23:57:09.543637+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"real_safe\\|fake_safe\\|displacement\\|real_CAR\" /root/colliforce-vla/scripts/eval_pi05_safelibero.py"
+            }
+          },
+          "id": "event-000964"
+        },
+        {
+          "source_line": 965,
+          "timestamp": "2026-05-22T23:57:09.744548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 200
+          },
+          "id": "event-000965"
+        },
+        {
+          "source_line": 966,
+          "timestamp": "2026-05-22T23:57:09.744873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "stat /root/colliforce-vla/scripts/eval_pi05_safelibero.py"
+            }
+          },
+          "id": "event-000966"
+        },
+        {
+          "source_line": 967,
+          "timestamp": "2026-05-22T23:57:10.196079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/colliforce-vla/scripts/eval_pi05_safelibero.py\\\\n  Size: 12633     \\\\tBlocks: 32         IO Block: 4096   regular file\\\\nDevice: 4bh/75d\\\\tInode: 3223409575  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-23 07:27:30.530999409 +0800\\\\nModify: 2026-05-23 07:27:24.722962734 +0800\\\\nChange: 2026-05-23 07:27:24.722962734 +0800\\\\n Birth: 2026-05-23 07:27:24.722962734 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000967"
+        },
+        {
+          "source_line": 968,
+          "timestamp": "2026-05-22T23:57:19.545588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"real_safe\" /root/colliforce-vla/scripts/eval_pi05_safelibero.py"
+            }
+          },
+          "id": "event-000968"
+        },
+        {
+          "source_line": 969,
+          "timestamp": "2026-05-22T23:57:19.646442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"fake_safe\" /root/colliforce-vla/scripts/eval_pi05_safelibero.py"
+            }
+          },
+          "id": "event-000969"
+        },
+        {
+          "source_line": 970,
+          "timestamp": "2026-05-22T23:57:19.646815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep -n \"displacement\" /root/colliforce-vla/scripts/eval_pi05_safelibero.py"
+            }
+          },
+          "id": "event-000970"
+        },
+        {
+          "source_line": 971,
+          "timestamp": "2026-05-22T23:57:19.998165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"262:    real_safe_candidates = sum(\\\\n279:        \\\\\\\"real_safe_candidates\\\\\\\": real_safe_candidates,\\\\n283:    logging.info(\\\\\\\"Task %d: TSR=%.1f%% CAR=%.1f%% frozen=%.1f%% real_safe_cand=%d\\\\\\\",\\\\n284:                 task_id, tsr * 100, car * 100, frozen_rate * 100, real_safe_candidates)\\\\n344:    total_real_safe = sum(r[\\\\\\\"real_safe_candidates\\\\\\\"] for r in all_results)\\\\n347:    logging.info(\\\\\\\"OVERALL: TSR=%.1f%% (%d/%d) CAR=%.1f%% (%d/%d) frozen=%.1f%% real_safe=%d\\\\\\\",\\\\n350:                 overall_frozen_rate * 100, total_real_safe)\\\\n419:            \\\\\\\"real_safe_candidates\\\\\\\": total_real_safe,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000971"
+        },
+        {
+          "source_line": 972,
+          "timestamp": "2026-05-22T23:57:20.550377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-000972"
+        },
+        {
+          "source_line": 973,
+          "timestamp": "2026-05-22T23:57:21.102621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4:Measures CAR, TSR, and per-episode obstacle displacement.\\\\n88:            displacement = np.sum(np.abs(\\\\n91:            if displacement > threshold:\\\\n92:                return True, name, displacement\\\\n155:        max_displacement = 0.0\\\\n157:        robot_total_displacement = 0.0\\\\n193:            # Track EE displacement\\\\n195:            robot_total_displacement += np.linalg.norm(curr_ee_pos - prev_ee_pos)\\\\n209:            # Track max displacement and min EE-obstacle distance\\\\n214:                    max_displacement = max(max_displacement, d)\\\\n223:        is_frozen = robot_total_displacement < 0.001\\\\n234:            \\\\\\\"max_displacement\\\\\\\": float(max_displacement),\\\\n235:            \\\\\\\"robot_total_displacement\\\\\\\": float(robot_total_displacement),\\\\n249:            robot_total_displacement, result[\\\\\\\"min_ee_obstacle_distance\\\\\\\"],\\\\n261:    avg_max_disp = np.mean([r[\\\\\\\"max_displacement\\\\\\\"] for r in results])\\\\n278:        \\\\\\\"avg_max_displacement\\\\\\\": float(avg_max_disp),\\\\n343:    overall_avg_disp = np.mean([r[\\\\\\\"avg_max_displacement\\\\\\\"] for r in all_results])\\\\n418:            \\\\\\\"avg_max_displacement\\\\\\\": float(overall_avg_disp),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1455
+          },
+          "id": "event-000973"
+        },
+        {
+          "source_line": 974,
+          "timestamp": "2026-05-22T23:57:45.260863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "1200",
+              "reason": "多 seed eval 进行中（seed 1 Task 2, seed 2 Task 2），等待完成 + Pi0.5+A1 训练启动",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-000974"
+        },
+        {
+          "source_line": 975,
+          "timestamp": "2026-05-22T23:57:45.311472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 00:18:00 (in 1215s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000975"
+        },
+        {
+          "source_line": 976,
+          "timestamp": "2026-05-22T23:57:52.078014+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "D012 eval metrics enhancement 检查完毕。增强版脚本添加了关键 fake safety 检测指标：\n\n- `robot_total_displacement` + `is_frozen` (EE displacement < 0.001) — 检测 action collapse\n- `real_safe_candidates` — safe 且非 frozen 的 episodes\n- `min_ee_obstacle_distance` — EE 与 obstacle 最近距离\n- `frozen_rate` — 每 task 的 frozen episode 比例\n\n这直接解决了我在 ROADMAP 审查中提出的 \"real_CAR 定义不明确\" 问题。增强版仅在 westd-45947（16303 bytes），westd-35807 当前运行的多 seed eval 用的是旧版（12633 bytes），但旧版的 per-episode JSON 数据足够后续 post-hoc 分析。无需报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer"
+          },
+          "id": "event-000976"
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "messages": [
+        {
+          "source_line": 977,
+          "timestamp": "2026-05-23T00:03:04.991511+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_d011_phase1_launch_pi05_a1_training_v2_20260522T235656]:\nWorker worker_ops_d011_phase1_launch_pi05_a1_training_v2_20260522T235656 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "source": "system"
+          },
+          "id": "event-000977"
+        },
+        {
+          "source_line": 978,
+          "timestamp": "2026-05-23T00:03:14.108571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "diff_collision_sdf",
+              "limit": "5",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000978"
+        },
+        {
+          "source_line": 979,
+          "timestamp": "2026-05-23T00:03:14.560774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_safelibero_object_v11_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5 baseline multi-seed replication (seed 1): confirm CAR=28% is stable across seeds, establish variance estimate for pass/fail gate.\\\", \\\"parent\\\": \\\"eval_pi05_safelibero_object_v11\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_pi05_safelibero.py --suite safelibero_object --safety_level II --n_episodes 50 --seed 1 --port 8000 --output_path /root/autodl-tmp/eval_results/pi05_safelibero_object_v11_s1.json\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"data_path\\\": \\\"SafeLIBERO safelibero_object Level II (4 tasks x 50 episodes)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_libero (openpi checkpoint)\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.cache/openpi/openpi-assets/checkpoints/pi05_libero\\\", \\\"eval_data\\\": \\\"safelibero_object Level II\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/.cache/openpi/openpi-assets/checkpoints/pi05_libero\\\"}}, \\\"eval_pi05_safelibero_object_v11_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5 baseline multi-seed replication (seed 2): confirm CAR=28% is stable across seeds, establish variance estimate for pass/fail gate.\\\", \\\"parent\\\": \\\"eval_pi05_safelibero_object_v11\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_pi05_safelibero.py --suite safelibero_object --safety_level II --n_episodes 50 --seed 2 --port 8001 --output_path /root/autodl-tmp/eval_results/pi05_safelibero_object_v11_s2.json\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"data_path\\\": \\\"SafeLIBERO safelibero_object Level II (4 tasks x 50 episodes)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_libero (openpi checkpoint)\\\", \\\"se\n…[truncated 4764 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000979"
+        },
+        {
+          "source_line": 980,
+          "timestamp": "2026-05-23T00:03:15.565622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000980"
+        },
+        {
+          "source_line": 981,
+          "timestamp": "2026-05-23T00:03:16.117736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000981"
+        },
+        {
+          "source_line": 982,
+          "timestamp": "2026-05-23T00:03:16.920884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 42 %, 19107 MiB, 97887 MiB\\\\n1, 100 %, 19107 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1355
+          },
+          "id": "event-000982"
+        },
+        {
+          "source_line": 983,
+          "timestamp": "2026-05-23T00:03:17.573596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"584408, GPU-1a00ed3e-d880-b61e-751f-d68fd42f310f, 19098 MiB, python\\\\n584493, GPU-95684c29-453a-e4bb-2c8f-1cb1dbb43655, 19098 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1455
+          },
+          "id": "event-000983"
+        },
+        {
+          "source_line": 984,
+          "timestamp": "2026-05-23T00:03:28.372156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "ps -p 584408 -o pid,etime,cmd --no-headers"
+            }
+          },
+          "id": "event-000984"
+        },
+        {
+          "source_line": 985,
+          "timestamp": "2026-05-23T00:03:28.824054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"584408       03:08 python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --gpu 0 --batch_size 32 --num_train_steps 30000 --lambda_sdf 0.005 --lambda_ee 0.01 --lr 2.5e-5 --save_interval 2000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000985"
+        },
+        {
+          "source_line": 986,
+          "timestamp": "2026-05-23T00:03:29.326010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "ps -p 584493 -o pid,etime,cmd --no-headers"
+            }
+          },
+          "id": "event-000986"
+        },
+        {
+          "source_line": 987,
+          "timestamp": "2026-05-23T00:03:29.928458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"584493       03:07 python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --gpu 1 --batch_size 32 --num_train_steps 30000 --lambda_sdf 0.01 --lambda_ee 0.01 --lr 2.5e-5 --save_interval 2000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-000987"
+        },
+        {
+          "source_line": 988,
+          "timestamp": "2026-05-23T00:03:29.928947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "find /tmp -name \"*d011*\" -newer /tmp/d011_dryrun.log -type f"
+            }
+          },
+          "id": "event-000988"
+        },
+        {
+          "source_line": 989,
+          "timestamp": "2026-05-23T00:03:30.431054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000989"
+        },
+        {
+          "source_line": 990,
+          "timestamp": "2026-05-23T00:03:47.624659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "find /root/autodl-tmp -name \"*pi05_a1*\" -type f -newer /tmp/d011_dryrun.log"
+            }
+          },
+          "id": "event-000990"
+        },
+        {
+          "source_line": 991,
+          "timestamp": "2026-05-23T00:03:47.926138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "find /tmp -name \"*train*pi05*\" -type f"
+            }
+          },
+          "id": "event-000991"
+        },
+        {
+          "source_line": 992,
+          "timestamp": "2026-05-23T00:03:48.077078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log\\\\n/root/autodl-tmp/eval_results/train_pi05_a1_obj_l01.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000992"
+        },
+        {
+          "source_line": 993,
+          "timestamp": "2026-05-23T00:03:48.679263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-000993"
+        },
+        {
+          "source_line": 994,
+          "timestamp": "2026-05-23T00:03:53.295575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "tail -15 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log"
+            }
+          },
+          "id": "event-000994"
+        },
+        {
+          "source_line": 995,
+          "timestamp": "2026-05-23T00:03:53.496651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "tail -15 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l01.log"
+            }
+          },
+          "id": "event-000995"
+        },
+        {
+          "source_line": 996,
+          "timestamp": "2026-05-23T00:03:53.799834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 08:01:52,015 [INFO] Training config: batch_size=32, effective_batch_size=32, num_train_steps=30000\\\\n2026-05-23 08:01:52,015 [INFO] Memory optimizations: gradient_checkpointing=True\\\\n2026-05-23 08:01:52,015 [INFO] LR schedule: warmup=1000, peak_lr=2.50e-05, decay_steps=30000, end_lr=2.50e-06\\\\n2026-05-23 08:01:52,015 [INFO] Optimizer: AdamW, weight_decay=1e-10, clip_norm=1.0\\\\n2026-05-23 08:01:52,015 [INFO] EMA is not supported for PyTorch training\\\\n2026-05-23 08:01:52,015 [INFO] Training precision: bfloat16\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n2026-05-23 08:02:07,765 [INFO] Step 0 (after_backward): GPU memory - allocated: 7.63GB, reserved: 19.27GB, free: 11.63GB, peak_allocated: 15.26GB, peak_reserved: 19.27GB\\\\n2026-05-23 08:02:07,830 [INFO] step=0 loss=0.1231 lr=2.50e-08 grad_norm=0.00 time=15.8s\\\\n\\\\rTraining:   0%|          | 1/30000 [00:15<131:46:51, 15.81s/it]\\\\rTraining:   0%|          | 1/30000 [00:15<131:46:51, 15.81s/it, loss=0.1231, lr=2.50e-08, action=0.1203, sdf=0.1411, ee=0.2107]2026-05-23 08:02:09,063 [INFO] Step 1 (after_backward): GPU memory - allocated: 7.64GB, reserved: 19.27GB, free: 11.63GB, peak_allocated: 15.28GB, peak_reserved: 19.27GB\\\\n\\\\rTraining:   0%|          | 2/30000 [00:17<60:19:48,  7.24s/it, loss=0.1231, lr=2.50e-08, action=0.1203, sdf=0.1411, ee=0.2107] \\\\rTraining:   0%|          | 2/30000 [00:17<60:19:48,  7.24s/it, loss=0.1173, lr=5.00e-08, action=0.1145, sdf=0.1355, ee=0.2102]2026-05-23 08:02:10,262 [INFO] Step 2 (after_backward): GPU memory - allocated: 7.64GB, re\n…[truncated 6329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-000996"
+        },
+        {
+          "source_line": 997,
+          "timestamp": "2026-05-23T00:03:54.352377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 08:01:49,133 [INFO] Training config: batch_size=32, effective_batch_size=32, num_train_steps=30000\\\\n2026-05-23 08:01:49,133 [INFO] Memory optimizations: gradient_checkpointing=True\\\\n2026-05-23 08:01:49,133 [INFO] LR schedule: warmup=1000, peak_lr=2.50e-05, decay_steps=30000, end_lr=2.50e-06\\\\n2026-05-23 08:01:49,133 [INFO] Optimizer: AdamW, weight_decay=1e-10, clip_norm=1.0\\\\n2026-05-23 08:01:49,133 [INFO] EMA is not supported for PyTorch training\\\\n2026-05-23 08:01:49,133 [INFO] Training precision: bfloat16\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n2026-05-23 08:02:04,798 [INFO] Step 0 (after_backward): GPU memory - allocated: 7.63GB, reserved: 19.27GB, free: 11.63GB, peak_allocated: 15.26GB, peak_reserved: 19.27GB\\\\n2026-05-23 08:02:04,843 [INFO] step=0 loss=0.1235 lr=2.50e-08 grad_norm=0.00 time=15.7s\\\\n\\\\rTraining:   0%|          | 1/30000 [00:15<130:53:56, 15.71s/it]\\\\rTraining:   0%|          | 1/30000 [00:15<130:53:56, 15.71s/it, loss=0.1235, lr=2.50e-08, action=0.1203, sdf=0.1188, ee=0.2087]2026-05-23 08:02:06,089 [INFO] Step 1 (after_backward): GPU memory - allocated: 7.64GB, reserved: 19.27GB, free: 11.63GB, peak_allocated: 15.28GB, peak_reserved: 19.27GB\\\\n\\\\rTraining:   0%|          | 2/30000 [00:16<60:01:54,  7.20s/it, loss=0.1235, lr=2.50e-08, action=0.1203, sdf=0.1188, ee=0.2087] \\\\rTraining:   0%|          | 2/30000 [00:16<60:01:54,  7.20s/it, loss=0.1177, lr=5.00e-08, action=0.1145, sdf=0.1226, ee=0.2026]2026-05-23 08:02:07,386 [INFO] Step 2 (after_backward): GPU memory - allocated: 7.64GB, re\n…[truncated 6330 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 855
+          },
+          "id": "event-000997"
+        },
+        {
+          "source_line": 998,
+          "timestamp": "2026-05-23T00:04:33.559584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "project": "diff_collision_sdf",
+              "text": "## 审查报告 — D011 Pi0.5+A1 训练启动\n\n**结论**: WARNING (lambda 值与计划不一致)\n\n### 训练状态\n\n两个训练进程正常运行，step ~88-90/30000，speed ~1.2s/step，ETA ~10h：\n\n| GPU | PID | λ_sdf | Step | Action Loss | SDF Loss | EE Loss | Memory |\n|-----|-----|-------|------|-------------|----------|---------|--------|\n| cuda:0 | 584408 | 0.005 | 88 | 0.144 | 0.136 | 0.200 | 19.3GB |\n| cuda:1 | 584493 | **0.01** | 90 | 0.144 | 0.119 | 0.190 | 19.3GB |\n\nC001 GPU 合规 ✓ | W&B + loss 分组 logging ✓ | 内存稳定 ✓\n\n### 发现\n\n- [severity: warning] **λ_sdf 与 D011 计划不一致**：\n  - D011 决策 + ROADMAP 均记录 \"双 lambda 并行(0.005 + **0.001**)\"\n  - 实际启动: 0.005 + **0.01** (高 10 倍)\n  - 命令行确认: `--lambda_sdf 0.01`，log 文件名 `l01`\n  - λ=0.01 比 0.005 更激进（2x），与 D011 \"降低 action collapse 风险\" 的设计意图相悖\n  - 可能合理性：dry run 显示 λ=0.005 时 SDF 仅占总 loss 0.5%，λ=0.001 会更低(0.1%)可能被噪声淹没。0.01 让 SDF 信号更强(~1%)\n  - **建议：如果是故意调整，请更新 D011 rationale 记录；如果是笔误，需决定是否 kill 并重启**\n\n- [severity: info] **SDF loss 差异初现**：GPU 1 (λ=0.01) SDF loss = 0.119 低于 GPU 0 (λ=0.005) 的 0.136。更大的 λ 可能促进 SDF decoder 更快收敛。但 88 步太早，需持续监控。\n\n- [severity: info] **训练速度正常**：~1.2s/step，30000 步 ≈ 10h。Phase 2 LoRA unfreeze 将在 step 5001 (~1.7h 后)。届时关注 loss spike 和 action collapse 信号。"
+            }
+          },
+          "id": "event-000998"
+        },
+        {
+          "source_line": 999,
+          "timestamp": "2026-05-23T00:04:37.042436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3482
+          },
+          "id": "event-000999"
+        },
+        {
+          "source_line": 1000,
+          "timestamp": "2026-05-23T00:06:47.115641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001000"
+        },
+        {
+          "source_line": 1001,
+          "timestamp": "2026-05-23T00:06:47.166175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001001"
+        },
+        {
+          "source_line": 1002,
+          "timestamp": "2026-05-23T00:06:51.734130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -30 /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log"
+            }
+          },
+          "id": "event-001002"
+        },
+        {
+          "source_line": 1003,
+          "timestamp": "2026-05-23T00:06:52.186248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -30 /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s2.log"
+            }
+          },
+          "id": "event-001003"
+        },
+        {
+          "source_line": 1004,
+          "timestamp": "2026-05-23T00:06:53.592270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 08:03:09,774 INFO   ep 45/50: FAIL | COLLISION@40(moka_pot_obstacle_1) | max_disp=0.0114 | steps=300 | 9.7s\\\\n2026-05-23 08:03:17,406 INFO   ep 46/50: SUCCESS | COLLISION@86(wine_bottle_obstacle_1) | max_disp=0.2929 | steps=179 | 6.1s\\\\n2026-05-23 08:03:28,885 INFO   ep 47/50: FAIL | COLLISION@80(red_coffee_mug_obstacle_1) | max_disp=0.2752 | steps=300 | 9.9s\\\\n2026-05-23 08:03:37,865 INFO   ep 48/50: SUCCESS | COLLISION@88(yellow_book_obstacle_1) | max_disp=0.0050 | steps=212 | 7.4s\\\\n2026-05-23 08:03:49,695 INFO   ep 49/50: FAIL | COLLISION@32(red_coffee_mug_obstacle_1) | max_disp=0.2684 | steps=300 | 10.2s\\\\n2026-05-23 08:03:57,625 INFO   ep 50/50: SUCCESS | COLLISION@83(yellow_book_obstacle_1) | max_disp=0.1532 | steps=185 | 6.3s\\\\n2026-05-23 08:03:57,719 INFO Task 2 results: TSR=68.0% CAR=10.0% avg_disp=0.1505\\\\n2026-05-23 08:03:57,719 INFO Task 3: pick up the bbq sauce and place it in the basket\\\\n2026-05-23 08:03:57,720 INFO BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_bbq_sauce_and_place_it_in_the_basket.bddl\\\\n2026-05-23 08:04:10,352 INFO   ep 1/50: FAIL | COLLISION@42(moka_pot_obstacle_1) | max_disp=0.2213 | steps=300 | 9.5s\\\\n2026-05-23 08:04:16,617 INFO   ep 2/50: SUCCESS | safe | max_disp=0.0002 | steps=139 | 4.6s\\\\n2026-05-23 08:04:23,168 INFO   ep 3/50: SUCCESS | COLLISION@84(red_coffee_mug_obstacle_1) | max_disp=0.0994 | steps=141 | 4.8s\\\\n2026-05-23 08:04:29,829 INFO   ep 4/50: SUCCESS | safe | max_disp=0.0000 | steps=150 | 5.0s\\\\n2026-05-23 08:04:41,658 INFO   ep 5/50: FAIL | COLLISION@84(moka_pot_obstacle_1) | max_disp=0.1309 | steps=300 | 10.2s\\\\n2026-05-23 08:04:48,004 INFO   ep 6/50: SUCCESS | safe | max_disp=0.0000 | steps=144 | 4.7s\\\\n2026-05-23 08:04:54,205 INFO   ep 7/50: SUCCESS | COLLISION@96(red_coffee_mug_obstacle_1) | max_disp=0.0131 | steps=140 | 4.6s\\\\n2026-05-23 08:05:01,586 INFO   ep 8/50: SUCCESS | COLLISIO\n…[truncated 1756 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1858
+          },
+          "id": "event-001004"
+        },
+        {
+          "source_line": 1005,
+          "timestamp": "2026-05-23T00:06:53.592817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 08:03:07,595 INFO   ep 47/50: SUCCESS | COLLISION@81(red_coffee_mug_obstacle_1) | max_disp=0.2728 | steps=147 | 5.1s\\\\n2026-05-23 08:03:13,764 INFO   ep 48/50: SUCCESS | COLLISION@73(yellow_book_obstacle_1) | max_disp=0.1877 | steps=130 | 4.6s\\\\n2026-05-23 08:03:25,343 INFO   ep 49/50: FAIL | COLLISION@23(red_coffee_mug_obstacle_1) | max_disp=0.0748 | steps=300 | 10.0s\\\\n2026-05-23 08:03:33,353 INFO   ep 50/50: SUCCESS | COLLISION@86(yellow_book_obstacle_1) | max_disp=0.1177 | steps=176 | 6.4s\\\\n2026-05-23 08:03:33,449 INFO Task 2 results: TSR=64.0% CAR=10.0% avg_disp=0.1418\\\\n2026-05-23 08:03:33,450 INFO Task 3: pick up the bbq sauce and place it in the basket\\\\n2026-05-23 08:03:33,450 INFO BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_bbq_sauce_and_place_it_in_the_basket.bddl\\\\n2026-05-23 08:03:45,321 INFO   ep 1/50: SUCCESS | COLLISION@48(moka_pot_obstacle_1) | max_disp=0.3362 | steps=253 | 8.8s\\\\n2026-05-23 08:03:51,548 INFO   ep 2/50: SUCCESS | COLLISION@85(wine_bottle_obstacle_1) | max_disp=0.0469 | steps=130 | 4.5s\\\\n2026-05-23 08:03:58,922 INFO   ep 3/50: SUCCESS | COLLISION@87(red_coffee_mug_obstacle_1) | max_disp=0.3963 | steps=164 | 5.7s\\\\n2026-05-23 08:04:07,353 INFO   ep 4/50: SUCCESS | COLLISION@152(yellow_book_obstacle_1) | max_disp=0.0274 | steps=196 | 6.8s\\\\n2026-05-23 08:04:17,452 INFO   ep 5/50: SUCCESS | COLLISION@97(moka_pot_obstacle_1) | max_disp=0.5413 | steps=250 | 8.4s\\\\n2026-05-23 08:04:23,817 INFO   ep 6/50: SUCCESS | safe | max_disp=0.0006 | steps=136 | 4.7s\\\\n2026-05-23 08:04:29,947 INFO   ep 7/50: SUCCESS | COLLISION@89(red_coffee_mug_obstacle_1) | max_disp=0.0320 | steps=134 | 4.4s\\\\n2026-05-23 08:04:37,695 INFO   ep 8/50: SUCCESS | COLLISION@119(yellow_book_obstacle_1) | max_disp=0.3513 | steps=178 | 6.1s\\\\n2026-05-23 08:04:49,653 INFO   ep 9/50: FAIL | COLLISION@40(moka_pot_obstacle_1) | max_disp=0.1971 | steps\n…[truncated 1663 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1406
+          },
+          "id": "event-001005"
+        },
+        {
+          "source_line": 1006,
+          "timestamp": "2026-05-23T00:06:53.593101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "tail -20 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log"
+            }
+          },
+          "id": "event-001006"
+        },
+        {
+          "source_line": 1007,
+          "timestamp": "2026-05-23T00:06:54.045347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "tail -20 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l01.log"
+            }
+          },
+          "id": "event-001007"
+        },
+        {
+          "source_line": 1008,
+          "timestamp": "2026-05-23T00:06:54.547278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 08:01:52,010 [INFO]   Phase 1: SDF decoder (395777) + EE extractor (263171) trainable\\\\n2026-05-23 08:01:52,010 [INFO]   Phase 2: + LoRA (33.47M) will be unfrozen\\\\n2026-05-23 08:01:52,014 [INFO] Running on: autodl-container-zcu10e5eev-a14e9cca | world_size=1\\\\n2026-05-23 08:01:52,015 [INFO] Training config: batch_size=32, effective_batch_size=32, num_train_steps=30000\\\\n2026-05-23 08:01:52,015 [INFO] Memory optimizations: gradient_checkpointing=True\\\\n2026-05-23 08:01:52,015 [INFO] LR schedule: warmup=1000, peak_lr=2.50e-05, decay_steps=30000, end_lr=2.50e-06\\\\n2026-05-23 08:01:52,015 [INFO] Optimizer: AdamW, weight_decay=1e-10, clip_norm=1.0\\\\n2026-05-23 08:01:52,015 [INFO] EMA is not supported for PyTorch training\\\\n2026-05-23 08:01:52,015 [INFO] Training precision: bfloat16\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n2026-05-23 08:02:07,765 [INFO] Step 0 (after_backward): GPU memory - allocated: 7.63GB, reserved: 19.27GB, free: 11.63GB, peak_allocated: 15.26GB, peak_reserved: 19.27GB\\\\n2026-05-23 08:02:07,830 [INFO] step=0 loss=0.1231 lr=2.50e-08 grad_norm=0.00 time=15.8s\\\\n\\\\rTraining:   0%|          | 1/30000 [00:15<131:46:51, 15.81s/it]\\\\rTraining:   0%|          | 1/30000 [00:15<131:46:51, 15.81s/it, loss=0.1231, lr=2.50e-08, action=0.1203, sdf=0.1411, ee=0.2107]2026-05-23 08:02:09,063 [INFO] Step 1 (after_backward): GPU memory - allocated: 7.64GB, reserved: 19.27GB, free: 11.63GB, peak_allocated: 15.28GB, peak_reserved: 19.27GB\\\\n\\\\rTraining:   0%|          | 2/30000 [00:17<60:19:48,  7.24s/it, loss=0.123\n…[truncated 6332 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 954
+          },
+          "id": "event-001008"
+        },
+        {
+          "source_line": 1009,
+          "timestamp": "2026-05-23T00:06:54.597829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "diff_collision_sdf",
+              "limit": "10"
+            }
+          },
+          "id": "event-001009"
+        },
+        {
+          "source_line": 1010,
+          "timestamp": "2026-05-23T00:06:54.749807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 08:01:49,128 [INFO]   Phase 1: SDF decoder (395777) + EE extractor (263171) trainable\\\\n2026-05-23 08:01:49,128 [INFO]   Phase 2: + LoRA (33.47M) will be unfrozen\\\\n2026-05-23 08:01:49,132 [INFO] Running on: autodl-container-zcu10e5eev-a14e9cca | world_size=1\\\\n2026-05-23 08:01:49,133 [INFO] Training config: batch_size=32, effective_batch_size=32, num_train_steps=30000\\\\n2026-05-23 08:01:49,133 [INFO] Memory optimizations: gradient_checkpointing=True\\\\n2026-05-23 08:01:49,133 [INFO] LR schedule: warmup=1000, peak_lr=2.50e-05, decay_steps=30000, end_lr=2.50e-06\\\\n2026-05-23 08:01:49,133 [INFO] Optimizer: AdamW, weight_decay=1e-10, clip_norm=1.0\\\\n2026-05-23 08:01:49,133 [INFO] EMA is not supported for PyTorch training\\\\n2026-05-23 08:01:49,133 [INFO] Training precision: bfloat16\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n2026-05-23 08:02:04,798 [INFO] Step 0 (after_backward): GPU memory - allocated: 7.63GB, reserved: 19.27GB, free: 11.63GB, peak_allocated: 15.26GB, peak_reserved: 19.27GB\\\\n2026-05-23 08:02:04,843 [INFO] step=0 loss=0.1235 lr=2.50e-08 grad_norm=0.00 time=15.7s\\\\n\\\\rTraining:   0%|          | 1/30000 [00:15<130:53:56, 15.71s/it]\\\\rTraining:   0%|          | 1/30000 [00:15<130:53:56, 15.71s/it, loss=0.1235, lr=2.50e-08, action=0.1203, sdf=0.1188, ee=0.2087]2026-05-23 08:02:06,089 [INFO] Step 1 (after_backward): GPU memory - allocated: 7.64GB, reserved: 19.27GB, free: 11.63GB, peak_allocated: 15.28GB, peak_reserved: 19.27GB\\\\n\\\\rTraining:   0%|          | 2/30000 [00:16<60:01:54,  7.20s/it, loss=0.123\n…[truncated 6332 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 704
+          },
+          "id": "event-001010"
+        },
+        {
+          "source_line": 1011,
+          "timestamp": "2026-05-23T00:06:54.850960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"train_pi05_a1_obj_l005\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T00:00:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:03:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.005) on object_pudding: conservative lambda to train SDF-aware LoRA without action collapse. Tests whether Pi0.5 base model + weak SDF signal can learn real collision avoidance (not fake safety).\\\", \\\"notes\\\": \\\"Phase 1 warmup: SDF decoder 395777 + EE extractor 263171 = 658948 trainable params. LoRA 33.47M frozen. Speed ~1.8s/step, ETA ~15h. Loss step0: total=0.1231 action=0.1203 sdf=0.1411 ee=0.2107\\\"}, \\\"train_pi05_a1_obj_l01\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T00:00:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:03:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.01) on object_pudding: stronger SDF signal to test if higher lambda produces real collision avoidance or triggers action collapse. Paired with λ=0.005 to bracket the useful range.\\\", \\\"notes\\\": \\\"Phase 1 warmup: same architecture as λ=0.005. Speed ~1.8s/step, ETA ~15h. Loss step0: total=0.1235 action=0.1203 sdf=0.1188 ee=0.2087\\\"}, \\\"eval_pi05_safelibero_object_v11_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5 baseline multi-seed replication (seed 1): confirm CAR=28% is stable across seeds, establish variance estimate for pass/fail gate.\\\", \\\"parent\\\": \\\"eval_pi05_safelibero_object_v11\\\"}, \\\"eval_pi05_safelibero_object_v11_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5 baseline multi-seed replication (seed 2): confirm CAR=28% is stable across seeds, establish variance estimate for pass/fail gate.\\\", \\\"parent\\\": \\\"eval_pi05_safelibero_object_v11\\\"}, \\\"eval_pi05_safelibero_spatial_v11\\\": {\\\"status\\\": \\\"DONE\\\", \\\"crea\n…[truncated 6788 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 253
+          },
+          "id": "event-001011"
+        },
+        {
+          "source_line": 1012,
+          "timestamp": "2026-05-23T00:07:52.289604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "ls -la /root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log"
+            }
+          },
+          "id": "event-001012"
+        },
+        {
+          "source_line": 1013,
+          "timestamp": "2026-05-23T00:07:52.741407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 84677 May 23 08:07 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001013"
+        },
+        {
+          "source_line": 1014,
+          "timestamp": "2026-05-23T00:07:52.741875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "head -5 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log"
+            }
+          },
+          "id": "event-001014"
+        },
+        {
+          "source_line": 1015,
+          "timestamp": "2026-05-23T00:07:53.293942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 08:00:25,595 [INFO] A1-Pi0.5 SDF Aux (hooks) | Scene: object_pudding | Seed: 0 | Dry run: False\\\\n2026-05-23 08:00:25,595 [INFO] Phase 1 warmup: 5000 steps, lambda_sdf=0.0050, lambda_ee=0.010\\\\n2026-05-23 08:00:25,954 [INFO] Created experiment checkpoint directory: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0\\\\nwandb: Tracking run with wandb version 0.27.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001015"
+        },
+        {
+          "source_line": 1016,
+          "timestamp": "2026-05-23T00:07:53.896479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "nvidia-smi --query-gpu=index,gpu_name,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001016"
+        },
+        {
+          "source_line": 1017,
+          "timestamp": "2026-05-23T00:07:54.751076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 99 %, 19107 MiB, 97887 MiB\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 100 %, 19107 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 854
+          },
+          "id": "event-001017"
+        },
+        {
+          "source_line": 1018,
+          "timestamp": "2026-05-23T00:07:54.902029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "nvidia-smi --query-gpu=index,gpu_name,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001018"
+        },
+        {
+          "source_line": 1019,
+          "timestamp": "2026-05-23T00:07:56.658489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 1 %, 74833 MiB, 97887 MiB\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 %, 1 MiB, 97887 MiB\\\\n2, NVIDIA RTX PRO 6000 Blackwell Server Edition, 23 %, 73543 MiB, 97887 MiB\\\\n3, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 %, 1 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1756
+          },
+          "id": "event-001019"
+        },
+        {
+          "source_line": 1020,
+          "timestamp": "2026-05-23T00:07:56.809402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"Task 0 results\\|Task 1 results\" /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log"
+            }
+          },
+          "id": "event-001020"
+        },
+        {
+          "source_line": 1021,
+          "timestamp": "2026-05-23T00:07:56.960536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 151
+          },
+          "id": "event-001021"
+        },
+        {
+          "source_line": 1022,
+          "timestamp": "2026-05-23T00:07:56.961018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"Task 0 results\\|Task 1 results\" /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s2.log"
+            }
+          },
+          "id": "event-001022"
+        },
+        {
+          "source_line": 1023,
+          "timestamp": "2026-05-23T00:07:57.061713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 100
+          },
+          "id": "event-001023"
+        },
+        {
+          "source_line": 1024,
+          "timestamp": "2026-05-23T00:08:12.969278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "head -5 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l01.log"
+            }
+          },
+          "id": "event-001024"
+        },
+        {
+          "source_line": 1025,
+          "timestamp": "2026-05-23T00:08:13.521684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 08:00:27,676 [INFO] A1-Pi0.5 SDF Aux (hooks) | Scene: object_pudding | Seed: 0 | Dry run: False\\\\n2026-05-23 08:00:27,676 [INFO] Phase 1 warmup: 5000 steps, lambda_sdf=0.0100, lambda_ee=0.010\\\\n2026-05-23 08:00:28,031 [INFO] Created experiment checkpoint directory: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0\\\\nwandb: Tracking run with wandb version 0.27.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001025"
+        },
+        {
+          "source_line": 1026,
+          "timestamp": "2026-05-23T00:08:14.983567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep -E \"Task [0-3] results\" /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log"
+            }
+          },
+          "id": "event-001026"
+        },
+        {
+          "source_line": 1027,
+          "timestamp": "2026-05-23T00:08:15.938581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 07:49:51,723 INFO Task 0 results: TSR=72.0% CAR=10.0% avg_disp=0.2457\\\\n2026-05-23 07:56:34,372 INFO Task 1 results: TSR=86.0% CAR=56.0% avg_disp=0.0744\\\\n2026-05-23 08:03:57,719 INFO Task 2 results: TSR=68.0% CAR=10.0% avg_disp=0.1505\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 955
+          },
+          "id": "event-001027"
+        },
+        {
+          "source_line": 1028,
+          "timestamp": "2026-05-23T00:08:15.938995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep -E \"Task [0-3] results\" /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s2.log"
+            }
+          },
+          "id": "event-001028"
+        },
+        {
+          "source_line": 1029,
+          "timestamp": "2026-05-23T00:08:16.892566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 07:49:30,572 INFO Task 0 results: TSR=76.0% CAR=14.0% avg_disp=0.1744\\\\n2026-05-23 07:56:12,415 INFO Task 1 results: TSR=86.0% CAR=56.0% avg_disp=0.0812\\\\n2026-05-23 08:03:33,449 INFO Task 2 results: TSR=64.0% CAR=10.0% avg_disp=0.1418\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 953
+          },
+          "id": "event-001029"
+        },
+        {
+          "source_line": 1030,
+          "timestamp": "2026-05-23T00:08:16.892977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "ls -lt /root/autodl-tmp/eval_results/train_pi05_a1_obj*.log*"
+            }
+          },
+          "id": "event-001030"
+        },
+        {
+          "source_line": 1031,
+          "timestamp": "2026-05-23T00:08:17.194266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "ls -lt /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/"
+            }
+          },
+          "id": "event-001031"
+        },
+        {
+          "source_line": 1032,
+          "timestamp": "2026-05-23T00:08:17.345148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 90144 May 23 08:08 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log\\\\n-rw-r--r-- 1 root root 90166 May 23 08:08 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l01.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001032"
+        },
+        {
+          "source_line": 1033,
+          "timestamp": "2026-05-23T00:08:17.897847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 5 root root 101 May 23 08:00 a1_sdf_pi05_object_pudding_seed0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-001033"
+        },
+        {
+          "source_line": 1034,
+          "timestamp": "2026-05-23T00:08:51.087236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "find /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding -type f -name \"*.pt\""
+            }
+          },
+          "id": "event-001034"
+        },
+        {
+          "source_line": 1035,
+          "timestamp": "2026-05-23T00:08:51.840488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/1/optimizer.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/1/metadata.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/1/sdf_decoder.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/1/ee_extractor.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/1/aux_metadata.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/2/optimizer.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/2/metadata.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/2/sdf_decoder.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/2/ee_extractor.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/2/aux_metadata.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/best/optimizer.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/best/metadata.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/best/sdf_decoder.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/best/ee_extractor.pt\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/best/aux_metadata.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-001035"
+        },
+        {
+          "source_line": 1036,
+          "timestamp": "2026-05-23T00:08:51.840928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "ls -lt /tmp/d011*.log /tmp/pi05*.log 2>/dev/null"
+            }
+          },
+          "id": "event-001036"
+        },
+        {
+          "source_line": 1037,
+          "timestamp": "2026-05-23T00:08:52.343100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001037"
+        },
+        {
+          "source_line": 1038,
+          "timestamp": "2026-05-23T00:08:52.795020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "tail -5 /tmp/nohup_train_l005.log 2>/dev/null"
+            }
+          },
+          "id": "event-001038"
+        },
+        {
+          "source_line": 1039,
+          "timestamp": "2026-05-23T00:08:52.795341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-001039"
+        },
+        {
+          "source_line": 1040,
+          "timestamp": "2026-05-23T00:08:53.800246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "find /root -maxdepth 2 -name \"nohup*\" -newer /root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log 2>/dev/null"
+            }
+          },
+          "id": "event-001040"
+        },
+        {
+          "source_line": 1041,
+          "timestamp": "2026-05-23T00:08:53.851511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 51
+          },
+          "id": "event-001041"
+        },
+        {
+          "source_line": 1042,
+          "timestamp": "2026-05-23T00:09:08.431287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "stat /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/1/metadata.pt"
+            }
+          },
+          "id": "event-001042"
+        },
+        {
+          "source_line": 1043,
+          "timestamp": "2026-05-23T00:09:08.733219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "stat /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/2/metadata.pt"
+            }
+          },
+          "id": "event-001043"
+        },
+        {
+          "source_line": 1044,
+          "timestamp": "2026-05-23T00:09:09.084758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/1/metadata.pt\\\\n  Size: 3059      \\\\tBlocks: 8          IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 33287030644  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-23 07:27:02.892516223 +0800\\\\nModify: 2026-05-23 07:26:59.740357686 +0800\\\\nChange: 2026-05-23 07:26:59.740357686 +0800\\\\n Birth: 2026-05-23 07:26:59.740357686 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 653
+          },
+          "id": "event-001044"
+        },
+        {
+          "source_line": 1045,
+          "timestamp": "2026-05-23T00:09:09.988187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/2/metadata.pt\\\\n  Size: 3059      \\\\tBlocks: 8          IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 5544934774  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-23 07:27:18.429290932 +0800\\\\nModify: 2026-05-23 07:27:14.037073045 +0800\\\\nChange: 2026-05-23 07:27:14.037073045 +0800\\\\n Birth: 2026-05-23 07:27:14.037073045 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1254
+          },
+          "id": "event-001045"
+        },
+        {
+          "source_line": 1046,
+          "timestamp": "2026-05-23T00:09:09.988526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "python3 -c \"import torch; m=torch.load('/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/1/metadata.pt', map_location='cpu'); print(m)\""
+            }
+          },
+          "id": "event-001046"
+        },
+        {
+          "source_line": 1047,
+          "timestamp": "2026-05-23T00:09:10.691115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 702
+          },
+          "id": "event-001047"
+        },
+        {
+          "source_line": 1048,
+          "timestamp": "2026-05-23T00:09:10.691474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "python3 -c \"import torch; m=torch.load('/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/2/metadata.pt', map_location='cpu'); print(m)\""
+            }
+          },
+          "id": "event-001048"
+        },
+        {
+          "source_line": 1049,
+          "timestamp": "2026-05-23T00:09:10.741885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-001049"
+        },
+        {
+          "source_line": 1050,
+          "timestamp": "2026-05-23T00:09:32.822024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "find /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding -maxdepth 2 -type d"
+            }
+          },
+          "id": "event-001050"
+        },
+        {
+          "source_line": 1051,
+          "timestamp": "2026-05-23T00:09:33.324096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/1\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/2\\\\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/best\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001051"
+        },
+        {
+          "source_line": 1052,
+          "timestamp": "2026-05-23T00:09:33.324410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "python3 -c \"import torch; m=torch.load('/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0/1/metadata.pt', map_location='cpu', weights_only=False); print(m)\""
+            }
+          },
+          "id": "event-001052"
+        },
+        {
+          "source_line": 1053,
+          "timestamp": "2026-05-23T00:09:33.375137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-001053"
+        },
+        {
+          "source_line": 1054,
+          "timestamp": "2026-05-23T00:10:05.807976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep \"checkpoint directory\" /root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log"
+            }
+          },
+          "id": "event-001054"
+        },
+        {
+          "source_line": 1055,
+          "timestamp": "2026-05-23T00:10:06.261646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 08:00:25,954 [INFO] Created experiment checkpoint directory: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001055"
+        },
+        {
+          "source_line": 1056,
+          "timestamp": "2026-05-23T00:10:06.362347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "grep \"checkpoint directory\" /root/autodl-tmp/eval_results/train_pi05_a1_obj_l01.log"
+            }
+          },
+          "id": "event-001056"
+        },
+        {
+          "source_line": 1057,
+          "timestamp": "2026-05-23T00:10:06.864503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 08:00:28,031 [INFO] Created experiment checkpoint directory: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001057"
+        },
+        {
+          "source_line": 1058,
+          "timestamp": "2026-05-23T00:10:40.811635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] Report #22 — 训练 checkpoint 路径冲突 + 训练重启丢失进度\n\n## 1. Checkpoint 路径碰撞（CRITICAL）\n\n两个 D011 训练进程（λ=0.005 GPU0, λ=0.01 GPU1）均写入相同的 checkpoint 目录：\n```\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0\n```\n\n**证据**：两个 log 文件都记录了相同路径：\n- l005.log: `Created experiment checkpoint directory: .../a1_sdf_pi05_object_pudding_seed0`\n- l01.log: `Created experiment checkpoint directory: .../a1_sdf_pi05_object_pudding_seed0`\n\n**影响**：当两个进程到达 save_interval=2000（约 step 2000，~40 min 后），后写入者覆盖先写入者的 checkpoint。最终只保留一个 lambda 的模型，eval 时无法区分。\n\n**要求**：立即修复 checkpoint 路径使其包含 lambda 值（如 `_l005/` vs `_l01/`），或在两个进程到达 step 2000 前 kill 并修复。当前 step ~240，距离 step 2000 约 35 分钟。\n\n## 2. 训练重启丢失进度（WARNING）\n\n训练日志显示当前运行于 2026-05-23 08:00:25 启动，**不是**昨晚 23:56 的原始启动。原始运行（~8h 训练时间）已丢失。\n\n- 原始运行：~23:56 启动，上次检查时 step~90\n- 当前运行：08:00:25 启动，现在 step~238/30000\n- 如果原始运行持续至今，应已完成 ~24000/30000 steps\n\n**额外发现**：checkpoint 目录中存在先前运行的文件（1/, 2/, best/），创建于 07:27——表明在 23:56 和 08:00 之间可能还有一次中间运行。三次启动，只有最后一次存活。\n\n需要 Worker 说明重启原因和前序运行状态。\n\n## 3. Pi0.5 Multi-seed Eval 中间结果\n\nSeed 1、2 的 Task 0-2 已完成，Task 3 进行中（ep ~21-23/50）：\n\n| Task | Seed 7 | Seed 1 | Seed 2 | Mean±std |\n|------|--------|--------|--------|----------|\n| T0 OJ (TSR/CAR) | 64/6 | 72/10 | 76/14 | 70.7±6.1 / 10.0±4.0 |\n| T1 CP | 86/56 | 86/56 | 86/56 | **86.0±0.0 / 56.0±0.0** |\n| T2 Milk | 66/16 | 68/10 | 64/10 | 66.0±2.0 / 12.0±3.5 |\n| T3 BBQ | 76/34 | TBD | TBD | — |\n\n**T1 完全确定性**（3 seeds TSR/CAR 完全相同），T0 有较大 TSR 波动（64-76%），T2 的 CAR 在 seed 1/2 低于 seed 7（10% vs 16%）。\n\n## 4. Lambda 不匹配仍未解决\n\nGPU 1 仍使用 λ=0.01（D011 计划 λ=0.001），10x 偏差。Report #21 已提出，等待 Director 决定。\n\n**优先级**：Checkpoint 路径碰撞必须在 ~35 分钟内修复（step 2000 前）。",
+              "project": "diff_collision_sdf"
+            }
+          },
+          "id": "event-001058"
+        },
+        {
+          "source_line": 1059,
+          "timestamp": "2026-05-23T00:10:41.967576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1155
+          },
+          "id": "event-001059"
+        },
+        {
+          "source_line": 1060,
+          "timestamp": "2026-05-23T00:10:50.716280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "900",
+              "reason": "Check if checkpoint collision fix was applied before step 2000 (~20 min left), and catch multi-seed eval Task 3 completion",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-001060"
+        },
+        {
+          "source_line": 1061,
+          "timestamp": "2026-05-23T00:10:50.817132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 00:26:00 (in 909s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 100
+          },
+          "id": "event-001061"
+        },
+        {
+          "source_line": 1062,
+          "timestamp": "2026-05-23T00:10:52.348080+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report #22 已发送。两个 critical/warning 发现：\n1. **CRITICAL**: 双 lambda 训练共享 checkpoint 路径，~35 分钟后互相覆盖\n2. **WARNING**: 训练重启丢失 ~8h 进度，原因不明\n\nMulti-seed eval Task 3 约 15 分钟完成。下次检查重点：checkpoint 修复是否及时、eval Task 3 收尾。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer"
+          },
+          "id": "event-001062"
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "messages": [
+        {
+          "source_line": 1063,
+          "timestamp": "2026-05-23T00:14:07.123290+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_check_pi05_multiseed_eval_results_20260523T001236]:\nWorker worker_ops_check_pi05_multiseed_eval_results_20260523T001236 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "source": "system"
+          },
+          "id": "event-001063"
+        },
+        {
+          "source_line": 1064,
+          "timestamp": "2026-05-23T00:14:17.811596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "diff_collision_sdf",
+              "limit": "5",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001064"
+        },
+        {
+          "source_line": 1065,
+          "timestamp": "2026-05-23T00:14:18.313798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"train_pi05_a1_obj_l005\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:00:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:03:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.005) on object_pudding: conservative lambda to train SDF-aware LoRA without action collapse. Tests whether Pi0.5 base model + weak SDF signal can learn real collision avoidance (not fake safety).\\\", \\\"spec\\\": {\\\"command\\\": \\\"WANDB_MODE=offline python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --gpu 0 --batch_size 32 --num_train_steps 30000 --lambda_sdf 0.005 --lambda_ee 0.01 --lr 2.5e-5 --save_interval 2000\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"data_path\\\": \\\"SafeLIBERO object_pudding training data\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"pi05_libero + A1 SDF aux (λ=0.005)\\\", \\\"seed\\\": 0, \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log\\\", \\\"checkpoint_path\\\": null}, \\\"reproduce\\\": {\\\"pid\\\": 584408, \\\"gpu\\\": \\\"cuda:0\\\", \\\"tmux_session\\\": \\\"train_pi05_a1_obj_l005\\\"}, \\\"notes\\\": \\\"Phase 1 warmup: SDF decoder 395777 + EE extractor 263171 = 658948 trainable params. LoRA 33.47M frozen. Speed ~1.8s/step, ETA ~15h. Loss step0: total=0.1231 action=0.1203 sdf=0.1411 ee=0.2107\\\"}, \\\"train_pi05_a1_obj_l01\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:00:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:03:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.01) on object_pudding: stronger SDF signal to test if higher lambda produces real collision avoidance or triggers action collapse. Paired with λ=0.005 to bracket the useful range.\\\", \\\"spec\\\": {\\\"command\\\": \\\"WANDB_MODE=offline python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --gpu 1 --batch_size 32 --num_train_steps 30000 --lambda_sdf 0.01 --lambda_ee 0.01 --lr 2.5e-5 --save_interval 2000\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"data_path\\\": \\\"Safe\n…[truncated 4318 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-001065"
+        },
+        {
+          "source_line": 1066,
+          "timestamp": "2026-05-23T00:14:19.568007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep -E \"Task [0-3] results\" /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log"
+            }
+          },
+          "id": "event-001066"
+        },
+        {
+          "source_line": 1067,
+          "timestamp": "2026-05-23T00:14:20.270524+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep -E \"Task [0-3] results\" /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s2.log"
+            }
+          },
+          "id": "event-001067"
+        },
+        {
+          "source_line": 1068,
+          "timestamp": "2026-05-23T00:14:20.571802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 07:49:51,723 INFO Task 0 results: TSR=72.0% CAR=10.0% avg_disp=0.2457\\\\n2026-05-23 07:56:34,372 INFO Task 1 results: TSR=86.0% CAR=56.0% avg_disp=0.0744\\\\n2026-05-23 08:03:57,719 INFO Task 2 results: TSR=68.0% CAR=10.0% avg_disp=0.1505\\\\n2026-05-23 08:10:35,877 INFO Task 3 results: TSR=78.0% CAR=24.0% avg_disp=0.1415\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1003
+          },
+          "id": "event-001068"
+        },
+        {
+          "source_line": 1069,
+          "timestamp": "2026-05-23T00:14:21.074600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 07:49:30,572 INFO Task 0 results: TSR=76.0% CAR=14.0% avg_disp=0.1744\\\\n2026-05-23 07:56:12,415 INFO Task 1 results: TSR=86.0% CAR=56.0% avg_disp=0.0812\\\\n2026-05-23 08:03:33,449 INFO Task 2 results: TSR=64.0% CAR=10.0% avg_disp=0.1418\\\\n2026-05-23 08:10:35,620 INFO Task 3 results: TSR=74.0% CAR=30.0% avg_disp=0.1317\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 804
+          },
+          "id": "event-001069"
+        },
+        {
+          "source_line": 1070,
+          "timestamp": "2026-05-23T00:14:36.992321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "tail -3 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log"
+            }
+          },
+          "id": "event-001070"
+        },
+        {
+          "source_line": 1071,
+          "timestamp": "2026-05-23T00:14:37.945756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "tail -3 /root/autodl-tmp/eval_results/train_pi05_a1_obj_l01.log"
+            }
+          },
+          "id": "event-001071"
+        },
+        {
+          "source_line": 1072,
+          "timestamp": "2026-05-23T00:14:38.598309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rTraining:   1%|          | 301/30000 [06:18<9:52:58,  1.20s/it, loss=0.1504, lr=7.49e-06, action=0.1484, sdf=0.0907, ee=0.1568]\\\\rTraining:   1%|          | 301/30000 [06:18<9:52:58,  1.20s/it, loss=0.1577, lr=7.52e-06, action=0.1554, sdf=0.0850, ee=0.1887]\\\\rTraining:   1%|          | 302/30000 [06:20<9:52:44,  1.20s/it, loss=0.1577, lr=7.52e-06, action=0.1554, sdf=0.0850, ee=0.1887]\\\\rTraining:   1%|          | 302/30000 [06:20<9:52:44,  1.20s/it, loss=0.1079, lr=7.54e-06, action=0.1056, sdf=0.0881, ee=0.1879]\\\\rTraining:   1%|          | 303/30000 [06:21<9:52:50,  1.20s/it, loss=0.1079, lr=7.54e-06, action=0.1056, sdf=0.0881, ee=0.1879]\\\\rTraining:   1%|          | 303/30000 [06:21<9:52:50,  1.20s/it, loss=0.1142, lr=7.57e-06, action=0.1119, sdf=0.0885, ee=0.1814]\\\\rTraining:   1%|          | 304/30000 [06:22<9:54:48,  1.20s/it, loss=0.1142, lr=7.57e-06, action=0.1119, sdf=0.0885, ee=0.1814]\\\\rTraining:   1%|          | 304/30000 [06:22<9:54:48,  1.20s/it, loss=0.1479, lr=7.59e-06, action=0.1453, sdf=0.0845, ee=0.2183]\\\\rTraining:   1%|          | 305/30000 [06:23<9:54:11,  1.20s/it, loss=0.1479, lr=7.59e-06, action=0.1453, sdf=0.0845, ee=0.2183]\\\\rTraining:   1%|          | 305/30000 [06:23<9:54:11,  1.20s/it, loss=0.1313, lr=7.62e-06, action=0.1294, sdf=0.0878, ee=0.1535]\\\\rTraining:   1%|          | 306/30000 [06:24<9:54:33,  1.20s/it, loss=0.1313, lr=7.62e-06, action=0.1294, sdf=0.0878, ee=0.1535]\\\\rTraining:   1%|          | 306/30000 [06:24<9:54:33,  1.20s/it, loss=0.1494, lr=7.64e-06, action=0.1476, sdf=0.0886, ee=0.1316]\\\\rTraining:   1%|          | 307/30000 [06:26<9:56:06,  1.20s/it, loss=0.1494, lr=7.64e-06, action=0.1476, sdf=0.0886, ee=0.1316]\\\\rTraining:   1%|          | 307/30000 [06:26<9:56:06,  1.20s/it, loss=0.1540, lr=7.67e-06, action=0.1523, sdf=0.0830, ee=0.1319]\\\\rTraining:   1%|          | 308/30000 [06:27<9:55:35,  1.20s/it, loss=0.1540, lr=7.67e-06, action=0.1523, sdf=0.0830, ee=0\n…[truncated 6328 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1605
+          },
+          "id": "event-001072"
+        },
+        {
+          "source_line": 1073,
+          "timestamp": "2026-05-23T00:14:38.598702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-45947",
+              "command": "find /root/autodl-tmp/checkpoints -maxdepth 3 -type d -name \"*l0*\""
+            }
+          },
+          "id": "event-001073"
+        },
+        {
+          "source_line": 1074,
+          "timestamp": "2026-05-23T00:14:38.649273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rTraining:   1%|          | 301/30000 [06:22<9:58:28,  1.21s/it, loss=0.1509, lr=7.49e-06, action=0.1484, sdf=0.0966, ee=0.1537]\\\\rTraining:   1%|          | 301/30000 [06:22<9:58:28,  1.21s/it, loss=0.1581, lr=7.52e-06, action=0.1554, sdf=0.0893, ee=0.1854]\\\\rTraining:   1%|          | 302/30000 [06:23<10:03:05,  1.22s/it, loss=0.1581, lr=7.52e-06, action=0.1554, sdf=0.0893, ee=0.1854]\\\\rTraining:   1%|          | 302/30000 [06:23<10:03:05,  1.22s/it, loss=0.1084, lr=7.54e-06, action=0.1056, sdf=0.0937, ee=0.1861]\\\\rTraining:   1%|          | 303/30000 [06:24<10:00:20,  1.21s/it, loss=0.1084, lr=7.54e-06, action=0.1056, sdf=0.0937, ee=0.1861]\\\\rTraining:   1%|          | 303/30000 [06:24<10:00:20,  1.21s/it, loss=0.1147, lr=7.57e-06, action=0.1119, sdf=0.0939, ee=0.1813]\\\\rTraining:   1%|          | 304/30000 [06:26<9:59:03,  1.21s/it, loss=0.1147, lr=7.57e-06, action=0.1119, sdf=0.0939, ee=0.1813] \\\\rTraining:   1%|          | 304/30000 [06:26<9:59:03,  1.21s/it, loss=0.1483, lr=7.59e-06, action=0.1453, sdf=0.0881, ee=0.2148]\\\\rTraining:   1%|          | 305/30000 [06:27<9:59:05,  1.21s/it, loss=0.1483, lr=7.59e-06, action=0.1453, sdf=0.0881, ee=0.2148]\\\\rTraining:   1%|          | 305/30000 [06:27<9:59:05,  1.21s/it, loss=0.1318, lr=7.62e-06, action=0.1294, sdf=0.0929, ee=0.1525]\\\\rTraining:   1%|          | 306/30000 [06:28<10:01:56,  1.22s/it, loss=0.1318, lr=7.62e-06, action=0.1294, sdf=0.0929, ee=0.1525]\\\\rTraining:   1%|          | 306/30000 [06:28<10:01:56,  1.22s/it, loss=0.1498, lr=7.64e-06, action=0.1476, sdf=0.0956, ee=0.1253]\\\\rTraining:   1%|          | 307/30000 [06:29<10:03:46,  1.22s/it, loss=0.1498, lr=7.64e-06, action=0.1476, sdf=0.0956, ee=0.1253]\\\\rTraining:   1%|          | 307/30000 [06:29<10:03:46,  1.22s/it, loss=0.1545, lr=7.67e-06, action=0.1523, sdf=0.0906, ee=0.1286]\\\\rTraining:   1%|          | 308/30000 [06:31<10:02:33,  1.22s/it, loss=0.1545, lr=7.67e-06, action=0.1523, sdf=0.\n…[truncated 6328 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-001074"
+        },
+        {
+          "source_line": 1075,
+          "timestamp": "2026-05-23T00:14:39.151225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001075"
+        },
+        {
+          "source_line": 1076,
+          "timestamp": "2026-05-23T00:15:11.342481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "diff_collision_sdf",
+              "limit": "6",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-001076"
+        },
+        {
+          "source_line": 1077,
+          "timestamp": "2026-05-23T00:15:11.796656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"train_pi05_a1_obj_l005\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T00:00:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:03:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.005) on object_pudding: conservative lambda to train SDF-aware LoRA without action collapse. Tests whether Pi0.5 base model + weak SDF signal can learn real collision avoidance (not fake safety).\\\", \\\"notes\\\": \\\"Phase 1 warmup: SDF decoder 395777 + EE extractor 263171 = 658948 trainable params. LoRA 33.47M frozen. Speed ~1.8s/step, ETA ~15h. Loss step0: total=0.1231 action=0.1203 sdf=0.1411 ee=0.2107\\\"}, \\\"train_pi05_a1_obj_l01\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T00:00:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:03:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.01) on object_pudding: stronger SDF signal to test if higher lambda produces real collision avoidance or triggers action collapse. Paired with λ=0.005 to bracket the useful range.\\\", \\\"notes\\\": \\\"Phase 1 warmup: same architecture as λ=0.005. Speed ~1.8s/step, ETA ~15h. Loss step0: total=0.1235 action=0.1203 sdf=0.1188 ee=0.2087\\\"}, \\\"eval_pi05_safelibero_object_v11_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5 baseline multi-seed replication (seed 1): confirm CAR=28% is stable across seeds, establish variance estimate for pass/fail gate.\\\", \\\"parent\\\": \\\"eval_pi05_safelibero_object_v11\\\"}, \\\"eval_pi05_safelibero_object_v11_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:45:00.000Z\\\", \\\"hypothesis\\\": \\\"Pi0.5 baseline multi-seed replication (seed 2): confirm CAR=28% is stable across seeds, establish variance estimate for pass/fail gate.\\\", \\\"parent\\\": \\\"eval_pi05_safelibero_object_v11\\\"}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \n…[truncated 46 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-001077"
+        },
+        {
+          "source_line": 1078,
+          "timestamp": "2026-05-23T00:15:13.503331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"Overall\\|overall\\|OVERALL\" /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log"
+            }
+          },
+          "id": "event-001078"
+        },
+        {
+          "source_line": 1079,
+          "timestamp": "2026-05-23T00:15:14.306034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 802
+          },
+          "id": "event-001079"
+        },
+        {
+          "source_line": 1080,
+          "timestamp": "2026-05-23T00:15:14.306450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "tail -5 /root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11_s1.log"
+            }
+          },
+          "id": "event-001080"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "75805b1c286045e3a521",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops prepare pi05 eval env",
+  "task_key": "worker_ops_prepare_pi05_eval_env_20260522T103923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare_pi05_eval_env_20260522T103923.log",
+    "occurrence": 1,
+    "bytes": 872974,
+    "sha256": "114d65d688358e5da092f667d049fb715a27665a3b5560d5d4588aec078cfc63"
+  },
+  "statistics": {
+    "messages": 609,
+    "user_turns": 0,
+    "tool_calls": 212,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 4,
+      "assistant": 178,
+      "tool_call": 212,
+      "tool_result": 212,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 609,
+      "chunks": [
+        {
+          "path": "75805b1c286045e3a521-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "75805b1c286045e3a521-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "75805b1c286045e3a521-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "75805b1c286045e3a521-part-0004.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-prepare-pi05-eval-env.md"
+}

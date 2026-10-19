@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp_c3_s42",
+  "project": "tbab_multi_turn",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:21:19.683Z",
+    "updated_at": "2026-05-18T08:21:19.684Z"
+  },
+  "timestamp": "2026-05-18T08:21:19.688792+00:00",
+  "trigger": "update_registry"
+}

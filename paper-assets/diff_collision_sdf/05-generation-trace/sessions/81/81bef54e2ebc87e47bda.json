@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81bef54e2ebc87e47bda",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper scatter legend fix",
+  "task_key": "worker_paper_scatter_legend_fix_20260524T233320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_scatter_legend_fix_20260524T233320_result.json",
+    "occurrence": 1,
+    "bytes": 189,
+    "sha256": "d8ecc9aabe6c4eb26808b4a30a09c9204f3e4fb49ed5a6f80af8ddbe02f264f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已更新：\n- Legend box (a)-(g) 移到左下角，不再与 Pi0.5 绿色方块重叠\n- 箭头改为橙色实线（`darkorange`, `lw=1.5`），文字同步改为橙色"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-scatter-legend-fix.md"
+}

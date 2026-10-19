@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d91acff75a4b780338e",
+  "project": "meta_brain_lora_routing",
+  "kind": "result",
+  "title": "eval baseline full coverage",
+  "task_key": "worker_eval_baseline_full_coverage_20260516T215029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_baseline_full_coverage_20260516T215029_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "7efb72c77a59fd5fc564690df7f00f0f09758f7fde950032e1fc5bd61b253a49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估正常运行中。cuda:0 占用 8.3GB，每 episode 约 4-7 秒（比预估 30s 快很多）。\n\n当前进度：nominal seed=42，8/20 episodes 完成，5/8 成功。\n\n按此速度，480 episodes 预计 40-60 分钟完成（而非 4 小时）。任务在 tmux session `baseline_eval` 中运行，日志写入 `/root/meta_brain_lora_routing/phase1/outputs/baseline_eval.log`。\n\n完成后结果 JSON 自动保存到 `/root/meta_brain_lora_routing/phase1/outputs/eval_none_libero_spatial_*.json`。\n\n需要我稍后回来检查结果吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-baseline-full-coverage.md"
+}

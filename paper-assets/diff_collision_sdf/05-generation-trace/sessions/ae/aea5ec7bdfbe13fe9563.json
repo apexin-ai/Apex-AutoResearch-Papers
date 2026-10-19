@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aea5ec7bdfbe13fe9563",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "writing discussion reviewer fixes",
+  "task_key": "worker_writing_discussion_reviewer_fixes_20260527T083340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_discussion_reviewer_fixes_20260527T083340_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "9cee439ee39f548a80139654a57a749f8fad417ea1558471f6ea10a40cdd9ea3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three fixes verified:\n\n1. **CAR_f → dfCAR**: All `CAR$_\\text{f}$` and `\\text{CAR}_\\text{f}` replaced with `dfCAR`/`\\text{dfCAR}` across 8 files (discussion, introduction, experimental_framework, related_work, claim1, appendix, method). Only archive files retain the old notation.\n\n2. **Limitations expanded**: Added SafeLIBERO tabletop-specific limitations (fixed-base manipulator, controlled obstacles vs. real-world clutter) and full-body SDF implementation challenges (per-step query count increase, differentiable FK requirement). ~175 words, within target.\n\n3. **\"90+\" → \"70+\"**: Registry has 72 valid experiments (49 success + 23 negative, excluding 13 failed, 14 killed, 5 running). Changed to \"70+\" to match introduction.tex which already uses \"70+\"."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-discussion-reviewer-fixes.md"
+}

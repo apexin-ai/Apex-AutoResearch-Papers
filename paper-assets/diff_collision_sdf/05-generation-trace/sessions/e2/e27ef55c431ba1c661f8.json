@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "e27ef55c431ba1c661f8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops action scale diagnosis",
+  "task_key": "worker_ops_action_scale_diagnosis_20260522T060557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_action_scale_diagnosis_20260522T060557_result.json",
+    "occurrence": 1,
+    "bytes": 2347272,
+    "sha256": "f33f322912c0816d6f8432804efd62c8e1787df0da86b93a6eb31853a39a308e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "e27ef55c431ba1c661f8-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/ops-action-scale-diagnosis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c072044d2b7d176cd92c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "prep lambda0 ablation config",
+  "task_key": "worker_prep_lambda0_ablation_config_20260524T140932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_lambda0_ablation_config_20260524T140932_result.json",
+    "occurrence": 1,
+    "bytes": 2821,
+    "sha256": "50a3357721573a6b53d8f7c5a3b80ce12f2053f202ffeaaa932363ddb5d27335"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture. Here's the analysis and training command.\n\n---\n\n## 现有 A1 配置确认\n\n从 registry 和 `train_pi05_lora_baseline.py`（同源 fork）确认：\n\n| 参数 | 值 |\n|------|-----|\n| 脚本 | `scripts/train_a1_sdf_aux_pi05.py` |\n| LoRA | PaliGemma rank=16/alpha=16, Action Expert rank=32/alpha=32 |\n| LR | 2.5e-5, cosine decay (warmup 1000 steps, decay to lr/10) |\n| Phase 1 | 0→5000 steps: backbone+LoRA frozen, only aux heads (SDF decoder + EE extractor) trainable |\n| Phase 2 | 5000→30000 steps: unfreeze LoRA, aux heads 继续训练 |\n| λ_sdf 传入方式 | `--lambda_sdf` 命令行参数 |\n| Loss 公式 | `action_loss + λ_sdf × sdf_total + λ_ee × ee_loss` |\n| Batch size | 32 |\n| Optimizer | cosine decay schedule |\n| 数据集 | safelibero_object (object_pudding) |\n\n## 是否需要代码修改\n\n**不需要。** `--lambda_sdf 0` 直接可用。Loss 公式中 `0 × sdf_total = 0`，SDF loss 项被自然消除。SDF decoder 仍然存在于模型中，SDF forward pass 仍然执行（只是不贡献 gradient）。\n\n## 需要注意的语义\n\n`--lambda_sdf 0` 意味着 **全程** λ_sdf=0：\n- **Phase 1**: SDF decoder 虽然存在且 trainable，但因 `0 × sdf_loss = 0`，SDF decoder 实际 **不会收到任何梯度**。只有 EE extractor 通过 `λ_ee × ee_loss` 获得训练。\n- **Phase 2**: LoRA 训练 loss = `action_loss + 0.01 × ee_loss`，无 SDF 贡献。\n\n这个 ablation 的实际含义是：\"没有任何 SDF loss 时（但有 EE loss + 相同的 Phase 1/2 调度），CAR 是否提升？\" 对比条件：\n- **LoRA baseline** (正在跑): 无 SDF、无 EE\n- **λ_sdf=0 ablation**: 无 SDF、有 EE loss\n- **λ_sdf=0.005/0.01**: 有 SDF + 有 EE loss\n\n如果你需要的是 \"Phase 1 正常预热 SDF decoder（λ_sdf>0），Phase 2 关闭 SDF（λ_sdf=0）\"，那需要代码修改（当前脚本 λ_sdf 全程固定）。请确认你要的是哪种。\n\n## 完整训练命令\n\ncheckpoint path 自动生成可能产生 `_l0` 而非 `_l000`，用 `--exp_name` 显式指定：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/colliforce-vla && \\\nWANDB_MODE=offline PYTHONUNBUFFERED=1 \\\npython scripts/train_a1_sdf_aux_pi05.py \\\n  --scene object_pudding \\\n  --seed 0 \\\n  --gpu <GPU_ID> \\\n  --batch_size 32 \\\n  --num_train_steps 30000 \\\n  --lambda_sdf 0 \\\n  --lambda_ee 0.01 \\\n  --lr 2.5e-5 \\\n  --save_interval 2000 \\\n  --exp_name a1_sdf_pi05_object_pudding_seed0_l000 \\\n  2>&1 | tee /tmp/train_pi05_a1_obj_s0_l000.log\n```\n\nGPU 选择：westd-35807 的 cuda:0-3 目前空闲（之前的 A1 实验已完成），westd-45947 的 cuda:0-1 被 LoRA baseline 占用。建议在 westd-35807 上跑，填入具体 GPU 编号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-lambda0-ablation-config.md"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "4e51297fbf2704bf0907",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ssh a3 restart westd45947",
+  "task_key": "worker_ssh_a3_restart_westd45947_20260520T035343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a3_restart_westd45947_20260520T035343.log",
+    "occurrence": 1,
+    "bytes": 1181415,
+    "sha256": "492b34ee4caf70458f2e02dce20cef1592032c90a8bccab27618130fdec0ced5"
+  },
+  "statistics": {
+    "messages": 423,
+    "user_turns": 1,
+    "tool_calls": 152,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 111,
+      "tool_call": 152,
+      "tool_result": 152,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 363,
+      "chunks": [
+        {
+          "path": "4e51297fbf2704bf0907-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4e51297fbf2704bf0907-part-0002.json",
+          "message_count": 177
+        },
+        {
+          "path": "4e51297fbf2704bf0907-part-0003.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 60,
+      "chunks": [
+        {
+          "path": "4e51297fbf2704bf0907-part-0003.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-a3-restart-westd45947.md"
+}

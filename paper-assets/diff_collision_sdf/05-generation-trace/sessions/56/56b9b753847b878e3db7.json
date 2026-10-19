@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56b9b753847b878e3db7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval wait baseline pertask extract",
+  "task_key": "worker_eval_wait_baseline_pertask_extract_20260528T004103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_wait_baseline_pertask_extract_20260528T004103_result.json",
+    "occurrence": 1,
+    "bytes": 132,
+    "sha256": "7786759e07ce220769241825aeccee26a197b91b6393599c203a97ad3e4888fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process is still running (~14m elapsed). Scheduled a check in 2 minutes. Will extract results as soon as it finishes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-wait-baseline-pertask-extract.md"
+}

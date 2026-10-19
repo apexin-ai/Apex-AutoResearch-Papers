@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a45cca256bea3bc1a2e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops sync eval script to westd35807",
+  "task_key": "worker_ops_sync_eval_script_to_westd35807_20260523T004929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_eval_script_to_westd35807_20260523T004929_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "a7d79545f8dd797c94e4fdc119ee771eaff538a287c6f50ebedcc2f57d8bd1ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sync 完成。\n\n| 检查项 | 结果 |\n|--------|------|\n| 文件大小/MD5 | 16303 bytes, md5=`500586259ae4ba29e0832d3ba75ba97e` — 与 westd-45947 源文件一致 |\n| `robot_total_displacement` | 5 处匹配 (L157, L195, L223, L235, L249) |\n| `min_ee_obstacle_distance` | 7 处匹配 (L158, L216, L224, L225, L236, L249, L265) |\n| `is_frozen` / `frozen_rate` | 5+13 处匹配 |\n| `pass_fail` gate (CAR≥33%, TSR≥50%) | 4 处匹配 (L386, L391, L396, L420) |\n| import 测试 (`conda activate libero`) | `import OK` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-eval-script-to-westd35807.md"
+}

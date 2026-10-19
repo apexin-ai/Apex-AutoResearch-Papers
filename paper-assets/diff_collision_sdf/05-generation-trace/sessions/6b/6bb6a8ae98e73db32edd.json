@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bb6a8ae98e73db32edd",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose train pi05 a1 obj s1 l01 high",
+  "task_key": "worker_diagnose_train_pi05_a1_obj_s1_l01_high_20260527T100106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_train_pi05_a1_obj_s1_l01_high_20260527T100106_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "c4dc1d64615e177ef728c90e8fcc3020cb93403736d4bf1c9b7af13e7f68dadd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。**两个实验都没有失败，是监控系统误判。**\n\n核心发现：\n\n1. **训练 (seed1, λ=0.1)**: 已完成全部 30000 steps（耗时 ~34h），checkpoint 已保存到 `30000/`。最终 loss=0.0171。不需要 resume。\n\n2. **评估 (seed0, λ=0.1)**: 已完成全部 4 个 tasks。**Avg TSR=47.0%, Avg CAR=58.0%**。结果已保存到 JSON 文件。\n\n3. **根因**: 进程正常退出后 PID 消失，监控系统找不到 sentinel/W&B 信号，连续 5 次检测后误判为 failed。\n\n4. **GPU 状态**: GPU 0/1 在跑新的 eval，GPU 3 在跑 LoRA baseline 训练，**GPU 2 完全空闲可用**。\n\n报告已写入 `artifacts/diagnose_l01_failures.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-train-pi05-a1-obj-s1-l01-high.md"
+}

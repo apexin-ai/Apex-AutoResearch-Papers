@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b8b3d779af906825fb3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu status and results pull",
+  "task_key": "worker_ops_gpu_status_and_results_pull_20260525T090807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_and_results_pull_20260525T090807_result.json",
+    "occurrence": 1,
+    "bytes": 1761,
+    "sha256": "8ac540a58696b53056965565bd8555544cf344fabf5782a8e5fa72449324221d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n---\n\n### 1. westd-35807 — GPU 状态\n\n| GPU | 型号 | 利用率 | 显存占用 | 状态 |\n|-----|------|--------|----------|------|\n| 0 | RTX PRO 6000 (96GB) | 46% | 8.1 GB | eval s1_l005 (port 8000) |\n| 1 | RTX PRO 6000 (96GB) | 0% | 8.1 GB | eval s1_l01 (port 8001) |\n| 2 | RTX PRO 6000 (96GB) | 0% | 8.1 GB | eval s2_l005 (port 8002) |\n| 3 | RTX PRO 6000 (96GB) | 0% | 8.1 GB | eval s2_l01 (port 8003) |\n\n### 2. 30K Eval 进度（均在运行中，未完成）\n\n4 个 tmux session 于 13:25 启动，输出目录已创建但结果 JSON 尚未写入。\n\n| Eval | 当前进度 | 速度 | 预计完成 |\n|------|---------|------|---------|\n| s1_l005 | **60/200** (30%) | ~40s/ep | ~18:40 |\n| s1_l01 | **56/200** (28%) | ~39s/ep | ~18:40 |\n| s2_l005 | **50/200** (25%) | ~37s/ep | ~18:40 |\n| s2_l01 | **47/200** (24%) | ~44s/ep | ~19:00 |\n\n**全部约 18:40-19:00 完成。**\n\n### 3. OpenVLA 下载状态\n\n**已完成。** aria2 日志显示 `ALL_DOWNLOADS_DONE`，无 aria2 进程运行。`.aria2` 文件是残留元数据，可清理。\n\n| 文件 | 大小 |\n|------|------|\n| model-00001-of-00003.safetensors | 6.5G |\n| model-00002-of-00003.safetensors | 6.5G |\n| model-00003-of-00003.safetensors | 1.1G |\n| config.json + 其他 | ~153K |\n\n### 4. westd-45947 — LoRA Baseline 训练\n\n| GPU | 利用率 | 显存占用 | 任务 | 进度 | ETA |\n|-----|--------|----------|------|------|-----|\n| 0 | **100%** | 27.1 GB | lora_s0 (seed 0) | **19468/30000 (65%)** | ~13.5h → **May 26 ~06:30** |\n| 1 | **100%** | 27.1 GB | lora_s1 (seed 1) | **19473/30000 (65%)** | ~13.5h → **May 26 ~06:30** |\n\n两个 seed 均从 step 16800 resume（12:40 启动），速度 ~4.62 s/step，loss ~0.01。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-and-results-pull.md"
+}
